@@ -66,7 +66,8 @@ def gid(path): return hashlib.sha256(('lpc:'+path).encode()).hexdigest()[:12]
 def slug(path): return re.sub(r'[^a-z0-9]+','-',path.lower().strip('/'))
 def roomslug(path,area): return slug(path.split('/'+area+'/',1)[-1])
 def isroom(path,src):
-    return ('/room/' in path or re.search(r'inherit\s+LIB_(?:ROOM|CHAPEL|STORAGE|FISHING|SHOP)',src) or calls(src,'SetExits')) and '/npc/' not in path
+    if path.rsplit('/',1)[-1] in {'death','freezer','furnace','pod','void','wiz_hall'}: return False
+    return ('/room/' in path or re.search(r'inherit\s+LIB_(?:ROOM|CHAPEL|FISHING|SHOP)',src) or calls(src,'SetExits')) and '/npc/' not in path
 def isnpc(path):
     return '/npc/' in path or any(re.search(r'inherit\s+LIB_(?:NPC|SENTIENT|VENDOR|TRAINER|LEADER|MONSTER|BOT)',s) for s in chain(path))
 macros={}

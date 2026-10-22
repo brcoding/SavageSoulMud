@@ -5,6 +5,7 @@ use grim::components::Name as GrimName;
 use serde::Deserialize;
 use serde_json::{json, Value};
 use std::collections::{BTreeMap, HashMap, HashSet};
+const REPORTABLE: &[&str] = &["INJURY", "MANA", "MANA_MAX", "EXPERIENCE", "EXPERIENCE_UNSPENT", "CREDITS", "WINDED", "FATIGUED", "STUNNED", "ROOM_VNUM", "ROOM_NAME", "AREA_NAME", "ROOM_EXITS", "CHARACTER_NAME"];
 const GMCP:u8=201; const MSDP:u8=69; const MSSP:u8=70; const ATCP:u8=200;
 
 #[derive(Resource, Clone, Deserialize)]
@@ -45,7 +46,7 @@ fn snapshot(world:&World,actor:Entity)->BTreeMap<String,Value> {
     let attributes:BTreeMap<_,_>=crate::savage_rules::ATTRIBUTES.into_iter().chain(["faith"]).map(|name|(name,json!({"base":soul.base_attribute(name),"effective":soul.attribute(name)}))).collect();
     data.insert("Char.Stats".into(),json!({"attributes":attributes,"strength":derived.strength,"passive_defense":derived.passive_defense,"dodge":derived.dodge,"quickness":derived.quickness}));
     if let Some(room_entity)=world.get::<InRoom>(actor).map(|ir|ir.room) {if let Some(room)=world.get::<Room>(room_entity) {
-        if soul.vision_penalty>0 {data.insert("Room.Info".into(),json!({"num":"-1","name":"Darkness","area":"","exits":{}}));}
+        if soul.vision_penalty>0 {data.insert("Room.Info".into(),json!({"num":-1,"name":"Darkness","area":"","exits":{}}));}
         else {
         data.insert("Room.Info".into(),json!({"num":mapper_id(world,room.id.as_str()).map(i64::from).unwrap_or(-1),"grim_id":room.id.as_str(),"name":room.name,"area":world.get::<Area>(room.area).map(|a|a.name.as_str()).unwrap_or(""),"exits":visible_exits(world,room_entity)}));
         }
@@ -113,8 +114,8 @@ fn tick(world:&mut World,mut cursor:Local<MessageCursor<TelnetInput>>) {
                 for value in values {
                     let vars=online.get(&input.connection).map(|actor|variables(&snapshot(world,*actor))).unwrap_or_default();
                     match command.as_str() {
-                        "LIST"=>{let list=match value.as_str(){"COMMANDS"=>Some(json!(["LIST","SEND","REPORT","UNREPORT","RESET"])),"LISTS"=>Some(json!(["COMMANDS","LISTS","REPORTABLE_VARIABLES","REPORTED_VARIABLES","SENDABLE_VARIABLES"])),"REPORTABLE_VARIABLES"|"SENDABLE_VARIABLES"=>Some(json!(vars.keys().collect::<Vec<_>>())),"REPORTED_VARIABLES"=>Some(json!(client.reported.iter().collect::<Vec<_>>())),_=>None};if let Some(list)=list{protocol(world,input.connection,MSDP,msdp_pair(&value,&list));}},
-                        "REPORT" if vars.contains_key(&value)=>{client.reported.insert(value);client.last.clear();},
+                        "LIST"=>{let list=match value.as_str(){"COMMANDS"=>Some(json!(["LIST","SEND","REPORT","UNREPORT","RESET"])),"LISTS"=>Some(json!(["COMMANDS","LISTS","REPORTABLE_VARIABLES","REPORTED_VARIABLES","SENDABLE_VARIABLES"])),"REPORTABLE_VARIABLES"|"SENDABLE_VARIABLES"=>Some(json!(REPORTABLE)),"REPORTED_VARIABLES"=>Some(json!(client.reported.iter().collect::<Vec<_>>())),_=>None};if let Some(list)=list{protocol(world,input.connection,MSDP,msdp_pair(&value,&list));}},
+                        "REPORT" if REPORTABLE.contains(&value.as_str())=>{client.reported.insert(value);client.last.clear();},
                         "UNREPORT"=>{client.reported.remove(&value);},
                         "RESET"=>client.reported.clear(),
                         "SEND"=>{if let Some(data)=vars.get(&value){protocol(world,input.connection,MSDP,msdp_pair(&value,data));}},_=>{}
@@ -159,7 +160,7 @@ fn update_owner(world:&mut World,connection:Entity,caps:&TelnetCapabilities,clie
             for name in ["Char.Vitals","Char.Status","Char.Stats","Room.Info"] {gmcp(world,connection,name,&json!({}));}
             gmcp(world,connection,"Char.Items.List",&json!({"location":"inv","items":[]}));
         }
-        client.last.clear();client.reported.clear();client.owner=actor;client.last_inventory=Value::Null;client.links_shown=false;
+        client.last.clear();client.owner=actor;client.last_inventory=Value::Null;client.links_shown=false;
     }
 }
 fn inventory(world:&mut World,actor:Entity)->Vec<Value> {
@@ -167,6 +168,7 @@ fn inventory(world:&mut World,actor:Entity)->Vec<Value> {
 }
 fn preference(world:&mut World,actor:Entity,key:&str,value:&str)->Result<(),String> {
     let mut character=world.get::<Character>(actor).ok_or("No character.")?.clone();character.config.insert(key.into(),value.into());
+    if let Some(soul)=world.get::<crate::savage_rules::SoulData>(actor) {character.game_state.insert("savage_soul".into(),serde_json::to_value(soul).map_err(|e|e.to_string())?);}
     let mut stored=StoredCharacter::from_components(world.get::<GrimName>(actor).ok_or("No name.")?,world.get::<Actor>(actor).ok_or("No actor.")?,&character);
     stored.inventory=crate::shop::held(world,actor).into_iter().map(|(_,item)|item).collect();crate::shop::persist(world,&stored).map_err(|e|format!("Could not save preference: {e}"))?;world.entity_mut(actor).insert(character);Ok(())
 }

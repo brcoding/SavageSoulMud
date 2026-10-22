@@ -76,6 +76,20 @@ impl<C: Send + Sync + 'static> CommandRegistry<C> {
         self.entries.iter().any(|e| e.name == name)
     }
 
+    /// Replace a registered factory without changing its priority or section.
+    /// Returns false when the command is not registered.
+    pub fn replace(
+        &mut self,
+        name: &str,
+        factory: impl Fn(&str) -> Option<C> + Send + Sync + 'static,
+    ) -> bool {
+        let Some(idx) = self.priority.iter().copied().find(|&i| self.entries[i].name.eq_ignore_ascii_case(name)) else {
+            return false;
+        };
+        self.entries[idx].factory = Box::new(factory);
+        true
+    }
+
     /// Tag `name` into a listing section (case-insensitive, no-op when
     /// unregistered). Sections split listings: `commands` shows the default
     /// section, `socials` shows the `"social"` section.
@@ -179,6 +193,18 @@ pub(crate) mod fixture {
 mod resolution_tests {
     use super::fixture::{look, Cmd};
     use super::*;
+
+    #[test]
+    fn replace_updates_resolved_duplicate_and_preserves_priority() {
+        let mut registry = CommandRegistry::new();
+        registry.register("look", look);
+        registry.register("look", |_| Some(Cmd::North));
+        registry.register("long", |_| Some(Cmd::Nordic(String::new())));
+        assert!(registry.replace("LOOK", |_| Some(Cmd::Note("replacement".into()))));
+        assert_eq!(registry.resolve("look", ""), Some(Cmd::Note("replacement".into())));
+        assert_eq!(registry.resolve("l", ""), Some(Cmd::Nordic(String::new())));
+        assert!(!registry.replace("missing", look));
+    }
 
     #[test]
     fn exact_match_beats_higher_priority_prefix() {

@@ -34,3 +34,6 @@ The adapter retains at most 200 public channel messages in the local Linux file 
 All `i3`, `intermud` and `imud` commands are wizard-only, as are incoming traffic and retained history. This is enforced at session dispatch and again using the character's current role in the adapter. The legacy `wizard_only` config field cannot enable access for mortal characters.
 
 `i3 listen all` requests all discovered public channels. Restricted channels still require network permission and are not included in the bulk public subscription. Joins are paced so the gateway is not flooded; the command reports the queued work. `i3 unlisten all` leaves the desired channels. Desired subscriptions persist in the local Linux JSON file named by `subscriptions_file`, allowing reconnection and copyover to restore them. Adding the capability does not subscribe the MUD to every channel automatically.
+
+For a new checkout, copy `data/intermud.example.json` to the ignored
+`data/intermud.json` before configuring the adapter. Never store keys in either file.

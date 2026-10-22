@@ -175,7 +175,7 @@ async fn bind_fresh(port: u16) -> TcpListener {
     let host = std::env::var("GRIM_BIND_HOST").unwrap_or_else(|_| "127.0.0.1".into());
     match TcpListener::bind((host.as_str(), port)).await {
         Ok(listener) => {
-            info!("Telnet server listening on port {}", port);
+            info!("Telnet server listening on {host}:{port}");
             listener
         }
         Err(e) => {
@@ -183,7 +183,7 @@ async fn bind_fresh(port: u16) -> TcpListener {
             // swallowed and leave the MUD running with no transport. Exit the
             // whole process instead (systemd `Restart=on-failure` handles the
             // real box; locally you get a clean, obvious crash).
-            error!("failed to bind telnet listener on port {port}: {e}");
+            error!("failed to bind telnet listener on {host}:{port}: {e}");
             std::process::exit(1);
         }
     }

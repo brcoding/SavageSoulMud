@@ -9,5 +9,5 @@ while read -r pid; do
         found=1
         echo "Requested graceful shutdown of Grim (PID $pid); allow 30 seconds."
     fi
-done < <(pgrep -x example-mud || true)
+done < <(pgrep -u "$(id -u)" -x savsoul || true)
 if [[ "$found" == 0 ]]; then echo "This Grim instance is not running."; fi

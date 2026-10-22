@@ -13,6 +13,9 @@ rustc-ice-*.txt
 /data/rebuild-backups/
 /data/bans.json
 /data/tls-proxy-port.txt
+/data/intermud.json
+/data/grapevine.json
+/data/zebedee.json
 crates/*/data/
 *.log
 .env

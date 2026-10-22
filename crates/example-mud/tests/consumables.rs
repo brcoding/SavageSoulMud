@@ -4,7 +4,7 @@ use harness::Mud;
 #[test]
 fn supplies_are_consumed_once_and_saved() {
     let mut mud=Mud::with_savage_soul();let(s,_)=mud.connect();
-    for line in ["food@example.com","y","secretpw","c","Hungry","1",""]{let _=mud.send(s,line);}
+    for line in ["food@example.com","y","secretpw","c","Hungry","1","human",""]{let _=mud.send(s,line);}
     mud.send(s,"drink water").assert_contains("not carrying");
     for line in ["east","east","north","north","west"]{let _=mud.send(s,line);}
     let _=mud.send(s,"buy water");let _=mud.send(s,"buy ration");

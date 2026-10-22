@@ -44,6 +44,7 @@ pub(crate) type PlayerChars<'w, 's> = Query<
 pub(crate) struct SessionRes<'w> {
     pub(crate) accessibility: Option<Res<'w, crate::AccessibilityOnboarding>>,
     pub(crate) creation_defaults: Option<Res<'w, crate::CharacterCreationDefaults>>,
+    pub(crate) starting_credits: Option<Res<'w, crate::StartingCredits>>,
     pub(crate) build_mode: Option<Res<'w, crate::CharacterBuildMode>>,
     pub(crate) starting: Res<'w, StartingRoom>,
     pub(crate) persistence: Res<'w, grim_persistence::PersistenceConfig>,

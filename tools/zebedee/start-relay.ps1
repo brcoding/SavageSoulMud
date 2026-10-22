@@ -1,7 +1,8 @@
-param([string]$Python = 'C:/Users/barry/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe')
+param([string]$Python = '')
 $ErrorActionPreference = 'Stop'
+if (-not $Python) { $Python = (Get-Command python -ErrorAction Stop).Source }
 $grimRoot = (Resolve-Path (Join-Path $PSScriptRoot '../..')).Path
-$stateDir = 'C:/Users/barry/Documents/Codex/2026-10-12/i-w/work/private-zebedee'
+$stateDir = Join-Path $env:LOCALAPPDATA 'SavageSoul/Zebedee'
 New-Item -ItemType Directory -Force -Path $stateDir | Out-Null
 $keyFile = Join-Path $stateDir 'relay.key'
 if (-not (Test-Path -LiteralPath $keyFile)) {
@@ -21,10 +22,9 @@ if (Test-Path -LiteralPath $pidFile) {
         Stop-Process -Id $previous.pid
     }
 }
-$wslKey = '/home/barry/.local/state/savsoul-zebedee/relay.key'
 $linuxKeySource = '/mnt/' + $keyFile.Substring(0,1).ToLowerInvariant() + $keyFile.Substring(2).Replace('\','/')
 $linuxProvision = '/mnt/' + $relayScript.Substring(0,1).ToLowerInvariant() + $relayScript.Substring(2).Replace('\','/').Replace('windows-relay.py','provision-key.sh')
-& wsl -d Ubuntu-24.04 -- bash $linuxProvision $linuxKeySource
+$wslKey = (& wsl -d Ubuntu-24.04 -- bash $linuxProvision $linuxKeySource | Select-Object -Last 1).Trim()
 if ($LASTEXITCODE -ne 0) { throw 'Cannot provision the private WSL relay key.' }
 $configFile = Join-Path $grimRoot 'data/zebedee.json'
 $config = Get-Content -Raw -LiteralPath $configFile | ConvertFrom-Json

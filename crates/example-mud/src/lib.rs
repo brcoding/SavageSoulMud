@@ -45,3 +45,4 @@ pub mod species;
 pub mod creator;
 
 mod client_auth;
+mod game_commands;

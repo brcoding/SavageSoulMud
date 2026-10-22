@@ -139,7 +139,7 @@ fn copyover_keeps_player_connected_and_resumes_last_room() {
         // committed data/areas. The successor inherits this env across copyover.
         .env(
             "GRIM_AREAS_DIR",
-            concat!(env!("CARGO_MANIFEST_DIR"), "/../../data/areas"),
+            concat!(env!("CARGO_MANIFEST_DIR"), "/tests/fixtures/areas"),
         )
         .stdout(Stdio::null())
         .stderr(Stdio::null())

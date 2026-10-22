@@ -104,13 +104,15 @@ fn command(world:&mut World,actor:Entity,verb:&str,arg:&str)->Result<(),String> 
 }
 /// Also make the engine's existing `config` command save immediately.
 fn persist_config(world:&mut World) {
-    let people:Vec<_>=world.query_filtered::<(Entity,&Character),With<Player>>().iter(world).map(|(e,c)|(e,c.clone())).collect();
+    let people:Vec<_>=world.query_filtered::<(Entity,&Character),With<Player>>().iter(world).map(|(e,c)|(e,c.config.clone())).collect();
     let mut seen=world.remove_resource::<Seen>().unwrap_or_default();
     seen.0.retain(|e,_|people.iter().any(|(actor,_)|actor==e));
     let mut changes=Vec::new();
-    for (actor,mut c) in people {
-        if let Some(old)=seen.0.get(&actor) {if old!=&c.config {transition(&mut c,old);changes.push((actor,c,old.clone()));}}
-        else {seen.0.insert(actor,c.config.clone());}
+    for (actor,config) in people {
+        if let Some(old)=seen.0.get(&actor) {if old!=&config {
+            let mut c=world.get::<Character>(actor).unwrap().clone();
+            transition(&mut c,old);changes.push((actor,c,old.clone()));
+        }} else {seen.0.insert(actor,config);}
     }
     world.insert_resource(seen);
     for (actor,c,old) in changes {if let Err(error)=save(world,actor,c) {if let Some(mut c)=world.get_mut::<Character>(actor){c.config=old;}reply(world,actor,format!("{error} Previous settings restored."));}}

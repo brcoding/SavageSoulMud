@@ -4,18 +4,16 @@ Installed at `P:\savsoulmud\grim`, based on gvanderest/grim.
 
 Run `powershell -ExecutionPolicy Bypass -File P:\savsoulmud\grim\start-local.ps1`.
 Connect your MUD client to `localhost`, port `4000`. Create an account and character
-through the login prompts. The initial room remains Haven's **The Rusted Anvil**.
+through the login prompts. New characters begin in the **Royal Oak Med Room**.
 
-Type `open west`, then `west` to enter **Royal Oak Wall Gate**. From the gate,
-`north` reaches South Royal Oak Main Street; `west`, then `west` reaches the medical
-room. Use `read sign` (or `look sign`), `look table`, `look cabinets`, and other scenery keywords.
-Return to the gate and go `east` to reach Haven. The door's open/closed state is
-shared between both sides; `open east` opens it from Royal Oak.
+Use `read sign` (or `look sign`), `look table`, and `look cabinet` to learn about
+medical services. Go `east` twice to reach South Royal Oak Main Street, then
+`south` to reach the gate. The Royal Oak gate puzzle controls passage out of town.
+The extra connection to Haven remains available through the gate's east door.
 
 The server binds to loopback only. A compiled Linux binary is saved in `bin/savsoul`;
-the launcher uses it directly. Ubuntu-24.04 WSL and workspace-local Rust 1.98.1
-are used because upstream's hot-restart code requires Unix. No remote hosting has
-been configured. Stop this instance with
+the launcher refreshes a private Linux runtime image before executing it. Ubuntu-24.04 WSL and workspace-local Rust 1.98.1
+are used because upstream's hot-restart code requires Unix. Production is hosted separately at savsoul.com; local state does not automatically sync. Stop this instance with
 `powershell -ExecutionPolicy Bypass -File P:\savsoulmud\grim\stop-local.ps1`;
 allow 30 seconds for graceful shutdown before restarting.
 Account/character saves live in `data/accounts` and `data/characters`; back these up.

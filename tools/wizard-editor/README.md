@@ -56,12 +56,13 @@ The user systemd service is savsoul-editor; restart with:
 Backups and audit logs are in `~/.local/state/savsoul-editor`. Preserve this
 folder alongside regular MUD backups. No retention deletion is automatic.
 Each authenticated request rechecks account ownership, wizard role, bans and
-password fingerprint. Sessions expire after 30 minutes of inactivity and
-are invalidated when the editor restarts. Mutation requests require same-origin
+password fingerprint. Sessions have a rolling 30-day lifetime and
+survive editor restarts through a persistent private signing key. Mutation requests require same-origin
 CSRF tokens; arbitrary Hosts, path traversal and symbolic links are denied.
 Account/character saves, bans, credentials, server code and executables are
 not exposed as editable content. No arbitrary shell or systemctl command API.
-The service is local only; remote hosting needs a separate HTTPS deployment.
+The backend is loopback-only; production HTTPS access uses the reverse proxy
+described under Public server access.
 
 ## Files
 

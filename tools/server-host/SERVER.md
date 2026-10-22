@@ -1,5 +1,8 @@
 # Savage Soul remote server
 
+Set `GRIM_BIND_HOST=0.0.0.0` in the production game service environment; local
+launches default to `127.0.0.1`. Startup logs report the actual listener address.
+
 Host: `savsoul.com` (`173.255.210.234`). Game TCP `4000`, TLS TCP `4001`, Zebedee UDP `4002`.
 The game data, including the saved Rawr character, lives in `/home/savsoul/grim`.
 The game executable is `/home/savsoul/grim/bin/savsoul`; Cargo's default runnable target is `savsoul`.
@@ -30,7 +33,10 @@ Portable Python and supporting libraries avoid upgrading the Ubuntu14 host.
 
 The stable `notify_runner.py` follows the game's real copyover process. Its
 private PID file is `/home/savsoul/state/runner/mud.pid`. The editor invokes
-`reload_remote.py` as savsoul to validate and signal that PID. Do not signal
+the tracked `tools/server-host/reload_remote.py` as savsoul to validate and signal that PID.
+Deploy that file with the other server-host tools; both `/api/apply` and the
+administrator command below invoke the same helper. It refreshes the public
+Mudlet map before signalling the verified game executable. Do not signal
 the Upstart runner PID with kill9 or start a duplicate game manually.
 
 For an administrator-requested copyover:

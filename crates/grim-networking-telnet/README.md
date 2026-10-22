@@ -32,6 +32,7 @@ None. This is a transport; it produces `ConnectionInput` messages, not game comm
 ## Resources & Events
 | Name | Kind (Resource/Message) | File |
 |---|---|---|
+| `TelnetSystems::Send` | SystemSet (protocol frames flush before text/disconnect output) | `src/plugin.rs` |
 | `TelnetPort` | Resource | `src/bridge.rs` |
 | `TelnetLimits` | Resource (line/buffer/rate/connect/shed caps, seconds for time; author-overridable) | `src/limits.rs` (`TelnetPlugin::with_limits`) |
 | `NetworkBridge` | Resource (crate-internal) | `src/bridge.rs` |
@@ -45,7 +46,7 @@ Wire messages (`ConnectionEstablished`, `ConnectionInput`, `ConnectionClosed`, `
 The local Savsoul installation binds to `127.0.0.1` by default. Set `GRIM_BIND_HOST` explicitly when configuring a different listen address.
 
 
-- `TelnetPlugin::new(port)` inserts `TelnetPort` plus default `TelnetLimits`, inits `CopyoverSignal` / `CopyoverDone`, and schedules the Startup + Update systems. `with_limits` overrides the caps. The five Update systems are `.chain()`-ed in order: drain → send → bridge copyover-due → poll copyover → finish copyover.
+- `TelnetPlugin::new(port)` inserts `TelnetPort` plus default `TelnetLimits`, inits `CopyoverSignal` / `CopyoverDone`, and schedules the Startup + Update systems. `with_limits` overrides the caps. The six Update systems are `.chain()`-ed in order: drain → send protocol commands → send → bridge copyover-due → poll copyover → finish copyover.
 - Input guards (`src/guard.rs`, enforced in the read task before any byte reaches Bevy): lines past `max_line_len` truncate-and-deliver with the remainder discarded to the newline; a line past `max_buffer` without a newline, or more than `max_lines` per `rate_window_secs`, drops the connection with a `GuardTrip` reason logged alongside the peer address.
 - Accept shed (`src/shed.rs`): past `max_connects_total` accepts per `total_window_secs` the listener sheds (accept-and-close, no handshake) for `shed_secs`; transitions cross to Bevy as `Shed` events (entry, ≤1/min heartbeats, lazy exit). Copyover re-adoptions bypass the gate.
 - Drain alerts (`src/drain.rs`): connects/closes/resumes report `Logins` with the peer address; guard trips and shed transitions report `Security`. The read task stays Bevy-free — trips surface as `Disconnected { reason }`.

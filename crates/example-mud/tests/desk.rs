@@ -5,7 +5,7 @@ use harness::Mud;
 fn desk_disarm_loot_and_read_survive_reconnect_without_refilling() {
     let mut mud = Mud::with_savage_soul();
     let (s, _) = mud.connect();
-    for line in ["desk@example.com", "y", "secretpw", "c", "Visitor", "1", ""] {
+    for line in ["desk@example.com", "y", "secretpw", "c", "Visitor", "1", "human", ""] {
         let _ = mud.send(s, line);
     }
     mud.send(s, "disarm drawer")

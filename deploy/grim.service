@@ -15,6 +15,7 @@ NotifyAccess=all
 # process needs no privilege); the value here is a placeholder.
 User=grim
 WorkingDirectory=/opt/grim
+Environment=GRIM_BIND_HOST=0.0.0.0
 ExecStart=/opt/grim/bin/grim
 # Lets `systemctl reload grim` trigger a copyover too (deploy.sh uses a direct
 # SIGUSR2 to avoid needing privileged systemctl, but this keeps the idiom available).

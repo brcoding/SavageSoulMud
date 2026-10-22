@@ -22,7 +22,7 @@ fn savsoul_door_routes_signs_scenery_and_return() {
     for input in ["east", "east", "south", "open east", "east"] {
         let _ = mud.send(s, input);
     }
-    mud.send(s, "close west");
+    let _ = mud.send(s, "close west");
     mud.send(s, "look").assert_contains("The Rusted Anvil");
     mud.send(s, "west").assert_contains("is closed");
     mud.send(s, "open west")

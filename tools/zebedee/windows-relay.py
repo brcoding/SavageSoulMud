@@ -56,6 +56,7 @@ def main():
                 if count>100:continue
                 queue({'source_ip':source[0],'source_port':source[1],'data':list(data)})
             elif event.data=='client':
+                if client is None or event.fileobj is not client:continue
                 try:data=client.recv(8192)
                 except BlockingIOError:continue
                 except OSError:close_client();continue

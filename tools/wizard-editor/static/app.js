@@ -123,6 +123,7 @@ async function renderExitFields(holder,room){
  }catch(error){holder.replaceChildren(el('p',error.message,'map-error'));}
 }
 mapView=new EditorMapView($('map-view'),{
+ error:error=>status(error.message||String(error),true),
  location:()=>syncLocation(),
  data:async refresh=>{const data=await ensureWorld(refresh);return{areas:mapAreas(),errors:data.errors,path:current?.path,focusKey:isArea()&&selected>=0?current.path+'#'+selected:null};},
  select:async(node,fields)=>{if(node.path!==current?.path){await openFile(node.path);if(node.path!==current?.path)return false;mapView.fitNext=true;}const index=doc.rooms.findIndex(room=>room.id===node.id);if(index<0)return false;selected=index;mode=fields?'form':'map';render();return true;},

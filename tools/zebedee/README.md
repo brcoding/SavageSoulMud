@@ -41,3 +41,6 @@ Verification 2026-10-18: WSL ping to MorgenGrauen, UNItopia and Wunderland all t
 
 
 For this development machine, run tools/zebedee/start-relay.ps1 before starting the MUD after a Windows/WSL restart. It creates a private per-user relay key, copies it into WSL mode0600, detects the WSL gateway, updates the local relay configuration and starts the relay hidden. It is idempotent; copyover reconnects to the running relay. It does not install a Windows startup task. Direct Linux hosting should set relay_host to an empty string and use UDP directly.
+
+For a new checkout, copy `data/zebedee.example.json` to the ignored
+`data/zebedee.json` before configuring the adapter. Never store keys in either file.

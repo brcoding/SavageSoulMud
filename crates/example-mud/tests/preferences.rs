@@ -5,7 +5,7 @@ use harness::Mud;
 fn preferences_save_restore_and_survive_login_with_inventory() {
     let mut mud=Mud::with_savage_soul();
     let (s,_)=mud.connect();
-    for input in ["prefs@example.com","y","secretpw","c","Reader","1",""] {let _=mud.send(s,input);}
+    for input in ["prefs@example.com","y","secretpw","c","Reader","1","human",""] {let _=mud.send(s,input);}
     for input in ["east","east","north","north","west"] {let _=mud.send(s,input);}
     mud.send(s,"buy water bottle").assert_contains("You buy");
     mud.send(s,"look bottle").assert_contains("Condition: excellent.");

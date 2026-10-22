@@ -21,12 +21,15 @@ key override, no code.
 on `grim-actor`) and stamps `grim_scene::ConnectedAt` when a session enters the
 world.
 
+Structured credentials are handled in `handle_pregame_input`, ordered by
+`AuthSystems::Greet` and `AuthSystems::Input`.
+
 ## Systems
 
 | System | Schedule | File | Purpose |
 |---|---|---|---|
 | `handle_connection_established` | `Update` | `src/greeter.rs` | Spawns a `Client`, prints the login banner + first prompt — the entry to the flow. Refuses banned IPs first (ban message + sever, no session), then per-IP reconnect floods (throttle message + sever + security alert). |
-| `validate_registries` | `Startup` | `src/plugin.rs` | Panics on a mis-seeded world (empty race registry / no tier-1 class) so creation can't trap a player. |
+| `validate_registries` | `Startup` | `src/plugin.rs` | Panics on a mis-seeded world (empty race registry / no tier-1 class in Legacy mode) so creation can't trap a player. SavageSoul mode requires no tier-1 class. |
 | `handle_pregame_input` | `Update` (`.after` the greeter, `.before(SceneSystems::InGameInput)`) | `src/input.rs` | Routes a line by pre-game `ClientState`; skips `InGame` (scene's job); records connections it advances into the world in `JustEnteredWorld`. |
 
 ## State handlers
@@ -63,6 +66,10 @@ before placing (`refuse_banned` in `grim-scene/src/resume.rs`).
 | Name | Kind (Resource/Message) | File |
 |---|---|---|
 | `ReservedNamePrefixes` | Resource (character-name prefix blocklist; author-overridable) | `src/validation.rs` |
+| `CharacterBuildMode` | Resource (legacy class flow or Savage Soul XP build) | `src/build_mode.rs` |
+| `CharacterCreationDefaults` / `StartingCredits` | Resources (author-provided initial state and new-character credit balance; absent balance defaults to 100) | `src/creation_defaults.rs` |
+| `LoginCredentials` / `LoginResult` | Messages (structured credentials reuse password/ban checks and report success) | `src/client_login.rs`, `src/input.rs` |
+| `AuthSystems` | SystemSet (Greet and Input order structured sign-in against normal input) | `src/client_login.rs` |
 | `AccessibilityOnboarding` | Resource (default false; one-time screen-reader question on normal login) | `src/accessibility.rs` |
 | `RaceRegistry` / `ClassRegistry` | Resource (read for the creation menus; `init_resource`, from `grim-world`) | `src/plugin.rs` |
 | `PersistenceConfig` | Resource (account/character JSON dir; `init_resource`, from `grim-persistence`) | `src/plugin.rs` |
@@ -105,8 +112,6 @@ Input validation lives entirely in `src/validation.rs`: `hash_password` /
   crates stay decoupled; only genuinely shared render helpers
   (`grim_scene::formatter`) are called across the boundary.
 
----
-*Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
 
 Login branding comes from `assets/login-banner.txt`, embedded at build time and rendered by `src/greeter.rs`. The Savage Soul uses its recovered green radiation symbol and red/yellow title. Character screen-reader preferences and the onboarding question apply after authentication.
 
@@ -120,3 +125,6 @@ Structured client sign-in uses LoginCredentials/LoginResult messages owned by
 auth, ordered with AuthSystems::Greet/Input. Credentials are redacted for Debug
 and never routed through text input or history. Existing password auth enforces
 normal ownership/bans/takeover. Manual input wins a mixed same-tick batch.
+
+---
+*Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*

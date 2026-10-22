@@ -89,6 +89,7 @@ pub struct Mud {
     app: App,
     next_conn: usize,
     data_dir: PathBuf,
+    areas_dir: PathBuf,
     cursor: bevy::ecs::message::MessageCursor<ConnectionOutput>,
     exit_cursor: bevy::ecs::message::MessageCursor<AppExit>,
     due_cursor: bevy::ecs::message::MessageCursor<grim::events::CopyoverDue>,
@@ -108,6 +109,7 @@ impl Mud {
     }
     pub fn with_savage_soul() -> Self {
         let mut mud = Self::with_savsoul();
+        example_mud::species::install(&mut mud.app);
         mud.app
             .insert_resource(grim::CharacterBuildMode::SavageSoul);
         mud.app
@@ -133,6 +135,7 @@ impl Mud {
     }
 
     fn with_areas(areas: &str) -> Self {
+        let areas_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(areas);
         let id = INSTANCE.fetch_add(1, Ordering::Relaxed);
         let data_dir = std::env::temp_dir().join(format!("grim-e2e-{}-{}", std::process::id(), id));
         let _ = std::fs::remove_dir_all(&data_dir);
@@ -149,7 +152,7 @@ impl Mud {
         // Area blueprints load from the filesystem; point at the repo's
         // committed data/areas so the harness world matches what ships.
         app.insert_resource(example_mud::seed::AreaBlueprintDir(
-            std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(areas),
+            areas_dir.clone(),
         ));
         app.add_systems(Startup, example_mud::seed::seed_world);
         app.add_plugins(example_mud::shop::ShopPlugin);
@@ -178,6 +181,7 @@ impl Mud {
         Self {
             app,
             next_conn: 1,
+            areas_dir,
             data_dir,
             cursor,
             exit_cursor,
@@ -314,7 +318,7 @@ impl Mud {
         app.init_resource::<Time>();
         app.add_plugins(GrimHeadlessPlugins);
         app.insert_resource(example_mud::seed::AreaBlueprintDir(
-            std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data/areas"),
+            self.areas_dir.clone(),
         ));
         app.add_systems(Startup, example_mud::seed::seed_world);
         app.add_plugins(example_mud::shop::ShopPlugin);
@@ -323,6 +327,7 @@ impl Mud {
         ));
         app.add_plugins(example_mud::help::HelpPlugin);
         if soul_mode {
+            example_mud::species::install(&mut app);
             app.insert_resource(grim::CharacterBuildMode::SavageSoul);
             app.add_plugins(example_mud::savage_soul::SavageSoulPlugin);
             app.insert_resource(example_mud::population::PopulationEnabled(false));

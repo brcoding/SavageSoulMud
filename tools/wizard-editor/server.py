@@ -213,7 +213,7 @@ def create_app(root, state=None, validator=None, reload_command=None, port=4080,
                         errors.add(f"{room['slug']}: door {direction} has no exit")
         return errors
 
-    def validate(rel, text):
+    def validate(rel, text, cross_check=True):
         if len(text.encode("utf-8")) > MAX_FILE or "\x00" in text:
             abort(400, "Content is too large or contains a null character.")
         if not rel.endswith(".json"):
@@ -229,6 +229,8 @@ def create_app(root, state=None, validator=None, reload_command=None, port=4080,
                 result = subprocess.run([str(validator), "--validate-area", tmp.name], capture_output=True, text=True, timeout=15)
             if result.returncode:
                 raise ValueError(result.stderr.strip() or "MUD rejected this area blueprint.")
+            if not cross_check:
+                return []
             baseline = area_errors()
             updated = area_errors((allowed(rel), value))
             introduced = updated - baseline
@@ -519,7 +521,7 @@ def create_app(root, state=None, validator=None, reload_command=None, port=4080,
     def history():
         rel = request.args.get("path"); allowed(rel)
         folder = state / "backups" / digest(rel.encode())
-        return jsonify(versions=[read_json(file) for file in sorted(folder.glob("*.json"), reverse=True)][:100])
+        return jsonify(versions=[read_json(file) for file in sorted(folder.glob("*.json"), reverse=True)[:100]])
 
     @app.post("/api/restore")
     def restore():
@@ -538,7 +540,7 @@ def create_app(root, state=None, validator=None, reload_command=None, port=4080,
             abort(503, "World reload is not configured.")
         with write_lock:
             for file in (root / "data/areas").glob("*.json"):
-                validate(file.relative_to(root).as_posix(), file.read_text(encoding="utf-8-sig"))
+                validate(file.relative_to(root).as_posix(), file.read_text(encoding="utf-8-sig"), cross_check=False)
             for directory in ["data/help", "data/savage-soul", "data/quests", "data/socials"]:
                 for file in (root / directory).rglob("*.json"):
                     allowed(file.relative_to(root).as_posix())

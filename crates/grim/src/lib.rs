@@ -19,7 +19,7 @@ pub use grim_actor::{
     Actor, AttemptWalk, Character, Creature, DarkVision, InRoom, Linkdead, OutputHistory, Player, Role, StoredCharacter,
     StoredObject,
 };
-pub use grim_auth::{AuthSystems, LoginCredentials, LoginResult, AccessibilityOnboarding, AuthPlugin, CharacterBuildMode, CharacterCreationDefaults, ReservedNamePrefixes};
+pub use grim_auth::{AuthSystems, LoginCredentials, LoginResult, AccessibilityOnboarding, AuthPlugin, CharacterBuildMode, CharacterCreationDefaults, StartingCredits, ReservedNamePrefixes};
 pub use grim_channel::LastWhisperFrom;
 pub use grim_config::{ConfigDef, ConfigRegistry, Scope as ConfigScope};
 pub use grim_object::{CarriedBy, Object, ObjectPlugin};

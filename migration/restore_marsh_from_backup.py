@@ -74,6 +74,5 @@ while queue:
 assert route is not None
 allareas=[json.loads(p.read_text(encoding='utf-8')) for p in (ROOT/'data/areas').glob('*.json')];allareas=[a for a in allareas if a.get('canonical')]
 room_count=sum(len(a['rooms']) for a in allareas);mob_count=sum(len(r.get('npcs',[])) for a in allareas for r in a['rooms'])
-seed=ROOT/'crates/example-mud/src/seed.rs';s=seed.read_text(encoding='utf-8');s=re.sub(r'assert_eq!\(rooms.len\(\), \d+\);',f'assert_eq!(rooms.len(), {room_count});',s);s=re.sub(r'assert_eq!\(creatures, \d+\);',f'assert_eq!(creatures, {mob_count});',s);seed.write_text(s,encoding='utf-8')
 report={'source':str(LIB),'route_from_south_main_street':route,'world_rooms':room_count,'world_npcs':mob_count,'unresolved':unresolved};(ROOT/'migration/marsh-import.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report))

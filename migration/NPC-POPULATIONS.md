@@ -35,8 +35,9 @@ No spawn settings means no managed respawn or AI. This preserves all existing
 NPCs and the bespoke Archwraith quest timer. Profiles are keyed by lowercase NPC
 name. A blueprint `spawn` block replaces the profile completely; omitted fields
 use defaults (one NPC, 60-second respawn, stationary movement). Zero max_alive or
-max_total disables that budget. Limits are clamped to100 per point,1000 per pool,
-respawn1..86400 seconds and movement1..3600 seconds. Inconsistent pool maximums
+max_total spawns no NPCs for that point or pool. Omitting max_total removes the
+pool limit. Limits are clamped to 100 per point, 1000 per pool,
+respawn 1..86400 seconds and movement 1..3600 seconds. Inconsistent pool maximums
 use the lowest declared value. Config changes require restart/copyover.
 
 Movement examples inside a spawn block:

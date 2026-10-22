@@ -6,3 +6,11 @@ use std::collections::HashMap;
 /// legacy backfill never receive these defaults. The author validates them.
 #[derive(Resource, Default, Clone, Debug)]
 pub struct CharacterCreationDefaults(pub HashMap<String, HashMap<String, serde_json::Value>>);
+
+/// Author-selected initial balance for newly created characters only.
+#[derive(Resource, Clone, Copy, Debug)]
+pub struct StartingCredits(pub u64);
+
+impl Default for StartingCredits {
+    fn default() -> Self { Self(100) }
+}

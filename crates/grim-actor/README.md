@@ -124,7 +124,7 @@ Credit balances persist in `StoredCharacter` as a single `u64` integer. New char
 
 look falls back from room targets to items carried by the requesting actor, using core::CarriedBy and existing target selectors. It never searches another actor's pack.
 
-ASCII maps and room minimaps share the Savage Soul palette: green `o` rooms, red `@` current location, neutral grey paths, and yellow up/down markers. Topology and secret-exit filtering are unchanged.
+ASCII maps and room minimaps share the Savage Soul palette: green `o` rooms, red `@` current location, white paths, and yellow up/down markers. Topology and secret-exit filtering are unchanged.
 
 `DarkVision` and the `visibility::Visibility` SystemParam provide a shared
 room-visibility check for room/entity looks and maps. A placed light or a light

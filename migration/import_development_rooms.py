@@ -148,8 +148,10 @@ bank=lookup.get('/domains/savsoul/room/bank');shop=old['rotradersams01']
 if bank and 'west' not in shop['exits']:shop['exits']['west']=bank['id'];report['adaptations'].append('Restored west checkout->ATM link from its authored reverse exit; no legacy banking verbs.')
 # Add native-readable lens state for the runtime adapter before first interaction.
 machine=lookup['/domains/savsoul/room/morlockcavemachine01']
-machine['scenery'].append({'name':'lenses','keywords':['lens','lenses'],'description':['Four lenses point west, southeast, east and north. Colored buttons adjust their rotation.']})
-lookup['/domains/savsoul/room/bank']['scenery'][0]['description'].append('The sign preserves the old banking instructions. Banking services are not active in this port; credits remain in your character balance.')
+if not any('lenses' in item.get('keywords',[]) for item in machine['scenery']):machine['scenery'].append({'name':'lenses','keywords':['lens','lenses'],'description':['Four lenses point west, southeast, east and north. Colored buttons adjust their rotation.']})
+notice='The sign preserves the old banking instructions. Banking services are not active in this port; credits remain in your character balance.'
+bank_description=lookup['/domains/savsoul/room/bank']['scenery'][0]['description']
+if notice not in bank_description:bank_description.append(notice)
 # Keep new machines as scenery with deterministic per-tool identity aliases.
 for a in areas.values():write(ROOT/'data/areas'/f"{a['slug']}.json",a)
 allareas=[json.loads(p.read_text(encoding='utf-8')) for p in (ROOT/'data/areas').glob('*.json')];allrooms=[r for a in allareas if a.get('canonical') for r in a['rooms']];byid={r['id']:r for r in allrooms}

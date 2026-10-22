@@ -35,7 +35,7 @@ impl Default for Config {
         Self {
             enabled: false,
             endpoint: ENDPOINT.into(),
-            credentials_file: "/home/barry/.local/state/savsoul-grapevine/credentials.json".into(),
+            credentials_file: std::path::PathBuf::from(std::env::var_os("XDG_STATE_HOME").unwrap_or_else(|| std::path::PathBuf::from(std::env::var_os("HOME").unwrap_or_default()).join(".local/state").into_os_string())).join("savsoul-grapevine/credentials.json").to_string_lossy().into_owned(),
             channels: vec!["gossip".into(), "testing".into()],
             activity_file: String::new(),
         }

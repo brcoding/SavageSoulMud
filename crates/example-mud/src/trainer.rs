@@ -11,8 +11,8 @@ pub(crate) struct Conversation {
 /// goes through the optional translator; players need no special syntax.
 pub(crate) fn direct_topic(question: &str) -> Option<String> {
     let q = question.to_lowercase().replace(['_', '-'], " ");
-    if q.split_whitespace().any(|w|["race","races","species","android","replicant","sheltie","morlock","gurnin","tater","poleepkwa"].contains(&w)) {return Some("species".into());}
     let words = q.split(|c: char| !c.is_alphanumeric()).filter(|s| !s.is_empty()).collect::<Vec<_>>().join(" ");
+    if words.split_whitespace().any(|w|["race","races","species","android","replicant","sheltie","morlock","gurnin","tater","poleepkwa"].contains(&w)) {return Some("species".into());}
     let padded = format!(" {words} ");
     let has = |phrase: &str| padded.contains(&format!(" {phrase} "));
     if has("fatigue") || has("fatigued") || has("winded") || has("tired") { return Some("fatigue".into()); }

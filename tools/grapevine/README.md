@@ -31,3 +31,6 @@ Primary protocol documentation: https://grapevine.haus/docs
 ## Hosting
 
 Requires outbound TCP443 and working certificate validation, plus the private credentials file. No GPU or model is involved. The adapter's worker runs outside the game frame loop with bounded queues and protocol messages. Move the private credentials separately when moving to Linux hosting; disable the development connection before reusing that same game registration remotely.
+
+For a new checkout, copy `data/grapevine.example.json` to the ignored
+`data/grapevine.json` before configuring the adapter. Never store keys in either file.

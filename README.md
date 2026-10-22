@@ -23,6 +23,9 @@ I3, Zebedee and Grapevine integrations.
 
 Install the Rust toolchain specified in rust-toolchain.toml. Build on Linux/WSL:
 
+Run the executable from Linux storage, including under WSL. Do not execute it
+from a network-backed drive such as P:; `start-local.sh` creates a private Linux runtime image.
+
 ```sh
 cargo build --locked --release -p example-mud --bin savsoul
 cargo run --locked -p example-mud --bin savsoul
@@ -32,6 +35,9 @@ The plain MUD listens on port 4000. TLS and supporting web/network services have
 separate setup under tools/. External MUD networks are disabled in this checkout
 until configured with private credentials and a suitable unique development
 identity. Never use the production network identity for a second running copy.
+Copy `data/{intermud,grapevine,zebedee}.example.json` to the corresponding
+untracked `.json` filename before configuring an adapter. Keep credentials
+outside those files in private state; the examples contain disabled adapters.
 
 Authored content is tracked under data/areas, data/help, data/quests,
 data/savage-soul and data/socials. Accounts and player saves are created locally

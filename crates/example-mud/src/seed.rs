@@ -496,14 +496,14 @@ mod tests {
 
         // Two areas: Haven (14 rooms) plus Whisperwood (4 rooms).
         let areas = app.world_mut().query::<&Area>().iter(app.world()).count();
-        assert_eq!(areas, 10);
+        assert_eq!(areas, 12);
         let rooms: Vec<String> = app
             .world_mut()
             .query::<&Room>()
             .iter(app.world())
             .map(|r| r.friendly_id.clone())
             .collect();
-        assert_eq!(rooms.len(), 801);
+        assert_eq!(rooms.len(), 945);
         assert!(rooms.contains(&"tavern".to_string()));
         assert!(rooms.contains(&"bear-cavern".to_string()));
 
@@ -538,11 +538,11 @@ mod tests {
             .query::<&Creature>()
             .iter(app.world())
             .count();
-        assert_eq!(creatures, 143);
+        assert_eq!(creatures, 160);
 
         // Grimmok spawned with both greeting triggers compiled.
-        let mut scripted = app.world_mut().query::<&ScriptTriggers>();
-        let triggers = scripted.iter(app.world()).next().expect("Grimmok scripted");
+        let mut scripted = app.world_mut().query::<(&GrimName, &ScriptTriggers)>();
+        let (_, triggers) = scripted.iter(app.world()).find(|(name, _)| name.0 == "Grimmok Ironhand").expect("Grimmok scripted");
         assert_eq!(triggers.0.len(), 2);
         assert!(triggers.0.iter().any(|t| t.on == TriggerKind::Enter));
         assert!(triggers.0.iter().any(|t| t.on == TriggerKind::AttemptLeave));
@@ -632,8 +632,8 @@ mod tests {
             .iter(app.world())
             .map(|(_, _, nm, kw, line, ir)| (nm.0.clone(), kw.0.clone(), line.0.clone(), ir.room))
             .collect();
-        assert_eq!(found.len(), 1);
-        let (name, keywords, line, room) = &found[0];
+        assert_eq!(found.len(), 4);
+        let (name, keywords, line, room) = found.iter().find(|(name, _, _, _)| name == "brass lantern").expect("brass lantern");
         assert_eq!(name, "brass lantern");
         assert!(keywords.contains(&"lantern".to_string()));
         assert_eq!(

@@ -50,7 +50,7 @@ Parsed by `grim-scene`'s registry (`src/parser.rs`); these verbs are handled **s
 | `wiznet [on\|off\|security\|logins]` | parser → engine queue (`src/parser.rs`, `src/wiznet.rs`) | List and toggle the admin-alert categories (persisted `grim-config` settings `wiznet`, `wiznet.security`, `wiznet.logins`). Admin-only + masked. |
 | `where` | `handle_ingame` → `format_where` (`src/who.rs`) | List beings in your area by room (`In your area (<name>):`, yourself included); only `Character`/`Creature` carriers — objects excluded. |
 | `inventory` | parser → engine queue (`src/parser.rs`, `grim-object/src/commands/inventory.rs`) | List carried objects' short names (sorted), or the empty line. |
-| `equipment` | `handle_ingame` → `tr!("equipment.empty")` (`src/command.rs`) | Dummy: always "You are wearing nothing." (no item system yet). |
+| `equipment` | `handle_ingame` → `tr!("equipment.empty")` (`src/command.rs`) | Uses `game_state["equipment_display"]` when available; otherwise the empty-equipment response. |
 | `get <target>` | parser → engine queue (`src/parser.rs`, `grim-object/src/commands/get.rs`) | Pick up matches from the ground (`grim-target` selectors: `2.coin`, `3*coin`, `all [words]`); room sees "<name> picks up <short>" per item. |
 | `drop <target>` | parser → engine queue (`src/parser.rs`, `grim-object/src/commands/get.rs`) | Drop matches from the pack (same selectors); room sees "<name> drops <short>" per item. |
 | `give <item> <who>` | parser → engine queue (`src/parser.rs`, `grim-object/src/commands/give.rs`) | Hand matches to a PC here (creatures refuse); quote-aware split (`give "brass lantern" bob`; `all`-headed items run to the last word). Mover/other/room each see a named line (`format_transfer_events`). |
@@ -58,7 +58,7 @@ Parsed by `grim-scene`'s registry (`src/parser.rs`); these verbs are handled **s
 | `open <direction>` / `close <direction>` | parser → engine queue (`src/doors.rs`, `grim-actor/src/commands/doors.rs`) | Flip the exit door, both sides; needs a direction (bare is unknown). |
 | `areas` | `handle_ingame` → `format_areas` (`src/who.rs`) | List known areas. |
 | `commands` | `handle_ingame` → `format_commands` (`src/formatter.rs`) | Show the command list. |
-| `help` | `handle_ingame` → `format_commands` (`src/command.rs`) | Alias for `commands` (parser maps `help` → `Command::Commands`). |
+| `help` | `handle_ingame` → `format_commands` (`src/command.rs`) | Parses `Command::Help`; the game help handler answers the requested topic. |
 
 Other verbs (`look`, `map`, `move`, `say`, `shutdown`, …) are parsed here then routed: most enqueue via `process_command_queue`; engine-queued admin verbs (`shutdown`/`reboot`/`copyover`/`goto`/`gecho`/`ban`/`wiznet`) go through `dispatch_admin_gated` (masked as unknown for non-admins). `sockets` is also admin-gated + masked, but answered session-locally from a per-tick `ClientSnapshot` (a second `Client` query would conflict with the dispatcher's `&mut` borrow).
 
@@ -86,7 +86,7 @@ The shared render helpers in `src/formatter.rs` (`format_motd`, `format_selectio
 ## Notes
 - Single plugin: `ScenePlugin`. It is the **bridge** between `grim-networking` and `grim-command` (ARCHITECTURE.md §5.2/§5.3): reads raw in-game input, parses to `Command`, dispatches, and renders every domain event back per-recipient.
 - **Input routing split (Phase 2b + scene-stack thin slice).** One `handle_client_input` became two systems: `handle_ingame_input` here (stack top is `InGameScene`) and `handle_pregame_input` in `grim-auth` (every pre-game `ClientState`). The pre-game system runs first (`.before(SceneSystems::InGameInput)`); a line that advances a session into the world also pushes its in-game scene there and records the connection in `JustEnteredWorld`, so this crate's system skips that line the same tick and routes by stack from the next tick on.
-- Parser (`src/parser.rs`) owns direction aliases (`n`/`north` … and `ne`/`nw`/`se`/`sw` with full diagonal names), the `whisper`→`tell` alias, `help`→`commands`, and prefix resolution (last-registered wins on ties; e.g. `n` → north over social).
+- Parser (`src/parser.rs`) owns direction aliases (`n`/`north` … and `ne`/`nw`/`se`/`sw` with full diagonal names), the `whisper`→`tell` alias, `help`→`Command::Help`, and prefix resolution (last-registered wins on ties; e.g. `n` → north over social).
 - `!` repeats the last input; blank lines re-trigger the prompt.
 - Admin-gated commands are byte-identical to "unknown command" for non-admins (no information leak) — see `dispatch_admin_gated`.
 - Scene stack (§5.3): thin slice landed — `SceneStack` + `InGameScene`, pushed at world entry, routing by top. Pre-game scenes, pop, and output policy are still deferred (ADR-0003).

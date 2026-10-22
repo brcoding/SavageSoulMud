@@ -7,23 +7,46 @@
 ## Components
 | Component | File | Purpose |
 |---|---|---|
-| None | — | Uses the engine's components via `grim::prelude`; defines none of its own. |
+| `Merchant` | `src/shop.rs` | Authored shop stock and pricing. |
+| `Contained` | `src/medical.rs` | Medical-table containment. |
+| `Candidate` | `src/population.rs` | Managed NPC spawn membership. |
+| `Conversation` | `src/trainer.rs` | Trainer follow-up context. |
 
 ## Systems
 | System | Schedule | File | Purpose |
 |---|---|---|---|
 | `seed::seed_world` | `Startup` | `src/seed.rs` | Read area blueprints (`data/areas/*.json`) from the filesystem, spawn every `canonical` area's rooms/exits/NPCs, and set `StartingRoom`. Panics if no starting room resolves. |
+| `shop::handle_shop` | `Update` | `src/shop.rs` | Atomic credit and inventory transactions. |
+| `help::answer_help` | `Update` | `src/help.rs` | Editable topic and command help. |
+| `trainer_ai::tick` | `Update` | `src/trainer_ai.rs` | Validate and deliver optional translation results. |
 
 ## Commands
 Player-facing verbs and where to find their handlers.
 | Command | Handler | Summary |
 |---|---|---|
 | `grapevine` / `gv` | `src/grapevine.rs` | Wizard-only Grapevine status, subscriptions, channel chat, tells, games/players, history and credential reload. |
+| `score`, `train`, `pecs`, `learn`, `wield`, `wear`, `attack`, `kill`, `stop`, `defend`, `rest`, `recover`, `task`, `exchange` | `savage_soul::run_command` (`src/savage_soul.rs`) | Savage Soul character and combat actions. |
+| `creator`, `rebuild`, `respec`, `races`, `race`, `buyoff` | `creator::command` (`src/creator.rs`) | Preview and commit med-bay character changes. |
+| `list`, `credits`, `buy`, `sell` | `shop::handle_shop` (`src/shop.rs`) | Shop transactions. |
+| `help` | `help::answer_help` (`src/help.rs`) | General and command help. |
+| `drink`, `eat` | `consumables::consume` (`src/consumables.rs`) | Consume carried supplies. |
+| `ask`, `talk` | `royal_oak::ask` (`src/royal_oak.rs`) | Trainer conversation. |
+| `put`, `place`, `sit`, `lie`, `lay`, `stand` | `medical::place` / `rest` / `stand` (`src/medical.rs`) | Table, body and posture interactions. |
+| `hack` | `hack::command` (`src/hack.rs`) | Terminal puzzles. |
+| `craft`, `reduce`, `recipes`, `reductions`, `resources` | `crafting::command` (`src/crafting.rs`) | Material and crafting actions. |
+| `screenreader`, `combatlog`, `prompt` | `preferences::command` (`src/preferences.rs`) | Saved presentation preferences. |
+| `intermud`, `i3`, `imud` / `zebedee`, `i2` / `protocols` | `src/intermud.rs`, `src/zebedee.rs`, `src/client_protocols.rs` | Network adapters and client protocols. |
+
+Game command vocabulary is installed by `src/game_commands.rs` from
+`SavageSoulPlugin`; the shared scene parser remains game-independent.
+The plugin replaces look/read/get/open/close factories without changing their
+engine prefix priorities. Equipment reconciliation is throttled to once per second.
 
 ## Resources & Events
 | Name | Kind (Resource/Message) | File |
 |---|---|---|
 | `AreaBlueprintDir` | Resource | `src/seed.rs` |
+| `trainer_ai::Bridge` | Resource | `src/trainer_ai.rs` (optional worker queues) |
 
 ## Binaries
 | Binary | File | Purpose |
@@ -61,7 +84,7 @@ See `migration/HACKING.md` for configuration and `data/help/hack.md` for play.
 
 Commands: `list`, `credits`, `buy <item>`, `sell <item>`. Item selectors work: `2.item`, `2*item`, `all food`. A buy quantity repeats the best matching catalog item (maximum 100); buying all purchases one of every matching catalog row. Sales select carried instances. Any refused item or insufficient funds cancels the entire transaction.
 
-Character `credits` is one nonnegative `u64` integer, default 100 for new and legacy characters; an explicit zero remains zero. Transactions check arithmetic, write credits and the entire inventory to one temporary character JSON file, sync it, and rename it before changing live state. Save failure leaves the trade unapplied. Credits also persist through ordinary movement/disconnect saves. This first version has no merchant purse, stock depletion, bargaining, or healing effects.
+Character `credits` is one nonnegative `u64` integer, default 1,000 for new Savage Soul and pre-credit-field legacy characters; an explicit zero remains zero. Transactions check arithmetic, write credits and the entire inventory to one temporary character JSON file, sync it, and rename it before changing live state. Save failure leaves the trade unapplied. Credits also persist through ordinary movement/disconnect saves. This first version has no merchant purse, stock depletion, bargaining, or healing effects.
 
 ## Savage Soul
 

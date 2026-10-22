@@ -23,6 +23,7 @@ for filename, url, digest in assets:
   temporary.replace(target)
  print('Verified '+filename, flush=True)
 runtime=base/'runtime';runtime.mkdir(exist_ok=True)
+subprocess.run(['systemctl','--user','stop','savsoul-trainer'],check=False)
 with tarfile.open(base/'runtime.tar.gz') as archive:archive.extractall(runtime,filter='data')
 binary=next(runtime.rglob('llama-server'))
 binary.chmod(0o755)

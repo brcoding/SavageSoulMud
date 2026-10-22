@@ -4,7 +4,7 @@ use harness::Mud;
 #[test]
 fn ordinary_rat_fights_are_brief_and_player_grammar_is_correct() {
     let mut mud=Mud::with_savage_soul();let(s,_)=mud.connect();
-    for line in ["rat@example.com","y","secretpw","c","Hunter","1",""] {let _=mud.send(s,line);}
+    for line in ["rat@example.com","y","secretpw","c","Hunter","1","human",""] {let _=mud.send(s,line);}
     for line in ["east","east","northeast","east","east","east","east","north","east","east"] {let _=mud.send(s,line);}
     mud.send(s,"combatlog brief").assert_contains("Saved");
     let mut transcript=mud.send(s,"kill rat").text().to_string();

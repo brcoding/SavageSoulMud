@@ -52,8 +52,10 @@ pub struct NpcCombatBehavior {
 pub struct SavageSoulPlugin;
 impl Plugin for SavageSoulPlugin {
     fn build(&self, app:&mut App) {
+        if !app.world().contains_resource::<grim::StartingCredits>() {app.insert_resource(grim::StartingCredits(1000));}
         let dir=app.world().get_resource::<crate::seed::AreaBlueprintDir>().map(|d|d.0.parent().unwrap_or(&d.0).join("savage-soul/items.json")).unwrap_or_else(|| "data/savage-soul/items.json".into());
         let catalog=std::fs::read(&dir).ok().and_then(|b|serde_json::from_slice(&b).ok()).unwrap_or_default();
+        crate::game_commands::register(app);
         preferences::register(app);
         crate::zebedee::register(app);
         crate::grapevine::register(app);
@@ -72,7 +74,10 @@ fn reply(world:&mut World,actor:Entity,text:impl Into<String>) {world.write_mess
 pub(crate) fn in_combat(world:&World,entity:Entity)->bool {
     world.get_resource::<Battles>().is_some_and(|b|b.contains(entity))
 }
-fn hydrate(world:&mut World) {
+fn hydrate(world:&mut World,mut next_equipment:Local<f64>) {
+    let now=world.resource::<Time>().elapsed_secs_f64();
+    let reconcile=now>=*next_equipment;
+    if reconcile {*next_equipment=now+1.0;}
     let people:Vec<_>=world.query_filtered::<(Entity,&Character),Without<SoulData>>().iter(world)
         .map(|(e,c)|(e,c.game_state.get(STATE).cloned())).collect();
     for (e,saved) in people {
@@ -99,6 +104,7 @@ fn hydrate(world:&mut World) {
             else {character.game_state.remove("combat_opponent");}
         }
 
+        if !reconcile {continue;}
         let pack=crate::shop::held(world,entity);
         let owns=|name:&str|pack.iter().any(|(_,o)|o.name==name);
         let mut changed=false;
@@ -196,7 +202,8 @@ fn run_command(world:&mut World,actor:Entity,verb:&str,arg:&str)->Result<(),Stri
         "train" if arg.is_empty()=>{reply(world,actor,format!("Unspent XP: {}. Trainable attributes: {}.\nUse train <attribute> to buy its next level. Faith cannot be trained.",soul.available_xp(),rules::ATTRIBUTES.join(", ")));return Ok(());},
         "stop"=>{world.resource_mut::<Battles>().0.retain(|b|b.player!=actor);combat_end(world,actor,"You stop attacking.",0);return Ok(());},
         "soulheal"|"awardxp"=>return wizard_command(world,actor,verb,arg),
-        "recover"=>{if world.resource::<Battles>().0.iter().any(|b|b.player==actor){return Err("In combat you automatically recover from stun on your next activation.".into());}if soul.stunned&&!soul.unconscious&&!soul.comatose&&!soul.injury.is_dead(){soul.stunned=false;commit(world,actor,soul,None)?;reply(world,actor,"You use your activation to recover from stun.");return Ok(());}return Err("You are not able to recover from stun right now.".into());},
+        "recover"=>{if world.resource::<Battles>().0.iter().any(|b|b.player==actor){return Err("In combat you automatically recover from stun on your next activation.".into());}
+            if soul.stunned&&!soul.unconscious&&!soul.comatose&&!soul.injury.is_dead(){soul.stunned=false;commit(world,actor,soul,None)?;reply(world,actor,"You use your activation to recover from stun.");return Ok(());}return Err("You are not able to recover from stun right now.".into());},
         _=>{}
     }
     if soul.is_incapacitated(){return Err("You cannot act in your current condition. A wizard can use soulheal.".into());}

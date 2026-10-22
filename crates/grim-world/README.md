@@ -86,7 +86,7 @@ Non-component types this crate defines.
 ---
 *Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
 
-ASCII maps and room minimaps share the Savage Soul palette: green `o` rooms, red `@` current location, neutral grey paths, and yellow up/down markers. Topology and secret-exit filtering are unchanged.
+ASCII maps and room minimaps share the Savage Soul palette: green `o` rooms, red `@` current location, white paths, and yellow up/down markers. Topology and secret-exit filtering are unchanged.
 
 `RoomDarkness` opts a room into unlit visibility. `LightSource` marks a lit
 object independently of its later placement/ownership. Both are being-free

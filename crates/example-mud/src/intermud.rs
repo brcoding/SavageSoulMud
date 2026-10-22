@@ -67,6 +67,7 @@ struct Bridge {
     last_presence: Instant,
     activity: VecDeque<Activity>,
     activity_dirty: bool,
+    last_activity_save: Instant,
     subscriptions: VecDeque<(String, bool)>,
     confirmed: Vec<String>,
     last_subscription: Instant,
@@ -333,6 +334,7 @@ fn start(world: &mut World) {
         last_presence: Instant::now() - Duration::from_secs(60),
         activity,
         activity_dirty: false,
+        last_activity_save: Instant::now() - Duration::from_secs(5),
         subscriptions: VecDeque::new(),
         confirmed: Vec::new(),
         last_subscription: Instant::now() - Duration::from_secs(2),
@@ -385,12 +387,15 @@ fn worker(config: Config, requests: Receiver<Request>, events: SyncSender<Incomi
                                         return Err(std::io::ErrorKind::PermissionDenied.into());
                                     }
                                     authenticated = true;
-                                    if events.try_send(Incoming::Connected).is_err() {
+                                    if events.send(Incoming::Connected).is_err() {
                                         return Err(std::io::ErrorKind::BrokenPipe.into());
                                     }
                                 }
-                            } else if events.try_send(Incoming::Packet(packet)).is_err() {
-                                return Err(std::io::ErrorKind::BrokenPipe.into());
+                            } else {
+                                match events.try_send(Incoming::Packet(packet)) {
+                                    Ok(()) | Err(mpsc::TrySendError::Full(_)) => {},
+                                    Err(mpsc::TrySendError::Disconnected(_)) => return Err(std::io::ErrorKind::BrokenPipe.into()),
+                                }
                             }
                         }
                     }
@@ -417,7 +422,7 @@ fn worker(config: Config, requests: Receiver<Request>, events: SyncSender<Incomi
             }
         })();
         let _ = outcome;
-        if events.try_send(Incoming::Disconnected).is_err() {
+        if events.send(Incoming::Disconnected).is_err() {
             return;
         }
         // Bounded retry and cancellation when the game's resource is dropped.
@@ -551,11 +556,13 @@ fn save_subscriptions(path: &str, channels: &[String]) -> std::io::Result<()> {
 fn rejoin(bridge: &mut Bridge) {
     bridge.confirmed.clear();
     bridge.subscription_failures = 0;
+    let leaves: Vec<_> = bridge.subscriptions.drain(..).filter(|(channel, join)| !join && !bridge.config.channels.contains(channel)).collect();
     bridge.subscriptions = bridge
         .config
         .channels
         .iter()
         .map(|c| (c.clone(), true))
+        .chain(leaves)
         .collect();
 }
 fn pump_subscriptions(bridge: &mut Bridge) {
@@ -762,10 +769,11 @@ fn tick(world: &mut World, mut cursor: Local<MessageCursor<EngineCommand>>) {
     bridge
         .cooldown
         .retain(|_, t| t.elapsed() < Duration::from_secs(60));
-    if bridge.activity_dirty {
+    if bridge.activity_dirty && bridge.last_activity_save.elapsed() >= Duration::from_secs(5) {
         if let Err(error) = save_activity(&bridge.config.activity_file, &bridge.activity) {
             warn!("Intermud activity could not be saved: {error}");
         }
+        bridge.last_activity_save = Instant::now();
         bridge.activity_dirty = false;
     }
     world.insert_resource(bridge);
@@ -848,13 +856,14 @@ fn deliver(world: &mut World, bridge: &mut Bridge, packet: Value) {
                     text(result, "mud_name")
                 ),
                 "mudlist" => {
+                    let filter = filter.to_lowercase();
                     let names: Vec<_> = result["muds"]
                         .as_array()
                         .into_iter()
                         .flatten()
-                        .take(150)
                         .map(|m| text(m, "name"))
-                        .filter(|name| name.to_lowercase().contains(&filter.to_lowercase()))
+                        .filter(|name| name.to_lowercase().contains(&filter))
+                        .take(150)
                         .collect();
                     format!(
                         "Intermud MUDs ({} shown): {}",
@@ -1123,6 +1132,7 @@ mod tests {
             last_presence: Instant::now(),
             activity: VecDeque::new(),
             activity_dirty: false,
+        last_activity_save: Instant::now() - Duration::from_secs(5),
             subscriptions: VecDeque::new(),
             confirmed: Vec::new(),
             last_subscription: Instant::now() - Duration::from_secs(2),
@@ -1195,6 +1205,7 @@ mod tests {
             last_presence: Instant::now(),
             activity: history,
             activity_dirty: false,
+        last_activity_save: Instant::now() - Duration::from_secs(5),
             subscriptions: VecDeque::new(),
             confirmed: Vec::new(),
             last_subscription: Instant::now() - Duration::from_secs(2),
@@ -1295,6 +1306,7 @@ mod tests {
             last_presence: Instant::now(),
             activity: VecDeque::new(),
             activity_dirty: false,
+        last_activity_save: Instant::now() - Duration::from_secs(5),
             subscriptions: VecDeque::new(),
             confirmed: Vec::new(),
             last_subscription: Instant::now() - Duration::from_secs(2),

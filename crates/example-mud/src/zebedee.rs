@@ -508,7 +508,7 @@ fn command_inner(
                 .iter()
                 .any(|c| c.eq_ignore_ascii_case(rest))
             {
-                vec![rest.to_ascii_lowercase()]
+                vec![b.config.channels.iter().find(|c|c.eq_ignore_ascii_case(rest)).unwrap().clone()]
             } else {
                 return Err("Choose a configured channel from zebedee channels.".into());
             };
@@ -552,11 +552,17 @@ fn command_inner(
         "tell"=>{let(target,message)=rest.split_once(':').ok_or("Use zebedee tell <user>@<mud>: <message>.")?;let(user,mud)=target.split_once('@').ok_or("Use zebedee tell <user>@<mud>: <message>.")?;if !header(user.trim())||message.trim().is_empty()||message.len()>1024{return Err("Use a recipient and 1–1024 characters of text.".into());}p.set("RCPNT",user.trim().to_ascii_lowercase());p.data=message.trim().into();mud.trim()},
         "chat"=>{
             let(channel,message)=rest.split_once(' ').ok_or("Use zebedee chat <channel> <message>.")?;
-            if !b.config.channels.iter().any(|c|c==channel)||message.trim().is_empty()||message.len()>1024{return Err("Choose a configured channel and 1–1024 characters of text.".into());}
+            let channel=b.config.channels.iter().find(|c|c.eq_ignore_ascii_case(channel)).cloned().ok_or("Choose a configured channel.")?;
+            if message.trim().is_empty()||message.len()>1024{return Err("Choose a configured channel and 1–1024 characters of text.".into());}
             p.set("REQ","channel");p.set("CHANNEL",channel);p.data=message.trim().into();
             if b.config.peers.is_empty(){return Err("No configured Zebedee peers.".into());}
-            for peer in 0..b.config.peers.len(){request(b,actor,peer,p.clone())?;}
-            b.cooldown.insert(actor,Instant::now());say(world,actor,"Zebedee channel message queued; UDP delivery is not guaranteed.");return Ok(());
+            if !b.ready{return Err(b.status.clone());}
+            if b.pending.len().saturating_add(b.config.peers.len())>MAX_PENDING{return Err("Zebedee has too many unanswered requests.".into());}
+            let mut failed=false;
+            for peer in 0..b.config.peers.len(){if request(b,actor,peer,p.clone()).is_err(){failed=true;}}
+            b.cooldown.insert(actor,Instant::now());
+            if failed{return Err("Some Zebedee sends could not be queued; wait before retrying.".into());}
+            say(world,actor,"Zebedee channel message queued; UDP delivery is not guaranteed.");return Ok(());
         },
         _=>return Err("Zebedee: status, muds, channels, listen/unlisten <channel|all>, ping <mud>, who <mud>, finger user@mud, mudlist <mud>, query <mud>: <query>, tell user@mud: message, chat channel message. See help zebedee.".into())
     };

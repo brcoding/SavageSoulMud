@@ -13,17 +13,7 @@ pub fn parse_command(registry: &CommandRegistry<Command>, input: &str) -> Option
     }
 
     let (word, rest) = trimmed.split_once(' ').unwrap_or((trimmed, ""));
-    let command = registry.resolve(word, rest.trim())?;
-    let command = match command {
-        Command::Look { target: Some(ref target) } if ["desk", "drawer", "wooden desk", "in desk", "in drawer", "in wooden desk"].contains(&target.to_ascii_lowercase().as_str()) =>
-            Command::SavageSoul { verb: "inspect".into(), arg: target.to_ascii_lowercase() },
-        Command::Look { target: Some(ref target) } if ["note", "dagger note", "paper", "slip"].contains(&target.to_ascii_lowercase().as_str()) =>
-            Command::SavageSoul { verb: "read_note".into(), arg: target.clone() },
-        Command::Get { ref target } if target.to_ascii_lowercase().contains(" from ") =>
-            Command::SavageSoul { verb: "get_from".into(), arg: target.clone() },
-        other => other,
-    };
-    Some(command)
+    registry.resolve(word, rest.trim())
 }
 
 /// Build the command registry and log any contested prefixes once, so a
@@ -293,11 +283,6 @@ fn build_registry() -> CommandRegistry<Command> {
         })
     });
     r.register("inventory", |_| Some(Command::Inventory));
-    for word in ["creator", "rebuild", "respec", "race", "races", "buyoff", "ask", "talk", "score", "stats", "train", "pecs", "learn", "wield", "wear", "remove", "attack", "kill", "stop", "defend", "rest", "recover", "task", "soulheal", "awardxp", "exchange", "drink", "eat", "disarm", "activate", "trample", "stomp", "screenreader", "combatlog", "prompt", "spawns", "put", "place", "sit", "lie", "lay", "stand", "hack", "craft", "reduce", "recipes", "reductions", "resources", "press", "intermud", "i3", "imud", "zebedee", "i2", "protocols", "grapevine", "gv"] {
-        let verb = word.to_string();
-        r.register(word, move |rest| Some(Command::SavageSoul { verb: verb.clone(), arg: rest.to_string() }));
-        r.deprioritize(word);
-    }
     r.register("list", |rest| rest.is_empty().then_some(Command::ListShop));
     r.register("credits", |rest| rest.is_empty().then_some(Command::Credits));
     r.register("buy", |rest| (!rest.is_empty()).then(|| Command::Buy { target: rest.to_string() }));
@@ -1195,7 +1180,7 @@ mod tests {
                 direction: Cardinal::North
             })
         );
-        assert_eq!(parse("open nowhere"), Some(Command::SavageSoul { verb: "open_object".into(), arg: "nowhere".into() }));
+        assert_eq!(parse("open nowhere"), None);
         assert_eq!(
             parse("ooc anyone here?"),
             Some(Command::Channel {

@@ -86,9 +86,11 @@ async def serve(args):
     LOG.info("TLS listening on %s:%s, trusted backend 127.0.0.1:%s", args.host, args.port, args.backend_port)
     async with server:
         await stopping.wait()
-    for task in list(proxy.clients):
-        task.cancel()
-    await asyncio.gather(*proxy.clients, return_exceptions=True)
+        server.close()
+        clients = list(proxy.clients)
+        for task in clients:
+            task.cancel()
+        await asyncio.gather(*clients, return_exceptions=True)
 
 
 def main():

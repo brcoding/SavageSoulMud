@@ -53,9 +53,10 @@ Player-facing verbs and where to find their handlers.
 - Room listings show ground objects' `RoomDescription` under the creatures (`grim-scene`); `look <being>` appends their pack below the description (`format_look_pack`).
 - Packs persist whole per instance (`persist`, into the character file's `inventory`); ground objects regenerate from blueprints, so post-reboot duplicates are correct state.
 
----
-*Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
 
 Pack persistence includes optional ItemCondition. Held/Carried queries snapshot it; restore_bundle preserves quality and absolute decay timestamps (default condition for legacy items). Picking up, dropping or transferring swaps placement only and never resets condition.
 
 CarriedBy is reexported from grim-core::components; existing grim_object::CarriedBy callers use the same component type.
+
+---
+*Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
