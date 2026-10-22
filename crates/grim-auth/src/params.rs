@@ -42,6 +42,9 @@ pub(crate) type PlayerChars<'w, 's> = Query<
 /// registry — the pre-game phase never parses in-game commands.
 #[derive(bevy::ecs::system::SystemParam)]
 pub(crate) struct SessionRes<'w> {
+    pub(crate) accessibility: Option<Res<'w, crate::AccessibilityOnboarding>>,
+    pub(crate) creation_defaults: Option<Res<'w, crate::CharacterCreationDefaults>>,
+    pub(crate) build_mode: Option<Res<'w, crate::CharacterBuildMode>>,
     pub(crate) starting: Res<'w, StartingRoom>,
     pub(crate) persistence: Res<'w, grim_persistence::PersistenceConfig>,
     pub(crate) bans: Res<'w, grim_persistence::BanList>,

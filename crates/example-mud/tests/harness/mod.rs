@@ -16,11 +16,11 @@
 #![allow(dead_code)]
 
 use bevy::prelude::*;
+use grim::GrimHeadlessPlugins;
 use grim::components::Name as GrimName;
 use grim::plugins::PersistenceConfig;
-use grim::GrimHeadlessPlugins;
 use grim::{
-    compile, Actor, Character, CompiledTrigger, ScriptTriggers, StoredCharacter, TriggerKind,
+    Actor, Character, CompiledTrigger, ScriptTriggers, StoredCharacter, TriggerKind, compile,
 };
 use grim::{
     Connection, ConnectionClosed, ConnectionEstablished, ConnectionInput, ConnectionOutput,
@@ -35,7 +35,7 @@ use std::time::Duration;
 /// Unique suffix per harness instance so concurrent tests get distinct temp dirs.
 static INSTANCE: AtomicUsize = AtomicUsize::new(0);
 
-/// A connected session — a handle to one simulated telnet user.
+/// A connected session â€” a handle to one simulated telnet user.
 #[derive(Clone, Copy)]
 pub struct Session {
     pub conn: Entity,
@@ -100,11 +100,45 @@ pub struct Mud {
 impl Mud {
     /// Boot a fresh MUD with an isolated temp data directory and the real seed.
     pub fn new() -> Self {
+        Self::with_areas("tests/fixtures/areas")
+    }
+
+    pub fn with_savsoul() -> Self {
+        Self::with_areas("../../data/areas")
+    }
+    pub fn with_savage_soul() -> Self {
+        let mut mud = Self::with_savsoul();
+        mud.app
+            .insert_resource(grim::CharacterBuildMode::SavageSoul);
+        mud.app
+            .add_plugins(example_mud::savage_soul::SavageSoulPlugin);
+        // Command scenarios own fixed encounters; population behavior has its
+        // own manual-clock tests rather than wandering during login fixtures.
+        mud.app
+            .insert_resource(example_mud::population::PopulationEnabled(false));
+        mud.app.update();
+        mud
+    }
+
+    pub fn saved_character(&self, name: &str) -> grim::StoredCharacter {
+        serde_json::from_slice(
+            &std::fs::read(
+                self.data_dir
+                    .join("characters")
+                    .join(format!("{name}.json")),
+            )
+            .unwrap(),
+        )
+        .unwrap()
+    }
+
+    fn with_areas(areas: &str) -> Self {
         let id = INSTANCE.fetch_add(1, Ordering::Relaxed);
         let data_dir = std::env::temp_dir().join(format!("grim-e2e-{}-{}", std::process::id(), id));
         let _ = std::fs::remove_dir_all(&data_dir);
 
         let mut app = App::new();
+        app.insert_resource(example_mud::DisableGrapevine);
         app.insert_resource(PersistenceConfig {
             dir: data_dir.clone(),
         });
@@ -115,9 +149,14 @@ impl Mud {
         // Area blueprints load from the filesystem; point at the repo's
         // committed data/areas so the harness world matches what ships.
         app.insert_resource(example_mud::seed::AreaBlueprintDir(
-            std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data/areas"),
+            std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(areas),
         ));
         app.add_systems(Startup, example_mud::seed::seed_world);
+        app.add_plugins(example_mud::shop::ShopPlugin);
+        app.insert_resource(example_mud::help::HelpDir(
+            PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data/help"),
+        ));
+        app.add_plugins(example_mud::help::HelpPlugin);
 
         // Run startup (seed + persistence load) and grab an output cursor before
         // any connection exists.
@@ -247,7 +286,7 @@ impl Mud {
 
     /// Connections the server asked to sever since the last call (idle
     /// timeouts, quits). The headless harness has no transport, so nothing
-    /// acts on these — they prove the sweep fired.
+    /// acts on these â€” they prove the sweep fired.
     pub fn drain_disconnects(&mut self) -> Vec<Entity> {
         let msgs = self.app.world().resource::<Messages<DisconnectRequest>>();
         self.disconnect_cursor
@@ -259,10 +298,16 @@ impl Mud {
     /// Reboot the world in place: rebuild the app on the SAME data directory
     /// and re-run the seed, as a server restart would. Disk state (accounts,
     /// characters, packs) survives; live entities do not. Old sessions are
-    /// dead — reconnect afterwards.
+    /// dead â€” reconnect afterwards.
     pub fn reboot(&mut self) {
+        let soul_mode = self
+            .app
+            .world()
+            .get_resource::<grim::CharacterBuildMode>()
+            .is_some_and(|m| *m == grim::CharacterBuildMode::SavageSoul);
         let data_dir = self.data_dir.clone();
         let mut app = App::new();
+        app.insert_resource(example_mud::DisableGrapevine);
         app.insert_resource(PersistenceConfig {
             dir: data_dir.clone(),
         });
@@ -272,6 +317,16 @@ impl Mud {
             std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data/areas"),
         ));
         app.add_systems(Startup, example_mud::seed::seed_world);
+        app.add_plugins(example_mud::shop::ShopPlugin);
+        app.insert_resource(example_mud::help::HelpDir(
+            PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data/help"),
+        ));
+        app.add_plugins(example_mud::help::HelpPlugin);
+        if soul_mode {
+            app.insert_resource(grim::CharacterBuildMode::SavageSoul);
+            app.add_plugins(example_mud::savage_soul::SavageSoulPlugin);
+            app.insert_resource(example_mud::population::PopulationEnabled(false));
+        }
         app.update();
         self.app = app;
         self.next_conn = 1;
@@ -300,7 +355,7 @@ impl Mud {
     /// Send a shutdown-verb line (`shutdown|reboot|copyover N`) and settle,
     /// returning the output plus every exit/handoff request written along the
     /// way. Drained per tick because messages only survive a couple of frames
-    /// — a drain after the pump would miss a request written mid-pump (and a
+    /// â€” a drain after the pump would miss a request written mid-pump (and a
     /// `copyover` fires exactly once, so there is no sticky re-fire to catch
     /// up with).
     pub fn send_shutdown(&mut self, session: Session, line: &str) -> ShutdownOutcome {
@@ -398,7 +453,7 @@ impl Mud {
     /// Rewrite a logged-out character's on-disk JSON to look like it was created
     /// before races/classes existed: empty race/class and the default gender,
     /// with id/account/level preserved. Lets a scenario drive the legacy-backfill
-    /// login path (menu → picker → world). The character must be saved to disk
+    /// login path (menu â†’ picker â†’ world). The character must be saved to disk
     /// (logged out) first.
     pub fn make_character_legacy(&self, name: &str) {
         let path = self

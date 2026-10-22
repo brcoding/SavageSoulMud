@@ -1,0 +1,759 @@
+{
+  "source": "C:\\Users\\barry\\OneDrive\\Documents\\37devbackup\\ds3.7a7-dev\\lib",
+  "base": "P:\\savsoulmud\\grim",
+  "added_rooms": [
+    {
+      "source": "/domains/savsoul/room/arenaroad01",
+      "id": "75bc83012b60",
+      "slug": "arenaroad01"
+    },
+    {
+      "source": "/domains/savsoul/room/arenaroad02",
+      "id": "720b518971c5",
+      "slug": "arenaroad02"
+    },
+    {
+      "source": "/domains/savsoul/room/arenaroad03",
+      "id": "841b9615aa44",
+      "slug": "arenaroad03"
+    },
+    {
+      "source": "/domains/savsoul/room/bank",
+      "id": "545b4376b50d",
+      "slug": "bank"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCaveA01",
+      "id": "4b3f954916f4",
+      "slug": "morlockcavea01"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCaveA02",
+      "id": "8d712d7c98fe",
+      "slug": "morlockcavea02"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCaveA03",
+      "id": "b9492cb12c8b",
+      "slug": "morlockcavea03"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCaveA04",
+      "id": "783d364a19de",
+      "slug": "morlockcavea04"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCaveA05",
+      "id": "cf21994669b6",
+      "slug": "morlockcavea05"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCaveA06",
+      "id": "3fa5608bf68c",
+      "slug": "morlockcavea06"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCaveA07",
+      "id": "4bcc78393f6d",
+      "slug": "morlockcavea07"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCaveA08",
+      "id": "e4cd7be0fee0",
+      "slug": "morlockcavea08"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCaveCrawl01",
+      "id": "388925f00974",
+      "slug": "morlockcavecrawl01"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCaveMachine01",
+      "id": "6f6cca42b59e",
+      "slug": "morlockcavemachine01"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail01",
+      "id": "0004fc3b54ec",
+      "slug": "morlockcavestrail01"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail02",
+      "id": "5e6b3cb9ee6e",
+      "slug": "morlockcavestrail02"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail03",
+      "id": "2d89aebb4332",
+      "slug": "morlockcavestrail03"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail04",
+      "id": "e0ae71c6756a",
+      "slug": "morlockcavestrail04"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail05",
+      "id": "45e5b5781184",
+      "slug": "morlockcavestrail05"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail06",
+      "id": "75ea4c88ab02",
+      "slug": "morlockcavestrail06"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail07",
+      "id": "b86fc4af0da2",
+      "slug": "morlockcavestrail07"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail08",
+      "id": "a2c467fbf8c2",
+      "slug": "morlockcavestrail08"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail09",
+      "id": "2c4d18c8ad5b",
+      "slug": "morlockcavestrail09"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail10",
+      "id": "73274e99e074",
+      "slug": "morlockcavestrail10"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail11",
+      "id": "da7a23dd162f",
+      "slug": "morlockcavestrail11"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail12",
+      "id": "32ff6e9e7d4a",
+      "slug": "morlockcavestrail12"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail13",
+      "id": "4ba0548a9f05",
+      "slug": "morlockcavestrail13"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail14",
+      "id": "3641502cd778",
+      "slug": "morlockcavestrail14"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake01",
+      "id": "4fd5de4c38c0",
+      "slug": "morlocklake01"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake02",
+      "id": "7627fe13eeba",
+      "slug": "morlocklake02"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake03",
+      "id": "022a6be084ef",
+      "slug": "morlocklake03"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake04",
+      "id": "991c1b5081d8",
+      "slug": "morlocklake04"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake05",
+      "id": "d98d1a9f2ad9",
+      "slug": "morlocklake05"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake06",
+      "id": "51749ca2ecfe",
+      "slug": "morlocklake06"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake07",
+      "id": "d5492a72f66c",
+      "slug": "morlocklake07"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake08",
+      "id": "902a6f770f6c",
+      "slug": "morlocklake08"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake09",
+      "id": "fbc355028a91",
+      "slug": "morlocklake09"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake10",
+      "id": "787fc8c61b98",
+      "slug": "morlocklake10"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake11",
+      "id": "85e1c29e22dc",
+      "slug": "morlocklake11"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake12",
+      "id": "f17761bb4911",
+      "slug": "morlocklake12"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake13",
+      "id": "22d717dc080d",
+      "slug": "morlocklake13"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake14",
+      "id": "48ef964381c8",
+      "slug": "morlocklake14"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake15",
+      "id": "b4e7730dc30b",
+      "slug": "morlocklake15"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake16",
+      "id": "f5b7e3ab219d",
+      "slug": "morlocklake16"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake17",
+      "id": "fcb25122ad9e",
+      "slug": "morlocklake17"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake18",
+      "id": "76c4df7a136b",
+      "slug": "morlocklake18"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake19",
+      "id": "d0dde0db3956",
+      "slug": "morlocklake19"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake20",
+      "id": "28ed4b073a4a",
+      "slug": "morlocklake20"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake21",
+      "id": "987700f1261c",
+      "slug": "morlocklake21"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLake22",
+      "id": "9519216d32cc",
+      "slug": "morlocklake22"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeDock",
+      "id": "d25b70c670d5",
+      "slug": "morlocklakedock"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater01",
+      "id": "88e632407738",
+      "slug": "morlocklakewater01"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater02",
+      "id": "de6a764b8d60",
+      "slug": "morlocklakewater02"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater03",
+      "id": "83f491784eac",
+      "slug": "morlocklakewater03"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater04",
+      "id": "50dd83299e7b",
+      "slug": "morlocklakewater04"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater05",
+      "id": "49a9a12d2ea9",
+      "slug": "morlocklakewater05"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater06",
+      "id": "3d5f35914f0d",
+      "slug": "morlocklakewater06"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater07",
+      "id": "49a46c6a6a5c",
+      "slug": "morlocklakewater07"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater08",
+      "id": "22b06347b016",
+      "slug": "morlocklakewater08"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater09",
+      "id": "c3719bf8366a",
+      "slug": "morlocklakewater09"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater10",
+      "id": "2285c03eeff6",
+      "slug": "morlocklakewater10"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater11",
+      "id": "cbed2d30fd6a",
+      "slug": "morlocklakewater11"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater12",
+      "id": "575c11c3db78",
+      "slug": "morlocklakewater12"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater13",
+      "id": "2915abe90905",
+      "slug": "morlocklakewater13"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater14",
+      "id": "ace065f0ba7a",
+      "slug": "morlocklakewater14"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater15",
+      "id": "a22832f0e7bf",
+      "slug": "morlocklakewater15"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater16",
+      "id": "a2630bf7486c",
+      "slug": "morlocklakewater16"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater17",
+      "id": "a6028b5c7ac5",
+      "slug": "morlocklakewater17"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater18",
+      "id": "f1966fd5722f",
+      "slug": "morlocklakewater18"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater19",
+      "id": "0e2f6ec78492",
+      "slug": "morlocklakewater19"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater20",
+      "id": "0dbf2e970efa",
+      "slug": "morlocklakewater20"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater21",
+      "id": "eac327ef6219",
+      "slug": "morlocklakewater21"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater22",
+      "id": "1fea07f7a91e",
+      "slug": "morlocklakewater22"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater23",
+      "id": "497c938f6cbb",
+      "slug": "morlocklakewater23"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater24",
+      "id": "dd276b43e5d2",
+      "slug": "morlocklakewater24"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater25",
+      "id": "46aa1e7b319c",
+      "slug": "morlocklakewater25"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater26",
+      "id": "5d2810665bbf",
+      "slug": "morlocklakewater26"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater27",
+      "id": "2ef51fe62edc",
+      "slug": "morlocklakewater27"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater28",
+      "id": "250d85f3d6f9",
+      "slug": "morlocklakewater28"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater29",
+      "id": "82bd448e1ea8",
+      "slug": "morlocklakewater29"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater30",
+      "id": "394900d4d019",
+      "slug": "morlocklakewater30"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater31",
+      "id": "abe10da421d7",
+      "slug": "morlocklakewater31"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater32",
+      "id": "5a5940e6c3a7",
+      "slug": "morlocklakewater32"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater33",
+      "id": "e1d4ad5da3a1",
+      "slug": "morlocklakewater33"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater34",
+      "id": "5f3e8448d033",
+      "slug": "morlocklakewater34"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater35",
+      "id": "c0615116944f",
+      "slug": "morlocklakewater35"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater36",
+      "id": "3267ca9eefd7",
+      "slug": "morlocklakewater36"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater37",
+      "id": "61cb408cc25e",
+      "slug": "morlocklakewater37"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater38",
+      "id": "e15198f57fff",
+      "slug": "morlocklakewater38"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater39",
+      "id": "a7e505080b31",
+      "slug": "morlocklakewater39"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater40",
+      "id": "c09f803e7521",
+      "slug": "morlocklakewater40"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater41",
+      "id": "3fb779916cd2",
+      "slug": "morlocklakewater41"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater42",
+      "id": "5b5de5767601",
+      "slug": "morlocklakewater42"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater43",
+      "id": "e80aedf48473",
+      "slug": "morlocklakewater43"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockLakeWater44",
+      "id": "85343e4199f3",
+      "slug": "morlocklakewater44"
+    },
+    {
+      "source": "/domains/southfield/room/SouthFieldCityEast01",
+      "id": "b84876414811",
+      "slug": "southfieldcityeast01"
+    },
+    {
+      "source": "/domains/southfield/room/SouthFieldCityEast02",
+      "id": "701074ef9c7b",
+      "slug": "southfieldcityeast02"
+    },
+    {
+      "source": "/domains/southfield/room/SouthfieldMetalShop",
+      "id": "67e715cf61db",
+      "slug": "southfieldmetalshop"
+    },
+    {
+      "source": "/domains/southfield/room/SouthfieldRestaurant",
+      "id": "0722dda27470",
+      "slug": "southfieldrestaurant"
+    }
+  ],
+  "merged_exits": [
+    {
+      "room": "romainst04",
+      "direction": "east",
+      "target": "arenaroad01"
+    },
+    {
+      "room": "rosouthroad07",
+      "direction": "west",
+      "target": "morlockcavestrail01"
+    },
+    {
+      "room": "rosouthroad17",
+      "direction": "south",
+      "target": "wasteland-4-0"
+    },
+    {
+      "room": "rotradersams01",
+      "direction": "west",
+      "target": "bank"
+    }
+  ],
+  "excluded": [
+    "/domains/savsoul/room/betweenthewalls",
+    "/domains/savsoul/room/death",
+    "/domains/savsoul/room/freezer",
+    "/domains/savsoul/room/furnace",
+    "/domains/savsoul/room/pod",
+    "/domains/savsoul/room/ROMedCenterStorage",
+    "/domains/savsoul/room/ronmetalswillerstorage",
+    "/domains/savsoul/room/ROTraderSamsStorage",
+    "/domains/savsoul/room/rustystorage",
+    "/domains/savsoul/room/void",
+    "/domains/savsoul/room/wiz_hall",
+    "/domains/southfield/room/death",
+    "/domains/southfield/room/freezer",
+    "/domains/southfield/room/furnace",
+    "/domains/southfield/room/MetalheadStorage",
+    "/domains/southfield/room/pod",
+    "/domains/southfield/room/start",
+    "/domains/southfield/room/void",
+    "/domains/southfield/room/wiz_hall"
+  ],
+  "unresolved_exits": [
+    {
+      "room": "/domains/savsoul/room/arenaroad03",
+      "direction": "east",
+      "target": "/domains/savsoul/virtual/arena/4,1"
+    }
+  ],
+  "unsupported_callbacks": [
+    {
+      "source": "/domains/savsoul/room/MorlockCaveA01",
+      "kind": "dynamic search/listen/smell"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCaveA02",
+      "kind": "dynamic search/listen/smell"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCaveA03",
+      "kind": "dynamic search/listen/smell"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCaveA04",
+      "kind": "dynamic search/listen/smell"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail04",
+      "kind": "dynamic search/listen/smell"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail05",
+      "kind": "dynamic search/listen/smell"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail07",
+      "kind": "dynamic search/listen/smell"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail09",
+      "kind": "dynamic search/listen/smell"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail10",
+      "kind": "dynamic search/listen/smell"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail13",
+      "kind": "dynamic search/listen/smell"
+    },
+    {
+      "source": "/domains/savsoul/room/MorlockCavesTrail14",
+      "kind": "dynamic search/listen/smell"
+    },
+    {
+      "source": "/domains/southfield/room/SouthFieldCityEast01",
+      "kind": "dynamic search/listen/smell"
+    },
+    {
+      "source": "/domains/southfield/room/SouthFieldCityEast02",
+      "kind": "dynamic search/listen/smell"
+    }
+  ],
+  "source_files": {
+    "domains/savsoul/room/arenaroad01.c": "b0dd4f27a041e6b9eedc5992e7bac89e596111447753fe3696ac7b785c1319ff",
+    "domains/savsoul/room/arenaroad02.c": "4a93115f3fb661376ad6094c9cba77a287093cc94d1298e9ed8c49aa16871fe7",
+    "domains/savsoul/room/arenaroad03.c": "e351e1afdf5637bb3f47230e5b744621ac428667d624ef3aabd866732a887a60",
+    "domains/savsoul/room/bank.c": "345f0575c8ff8610289267b3b99e8ba3af815c88b17170f275d0a98458f4020c",
+    "domains/savsoul/room/MorlockCaveA01.c": "017511a21b8ea75d8771afb34c69837882efe7faa3f187fa3e499eb581d75516",
+    "domains/savsoul/room/MorlockCaveA02.c": "8ec74149dc4e8f8ca1e45271e4836e170ac5cbec1a54c529b5bc57c2ffeb3554",
+    "domains/savsoul/room/MorlockCaveA03.c": "61483f8c9eb2ae3c60a30a1bd05ae00f28621e26fbfe7706ca517f125eebc89c",
+    "domains/savsoul/room/MorlockCaveA04.c": "7d8525a0b024cc0d78abc8c21fcab08d5736ecbf6766cad7ed192d7d3cae5959",
+    "domains/savsoul/room/MorlockCaveA05.c": "a1f79667b73a957d7c8031977facacfde9963f2a89f94a0135b3860a88232113",
+    "domains/savsoul/room/MorlockCaveA06.c": "308bff8e18a0bd276248afcd65abfaca4a11eef161a92f9d30c559644da3aae8",
+    "domains/savsoul/room/MorlockCaveA07.c": "559ad91e3c77b7d8d598f47b08f5e0ebe5dfcafd680df66fde9e288475437eb5",
+    "domains/savsoul/room/MorlockCaveA08.c": "bc2e49d6f7fd5e01edfc51ab39e34513ccc69033c0e8005ce64abd888a49d99c",
+    "domains/savsoul/room/MorlockCaveCrawl01.c": "6dba28ab167bd7d29339ac74847f95da8b02b1fbf5b89aa0f3f2bdbf7a576973",
+    "domains/savsoul/room/MorlockCaveMachine01.c": "e500d904ab28c8692186a05075aeeaa6d44708b5e0acea275792a511d343fe41",
+    "domains/savsoul/room/MorlockCavesTrail01.c": "0664c696037b9addfa093b0ae391173c59db1463626a39bd23d6c8d40714dae7",
+    "domains/savsoul/room/MorlockCavesTrail02.c": "c9b59b94972012516c641e3e6f9da3f9b784c190123710bbd1e39837be33a630",
+    "domains/savsoul/room/MorlockCavesTrail03.c": "026106688ed97463717e1257bfd1564a1e59f35d4c28715eabbdb1c7906e7b35",
+    "domains/savsoul/room/MorlockCavesTrail04.c": "930d41938a6ebe0d2fe8f9ba59aee7ba3c00a4680752cb3e9df8fa67c73d82e7",
+    "domains/savsoul/room/MorlockCavesTrail05.c": "5cccb1043ed51a8505e8ed1bd71effcef10c601490e2ddbb0538e644f297240e",
+    "domains/savsoul/room/MorlockCavesTrail06.c": "92665b0a9e3910297d2867fb22bcd195da43c51e663d4b2490493c1b0e8ca77c",
+    "domains/savsoul/room/MorlockCavesTrail07.c": "81bc9629419ee859f424a4064e6f4ccf16156f15e83e802e8825fb9b99f687c4",
+    "domains/savsoul/room/MorlockCavesTrail08.c": "7e2d9b7d504aaeaf34efb65f2fd34b3972fa3f89ad02479def88f8e761e7cefb",
+    "domains/savsoul/room/MorlockCavesTrail09.c": "70525ebf75d1d547fff57365a07fa38e86b2a3b2e50ac91c99397bfeb8eb9fea",
+    "domains/savsoul/room/MorlockCavesTrail10.c": "f82e4f84b200fa2a2eefdc023f2cc5517553db47d36c3901208a5a0c45c76760",
+    "domains/savsoul/room/MorlockCavesTrail11.c": "aeaee91df41f5be5bb1863f2d23c6962fd83f03915ac3c88b6e35c48d32c53f0",
+    "domains/savsoul/room/MorlockCavesTrail12.c": "038ed793c4a961687d67a7db58b95054c1979f871c0453f42d1481cbaf06691a",
+    "domains/savsoul/room/MorlockCavesTrail13.c": "f7b419f3947bedf4684cedd9de7308d66a5b242100aba2764ca5623d7af408e9",
+    "domains/savsoul/room/MorlockCavesTrail14.c": "298b35ab5e0bfc649f7518bd2d96f71c7717d4ed2b2852df4af3962e417a586d",
+    "domains/savsoul/room/MorlockLake01.c": "94cfea2985f68483c19fcaa2adcdae97d92718e01c943fed7e808d04691e23c0",
+    "domains/savsoul/room/MorlockLake02.c": "e5cd8f6459ae2dca8cbf4d0e929b5a20f662e29d85d4a7e170d710b9ed0f02dc",
+    "domains/savsoul/room/MorlockLake03.c": "2490078e19b733c82eef6ceb4dda02a3b1f41515906cb40e5ca06f3a9fd05552",
+    "domains/savsoul/room/MorlockLake04.c": "b3c1ae0d8eae8c110edabd15dae80f0586055a01d024c61016ab8cab0f4daa89",
+    "domains/savsoul/room/MorlockLake05.c": "1da275b05954a15a128bf52d8719e04680515563d249b01ad5d976afeab45338",
+    "domains/savsoul/room/MorlockLake06.c": "2330b5203d3ac948dbc3c0917622e86b37a4bab68f7d919c9b4f4810cfce3ea9",
+    "domains/savsoul/room/MorlockLake07.c": "2e243f53b9163925363b86d0a51dbe6e80736cb03f08a22968f318b89c11e1b9",
+    "domains/savsoul/room/MorlockLake08.c": "29921cb0d798c8a274395f426e2b7db3f02252958f9b4ea01bb5fba6fad0788a",
+    "domains/savsoul/room/MorlockLake09.c": "3f6280dcb77959e48f00959a00f65f36635883ae7ab3ebc479199d069dc4c045",
+    "domains/savsoul/room/MorlockLake10.c": "aca9c67988fcb2fa6604fe14d519530a9a4811058987097dcd2b9797276b4d81",
+    "domains/savsoul/room/MorlockLake11.c": "22d82c63e00ab10f670630c7ea7c5de73491960057b81197e59951acd8f1fd6a",
+    "domains/savsoul/room/MorlockLake12.c": "45177acd13ca93bb63a4499a6bd8e20de7b29d6351358b0986559dc4851ac675",
+    "domains/savsoul/room/MorlockLake13.c": "00aea30d510cc372f80ca2459fee4cdba94735a9c74e8d9fa6a731c7a9f30a5a",
+    "domains/savsoul/room/MorlockLake14.c": "c79a6c5514e5a955f1c4b9969aad802665cee4720de60ab5d2651cf43f9df4b8",
+    "domains/savsoul/room/MorlockLake15.c": "3b80a985d278eaaca1db197e023671eb55ae53a754b2e4f7c5fdb1355d658952",
+    "domains/savsoul/room/MorlockLake16.c": "2224fbfd437e47414446415ac5c8bb1590ad4ecc2f6db7c435ec175488bb8faf",
+    "domains/savsoul/room/MorlockLake17.c": "98949291648f1878fbbfce6d13d61c42aa016410e6860212e524a59d3ffa698a",
+    "domains/savsoul/room/MorlockLake18.c": "3b04acc6a5d1a04fee5dead5b652d041e65ab7d03730f40a877e0a21cd3190bf",
+    "domains/savsoul/room/MorlockLake19.c": "cd7c3b7d97a8e86a7346a9799def9764e82e9f969bb863aa93ddca723f8fdac6",
+    "domains/savsoul/room/MorlockLake20.c": "8a6f93a19773e85a87b2171e9fb38732e0216d0627705ac5ea3f013f9c96e034",
+    "domains/savsoul/room/MorlockLake21.c": "3dda95ce77786215cee5d6b617cefe37d5f7fd922e5c6b1b0f73bc8623faf4d2",
+    "domains/savsoul/room/MorlockLake22.c": "9e3394e556c4f3be21b2bff9f78231a40f626bf55ad3e519a0c9d2b1a522ab6c",
+    "domains/savsoul/room/MorlockLakeDock.c": "fff99875f2f9bdf31f5a01ccd3b002c61fd721035e96bb281b03a55803900f13",
+    "domains/savsoul/room/MorlockLakeWater01.c": "837f902faea33a77241eb52adac13fb132b2048306838f6ab6ce50a13d48ccfb",
+    "domains/savsoul/room/MorlockLakeWater02.c": "18aa6ad4289f80a8efa39399c2d8fc1c7b3919671d75dac4fcfa32ef3df3554d",
+    "domains/savsoul/room/MorlockLakeWater03.c": "48c7add2ccb840d8be0781d1b35d5ec8fd7768444acc4f020c3f396df5132f6e",
+    "domains/savsoul/room/MorlockLakeWater04.c": "3c7cb4b30ef89c84bc22c1af17412da9964c425b3c466864b90d224fbf43584e",
+    "domains/savsoul/room/MorlockLakeWater05.c": "d1e33770d0dcfa829d5efc6627293b4ff5c73d0ab3f43200aea32ba105ffb902",
+    "domains/savsoul/room/MorlockLakeWater06.c": "5014df6446bb0861914bcd557324003298fa1d5f5b0f49e8a7e3209ad2dac48c",
+    "domains/savsoul/room/MorlockLakeWater07.c": "4d8eb73719a8f09ae0d882db2d1acd5450af6813ac9ffd4754eab703a08e0efd",
+    "domains/savsoul/room/MorlockLakeWater08.c": "e286a36dddcebb12c3e415b20ca66ad4936098f5b3887314d6cbb306ab7456c4",
+    "domains/savsoul/room/MorlockLakeWater09.c": "1973cb892868e9d965305de51098413643462938f28c906608f72ec509217524",
+    "domains/savsoul/room/MorlockLakeWater10.c": "2cc96b86f95b39e038afc8f7411c54acee9703674e015c88c7d072cd6c65a42a",
+    "domains/savsoul/room/MorlockLakeWater11.c": "c3554a6af522f6392a8a847566286f168949ccf927597e6f4b2d947fff0dd3b0",
+    "domains/savsoul/room/MorlockLakeWater12.c": "5fd51df02e4446b5d5049fd6d1b18849043f53a66026ee44d12e292a3bd38fec",
+    "domains/savsoul/room/MorlockLakeWater13.c": "a7db344b6e41980d6fcccf3bbbdd08bef9535f76b7707e40ed657880eae0f7fd",
+    "domains/savsoul/room/MorlockLakeWater14.c": "ab5cdf9d26f66e8ec14fd53bbedcb37ffcb509e951d13b4f9d95ea9c6898eaa7",
+    "domains/savsoul/room/MorlockLakeWater15.c": "05bfddebaeb124ca41275558984370e5073f8b58a388eb07827ac93b64c2dc46",
+    "domains/savsoul/room/MorlockLakeWater16.c": "d31285df27ea6e180d6c4df02c7d1af3870a920dfe6f7243b288aa9536145084",
+    "domains/savsoul/room/MorlockLakeWater17.c": "c79093cd9e94e28fb68f8aaa11b36b21236c55238ac9e07b67d721dec43e64d4",
+    "domains/savsoul/room/MorlockLakeWater18.c": "39ac9690e5f39632d3e382d6aca48642649b44ac944166083ce9ea95cfcb538c",
+    "domains/savsoul/room/MorlockLakeWater19.c": "6eca7ed793ec21401dd4cef5418e43679594523928859a82f339159f2c18741d",
+    "domains/savsoul/room/MorlockLakeWater20.c": "d2ab3b48f99feae78782cd7ff0f3cbbee0dbb4b775301f22e6fede79412a69ad",
+    "domains/savsoul/room/MorlockLakeWater21.c": "a7292496e64fbdda6f2750bee45fb89a3ac38e4f409addfe719d360e424f4247",
+    "domains/savsoul/room/MorlockLakeWater22.c": "86a0905d1397455cedbd1ab4cb5eb3fd2bd1b1fde0da9f59b9d7046b67b9aecb",
+    "domains/savsoul/room/MorlockLakeWater23.c": "07e0bdd8413c80bc071ea3de9bdf8252eb319e8443991b6bc3606460b29c9599",
+    "domains/savsoul/room/MorlockLakeWater24.c": "61f6ddeadfc55b777ae7d8816a28f21b94e8fe1f8931cf427badc4f67f81957b",
+    "domains/savsoul/room/MorlockLakeWater25.c": "1fc89346d3745dad7cf1676ad9515e0487a8f9a0cf8a0dbf99551ceb163d61a4",
+    "domains/savsoul/room/MorlockLakeWater26.c": "a3eec0b90b89b6c159db252658ae361f2294e70f5df29da38bf4b0e1393a1a75",
+    "domains/savsoul/room/MorlockLakeWater27.c": "7cae7e1908340f8062a2ae7db4bccfb5eaf5df08e627c396c4a99434ce67cd01",
+    "domains/savsoul/room/MorlockLakeWater28.c": "8edb2d0512a71180ccfc826cf60b1b3b1f4ddf8c09052fe1e083f6a6ebe7926e",
+    "domains/savsoul/room/MorlockLakeWater29.c": "794b36033a4a205feb96619fad7dff0cd6a82756a9e7e139abdef1ee36ca4ad8",
+    "domains/savsoul/room/MorlockLakeWater30.c": "d85a16e707f0770e1c592eae29ec64f56b030124a2ca27e5d4dfcd9feee806e9",
+    "domains/savsoul/room/MorlockLakeWater31.c": "e79f01c7ba9c82cd90f25c06119c75dc8233ff07963ee46507453d97e044128e",
+    "domains/savsoul/room/MorlockLakeWater32.c": "29174716217639225e17df24d8ddf88d4d7a664d164123f44c05ca3935fbf35e",
+    "domains/savsoul/room/MorlockLakeWater33.c": "c07d73a1b8c79b247e88931f788699d04ae75232d6eed5a4030303489e84bf6a",
+    "domains/savsoul/room/MorlockLakeWater34.c": "42f0442771fc7508ebfbce7cc9a2c60176f3e0123578739eb8cf5e780829f4ef",
+    "domains/savsoul/room/MorlockLakeWater35.c": "e547180c3c9b657b26f5a7e86c50ab5ea0d55d6f77bacae3376b0946dae02a20",
+    "domains/savsoul/room/MorlockLakeWater36.c": "a7cf5674e0198b5f1951dad5e8caa5679652ee7fb9f44da05bc67a46305b5267",
+    "domains/savsoul/room/MorlockLakeWater37.c": "96519c9483dfe681a990fbdabf5738f8d4df8b8b25c8af5f70e9ccba196242ea",
+    "domains/savsoul/room/MorlockLakeWater38.c": "3934d814e524048e31503b41901732714e7fdec38ef9b2e205811035a9f46aaf",
+    "domains/savsoul/room/MorlockLakeWater39.c": "05593c1a3c976ca0b4316795e5b13eeedc342b2ccd354c732b74bf1044743254",
+    "domains/savsoul/room/MorlockLakeWater40.c": "b3abc47984a1f18afe2f36455a7df744be3777dddc050e423f92acb0bdfdf65f",
+    "domains/savsoul/room/MorlockLakeWater41.c": "6efe5b9615b9287a0c32a8598ba850785814ec918e98d5389ff96e7f966e35ba",
+    "domains/savsoul/room/MorlockLakeWater42.c": "fd404c3540505fd73e1ed1b74e58ac30123e36339d324159fc100c81e3de7617",
+    "domains/savsoul/room/MorlockLakeWater43.c": "24685cc7bb32d87e8596daa58f50084cf854f9084331ed11d7f0a7bc9895254c",
+    "domains/savsoul/room/MorlockLakeWater44.c": "616a551a052fd9c6af5c23819f11bb061c8bc021e88d1f62ebdc5d899c1f6bba",
+    "domains/southfield/room/SouthFieldCityEast01.c": "88a55dcd683a72f7cd6af8fdd7bd57d48fd24422a181bf887dc4b788e68b0738",
+    "domains/southfield/room/SouthFieldCityEast02.c": "d9596a9727ff45d33f508263ad983ca1e99ded5de6dca612a211ae2d24e6c582",
+    "domains/southfield/room/SouthfieldMetalShop.c": "409ca54ce430d50f8e18b057a53e0c324662ebef3d540c5b1facc69d15faecda",
+    "domains/southfield/room/SouthfieldRestaurant.c": "037ccc4588dd9753dcbf8cf43b72f23deef18fe724112ef8f93761bf86f24823",
+    "domains/savsoul/virtual/ROWasteland.c": "74c7e02255a8f28e6a39bb3f63866be2398c915493510ed5d4d51d3c450c5de3",
+    "domains/savsoul/npc/atm.c": "ddfbdcf4e3ea2fa9719899a2d26fdf74f17dd92e16af0c4001c328f8356400c4",
+    "domains/savsoul/npc/morlock_warrior.c": "29200f7a2a5a532953ed19d789f3b21bd4157dd7849af1cf5b8acce7a4b382d1",
+    "domains/savsoul/obj/morlockaltar.c": "632954c6decf42568ae3d685e78ba627abbc2f5fe308d3ec6177dc492b064412",
+    "domains/savsoul/obj/hair_brush.c": "2bc2798236efd8be9fa4e399a6f003fbd96aa3a29bdbb73faf3921ea8e8bb3b4",
+    "domains/savsoul/obj/candle.c": "b2386ac2d27d9add8c609dfcb0088db1822a6dc81ebb9480113df53f00b6e784",
+    "domains/savsoul/npc/morlock_worker.c": "a0d1de499c30c649546603bd437859b3c68b31fb74283b32acf4e441c96aefd9",
+    "domains/savsoul/npc/turret.c": "0605a13bfa3e2f222c3b2f316a0e2e50bbddc647b73ec25561b48acba2fd39df",
+    "domains/savsoul/obj/red_button.c": "b1d35e00b4519198c1daa2dc27fd305ab7acfb63dc5f3f93cddc04a90e388e08",
+    "domains/savsoul/obj/blue_button.c": "ba54be9899ae45ad6d31b2abdcd743556ccf30ca8ed7b3fe96870fbf45617e54",
+    "domains/savsoul/obj/green_button.c": "fe1d6679e2290abdbae674ed96178885ffeca1b8586ae760d65aabcc91dc3788",
+    "domains/savsoul/obj/yellow_button.c": "fd189f86923cf1f4cf8c9bfada659ba113e282fd24b6799f23b9dd892824a7f5",
+    "domains/savsoul/npc/artrell.c": "817c864fb7e5280b0ebe167ee866fa6184a4162ba9dc934a8b96016f6370f7d2",
+    "domains/savsoul/npc/artrell_warrior.c": "0b21f90cd8fa68564afb18f48109f3b88c6cb555e6cee851554c8ead8daee588",
+    "domains/southfield/npc/metalhead.c": "264702dda163813efb452c68a8542a5f1bed98024ef8b84cf53a6a194c78463f",
+    "domains/crafting/tools/bullet_press.c": "713718363ff1393b3f4555dcc451ecd30aa9a883ccf89c2439dd58be1bb252d3",
+    "domains/crafting/tools/grinding_wheel.c": "df9c272a9cfb13058f7e711cd759fe96a11d3528b1fe3925e9d42b46a92a98a0",
+    "domains/crafting/tools/die_forge.c": "be40c831368c558da80f57dcfce9090eac1cdfb8b020f2f6831339ea48054dab",
+    "domains/crafting/tools/radial_rivet_machine.c": "45e3a9af60582216a4e1319f15e73a5b160b656c45bc0b46fcd52cceabf286b5",
+    "domains/southfield/npc/francoise.c": "b3a9daa7c4d86a7f88953a476205971dcd12ee9086ddfc6a345e5c34e45dba01",
+    "domains/savsoul/npc/ron_metalswiller.c": "f6b315ce0b53ab76995a47046b7a146768b88c6d39ca37fb6d90ffac81d3182d",
+    "domains/savsoul/room/ROChargingStation02.c": "1c1dc1d15a95de39b990d3596c1a85bfa67f52c540599a1a78d27c664694a915",
+    "domains/savsoul/npc/tully.c": "0ad745e2fe6d4266460a9e31900485a9a2c860fba60d7b17ab6216bbf085a00d",
+    "domains/savsoul/room/SmallWhiteShack.c": "7a30ad5fdb33392bbe8e3770c80c3edf1f293191b5069904716c734432bf0e40",
+    "domains/savsoul/room/ROMainSt04.c": "09e98d2b049fd638c4d82359ee788a14f32f8b1af0dfc2b42fc974e793564a1d",
+    "domains/savsoul/room/ROSouthRoad07.c": "5bd1fa566c545788356da10c01a9248bbb6819964303f47fc384535aa8cf284b",
+    "domains/savsoul/room/ROSouthRoad17.c": "353e4d3ecddb5dcc93b202d8ac7a4434a7c2900e16a084dea1b6509616409fdd",
+    "domains/savsoul/room/ROTraderSams01.c": "ef51630dc58b3fcda455e0a8197b5b20f7cbb688df3d24c91faaf36012369a77"
+  },
+  "adaptations": [
+    "Materialized only x=2..4, y=-14..0 (45 cells) of the source wasteland generator, the playable corridor between Royal Oak and Southfield. Outer generated wilderness is not imported.",
+    "Repaired missing west exit from wasteland 2,-14, implied by the authored Southfield east exit.",
+    "Existing room descriptions, IDs, NPCs and exits are preserved; only missing source exits into new rooms are merged.",
+    "Source container contents lie beside fixed containers because Grim does not yet model nested inventories.",
+    "The ATM remains scenery: legacy banking and PvP arena are not implemented."
+  ],
+  "existing_room_npcs_added": [
+    {
+      "room": "rochargingstation02",
+      "name": "ron",
+      "source": "/domains/savsoul/npc/ron_metalswiller"
+    },
+    {
+      "room": "smallwhiteshack",
+      "name": "tully",
+      "source": "/domains/savsoul/npc/tully"
+    }
+  ],
+  "new_rooms_unreachable": [],
+  "new_authored_rooms": 99,
+  "new_generated_rooms": 45,
+  "new_npc_placements": 15,
+  "world_rooms": 945,
+  "world_npc_blueprints": 160
+}

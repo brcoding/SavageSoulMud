@@ -1,0 +1,517 @@
+{
+  "id": "3b105936b3b5",
+  "slug": "lpc-ylsrim",
+  "name": "Ylsrim",
+  "canonical": true,
+  "rooms": [
+    {
+      "id": "36836f5d950c",
+      "slug": "adm-cache",
+      "name": "The cache",
+      "description": "Things are hidden here.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "9fb1706cbc70"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/adm/cache"
+    },
+    {
+      "id": "fd33c7c39d8f",
+      "slug": "adm-freezer",
+      "name": "The freezer",
+      "description": "The local freezer.  Go down to leave.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "c5bac020033d"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/adm/freezer"
+    },
+    {
+      "id": "a145fbdba47b",
+      "slug": "adm-void",
+      "name": "the void",
+      "description": "The void.  Go down to get out.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "3dfa4a0275ce"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/adm/void"
+    },
+    {
+      "id": "0fc49056bde2",
+      "slug": "etc-chest",
+      "name": "a wooden chest",
+      "description": "This chest is made from an ancient forest far from Ylsrim.  You can feel the age in touching it.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "69b8865e0ac0"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/etc/chest"
+    },
+    {
+      "id": "a400bcd4288b",
+      "slug": "room-adv-hall",
+      "name": "the adventurer's hall",
+      "description": "A bulletin board sits in the middle of this circular room where adventurers from all over gather to meet one another.  Kaliid Road lies to the south.  Stairs lead up to the tower.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "951db0dbc6ad"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "stairs",
+          "keywords": [
+            "stairs"
+          ],
+          "description": [
+            "They spiral up into the tower which looks over Kaliid Road."
+          ]
+        },
+        {
+          "name": "tower",
+          "keywords": [
+            "tower"
+          ],
+          "description": [
+            "You can't see much in the darkness into which the stairs disappear."
+          ]
+        }
+      ],
+      "source_path": "/domains/Ylsrim/room/adv_hall"
+    },
+    {
+      "id": "5ab94a152b4d",
+      "slug": "room-armory",
+      "name": "the Ylsrim armory",
+      "description": "the Ylsrim armory.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "c7c9f8cc2ee1"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "bazaar",
+          "keywords": [
+            "bazaar"
+          ],
+          "description": [
+            "People from all about are wandering around, looking for a bargain."
+          ]
+        }
+      ],
+      "source_path": "/domains/Ylsrim/room/armory"
+    },
+    {
+      "id": "a032111d4fe8",
+      "slug": "room-armory-storage",
+      "name": "armory storage",
+      "description": "Armory storage.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "2b7fabb37afe"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/armory_storage"
+    },
+    {
+      "id": "e54d6f6abd07",
+      "slug": "room-bank-roof",
+      "name": "The roof of the Bank of Ylsrim",
+      "description": "From your perfect vantage point atop the hot adobe of the Bank of Ylsrim you can see nearly the entire desert town.  On the south side of the bank, the wall is rough enough to get a foothold down into Kaliid Road.  The wall on the other sides of the building are simply too smooth to climb down. You might be able to jump into the road, as well.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "35827bfaf2e5"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/bank_roof"
+    },
+    {
+      "id": "ff130b3604b7",
+      "slug": "room-bazaar",
+      "name": "the central bazaar of Ylsrim",
+      "description": "Shops and vendors selling all types of goods fill the central bazaar of Ylsrim.  Local villagers and exotic travellers are passing about you in search of a bargain, or even in some cases, in search of trouble.  Kaliid Road crosses Ylsrim from the west to the east just north of you, with an armory and a weapon shop straddling both sides of the bazaar.  The bazaar stretches on south.\nThere is a sign here you can read.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "f307a854c687"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/bazaar"
+    },
+    {
+      "id": "017163c42c93",
+      "slug": "room-church",
+      "name": "Ylsrim Church",
+      "description": "Dim candles create more than enough light to fill this very humble church of the Dalin religion.  Dalites come here to pray, and others come to convert to Dalin.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "7c5bb3359caf"
+      },
+      "npcs": [
+        {
+          "name": "Ix'Tala, high priestess of the Priests",
+          "description": [
+            "Ix'Tala initiates priests into the Priests class as well as converts the wayward to the truth of the Dalin religion.  To learn more about becoming a priest ask her to \"describe priests\".  If you choose to become a priest, ask her to \"join priests\".  Of course, you can convert by asking her to \"convert me\"."
+          ],
+          "keywords": [
+            "ixtala",
+            "priest"
+          ],
+          "room_description": "Ix'Tala, high priestess of the Priests is here.",
+          "race": "klingon",
+          "level": 45,
+          "gender": "female",
+          "source_path": "/domains/Ylsrim/npc/priest"
+        }
+      ],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/church"
+    },
+    {
+      "id": "16e91c8f1162",
+      "slug": "room-fighter",
+      "name": "the interior chamber of the Hall of Fighters",
+      "description": "Fighters gather here to drink, boast, and train. They also leave helpful weapons and items here for each other, because they know this is a sanctuary from the loss of objects when the world renews itself.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "634851dd9d4a"
+      },
+      "npcs": [
+        {
+          "name": "Segata Sanshiro",
+          "description": [
+            "Stocky and strongly built, this legendary master of martial arts helps train fighters to become the very best they can be, so that they may fulfill their duty. Segata Sanshiro specializes in melee (unarmed) combat. For armed combat training, guildmaster Roshd is still the trainer."
+          ],
+          "keywords": [
+            "segata",
+            "sanshiro",
+            "segata sanshiro",
+            "stocky",
+            "built",
+            "strong",
+            "strongly built"
+          ],
+          "room_description": "Segata Sanshiro is here.",
+          "race": "human",
+          "level": 40,
+          "gender": "male",
+          "source_path": "/domains/Ylsrim/npc/segata"
+        }
+      ],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/fighter"
+    },
+    {
+      "id": "10b3d1bb2186",
+      "slug": "room-fighter-hall",
+      "name": "the Hall of Fighters",
+      "description": "The Great Hall of Fighters was constructed many ages ago to act as a meeting place for all the fighters who come through Ylsrim.  In addition, it serves as a place to recruit new fighters into the fold.  A magnificent oak door stands north.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "north": "16e91c8f1162",
+        "south": "e3d5b733b9ba",
+        "up": "d7f78a1e50b5"
+      },
+      "npcs": [
+        {
+          "name": "Roshd Burlyneck, Master Warrior",
+          "description": [
+            "Roshd Burlyneck is the master warrior of the fighters. Immense in size, Roshd stands well over seven feet tall. Long brown hair streams out behind him, and his biceps are so large it would take several hand spans to fit around them. Roshd's armor is worn and covered in dirt as if he has just returned from combat. Roshd initiates new members into the ways of combat. If you choose to become a fighter, \"ask roshd to join\".\n\nDespite his devotion to his guild, Roshd will train outsiders in combat skills, if they are capable. For example: \"ask roshd to train blunt defense\""
+          ],
+          "keywords": [
+            "roshd burlyneck",
+            "roshd"
+          ],
+          "room_description": "Roshd Burlyneck, Master Warrior is here.",
+          "race": "orc",
+          "level": 45,
+          "gender": "male",
+          "source_path": "/domains/Ylsrim/npc/roshd"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "meeting",
+          "keywords": [
+            "meeting",
+            "room",
+            "hall",
+            "fighter hall"
+          ],
+          "description": [
+            "New adventurers may become fighters here."
+          ]
+        }
+      ],
+      "source_path": "/domains/Ylsrim/room/fighter_hall"
+    },
+    {
+      "id": "a1d55b7f612d",
+      "slug": "room-kaliid3",
+      "name": "Kaliid Road by the Church",
+      "description": "Kaliid Road moves east and west through the desert town of Ylsrim.  The road itself gets sandier as it gets swallowed by the desert in the distance east.  On the northern end of the road a door belonging to the local church.  Next to the door sits a huge button.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "6ef1e870aba5"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/kaliid3"
+    },
+    {
+      "id": "5633c6df58a9",
+      "slug": "room-kaliid4",
+      "name": "Kaliid Road north of the bazaar",
+      "description": "Kaliid Road stretches as far as you can see east and west across Ylsrim. South, Kaliid opens up into the central bazaar where vendors sell goods day and night.  on the opposite side of the road is the entrance to the local adventurers' hall.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "east": "a1d55b7f612d",
+        "south": "ff130b3604b7",
+        "west": "e3d5b733b9ba",
+        "north": "a400bcd4288b",
+        "up": "0d37a3238985"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/kaliid4"
+    },
+    {
+      "id": "e3d5b733b9ba",
+      "slug": "room-kaliid5",
+      "name": "Kaliid Road near the Fighters' Hall",
+      "description": "Kaliid Road stretches as far as you can see east and west across Ylsrim.  Along the north side of this stretch of road sits the local Fighters' Hall.  Immediately inside the entrance you notice a recruitment area where novice seekers of fortune decide to make their ways as fighters.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "f4b2343998c7"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/kaliid5"
+    },
+    {
+      "id": "ded11bec898d",
+      "slug": "room-kaliid6",
+      "name": "Kaliid Road south of the bank",
+      "description": "Kaliid Road stretches as far as you can see east and west across Ylsrim.  The rough wall on the north side of the road looks like the distinctive adobe of the Bank of Ylsrim.  As the road travels along side the bank walls west, you can see Kaliid Road intersect with another.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "e6825bd68252"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/kaliid6"
+    },
+    {
+      "id": "8e7c1a8df35b",
+      "slug": "room-kaliid7",
+      "name": "the western edge of Ylsrim",
+      "description": "Kaliid Road comes to its western end here as Ylsrim disappears into the desert.  Not too far east of here you see where the local bank rests.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "f42085d704ff"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/kaliid7"
+    },
+    {
+      "id": "d5808912e2e1",
+      "slug": "room-pub",
+      "name": "Lars' Pub",
+      "description": "Lars' Pub is one of the most famous gathering places in all Ylsrim.  As you can see about you, however, it is not among the more homely ones.  Tables and stools are littered all about with a hodge-podge of writing in all different languages covering the wall.  A menu of drinks is about the only readable thing on the wall.  If you read Edhellen.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "a509f3d408e8"
+      },
+      "npcs": [
+        {
+          "name": "Lars, the keeper of Lars' Pub",
+          "description": [
+            "Lars is the owner of Lars' Pub, and old, famous drinking establishment in the heart of the Ylsrim Bazaar.  He is an unassuming elf, but quite jovial.  You may ask him to serve whatever drinks are on his menu."
+          ],
+          "keywords": [
+            "lars",
+            "owner",
+            "barkeep",
+            "bartender",
+            "keeper"
+          ],
+          "room_description": "Lars, the keeper of Lars' Pub is here.",
+          "race": "elf",
+          "level": 12,
+          "gender": "male",
+          "source_path": "/domains/Ylsrim/npc/lars"
+        }
+      ],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/pub"
+    },
+    {
+      "id": "8b3c69d2444f",
+      "slug": "room-s-bazaar",
+      "name": "The south end of the Ylsrim Bazaar",
+      "description": "Along the south end of the Ylsrim Bazaar stands a restaurant and a pub.  The central area of the Bazaar is just north of here.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "45be4121ecba"
+      },
+      "npcs": [
+        {
+          "name": "a traveler",
+          "description": [
+            "He looks a bit worn down, but also a bit shifty."
+          ],
+          "keywords": [
+            "traveler",
+            "traveller",
+            "human",
+            "npc"
+          ],
+          "room_description": "A traveler is here.",
+          "race": "human",
+          "level": 5,
+          "gender": "male",
+          "source_path": "/domains/Ylsrim/npc/traveler"
+        }
+      ],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/s_bazaar"
+    },
+    {
+      "id": "40731f549002",
+      "slug": "room-sand-hole",
+      "name": "a dark hole in the sand",
+      "description": "You are in a very dark, sandy hole in the desert.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "8bc870318a39"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/sand_hole"
+    },
+    {
+      "id": "c68fdcc065dd",
+      "slug": "room-sand-room",
+      "name": "a sandy desert outside of Ylsrim",
+      "description": "a sandy desert outside of Ylsrim.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "east": "8e7c1a8df35b",
+        "down": "40731f549002",
+        "up": "99956af1ee1e"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/sand_room"
+    },
+    {
+      "id": "d25ebcadc9d2",
+      "slug": "room-tower",
+      "name": "Ylsrim Tower",
+      "description": "The tower looks out over Kaliid Road.  South of the road is the always busy Ylsrim bazaar.  A spiraling staircase leads down into the heart of the adventurer's hall.\nThere is a sign here you can read.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "7772e2011c5e"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "road",
+          "keywords": [
+            "road",
+            "kaliid road"
+          ],
+          "description": [
+            "You could probably jump down into the road from here."
+          ]
+        },
+        {
+          "name": "bazaar",
+          "keywords": [
+            "bazaar"
+          ],
+          "description": [
+            "It looks like it is bustling."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "A sign. To read it, 'read sign'."
+          ]
+        },
+        {
+          "name": "tower",
+          "keywords": [
+            "tower"
+          ],
+          "description": [
+            "The tower you are on."
+          ]
+        },
+        {
+          "name": "stairs",
+          "keywords": [
+            "stairs",
+            "staircase"
+          ],
+          "description": [
+            "They lead down into the heart of the hall."
+          ]
+        }
+      ],
+      "source_path": "/domains/Ylsrim/room/tower"
+    },
+    {
+      "id": "004fb101759c",
+      "slug": "room-vote-hall",
+      "name": "voting hall",
+      "description": "You are in the voting hall of Ylsrim. This is where people come to nominate candidates for class leader and to cast their vote.  There is a list posted on the wall here.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "down": "ff130b3604b7",
+        "up": "6abe1eeeb4ae"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "list",
+          "keywords": [
+            "list"
+          ],
+          "description": [
+            "This is the list of candidates."
+          ]
+        }
+      ],
+      "source_path": "/domains/Ylsrim/room/vote_hall"
+    },
+    {
+      "id": "cf4902a28ce9",
+      "slug": "room-weaponry",
+      "name": "the Ylsrim weaponry",
+      "description": "the Ylsrim weaponry.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "c68a93fe5943"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "bazaar",
+          "keywords": [
+            "bazaar"
+          ],
+          "description": [
+            "People from all about are wandering around, looking for a bargain."
+          ]
+        }
+      ],
+      "source_path": "/domains/Ylsrim/room/weaponry"
+    },
+    {
+      "id": "dc7b724ff1aa",
+      "slug": "room-weaponry-storage",
+      "name": "weaponry storage",
+      "description": "Weaponry storage.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "bf99bcccbf58"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/Ylsrim/room/weaponry_storage"
+    }
+  ]
+}

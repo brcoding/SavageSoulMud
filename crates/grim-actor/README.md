@@ -28,7 +28,7 @@ creature = `Name + Actor + Creature + InRoom`. The display **name** lives in the
 |---|---|---|
 | `Actor` | `src/actor.rs` | Shared "alive thing" base carried by every being (PC + creature): `race`, `level`, `gender`. Movement/perception/WHO read build data here. |
 | `Creature` | `src/actor.rs` | Marks a being as a non-player mob (replaces the former `grim_world::Npc`). |
-| `Character` | `src/character.rs` | PC-only being belonging to an account; carries `id`, `account_id`, `created_at`, roles, `class`, `title`, `restrings`, `config` (per-character setting choices, resolved via `grim-config`), `last_room`. No `name`/`race`/`level`/`gender` (→ `Name`/`Actor`). |
+| `Character` | `src/character.rs` | PC-only being belonging to an account; carries `id`, `account_id`, `credits` (a nonnegative whole-credit balance), `created_at`, roles, `class`, `title`, `restrings`, `config` (per-character setting choices, resolved via `grim-config`), `last_room`. No `name`/`race`/`level`/`gender` (→ `Name`/`Actor`). |
 | `Player` | `src/player.rs` | Present **only while connected**; links to the live `Connection`. Absence (with `Character`) = linkdead. |
 | `OutputHistory` | `src/player.rs` | Bounded ring buffer of recent output lines, for reconnect. |
 | `Linkdead` | `src/player.rs` | Character is in-world but its player disconnected (no `Player`). |
@@ -55,7 +55,7 @@ Player-facing verbs and where to find their handlers.
 | Command | Handler | Summary |
 |---|---|---|
 | `look [target]` | `src/commands/look.rs` | Describe the current room, or a named entity within it (`self` = you; exact name beats prefix, shortest prefix name wins; `2.goblin` takes the second, `"two words"` needs every word). |
-| `map` | `src/commands/map.rs` | Render the area around your room as ASCII (`@` you, `#` rooms, `--`/`\|` exits, `,`/`'` up/down); answers only you. |
+| `map` | `src/commands/map.rs` | Render the area around your room as ASCII (`@` you, `o` rooms, `--`/`\|` exits, `,`/`'` up/down); answers only you. |
 | `config [key] [value]` | `src/commands/config.rs` | List settings with values + valid options; bare key cycles to the next value (naming the previous); key + value sets it (validated against `grim-config`, stored on `Character.config`). |
 | `desc [clear\|+\|-\|edit]` | `src/commands/desc.rs` | View or edit your description paragraphs (`clear` empties, `+ <line>` appends, `-` drops the last, `edit` opens the line editor). |
 | `move` — `n`/`e`/`s`/`w`/`u`/`d` (+ `north`…) | `src/commands/movement.rs` | Walk through an exit; emits `MoveEvent`. Direction aliases parsed in `grim-scene`. Refused at a closed door. |
@@ -115,3 +115,18 @@ Non-component types this crate defines.
 
 ---
 *Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
+
+Credit balances persist in `StoredCharacter` as a single `u64` integer. New characters start with 1,000 credits; old files without `credits` default to 1,000. An explicit zero balance stays zero. The Savsoul shop commands are composed by `example-mud`.
+
+`Character.game_state` and `StoredCharacter.game_state` provide a namespaced map of JSON values for game plugins. The engine preserves all entries through login, normal saves, and copyover without depending on game-specific types. Older saves default to an empty map. Savage Soul uses the `savage_soul` key; explicit existing credit balances remain unchanged.
+
+`StoredObject.condition` optionally stores the shared ItemCondition value. Missing fields in existing inventory JSON remain compatible. Condition follows each item instance rather than its name or blueprint.
+
+look falls back from room targets to items carried by the requesting actor, using core::CarriedBy and existing target selectors. It never searches another actor's pack.
+
+ASCII maps and room minimaps share the Savage Soul palette: green `o` rooms, red `@` current location, neutral grey paths, and yellow up/down markers. Topology and secret-exit filtering are unchanged.
+
+`DarkVision` and the `visibility::Visibility` SystemParam provide a shared
+room-visibility check for room/entity looks and maps. A placed light or a light
+carried by anyone in the room illuminates it. Games reconstruct transient
+vision/light markers from their persisted authoring data.

@@ -43,3 +43,5 @@ None. This crate carries no game vocabulary.
 
 ---
 *Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
+
+TerminalSize stores negotiated columns/rows independently of a client protocol. HandoverEntry optionally carries the original peer address for trusted proxy connections across copyover; older manifests remain compatible.

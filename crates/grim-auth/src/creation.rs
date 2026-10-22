@@ -126,6 +126,7 @@ fn class_menu(res: &SessionRes) -> String {
 
 /// SelectGender: resolve the pick to a [`Gender`] and advance to race
 /// selection, or re-prompt the gender menu on invalid input.
+#[allow(clippy::too_many_arguments)]
 pub(crate) fn select_gender(
     client: &mut Client,
     conn: Entity,
@@ -155,8 +156,9 @@ pub(crate) fn select_gender(
     }
 }
 
-/// SelectRace: resolve the pick to a race slug and advance to class selection,
+/// SelectRace: resolve the race, then finish a classless build or select a class,
 /// or re-prompt the race menu on invalid input.
+#[allow(clippy::too_many_arguments)]
 pub(crate) fn select_race(
     client: &mut Client,
     conn: Entity,
@@ -165,6 +167,9 @@ pub(crate) fn select_race(
     gender: Gender,
     res: &SessionRes,
     outputs: &mut MessageWriter<ConnectionOutput>,
+    accounts: &mut Query<(Entity, &mut Account)>,
+    commands: &mut Commands,
+    world: &mut WorldEntry,
 ) {
     let items: Vec<MenuItem> = res
         .races
@@ -178,6 +183,24 @@ pub(crate) fn select_race(
     match formatter::parse_menu_choice(text, &items) {
         Some(i) => {
             let race = res.races.0[i].slug.clone();
+            if res
+                .build_mode
+                .as_ref()
+                .is_some_and(|mode| **mode == crate::CharacterBuildMode::SavageSoul)
+            {
+                let class = "savage-soul".to_string();
+                if finalize::account_owns_named(accounts, client.account, &name, &res.persistence) {
+                    finalize::backfill_and_enter(
+                        client, conn, name, gender, race, class, accounts, res, commands, outputs,
+                        world,
+                    );
+                } else {
+                    finalize::finalize_character(
+                        client, conn, name, gender, race, class, accounts, res, commands, outputs,
+                    );
+                }
+                return;
+            }
             client.state = ClientState::SelectClass { name, gender, race };
             outputs.write(ConnectionOutput {
                 echo: None,

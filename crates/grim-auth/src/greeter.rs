@@ -61,6 +61,8 @@ pub(crate) fn handle_connection_established(
             continue;
         }
         commands.spawn(Client::new(ev.connection));
+        // The connection banner is game branding. Character-specific accessible
+        // output and its onboarding question remain at authenticated world entry.
         let banner = grim_color::ansi(include_str!("../../../assets/login-banner.txt"));
         let text = format!("{}\n\n{}", banner, tr!("login.prompt"));
         outputs.write(ConnectionOutput {

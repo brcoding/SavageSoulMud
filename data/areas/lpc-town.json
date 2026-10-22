@@ -1,0 +1,3944 @@
+{
+  "id": "4e3ad84785c1",
+  "slug": "lpc-town",
+  "name": "Town",
+  "canonical": true,
+  "rooms": [
+    {
+      "id": "a51c187543ed",
+      "slug": "obj-bag",
+      "name": "a small cloth bag",
+      "description": "It is a simple cloth bag used to hold things.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "0b8cd69a6f7e"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/obj/bag"
+    },
+    {
+      "id": "47aa3e053276",
+      "slug": "obj-bbucket",
+      "name": "a recycling bin",
+      "description": "This is a blue trash can, marked with the letters \"/dev/null\".\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "10eadf1a7f68"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/obj/bbucket"
+    },
+    {
+      "id": "217a4abd02d1",
+      "slug": "obj-bigbag",
+      "name": "a giant cloth bag",
+      "description": "It is a simple cloth bag used to hold things.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "c5fc29ffa2f6"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/obj/bigbag"
+    },
+    {
+      "id": "c1aebb8d0927",
+      "slug": "obj-bin",
+      "name": "the newbie bin",
+      "description": "This medium-sized bin is designed to hold stuff that may be of use to newbies. By default it contains stuff that won't sell for much, but players are encouraged to make generous contributions for the benefit of weaker players. To view its contents: look in bin\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "e9df4601ef53"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/obj/bin"
+    },
+    {
+      "id": "a89b09adef5f",
+      "slug": "obj-charity",
+      "name": "a large bin",
+      "description": "This a very large bin for holding donations to the needy. Since it is in a church, and for charity, it is reasonable to guess that folks above a certain level will receive a minor bonus for donating valuable things, and a severe penalty for taking them. There is a sign on the charity bin that you can read.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "e8053cae8b6d"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "A sign on the bin you can read."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/obj/charity"
+    },
+    {
+      "id": "8e5625830255",
+      "slug": "obj-chest",
+      "name": "a wooden chest",
+      "description": "This is a sturdy wooden chest used to store valuable items.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "dac3d0f1d91d"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/obj/chest"
+    },
+    {
+      "id": "4e23b2736168",
+      "slug": "obj-chest2",
+      "name": "a wooden chest",
+      "description": "This is a sturdy wooden chest used to store valuable items.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "3a994d14f7f3"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/obj/chest2"
+    },
+    {
+      "id": "2038a293db48",
+      "slug": "obj-gcoinbag",
+      "name": "a cloth bag",
+      "description": "It is a simple cloth bag used to hold things.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "3ff2c6891522"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/obj/gcoinbag"
+    },
+    {
+      "id": "3b0bccfac3d7",
+      "slug": "obj-mailbox",
+      "name": "a small mailbox",
+      "description": "This is a small mailbox standing in front of the white house.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "a07a3ee0a89f"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/obj/mailbox"
+    },
+    {
+      "id": "9c703135d527",
+      "slug": "obj-medbag",
+      "name": "a small cloth bag",
+      "description": "It is a simple cloth bag used to hold things. Printed on it is: \"Property of A.S. Clepius\"\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "83ed0d982f48"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/obj/medbag"
+    },
+    {
+      "id": "af71ab848767",
+      "slug": "obj-plastic-bag",
+      "name": "a small plastic bag",
+      "description": "It is a simple plastic bag used to hold things.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "0ec4f8b9c4e9"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/obj/plastic_bag"
+    },
+    {
+      "id": "a728e0371e48",
+      "slug": "obj-safe",
+      "name": "a metal safe",
+      "description": "This is a small safe, about 2 feet high, where one may store valuables. It looks quite strong.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "403a5be11ba8"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/obj/safe"
+    },
+    {
+      "id": "a819f4b1f42f",
+      "slug": "obj-stove",
+      "name": "a large stove",
+      "description": "This is a very large kitchen stove, which can handle quite a lot of food at once. The exterior is finished in a very tasteful brushed metal motif, and it seems that this is one of those expensive, imported stoves that only ridiculously rich people have in their homes.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "3d7221ddbcbf"
+      },
+      "npcs": [
+        {
+          "name": "a rat",
+          "description": [
+            "A scruffy little dirty rat."
+          ],
+          "keywords": [
+            "rat",
+            "mangy",
+            "little",
+            "dirty"
+          ],
+          "room_description": "A rat is here.",
+          "race": "rodent",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/town/npc/rat"
+        }
+      ],
+      "scenery": [],
+      "source_path": "/domains/town/obj/stove"
+    },
+    {
+      "id": "6db42e2cb7d8",
+      "slug": "obj-suitcase",
+      "name": "a tall wooden wardrobe",
+      "description": "This piece of furniture is designed to hold clothing and related accessories.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "8c3ea571ab9e"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/obj/suitcase"
+    },
+    {
+      "id": "26eacdf28bad",
+      "slug": "obj-trash",
+      "name": "a recycling bin",
+      "description": "This is a blue trash can, marked with the letters \"/dev/null\".\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "7961cd4a5f1c"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/obj/trash"
+    },
+    {
+      "id": "bee9c831b614",
+      "slug": "obj-wardrobe",
+      "name": "a tall wooden wardrobe",
+      "description": "This piece of furniture is designed to hold clothing and related accessories.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "f012d1d9374f"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/obj/wardrobe"
+    },
+    {
+      "id": "b9507f02811b",
+      "slug": "room-adv-guild",
+      "name": "a dusty chalkboard",
+      "description": "This small building is where adventurers can record their adventures and leave messages and announcements for other brave souls. This is also the place one can seek advancement, so if you deserve to be a higher level adventurer, asking the guild master for it will make it so. A scroll lists quests one may perform, and a sign contains some instructions. The Creator's Hall is south of here. A special skills training area is upstairs. A conference room is east, where folks can discuss things in privacy.",
+      "exits": {
+        "north": "0782ff57ea91",
+        "east": "14fbffafabc7",
+        "up": "14814dd6afc8"
+      },
+      "npcs": [
+        {
+          "name": "Dirk the Tired",
+          "description": [
+            "For 20 years, Dirk the Daring has been trying to defeat the vile dragon Singe, with almost no respite. Today he just wants to rest and relax, and has accepted the position of the town's Adventurers' Guild master. If you feel you deserve it, \"ask dirk to advance\"."
+          ],
+          "keywords": [
+            "dirk"
+          ],
+          "room_description": "Dirk the Tired is here.",
+          "race": "human",
+          "level": 15,
+          "gender": "male",
+          "source_path": "/domains/town/npc/dirk"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "list",
+          "keywords": [
+            "list",
+            "scroll"
+          ],
+          "description": [
+            "A scroll hangs from the wall, listing some adventures you can perform which may have rewards for you."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign",
+            "instructions"
+          ],
+          "description": [
+            "This sign contains some general instructions on how to gain experience and attain advancement."
+          ]
+        },
+        {
+          "name": "building",
+          "keywords": [
+            "building",
+            "small building",
+            "here"
+          ],
+          "description": [
+            "You are in the Adventurers' Guild."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/adv_guild"
+    },
+    {
+      "id": "233c50abdcad",
+      "slug": "room-bank",
+      "name": "First Village Bank",
+      "description": "This simple place is the hub of financial activity for the village. Though not at all a fancy institution, this bank is trusted by the citizenry as being as safe as it gets for keeping their money.\nA sign you can read hangs here.",
+      "exits": {
+        "west": "63de6096cc26"
+      },
+      "npcs": [
+        {
+          "name": "Zoe the bank teller",
+          "description": [
+            "Zoe is an attractive young blonde woman with a French accent. She is dressed in a conservative, executive style, and has a friendly and efficient air about her."
+          ],
+          "keywords": [
+            "zoe",
+            "teller",
+            "banker",
+            "executive",
+            "shawty",
+            "bank",
+            "friendly",
+            "efficient"
+          ],
+          "room_description": "Zoe the bank teller is here.",
+          "race": "human",
+          "level": 12,
+          "gender": "female",
+          "source_path": "/domains/town/npc/zoe"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "A sign you can read."
+          ]
+        },
+        {
+          "name": "bank",
+          "keywords": [
+            "bank",
+            "First Village Bank"
+          ],
+          "description": [
+            "The primary financial institution in town."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/bank"
+    },
+    {
+      "id": "0a436c457c48",
+      "slug": "room-basement",
+      "name": "The Church Basement",
+      "description": "This is the dark, musty basement of the village church. An elevator door is in the west wall.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "west": "16457c7a946c",
+        "up": "cf8ec2bebfa1"
+      },
+      "npcs": [
+        {
+          "name": "Leo the portly archwizard",
+          "description": [
+            "Leo is a large, friendly-looking wizard with a big beard and a huge belly. He seems pretty busy and somewhat preoccupied."
+          ],
+          "keywords": [
+            "leo",
+            "archwizard",
+            "wizard",
+            "portly",
+            "the portly"
+          ],
+          "room_description": "Leo the portly archwizard is here.",
+          "race": "human",
+          "level": 300,
+          "gender": "male",
+          "source_path": "/domains/town/npc/leo"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "elevator",
+          "keywords": [
+            "elevator",
+            "elevator door",
+            "door",
+            "wall",
+            "west wall"
+          ],
+          "description": [
+            "Set into the west wall is an elevator. There is a button next to it, presumably to call the elevator car."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/basement"
+    },
+    {
+      "id": "ac4e9608f00d",
+      "slug": "room-bridge",
+      "name": "Humpbacked bridge",
+      "description": "This is an old, humpbacked bridge. It's seen better days, though it appears still quite stable enough. Some peculiar writing is scrawled on the bridge. The bridge spans a river below. A town is east of here, and a dark forest looms west. There is a small path leading down below the bridge.",
+      "exits": {
+        "east": "a5137f205fc2",
+        "west": "94cc827ea231",
+        "down": "d145c73685a4"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "cracks",
+          "keywords": [
+            "cracks",
+            "surface",
+            "bridge"
+          ],
+          "description": [
+            "The bridge surface has a few cracks, but they seem old and minor...mostly signs of how long the structure has withstood the the elements."
+          ]
+        },
+        {
+          "name": "span",
+          "keywords": [
+            "span",
+            "river",
+            "stream",
+            "bank"
+          ],
+          "description": [
+            "Below you is a small river with a powerful, swift current. You might be able to climb down the bridge to get to the riverbank below."
+          ]
+        },
+        {
+          "name": "town",
+          "keywords": [
+            "town"
+          ],
+          "description": [
+            "A small town lies east of here."
+          ]
+        },
+        {
+          "name": "writing",
+          "keywords": [
+            "writing",
+            "scrawl",
+            "grafitti",
+            "grafitto"
+          ],
+          "description": [
+            "Grafitti is written here, in an odd and uncertain hand, as if unused to the effort of writing."
+          ]
+        },
+        {
+          "name": "path",
+          "keywords": [
+            "path",
+            "forest",
+            "dark forest"
+          ],
+          "description": [
+            "West of the bridge is a path going into a dark forest."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/bridge"
+    },
+    {
+      "id": "b0aeeab98ef7",
+      "slug": "room-cave1",
+      "name": "A Dark Cave",
+      "description": "This is a small cave at the base of a cliff. A stone door is set into the south wall.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "south": "6842426c8aa4",
+        "up": "7ac50c5da5eb"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/cave1"
+    },
+    {
+      "id": "6842426c8aa4",
+      "slug": "room-cave-entrance",
+      "name": "A Dark Cave",
+      "description": "This is a small cave at the base of a cliff. A stone door is set into the north wall.",
+      "exits": {
+        "north": "b0aeeab98ef7"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "inscription",
+          "keywords": [
+            "inscription"
+          ],
+          "description": [
+            "Words in the language of the elves."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/cave_entrance"
+    },
+    {
+      "id": "42387efd85f5",
+      "slug": "room-chamber",
+      "name": "The Healing Chamber",
+      "description": "This is the work chamber of Clepius the healer. This is where he performs medical procedures on his customers. A desk in the corner overflows with notes and books. The reception and waiting area is east of here.",
+      "exits": {
+        "east": "11571c9c5f0e"
+      },
+      "npcs": [
+        {
+          "name": "a spent firearm slug",
+          "description": [
+            "Clepius is a kindly old man, legendary for his nearly superhuman powers of healing. He is even rumored capable of resurrecting the dead. He runs a medical care service in town, and can be asked to help when needed, though his help is not free."
+          ],
+          "keywords": [
+            "clepius",
+            "doctor",
+            "healer",
+            "a.s.",
+            "A.S.",
+            "dr",
+            "Dr.",
+            "dr."
+          ],
+          "room_description": "A spent firearm slug is here.",
+          "race": "human",
+          "level": 50,
+          "gender": "male",
+          "source_path": "/domains/town/npc/clepius"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "desk",
+          "keywords": [
+            "desk"
+          ],
+          "description": [
+            "This is where Clepius does paperwork and research."
+          ]
+        },
+        {
+          "name": "notes",
+          "keywords": [
+            "notes",
+            "books",
+            "notes and books"
+          ],
+          "description": [
+            "These are the contents of the doctor's desk."
+          ]
+        },
+        {
+          "name": "corner",
+          "keywords": [
+            "corner"
+          ],
+          "description": [
+            "Location of the desk."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/chamber"
+    },
+    {
+      "id": "9a7f5f3ec3e9",
+      "slug": "room-church",
+      "name": "The Village Church",
+      "description": "Decades ago this tiny, one-room church was the center of activity in the village. As the village prospered and secularized, townsfolk attended less and less, until it became dilapidated and abandoned, as you see here. The place is overrun with vermin and cobwebs, but there has been no vandalism. Just dusty neglect. West Village road is south of here, and what looks like an elevator is in the west wall.\nThere is a button next to the elevator.",
+      "exits": {
+        "south": "f173d8b8c964",
+        "west": "16457c7a946c"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "elevator",
+          "keywords": [
+            "elevator",
+            "elevator door",
+            "door"
+          ],
+          "description": [
+            "Set into the west wall is a thoroughly modern-looking elevator, which seems out of place in this rustic, colonial church. There is a button next to it, presumably to call the elevator car."
+          ]
+        },
+        {
+          "name": "road",
+          "keywords": [
+            "road"
+          ],
+          "description": [
+            "The road is south of here."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "west wall"
+          ],
+          "description": [
+            "Set into the west wall is a thoroughly modern-looking elevator, which seems out of place in this rustic, colonial church. There is a button next to it, presumably to call the elevator car."
+          ]
+        },
+        {
+          "name": "road",
+          "keywords": [
+            "road"
+          ],
+          "description": [
+            "The road is south of here."
+          ]
+        },
+        {
+          "name": "church",
+          "keywords": [
+            "church",
+            "place"
+          ],
+          "description": [
+            "An old church."
+          ]
+        },
+        {
+          "name": "cobwebs",
+          "keywords": [
+            "cobwebs",
+            "webs",
+            "web",
+            "vermin",
+            "dust",
+            "dirt"
+          ],
+          "description": [
+            "No vermin can presently be seen, but from the cobwebs and dirt it's pretty clear minor pests have made their home here."
+          ]
+        },
+        {
+          "name": "vandalism",
+          "keywords": [
+            "vandalism"
+          ],
+          "description": [
+            "You don't see any of that."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/church"
+    },
+    {
+      "id": "59fdf02a28f3",
+      "slug": "room-clearing",
+      "name": "Forest Clearing",
+      "description": "This is a small clearing in a path through the forest. The path leads west into a small valley, and northeast toward a forest and a bridge.",
+      "exits": {
+        "northeast": "94cc827ea231",
+        "west": "0f1c6b9b436f"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "clearing",
+          "keywords": [
+            "clearing"
+          ],
+          "description": [
+            "An area with few trees."
+          ]
+        },
+        {
+          "name": "path",
+          "keywords": [
+            "path"
+          ],
+          "description": [
+            "This forest path runs east and west. A small trail goes north of here."
+          ]
+        },
+        {
+          "name": "forest",
+          "keywords": [
+            "forest",
+            "wood",
+            "woods"
+          ],
+          "description": [
+            "This is a dark, creepy forest. You are standing on a path in a clearing, so it's a bit brighter here."
+          ]
+        },
+        {
+          "name": "small trail",
+          "keywords": [
+            "small trail",
+            "trail"
+          ],
+          "description": [
+            "A small trail leading into the depths of the forest to the north."
+          ]
+        },
+        {
+          "name": "valley",
+          "keywords": [
+            "valley"
+          ],
+          "description": [
+            "A valley is west of here."
+          ]
+        },
+        {
+          "name": "town",
+          "keywords": [
+            "town"
+          ],
+          "description": [
+            "A town, far in the eastern distance."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/clearing"
+    },
+    {
+      "id": "22aabb149cb3",
+      "slug": "room-clerk",
+      "name": "Town Clerk",
+      "description": "This small office is where people come to conduct their official public business. The main area of the town hall is south.",
+      "exits": {
+        "south": "ba06734790ca"
+      },
+      "npcs": [
+        {
+          "name": "the town clerk",
+          "description": [
+            "An officious-looking clerk. He is empowered to perform ceremonies of public record. You may \"ask clerk to marry me and PERSON\", and \"ask clerk for a divorce\"."
+          ],
+          "keywords": [
+            "clerk",
+            "town"
+          ],
+          "room_description": "The town clerk is here.",
+          "race": "human",
+          "level": 4,
+          "gender": "male",
+          "source_path": "/domains/town/npc/clerk"
+        }
+      ],
+      "scenery": [],
+      "source_path": "/domains/town/room/clerk"
+    },
+    {
+      "id": "14fbffafabc7",
+      "slug": "room-confroom",
+      "name": "Conference Room",
+      "description": "This is an enchanted room, with the magical power to prevent uninvited people from entering. It is used for meetings where three or more people need to share information without interruption or privately. To enable privacy, 'privacy on'. To disable it, 'privacy off'. The privacy field automatically deactivates after approximately 20 minutes.",
+      "exits": {
+        "west": "b9507f02811b"
+      },
+      "npcs": [
+        {
+          "name": "cambot",
+          "description": [
+            "This is a metallic sphere, about one foot in diameter, with numerous lenses affixed to its surface."
+          ],
+          "keywords": [
+            "cambot",
+            "bot",
+            "robot",
+            "non-player",
+            "non player"
+          ],
+          "room_description": "Cambot is here.",
+          "race": "bot",
+          "level": 1,
+          "gender": "neuter",
+          "source_path": "/secure/npc/cambot"
+        }
+      ],
+      "scenery": [],
+      "source_path": "/domains/town/room/confroom"
+    },
+    {
+      "id": "8a0004df27be",
+      "slug": "room-cratshack",
+      "name": "north of house",
+      "description": "The thick woods give way to a small clearing here, where an old house, painted white, stands. The front porch of the house is south. A narrow trail leads into the woods to the north.",
+      "exits": {
+        "north": "8195b3b8bda0",
+        "south": "bb53e1d94d9e"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "forest",
+          "keywords": [
+            "forest",
+            "wood",
+            "vegetation"
+          ],
+          "description": [
+            "All around is vegetation growing so incredibly dense that it is impossible to wander off the path."
+          ]
+        },
+        {
+          "name": "porch",
+          "keywords": [
+            "porch",
+            "front porch"
+          ],
+          "description": [
+            "The wooden front porch of an old white house."
+          ]
+        },
+        {
+          "name": "trail",
+          "keywords": [
+            "trail",
+            "path"
+          ],
+          "description": [
+            "To the north, a narrow path leads into the woods."
+          ]
+        },
+        {
+          "name": "clearing",
+          "keywords": [
+            "clearing",
+            "woods"
+          ],
+          "description": [
+            "As if by powerful magic, the woods clear here, where the house stands."
+          ]
+        },
+        {
+          "name": "house",
+          "keywords": [
+            "house",
+            "white house",
+            "old house"
+          ],
+          "description": [
+            "The house looks weatherbeaten, ill maintained, and rather old. Its construction is of an archaic design no longer used. Despite its abused appearance, the house seems to have a quiet dignity about it, as if many people had been its friends over the years, and it simply waited for their return."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/cratshack"
+    },
+    {
+      "id": "4e96bc1a0ec2",
+      "slug": "room-death",
+      "name": "off the mortal coil",
+      "description": "NONONONO...... MNO! ......................... MN  N! .    \n          NONONON....  NOONNOO!   MMMMMMMMMMPPPOII!   NNNO!!!! .\n          NONONONO...  O! NNO! MMMMMMMMMMMMMPPPOOOII!! NO! ...       \n          NONONONONO........ MMMMMOOOOOOPPPPPPPPOOOOMII! ...    \n          NONONONONON....... MMMMM..    OPPMMP    .,OMI! ....    \n          NONONONONONO...... MMMM::   o ,OPMP, o   ::I!! ...            \n          NONONONONONONONO.... NNM:::.,,OOPM!P,.::::!! ....     \n          NONONONONONONONON.. MMNNNNNOOOOP  NNIIPPO!!O! .....   \n          NONONONONONONONON...... MMMONNMMNNNIIIOO! .........    \n          NONONONONONONO.......... MOM!!!!!!!!!III ............. \n          NONONONON...... NNN.MNO! . O!!!!!!!!!O . OONO NO! .......        \n          NONONONONO.... MNNNNNO! ...OOOOOOOOOOO .  MMNNON! .......   \n          NNNOOO!!! ...... MNNNNO! .. PPPPPPPPP .. MMNON! .....      \n                       ...... OO! ................. ON! .......        \n\n                                  YOU ARE DEAD!\n\n       You are in formless void without substance and outside time.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "828aff116811"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/death"
+    },
+    {
+      "id": "16457c7a946c",
+      "slug": "room-elevator",
+      "name": "Church Elevator",
+      "description": "This is the elevator in the village church. The elevator door is on the east wall. Two buttons are set into the wall next to the door, labeled '1' and 'b'.",
+      "exits": {
+        "east": "9a7f5f3ec3e9"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "elevator",
+          "keywords": [
+            "elevator"
+          ],
+          "description": [
+            "A means of vertical indoors transportation."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall"
+          ],
+          "description": [
+            "The buttons are on the wall."
+          ]
+        },
+        {
+          "name": "elevator door",
+          "keywords": [
+            "elevator door",
+            "door"
+          ],
+          "description": [
+            "The door to the outside."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/elevator"
+    },
+    {
+      "id": "94cc827ea231",
+      "slug": "room-forest-path1",
+      "name": "Forest Path",
+      "description": "You are in a forest outside the town. To the southwest the path continues toward a clearing. To the east it leads to a bridge over a river toward a town. Trees and bushes of various kinds border the path making it impossible to go south but to the north the vegetation is less dense.",
+      "exits": {
+        "east": "ac4e9608f00d",
+        "southwest": "59fdf02a28f3"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "forest",
+          "keywords": [
+            "forest"
+          ],
+          "description": [
+            "You are on a path in a dark, creepy forest. The vegetation is thick and feels somehow oppressive."
+          ]
+        },
+        {
+          "name": "plants",
+          "keywords": [
+            "plants",
+            "bushes",
+            "vegetation",
+            "tree",
+            "trees",
+            "bush"
+          ],
+          "description": [
+            "The plants, bushes, and trees grow thick and wild here, limiting visibility beyond the path."
+          ]
+        },
+        {
+          "name": "bridge",
+          "keywords": [
+            "bridge"
+          ],
+          "description": [
+            "An old bridge is east of here."
+          ]
+        },
+        {
+          "name": "clearing",
+          "keywords": [
+            "clearing"
+          ],
+          "description": [
+            "It looks like there is a clearing in the forest to the west."
+          ]
+        },
+        {
+          "name": "path",
+          "keywords": [
+            "path"
+          ],
+          "description": [
+            "You are on a path in a forest."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/forest_path1"
+    },
+    {
+      "id": "80dd51e9aaf7",
+      "slug": "room-freezer",
+      "name": "The freezer",
+      "description": "The local freezer.  Go down to leave.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "ee60109c683f"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/freezer"
+    },
+    {
+      "id": "ed5ebf9af93c",
+      "slug": "room-garden",
+      "name": "Mansion Garden",
+      "description": "This is what is left of what was once a beautiful, if simple, garden. It is now badly overgrown with weeds, and it is clear that foraging animals long ago ate the delicate flowers and vegetables that once grew here. The gardener's shack is north.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "east": "2648b99b23dd",
+        "north": "65d0aaa96b21",
+        "up": "7071254d1fd2"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "flowers",
+          "keywords": [
+            "flowers",
+            "vegetables",
+            "flowers and vegetables"
+          ],
+          "description": [
+            "If they were once here, they certainly no longer are."
+          ]
+        },
+        {
+          "name": "shack",
+          "keywords": [
+            "shack",
+            "wooden shack"
+          ],
+          "description": [
+            "A beaten-up old wooden shack is north."
+          ]
+        },
+        {
+          "name": "garden",
+          "keywords": [
+            "garden"
+          ],
+          "description": [
+            "A mess of weeds and dirt."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/garden"
+    },
+    {
+      "id": "8592717c6e82",
+      "slug": "room-gate",
+      "name": "Mansion Gate",
+      "description": "You are standing just north of the gate to a large, beautiful mansion, which stands to the south. The Corinthian capitals on the front pillars bespeak of the wealth and importance of the person who lives here. Lush ivy wraps around the gate and the brick wall surrounding the estate.",
+      "exits": {
+        "north": "a5137f205fc2"
+      },
+      "npcs": [
+        {
+          "name": "a military gate guard",
+          "description": [
+            "This is a military policeman. He has spent months in arduous training, and by the looks of him, has seen plenty of action in his lifetime.  He is large, looks very tough, and whatever he is guarding is probably very safe."
+          ],
+          "keywords": [
+            "gate guard",
+            "human",
+            "guard",
+            "mp",
+            "soldier",
+            "policeman",
+            "military policeman",
+            "military"
+          ],
+          "room_description": "A military gate guard is here.",
+          "race": "human",
+          "level": 20,
+          "gender": "male",
+          "source_path": "/domains/town/npc/mp"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "gate",
+          "keywords": [
+            "gate"
+          ],
+          "description": [
+            "A handsome, wrought-iron entry control point."
+          ]
+        },
+        {
+          "name": "estate",
+          "keywords": [
+            "estate",
+            "mansion"
+          ],
+          "description": [
+            "The grounds of a mansion are to the south."
+          ]
+        },
+        {
+          "name": "capital",
+          "keywords": [
+            "capital",
+            "capitals",
+            "corinthian capital",
+            "corinthian capitals"
+          ],
+          "description": [
+            "These are the headpieces of the pillars supporting the mansion's front overhang. The beautifully detailed carvings of encanthus leaves distinguish them as Corinthian."
+          ]
+        },
+        {
+          "name": "overhang",
+          "keywords": [
+            "overhang",
+            "front overhang"
+          ],
+          "description": [
+            "A fancy and unnecessary structure in front of the mansion supported by columns."
+          ]
+        },
+        {
+          "name": "pillar",
+          "keywords": [
+            "pillar",
+            "pillars",
+            "column",
+            "columns"
+          ],
+          "description": [
+            "Load-bearing structures supporting the mansion's front overhang."
+          ]
+        },
+        {
+          "name": "ivy",
+          "keywords": [
+            "ivy",
+            "lush ivy"
+          ],
+          "description": [
+            "Vines of the ivy plant run over and along the walls and gate, so thickly that they nearly obscure them."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls"
+          ],
+          "description": [
+            "Architectural features which prevent casual entry. They are made of brick and appear old and strong."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/gate"
+    },
+    {
+      "id": "11571c9c5f0e",
+      "slug": "room-healer",
+      "name": "The Healers Guild",
+      "description": "You are in the Healer's Guild. People come here when they have medical problems, and for a price, they are helped. It seems that the doctor's work area is west of here. Saquivor Road is east.\nThere is a list here you can read.",
+      "exits": {
+        "east": "8ef656650c1a",
+        "west": "42387efd85f5"
+      },
+      "npcs": [
+        {
+          "name": "James, the guild secretary and manager",
+          "description": [
+            "James is typical of apprentice healers: he is a bit arrogant, officious, and brusque; but he appears to be a competent secretary and guild officer.  He is the person you will buy a treatment token from. Read the list on the wall for the tokens available."
+          ],
+          "keywords": [
+            "james",
+            "vendor",
+            "secretary",
+            "assistant",
+            "manager",
+            "executive",
+            "medical",
+            "guild"
+          ],
+          "room_description": "James, the guild secretary and manager is here.",
+          "race": "human",
+          "level": 12,
+          "gender": "male",
+          "source_path": "/domains/town/npc/james"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "list",
+          "keywords": [
+            "list",
+            "list on the wall"
+          ],
+          "description": [
+            "A list of available procedures"
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall"
+          ],
+          "description": [
+            "A flat, vertical structure supporting the ceiling."
+          ]
+        },
+        {
+          "name": "work area",
+          "keywords": [
+            "work area",
+            "doctor's work area"
+          ],
+          "description": [
+            "It is west of here."
+          ]
+        },
+        {
+          "name": "road",
+          "keywords": [
+            "road",
+            "tavern road"
+          ],
+          "description": [
+            "The road is outside, east of here."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/healer"
+    },
+    {
+      "id": "3441f3495ec9",
+      "slug": "room-healer2",
+      "name": "Healer's Guild Storeroom",
+      "description": "This blank room is where the guild keeps their junk.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "aac42e4f437b"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/healer2"
+    },
+    {
+      "id": "f01a1d4ac7c4",
+      "slug": "room-living-room",
+      "name": "living room",
+      "description": "This is the living room of the old house. It is a small, modest home, apparently constructed with an eye toward practicality rather than fanciness. A doorway north leads to the front porch.",
+      "exits": {
+        "north": "bb53e1d94d9e"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "forest",
+          "keywords": [
+            "forest",
+            "wood",
+            "vegetation"
+          ],
+          "description": [
+            "All around is vegetation growing so incredibly dense that it is impossible to wander off the path."
+          ]
+        },
+        {
+          "name": "porch",
+          "keywords": [
+            "porch",
+            "front porch"
+          ],
+          "description": [
+            "The wooden front porch of an old white house."
+          ]
+        },
+        {
+          "name": "trail",
+          "keywords": [
+            "trail",
+            "path"
+          ],
+          "description": [
+            "To the north, a narrow path leads into the woods."
+          ]
+        },
+        {
+          "name": "clearing",
+          "keywords": [
+            "clearing",
+            "woods"
+          ],
+          "description": [
+            "As if by powerful magic, the woods clear here, where the house stands."
+          ]
+        },
+        {
+          "name": "house",
+          "keywords": [
+            "house",
+            "white house",
+            "old house"
+          ],
+          "description": [
+            "The house looks weatherbeaten, ill maintained, and rather old. Its construction is of an archaic design no longer used. Despite its abused appearance, the house seems to have a quiet dignity about it, as if many people had been its friends over the years, and it simply waited for their return."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/living_room"
+    },
+    {
+      "id": "32f1fcd328f4",
+      "slug": "room-magic-guild",
+      "name": "The Mages' Guild",
+      "description": "This is the local mage's guild. Here you can ask the guildmaster to let you join, or to teach you spells. For example, you may \"ask herkimer to join\" or \"ask herkimer to teach missile\". The magic shop is north.\nThere is a list of spells you can read.",
+      "exits": {
+        "north": "65843e2ada38"
+      },
+      "npcs": [
+        {
+          "name": "Herkimer the kind wizard",
+          "description": [
+            "This kindly old wizard is the master of the local magic shop, which doubles as the Mages' Guild. You can ask Herkimer to teach you a spell, and if you're capable of learning it, he will teach you, for a fee. His penetrating blue eyes seem to see right through you, but the smile from beneath his white beard is reassuring."
+          ],
+          "keywords": [
+            "herkimer",
+            "archwizard",
+            "wizard",
+            "herkermer",
+            "herkirmer",
+            "old",
+            "gentle",
+            "kindly"
+          ],
+          "room_description": "Herkimer the kind wizard is here.",
+          "race": "human",
+          "level": 300,
+          "gender": "male",
+          "source_path": "/domains/town/npc/herkimer"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "list",
+          "keywords": [
+            "list",
+            "list on the wall"
+          ],
+          "description": [
+            "A list of available spells"
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/magic_guild"
+    },
+    {
+      "id": "65843e2ada38",
+      "slug": "room-magic-shop",
+      "name": "The Magic Shop",
+      "description": "This is the local magic shop. Magical items can be bought and sold here. The storeroom is upstairs and the town Mages' Guild is south.",
+      "exits": {
+        "south": "32f1fcd328f4",
+        "east": "9aee94e6e99b",
+        "up": "a9d3cbe9762f"
+      },
+      "npcs": [
+        {
+          "name": "Oana the Magic Shop keeper",
+          "description": [
+            "Oana is a sprightly young woman with very short dark hair and a simple, plain manner of dress. She is the Magic Shop keeper, and you may trade in magical items with her."
+          ],
+          "keywords": [
+            "oana",
+            "shopkeep",
+            "shopkeeper",
+            "keeper",
+            "vendor",
+            "friendly",
+            "sprightly",
+            "plain",
+            "simple"
+          ],
+          "room_description": "Oana the Magic Shop keeper is here.",
+          "race": "human",
+          "level": 12,
+          "gender": "female",
+          "source_path": "/domains/town/npc/oana"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "store",
+          "keywords": [
+            "store",
+            "shop",
+            "place"
+          ],
+          "description": [
+            "This is the local magic shop."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign",
+            "sign on the wall"
+          ],
+          "description": [
+            "A sign on the wall, meant for reading."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/magic_shop"
+    },
+    {
+      "id": "a9d3cbe9762f",
+      "slug": "room-magic-shop2",
+      "name": "The Magic Shop Storeroom",
+      "description": "This is the storeroom where magical items are kept.",
+      "exits": {
+        "down": "65843e2ada38"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/magic_shop2"
+    },
+    {
+      "id": "df46ce2c06eb",
+      "slug": "room-mansion-dhall2",
+      "name": "Downstairs Mansion Hallway",
+      "description": "You are in the beautifully decorated downstairs hallway of the mansion. There are rooms to the east and west, and the hallway continues south. To the north is the entrance foyer.",
+      "exits": {
+        "north": "51cad06c3463",
+        "south": "1644cc8d0154",
+        "west": "bdfc3a962bd5",
+        "east": "dfc72a27e273"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "hallway",
+          "keywords": [
+            "hallway"
+          ],
+          "description": [
+            "An interior area providing access to other places in the house."
+          ]
+        },
+        {
+          "name": "mansion",
+          "keywords": [
+            "mansion",
+            "house"
+          ],
+          "description": [
+            "You are in a beautiful mansion."
+          ]
+        },
+        {
+          "name": "foyer",
+          "keywords": [
+            "foyer"
+          ],
+          "description": [
+            "The mansion's entry area is north of here."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mansion_dhall2"
+    },
+    {
+      "id": "1644cc8d0154",
+      "slug": "room-mansion-dhall3",
+      "name": "Downstairs Mansion Hallway South",
+      "description": "You are in the beautifully decorated downstairs hallway of the mansion. There are rooms to the east and west, and the hallway continues north. A large, circular marble staircase leads up to the second floor.",
+      "exits": {
+        "north": "df46ce2c06eb",
+        "west": "1f3a7725c2fd",
+        "up": "f167b56bb3c6"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "hallway",
+          "keywords": [
+            "hallway"
+          ],
+          "description": [
+            "An interior area providing access to other places in the house."
+          ]
+        },
+        {
+          "name": "mansion",
+          "keywords": [
+            "mansion",
+            "house"
+          ],
+          "description": [
+            "You are in a beautiful mansion."
+          ]
+        },
+        {
+          "name": "stairs",
+          "keywords": [
+            "stairs",
+            "staircase"
+          ],
+          "description": [
+            "A marvelously sculpted series of steps spiraling upward to the second floor. It is carved from marble."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mansion_dhall3"
+    },
+    {
+      "id": "2648b99b23dd",
+      "slug": "room-mansion-ext",
+      "name": "Mansion Exterior",
+      "description": "You are standing outside a large, beautiful mansion to the south. It towers over you and overhead you can see one of the second floor windows is open. The grass seems a bit wild around here, and the lawn continues west into an overgrown garden. The mansion gate is north.",
+      "exits": {
+        "north": "8592717c6e82",
+        "west": "ed5ebf9af93c",
+        "south": "51cad06c3463"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "house",
+          "keywords": [
+            "house",
+            "mansion"
+          ],
+          "description": [
+            "A stately pleasure dome."
+          ]
+        },
+        {
+          "name": "window",
+          "keywords": [
+            "window",
+            "second floor window"
+          ],
+          "description": [
+            "This is an open window, high above you. If you had a ladder, you might be able to climb up enough to enter."
+          ]
+        },
+        {
+          "name": "grass",
+          "keywords": [
+            "grass",
+            "lawn",
+            "garden"
+          ],
+          "description": [
+            "Rather unkempt greenery. Looks like the gardener's been on vacation."
+          ]
+        },
+        {
+          "name": "gate",
+          "keywords": [
+            "gate",
+            "mansion gate"
+          ],
+          "description": [
+            "The entry point into the estate on which you now stand."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mansion_ext"
+    },
+    {
+      "id": "51cad06c3463",
+      "slug": "room-mansion-int",
+      "name": "Mansion Foyer",
+      "description": "This is the foyer of a grand, majestic mansion. Strangely, there is dust everywhere, but the place looks beautiful all the same. A hallway runs south from here.",
+      "exits": {
+        "north": "2648b99b23dd",
+        "south": "df46ce2c06eb",
+        "east": "6bec91953473"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "foyer",
+          "keywords": [
+            "foyer"
+          ],
+          "description": [
+            "This is the interior entry area of the mansion, where the front door is."
+          ]
+        },
+        {
+          "name": "hall",
+          "keywords": [
+            "hall",
+            "hallway"
+          ],
+          "description": [
+            "A wide corridor leading south to the rest of the mansion."
+          ]
+        },
+        {
+          "name": "dust",
+          "keywords": [
+            "dust"
+          ],
+          "description": [
+            "Tiny particulate material dispersed on visible surfaces."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mansion_int"
+    },
+    {
+      "id": "f711b3b45e0e",
+      "slug": "room-mansion-mbdroom",
+      "name": "Mansion Master Bedroom",
+      "description": "Mansion Master Bedroom.",
+      "exits": {
+        "north": "f167b56bb3c6"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "decor",
+          "keywords": [
+            "decor"
+          ],
+          "description": [
+            "Impressive, ornate, and beautiful."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mansion_mbdroom"
+    },
+    {
+      "id": "255a1b3ae8f1",
+      "slug": "room-mansion-room1",
+      "name": "Mansion Guest Room East",
+      "description": "You are in the east upstairs guest room of the mansion. The room is sumptuously appointed and furnished. The state of the bed suggests that someone has been staying here recently.",
+      "exits": {
+        "west": "581be838808f"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "furniture",
+          "keywords": [
+            "furniture",
+            "furnishings"
+          ],
+          "description": [
+            "Comfortable and attractive."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mansion_room1"
+    },
+    {
+      "id": "bdfc3a962bd5",
+      "slug": "room-mansion-room10",
+      "name": "Dining Room",
+      "description": "This large room is rectangular in shape, and evidently is used as a formal dining room. Beautiful tapestries and paintings decorate the walls, and there is a sense of dignified majesty about this place.",
+      "exits": {
+        "east": "df46ce2c06eb"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "tapestry",
+          "keywords": [
+            "tapestry",
+            "tapestries"
+          ],
+          "description": [
+            "Fascinating tapestries here apear to document the conquest of Anglia by a Norman king."
+          ]
+        },
+        {
+          "name": "painting",
+          "keywords": [
+            "painting",
+            "paintings"
+          ],
+          "description": [
+            "These are extraordinary oil portraits of renaissance nobility, and they are rendered with an eerily lifelike realism."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mansion_room10"
+    },
+    {
+      "id": "440ed9768253",
+      "slug": "room-mansion-room11",
+      "name": "Secret Room",
+      "description": "You are in a small, cramped room.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "north": "f711b3b45e0e",
+        "up": "6cc04fa0ae66"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/mansion_room11"
+    },
+    {
+      "id": "ff44bc6d2199",
+      "slug": "room-mansion-room12",
+      "name": "Secret Chamber",
+      "description": "You are in a secret underground chamber beneath the mansion.\nA marked archway down returns to the Travel Concourse.",
+      "exits": {
+        "up": "6bec91953473",
+        "down": "2fcf0a904739"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/mansion_room12"
+    },
+    {
+      "id": "1c023d79ba75",
+      "slug": "room-mansion-room2",
+      "name": "Mansion Guest Room West",
+      "description": "You are in the west upstairs guest room of the mansion. The room is sumptuously appointed and furnished. It looks as though nobody has dusted here in a very long time.",
+      "exits": {
+        "east": "581be838808f"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "here",
+          "keywords": [
+            "here",
+            "area",
+            "place",
+            "room"
+          ],
+          "description": [
+            "A guest room in the mansion."
+          ]
+        },
+        {
+          "name": "dust",
+          "keywords": [
+            "dust"
+          ],
+          "description": [
+            "There's some dust here, a bit more than one might expect in such a nice place."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mansion_room2"
+    },
+    {
+      "id": "02addbb636a0",
+      "slug": "room-mansion-room3",
+      "name": "Upstairs Bathroom",
+      "description": "You are in a bathroom. It is rather ordinary, for such a grand mansion, but it appears quite functional and mostly clean. There is a shower stall here you can enter.",
+      "exits": {
+        "west": "3739231f45d8"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "stall",
+          "keywords": [
+            "stall",
+            "shower stall",
+            "shower"
+          ],
+          "description": [
+            "A shower stall."
+          ]
+        },
+        {
+          "name": "sink",
+          "keywords": [
+            "sink",
+            "bathroom sink"
+          ],
+          "description": [
+            "An ordinary sink."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mansion_room3"
+    },
+    {
+      "id": "c00eaa0c3bee",
+      "slug": "room-mansion-room4",
+      "name": "Game room",
+      "description": "You are in the game room. The walls have been paneled in beautiful oak, and the thick carpeting feels quite nice under your feet.",
+      "exits": {
+        "east": "3739231f45d8"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls"
+          ],
+          "description": [
+            "It's beautiful oak paneling, with a deep, rich coat of stain."
+          ]
+        },
+        {
+          "name": "carpet",
+          "keywords": [
+            "carpet",
+            "carpeting"
+          ],
+          "description": [
+            "It's plush, soft, and very comfortable."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mansion_room4"
+    },
+    {
+      "id": "67663cd856aa",
+      "slug": "room-mansion-room5",
+      "name": "The Study",
+      "description": "You are in the study of the master of the house. This room is a shambles! It appears to have been ransacked in great haste. If there ever was anything of value here, it's probably long gone.",
+      "exits": {
+        "west": "f167b56bb3c6"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/mansion_room5"
+    },
+    {
+      "id": "d6cee534dc07",
+      "slug": "room-mansion-room6",
+      "name": "Servants' Quarters",
+      "description": "You are in the spartan quarters of the on-duty staff. From the lack of personalization, it seems that the servants probably rotate after-hours duty.",
+      "exits": {
+        "east": "f167b56bb3c6"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/mansion_room6"
+    },
+    {
+      "id": "dfc72a27e273",
+      "slug": "room-mansion-room7",
+      "name": "kitchen",
+      "description": "This is a very large kitchen designed to accommodate dozens of cooks. It looks like nobody has prepared a meal here in quite some time.",
+      "exits": {
+        "west": "df46ce2c06eb"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/mansion_room7"
+    },
+    {
+      "id": "1f3a7725c2fd",
+      "slug": "room-mansion-room8",
+      "name": "Grand Ballroom",
+      "description": "This huge room is spectacular both in size and decor. Clearly the centerpiece of the mansion, this ballroom could easily accommodate hundreds of guests. The vaulted ceiling is dozens of feet high, and the polished marble floors feature beautiful, dazzling designs.",
+      "exits": {
+        "east": "1644cc8d0154"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/mansion_room8"
+    },
+    {
+      "id": "6bec91953473",
+      "slug": "room-mansion-room9",
+      "name": "Sitting Room",
+      "description": "You are in a luxurious sitting room, decorated and furnished with the same excellent taste and attention to detail as the rest of the mansion.",
+      "exits": {
+        "west": "51cad06c3463"
+      },
+      "npcs": [
+        {
+          "name": "a thief in a bathtowel",
+          "description": [
+            "From his furtive appearance and demeanor, this is obviously a thief who has snuck into the mansion and taken up residence. You seem to have caught him just after his shower."
+          ],
+          "keywords": [
+            "thief",
+            "thief in a bathtowel",
+            "thief in a towel",
+            "wet"
+          ],
+          "room_description": "A thief in a bathtowel is here.",
+          "race": "human",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/town/npc/thief"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "furniture",
+          "keywords": [
+            "furniture",
+            "furnishings",
+            "decorations"
+          ],
+          "description": [
+            "You see evidence of a refined aesthetic sensibility."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mansion_room9"
+    },
+    {
+      "id": "581be838808f",
+      "slug": "room-mansion-uhall1",
+      "name": "Upstairs Mansion Hallway North",
+      "description": "You are in the beautifully decorated upstairs hallway of the mansion. There are rooms to the east and west, and the hallway continues south. An open window at the end of the hall leads down.",
+      "exits": {
+        "down": "2648b99b23dd",
+        "south": "3739231f45d8",
+        "east": "255a1b3ae8f1",
+        "west": "1c023d79ba75"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "window",
+          "keywords": [
+            "window",
+            "open window"
+          ],
+          "description": [
+            "An open window here leads down to the exterior of the mansion."
+          ]
+        },
+        {
+          "name": "hall",
+          "keywords": [
+            "hall",
+            "hallway"
+          ],
+          "description": [
+            "A corridor permitting travel from one part of the mansion to another."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mansion_uhall1"
+    },
+    {
+      "id": "3739231f45d8",
+      "slug": "room-mansion-uhall2",
+      "name": "Upstairs Mansion Hallway",
+      "description": "You are in the beautifully decorated upstairs hallway of the mansion. There are rooms to the east and west, and the hallway continues north and south.",
+      "exits": {
+        "south": "f167b56bb3c6",
+        "north": "581be838808f",
+        "east": "02addbb636a0",
+        "west": "c00eaa0c3bee"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "hall",
+          "keywords": [
+            "hall",
+            "hallway"
+          ],
+          "description": [
+            "A corridor permitting travel from one part of the mansion to another."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mansion_uhall2"
+    },
+    {
+      "id": "f167b56bb3c6",
+      "slug": "room-mansion-uhall3",
+      "name": "Upstairs Mansion Hallway South",
+      "description": "You are in the beautifully decorated upstairs hallway of the mansion. There are rooms to the east and west, and the hallway continues north. The master bedroom is south. A large, circular marble staircase leads down to the ground floor.",
+      "exits": {
+        "south": "f711b3b45e0e",
+        "north": "3739231f45d8",
+        "down": "1644cc8d0154",
+        "east": "67663cd856aa",
+        "west": "d6cee534dc07"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "hall",
+          "keywords": [
+            "hall",
+            "hallway"
+          ],
+          "description": [
+            "A corridor permitting travel from one part of the mansion to another."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mansion_uhall3"
+    },
+    {
+      "id": "552123650532",
+      "slug": "room-mayor",
+      "name": "Mayor's office",
+      "description": "This is the rather cramped office of the town's mayor. Despite\na fair amount of clutter, it seems well suited to the mayor's \nworking style and habits.",
+      "exits": {
+        "down": "ba06734790ca"
+      },
+      "npcs": [
+        {
+          "name": "the mayor",
+          "description": [
+            "A bit disheveled, this rather eccentric-looking man discharges the official duties of this town's chief executive office. Mostly, people request citizenship from him, for a fee of 5 silver."
+          ],
+          "keywords": [
+            "mayor"
+          ],
+          "room_description": "The mayor is here.",
+          "race": "human",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/town/npc/mayor"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "clutter",
+          "keywords": [
+            "clutter"
+          ],
+          "description": [
+            "There are papers and folders everywhere, but the stacks and piles seem somehow a well-organized mess."
+          ]
+        },
+        {
+          "name": "mess",
+          "keywords": [
+            "mess",
+            "stack",
+            "stacks",
+            "pile",
+            "piles",
+            "papers",
+            "paper",
+            "folder",
+            "folders"
+          ],
+          "description": [
+            "Evidence of a busy man and strangely-organized mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mayor"
+    },
+    {
+      "id": "63de6096cc26",
+      "slug": "room-mountain-road",
+      "name": "Fort Road",
+      "description": "You are on a road running north and south. To the south is the heart of the town. To the north the road runs along a narrow ridge, leading up to what looks like a fortress. The First Village Bank stands here on the east side of the road. To the west is the post office.",
+      "exits": {
+        "south": "8ef656650c1a",
+        "east": "233c50abdcad",
+        "west": "6bf4645472a4"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "rubble",
+          "keywords": [
+            "rubble",
+            "stone",
+            "stones",
+            "road"
+          ],
+          "description": [
+            "Looks like the road is still being built. Further travel north is impossible."
+          ]
+        },
+        {
+          "name": "mountains",
+          "keywords": [
+            "mountains",
+            "beautiful",
+            "snow-capped mountains"
+          ],
+          "description": [
+            "Beautiful mountains, far off in the northern distance."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/mountain_road"
+    },
+    {
+      "id": "fe61dd4b217a",
+      "slug": "room-narrow-path",
+      "name": "a narrow path",
+      "description": "This is a narrow path running northeast to a green valley and south through a dense forest. The thick vegetation makes travel off the path impossible.",
+      "exits": {
+        "northeast": "0f1c6b9b436f",
+        "south": "8195b3b8bda0"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "path",
+          "keywords": [
+            "path",
+            "trail"
+          ],
+          "description": [
+            "A very narrow path that seems threatened all around by the looming woods. It's hard to imagine what force might have cut this thin trail into the vegetation here."
+          ]
+        },
+        {
+          "name": "forest",
+          "keywords": [
+            "forest",
+            "wood",
+            "vegetation"
+          ],
+          "description": [
+            "All around is vegetation growing so incredibly dense that it is impossible to wander off the path."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/narrow_path"
+    },
+    {
+      "id": "8195b3b8bda0",
+      "slug": "room-narrow-path2",
+      "name": "a narrow path",
+      "description": "This is a narrow path running north and south through a dense forest. The thick vegetation makes travel off the path impossible.",
+      "exits": {
+        "north": "fe61dd4b217a",
+        "south": "8a0004df27be"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "path",
+          "keywords": [
+            "path",
+            "trail"
+          ],
+          "description": [
+            "A very narrow path that seems threatened all around by the looming woods. It's hard to imagine what force might have cut this thin trail into the vegetation here."
+          ]
+        },
+        {
+          "name": "forest",
+          "keywords": [
+            "forest",
+            "wood",
+            "vegetation"
+          ],
+          "description": [
+            "All around is vegetation growing so incredibly dense that it is impossible to wander off the path."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/narrow_path2"
+    },
+    {
+      "id": "ecc94d0d8fae",
+      "slug": "room-orc-fortress",
+      "name": "The Orc Fortress",
+      "description": "You find yourself in the entrance of the local orc stronghold. This place seems quite hostile to normal sensibilities, as the construction is rough, inelegant, and the upkeep is squalid. This wooden fort also appears somewhat amateurishly put together, as if done by youngsters playing at being soldiers. There is an exit to the outside south of here, and another room is visible to the west.",
+      "exits": {
+        "south": "0f1c6b9b436f",
+        "west": "ea6d27e3ea62"
+      },
+      "npcs": [
+        {
+          "name": "a dirty orc",
+          "description": [
+            "This orc is typical of its breed: nasty, brutish, and short. It appears to be a juvenile or adolescent, making it somewhat less dangerous but more hostile."
+          ],
+          "keywords": [
+            "orc",
+            "dirty"
+          ],
+          "room_description": "A dirty orc is here.",
+          "race": "orc",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/town/npc/orc"
+        },
+        {
+          "name": "a dirty orc",
+          "description": [
+            "This orc is typical of its breed: nasty, brutish, and short. It appears to be a juvenile or adolescent, making it somewhat less dangerous but more hostile."
+          ],
+          "keywords": [
+            "orc",
+            "dirty"
+          ],
+          "room_description": "A dirty orc is here.",
+          "race": "orc",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/town/npc/orc2"
+        },
+        {
+          "name": "the boss orc",
+          "description": [
+            "This orc is typical of its breed: nasty, brutish, and short. It is larger than the local orcs you've seen, and looks mean and tough."
+          ],
+          "keywords": [
+            "boss orc",
+            "orc",
+            "boss",
+            "dirty"
+          ],
+          "room_description": "The boss orc is here.",
+          "race": "orc",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/town/npc/orc_boss"
+        }
+      ],
+      "scenery": [],
+      "source_path": "/domains/town/room/orc_fortress"
+    },
+    {
+      "id": "ea6d27e3ea62",
+      "slug": "room-orc-temple",
+      "name": "The Orc Fortress",
+      "description": "You are deep in the orc stronghold. Like the rest of the fortress you have seen, this looks hastily put together and rather clumsily built, with poor maintenance besides. This is some kind of ceremonial chamber or temple. Dried blood surrounds a raised altar, and skulls of various types adorn the walls. The rest of the fort is east of here.",
+      "exits": {
+        "east": "ecc94d0d8fae"
+      },
+      "npcs": [
+        {
+          "name": "the orc shaman",
+          "description": [
+            "This orc is different from the others you've seen. he has an unearthly ferocity about him and is bigger, tougher, and meaner than the others."
+          ],
+          "keywords": [
+            "orc shaman",
+            "orc",
+            "shaman",
+            "dirty"
+          ],
+          "room_description": "The orc shaman is here.",
+          "race": "orc",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/town/npc/orc_shaman"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "skull",
+          "keywords": [
+            "skull",
+            "skulls"
+          ],
+          "description": [
+            "You see some skulls whose race you recognize, but most you don't. There is at least one human skull here. Some of them are so fresh they are still wet and have tissue hanging from them."
+          ]
+        },
+        {
+          "name": "chamber",
+          "keywords": [
+            "chamber",
+            "ceremonial chamber",
+            "temple"
+          ],
+          "description": [
+            "A place where orcish rituals are performed."
+          ]
+        },
+        {
+          "name": "blood",
+          "keywords": [
+            "blood",
+            "dried blood"
+          ],
+          "description": [
+            "Evidently the ground around the altar has collected blood from whatever happens on the altar."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls"
+          ],
+          "description": [
+            "Rough-hewn walls of earth and wood."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/orc_temple"
+    },
+    {
+      "id": "bb53e1d94d9e",
+      "slug": "room-porch",
+      "name": "front porch",
+      "description": "This is the rickety front porch of an old house. The front door is south. To the north is a clearing in the woods, and a path leading away.",
+      "exits": {
+        "north": "8a0004df27be",
+        "south": "f01a1d4ac7c4"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "forest",
+          "keywords": [
+            "forest",
+            "wood",
+            "vegetation"
+          ],
+          "description": [
+            "All around is vegetation growing so incredibly dense that it is impossible to wander off the path."
+          ]
+        },
+        {
+          "name": "porch",
+          "keywords": [
+            "porch",
+            "front porch"
+          ],
+          "description": [
+            "The wooden front porch of an old white house."
+          ]
+        },
+        {
+          "name": "trail",
+          "keywords": [
+            "trail",
+            "path"
+          ],
+          "description": [
+            "To the north, a narrow path leads into the woods."
+          ]
+        },
+        {
+          "name": "clearing",
+          "keywords": [
+            "clearing",
+            "woods"
+          ],
+          "description": [
+            "As if by powerful magic, the woods clear here, where the house stands."
+          ]
+        },
+        {
+          "name": "house",
+          "keywords": [
+            "house",
+            "white house",
+            "old house"
+          ],
+          "description": [
+            "The house looks weatherbeaten, ill maintained, and rather old. Its construction is of an archaic design no longer used. Despite its abused appearance, the house seems to have a quiet dignity about it, as if many people had been its friends over the years, and it simply waited for their return."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/porch"
+    },
+    {
+      "id": "6bf4645472a4",
+      "slug": "room-postoffice",
+      "name": "the town post office",
+      "description": "This is a small office containing rows of mailboxes and various other postal implements. There is a sign on the wall behind the counter, outlining instructions for how to mail other users. Fort road is east of here.",
+      "exits": {
+        "east": "63de6096cc26"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "box",
+          "keywords": [
+            "box",
+            "boxes",
+            "mailboxes",
+            "mailbox"
+          ],
+          "description": [
+            "Rows of mailboxes for the denizens of Frontiers."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "This is a sign on the wall describing how to mail messages."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls"
+          ],
+          "description": [
+            "Gray-painted institutional walls of the kind you'd expect in a post office."
+          ]
+        },
+        {
+          "name": "implements",
+          "keywords": [
+            "implements"
+          ],
+          "description": [
+            "Ink, paper, etc."
+          ]
+        },
+        {
+          "name": "instructions",
+          "keywords": [
+            "instructions"
+          ],
+          "description": [
+            "Try reading them."
+          ]
+        },
+        {
+          "name": "counter",
+          "keywords": [
+            "counter"
+          ],
+          "description": [
+            "A counter folks use to lean on while writing messages."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/postoffice"
+    },
+    {
+      "id": "d145c73685a4",
+      "slug": "room-riverbank",
+      "name": "riverbank",
+      "description": "This is the bank of a narrow but swift-moving river. A steep path leads back up to the bridge. There is a cave in the steep east wall of the riverbank.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "f4b2343998c7"
+      },
+      "npcs": [
+        {
+          "name": "a mean-looking troll",
+          "description": [
+            "This is the dreaded creature of legend: a slimy, green, putrid-looking fiend with long, razor-sharp claws and fangs."
+          ],
+          "keywords": [
+            "troll",
+            "dirty"
+          ],
+          "room_description": "A mean-looking troll is here.",
+          "race": "troll",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/town/npc/troll"
+        }
+      ],
+      "scenery": [],
+      "source_path": "/domains/town/room/riverbank"
+    },
+    {
+      "id": "8ef656650c1a",
+      "slug": "room-road",
+      "name": "North Saquivor Road",
+      "description": "You are on Saquivor road, leading north-south through the village. To the east is the village pub, the legendary watering hole used by thousands of rogues, paladins, and everyone in between. The Healers' Guild is west, and to the north you can see a road leading up to the plateau where the Fortress on the Frontiers stands. To the south is a major intersection.",
+      "exits": {
+        "north": "63de6096cc26",
+        "east": "858277513959",
+        "west": "11571c9c5f0e",
+        "south": "dd86e1b2ee28"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "pub",
+          "keywords": [
+            "pub",
+            "tavern",
+            "village pub"
+          ],
+          "description": [
+            "The is the town's legendary watering hole, where refreshments are served and tall tales are swapped."
+          ]
+        },
+        {
+          "name": "guild",
+          "keywords": [
+            "guild",
+            "healers guild"
+          ],
+          "description": [
+            "In this building is the office of the only doctor in town."
+          ]
+        },
+        {
+          "name": "clouds",
+          "keywords": [
+            "clouds"
+          ],
+          "description": [
+            "Little puffy clouds surround the peaks of the northern mountains."
+          ]
+        },
+        {
+          "name": "northern mountains",
+          "keywords": [
+            "northern mountains",
+            "mountains",
+            "range",
+            "mountain range"
+          ],
+          "description": [
+            "Majestic mountains are far to the north, seeming almost purple from here."
+          ]
+        },
+        {
+          "name": "intersection",
+          "keywords": [
+            "intersection"
+          ],
+          "description": [
+            "The main town crossroads is south."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/road"
+    },
+    {
+      "id": "dd86e1b2ee28",
+      "slug": "room-road0",
+      "name": "Saquivor Road",
+      "description": "This is Saquivor road, leading north-south through the village. A bit further north are what look like a pub and some kind of guild. To the south is a major intersection.",
+      "exits": {
+        "north": "8ef656650c1a",
+        "south": "823e4f2b3bec"
+      },
+      "npcs": [
+        {
+          "name": "a dirty beggar",
+          "description": [
+            "This beggar has something strangely noble about his aspect. He certainly doesn't look like he has always been a beggar."
+          ],
+          "keywords": [
+            "beggar",
+            "dirty"
+          ],
+          "room_description": "A dirty beggar is here.",
+          "race": "human",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/town/npc/beggar"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "pub",
+          "keywords": [
+            "pub",
+            "tavern",
+            "village pub"
+          ],
+          "description": [
+            "The is the town's legendary watering hole, where refreshments are served and tall tales are swapped."
+          ]
+        },
+        {
+          "name": "guild",
+          "keywords": [
+            "guild",
+            "healers guild"
+          ],
+          "description": [
+            "In this building is the office of the only doctor in town."
+          ]
+        },
+        {
+          "name": "clouds",
+          "keywords": [
+            "clouds"
+          ],
+          "description": [
+            "Little puffy clouds surround the peaks of the northern mountains."
+          ]
+        },
+        {
+          "name": "northern mountains",
+          "keywords": [
+            "northern mountains",
+            "mountains",
+            "range",
+            "mountain range"
+          ],
+          "description": [
+            "Majestic mountains are far to the north, seeming almost purple from here."
+          ]
+        },
+        {
+          "name": "intersection",
+          "keywords": [
+            "intersection"
+          ],
+          "description": [
+            "The main town crossroads is south."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/road0"
+    },
+    {
+      "id": "f173d8b8c964",
+      "slug": "room-road1",
+      "name": "West Village road",
+      "description": "This is a well-traveled road, leading east into town and west away from it. The town church is north.",
+      "exits": {
+        "north": "9a7f5f3ec3e9",
+        "east": "823e4f2b3bec",
+        "west": "a5137f205fc2"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/road1"
+    },
+    {
+      "id": "a5137f205fc2",
+      "slug": "room-road2",
+      "name": "West Village road",
+      "description": "This is a well-traveled road, leading east into town and west away from it. An old, humpbacked bridge is west of here. A grand mansion is south.",
+      "exits": {
+        "east": "f173d8b8c964",
+        "west": "ac4e9608f00d",
+        "south": "8592717c6e82"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "fort",
+          "keywords": [
+            "fort",
+            "fortress",
+            "fortress in the distance"
+          ],
+          "description": [
+            "It can't be seen well from here, but far north is what appears to be a large fortress built on a high plateau."
+          ]
+        },
+        {
+          "name": "road",
+          "keywords": [
+            "road",
+            "roads"
+          ],
+          "description": [
+            "This is a simple east-west road that goes east into town and west away from it. Another road, paved with cobblestones, intersects here to the north and leads high toward a fortress in the distance."
+          ]
+        },
+        {
+          "name": "cobblestone road",
+          "keywords": [
+            "cobblestone road"
+          ],
+          "description": [
+            "This is where a cobblestone road begins that is built on an steep incline and rises up as it leads north to a high plateau."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/road2"
+    },
+    {
+      "id": "e7af492d6869",
+      "slug": "room-room2",
+      "name": "a generic place",
+      "description": "This is an utterly plain, blank place.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "a0a3bcf07d69"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/room2"
+    },
+    {
+      "id": "9d8bcadc7a82",
+      "slug": "room-school",
+      "name": "Village Schoolhouse",
+      "description": "This simple, one-room schoolhouse is not especially large but it is clean, well-maintained, and clearly an important part of village life. People come here to be taught, mostly languages, by traveling teachers and guest lecturers.",
+      "exits": {
+        "south": "00575a994dca"
+      },
+      "npcs": [
+        {
+          "name": "Bugg the schoolteacher",
+          "description": [
+            "This is a person whose job it is to teach you things. For example, 'ask teacher to teach Malkierien' would prompt him to begin teaching a Malkierien lesson to you, if he knows the language and you have earned sufficient training points. If you lack training points, then do some adventuring and earn a level promotion. You will then be awarded training points. To know more about what Bugg can teach: ask bugg for help"
+          ],
+          "keywords": [
+            "bugg",
+            "teacher",
+            "dwarf",
+            "schoolteacher",
+            "bugg the schoolteacher"
+          ],
+          "room_description": "Bugg the schoolteacher is here.",
+          "race": "dwarf",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/town/npc/bugg"
+        }
+      ],
+      "scenery": [],
+      "source_path": "/domains/town/room/school"
+    },
+    {
+      "id": "29da4763a964",
+      "slug": "room-secret",
+      "name": "the secret stash",
+      "description": "This appears to be a secret room for saving valuables. The master bedroom is west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "west": "f711b3b45e0e",
+        "up": "4bfb94c84131"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/secret"
+    },
+    {
+      "id": "65d0aaa96b21",
+      "slug": "room-shack",
+      "name": "Gardener's Shack",
+      "description": "This is the dark, wooden shack of the keeper of the garden. From the dust and rust, it is obvious nobody has done much gardening around here lately.",
+      "exits": {
+        "south": "ed5ebf9af93c"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/shack"
+    },
+    {
+      "id": "8df79059aec6",
+      "slug": "room-shop",
+      "name": "The General Store",
+      "description": "This is the local general store. You can buy or sell items here. A sign on the wall hangs here, explaining how things work. Try 'read sign'. East Village Road is south of here. The storeroom is below.",
+      "exits": {
+        "south": "0782ff57ea91",
+        "down": "c1f3028e095b"
+      },
+      "npcs": [
+        {
+          "name": "Otik, the keeper of the shop",
+          "description": [
+            "Otik is the owner of the local general store, an old and famous trading post in the heart of town.  The brother of Lars, he also is an unassuming fellow, and just as jovial."
+          ],
+          "keywords": [
+            "otik",
+            "vendor",
+            "owner",
+            "shopkeep",
+            "shopkeeper",
+            "keeper"
+          ],
+          "room_description": "Otik, the keeper of the shop is here.",
+          "race": "human",
+          "level": 12,
+          "gender": "male",
+          "source_path": "/domains/town/npc/otik"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "store",
+          "keywords": [
+            "store",
+            "shop",
+            "place"
+          ],
+          "description": [
+            "This is the local store."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign",
+            "sign on the wall"
+          ],
+          "description": [
+            "A sign on the wall, meant for reading."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/shop"
+    },
+    {
+      "id": "c1f3028e095b",
+      "slug": "room-shop2",
+      "name": "Otik's storage room",
+      "description": "This is a small, bare room where Otik keeps his goods. The main store is above.",
+      "exits": {
+        "up": "8df79059aec6"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/shop2"
+    },
+    {
+      "id": "7db9c38e874e",
+      "slug": "room-shore",
+      "name": "Shore Edge",
+      "description": "You are on the shore, at the far eastern end of town. A road travels west into the heart of town. A great sea stretches out into the eastern horizon. \nThere is a sign here you can read.",
+      "exits": {
+        "west": "00575a994dca"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "A sign on the ground. To read it, 'read sign'."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground"
+          ],
+          "description": [
+            "The local surface."
+          ]
+        },
+        {
+          "name": "horizon",
+          "keywords": [
+            "horizon"
+          ],
+          "description": [
+            "Where the sky loves the sea."
+          ]
+        },
+        {
+          "name": "town",
+          "keywords": [
+            "town"
+          ],
+          "description": [
+            "A population center to the west."
+          ]
+        },
+        {
+          "name": "road",
+          "keywords": [
+            "road"
+          ],
+          "description": [
+            "Leads west, to the town."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/shore"
+    },
+    {
+      "id": "a7319a8f12f0",
+      "slug": "room-shower",
+      "name": "Shower Stall",
+      "description": "You are standing in a shower stall. People come here to get clean.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "6d6a79a02691"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/shower"
+    },
+    {
+      "id": "4f5f28f88333",
+      "slug": "room-source",
+      "name": "a dark tunnel",
+      "description": "This tunnel has very smooth stone walls and leads east. There is also an opening in the ceiling above.\nA marked archway down returns to the Travel Concourse.",
+      "exits": {
+        "up": "f738da1c6998",
+        "east": "ea0e58ea82d9",
+        "down": "0a785b38c339"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "hole",
+          "keywords": [
+            "hole",
+            "holes",
+            "floor"
+          ],
+          "description": [
+            "These holes appear to be where spring water enters to flood the chamber and fill the well east of here."
+          ]
+        },
+        {
+          "name": "dirt",
+          "keywords": [
+            "dirt",
+            "dust"
+          ],
+          "description": [
+            "There's plenty of that here. Empty wells rarely get much priority on cleaning day."
+          ]
+        },
+        {
+          "name": "bottom",
+          "keywords": [
+            "bottom",
+            "well"
+          ],
+          "description": [
+            "Dirty, musty, and unpleasant."
+          ]
+        },
+        {
+          "name": "vermin",
+          "keywords": [
+            "vermin",
+            "rats",
+            "bugs"
+          ],
+          "description": [
+            "Looks like they're hiding from you at the moment."
+          ]
+        },
+        {
+          "name": "haven",
+          "keywords": [
+            "haven"
+          ],
+          "description": [
+            "A nice place for vermin."
+          ]
+        },
+        {
+          "name": "rock",
+          "keywords": [
+            "rock",
+            "bedrock"
+          ],
+          "description": [
+            "This is dense, hard stuff deep underground."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/source"
+    },
+    {
+      "id": "9aee94e6e99b",
+      "slug": "room-south-road1",
+      "name": "Saquivor Road",
+      "description": "This is a cobblestone road, leading north into town and south away from it. The magic shop is to the west. \nAn old well stands by the side of the road.",
+      "exits": {
+        "north": "823e4f2b3bec",
+        "south": "077faa014271",
+        "west": "65843e2ada38"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "well",
+          "keywords": [
+            "well",
+            "old well",
+            "dry well"
+          ],
+          "description": [
+            "This looks like the sort of system used to provide water before the town implemented more modern waterworks. It looks long dry and abandoned."
+          ]
+        },
+        {
+          "name": "bank",
+          "keywords": [
+            "bank"
+          ],
+          "description": [
+            "The First Village Bank"
+          ]
+        },
+        {
+          "name": "road",
+          "keywords": [
+            "road",
+            "cobblestone road"
+          ],
+          "description": [
+            "A cobblestone road running north and south."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/south_road1"
+    },
+    {
+      "id": "077faa014271",
+      "slug": "room-south-road2",
+      "name": "South Saquivor Road",
+      "description": "This is a cobblestone road, leading north into town and south away from it. South of here appears to be some sort of University campus.",
+      "exits": {
+        "north": "9aee94e6e99b",
+        "south": "dff37bc9a9c3"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "road",
+          "keywords": [
+            "road",
+            "cobblestone road"
+          ],
+          "description": [
+            "A cobblestone road, running north and south."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "A large sign on the road. To read it, 'read sign'."
+          ]
+        },
+        {
+          "name": "grate",
+          "keywords": [
+            "grate",
+            "drainage grate",
+            "sewer",
+            "sewer grate"
+          ],
+          "description": [
+            "A grate that seems to lead into sewers. It can't be opened from here."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/south_road2"
+    },
+    {
+      "id": "500daf6a4db1",
+      "slug": "room-stables",
+      "name": "Village Stables",
+      "description": "These are the village stables. Townsfolk come here and leave their mounts in the care of Ingrid, the local horse girl. The place is orderly, if a bit stinky, and it's clear Ingrid runs a professional outfit.",
+      "exits": {
+        "north": "00575a994dca"
+      },
+      "npcs": [
+        {
+          "name": "Ingrid",
+          "description": [
+            "Ingrid is rather slight of build, but has a non-nonsense way about her that makes her seem much tougher than she physically looks."
+          ],
+          "keywords": [
+            "ingrid",
+            "npc",
+            "mob",
+            "character",
+            "mobile",
+            "non-player",
+            "non player"
+          ],
+          "room_description": "Ingrid is here.",
+          "race": "human",
+          "level": 1,
+          "gender": "female",
+          "source_path": "/domains/town/npc/ingrid"
+        },
+        {
+          "name": "a large horse",
+          "description": [
+            "A large, hooved quadruped, taller and more muscular than you. Perhaps if you befriend him, he'll allow you to mount him."
+          ],
+          "keywords": [
+            "horse",
+            "large horse",
+            "hands",
+            "quadruped",
+            "ungulate",
+            "large",
+            "hooved",
+            "mr",
+            "mister"
+          ],
+          "room_description": "A large horse is here.",
+          "race": "horse",
+          "level": 5,
+          "gender": "male",
+          "source_path": "/domains/town/npc/horse"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "building",
+          "keywords": [
+            "building",
+            "schoolhouse",
+            "school",
+            "village school",
+            "village schoolhouse"
+          ],
+          "description": [
+            "A small but well-kept wooden building where townsfolk and their children go to acquire knowledge."
+          ]
+        },
+        {
+          "name": "building",
+          "keywords": [
+            "building",
+            "buildings"
+          ],
+          "description": [
+            "Structures designed for human occupancy."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/stables"
+    },
+    {
+      "id": "858277513959",
+      "slug": "room-tavern",
+      "name": "The Local Tavern",
+      "description": "You are in the local pub. You can order drinks and a sandwich here:\n\n\tFirst class ale:\t\t\t\t10 silver\n\tSpecial of the house:\t\t\t\t20 silver\n\tFirebreather:\t\t\t\t\t50 silver\n\tSpring water:\t\t\t\t\t2 silver\n\tRegular coffee:\t\t\t\t\t5 silver\n\tImported espresso:\t\t\t\t15 silver\n\tHam sandwich:\t\t\t\t\t10 silver\n\n\nTo order a bottle of water, \"buy water from lars\"\n\nThere is a framed portrait on the wall.",
+      "exits": {
+        "west": "8ef656650c1a"
+      },
+      "npcs": [
+        {
+          "name": "Lars, the keeper of the pub",
+          "description": [
+            "Lars is the owner of the local pub, an old and famous drinking establishment in the heart of town.  He is an unassuming fellow, and quite jovial."
+          ],
+          "keywords": [
+            "lars",
+            "owner",
+            "barkeep",
+            "bartender",
+            "keeper"
+          ],
+          "room_description": "Lars, the keeper of the pub is here.",
+          "race": "human",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/town/npc/lars"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "portrait",
+          "keywords": [
+            "portrait",
+            "framed portrait",
+            "frame",
+            "picture"
+          ],
+          "description": [
+            "It is a dramatic portrait of an ancient dragon of immense beauty and grace. It is titled \"Daelas: Heir of Arodaleas\"."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/tavern"
+    },
+    {
+      "id": "ba06734790ca",
+      "slug": "room-thall",
+      "name": "Town Hall",
+      "description": "This is the modest foyer of this village's Town Hall. It's a simple affair, really, in keeping with the down-to-earth spirit of the town. The office of the clerk and notary is north, and the Mayor's office is upstairs. Village road is south. The registrar of voters is northeast.",
+      "exits": {
+        "south": "fe503ffb2a2c",
+        "northeast": "6fb4ec538f88",
+        "up": "552123650532",
+        "north": "22aabb149cb3"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/thall"
+    },
+    {
+      "id": "14814dd6afc8",
+      "slug": "room-training",
+      "name": "the training area",
+      "description": "You are in a large room with a very high ceiling, mirrored walls, and a hardwood floor. This area is designed for skills training, though at the moment no workshops are scheduled. The rest of the Adventurers' Guild is downstairs.",
+      "exits": {
+        "down": "b9507f02811b"
+      },
+      "npcs": [
+        {
+          "name": "Radagast the Brown",
+          "description": [
+            "This is a tall, thin old man. Not much is known of this mysterious wizard, other than his legendary kindness to animals and his controversial reputation as a seditious rebel. He can train you in the arts of magic defense, magic attack, and conjuring. You may, for example, \"ask radagast to train conjuring\". If you lack training points, then do some adventuring and earn a promotion from Dirk. You will then be awarded training points."
+          ],
+          "keywords": [
+            "radagast",
+            "radagast the brown",
+            "wizard",
+            "mage",
+            "trainer",
+            "friendly",
+            "tall",
+            "thin",
+            "old"
+          ],
+          "room_description": "Radagast the Brown is here.",
+          "race": "human",
+          "level": 40,
+          "gender": "male",
+          "source_path": "/domains/town/npc/radagast"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls"
+          ],
+          "description": [
+            "The walls have mirrors set into them."
+          ]
+        },
+        {
+          "name": "mirror",
+          "keywords": [
+            "mirror",
+            "mirrors"
+          ],
+          "description": [
+            "Peekaboo!"
+          ]
+        },
+        {
+          "name": "hardwoord floor",
+          "keywords": [
+            "hardwoord floor",
+            "floor"
+          ],
+          "description": [
+            "The floor is made of polished wood, and is reminiscent of what you might expect in a dancing school."
+          ]
+        },
+        {
+          "name": "ceiling",
+          "keywords": [
+            "ceiling",
+            "high ceiling"
+          ],
+          "description": [
+            "The high, vaulted ceiling provides plenty of headroom."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/training"
+    },
+    {
+      "id": "0f1c6b9b436f",
+      "slug": "room-valley",
+      "name": "Orc Valley",
+      "description": "You are in a small valley below the sheer cliffs to the west. A band of orcs appears to have made this place their home, and you can see their ramshackle fortress toward the north. A well-traveled path leads east into a forest. A narrow path snakes its way southwest into the woods.",
+      "exits": {
+        "east": "59fdf02a28f3",
+        "north": "ecc94d0d8fae",
+        "southwest": "fe61dd4b217a"
+      },
+      "npcs": [
+        {
+          "name": "a dirty orc",
+          "description": [
+            "This orc is typical of its breed: nasty, brutish, and short. It appears to be a juvenile or adolescent, making it somewhat less dangerous but more hostile."
+          ],
+          "keywords": [
+            "orc",
+            "dirty"
+          ],
+          "room_description": "A dirty orc is here.",
+          "race": "orc",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/town/npc/orc"
+        },
+        {
+          "name": "a dirty orc",
+          "description": [
+            "This orc is typical of its breed: nasty, brutish, and short. It appears to be a juvenile or adolescent, making it somewhat less dangerous but more hostile."
+          ],
+          "keywords": [
+            "orc",
+            "dirty"
+          ],
+          "room_description": "A dirty orc is here.",
+          "race": "orc",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/town/npc/orc2"
+        }
+      ],
+      "scenery": [],
+      "source_path": "/domains/town/room/valley"
+    },
+    {
+      "id": "823e4f2b3bec",
+      "slug": "room-vill-road1",
+      "name": "Village Road Intersection",
+      "description": "You are in the main intersection of the village. Saquivor road extends north and south, intersected east to west by a road that leads west toward a wilderness, and east toward shore.\nThere is a sign here you can read.",
+      "exits": {
+        "south": "9aee94e6e99b",
+        "east": "0782ff57ea91",
+        "west": "f173d8b8c964",
+        "north": "dd86e1b2ee28"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "A large sign on the road. To read it, 'read sign'."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/vill_road1"
+    },
+    {
+      "id": "0782ff57ea91",
+      "slug": "room-vill-road2",
+      "name": "East Village Road",
+      "description": "You are on a long road. The general store is north. The road stretches east and west through the town. The Adventurers' Guild is south.",
+      "exits": {
+        "north": "8df79059aec6",
+        "south": "b9507f02811b",
+        "east": "fe503ffb2a2c",
+        "west": "823e4f2b3bec"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "adventurers guild",
+          "keywords": [
+            "adventurers guild",
+            "guild"
+          ],
+          "description": [
+            "This small building on the southern side of the road is where adventurers, great and small, come to record their exploits and seek advancement."
+          ]
+        },
+        {
+          "name": "shop",
+          "keywords": [
+            "shop",
+            "store",
+            "general store"
+          ],
+          "description": [
+            "This is the general store, where almost anything can be bought or sold."
+          ]
+        },
+        {
+          "name": "road",
+          "keywords": [
+            "road",
+            "long road"
+          ],
+          "description": [
+            "An east-west cobblestone road through town."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/vill_road2"
+    },
+    {
+      "id": "fe503ffb2a2c",
+      "slug": "room-vill-road3",
+      "name": "East Village Road",
+      "description": "A long road going through the village. Town Hall is north. The main part of the town is west of here.",
+      "exits": {
+        "north": "ba06734790ca",
+        "east": "00575a994dca",
+        "west": "0782ff57ea91"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "office",
+          "keywords": [
+            "office",
+            "post office"
+          ],
+          "description": [
+            "Mail can be received and sent from the post office."
+          ]
+        },
+        {
+          "name": "building",
+          "keywords": [
+            "building",
+            "buildings"
+          ],
+          "description": [
+            "Structures designed for human occupancy."
+          ]
+        },
+        {
+          "name": "hall",
+          "keywords": [
+            "hall",
+            "town hall"
+          ],
+          "description": [
+            "This is the modest building where official town business takes place."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/vill_road3"
+    },
+    {
+      "id": "00575a994dca",
+      "slug": "room-vill-road4",
+      "name": "Village Path",
+      "description": "As it travels from west to east, Village Road becomes less of a road here and more of a dirt path. The shore of the eastern sea is almost visible from here. The village schoolhouse is north, and the shore is east. The village stables are south.",
+      "exits": {
+        "west": "fe503ffb2a2c",
+        "north": "9d8bcadc7a82",
+        "east": "7db9c38e874e",
+        "south": "500daf6a4db1"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "building",
+          "keywords": [
+            "building",
+            "schoolhouse",
+            "school",
+            "village school",
+            "village schoolhouse"
+          ],
+          "description": [
+            "A small but well-kept wooden building where townsfolk and their children go to acquire knowledge."
+          ]
+        },
+        {
+          "name": "building",
+          "keywords": [
+            "building",
+            "buildings"
+          ],
+          "description": [
+            "Structures designed for human occupancy."
+          ]
+        },
+        {
+          "name": "shore",
+          "keywords": [
+            "shore",
+            "village shore"
+          ],
+          "description": [
+            "The shore of the eastern sea is east of here."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/vill_road4"
+    },
+    {
+      "id": "b9e703b2acef",
+      "slug": "room-void",
+      "name": "the void",
+      "description": "The void.  Go down to get out.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "34ffcc6c3905"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/void"
+    },
+    {
+      "id": "6fb4ec538f88",
+      "slug": "room-voters",
+      "name": "Registrar of Voters",
+      "description": "This small office is where people come to perform their civic duty of voting. Here you may also 'nominate CANDIDATE'. There is a list of candidates here. The main area of the town hall is southwest.",
+      "exits": {
+        "southwest": "ba06734790ca"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "list",
+          "keywords": [
+            "list"
+          ],
+          "description": [
+            "This is the list of candidates."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/voters"
+    },
+    {
+      "id": "dd76b11a1553",
+      "slug": "room-well1",
+      "name": "Town Well",
+      "description": "Town Well.",
+      "exits": {
+        "up": "9aee94e6e99b",
+        "west": "4ce92fee7312"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/town/room/well1"
+    },
+    {
+      "id": "4ce92fee7312",
+      "slug": "room-well2",
+      "name": "Water Tunnel",
+      "description": "This dark tunnel appears roughly carved into the bedrock, and slopes downward to the west. It seems as though this is the way for an underground spring to feed the town well. The tunnel ends in doors at both the east and west.",
+      "exits": {
+        "east": "dd76b11a1553",
+        "west": "f738da1c6998"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "rock",
+          "keywords": [
+            "rock",
+            "bedrock"
+          ],
+          "description": [
+            "This is dense, hard stuff deep underground."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/well2"
+    },
+    {
+      "id": "f738da1c6998",
+      "slug": "room-well3",
+      "name": "Dry Spring",
+      "description": "This small, dark chamber appears to have been carved out of the bedrock, and contains a hole bored into the floor. Considering the difficulty of digging into such solid stuff, this wellwater system must have taken a fortune and a vast amount of labor to construct. A door leads east to the water tunnel and the well.",
+      "exits": {
+        "east": "4ce92fee7312",
+        "down": "4f5f28f88333"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "hole",
+          "keywords": [
+            "hole",
+            "floor"
+          ],
+          "description": [
+            "This hole appears to be where spring water enters to flood the chamber and fill the well east of here."
+          ]
+        },
+        {
+          "name": "dirt",
+          "keywords": [
+            "dirt",
+            "dust"
+          ],
+          "description": [
+            "There's plenty of that here. Empty wells rarely get much priority on cleaning day."
+          ]
+        },
+        {
+          "name": "bottom",
+          "keywords": [
+            "bottom",
+            "well"
+          ],
+          "description": [
+            "Dirty, musty, and unpleasant."
+          ]
+        },
+        {
+          "name": "vermin",
+          "keywords": [
+            "vermin",
+            "rats",
+            "bugs"
+          ],
+          "description": [
+            "Looks like they're hiding from you at the moment."
+          ]
+        },
+        {
+          "name": "haven",
+          "keywords": [
+            "haven"
+          ],
+          "description": [
+            "A nice place for vermin."
+          ]
+        },
+        {
+          "name": "rock",
+          "keywords": [
+            "rock",
+            "bedrock"
+          ],
+          "description": [
+            "This is dense, hard stuff deep underground."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/well3"
+    },
+    {
+      "id": "ea0e58ea82d9",
+      "slug": "room-wtunnel2",
+      "name": "a dark tunnel",
+      "description": "This tunnel has very smooth stone walls and runs east and west.",
+      "exits": {
+        "west": "4f5f28f88333",
+        "east": "ee14f0712127"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "hole",
+          "keywords": [
+            "hole",
+            "holes",
+            "floor"
+          ],
+          "description": [
+            "These holes appear to be where spring water enters to flood the chamber and fill the well east of here."
+          ]
+        },
+        {
+          "name": "dirt",
+          "keywords": [
+            "dirt",
+            "dust"
+          ],
+          "description": [
+            "There's plenty of that here. Empty wells rarely get much priority on cleaning day."
+          ]
+        },
+        {
+          "name": "bottom",
+          "keywords": [
+            "bottom",
+            "well"
+          ],
+          "description": [
+            "Dirty, musty, and unpleasant."
+          ]
+        },
+        {
+          "name": "vermin",
+          "keywords": [
+            "vermin",
+            "rats",
+            "bugs"
+          ],
+          "description": [
+            "Looks like they're hiding from you at the moment."
+          ]
+        },
+        {
+          "name": "haven",
+          "keywords": [
+            "haven"
+          ],
+          "description": [
+            "A nice place for vermin."
+          ]
+        },
+        {
+          "name": "rock",
+          "keywords": [
+            "rock",
+            "bedrock"
+          ],
+          "description": [
+            "This is dense, hard stuff deep underground."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/wtunnel2"
+    },
+    {
+      "id": "ee14f0712127",
+      "slug": "room-wtunnel3",
+      "name": "a dark tunnel",
+      "description": "This tunnel has very smooth stone walls and runs northeast and west.",
+      "exits": {
+        "west": "ea0e58ea82d9",
+        "northeast": "3de9ac1316d8"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "hole",
+          "keywords": [
+            "hole",
+            "holes",
+            "floor"
+          ],
+          "description": [
+            "These holes appear to be where spring water enters to flood the chamber and fill the well east of here."
+          ]
+        },
+        {
+          "name": "dirt",
+          "keywords": [
+            "dirt",
+            "dust"
+          ],
+          "description": [
+            "There's plenty of that here. Empty wells rarely get much priority on cleaning day."
+          ]
+        },
+        {
+          "name": "bottom",
+          "keywords": [
+            "bottom",
+            "well"
+          ],
+          "description": [
+            "Dirty, musty, and unpleasant."
+          ]
+        },
+        {
+          "name": "vermin",
+          "keywords": [
+            "vermin",
+            "rats",
+            "bugs"
+          ],
+          "description": [
+            "Looks like they're hiding from you at the moment."
+          ]
+        },
+        {
+          "name": "haven",
+          "keywords": [
+            "haven"
+          ],
+          "description": [
+            "A nice place for vermin."
+          ]
+        },
+        {
+          "name": "rock",
+          "keywords": [
+            "rock",
+            "bedrock"
+          ],
+          "description": [
+            "This is dense, hard stuff deep underground."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/wtunnel3"
+    },
+    {
+      "id": "3de9ac1316d8",
+      "slug": "room-wtunnel4",
+      "name": "a dark tunnel",
+      "description": "This tunnel has very smooth stone walls and runs north and southwest.",
+      "exits": {
+        "southwest": "ee14f0712127",
+        "north": "bb2f80bf0252"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "hole",
+          "keywords": [
+            "hole",
+            "holes",
+            "floor"
+          ],
+          "description": [
+            "These holes appear to be where spring water enters to flood the chamber and fill the well east of here."
+          ]
+        },
+        {
+          "name": "dirt",
+          "keywords": [
+            "dirt",
+            "dust"
+          ],
+          "description": [
+            "There's plenty of that here. Empty wells rarely get much priority on cleaning day."
+          ]
+        },
+        {
+          "name": "bottom",
+          "keywords": [
+            "bottom",
+            "well"
+          ],
+          "description": [
+            "Dirty, musty, and unpleasant."
+          ]
+        },
+        {
+          "name": "vermin",
+          "keywords": [
+            "vermin",
+            "rats",
+            "bugs"
+          ],
+          "description": [
+            "Looks like they're hiding from you at the moment."
+          ]
+        },
+        {
+          "name": "haven",
+          "keywords": [
+            "haven"
+          ],
+          "description": [
+            "A nice place for vermin."
+          ]
+        },
+        {
+          "name": "rock",
+          "keywords": [
+            "rock",
+            "bedrock"
+          ],
+          "description": [
+            "This is dense, hard stuff deep underground."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/wtunnel4"
+    },
+    {
+      "id": "bb2f80bf0252",
+      "slug": "room-wtunnel5",
+      "name": "a dark tunnel",
+      "description": "This tunnel has very smooth stone walls and runs north and south.",
+      "exits": {
+        "south": "3de9ac1316d8",
+        "north": "41ae339f5fc3"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "hole",
+          "keywords": [
+            "hole",
+            "holes",
+            "floor"
+          ],
+          "description": [
+            "These holes appear to be where spring water enters to flood the chamber and fill the well east of here."
+          ]
+        },
+        {
+          "name": "dirt",
+          "keywords": [
+            "dirt",
+            "dust"
+          ],
+          "description": [
+            "There's plenty of that here. Empty wells rarely get much priority on cleaning day."
+          ]
+        },
+        {
+          "name": "bottom",
+          "keywords": [
+            "bottom",
+            "well"
+          ],
+          "description": [
+            "Dirty, musty, and unpleasant."
+          ]
+        },
+        {
+          "name": "vermin",
+          "keywords": [
+            "vermin",
+            "rats",
+            "bugs"
+          ],
+          "description": [
+            "Looks like they're hiding from you at the moment."
+          ]
+        },
+        {
+          "name": "haven",
+          "keywords": [
+            "haven"
+          ],
+          "description": [
+            "A nice place for vermin."
+          ]
+        },
+        {
+          "name": "rock",
+          "keywords": [
+            "rock",
+            "bedrock"
+          ],
+          "description": [
+            "This is dense, hard stuff deep underground."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/wtunnel5"
+    },
+    {
+      "id": "41ae339f5fc3",
+      "slug": "room-wtunnel6",
+      "name": "a dark tunnel",
+      "description": "This tunnel has very smooth stone walls and leads south. There is also an exit northeast.",
+      "exits": {
+        "south": "bb2f80bf0252",
+        "northeast": "c62305080ca6"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "hole",
+          "keywords": [
+            "hole",
+            "holes",
+            "floor"
+          ],
+          "description": [
+            "These holes appear to be where spring water enters to flood the chamber and fill the well east of here."
+          ]
+        },
+        {
+          "name": "dirt",
+          "keywords": [
+            "dirt",
+            "dust"
+          ],
+          "description": [
+            "There's plenty of that here. Empty wells rarely get much priority on cleaning day."
+          ]
+        },
+        {
+          "name": "bottom",
+          "keywords": [
+            "bottom",
+            "well"
+          ],
+          "description": [
+            "Dirty, musty, and unpleasant."
+          ]
+        },
+        {
+          "name": "vermin",
+          "keywords": [
+            "vermin",
+            "rats",
+            "bugs"
+          ],
+          "description": [
+            "Looks like they're hiding from you at the moment."
+          ]
+        },
+        {
+          "name": "haven",
+          "keywords": [
+            "haven"
+          ],
+          "description": [
+            "A nice place for vermin."
+          ]
+        },
+        {
+          "name": "rock",
+          "keywords": [
+            "rock",
+            "bedrock"
+          ],
+          "description": [
+            "This is dense, hard stuff deep underground."
+          ]
+        }
+      ],
+      "source_path": "/domains/town/room/wtunnel6"
+    }
+  ]
+}

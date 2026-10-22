@@ -16,10 +16,10 @@ pub use grim_core::*;
 // stay stable downstream.
 pub mod prelude;
 pub use grim_actor::{
-    Actor, Character, Creature, InRoom, Linkdead, OutputHistory, Player, Role, StoredCharacter,
+    Actor, AttemptWalk, Character, Creature, DarkVision, InRoom, Linkdead, OutputHistory, Player, Role, StoredCharacter,
     StoredObject,
 };
-pub use grim_auth::{AuthPlugin, ReservedNamePrefixes};
+pub use grim_auth::{AuthSystems, LoginCredentials, LoginResult, AccessibilityOnboarding, AuthPlugin, CharacterBuildMode, CharacterCreationDefaults, ReservedNamePrefixes};
 pub use grim_channel::LastWhisperFrom;
 pub use grim_config::{ConfigDef, ConfigRegistry, Scope as ConfigScope};
 pub use grim_object::{CarriedBy, Object, ObjectPlugin};
@@ -30,11 +30,12 @@ pub use grim_script::{
 pub use grim_social::{SocialDef, SocialDir, SocialPerformed, SocialRegistry};
 pub use grim_world::{
     render_map, Area, ClassDef, ClassRegistry, Door, Doors, Exits, MapConfig, RaceDef,
-    RaceRegistry, Room, RoomLocation, StartingRoom,
+    RaceRegistry, Room, RoomDarkness, LightSource, RoomLocation, StartingRoom,
 };
 
 // Transport-agnostic networking primitives (Connection + wire events).
 pub use grim_networking::{self as networking, *};
+pub use grim_networking_telnet::{TelnetSystems, TelnetCapabilities, TelnetInput, TelnetOutput};
 
 // The text catalog. `tr` is re-exported at the crate root so `grim::tr` (the
 // function) and `grim::tr!` (the macro, via #[macro_export]) both resolve.

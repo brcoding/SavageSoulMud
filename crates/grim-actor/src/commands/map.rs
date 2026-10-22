@@ -8,7 +8,7 @@ use grim_world::{render_map, Doors, Exits, MapConfig};
 
 use crate::placement::InRoom;
 
-/// `map`: show the area around the actor's room (`@` self, `#` rooms,
+/// `map`: show the area around the actor's room (`@` self, `o` rooms,
 /// `--`/`|` exits, `,`/`'` up/down markers, coloured per
 /// [`grim_world::render_map`]). Reads [`InRoom`] plus the world
 /// topology and answers only the actor via [`InfoMessage`]. An actor with no
@@ -18,8 +18,10 @@ use crate::placement::InRoom;
 pub(crate) fn handle_map(
     mut engine: MessageReader<EngineCommand>,
     inroom: Query<&InRoom>,
+    characters: Query<&crate::Character>,
     exits: Query<(Entity, &Exits)>,
     doors: Query<&Doors>,
+    visibility: crate::visibility::Visibility,
     mut info: MessageWriter<InfoMessage>,
 ) {
     for cmd in engine.read() {
@@ -30,6 +32,7 @@ pub(crate) fn handle_map(
         let Ok(actor_room) = inroom.get(actor) else {
             continue;
         };
+        if !visibility.can_see(actor,actor_room.room) {info.write(InfoMessage{target:actor,text:"It is too dark to read the surroundings. Bring a light or use night vision.".into()});continue;}
         let mut snapshot = HashMap::new();
         for (room, links) in exits.iter() {
             let mut visible = links.exits.clone();
@@ -37,6 +40,14 @@ pub(crate) fn handle_map(
                 visible.retain(|dir, _| !d.doors.get(dir).is_some_and(|door| door.hidden));
             }
             snapshot.insert(room, visible);
+        }
+        if characters.get(actor).is_ok_and(|c| c.config.get("screenreader").is_some_and(|v| v == "on")) {
+            let mut directions: Vec<_> = snapshot.get(&actor_room.room).into_iter().flat_map(|links| links.keys()).copied().collect();
+            directions.sort();
+            let names = directions.iter().map(ToString::to_string).collect::<Vec<_>>();
+            // tr-bypass: accessible structural listing of dynamic exit names.
+            info.write(InfoMessage { target: actor, text: format!("Exits: {}. Use look for room descriptions and doors.\n", if names.is_empty() { "none".to_string() } else { names.join(", ") }) });
+            continue;
         }
         let rows = render_map(actor_room.room, &snapshot, &MapConfig::MAP);
         info.write(InfoMessage {
@@ -96,8 +107,8 @@ mod tests {
         let rows: Vec<&str> = texts[0].lines().collect();
         assert_eq!(rows.len(), 20);
         assert_eq!(rows[10], format!("{:40}{{R@@{{x", ""));
-        assert_eq!(rows[9], format!("{:40}{{8|{{x", ""));
-        assert_eq!(rows[8], format!("{:40}{{w#{{x", ""));
+        assert_eq!(rows[9], format!("{:40}{{w|{{x", ""));
+        assert_eq!(rows[8], format!("{:40}{{go{{x", ""));
     }
 
     #[test]

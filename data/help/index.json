@@ -1,0 +1,985 @@
+[
+  {
+    "id": "getting-started",
+    "title": "Getting started",
+    "category": "Guides",
+    "aliases": [
+      "start",
+      "beginner",
+      "newbie",
+      "welcome"
+    ],
+    "wizard": false,
+    "file": "getting-started.md"
+  },
+  {
+    "id": "accounts",
+    "title": "Accounts and character saving",
+    "category": "Guides",
+    "aliases": [
+      "login",
+      "account",
+      "save",
+      "saving",
+      "autosave",
+      "password"
+    ],
+    "wizard": false,
+    "file": "accounts.md"
+  },
+  {
+    "id": "targeting",
+    "title": "Choosing items and targets",
+    "category": "Guides",
+    "aliases": [
+      "selectors",
+      "target",
+      "targets",
+      "second"
+    ],
+    "wizard": false,
+    "file": "targeting.md"
+  },
+  {
+    "id": "movement",
+    "title": "Movement and exits",
+    "category": "Guides",
+    "aliases": [
+      "directions",
+      "north",
+      "east",
+      "south",
+      "west",
+      "up",
+      "down",
+      "northeast",
+      "northwest",
+      "southeast",
+      "southwest",
+      "n",
+      "e",
+      "s",
+      "w",
+      "u",
+      "d",
+      "ne",
+      "nw",
+      "se",
+      "sw"
+    ],
+    "wizard": false,
+    "file": "movement.md"
+  },
+  {
+    "id": "shops",
+    "title": "Shops and credits",
+    "category": "Guides",
+    "aliases": [
+      "shop",
+      "shopping",
+      "money",
+      "merchant",
+      "trader sam"
+    ],
+    "wizard": false,
+    "file": "shops.md"
+  },
+  {
+    "id": "savage-soul",
+    "title": "Savage Soul character rules",
+    "category": "Guides",
+    "aliases": [
+      "savage soul",
+      "rules",
+      "character",
+      "attributes",
+      "faith"
+    ],
+    "wizard": false,
+    "file": "savage-soul.md"
+  },
+  {
+    "id": "xp",
+    "title": "XP and training costs",
+    "category": "Guides",
+    "aliases": [
+      "experience",
+      "advancement"
+    ],
+    "wizard": false,
+    "file": "xp.md"
+  },
+  {
+    "id": "combat",
+    "title": "Combat basics",
+    "category": "Guides",
+    "aliases": [
+      "fighting",
+      "battle"
+    ],
+    "wizard": false,
+    "file": "combat.md"
+  },
+  {
+    "id": "conditions",
+    "title": "Injury and other conditions",
+    "category": "Guides",
+    "aliases": [
+      "injury",
+      "wounds",
+      "stunned",
+      "unconscious",
+      "critical",
+      "death"
+    ],
+    "wizard": false,
+    "file": "conditions.md"
+  },
+  {
+    "id": "load",
+    "title": "Carried load and equipment",
+    "category": "Guides",
+    "aliases": [
+      "encumbrance",
+      "weight",
+      "gear"
+    ],
+    "wizard": false,
+    "file": "load.md"
+  },
+  {
+    "id": "limitations",
+    "title": "Current implementation limits",
+    "category": "Guides",
+    "aliases": [
+      "unfinished",
+      "features",
+      "quests"
+    ],
+    "wizard": false,
+    "file": "limitations.md"
+  },
+  {
+    "id": "look",
+    "title": "Looking around",
+    "category": "Exploration",
+    "aliases": [],
+    "wizard": false,
+    "file": "look.md"
+  },
+  {
+    "id": "read",
+    "title": "Reading signs",
+    "category": "Exploration",
+    "aliases": [],
+    "wizard": false,
+    "file": "read.md"
+  },
+  {
+    "id": "map",
+    "title": "Local map",
+    "category": "Exploration",
+    "aliases": [],
+    "wizard": false,
+    "file": "map.md"
+  },
+  {
+    "id": "open",
+    "title": "Opening doors",
+    "category": "Exploration",
+    "aliases": [],
+    "wizard": false,
+    "file": "open.md"
+  },
+  {
+    "id": "close",
+    "title": "Closing doors",
+    "category": "Exploration",
+    "aliases": [],
+    "wizard": false,
+    "file": "close.md"
+  },
+  {
+    "id": "recall",
+    "title": "Recall",
+    "category": "Exploration",
+    "aliases": [],
+    "wizard": false,
+    "file": "recall.md"
+  },
+  {
+    "id": "areas",
+    "title": "Area directory",
+    "category": "Exploration",
+    "aliases": [],
+    "wizard": false,
+    "file": "areas.md"
+  },
+  {
+    "id": "inventory",
+    "title": "Your inventory",
+    "category": "Items",
+    "aliases": [
+      "inv"
+    ],
+    "wizard": false,
+    "file": "inventory.md"
+  },
+  {
+    "id": "equipment",
+    "title": "Equipped items",
+    "category": "Items",
+    "aliases": [
+      "eq"
+    ],
+    "wizard": false,
+    "file": "equipment.md"
+  },
+  {
+    "id": "get",
+    "title": "Picking up items",
+    "category": "Items",
+    "aliases": [],
+    "wizard": false,
+    "file": "get.md"
+  },
+  {
+    "id": "drop",
+    "title": "Dropping items",
+    "category": "Items",
+    "aliases": [],
+    "wizard": false,
+    "file": "drop.md"
+  },
+  {
+    "id": "give",
+    "title": "Giving items",
+    "category": "Items",
+    "aliases": [],
+    "wizard": false,
+    "file": "give.md"
+  },
+  {
+    "id": "steal",
+    "title": "Taking another player's items",
+    "category": "Items",
+    "aliases": [],
+    "wizard": false,
+    "file": "steal.md"
+  },
+  {
+    "id": "list",
+    "title": "Merchant stock",
+    "category": "Shops",
+    "aliases": [],
+    "wizard": false,
+    "file": "list.md"
+  },
+  {
+    "id": "buy",
+    "title": "Buying items",
+    "category": "Shops",
+    "aliases": [],
+    "wizard": false,
+    "file": "buy.md"
+  },
+  {
+    "id": "sell",
+    "title": "Selling items",
+    "category": "Shops",
+    "aliases": [],
+    "wizard": false,
+    "file": "sell.md"
+  },
+  {
+    "id": "credits",
+    "title": "Your credit balance",
+    "category": "Shops",
+    "aliases": [],
+    "wizard": false,
+    "file": "credits.md"
+  },
+  {
+    "id": "drink",
+    "title": "Drinking water",
+    "category": "Items",
+    "aliases": [],
+    "wizard": false,
+    "file": "drink.md"
+  },
+  {
+    "id": "eat",
+    "title": "Eating food",
+    "category": "Items",
+    "aliases": [],
+    "wizard": false,
+    "file": "eat.md"
+  },
+  {
+    "id": "score",
+    "title": "Your character sheet",
+    "category": "Savage Soul",
+    "aliases": [
+      "stats"
+    ],
+    "wizard": false,
+    "file": "score.md"
+  },
+  {
+    "id": "train",
+    "title": "Training attributes",
+    "category": "Savage Soul",
+    "aliases": [],
+    "wizard": false,
+    "file": "train.md"
+  },
+  {
+    "id": "pecs",
+    "title": "Peculiarity list",
+    "category": "Savage Soul",
+    "aliases": [
+      "peculiarities"
+    ],
+    "wizard": false,
+    "file": "pecs.md"
+  },
+  {
+    "id": "learn",
+    "title": "Learning Peculiarities",
+    "category": "Savage Soul",
+    "aliases": [],
+    "wizard": false,
+    "file": "learn.md"
+  },
+  {
+    "id": "wield",
+    "title": "Wielding a weapon",
+    "category": "Savage Soul",
+    "aliases": [],
+    "wizard": false,
+    "file": "wield.md"
+  },
+  {
+    "id": "wear",
+    "title": "Wearing armor",
+    "category": "Savage Soul",
+    "aliases": [],
+    "wizard": false,
+    "file": "wear.md"
+  },
+  {
+    "id": "remove",
+    "title": "Removing equipment",
+    "category": "Savage Soul",
+    "aliases": [],
+    "wizard": false,
+    "file": "remove.md"
+  },
+  {
+    "id": "attack",
+    "title": "Attacking a creature",
+    "category": "Savage Soul",
+    "aliases": [
+      "kill"
+    ],
+    "wizard": false,
+    "file": "attack.md"
+  },
+  {
+    "id": "stop",
+    "title": "Stopping combat",
+    "category": "Savage Soul",
+    "aliases": [],
+    "wizard": false,
+    "file": "stop.md"
+  },
+  {
+    "id": "defend",
+    "title": "Defense policy",
+    "category": "Savage Soul",
+    "aliases": [],
+    "wizard": false,
+    "file": "defend.md"
+  },
+  {
+    "id": "rest",
+    "title": "Resting while winded",
+    "category": "Savage Soul",
+    "aliases": [],
+    "wizard": false,
+    "file": "rest.md"
+  },
+  {
+    "id": "recover",
+    "title": "Recovering from stun",
+    "category": "Savage Soul",
+    "aliases": [],
+    "wizard": false,
+    "file": "recover.md"
+  },
+  {
+    "id": "task",
+    "title": "Making a task check",
+    "category": "Savage Soul",
+    "aliases": [
+      "checks",
+      "roll"
+    ],
+    "wizard": false,
+    "file": "task.md"
+  },
+  {
+    "id": "exchange",
+    "title": "Exchanging early XP for credits",
+    "category": "Savage Soul",
+    "aliases": [],
+    "wizard": false,
+    "file": "exchange.md"
+  },
+  {
+    "id": "who",
+    "title": "Online players",
+    "category": "Social",
+    "aliases": [],
+    "wizard": false,
+    "file": "who.md"
+  },
+  {
+    "id": "wizlist",
+    "title": "Wizard list",
+    "category": "Social",
+    "aliases": [],
+    "wizard": false,
+    "file": "wizlist.md"
+  },
+  {
+    "id": "where",
+    "title": "Player locations",
+    "category": "Social",
+    "aliases": [],
+    "wizard": false,
+    "file": "where.md"
+  },
+  {
+    "id": "finger",
+    "title": "Character information",
+    "category": "Social",
+    "aliases": [],
+    "wizard": false,
+    "file": "finger.md"
+  },
+  {
+    "id": "afk",
+    "title": "Away status",
+    "category": "Social",
+    "aliases": [],
+    "wizard": false,
+    "file": "afk.md"
+  },
+  {
+    "id": "title",
+    "title": "Who-list title",
+    "category": "Social",
+    "aliases": [],
+    "wizard": false,
+    "file": "title.md"
+  },
+  {
+    "id": "desc",
+    "title": "Character description",
+    "category": "Social",
+    "aliases": [
+      "description"
+    ],
+    "wizard": false,
+    "file": "desc.md"
+  },
+  {
+    "id": "say",
+    "title": "Speaking in your room",
+    "category": "Social",
+    "aliases": [],
+    "wizard": false,
+    "file": "say.md"
+  },
+  {
+    "id": "yell",
+    "title": "Yelling",
+    "category": "Social",
+    "aliases": [],
+    "wizard": false,
+    "file": "yell.md"
+  },
+  {
+    "id": "ooc",
+    "title": "Out-of-character chat",
+    "category": "Social",
+    "aliases": [],
+    "wizard": false,
+    "file": "ooc.md"
+  },
+  {
+    "id": "channel",
+    "title": "Named channels",
+    "category": "Social",
+    "aliases": [
+      "channels"
+    ],
+    "wizard": false,
+    "file": "channel.md"
+  },
+  {
+    "id": "tell",
+    "title": "Private messages",
+    "category": "Social",
+    "aliases": [
+      "whisper"
+    ],
+    "wizard": false,
+    "file": "tell.md"
+  },
+  {
+    "id": "reply",
+    "title": "Replying privately",
+    "category": "Social",
+    "aliases": [],
+    "wizard": false,
+    "file": "reply.md"
+  },
+  {
+    "id": "socials",
+    "title": "Social gestures",
+    "category": "Social",
+    "aliases": [
+      "grin",
+      "smile",
+      "wave",
+      "laugh",
+      "nod",
+      "bow",
+      "chuckle",
+      "cry",
+      "dance",
+      "hug",
+      "kiss",
+      "shrug",
+      "sigh",
+      "wink"
+    ],
+    "wizard": false,
+    "file": "socials.md"
+  },
+  {
+    "id": "config",
+    "title": "Display settings",
+    "category": "Interface",
+    "aliases": [
+      "settings",
+      "minimap"
+    ],
+    "wizard": false,
+    "file": "config.md"
+  },
+  {
+    "id": "help",
+    "title": "Using help",
+    "category": "Interface",
+    "aliases": [],
+    "wizard": false,
+    "file": "help.md"
+  },
+  {
+    "id": "command-list",
+    "title": "Available commands",
+    "category": "Interface",
+    "aliases": [
+      "command list"
+    ],
+    "wizard": false,
+    "file": "command-list.md"
+  },
+  {
+    "id": "quit",
+    "title": "Logging out",
+    "category": "Interface",
+    "aliases": [
+      "exit",
+      "logout"
+    ],
+    "wizard": false,
+    "file": "quit.md"
+  },
+  {
+    "id": "soulheal",
+    "title": "Wizard recovery",
+    "category": "Wizard",
+    "aliases": [],
+    "wizard": true,
+    "file": "soulheal.md"
+  },
+  {
+    "id": "awardxp",
+    "title": "Granting XP",
+    "category": "Wizard",
+    "aliases": [],
+    "wizard": true,
+    "file": "awardxp.md"
+  },
+  {
+    "id": "goto",
+    "title": "Wizard teleport",
+    "category": "Wizard",
+    "aliases": [],
+    "wizard": true,
+    "file": "goto.md"
+  },
+  {
+    "id": "gecho",
+    "title": "Global announcement",
+    "category": "Wizard",
+    "aliases": [],
+    "wizard": true,
+    "file": "gecho.md"
+  },
+  {
+    "id": "sockets",
+    "title": "Connected sessions",
+    "category": "Wizard",
+    "aliases": [],
+    "wizard": true,
+    "file": "sockets.md"
+  },
+  {
+    "id": "wiznet",
+    "title": "Wizard notifications",
+    "category": "Wizard",
+    "aliases": [],
+    "wizard": true,
+    "file": "wiznet.md"
+  },
+  {
+    "id": "ban",
+    "title": "Managing bans",
+    "category": "Wizard",
+    "aliases": [],
+    "wizard": true,
+    "file": "ban.md"
+  },
+  {
+    "id": "shutdown",
+    "title": "Server shutdown",
+    "category": "Wizard",
+    "aliases": [],
+    "wizard": true,
+    "file": "shutdown.md"
+  },
+  {
+    "id": "reboot",
+    "title": "Cold server restart",
+    "category": "Wizard",
+    "aliases": [],
+    "wizard": true,
+    "file": "reboot.md"
+  },
+  {
+    "id": "copyover",
+    "title": "Restart with connected sessions",
+    "category": "Wizard",
+    "aliases": [],
+    "wizard": true,
+    "file": "copyover.md"
+  },
+  {
+    "id": "disarm",
+    "title": "Disarming traps and searching the inn desk",
+    "category": "Items",
+    "aliases": [
+      "drawer",
+      "desk",
+      "containers"
+    ],
+    "wizard": false,
+    "file": "disarm.md"
+  },
+  {
+    "id": "royal-oak-gate",
+    "title": "The south gate of Royal Oak",
+    "category": "Exploration",
+    "aliases": [
+      "south gate",
+      "city gate",
+      "gate"
+    ],
+    "file": "royal-oak-gate.md",
+    "wizard": false
+  },
+  {
+    "id": "wraith",
+    "title": "Savior of Royal Oak and the Archwraith",
+    "category": "Guides",
+    "aliases": [
+      "archwraith",
+      "savior",
+      "escape quest",
+      "mist dagger",
+      "marsh"
+    ],
+    "file": "wraith.md",
+    "wizard": false
+  },
+  {
+    "id": "activate",
+    "title": "Activating your Soulboy",
+    "category": "Interface",
+    "aliases": [
+      "soulboy"
+    ],
+    "file": "activate.md",
+    "wizard": false
+  },
+  {
+    "id": "trample",
+    "title": "Trampling a much smaller creature",
+    "category": "Savage Soul",
+    "aliases": [
+      "stomp"
+    ],
+    "file": "trample.md",
+    "wizard": false
+  },
+  {
+    "id": "screenreader",
+    "title": "Screen reader and accessibility",
+    "category": "Settings",
+    "file": "screenreader.md",
+    "aliases": [
+      "accessibility",
+      "blind"
+    ]
+  },
+  {
+    "id": "combatlog",
+    "title": "Combat log detail",
+    "category": "Settings",
+    "file": "combatlog.md",
+    "aliases": []
+  },
+  {
+    "id": "prompt",
+    "title": "Configurable prompts",
+    "category": "Settings",
+    "file": "prompt.md",
+    "aliases": []
+  },
+  {
+    "id": "corpses",
+    "title": "Corpses and dropped belongings",
+    "category": "Combat",
+    "file": "corpses.md",
+    "aliases": [
+      "corpse",
+      "body",
+      "remains",
+      "loot"
+    ]
+  },
+  {
+    "id": "condition",
+    "title": "Item condition and wear",
+    "category": "Items",
+    "file": "condition.md",
+    "aliases": [
+      "quality",
+      "durability",
+      "wear and tear"
+    ]
+  },
+  {
+    "id": "spawns",
+    "title": "NPC spawn tracking and movement",
+    "category": "Wizard",
+    "file": "spawns.md",
+    "aliases": [
+      "population",
+      "respawn",
+      "respawns",
+      "wandering"
+    ],
+    "wizard": true
+  },
+  {
+    "id": "medical-table",
+    "title": "Medical table regeneration",
+    "category": "Survival",
+    "file": "medical-table.md",
+    "aliases": [
+      "put",
+      "place",
+      "regeneration",
+      "healing",
+      "sit",
+      "lie",
+      "lay"
+    ]
+  },
+  {
+    "category": "Movement",
+    "id": "stand",
+    "aliases": [
+      "stand up"
+    ],
+    "file": "stand.md",
+    "title": "Standing up"
+  },
+  {
+    "id": "hack",
+    "title": "Hacking terminals",
+    "category": "Commands",
+    "file": "hack.md",
+    "aliases": [
+      "hacking",
+      "terminal"
+    ]
+  },
+  {
+    "id": "editor",
+    "title": "Wizard browser editor",
+    "category": "Wizard",
+    "file": "editor.md",
+    "aliases": [
+      "web-editor",
+      "builder"
+    ],
+    "wizard": true
+  },
+  {
+    "id": "editor-map",
+    "title": "Wizard atlas and exit diagnostics",
+    "category": "Wizard",
+    "file": "editor-map.md",
+    "aliases": [
+      "atlas",
+      "map-editor"
+    ],
+    "wizard": true
+  },
+  {
+    "id": "crafting",
+    "title": "Crafting and reductions",
+    "category": "Commands",
+    "aliases": [
+      "craft",
+      "reduce",
+      "recipes",
+      "reductions",
+      "resources"
+    ],
+    "wizard": false,
+    "file": "crafting.md"
+  },
+  {
+    "id": "morlock-lenses",
+    "title": "The Morlock optical machine",
+    "category": "Exploration",
+    "file": "morlock-lenses.md",
+    "aliases": [
+      "press",
+      "lenses",
+      "morlock machine"
+    ]
+  },
+  {
+    "id": "intermud",
+    "title": "Intermud-3 network",
+    "category": "Wizard",
+    "file": "intermud.md",
+    "aliases": [
+      "i3",
+      "imud",
+      "intermud3",
+      "intermud activity",
+      "intermud recent"
+    ],
+    "wizard": true
+  },
+  {
+    "id": "ask",
+    "title": "Talking to Tully and trainers",
+    "category": "Commands",
+    "aliases": [
+      "talk",
+      "tully",
+      "trainer",
+      "trainers"
+    ],
+    "wizard": false,
+    "file": "ask.md"
+  },
+  {
+    "id": "zebedee",
+    "title": "Zebedee intermud",
+    "category": "Wizard",
+    "aliases": [
+      "i2"
+    ],
+    "wizard": true,
+    "file": "zebedee.md"
+  },
+  {
+    "id": "protocols",
+    "title": "Mudlet and client protocols",
+    "category": "Commands",
+    "aliases": [
+      "mudlet",
+      "gmcp",
+      "msdp",
+      "tls",
+      "msp",
+      "mxp",
+      "mmcp"
+    ],
+    "wizard": false,
+    "file": "protocols.md"
+  },
+  {
+    "id": "grapevine",
+    "title": "Grapevine network",
+    "category": "Wizard",
+    "aliases": [
+      "gv"
+    ],
+    "wizard": true,
+    "file": "grapevine.md"
+  },
+  {
+    "id": "races",
+    "title": "Races, species templates and disadvantages",
+    "category": "Character",
+    "aliases": [
+      "race",
+      "species",
+      "android",
+      "replicant",
+      "morlock",
+      "gurnin",
+      "tater",
+      "poleepkwa",
+      "sheltie",
+      "buyoff"
+    ],
+    "file": "races.md"
+  },
+  {
+    "id": "creator",
+    "title": "Med-bay character creator",
+    "category": "Character",
+    "aliases": [
+      "rebuild",
+      "respec",
+      "genetics",
+      "race change"
+    ],
+    "wizard": false,
+    "file": "creator.md"
+  }
+]

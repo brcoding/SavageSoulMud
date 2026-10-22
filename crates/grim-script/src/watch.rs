@@ -299,6 +299,7 @@ mod tests {
             .world_mut()
             .spawn((
                 Character {
+                    credits: 100,
                     id: grim_core::id::GrimId::new(),
                     account_id: grim_core::id::GrimId::new(),
                     created_at: chrono::Utc::now(),
@@ -308,6 +309,7 @@ mod tests {
                     title: None,
                     restrings: Default::default(),
                     config: Default::default(),
+                    game_state: Default::default(),
                 },
                 GrimName("Root".into()),
                 Player { connection: conn },
@@ -548,6 +550,7 @@ mod tests {
         app.world_mut().spawn((
             GrimName("Gone".into()),
             Character {
+                credits: 100,
                 id: grim_core::id::GrimId::new(),
                 account_id: grim_core::id::GrimId::new(),
                 created_at: chrono::Utc::now(),
@@ -557,6 +560,7 @@ mod tests {
                 title: None,
                 restrings: Default::default(),
                 config: Default::default(),
+                game_state: Default::default(),
             },
         ));
         spawned_character(&mut app, Vec::new());

@@ -1,0 +1,44 @@
+{
+  "id": "XUVi15m2nDVf",
+  "slug": "whisperwood",
+  "name": "Whisperwood",
+  "canonical": true,
+  "rooms": [
+    {
+      "id": "PCjTmircfbBy",
+      "slug": "forest-edge",
+      "name": "Forest Edge",
+      "description": "The dirt road ends at a dark treeline.\nPine and oak crowd close, and birdsong gives way to hush.\nThe valley road runs west, and a game trail winds east deeper\ninto the woods.",
+      "exits": { "west": "776t3azrMoy7", "east": "SEILGu9BLZZy" }
+    },
+    {
+      "id": "SEILGu9BLZZy",
+      "slug": "forest-heart",
+      "name": "Forest Heart",
+      "description": "Ancient trunks crowd close, and the light falls green.\nThe trail runs west back toward the valley and east to a\nquiet clearing.",
+      "exits": { "west": "PCjTmircfbBy", "east": "V3oh0CMpaVnG" }
+    },
+    {
+      "id": "V3oh0CMpaVnG",
+      "slug": "forest-clearing",
+      "name": "Forest Clearing",
+      "description": "A quiet clearing opens to the sky.\nWildflowers nod among the stumps of fallen trees, and the\nheart of the forest lies west. Brambles pile thick to the\nsouth, half-hiding a dark cleft in the rock.",
+      "exits": { "west": "SEILGu9BLZZy", "south": "3LkS9BI2fTMu" }
+    },
+    {
+      "id": "3LkS9BI2fTMu",
+      "slug": "bear-cavern",
+      "name": "Bear Cavern",
+      "description": "A shallow cavern reeks of musk and old bones.\nScratched earth and a trampled nest fill the back. The forest\nclearing lies north — and something large is breathing in the dark.",
+      "exits": { "north": "V3oh0CMpaVnG" },
+      "npcs": [
+        {
+          "name": "Old Cave Bear",
+          "description": ["A massive bear with a scarred muzzle and matted dark fur.", "It watches you warily, guarding its den."],
+          "keywords": ["bear", "cave", "old"],
+          "room_description": "A massive bear lurks here, guarding the cavern."
+        }
+      ]
+    }
+  ]
+}

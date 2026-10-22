@@ -32,6 +32,9 @@ pub struct ConnectionResumed {
 pub struct HandoverEntry {
     pub character: String,
     pub echo_hidden: bool,
+    /// Original client address, including when a trusted TLS proxy terminates TCP.
+    #[serde(default)]
+    pub peer_addr: Option<SocketAddr>,
 }
 
 /// The out-of-band payload sent alongside the live socket fds during a copyover.

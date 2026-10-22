@@ -24,7 +24,7 @@ pub(crate) type RoomLinks<'w, 's> = Query<'w, 's, (Entity, &'static Exits, Optio
 
 /// Split a room's exits into the open directions, the closed-door
 /// directions, and the closed-secret directions. All three lists sort in
-/// `Cardinal` display order (north, east, south, west, up, down) via the
+/// `Cardinal` display order (north, east, south, west, up, down, diagonals) via the
 /// derived `Ord`. An *open* hidden door lists under Exits like any open
 /// door; only a *closed* secret hides in `secret` — and only for admins
 /// (players get an empty secret list, so no heading renders). Discovery of
@@ -57,20 +57,34 @@ fn partition_exits(
     (names(open), names(closed), names(secret))
 }
 
-/// One listing direction with its compass colour: north `{R`, south `{r`,
-/// east `{M`, west `{m`, up `{Y`, down `{y` (the MUD's compass palette),
-/// each self-terminated with `{x` so joined runs never bleed into the
-/// label punctuation or each other.
+/// Room exit directions use the original Savage Soul green palette. Reset
+/// each name so the colour never bleeds into labels or the next listing.
 fn colored_direction(dir: &grim_core::cardinal::Cardinal) -> String {
-    let code = match dir {
-        grim_core::cardinal::Cardinal::North => "{R",
-        grim_core::cardinal::Cardinal::South => "{r",
-        grim_core::cardinal::Cardinal::East => "{M",
-        grim_core::cardinal::Cardinal::West => "{m",
-        grim_core::cardinal::Cardinal::Up => "{Y",
-        grim_core::cardinal::Cardinal::Down => "{y",
-    };
-    format!("{code}{dir}{{x")
+    format!("{{g{dir}{{x")
+}
+
+/// Colour only the NPC's name when its authored room line contains it.
+/// ASCII case folding preserves UTF-8 byte boundaries and existing colour escapes.
+fn creature_line(name: &str, line: &str) -> String {
+    let escaped = grim_color::escape_codes(name);
+    if !escaped.is_empty() {
+        let folded = line.to_ascii_lowercase();
+        for (start, _) in folded.match_indices(&escaped.to_ascii_lowercase()) {
+            let end = start + escaped.len();
+            let (Some(before), Some(name), Some(after)) = (line.get(..start), line.get(start..end), line.get(end..)) else { continue; };
+            // A rat's name must not highlight the middle of "scratches".
+            if before.chars().next_back().is_some_and(char::is_alphanumeric)
+                || after.chars().next().is_some_and(char::is_alphanumeric) { continue; }
+            let prefix = before.to_ascii_lowercase();
+            let article = ["a ", "an ", "the "].iter().any(|a| prefix.starts_with(a));
+            if article && before.chars().count() <= 50
+                && before.chars().all(|c| c.is_alphabetic() || matches!(c, ' ' | '-' | '\'')) {
+                return format!("{{G{before}{name}{{x{after}");
+            }
+            return format!("{before}{{G{name}{{x{after}");
+        }
+    }
+    format!("{{G{line}{{x")
 }
 
 #[allow(clippy::too_many_arguments)]
@@ -81,13 +95,19 @@ pub(crate) fn emit_look_room(
     room_exits: &RoomLinks,
     characters: &Query<&Character>,
     clients: &Query<&Client>,
+    terminals: &Query<&grim_networking::TerminalSize>,
     linkdead_chars: &Query<&Linkdead>,
     config_registry: &ConfigRegistry,
+    visibility: &grim_actor::visibility::Visibility,
     outputs: &mut MessageWriter<ConnectionOutput>,
 ) {
     let Ok((_, room, name)) = rooms.get(ev.room) else {
         return;
     };
+    if !visibility.can_see(ev.target,ev.room) {
+        outputs.write(ConnectionOutput::new(find_conn(ev.target,room_occupants),"It is too dark to see. Bring a light or use night vision.\n"));
+        return;
+    }
     // Admins see the room's ids in the title plus the hidden exits under
     // `Secret:`; players see neither.
     let is_admin = characters
@@ -101,23 +121,25 @@ pub(crate) fn emit_look_room(
         .unwrap_or_default();
     let presence = collect_presence(
         ev.room,
+        &room.id.to_string(),
         ev.target,
         room_occupants,
         characters,
         clients,
         linkdead_chars,
     );
+    let screenreader = characters.get(ev.target).is_ok_and(|c| c.config.get("screenreader").is_some_and(|v| v == "on"));
     let grim = room.id.to_string();
     let title = formatter::room_title(
         &name.0,
-        is_admin.then_some(formatter::RoomDebugIds {
+        (is_admin && !screenreader).then_some(formatter::RoomDebugIds {
             entity: ev.room.to_bits(),
             grim: &grim,
             slug: &room.friendly_id,
         }),
     );
     let conn = find_conn(ev.target, room_occupants);
-    let body = formatter::format_room(
+    let mut body = formatter::format_room(
         &title,
         &room.description,
         &exits,
@@ -125,11 +147,16 @@ pub(crate) fn emit_look_room(
         is_admin.then_some(secret.as_slice()),
         &presence,
     );
+    if screenreader {
+        // Preserve descriptions, exits and presence; avoid empty headings and
+        // debug noise that otherwise dominate spoken room navigation.
+        body = body.replace("  Doors: none", "").replace("  Secret: none", "").replace("\n\n", "\n");
+    }
     // Minimap: the same renderer as `map` on the small canvas, stapled left
     // when the looker's resolved `minimap` setting is on. Actors without a
     // `Character` and unseeded registries (unit tests) keep the map, matching
     // the pre-toggle behavior.
-    let minimap_on = characters
+    let minimap_on = !screenreader && characters
         .get(ev.target)
         .map(|c| {
             config_registry
@@ -151,7 +178,8 @@ pub(crate) fn emit_look_room(
             snapshot.insert(room_entity, visible);
         }
         let map_rows = render_map(ev.room, &snapshot, &MapConfig::MINIMAP);
-        formatter::staple_minimap(&map_rows, &body)
+        let width = terminals.get(conn).map(|size| usize::from(size.columns)).unwrap_or(80);
+        formatter::staple_minimap_width(&map_rows, &body, width)
     } else {
         body
     };
@@ -171,6 +199,7 @@ pub(crate) fn emit_look_room(
 #[allow(clippy::too_many_arguments)]
 fn collect_presence(
     room: Entity,
+    room_id: &str,
     target: Entity,
     room_occupants: &Occupants,
     characters: &Query<&Character>,
@@ -190,7 +219,14 @@ fn collect_presence(
         let Ok((_, _, player, occ_name, room_line, is_object)) = room_occupants.get(e) else {
             continue;
         };
-        if characters.get(e).is_ok() {
+        if let Ok(character)=characters.get(e) {
+            if character.game_state.get("posture_room").and_then(|v|v.as_str())==Some(room_id) {
+                if let Some(posture)=character.game_state.get("posture_display").and_then(|v|v.as_str()) {
+                    let suffix=if linkdead_chars.get(e).is_ok(){" (linkdead)"}else if player.and_then(|p|clients.iter().find(|c|c.connection==p.connection)).is_some_and(|c|c.afk){" (AFK)"}else{""};
+                    players.push((occ_name.0.clone(),format!("{} is {}{}.",grim_color::escape_codes(&occ_name.0),grim_color::escape_codes(posture),suffix)));
+                    continue;
+                }
+            }
             // Linkdead dominates (a linkdead character has no session, so it
             // can never also be AFK); otherwise an AFK session reads marked.
             // Literal keys (not a variable): the tr-coverage check resolves
@@ -240,8 +276,11 @@ fn collect_presence(
     objects.sort();
     players
         .into_iter()
-        .chain(creatures)
-        .chain(objects)
+        .chain(creatures.into_iter().map(|(name, line)| {
+            let rendered = creature_line(&name, &line);
+            (name, rendered)
+        }))
+        .chain(objects.into_iter().map(|(name, line)| (name, format!("{{m{line}{{x"))))
         .map(|(_, line)| line)
         .collect()
 }
@@ -250,17 +289,27 @@ pub(crate) fn emit_look_entity(
     ev: &LookEntity,
     room_occupants: &Occupants,
     names: &Query<&GrimName>,
-    descriptions: &Query<&Description>,
+    descriptions: &Query<(Option<&Description>, Option<&grim_core::components::ItemCondition>, Option<&grim_object::Object>)>,
+    visibility: &grim_actor::visibility::Visibility,
     outputs: &mut MessageWriter<ConnectionOutput>,
 ) {
+    if ev.subject!=ev.target && room_occupants.get(ev.subject).is_ok() && room_occupants.get(ev.target).is_ok_and(|(_,r,..)|!visibility.can_see(ev.target,r.room)) {
+        outputs.write(ConnectionOutput::new(find_conn(ev.target,room_occupants),"It is too dark to see that.\n"));
+        return;
+    }
     let Ok(subj_name) = names.get(ev.subject) else {
         return;
     };
     // Entries hold no newlines themselves; each warrants one between them.
-    let desc = descriptions
+    let mut desc = descriptions
         .get(ev.subject)
-        .map(|d| d.0.join("\n"))
+        .map(|(d,_,_)| d.map(|d|d.0.join("\n")).unwrap_or_default())
         .unwrap_or_default();
+    if let Ok((_, condition, Some(_)))=descriptions.get(ev.subject) {
+        let label=condition.cloned().unwrap_or_default();
+        if !desc.is_empty(){desc.push('\n');}
+        desc.push_str(&format!("Condition: {}.",label.label()));
+    }
     let conn = find_conn(ev.target, room_occupants);
     outputs.write(ConnectionOutput {
         echo: None,

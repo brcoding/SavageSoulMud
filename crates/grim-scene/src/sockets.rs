@@ -48,6 +48,7 @@ fn client_state_label(state: &ClientState) -> String {
         ClientState::SelectRace { .. } => tr!("sockets.state.race"),
         ClientState::SelectClass { .. } => tr!("sockets.state.class"),
         ClientState::MotdPrompt => tr!("sockets.state.motd"),
+        ClientState::AccessibilityPrompt => "Accessibility".into(),
     }
 }
 

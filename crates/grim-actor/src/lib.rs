@@ -36,3 +36,6 @@ pub use player::{Linkdead, OutputHistory, Player};
 pub use plugin::ActorPlugin;
 pub use stored::{StoredCharacter, StoredObject};
 pub use transition::{AttemptEnter, AttemptLeave, AttemptWalk, Enter, Leave};
+
+pub mod visibility;
+pub use visibility::DarkVision;

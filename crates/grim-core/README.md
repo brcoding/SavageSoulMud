@@ -55,9 +55,15 @@ This crate owns no `Resource`s — `StartingRoom` moved to `grim-world` in Place
 | `ServerBroadcast` | Message | `src/events.rs` |
 | `CopyoverDue` | Message (an expired in-game `copyover` countdown asks the telnet transport to hand off) | `src/events.rs` |
 
-- Also defines non-ECS value types: `Command` (plus the `ban` vocabulary `BanKind`/`BanOp`) and `ClientState` (`src/events.rs` / `src/components.rs`), `Gender` (`src/character.rs`), `Cardinal` (`src/cardinal.rs` — variant order is the display order, north/east/south/west/up/down, via derived `Ord`), and `GrimId` (base62 ×12 id, `src/id.rs`). (`RoomLocation` moved to `grim-world` in Placement Phase 2a step 3.) A `prelude` re-exports the common set; `src/color.rs` re-exports `grim-color` so `grim::color::*` keeps resolving.
+- Also defines non-ECS value types: `Command` (plus the `ban` vocabulary `BanKind`/`BanOp`) and `ClientState` (`src/events.rs` / `src/components.rs`), `Gender` (`src/character.rs`), `Cardinal` (`src/cardinal.rs` — variant order is the display order, north/east/south/west/up/down followed by northeast/northwest/southeast/southwest, via derived `Ord`), and `GrimId` (base62 ×12 id, `src/id.rs`). (`RoomLocation` moved to `grim-world` in Placement Phase 2a step 3.) A `prelude` re-exports the common set; `src/color.rs` re-exports `grim-color` so `grim::color::*` keeps resolving.
 - The events named `SayEvent`/`MoveEvent`/etc. are **facts only** — there is no attempt/fact split yet, so nothing can veto them (ARCHITECTURE.md §6, §8).
 - Called a "god-types crate" in ARCHITECTURE.md §8: colour, `tr`, the command registry, and wire types have already been split out; game events + components are what remain. Expect this crate to shrink over time — improve over time.
 
 ---
 *Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
+
+`Command::Help { topic }` carries an editable game-help request; content is owned by the game plugin.
+
+`components::ItemCondition` is optional per-instance quality data with relative labels. `ItemDecay` carries absolute start/expiry seconds; game plugins own decay policy and scheduling. Neither type persists runtime entity IDs.
+
+CarriedBy is the single shared placement type in components.rs, reexported by grim-object. This transitional ownership lets actor look inspect its own pack without an actor-to-object dependency.

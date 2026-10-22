@@ -44,3 +44,5 @@ Player-facing verbs and where to find their handlers.
 
 ---
 *Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
+
+`AttemptWalk` is re-exported from grim-actor so game plugins can guard recovered callback exits using the existing synchronous observer seam.

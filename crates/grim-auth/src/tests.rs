@@ -16,7 +16,7 @@ use grim_networking::{
     Connection, ConnectionEstablished, ConnectionInput, ConnectionOutput, DisconnectRequest,
     WiznetAlert, WiznetCategory,
 };
-use grim_persistence::{BanList, PersistenceConfig, PersistencePlugin};
+use grim_persistence::{load_character_by_name, BanList, PersistenceConfig, PersistencePlugin};
 use grim_world::{ClassRegistry, RaceRegistry, Room, StartingRoom, WorldPlugin};
 use std::net::SocketAddr;
 
@@ -185,6 +185,7 @@ mod reconnect {
 
         let char_uuid = GrimId::new();
         let stored = StoredCharacter {
+            credits: 100,
             id: char_uuid,
             name: "Test".into(),
             account_id,
@@ -198,6 +199,7 @@ mod reconnect {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         };
         let (name, actor, character) = stored.into_components();
@@ -333,6 +335,7 @@ mod reconnect {
         app.world_mut().spawn(account);
 
         let stored = StoredCharacter {
+            credits: 100,
             id: char_uuid,
             name: "Test".into(),
             account_id,
@@ -346,6 +349,7 @@ mod reconnect {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         };
         let (name, actor, character) = stored.into_components();
@@ -468,6 +472,7 @@ mod reconnect {
         // Both copies share the character shape and differ only by id + build —
         // build them from one closure to keep the test flat.
         let make_char = |id: GrimId, race: &str, class: &str| StoredCharacter {
+            credits: 100,
             id,
             name: "Test".into(),
             account_id: account_uuid,
@@ -481,6 +486,7 @@ mod reconnect {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         };
 
@@ -587,6 +593,7 @@ mod reconnect {
         // Both entities share the same character shape (name/account/build) and
         // differ only by id — build them from one closure to keep the test flat.
         let make_char = |id: GrimId| StoredCharacter {
+            credits: 100,
             id,
             name: "Test".into(),
             account_id: account_uuid,
@@ -600,6 +607,7 @@ mod reconnect {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         };
 
@@ -695,6 +703,7 @@ mod reconnect {
         // Also present on disk (as save-on-disconnect would leave it) to prove
         // reconnect reuses the resident entity rather than spawning a disk copy.
         let ch = StoredCharacter {
+            credits: 100,
             id: char_id,
             name: "Linky".into(),
             account_id,
@@ -708,6 +717,7 @@ mod reconnect {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         };
         write_disk_char(&dir, &ch);
@@ -791,6 +801,8 @@ mod ordering {
             .add_message::<ConnectionInput>()
             .add_message::<WiznetAlert>()
             .add_systems(Update, handle_connection_established)
+            .add_message::<crate::LoginCredentials>()
+            .add_message::<crate::LoginResult>()
             .add_systems(Update, handle_pregame_input);
         // The greeter's throttle gate reads these directly (no AuthPlugin
         // in this ordering experiment, so they are seeded by hand).
@@ -1030,6 +1042,7 @@ mod login_flow {
         let account_id = account.id;
         app.world_mut().spawn(account);
         let stored = StoredCharacter {
+            credits: 100,
             id: GrimId::new(),
             name: "Gwen".into(),
             account_id,
@@ -1043,6 +1056,7 @@ mod login_flow {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         };
         let (name, actor, character) = stored.into_components();
@@ -1642,6 +1656,7 @@ mod character_select {
         // Spawn 3 characters (sorted C1, C2, C3 alphabetically by name)
         for (i, cid) in char_ids.iter().enumerate() {
             let (name, actor, character) = StoredCharacter {
+                credits: 100,
                 id: *cid,
                 name: format!("C{}", i + 1),
                 account_id,
@@ -1655,6 +1670,7 @@ mod character_select {
                 title: None,
                 restrings: std::collections::HashMap::new(),
                 config: std::collections::HashMap::new(),
+                game_state: Default::default(),
                 inventory: Vec::new(),
             }
             .into_components();
@@ -1734,6 +1750,7 @@ mod character_select {
 
         // Spawn linkdead character
         let (name, actor, character) = StoredCharacter {
+            credits: 100,
             id: char_uuid,
             name: "Linky".into(),
             account_id,
@@ -1747,6 +1764,7 @@ mod character_select {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         }
         .into_components();
@@ -1809,6 +1827,7 @@ mod character_select {
             created_at: Utc::now(),
         });
         let (name, actor, character) = StoredCharacter {
+            credits: 100,
             id: char_a,
             name: "Aragorn".into(),
             account_id: account_a_id,
@@ -1822,6 +1841,7 @@ mod character_select {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         }
         .into_components();
@@ -1965,7 +1985,7 @@ mod connection {
         assert!(
             outputs
                 .iter()
-                .any(|o| o.connection == conn && o.text.contains("______")),
+                .any(|o| o.connection == conn && o.text.contains("tRBR.") && o.text.contains("Scorched Earth")),
             "Banner should contain ASCII art"
         );
         assert!(
@@ -2004,6 +2024,7 @@ mod disk_lifecycle {
         write_disk_char(
             &dir,
             &StoredCharacter {
+                credits: 100,
                 id: char_id,
                 name: "Disky".into(),
                 account_id,
@@ -2017,6 +2038,7 @@ mod disk_lifecycle {
                 title: None,
                 restrings: std::collections::HashMap::new(),
                 config: std::collections::HashMap::new(),
+                game_state: Default::default(),
                 inventory: Vec::new(),
             },
         );
@@ -2078,6 +2100,7 @@ mod disk_lifecycle {
         write_disk_char(
             &dir,
             &StoredCharacter {
+                credits: 100,
                 id: char_id,
                 name: "Diskette".into(),
                 account_id,
@@ -2091,6 +2114,7 @@ mod disk_lifecycle {
                 title: None,
                 restrings: std::collections::HashMap::new(),
                 config: std::collections::HashMap::new(),
+                game_state: Default::default(),
                 inventory: Vec::new(),
             },
         );
@@ -2166,6 +2190,7 @@ mod disk_lifecycle {
         // The character is already online on `old_conn`.
         let old_conn = spawn_conn(&mut app, 1);
         let (name, actor, character) = StoredCharacter {
+            credits: 100,
             id: char_id,
             name: "Twinsie".into(),
             account_id,
@@ -2179,6 +2204,7 @@ mod disk_lifecycle {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         }
         .into_components();
@@ -2293,6 +2319,33 @@ mod character_creation {
     }
 
     #[test]
+    fn savage_soul_selects_race_without_class_picker() {
+        let dir = unique_dir("create-savage-race");
+        let (mut app, conn) = app_at_create_character(&dir);
+        app.insert_resource(crate::CharacterBuildMode::SavageSoul);
+        app.insert_resource(RaceRegistry(vec![grim_world::RaceDef {
+            slug: "human-sheltie".into(), name: "Human-Sheltie".into(),
+            abbrev: "Sheltie".into(), description: "Shelter descendant".into(),
+        }]));
+        let initial=serde_json::json!({"marker":"saved at creation","mana":0});
+        app.insert_resource(crate::CharacterCreationDefaults(std::collections::HashMap::from([("human-sheltie".into(),std::collections::HashMap::from([("savage_soul".into(),initial.clone())]))])));
+        send(&mut app, conn, "Aria");
+        send(&mut app, conn, "2");
+        assert!(matches!(state_of(&mut app, conn), ClientState::SelectRace { .. }));
+        send(&mut app, conn, "dragon");
+        assert!(matches!(state_of(&mut app, conn), ClientState::SelectRace { .. }));
+        assert!(load_character_by_name(app.world().resource::<PersistenceConfig>(), "Aria").is_none());
+        send(&mut app, conn, "1");
+        assert!(!matches!(state_of(&mut app, conn), ClientState::SelectClass { .. }));
+        let stored = load_character_by_name(app.world().resource::<PersistenceConfig>(), "Aria").unwrap();
+        assert_eq!(stored.game_state.get("savage_soul"),Some(&initial));
+        assert_eq!(stored.race, "human-sheltie");
+        assert_eq!(stored.class, "savage-soul");
+        assert_eq!(stored.gender, Gender::Female);
+        std::fs::remove_dir_all(dir).ok();
+    }
+
+    #[test]
     fn full_flow_transitions_and_persists_selections() {
         let dir = unique_dir("create-full");
         let (mut app, conn) = app_at_create_character(&dir);
@@ -2392,6 +2445,7 @@ mod character_creation {
     /// race "elf" as a marker so a clobber is detectable.
     fn write_existing_character(dir: &std::path::Path, name: &str) {
         let existing = StoredCharacter {
+            credits: 100,
             id: GrimId::new(),
             name: name.into(),
             account_id: GrimId::new(),
@@ -2405,6 +2459,7 @@ mod character_creation {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         };
         std::fs::create_dir_all(dir.join("characters")).unwrap();
@@ -2493,6 +2548,7 @@ mod legacy_backfill {
         write_disk_char(
             dir,
             &StoredCharacter {
+                credits: 100,
                 id: char_id,
                 name: char_name.into(),
                 account_id,
@@ -2506,6 +2562,7 @@ mod legacy_backfill {
                 title: None,
                 restrings: std::collections::HashMap::new(),
                 config: std::collections::HashMap::new(),
+                game_state: Default::default(),
                 inventory: Vec::new(),
             },
         );
@@ -2604,6 +2661,7 @@ mod legacy_backfill {
         write_disk_char(
             &dir,
             &StoredCharacter {
+                credits: 100,
                 id: char_id,
                 name: "Oldtimer".into(),
                 account_id,
@@ -2617,6 +2675,7 @@ mod legacy_backfill {
                 title: None,
                 restrings: std::collections::HashMap::new(),
                 config: std::collections::HashMap::new(),
+                game_state: Default::default(),
                 inventory: Vec::new(),
             },
         );
@@ -2656,6 +2715,7 @@ mod legacy_backfill {
             created_at: Utc::now(),
         });
         let legacy = StoredCharacter {
+            credits: 100,
             id: char_id,
             name: "Ghost".into(),
             account_id,
@@ -2669,6 +2729,7 @@ mod legacy_backfill {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         };
         write_disk_char(&dir, &legacy);
@@ -2740,6 +2801,7 @@ mod transition_guard {
 
         // A character sitting at the MOTD prompt, ready to enter the world.
         let stored = StoredCharacter {
+            credits: 100,
             id: GrimId::new(),
             name: "Hero".into(),
             account_id: GrimId::new(),
@@ -2753,6 +2815,7 @@ mod transition_guard {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         };
         let (name, actor, character) = stored.into_components();
@@ -2796,6 +2859,111 @@ mod transition_guard {
 }
 
 // ─── Ban enforcement at the login boundary ──────
+mod accessibility_onboarding {
+    use super::*;
+
+    fn parked_at_motd() -> (App, Entity, Entity, Entity) {
+        let mut app = test_app();
+        app.insert_resource(crate::AccessibilityOnboarding(true));
+        let room = spawn_room(&mut app);
+        app.insert_resource(StartingRoom(room));
+        let conn = spawn_conn(&mut app, 1);
+        let stored: StoredCharacter = serde_json::from_value(serde_json::json!({
+            "id": GrimId::new(), "name": "Reader", "account_id": GrimId::new(),
+            "created_at": Utc::now(), "credits": 91,
+            "config": {"minimap": "on", "combatlog": "detailed"},
+            "game_state": {"quest": {"complete": true}}
+        }))
+        .unwrap();
+        let (name, actor, character) = stored.into_components();
+        let character = app
+            .world_mut()
+            .spawn((
+                name,
+                actor,
+                character,
+                InRoom { room },
+                Player { connection: conn },
+            ))
+            .id();
+        let mut client = Client::new(conn);
+        client.state = ClientState::MotdPrompt;
+        client.character = Some(character);
+        let session = app.world_mut().spawn(client).id();
+        app.world_mut().spawn((
+            grim_object::Object,
+            GrimName("keepsake".into()),
+            grim_object::CarriedBy { carrier: character },
+        ));
+        (app, conn, character, session)
+    }
+
+    fn send(app: &mut App, conn: Entity, text: &str) {
+        app.world_mut().write_message(ConnectionInput {
+            connection: conn,
+            text: text.into(),
+        });
+        app.update();
+    }
+
+    #[test]
+    fn yes_is_saved_with_the_whole_pack_and_not_asked_again() {
+        let (mut app, conn, character, session) = parked_at_motd();
+        send(&mut app, conn, "");
+        assert_eq!(
+            client_state_of(&mut app, conn),
+            ClientState::AccessibilityPrompt
+        );
+        send(&mut app, conn, "screenreader on");
+        assert_eq!(client_state_of(&mut app, conn), ClientState::InGame);
+        let live = app.world().get::<Character>(character).unwrap();
+        assert_eq!(
+            live.config.get("screenreader").map(String::as_str),
+            Some("on")
+        );
+        assert_eq!(live.config.get("minimap").map(String::as_str), Some("off"));
+        assert_eq!(
+            live.config.get("combatlog").map(String::as_str),
+            Some("brief")
+        );
+        let saved = grim_persistence::load_character_by_name(
+            app.world().resource::<PersistenceConfig>(),
+            "Reader",
+        )
+        .unwrap();
+        assert_eq!(saved.credits, 91);
+        assert_eq!(saved.inventory.len(), 1);
+        assert_eq!(saved.inventory[0].name, "keepsake");
+        assert_eq!(saved.game_state["quest"]["complete"], true);
+        app.world_mut().get_mut::<Client>(session).unwrap().state = ClientState::MotdPrompt;
+        send(&mut app, conn, "");
+        assert_eq!(client_state_of(&mut app, conn), ClientState::InGame);
+    }
+
+    #[test]
+    fn enter_defaults_to_no_and_keeps_other_settings() {
+        let (mut app, conn, character, _) = parked_at_motd();
+        send(&mut app, conn, "");
+        send(&mut app, conn, "maybe");
+        assert_eq!(
+            client_state_of(&mut app, conn),
+            ClientState::AccessibilityPrompt
+        );
+        send(&mut app, conn, "");
+        assert_eq!(client_state_of(&mut app, conn), ClientState::InGame);
+        let live = app.world().get::<Character>(character).unwrap();
+        assert_eq!(
+            live.config.get("screenreader").map(String::as_str),
+            Some("off")
+        );
+        assert_eq!(live.config.get("minimap").map(String::as_str), Some("on"));
+        assert_eq!(
+            live.config.get("combatlog").map(String::as_str),
+            Some("detailed")
+        );
+    }
+}
+
 mod bans {
     use super::*;
     use grim_core::events::BanKind;
@@ -2936,6 +3104,7 @@ mod bans {
             })
             .id();
         let stored = StoredCharacter {
+            credits: 100,
             id: GrimId::new(),
             name: "Doomed".into(),
             account_id,
@@ -2949,6 +3118,7 @@ mod bans {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         };
         let char_id = stored.id;
@@ -3024,6 +3194,7 @@ mod bans {
             created_at: Utc::now(),
         });
         let stored = StoredCharacter {
+            credits: 100,
             id: GrimId::new(),
             name: "Doomed".into(),
             account_id,
@@ -3037,6 +3208,7 @@ mod bans {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         };
         let (name, actor, character) = stored.into_components();
@@ -3132,5 +3304,55 @@ mod bans {
             client_state(&mut app, other).is_some(),
             "a different IP is admitted"
         );
+    }
+}
+
+mod structured_login {
+    use super::*;
+    fn fixture()->(App,Entity) {
+        let mut app=test_app();let room=spawn_room(&mut app);app.world_mut().insert_resource(StartingRoom(room));
+        let conn=spawn_conn(&mut app,1);app.world_mut().spawn(Client::new(conn));
+        let account_id=GrimId::new();let char_id=GrimId::new();
+        app.world_mut().spawn(Account{id:account_id,identifier:"gmcp@example.com".into(),password_hash:hash_password("sensitivepw"),characters:vec![char_id],created_at:Utc::now()});
+        let stored=StoredCharacter{credits:0,id:char_id,account_id,name:"Gmcptest".into(),created_at:Utc::now(),last_room:None,roles:vec![],gender:Gender::Neutral,race:"human".into(),class:"warrior".into(),level:1,title:None,restrings:Default::default(),config:Default::default(),game_state:Default::default(),inventory:vec![]};
+        let dir=app.world().resource::<PersistenceConfig>().dir.clone();write_disk_char(&dir,&stored);
+        app.update();
+        (app,conn)
+    }
+    fn attempt(app:&mut App,conn:Entity,account:&str,password:&str) {
+        app.world_mut().write_message(crate::LoginCredentials{connection:conn,account:account.into(),password:password.into()});app.update();
+    }
+    fn outcome(app:&App)->Vec<bool> {let events=app.world().resource::<Messages<crate::LoginResult>>();events.get_cursor().read(events).map(|r|r.success).collect()}
+    #[test]
+    fn structured_password_login_supports_name_email_and_owned_qualified_character() {
+        for (id,state) in [("Gmcptest",ClientState::MotdPrompt),("gmcp@example.com",ClientState::CharacterSelect),("gmcp@example.com:Gmcptest",ClientState::MotdPrompt)] {
+            let (mut app,conn)=fixture();attempt(&mut app,conn,id,"sensitivepw");assert_eq!(client_state_of(&mut app,conn),state);assert_eq!(outcome(&app),vec![true]);
+            assert!(!conn_text(&mut app,conn).contains("sensitivepw"));
+        }
+    }
+    #[test]
+    fn structured_failures_never_create_accounts_or_bypass_terminal_state() {
+        for (id,pw) in [("Gmcptest","wrong"),("new@example.com","anything"),("gmcp@example.com:Other","sensitivepw"),("Gmcptest","sensitivepw\nlook")] {
+            let (mut app,conn)=fixture();
+            app.world_mut().write_message(crate::LoginCredentials{connection:conn,account:id.into(),password:pw.into()});
+            app.world_mut().write_message(crate::LoginCredentials{connection:conn,account:"Gmcptest".into(),password:"sensitivepw".into()});app.update();
+            assert_eq!(client_state_of(&mut app,conn),ClientState::Disconnecting);assert!(outcome(&app).iter().all(|v|!*v));
+            assert!(!conn_text(&mut app,conn).contains("sensitivepw"));assert!(disconnects(&app).contains(&conn));
+        }
+    }
+    #[test]
+    fn structured_autofill_does_not_reinterpret_queued_manual_login_as_gameplay() {
+        let (mut app,conn)=fixture();
+        app.world_mut().write_message(crate::LoginCredentials{connection:conn,account:"Gmcptest".into(),password:"sensitivepw".into()});
+        app.world_mut().write_message(ConnectionInput{connection:conn,text:"help".into()});app.update();
+        assert_eq!(client_state_of(&mut app,conn),ClientState::LoginPrompt);
+        assert!(!conn_text(&mut app,conn).contains("sensitivepw"));assert!(disconnects(&app).is_empty());
+    }
+    #[test]
+    fn structured_login_preserves_character_bans_and_does_not_reset_menu() {
+        let (mut app,conn)=fixture();app.world_mut().resource_mut::<BanList>().add(grim_core::events::BanKind::Character,"gmcptest","Root");
+        attempt(&mut app,conn,"Gmcptest","sensitivepw");assert_eq!(client_state_of(&mut app,conn),ClientState::Disconnecting);assert_eq!(outcome(&app),vec![false]);
+        let (mut app,conn)=fixture();attempt(&mut app,conn,"gmcp@example.com","sensitivepw");
+        attempt(&mut app,conn,"Gmcptest","sensitivepw");assert_eq!(client_state_of(&mut app,conn),ClientState::CharacterSelect);
     }
 }

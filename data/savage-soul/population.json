@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "rat": {
+      "max_alive": 1,
+      "respawn_seconds": 60,
+      "pool": "savsoul-rats",
+      "max_total": 2,
+      "movement": {
+        "mode": "wander",
+        "interval_seconds": 15,
+        "max_distance": 2,
+        "same_area": true
+      }
+    }
+  }
+}

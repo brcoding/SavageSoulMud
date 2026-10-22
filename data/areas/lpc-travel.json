@@ -1,0 +1,2694 @@
+{
+  "id": "4bfe6ecbe228",
+  "slug": "lpc-travel",
+  "name": "Travel Concourse",
+  "canonical": true,
+  "rooms": [
+    {
+      "id": "f4b2343998c7",
+      "slug": "travel-concourse",
+      "name": "Travel Concourse",
+      "description": "A long concourse connects the university to distant settlements. Marked archways lead to the areas shown below.",
+      "exits": {
+        "east": "01fd0503b7c9",
+        "north": "e2c1b3593237"
+      },
+      "npcs": []
+    },
+    {
+      "id": "e2c1b3593237",
+      "slug": "concourse-1",
+      "name": "Campus Archway",
+      "description": "An archway marked The cache leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "f4b2343998c7",
+        "west": "8dabd2e84542",
+        "north": "52a7ecb5326e"
+      },
+      "npcs": []
+    },
+    {
+      "id": "52a7ecb5326e",
+      "slug": "concourse-2",
+      "name": "Campus Archway",
+      "description": "An archway marked The freezer leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "e2c1b3593237",
+        "west": "ac7dd5c7bb91",
+        "north": "6326f5a0e943"
+      },
+      "npcs": []
+    },
+    {
+      "id": "6326f5a0e943",
+      "slug": "concourse-3",
+      "name": "Campus Archway",
+      "description": "An archway marked the incept pod leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "52a7ecb5326e",
+        "west": "e1a8f24fc6d3",
+        "north": "2997c6cbd668"
+      },
+      "npcs": []
+    },
+    {
+      "id": "2997c6cbd668",
+      "slug": "concourse-4",
+      "name": "Campus Archway",
+      "description": "An archway marked the void leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "6326f5a0e943",
+        "west": "e1413edb9c5e",
+        "north": "bfbff26f0fc4"
+      },
+      "npcs": []
+    },
+    {
+      "id": "bfbff26f0fc4",
+      "slug": "concourse-5",
+      "name": "Campus Archway",
+      "description": "An archway marked a small .357 ammo case leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "2997c6cbd668",
+        "west": "3042cd4e79b2",
+        "north": "8354a2b3099f"
+      },
+      "npcs": []
+    },
+    {
+      "id": "8354a2b3099f",
+      "slug": "concourse-6",
+      "name": "Campus Archway",
+      "description": "An archway marked a small .45 ammo case leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "bfbff26f0fc4",
+        "west": "ea012a521802",
+        "north": "f61abddbe966"
+      },
+      "npcs": []
+    },
+    {
+      "id": "f61abddbe966",
+      "slug": "concourse-7",
+      "name": "Campus Archway",
+      "description": "An archway marked a small 9mm ammo case leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "8354a2b3099f",
+        "west": "8d8fc1e619a0",
+        "north": "473d50b834d5"
+      },
+      "npcs": []
+    },
+    {
+      "id": "473d50b834d5",
+      "slug": "concourse-8",
+      "name": "Campus Archway",
+      "description": "An archway marked an ammo box leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "f61abddbe966",
+        "west": "ed6fbec6061c",
+        "north": "16bfdd549f82"
+      },
+      "npcs": []
+    },
+    {
+      "id": "16bfdd549f82",
+      "slug": "concourse-9",
+      "name": "Campus Archway",
+      "description": "An archway marked a small cloth bag leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "473d50b834d5",
+        "west": "353a9218151b",
+        "north": "7fcc5e81c0d6"
+      },
+      "npcs": []
+    },
+    {
+      "id": "7fcc5e81c0d6",
+      "slug": "concourse-10",
+      "name": "Campus Archway",
+      "description": "An archway marked a recycling bin leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "16bfdd549f82",
+        "west": "33a2566128d4",
+        "north": "29f7c6708318"
+      },
+      "npcs": []
+    },
+    {
+      "id": "29f7c6708318",
+      "slug": "concourse-11",
+      "name": "Campus Archway",
+      "description": "An archway marked a small, blue plastic box leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "7fcc5e81c0d6",
+        "west": "d3e635bb3495",
+        "north": "e6ef78412ce1"
+      },
+      "npcs": []
+    },
+    {
+      "id": "e6ef78412ce1",
+      "slug": "concourse-12",
+      "name": "Campus Archway",
+      "description": "An archway marked a small plastic box leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "29f7c6708318",
+        "west": "337c40c6a610",
+        "north": "a136f5f6c923"
+      },
+      "npcs": []
+    },
+    {
+      "id": "a136f5f6c923",
+      "slug": "concourse-13",
+      "name": "Campus Archway",
+      "description": "An archway marked a small, green plastic box leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "e6ef78412ce1",
+        "west": "15b8078229cd",
+        "north": "28586deaad77"
+      },
+      "npcs": []
+    },
+    {
+      "id": "28586deaad77",
+      "slug": "concourse-14",
+      "name": "Campus Archway",
+      "description": "An archway marked a tall metal locker leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "a136f5f6c923",
+        "west": "6f096d684cdc",
+        "north": "7f27c311dd3f"
+      },
+      "npcs": []
+    },
+    {
+      "id": "7f27c311dd3f",
+      "slug": "concourse-15",
+      "name": "Campus Archway",
+      "description": "An archway marked a small, magenta plastic box leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "28586deaad77",
+        "west": "17f0b3a1ee17",
+        "north": "9f5d1c6b8950"
+      },
+      "npcs": []
+    },
+    {
+      "id": "9f5d1c6b8950",
+      "slug": "concourse-16",
+      "name": "Campus Archway",
+      "description": "An archway marked a small cloth bag leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "7f27c311dd3f",
+        "west": "7e6b93550c34",
+        "north": "60d546f845d0"
+      },
+      "npcs": []
+    },
+    {
+      "id": "60d546f845d0",
+      "slug": "concourse-17",
+      "name": "Campus Archway",
+      "description": "An archway marked a tall metal locker leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "9f5d1c6b8950",
+        "west": "d3e3a84b4402",
+        "north": "fba5c6cc4dad"
+      },
+      "npcs": []
+    },
+    {
+      "id": "fba5c6cc4dad",
+      "slug": "concourse-18",
+      "name": "Campus Archway",
+      "description": "An archway marked a podium leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "60d546f845d0",
+        "west": "f534b6d3ae65",
+        "north": "d1f4b51a3c8d"
+      },
+      "npcs": []
+    },
+    {
+      "id": "d1f4b51a3c8d",
+      "slug": "concourse-19",
+      "name": "Campus Archway",
+      "description": "An archway marked a small, red plastic box leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "fba5c6cc4dad",
+        "west": "536b55b1512d",
+        "north": "3079d420ef44"
+      },
+      "npcs": []
+    },
+    {
+      "id": "3079d420ef44",
+      "slug": "concourse-20",
+      "name": "Campus Archway",
+      "description": "An archway marked a cash register leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "d1f4b51a3c8d",
+        "west": "9154c96b769d",
+        "north": "6095f4f68da4"
+      },
+      "npcs": []
+    },
+    {
+      "id": "6095f4f68da4",
+      "slug": "concourse-21",
+      "name": "Campus Archway",
+      "description": "An archway marked a small cloth bag leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "3079d420ef44",
+        "west": "ae1db8188b34",
+        "north": "d3ece9146ff5"
+      },
+      "npcs": []
+    },
+    {
+      "id": "d3ece9146ff5",
+      "slug": "concourse-22",
+      "name": "Campus Archway",
+      "description": "An archway marked a tall metal locker leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "6095f4f68da4",
+        "west": "0398b389c33b",
+        "north": "2caa8419be9b"
+      },
+      "npcs": []
+    },
+    {
+      "id": "2caa8419be9b",
+      "slug": "concourse-23",
+      "name": "Campus Archway",
+      "description": "An archway marked a trashcan leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "d3ece9146ff5",
+        "west": "5cd405095d53",
+        "north": "016b15ecda4f"
+      },
+      "npcs": []
+    },
+    {
+      "id": "016b15ecda4f",
+      "slug": "concourse-24",
+      "name": "Campus Archway",
+      "description": "An archway marked a metal weapons locker leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "2caa8419be9b",
+        "west": "42dfa2f26519",
+        "north": "17a1a279ca7b"
+      },
+      "npcs": []
+    },
+    {
+      "id": "17a1a279ca7b",
+      "slug": "concourse-25",
+      "name": "Campus Archway",
+      "description": "An archway marked a wooden weapons rack leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "016b15ecda4f",
+        "west": "8d822ac122e0",
+        "north": "7f32383c8676"
+      },
+      "npcs": []
+    },
+    {
+      "id": "7f32383c8676",
+      "slug": "concourse-26",
+      "name": "Campus Archway",
+      "description": "An archway marked a small, yellow plastic box leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "17a1a279ca7b",
+        "west": "900a26900adf",
+        "north": "d721a53a5a00"
+      },
+      "npcs": []
+    },
+    {
+      "id": "d721a53a5a00",
+      "slug": "concourse-27",
+      "name": "Campus Archway",
+      "description": "An archway marked access tunnel leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "7f32383c8676",
+        "west": "c9d20b234cc8",
+        "north": "7da1e6962ac5"
+      },
+      "npcs": []
+    },
+    {
+      "id": "7da1e6962ac5",
+      "slug": "concourse-28",
+      "name": "Campus Archway",
+      "description": "An archway marked access tunnel leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "d721a53a5a00",
+        "west": "b67746b1e8be",
+        "north": "864e8a1ca09d"
+      },
+      "npcs": []
+    },
+    {
+      "id": "864e8a1ca09d",
+      "slug": "concourse-29",
+      "name": "Campus Archway",
+      "description": "An archway marked access tunnel leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "7da1e6962ac5",
+        "west": "1696ab6c74e2",
+        "north": "a55a3fb814d0"
+      },
+      "npcs": []
+    },
+    {
+      "id": "a55a3fb814d0",
+      "slug": "concourse-30",
+      "name": "Campus Archway",
+      "description": "An archway marked access tunnel leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "864e8a1ca09d",
+        "west": "62aee71bbfe5",
+        "north": "1e78d1e43a04"
+      },
+      "npcs": []
+    },
+    {
+      "id": "1e78d1e43a04",
+      "slug": "concourse-31",
+      "name": "Campus Archway",
+      "description": "An archway marked access tunnel leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "a55a3fb814d0",
+        "west": "298b31d6cb3b",
+        "north": "469093a8cf30"
+      },
+      "npcs": []
+    },
+    {
+      "id": "469093a8cf30",
+      "slug": "concourse-32",
+      "name": "Campus Archway",
+      "description": "An archway marked access tunnel leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "1e78d1e43a04",
+        "west": "67f84d830023",
+        "north": "bc0a1b916191"
+      },
+      "npcs": []
+    },
+    {
+      "id": "bc0a1b916191",
+      "slug": "concourse-33",
+      "name": "Campus Archway",
+      "description": "An archway marked access tunnel leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "469093a8cf30",
+        "west": "cadcb1186ab7",
+        "north": "44a5a67cbe57"
+      },
+      "npcs": []
+    },
+    {
+      "id": "44a5a67cbe57",
+      "slug": "concourse-34",
+      "name": "Campus Archway",
+      "description": "An archway marked An alcove leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "bc0a1b916191",
+        "west": "23fc75803cc5",
+        "north": "72fd3dda70aa"
+      },
+      "npcs": []
+    },
+    {
+      "id": "72fd3dda70aa",
+      "slug": "concourse-35",
+      "name": "Campus Archway",
+      "description": "An archway marked the basement leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "44a5a67cbe57",
+        "west": "c85f1979317b",
+        "north": "1e735b45ea75"
+      },
+      "npcs": []
+    },
+    {
+      "id": "1e735b45ea75",
+      "slug": "concourse-36",
+      "name": "Campus Archway",
+      "description": "An archway marked a blue room leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "72fd3dda70aa",
+        "west": "371474e7d72f",
+        "north": "fad36da103bd"
+      },
+      "npcs": []
+    },
+    {
+      "id": "fad36da103bd",
+      "slug": "concourse-37",
+      "name": "Campus Archway",
+      "description": "An archway marked a blue room leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "1e735b45ea75",
+        "west": "873267e8f434",
+        "north": "54ad66ab3f9a"
+      },
+      "npcs": []
+    },
+    {
+      "id": "54ad66ab3f9a",
+      "slug": "concourse-38",
+      "name": "Campus Archway",
+      "description": "An archway marked a blue room leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "fad36da103bd",
+        "west": "570c7c7f9135",
+        "north": "acac32f947cc"
+      },
+      "npcs": []
+    },
+    {
+      "id": "acac32f947cc",
+      "slug": "concourse-39",
+      "name": "Campus Archway",
+      "description": "An archway marked Conference Room leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "54ad66ab3f9a",
+        "west": "f5e13c569a1c",
+        "north": "4433f04a8042"
+      },
+      "npcs": []
+    },
+    {
+      "id": "4433f04a8042",
+      "slug": "concourse-40",
+      "name": "Campus Archway",
+      "description": "An archway marked a tiny crawlspace leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "acac32f947cc",
+        "west": "73335eee5e95",
+        "north": "95502aad62f1"
+      },
+      "npcs": []
+    },
+    {
+      "id": "95502aad62f1",
+      "slug": "concourse-41",
+      "name": "Campus Archway",
+      "description": "An archway marked a tiny crawlspace leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "4433f04a8042",
+        "west": "69da48257432",
+        "north": "3190e2a04666"
+      },
+      "npcs": []
+    },
+    {
+      "id": "3190e2a04666",
+      "slug": "concourse-42",
+      "name": "Campus Archway",
+      "description": "An archway marked off the mortal coil leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "95502aad62f1",
+        "west": "b939fcbb52d2",
+        "north": "602d208a110a"
+      },
+      "npcs": []
+    },
+    {
+      "id": "602d208a110a",
+      "slug": "concourse-43",
+      "name": "Campus Archway",
+      "description": "An archway marked The freezer leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "3190e2a04666",
+        "west": "72922221b192",
+        "north": "06e601f55030"
+      },
+      "npcs": []
+    },
+    {
+      "id": "06e601f55030",
+      "slug": "concourse-44",
+      "name": "Campus Archway",
+      "description": "An archway marked a green room leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "602d208a110a",
+        "west": "b46e5a15704c",
+        "north": "15e40289e7a8"
+      },
+      "npcs": []
+    },
+    {
+      "id": "15e40289e7a8",
+      "slug": "concourse-45",
+      "name": "Campus Archway",
+      "description": "An archway marked a green room leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "06e601f55030",
+        "west": "e29dcc6da5df",
+        "north": "24023d1389ff"
+      },
+      "npcs": []
+    },
+    {
+      "id": "24023d1389ff",
+      "slug": "concourse-46",
+      "name": "Campus Archway",
+      "description": "An archway marked a green room leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "15e40289e7a8",
+        "west": "1418cf1a410f",
+        "north": "a0a0c57d198e"
+      },
+      "npcs": []
+    },
+    {
+      "id": "a0a0c57d198e",
+      "slug": "concourse-47",
+      "name": "Campus Archway",
+      "description": "An archway marked Hazardous Technologies Lab leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "24023d1389ff",
+        "west": "0db5ff8a2b9c",
+        "north": "4746110bb11e"
+      },
+      "npcs": []
+    },
+    {
+      "id": "4746110bb11e",
+      "slug": "concourse-48",
+      "name": "Campus Archway",
+      "description": "An archway marked the campus mail room leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "a0a0c57d198e",
+        "west": "132ea1e52e54",
+        "north": "9bde50bb481e"
+      },
+      "npcs": []
+    },
+    {
+      "id": "9bde50bb481e",
+      "slug": "concourse-49",
+      "name": "Campus Archway",
+      "description": "An archway marked Medical Research Lab leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "4746110bb11e",
+        "west": "7ede0526b691",
+        "north": "b251c508b094"
+      },
+      "npcs": []
+    },
+    {
+      "id": "b251c508b094",
+      "slug": "concourse-50",
+      "name": "Campus Archway",
+      "description": "An archway marked a red room leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "9bde50bb481e",
+        "west": "78a97b2ad3bc",
+        "north": "cc338f6f6a1e"
+      },
+      "npcs": []
+    },
+    {
+      "id": "cc338f6f6a1e",
+      "slug": "concourse-51",
+      "name": "Campus Archway",
+      "description": "An archway marked a red room leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "b251c508b094",
+        "west": "09b96dcedde5",
+        "north": "6a59402efaee"
+      },
+      "npcs": []
+    },
+    {
+      "id": "6a59402efaee",
+      "slug": "concourse-52",
+      "name": "Campus Archway",
+      "description": "An archway marked a red room leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "cc338f6f6a1e",
+        "west": "29a0d7f483c4",
+        "north": "ba05a30d0a9c"
+      },
+      "npcs": []
+    },
+    {
+      "id": "ba05a30d0a9c",
+      "slug": "concourse-53",
+      "name": "Campus Archway",
+      "description": "An archway marked sewer leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "6a59402efaee",
+        "west": "30f319d66950",
+        "north": "f1f6297d375e"
+      },
+      "npcs": []
+    },
+    {
+      "id": "f1f6297d375e",
+      "slug": "concourse-54",
+      "name": "Campus Archway",
+      "description": "An archway marked campus sewer leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "ba05a30d0a9c",
+        "west": "b3478de280e4",
+        "north": "3ba519e72da1"
+      },
+      "npcs": []
+    },
+    {
+      "id": "3ba519e72da1",
+      "slug": "concourse-55",
+      "name": "Campus Archway",
+      "description": "An archway marked Tunnel leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "f1f6297d375e",
+        "west": "cf5398e1967f",
+        "north": "9d3b82b2f07d"
+      },
+      "npcs": []
+    },
+    {
+      "id": "9d3b82b2f07d",
+      "slug": "concourse-56",
+      "name": "Campus Archway",
+      "description": "An archway marked the void leads west into campus. The concourse continues north and returns south.",
+      "exits": {
+        "south": "3ba519e72da1",
+        "west": "e385b371d745",
+        "north": "0b8cd69a6f7e"
+      },
+      "npcs": []
+    },
+    {
+      "id": "0b8cd69a6f7e",
+      "slug": "concourse-57",
+      "name": "Town Archway",
+      "description": "An archway marked a small cloth bag leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "9d3b82b2f07d",
+        "west": "a51c187543ed",
+        "north": "10eadf1a7f68"
+      },
+      "npcs": []
+    },
+    {
+      "id": "10eadf1a7f68",
+      "slug": "concourse-58",
+      "name": "Town Archway",
+      "description": "An archway marked a recycling bin leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "0b8cd69a6f7e",
+        "west": "47aa3e053276",
+        "north": "c5fc29ffa2f6"
+      },
+      "npcs": []
+    },
+    {
+      "id": "c5fc29ffa2f6",
+      "slug": "concourse-59",
+      "name": "Town Archway",
+      "description": "An archway marked a giant cloth bag leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "10eadf1a7f68",
+        "west": "217a4abd02d1",
+        "north": "e9df4601ef53"
+      },
+      "npcs": []
+    },
+    {
+      "id": "e9df4601ef53",
+      "slug": "concourse-60",
+      "name": "Town Archway",
+      "description": "An archway marked the newbie bin leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "c5fc29ffa2f6",
+        "west": "c1aebb8d0927",
+        "north": "e8053cae8b6d"
+      },
+      "npcs": []
+    },
+    {
+      "id": "e8053cae8b6d",
+      "slug": "concourse-61",
+      "name": "Town Archway",
+      "description": "An archway marked a large bin leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "e9df4601ef53",
+        "west": "a89b09adef5f",
+        "north": "dac3d0f1d91d"
+      },
+      "npcs": []
+    },
+    {
+      "id": "dac3d0f1d91d",
+      "slug": "concourse-62",
+      "name": "Town Archway",
+      "description": "An archway marked a wooden chest leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "e8053cae8b6d",
+        "west": "8e5625830255",
+        "north": "3a994d14f7f3"
+      },
+      "npcs": []
+    },
+    {
+      "id": "3a994d14f7f3",
+      "slug": "concourse-63",
+      "name": "Town Archway",
+      "description": "An archway marked a wooden chest leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "dac3d0f1d91d",
+        "west": "4e23b2736168",
+        "north": "3ff2c6891522"
+      },
+      "npcs": []
+    },
+    {
+      "id": "3ff2c6891522",
+      "slug": "concourse-64",
+      "name": "Town Archway",
+      "description": "An archway marked a cloth bag leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "3a994d14f7f3",
+        "west": "2038a293db48",
+        "north": "a07a3ee0a89f"
+      },
+      "npcs": []
+    },
+    {
+      "id": "a07a3ee0a89f",
+      "slug": "concourse-65",
+      "name": "Town Archway",
+      "description": "An archway marked a small mailbox leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "3ff2c6891522",
+        "west": "3b0bccfac3d7",
+        "north": "83ed0d982f48"
+      },
+      "npcs": []
+    },
+    {
+      "id": "83ed0d982f48",
+      "slug": "concourse-66",
+      "name": "Town Archway",
+      "description": "An archway marked a small cloth bag leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "a07a3ee0a89f",
+        "west": "9c703135d527",
+        "north": "0ec4f8b9c4e9"
+      },
+      "npcs": []
+    },
+    {
+      "id": "0ec4f8b9c4e9",
+      "slug": "concourse-67",
+      "name": "Town Archway",
+      "description": "An archway marked a small plastic bag leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "83ed0d982f48",
+        "west": "af71ab848767",
+        "north": "403a5be11ba8"
+      },
+      "npcs": []
+    },
+    {
+      "id": "403a5be11ba8",
+      "slug": "concourse-68",
+      "name": "Town Archway",
+      "description": "An archway marked a metal safe leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "0ec4f8b9c4e9",
+        "west": "a728e0371e48",
+        "north": "3d7221ddbcbf"
+      },
+      "npcs": []
+    },
+    {
+      "id": "3d7221ddbcbf",
+      "slug": "concourse-69",
+      "name": "Town Archway",
+      "description": "An archway marked a large stove leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "403a5be11ba8",
+        "west": "a819f4b1f42f",
+        "north": "8c3ea571ab9e"
+      },
+      "npcs": []
+    },
+    {
+      "id": "8c3ea571ab9e",
+      "slug": "concourse-70",
+      "name": "Town Archway",
+      "description": "An archway marked a tall wooden wardrobe leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "3d7221ddbcbf",
+        "west": "6db42e2cb7d8",
+        "north": "7961cd4a5f1c"
+      },
+      "npcs": []
+    },
+    {
+      "id": "7961cd4a5f1c",
+      "slug": "concourse-71",
+      "name": "Town Archway",
+      "description": "An archway marked a recycling bin leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "8c3ea571ab9e",
+        "west": "26eacdf28bad",
+        "north": "f012d1d9374f"
+      },
+      "npcs": []
+    },
+    {
+      "id": "f012d1d9374f",
+      "slug": "concourse-72",
+      "name": "Town Archway",
+      "description": "An archway marked a tall wooden wardrobe leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "7961cd4a5f1c",
+        "west": "bee9c831b614",
+        "north": "cf8ec2bebfa1"
+      },
+      "npcs": []
+    },
+    {
+      "id": "cf8ec2bebfa1",
+      "slug": "concourse-73",
+      "name": "Town Archway",
+      "description": "An archway marked The Church Basement leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "f012d1d9374f",
+        "west": "0a436c457c48",
+        "north": "7ac50c5da5eb"
+      },
+      "npcs": []
+    },
+    {
+      "id": "7ac50c5da5eb",
+      "slug": "concourse-74",
+      "name": "Town Archway",
+      "description": "An archway marked A Dark Cave leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "cf8ec2bebfa1",
+        "west": "b0aeeab98ef7",
+        "north": "828aff116811"
+      },
+      "npcs": []
+    },
+    {
+      "id": "828aff116811",
+      "slug": "concourse-75",
+      "name": "Town Archway",
+      "description": "An archway marked off the mortal coil leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "7ac50c5da5eb",
+        "west": "4e96bc1a0ec2",
+        "north": "ee60109c683f"
+      },
+      "npcs": []
+    },
+    {
+      "id": "ee60109c683f",
+      "slug": "concourse-76",
+      "name": "Town Archway",
+      "description": "An archway marked The freezer leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "828aff116811",
+        "west": "80dd51e9aaf7",
+        "north": "7071254d1fd2"
+      },
+      "npcs": []
+    },
+    {
+      "id": "7071254d1fd2",
+      "slug": "concourse-77",
+      "name": "Town Archway",
+      "description": "An archway marked Mansion Garden leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "ee60109c683f",
+        "west": "ed5ebf9af93c",
+        "north": "aac42e4f437b"
+      },
+      "npcs": []
+    },
+    {
+      "id": "aac42e4f437b",
+      "slug": "concourse-78",
+      "name": "Town Archway",
+      "description": "An archway marked Healer's Guild Storeroom leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "7071254d1fd2",
+        "west": "3441f3495ec9",
+        "north": "6cc04fa0ae66"
+      },
+      "npcs": []
+    },
+    {
+      "id": "6cc04fa0ae66",
+      "slug": "concourse-79",
+      "name": "Town Archway",
+      "description": "An archway marked Secret Room leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "aac42e4f437b",
+        "west": "440ed9768253",
+        "north": "2fcf0a904739"
+      },
+      "npcs": []
+    },
+    {
+      "id": "2fcf0a904739",
+      "slug": "concourse-80",
+      "name": "Town Archway",
+      "description": "An archway marked Secret Chamber leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "6cc04fa0ae66",
+        "west": "ff44bc6d2199",
+        "north": "a0a3bcf07d69"
+      },
+      "npcs": []
+    },
+    {
+      "id": "a0a3bcf07d69",
+      "slug": "concourse-81",
+      "name": "Town Archway",
+      "description": "An archway marked a generic place leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "2fcf0a904739",
+        "west": "e7af492d6869",
+        "north": "4bfb94c84131"
+      },
+      "npcs": []
+    },
+    {
+      "id": "4bfb94c84131",
+      "slug": "concourse-82",
+      "name": "Town Archway",
+      "description": "An archway marked the secret stash leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "a0a3bcf07d69",
+        "west": "29da4763a964",
+        "north": "6d6a79a02691"
+      },
+      "npcs": []
+    },
+    {
+      "id": "6d6a79a02691",
+      "slug": "concourse-83",
+      "name": "Town Archway",
+      "description": "An archway marked Shower Stall leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "4bfb94c84131",
+        "west": "a7319a8f12f0",
+        "north": "0a785b38c339"
+      },
+      "npcs": []
+    },
+    {
+      "id": "0a785b38c339",
+      "slug": "concourse-84",
+      "name": "Town Archway",
+      "description": "An archway marked a dark tunnel leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "6d6a79a02691",
+        "west": "4f5f28f88333",
+        "north": "34ffcc6c3905"
+      },
+      "npcs": []
+    },
+    {
+      "id": "34ffcc6c3905",
+      "slug": "concourse-85",
+      "name": "Town Archway",
+      "description": "An archway marked the void leads west into town. The concourse continues north and returns south.",
+      "exits": {
+        "south": "0a785b38c339",
+        "west": "b9e703b2acef",
+        "north": "0d2adaeb7c83"
+      },
+      "npcs": []
+    },
+    {
+      "id": "0d2adaeb7c83",
+      "slug": "concourse-86",
+      "name": "Cave Archway",
+      "description": "An archway marked a recycling bin leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "34ffcc6c3905",
+        "west": "b09bea83bada",
+        "north": "16c20066cb14"
+      },
+      "npcs": []
+    },
+    {
+      "id": "16c20066cb14",
+      "slug": "concourse-87",
+      "name": "Cave Archway",
+      "description": "An archway marked a wooden chest leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "0d2adaeb7c83",
+        "west": "27ef976a37ee",
+        "north": "45b547ef74ec"
+      },
+      "npcs": []
+    },
+    {
+      "id": "45b547ef74ec",
+      "slug": "concourse-88",
+      "name": "Cave Archway",
+      "description": "An archway marked a wooden chest leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "16c20066cb14",
+        "west": "a6ee2c44d5ed",
+        "north": "519f1744a201"
+      },
+      "npcs": []
+    },
+    {
+      "id": "519f1744a201",
+      "slug": "concourse-89",
+      "name": "Cave Archway",
+      "description": "An archway marked an oak barrel leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "45b547ef74ec",
+        "west": "3b1c05de3a48",
+        "north": "cabc5e4b29e3"
+      },
+      "npcs": []
+    },
+    {
+      "id": "cabc5e4b29e3",
+      "slug": "concourse-90",
+      "name": "Cave Archway",
+      "description": "An archway marked a wooden box leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "519f1744a201",
+        "west": "d8b7cb6eabc1",
+        "north": "68fdcd9ab2ce"
+      },
+      "npcs": []
+    },
+    {
+      "id": "68fdcd9ab2ce",
+      "slug": "concourse-91",
+      "name": "Cave Archway",
+      "description": "An archway marked a large crate leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "cabc5e4b29e3",
+        "west": "236f2afe78ee",
+        "north": "b94206b5ce48"
+      },
+      "npcs": []
+    },
+    {
+      "id": "b94206b5ce48",
+      "slug": "concourse-92",
+      "name": "Cave Archway",
+      "description": "An archway marked A Dark Cave leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "68fdcd9ab2ce",
+        "west": "75a540ba2c07",
+        "north": "ba2489f18731"
+      },
+      "npcs": []
+    },
+    {
+      "id": "ba2489f18731",
+      "slug": "concourse-93",
+      "name": "Cave Archway",
+      "description": "An archway marked underground room leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "b94206b5ce48",
+        "west": "a9cb629b0a44",
+        "north": "617c46f96acc"
+      },
+      "npcs": []
+    },
+    {
+      "id": "617c46f96acc",
+      "slug": "concourse-94",
+      "name": "Cave Archway",
+      "description": "An archway marked off the mortal coil leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "ba2489f18731",
+        "west": "879c43cdc597",
+        "north": "c1168827bdd1"
+      },
+      "npcs": []
+    },
+    {
+      "id": "c1168827bdd1",
+      "slug": "concourse-95",
+      "name": "Cave Archway",
+      "description": "An archway marked The freezer leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "617c46f96acc",
+        "west": "1c8aeea9eac7",
+        "north": "11d1c16a1ebb"
+      },
+      "npcs": []
+    },
+    {
+      "id": "11d1c16a1ebb",
+      "slug": "concourse-96",
+      "name": "Cave Archway",
+      "description": "An archway marked the incept pod leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "c1168827bdd1",
+        "west": "8893efdfd0f0",
+        "north": "e62ec54b5a9f"
+      },
+      "npcs": []
+    },
+    {
+      "id": "e62ec54b5a9f",
+      "slug": "concourse-97",
+      "name": "Cave Archway",
+      "description": "An archway marked a blank room leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "11d1c16a1ebb",
+        "west": "8a4b2762e994",
+        "north": "42a6867cb56e"
+      },
+      "npcs": []
+    },
+    {
+      "id": "42a6867cb56e",
+      "slug": "concourse-98",
+      "name": "Cave Archway",
+      "description": "An archway marked the void leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "e62ec54b5a9f",
+        "west": "b9357507392f",
+        "north": "2fe975210116"
+      },
+      "npcs": []
+    },
+    {
+      "id": "2fe975210116",
+      "slug": "concourse-99",
+      "name": "Cave Archway",
+      "description": "An archway marked underground room leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "42a6867cb56e",
+        "west": "2ccfb8193b17",
+        "north": "efd8e5c96eff"
+      },
+      "npcs": []
+    },
+    {
+      "id": "efd8e5c96eff",
+      "slug": "concourse-100",
+      "name": "Cave Archway",
+      "description": "An archway marked Creators' Hall leads west into cave. The concourse continues north and returns south.",
+      "exits": {
+        "south": "2fe975210116",
+        "west": "b8b407cbd06e",
+        "north": "9fb1706cbc70"
+      },
+      "npcs": []
+    },
+    {
+      "id": "9fb1706cbc70",
+      "slug": "concourse-101",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked The cache leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "efd8e5c96eff",
+        "west": "36836f5d950c",
+        "north": "c5bac020033d"
+      },
+      "npcs": []
+    },
+    {
+      "id": "c5bac020033d",
+      "slug": "concourse-102",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked The freezer leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "9fb1706cbc70",
+        "west": "fd33c7c39d8f",
+        "north": "3dfa4a0275ce"
+      },
+      "npcs": []
+    },
+    {
+      "id": "3dfa4a0275ce",
+      "slug": "concourse-103",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked the void leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "c5bac020033d",
+        "west": "a145fbdba47b",
+        "north": "69b8865e0ac0"
+      },
+      "npcs": []
+    },
+    {
+      "id": "69b8865e0ac0",
+      "slug": "concourse-104",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked a wooden chest leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "3dfa4a0275ce",
+        "west": "0fc49056bde2",
+        "north": "951db0dbc6ad"
+      },
+      "npcs": []
+    },
+    {
+      "id": "951db0dbc6ad",
+      "slug": "concourse-105",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked the adventurer's hall leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "69b8865e0ac0",
+        "west": "a400bcd4288b",
+        "north": "c7c9f8cc2ee1"
+      },
+      "npcs": []
+    },
+    {
+      "id": "c7c9f8cc2ee1",
+      "slug": "concourse-106",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked the Ylsrim armory leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "951db0dbc6ad",
+        "west": "5ab94a152b4d",
+        "north": "2b7fabb37afe"
+      },
+      "npcs": []
+    },
+    {
+      "id": "2b7fabb37afe",
+      "slug": "concourse-107",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked armory storage leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "c7c9f8cc2ee1",
+        "west": "a032111d4fe8",
+        "north": "35827bfaf2e5"
+      },
+      "npcs": []
+    },
+    {
+      "id": "35827bfaf2e5",
+      "slug": "concourse-108",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked The roof of the Bank of Ylsrim leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "2b7fabb37afe",
+        "west": "e54d6f6abd07",
+        "north": "f307a854c687"
+      },
+      "npcs": []
+    },
+    {
+      "id": "f307a854c687",
+      "slug": "concourse-109",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked the central bazaar of Ylsrim leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "35827bfaf2e5",
+        "west": "ff130b3604b7",
+        "north": "7c5bb3359caf"
+      },
+      "npcs": []
+    },
+    {
+      "id": "7c5bb3359caf",
+      "slug": "concourse-110",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked Ylsrim Church leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "f307a854c687",
+        "west": "017163c42c93",
+        "north": "634851dd9d4a"
+      },
+      "npcs": []
+    },
+    {
+      "id": "634851dd9d4a",
+      "slug": "concourse-111",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked the interior chamber of the Hall of Fighters leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "7c5bb3359caf",
+        "west": "16e91c8f1162",
+        "north": "d7f78a1e50b5"
+      },
+      "npcs": []
+    },
+    {
+      "id": "d7f78a1e50b5",
+      "slug": "concourse-112",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked the Hall of Fighters leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "634851dd9d4a",
+        "west": "10b3d1bb2186",
+        "north": "6ef1e870aba5"
+      },
+      "npcs": []
+    },
+    {
+      "id": "6ef1e870aba5",
+      "slug": "concourse-113",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked Kaliid Road by the Church leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "d7f78a1e50b5",
+        "west": "a1d55b7f612d",
+        "north": "0d37a3238985"
+      },
+      "npcs": []
+    },
+    {
+      "id": "0d37a3238985",
+      "slug": "concourse-114",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked Kaliid Road north of the bazaar leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "6ef1e870aba5",
+        "west": "5633c6df58a9",
+        "north": "e6825bd68252"
+      },
+      "npcs": []
+    },
+    {
+      "id": "e6825bd68252",
+      "slug": "concourse-115",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked Kaliid Road south of the bank leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "0d37a3238985",
+        "west": "ded11bec898d",
+        "north": "f42085d704ff"
+      },
+      "npcs": []
+    },
+    {
+      "id": "f42085d704ff",
+      "slug": "concourse-116",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked the western edge of Ylsrim leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "e6825bd68252",
+        "west": "8e7c1a8df35b",
+        "north": "a509f3d408e8"
+      },
+      "npcs": []
+    },
+    {
+      "id": "a509f3d408e8",
+      "slug": "concourse-117",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked Lars' Pub leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "f42085d704ff",
+        "west": "d5808912e2e1",
+        "north": "45be4121ecba"
+      },
+      "npcs": []
+    },
+    {
+      "id": "45be4121ecba",
+      "slug": "concourse-118",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked The south end of the Ylsrim Bazaar leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "a509f3d408e8",
+        "west": "8b3c69d2444f",
+        "north": "8bc870318a39"
+      },
+      "npcs": []
+    },
+    {
+      "id": "8bc870318a39",
+      "slug": "concourse-119",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked a dark hole in the sand leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "45be4121ecba",
+        "west": "40731f549002",
+        "north": "99956af1ee1e"
+      },
+      "npcs": []
+    },
+    {
+      "id": "99956af1ee1e",
+      "slug": "concourse-120",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked a sandy desert outside of Ylsrim leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "8bc870318a39",
+        "west": "c68fdcc065dd",
+        "north": "7772e2011c5e"
+      },
+      "npcs": []
+    },
+    {
+      "id": "7772e2011c5e",
+      "slug": "concourse-121",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked Ylsrim Tower leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "99956af1ee1e",
+        "west": "d25ebcadc9d2",
+        "north": "6abe1eeeb4ae"
+      },
+      "npcs": []
+    },
+    {
+      "id": "6abe1eeeb4ae",
+      "slug": "concourse-122",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked voting hall leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "7772e2011c5e",
+        "west": "004fb101759c",
+        "north": "c68a93fe5943"
+      },
+      "npcs": []
+    },
+    {
+      "id": "c68a93fe5943",
+      "slug": "concourse-123",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked the Ylsrim weaponry leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "6abe1eeeb4ae",
+        "west": "cf4902a28ce9",
+        "north": "bf99bcccbf58"
+      },
+      "npcs": []
+    },
+    {
+      "id": "bf99bcccbf58",
+      "slug": "concourse-124",
+      "name": "Ylsrim Archway",
+      "description": "An archway marked weaponry storage leads west into Ylsrim. The concourse continues north and returns south.",
+      "exits": {
+        "south": "c68a93fe5943",
+        "west": "dc7b724ff1aa",
+        "north": "b97e599bc8be"
+      },
+      "npcs": []
+    },
+    {
+      "id": "b97e599bc8be",
+      "slug": "concourse-125",
+      "name": "Praxis Archway",
+      "description": "An archway marked Immortal's Reality Board leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "bf99bcccbf58",
+        "west": "c772bef5e66d",
+        "north": "2d0b931c4fa2"
+      },
+      "npcs": []
+    },
+    {
+      "id": "2d0b931c4fa2",
+      "slug": "concourse-126",
+      "name": "Praxis Archway",
+      "description": "An archway marked approval room leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "b97e599bc8be",
+        "west": "90b0a33783ef",
+        "north": "f81b80dc3656"
+      },
+      "npcs": []
+    },
+    {
+      "id": "f81b80dc3656",
+      "slug": "concourse-127",
+      "name": "Praxis Archway",
+      "description": "An archway marked the Arch Immortal's Board leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "2d0b931c4fa2",
+        "west": "c9e589bca660",
+        "north": "1fa32f23d9cd"
+      },
+      "npcs": []
+    },
+    {
+      "id": "1fa32f23d9cd",
+      "slug": "concourse-128",
+      "name": "Praxis Archway",
+      "description": "An archway marked Bronze key leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "f81b80dc3656",
+        "west": "31e9b890bc92",
+        "north": "ae8fdbd382ae"
+      },
+      "npcs": []
+    },
+    {
+      "id": "ae8fdbd382ae",
+      "slug": "concourse-129",
+      "name": "Praxis Archway",
+      "description": "An archway marked The bank vault leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "1fa32f23d9cd",
+        "west": "888350181e9a",
+        "north": "903a4bd39bd7"
+      },
+      "npcs": []
+    },
+    {
+      "id": "903a4bd39bd7",
+      "slug": "concourse-130",
+      "name": "Praxis Archway",
+      "description": "An archway marked Nightmare referendum room leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "ae8fdbd382ae",
+        "west": "6ba826f264ba",
+        "north": "67417ece4898"
+      },
+      "npcs": []
+    },
+    {
+      "id": "67417ece4898",
+      "slug": "concourse-131",
+      "name": "Praxis Archway",
+      "description": "An archway marked between the branches leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "903a4bd39bd7",
+        "west": "97617796ab2c",
+        "north": "c15b15b82136"
+      },
+      "npcs": []
+    },
+    {
+      "id": "c15b15b82136",
+      "slug": "concourse-132",
+      "name": "Praxis Archway",
+      "description": "An archway marked the Cleric's Board of Healing leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "67417ece4898",
+        "west": "2c80a3cc6953",
+        "north": "929404d32c0b"
+      },
+      "npcs": []
+    },
+    {
+      "id": "929404d32c0b",
+      "slug": "concourse-133",
+      "name": "Praxis Archway",
+      "description": "An archway marked The Chambers of the High Council leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "c15b15b82136",
+        "west": "88b49e5bf8d9",
+        "north": "e6448df49960"
+      },
+      "npcs": []
+    },
+    {
+      "id": "e6448df49960",
+      "slug": "concourse-134",
+      "name": "Praxis Archway",
+      "description": "An archway marked the pipe dream board of class war avoidance leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "929404d32c0b",
+        "west": "8e70ec3f9f93",
+        "north": "a56cdd3786ed"
+      },
+      "npcs": []
+    },
+    {
+      "id": "a56cdd3786ed",
+      "slug": "concourse-135",
+      "name": "Praxis Archway",
+      "description": "An archway marked the underworld leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "e6448df49960",
+        "west": "a7af70270358",
+        "north": "22bbbd880298"
+      },
+      "npcs": []
+    },
+    {
+      "id": "22bbbd880298",
+      "slug": "concourse-136",
+      "name": "Praxis Archway",
+      "description": "An archway marked Glory Board of Fighters leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "a56cdd3786ed",
+        "west": "00d36248de69",
+        "north": "192b59783b83"
+      },
+      "npcs": []
+    },
+    {
+      "id": "192b59783b83",
+      "slug": "concourse-137",
+      "name": "Praxis Archway",
+      "description": "An archway marked The freezer leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "22bbbd880298",
+        "west": "6018d6c590f6",
+        "north": "c38fc2b3ff0c"
+      },
+      "npcs": []
+    },
+    {
+      "id": "c38fc2b3ff0c",
+      "slug": "concourse-138",
+      "name": "Praxis Archway",
+      "description": "An archway marked A hole in the ground leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "192b59783b83",
+        "west": "1e623419e4aa",
+        "north": "07841a87f899"
+      },
+      "npcs": []
+    },
+    {
+      "id": "07841a87f899",
+      "slug": "concourse-139",
+      "name": "Praxis Archway",
+      "description": "An archway marked Adventurer's Supply Storage Room leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "c38fc2b3ff0c",
+        "west": "974392e4b463",
+        "north": "351e8509370c"
+      },
+      "npcs": []
+    },
+    {
+      "id": "351e8509370c",
+      "slug": "concourse-140",
+      "name": "Praxis Archway",
+      "description": "An archway marked Horace's Adventurer's Supply Shop leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "07841a87f899",
+        "west": "e12364783725",
+        "north": "e9fb09079a3a"
+      },
+      "npcs": []
+    },
+    {
+      "id": "e9fb09079a3a",
+      "slug": "concourse-141",
+      "name": "Praxis Archway",
+      "description": "An archway marked Kataans' Board of Despair leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "351e8509370c",
+        "west": "b1b55668ebd3",
+        "north": "0edd8a863ba9"
+      },
+      "npcs": []
+    },
+    {
+      "id": "0edd8a863ba9",
+      "slug": "concourse-142",
+      "name": "Praxis Archway",
+      "description": "An archway marked the locked room leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "e9fb09079a3a",
+        "west": "54b4a5d09390",
+        "north": "016d29ec8e25"
+      },
+      "npcs": []
+    },
+    {
+      "id": "016d29ec8e25",
+      "slug": "concourse-143",
+      "name": "Praxis Archway",
+      "description": "An archway marked the Holy Tableau of Monks leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "0edd8a863ba9",
+        "west": "b87ff09a2edc",
+        "north": "e9ebc4ce8180"
+      },
+      "npcs": []
+    },
+    {
+      "id": "e9ebc4ce8180",
+      "slug": "concourse-144",
+      "name": "Praxis Archway",
+      "description": "An archway marked Right goblin boot leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "016d29ec8e25",
+        "west": "be1bb6f3193c",
+        "north": "cc385a686d5c"
+      },
+      "npcs": []
+    },
+    {
+      "id": "cc385a686d5c",
+      "slug": "concourse-145",
+      "name": "Praxis Archway",
+      "description": "An archway marked Right goblin boot leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "e9ebc4ce8180",
+        "west": "1c670249d24a",
+        "north": "f99310573ef2"
+      },
+      "npcs": []
+    },
+    {
+      "id": "f99310573ef2",
+      "slug": "concourse-146",
+      "name": "Praxis Archway",
+      "description": "An archway marked a small cloth bag leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "cc385a686d5c",
+        "west": "1e5ed2ddb8df",
+        "north": "8016e51c9e62"
+      },
+      "npcs": []
+    },
+    {
+      "id": "8016e51c9e62",
+      "slug": "concourse-147",
+      "name": "Praxis Archway",
+      "description": "An archway marked an orc treasure chest leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "f99310573ef2",
+        "west": "5ca5753188cc",
+        "north": "c285e4754a46"
+      },
+      "npcs": []
+    },
+    {
+      "id": "c285e4754a46",
+      "slug": "concourse-148",
+      "name": "Praxis Archway",
+      "description": "An archway marked In the volcano leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "8016e51c9e62",
+        "west": "1cefea7aa8a9",
+        "north": "045db0f667e9"
+      },
+      "npcs": []
+    },
+    {
+      "id": "045db0f667e9",
+      "slug": "concourse-149",
+      "name": "Praxis Archway",
+      "description": "An archway marked Pit of Spiders leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "c285e4754a46",
+        "west": "95f0e5389b1e",
+        "north": "67bca63da4fa"
+      },
+      "npcs": []
+    },
+    {
+      "id": "67bca63da4fa",
+      "slug": "concourse-150",
+      "name": "Praxis Archway",
+      "description": "An archway marked Praxis post office leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "045db0f667e9",
+        "west": "189b57a86a6b",
+        "north": "1518469ee92a"
+      },
+      "npcs": []
+    },
+    {
+      "id": "1518469ee92a",
+      "slug": "concourse-151",
+      "name": "Praxis Archway",
+      "description": "An archway marked Project Room leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "67bca63da4fa",
+        "west": "9483e79f5221",
+        "north": "eca9ca9a9482"
+      },
+      "npcs": []
+    },
+    {
+      "id": "eca9ca9a9482",
+      "slug": "concourse-152",
+      "name": "Praxis Archway",
+      "description": "An archway marked the plate of Atmos leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "1518469ee92a",
+        "west": "1d90ea1c6ac7",
+        "north": "6a46b0f171d2"
+      },
+      "npcs": []
+    },
+    {
+      "id": "6a46b0f171d2",
+      "slug": "concourse-153",
+      "name": "Praxis Archway",
+      "description": "An archway marked Rogue's Board of Fiendish Plots leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "eca9ca9a9482",
+        "west": "1c5681201092",
+        "north": "1532e75069c9"
+      },
+      "npcs": []
+    },
+    {
+      "id": "1532e75069c9",
+      "slug": "concourse-154",
+      "name": "Praxis Archway",
+      "description": "An archway marked Pit of Spiders leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "6a46b0f171d2",
+        "west": "79ebd9ec6b52",
+        "north": "9c5f7aded142"
+      },
+      "npcs": []
+    },
+    {
+      "id": "9c5f7aded142",
+      "slug": "concourse-155",
+      "name": "Praxis Archway",
+      "description": "An archway marked Adventurer's Supply Storage Room leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "1532e75069c9",
+        "west": "1c98f59fa699",
+        "north": "9532c82efdcf"
+      },
+      "npcs": []
+    },
+    {
+      "id": "9532c82efdcf",
+      "slug": "concourse-156",
+      "name": "Praxis Archway",
+      "description": "An archway marked Horace's General Supply Shop leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "9c5f7aded142",
+        "west": "1990f6668430",
+        "north": "3b454527146e"
+      },
+      "npcs": []
+    },
+    {
+      "id": "3b454527146e",
+      "slug": "concourse-157",
+      "name": "Praxis Archway",
+      "description": "An archway marked Torture Room leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "9532c82efdcf",
+        "west": "0db2f75453c9",
+        "north": "9df8693c95ff"
+      },
+      "npcs": []
+    },
+    {
+      "id": "9df8693c95ff",
+      "slug": "concourse-158",
+      "name": "Praxis Archway",
+      "description": "An archway marked the void leads west into Praxis. The concourse continues north and returns south.",
+      "exits": {
+        "south": "3b454527146e",
+        "west": "a87b422cf2de",
+        "north": "3225fd89ff3f"
+      },
+      "npcs": []
+    },
+    {
+      "id": "3225fd89ff3f",
+      "slug": "concourse-159",
+      "name": "Hells Archway",
+      "description": "An archway marked a glass case leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "9df8693c95ff",
+        "west": "0366e3abd1b1",
+        "north": "bdcf7efa9e6b"
+      },
+      "npcs": []
+    },
+    {
+      "id": "bdcf7efa9e6b",
+      "slug": "concourse-160",
+      "name": "Hells Archway",
+      "description": "An archway marked a wooden chest leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "3225fd89ff3f",
+        "west": "515ddb7284f5",
+        "north": "090765ef1200"
+      },
+      "npcs": []
+    },
+    {
+      "id": "090765ef1200",
+      "slug": "concourse-161",
+      "name": "Hells Archway",
+      "description": "An archway marked Sample Room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "bdcf7efa9e6b",
+        "west": "89bf1c12381d",
+        "north": "a9aeec2692b4"
+      },
+      "npcs": []
+    },
+    {
+      "id": "a9aeec2692b4",
+      "slug": "concourse-162",
+      "name": "Hells Archway",
+      "description": "An archway marked Second Sample Room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "090765ef1200",
+        "west": "6449abe381d2",
+        "north": "2faa69826ace"
+      },
+      "npcs": []
+    },
+    {
+      "id": "2faa69826ace",
+      "slug": "concourse-163",
+      "name": "Hells Archway",
+      "description": "An archway marked copy of workroom.c leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "a9aeec2692b4",
+        "west": "084b43bf9ffb",
+        "north": "2feed2190d1c"
+      },
+      "npcs": []
+    },
+    {
+      "id": "2feed2190d1c",
+      "slug": "concourse-164",
+      "name": "Hells Archway",
+      "description": "An archway marked Royal Oak Bar N Grill leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "2faa69826ace",
+        "west": "27f13bd63448",
+        "north": "0f8355b0e9cb"
+      },
+      "npcs": []
+    },
+    {
+      "id": "0f8355b0e9cb",
+      "slug": "concourse-165",
+      "name": "Hells Archway",
+      "description": "An archway marked Royal Oak Bar N Grill leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "2feed2190d1c",
+        "west": "f00342d25b22",
+        "north": "832d7c660d83"
+      },
+      "npcs": []
+    },
+    {
+      "id": "832d7c660d83",
+      "slug": "concourse-166",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "0f8355b0e9cb",
+        "west": "cbf7e233315b",
+        "north": "00b778deef85"
+      },
+      "npcs": []
+    },
+    {
+      "id": "00b778deef85",
+      "slug": "concourse-167",
+      "name": "Hells Archway",
+      "description": "An archway marked Faded Trail leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "832d7c660d83",
+        "west": "36aa5d0b6ea2",
+        "north": "4ea7098bf8b3"
+      },
+      "npcs": []
+    },
+    {
+      "id": "4ea7098bf8b3",
+      "slug": "concourse-168",
+      "name": "Hells Archway",
+      "description": "An archway marked Faded Trail leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "00b778deef85",
+        "west": "854a2f4d643e",
+        "north": "fdc0d2e45fc7"
+      },
+      "npcs": []
+    },
+    {
+      "id": "fdc0d2e45fc7",
+      "slug": "concourse-169",
+      "name": "Hells Archway",
+      "description": "An archway marked copy of ROBarNGrill04.c leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "4ea7098bf8b3",
+        "west": "10270768184c",
+        "north": "c24d65cefedb"
+      },
+      "npcs": []
+    },
+    {
+      "id": "c24d65cefedb",
+      "slug": "concourse-170",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "fdc0d2e45fc7",
+        "west": "7af5e7ed1ea7",
+        "north": "5fc447ca8a66"
+      },
+      "npcs": []
+    },
+    {
+      "id": "5fc447ca8a66",
+      "slug": "concourse-171",
+      "name": "Hells Archway",
+      "description": "An archway marked copy of ROMainSt01.c leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "c24d65cefedb",
+        "west": "078b4819e89e",
+        "north": "3cdcd3209081"
+      },
+      "npcs": []
+    },
+    {
+      "id": "3cdcd3209081",
+      "slug": "concourse-172",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "5fc447ca8a66",
+        "west": "bcae5525830b",
+        "north": "0c2c0472a3e9"
+      },
+      "npcs": []
+    },
+    {
+      "id": "0c2c0472a3e9",
+      "slug": "concourse-173",
+      "name": "Hells Archway",
+      "description": "An archway marked Royal Oak Bar N Grill leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "3cdcd3209081",
+        "west": "8e97ff0ea15e",
+        "north": "1b62e98f9066"
+      },
+      "npcs": []
+    },
+    {
+      "id": "1b62e98f9066",
+      "slug": "concourse-174",
+      "name": "Hells Archway",
+      "description": "An archway marked South Royal Oak Main Street leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "0c2c0472a3e9",
+        "west": "a60175e36f5f",
+        "north": "e9d977e1e832"
+      },
+      "npcs": []
+    },
+    {
+      "id": "e9d977e1e832",
+      "slug": "concourse-175",
+      "name": "Hells Archway",
+      "description": "An archway marked copy of ROBarNGrill04.c leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "1b62e98f9066",
+        "west": "bb73fca5602c",
+        "north": "3329bf8d7138"
+      },
+      "npcs": []
+    },
+    {
+      "id": "3329bf8d7138",
+      "slug": "concourse-176",
+      "name": "Hells Archway",
+      "description": "An archway marked Royal Oak Bar N Grill leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "e9d977e1e832",
+        "west": "b4759404ad88",
+        "north": "6ab229e0f1ae"
+      },
+      "npcs": []
+    },
+    {
+      "id": "6ab229e0f1ae",
+      "slug": "concourse-177",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "3329bf8d7138",
+        "west": "3e96e2733462",
+        "north": "765b68c3e2e1"
+      },
+      "npcs": []
+    },
+    {
+      "id": "765b68c3e2e1",
+      "slug": "concourse-178",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "6ab229e0f1ae",
+        "west": "c4f6ca196a61",
+        "north": "1c0fd8d38cfd"
+      },
+      "npcs": []
+    },
+    {
+      "id": "1c0fd8d38cfd",
+      "slug": "concourse-179",
+      "name": "Hells Archway",
+      "description": "An archway marked workroom leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "765b68c3e2e1",
+        "west": "29582f3728ff",
+        "north": "9162b800862b"
+      },
+      "npcs": []
+    },
+    {
+      "id": "9162b800862b",
+      "slug": "concourse-180",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "1c0fd8d38cfd",
+        "west": "108fd7ad1fa3",
+        "north": "805905c92bb9"
+      },
+      "npcs": []
+    },
+    {
+      "id": "805905c92bb9",
+      "slug": "concourse-181",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "9162b800862b",
+        "west": "106b45ccdd41",
+        "north": "a0c6ed9cf93a"
+      },
+      "npcs": []
+    },
+    {
+      "id": "a0c6ed9cf93a",
+      "slug": "concourse-182",
+      "name": "Hells Archway",
+      "description": "An archway marked Faded Trail leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "805905c92bb9",
+        "west": "96fa5a99313b",
+        "north": "a6c44f8739a0"
+      },
+      "npcs": []
+    },
+    {
+      "id": "a6c44f8739a0",
+      "slug": "concourse-183",
+      "name": "Hells Archway",
+      "description": "An archway marked copy of ROMainSt02.c leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "a0c6ed9cf93a",
+        "west": "0f430bb2a341",
+        "north": "86a05b515378"
+      },
+      "npcs": []
+    },
+    {
+      "id": "86a05b515378",
+      "slug": "concourse-184",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "a6c44f8739a0",
+        "west": "b4e91a707976",
+        "north": "d9d0f510bce5"
+      },
+      "npcs": []
+    },
+    {
+      "id": "d9d0f510bce5",
+      "slug": "concourse-185",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "86a05b515378",
+        "west": "c59747221277",
+        "north": "821e000e7f2d"
+      },
+      "npcs": []
+    },
+    {
+      "id": "821e000e7f2d",
+      "slug": "concourse-186",
+      "name": "Hells Archway",
+      "description": "An archway marked Faded Trail leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "d9d0f510bce5",
+        "west": "aaf27754bd0a",
+        "north": "8dd47e153113"
+      },
+      "npcs": []
+    },
+    {
+      "id": "8dd47e153113",
+      "slug": "concourse-187",
+      "name": "Hells Archway",
+      "description": "An archway marked Royal Oak Med Room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "821e000e7f2d",
+        "west": "36360b85154e",
+        "north": "60eea53af034"
+      },
+      "npcs": []
+    },
+    {
+      "id": "60eea53af034",
+      "slug": "concourse-188",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "8dd47e153113",
+        "west": "ef8dac379fb4",
+        "north": "3bd7427eb238"
+      },
+      "npcs": []
+    },
+    {
+      "id": "3bd7427eb238",
+      "slug": "concourse-189",
+      "name": "Hells Archway",
+      "description": "An archway marked Royal Oak Main Street leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "60eea53af034",
+        "west": "108e9eca1eec",
+        "north": "642330976758"
+      },
+      "npcs": []
+    },
+    {
+      "id": "642330976758",
+      "slug": "concourse-190",
+      "name": "Hells Archway",
+      "description": "An archway marked Faded Trail leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "3bd7427eb238",
+        "west": "2d03212fc2c3",
+        "north": "cb32ebaca7af"
+      },
+      "npcs": []
+    },
+    {
+      "id": "cb32ebaca7af",
+      "slug": "concourse-191",
+      "name": "Hells Archway",
+      "description": "An archway marked Royal Oak Med Room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "642330976758",
+        "west": "d00223d69507",
+        "north": "942bd6a31db4"
+      },
+      "npcs": []
+    },
+    {
+      "id": "942bd6a31db4",
+      "slug": "concourse-192",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "cb32ebaca7af",
+        "west": "823495d36e06",
+        "north": "455a7fb8132a"
+      },
+      "npcs": []
+    },
+    {
+      "id": "455a7fb8132a",
+      "slug": "concourse-193",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "942bd6a31db4",
+        "west": "3c52cb9df167",
+        "north": "1fe19825d060"
+      },
+      "npcs": []
+    },
+    {
+      "id": "1fe19825d060",
+      "slug": "concourse-194",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "455a7fb8132a",
+        "west": "2e64316329d5",
+        "north": "fb91c7722553"
+      },
+      "npcs": []
+    },
+    {
+      "id": "fb91c7722553",
+      "slug": "concourse-195",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "1fe19825d060",
+        "west": "30a09bbb8f38",
+        "north": "82919b832c08"
+      },
+      "npcs": []
+    },
+    {
+      "id": "82919b832c08",
+      "slug": "concourse-196",
+      "name": "Hells Archway",
+      "description": "An archway marked North Royal Oak Main Street leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "fb91c7722553",
+        "west": "dd990c0831b0",
+        "north": "e63e19d75199"
+      },
+      "npcs": []
+    },
+    {
+      "id": "e63e19d75199",
+      "slug": "concourse-197",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "82919b832c08",
+        "west": "6c092d2b20e1",
+        "north": "db87975699df"
+      },
+      "npcs": []
+    },
+    {
+      "id": "db87975699df",
+      "slug": "concourse-198",
+      "name": "Hells Archway",
+      "description": "An archway marked Medical Center Hub leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "e63e19d75199",
+        "west": "2b2608ad8efa",
+        "north": "beee0bd54546"
+      },
+      "npcs": []
+    },
+    {
+      "id": "beee0bd54546",
+      "slug": "concourse-199",
+      "name": "Hells Archway",
+      "description": "An archway marked Faded Trail leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "db87975699df",
+        "west": "5d2d0a451ebe",
+        "north": "b7882669b037"
+      },
+      "npcs": []
+    },
+    {
+      "id": "b7882669b037",
+      "slug": "concourse-200",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "beee0bd54546",
+        "west": "d8521bb78ce9",
+        "north": "8edb12c5f3d2"
+      },
+      "npcs": []
+    },
+    {
+      "id": "8edb12c5f3d2",
+      "slug": "concourse-201",
+      "name": "Hells Archway",
+      "description": "An archway marked copy of ROBarNGrill01.c leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "b7882669b037",
+        "west": "516d62b34b25",
+        "north": "010ecec600f8"
+      },
+      "npcs": []
+    },
+    {
+      "id": "010ecec600f8",
+      "slug": "concourse-202",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "8edb12c5f3d2",
+        "west": "eee620f91f3b",
+        "north": "2ef082c243ed"
+      },
+      "npcs": []
+    },
+    {
+      "id": "2ef082c243ed",
+      "slug": "concourse-203",
+      "name": "Hells Archway",
+      "description": "An archway marked South Royal Oak Main Street leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "010ecec600f8",
+        "west": "3372d3381588",
+        "north": "7279a69fbce1"
+      },
+      "npcs": []
+    },
+    {
+      "id": "7279a69fbce1",
+      "slug": "concourse-204",
+      "name": "Hells Archway",
+      "description": "An archway marked copy of ROMainSt02.c leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "2ef082c243ed",
+        "west": "1e6a5606a96c",
+        "north": "6413bbf1a0de"
+      },
+      "npcs": []
+    },
+    {
+      "id": "6413bbf1a0de",
+      "slug": "concourse-205",
+      "name": "Hells Archway",
+      "description": "An archway marked South Royal Oak Main Street leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "7279a69fbce1",
+        "west": "f8ed68d1a0c7",
+        "north": "d9d3096fb5f6"
+      },
+      "npcs": []
+    },
+    {
+      "id": "d9d3096fb5f6",
+      "slug": "concourse-206",
+      "name": "Hells Archway",
+      "description": "An archway marked Medical Center Hub leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "6413bbf1a0de",
+        "west": "43c64be904db",
+        "north": "c0a9d7c638ae"
+      },
+      "npcs": []
+    },
+    {
+      "id": "c0a9d7c638ae",
+      "slug": "concourse-207",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "d9d3096fb5f6",
+        "west": "548afa1b2e3e",
+        "north": "5f065733f716"
+      },
+      "npcs": []
+    },
+    {
+      "id": "5f065733f716",
+      "slug": "concourse-208",
+      "name": "Hells Archway",
+      "description": "An archway marked copy of ROMainSt02.c leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "c0a9d7c638ae",
+        "west": "b317f577a0a1",
+        "north": "bee8eed2caac"
+      },
+      "npcs": []
+    },
+    {
+      "id": "bee8eed2caac",
+      "slug": "concourse-209",
+      "name": "Hells Archway",
+      "description": "An archway marked copy of ROBarNGrill01.c leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "5f065733f716",
+        "west": "97c81a8b1da8",
+        "north": "adbdb7ca0046"
+      },
+      "npcs": []
+    },
+    {
+      "id": "adbdb7ca0046",
+      "slug": "concourse-210",
+      "name": "Hells Archway",
+      "description": "An archway marked workroom leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "bee8eed2caac",
+        "west": "dcd88f856dbd",
+        "north": "3b9d52ba38e7"
+      },
+      "npcs": []
+    },
+    {
+      "id": "3b9d52ba38e7",
+      "slug": "concourse-211",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "adbdb7ca0046",
+        "west": "9eb0fffe80d4",
+        "north": "bd2c6fdb6c2b"
+      },
+      "npcs": []
+    },
+    {
+      "id": "bd2c6fdb6c2b",
+      "slug": "concourse-212",
+      "name": "Hells Archway",
+      "description": "An archway marked North Royal Oak Main Street leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "3b9d52ba38e7",
+        "west": "a60ae8c61b80",
+        "north": "51d933f3d754"
+      },
+      "npcs": []
+    },
+    {
+      "id": "51d933f3d754",
+      "slug": "concourse-213",
+      "name": "Hells Archway",
+      "description": "An archway marked copy of ROMainSt01.c leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "bd2c6fdb6c2b",
+        "west": "01502f3ead7d",
+        "north": "8d75375ecd70"
+      },
+      "npcs": []
+    },
+    {
+      "id": "8d75375ecd70",
+      "slug": "concourse-214",
+      "name": "Hells Archway",
+      "description": "An archway marked Faded Trail leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "51d933f3d754",
+        "west": "3847b315e077",
+        "north": "cfd65499c49b"
+      },
+      "npcs": []
+    },
+    {
+      "id": "cfd65499c49b",
+      "slug": "concourse-215",
+      "name": "Hells Archway",
+      "description": "An archway marked Royal Oak Bar N Grill leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "8d75375ecd70",
+        "west": "dbf7714bfab2",
+        "north": "a354f6829798"
+      },
+      "npcs": []
+    },
+    {
+      "id": "a354f6829798",
+      "slug": "concourse-216",
+      "name": "Hells Archway",
+      "description": "An archway marked Royal Oak Main Street leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "cfd65499c49b",
+        "west": "14583b723ee5",
+        "north": "e4b2af11ea56"
+      },
+      "npcs": []
+    },
+    {
+      "id": "e4b2af11ea56",
+      "slug": "concourse-217",
+      "name": "Hells Archway",
+      "description": "An archway marked copy of ROBarNGrillFl101.c leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "a354f6829798",
+        "west": "993d3ef3205f",
+        "north": "9a56566b5a8b"
+      },
+      "npcs": []
+    },
+    {
+      "id": "9a56566b5a8b",
+      "slug": "concourse-218",
+      "name": "Hells Archway",
+      "description": "An archway marked copy of ROMainSt02.c leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "e4b2af11ea56",
+        "west": "3ea1b50d41ca",
+        "north": "c34ff4e286cd"
+      },
+      "npcs": []
+    },
+    {
+      "id": "c34ff4e286cd",
+      "slug": "concourse-219",
+      "name": "Hells Archway",
+      "description": "An archway marked a blank room leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "9a56566b5a8b",
+        "west": "664dbaf09d96",
+        "north": "6fa0710a7853"
+      },
+      "npcs": []
+    },
+    {
+      "id": "6fa0710a7853",
+      "slug": "concourse-220",
+      "name": "Hells Archway",
+      "description": "An archway marked Faded Trail leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "c34ff4e286cd",
+        "west": "492137dab4e9",
+        "north": "ce2b920e7b46"
+      },
+      "npcs": []
+    },
+    {
+      "id": "ce2b920e7b46",
+      "slug": "concourse-221",
+      "name": "Hells Archway",
+      "description": "An archway marked Royal Oak Bar N Grill leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "6fa0710a7853",
+        "west": "c2a956c1c9cc",
+        "north": "c4e607091bba"
+      },
+      "npcs": []
+    },
+    {
+      "id": "c4e607091bba",
+      "slug": "concourse-222",
+      "name": "Hells Archway",
+      "description": "An archway marked copy of ROBarNGrillFl101.c leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "ce2b920e7b46",
+        "west": "210f88c40860",
+        "north": "df9a30d95044"
+      },
+      "npcs": []
+    },
+    {
+      "id": "df9a30d95044",
+      "slug": "concourse-223",
+      "name": "Hells Archway",
+      "description": "An archway marked South Royal Oak Main Street leads west into hells. The concourse continues north and returns south.",
+      "exits": {
+        "south": "c4e607091bba",
+        "west": "250b59b5f2c8"
+      },
+      "npcs": []
+    }
+  ]
+}

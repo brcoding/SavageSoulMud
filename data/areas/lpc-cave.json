@@ -1,0 +1,3368 @@
+{
+  "id": "d23592ac4a00",
+  "slug": "lpc-cave",
+  "name": "Cave",
+  "canonical": true,
+  "rooms": [
+    {
+      "id": "b09bea83bada",
+      "slug": "obj-bbucket",
+      "name": "a recycling bin",
+      "description": "This is a blue trash can, marked with the letters \"/dev/null\".\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "0d2adaeb7c83"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/cave/obj/bbucket"
+    },
+    {
+      "id": "27ef976a37ee",
+      "slug": "obj-chest",
+      "name": "a wooden chest",
+      "description": "This is a heavy wooden chest used to store items.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "16c20066cb14"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/cave/obj/chest"
+    },
+    {
+      "id": "a6ee2c44d5ed",
+      "slug": "obj-chest2",
+      "name": "a wooden chest",
+      "description": "This is a heavy wooden chest used to store items.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "45b547ef74ec"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/cave/obj/chest2"
+    },
+    {
+      "id": "3b1c05de3a48",
+      "slug": "obj-fishbarrel",
+      "name": "an oak barrel",
+      "description": "It is a simple wooden barrel used for holding things.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "519f1744a201"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/cave/obj/fishbarrel"
+    },
+    {
+      "id": "d8b7cb6eabc1",
+      "slug": "obj-jerkybox",
+      "name": "a wooden box",
+      "description": "It is a wooden box used to hold things.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "cabc5e4b29e3"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/cave/obj/jerkybox"
+    },
+    {
+      "id": "236f2afe78ee",
+      "slug": "obj-jerkybox2",
+      "name": "a large crate",
+      "description": "It is a wood crate used to hold things.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "68fdcd9ab2ce"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/cave/obj/jerkybox2"
+    },
+    {
+      "id": "75a540ba2c07",
+      "slug": "room-cave",
+      "name": "A Dark Cave",
+      "description": "This is a cave carved into the rocky riverbank wall. Daylight shines in from the west, where the river flows. To the east, the cave continues into darkness.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "west": "d145c73685a4",
+        "east": "ad874cf6cd96",
+        "up": "b94206b5ce48"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "rocky wall",
+            "river bank wall",
+            "riverbank wall",
+            "rocky river bank wall",
+            "rocky riverbank wall"
+          ],
+          "description": [
+            "The local river carved a narrow and steep valley here over the years. The walls of that valley is what this cave has been dug out of."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cave"
+    },
+    {
+      "id": "ad874cf6cd96",
+      "slug": "room-cavepass1",
+      "name": "underground passageway",
+      "description": "This is a dark underground passageway. The walls are rough and bare. To the west the passage opens up into a cave-like area. The passageway continues northeast and east from here.",
+      "exits": {
+        "east": "ac5d366c1326",
+        "west": "75a540ba2c07",
+        "northeast": "6d51ad4f7de9"
+      },
+      "npcs": [
+        {
+          "name": "an armored orc",
+          "description": [
+            "This is a large adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An armored orc is here.",
+          "race": "orc",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard5"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "area",
+          "keywords": [
+            "area",
+            "cave like area",
+            "cavelike area"
+          ],
+          "description": [
+            "It seems that to the west there is a n area like a cave which opens up to the outside."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cavepass1"
+    },
+    {
+      "id": "02d071ed8e2d",
+      "slug": "room-cavepass10",
+      "name": "underground passageway",
+      "description": "This is a dark underground passageway. The walls are rough and bare. The passageway runs north and east from here. There is a room to the south.",
+      "exits": {
+        "north": "6a26e1fa0d78",
+        "east": "c1f7f9c7be86",
+        "south": "fb259b130ffd"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cavepass10"
+    },
+    {
+      "id": "c1f7f9c7be86",
+      "slug": "room-cavepass11",
+      "name": "underground passageway",
+      "description": "This is a dark underground passageway. The walls are rough and bare. The passageway runs west from here. There is a room to the north.",
+      "exits": {
+        "west": "02d071ed8e2d",
+        "north": "0e1c399fa665"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cavepass11"
+    },
+    {
+      "id": "1e43a31d8187",
+      "slug": "room-cavepass12",
+      "name": "underground passageway",
+      "description": "This is a dark underground passageway. The walls are rough and bare. The passageway runs northeast, southeast, and west. There is a room to the north.",
+      "exits": {
+        "north": "9beb568a45f7",
+        "northeast": "9e63f0abb843",
+        "west": "3d85fb233160",
+        "southeast": "6a26e1fa0d78"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cavepass12"
+    },
+    {
+      "id": "6a26e1fa0d78",
+      "slug": "room-cavepass13",
+      "name": "underground passageway",
+      "description": "This is a dark underground passageway. The walls are rough and bare. The passageway runs northwest and south. There is a room to the north.",
+      "exits": {
+        "south": "02d071ed8e2d",
+        "northwest": "1e43a31d8187",
+        "north": "0dd02d0a8519"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cavepass13"
+    },
+    {
+      "id": "ac5d366c1326",
+      "slug": "room-cavepass2",
+      "name": "underground passageway",
+      "description": "This is a dark underground passageway. The walls are rough and bare. The passageway contines east and west.",
+      "exits": {
+        "west": "ad874cf6cd96",
+        "east": "5fb911088768"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cavepass2"
+    },
+    {
+      "id": "6d51ad4f7de9",
+      "slug": "room-cavepass3",
+      "name": "underground passageway",
+      "description": "This is a dark underground passageway. The walls are rough and bare. The passageway contines northwest and southwest. There is some kind of room to the northeast.",
+      "exits": {
+        "northwest": "314424b6dcb1",
+        "southwest": "ad874cf6cd96",
+        "northeast": "f5620348ceaa"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cavepass3"
+    },
+    {
+      "id": "314424b6dcb1",
+      "slug": "room-cavepass4",
+      "name": "underground passageway",
+      "description": "This is a dark underground passageway. The walls are rough and bare. The passageway contines north and south.",
+      "exits": {
+        "north": "91c609fa536f",
+        "southeast": "6d51ad4f7de9"
+      },
+      "npcs": [
+        {
+          "name": "an armored orc",
+          "description": [
+            "This is a large adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An armored orc is here.",
+          "race": "orc",
+          "level": 4,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard4"
+        },
+        {
+          "name": "an armored orc",
+          "description": [
+            "This is a large adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An armored orc is here.",
+          "race": "orc",
+          "level": 4,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard4"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cavepass4"
+    },
+    {
+      "id": "91c609fa536f",
+      "slug": "room-cavepass5",
+      "name": "underground passageway",
+      "description": "This is a dark underground passageway. The walls are rough and bare. The passageway runs north and south from here, and also splits off toward the east.",
+      "exits": {
+        "north": "3f581fce6d83",
+        "south": "314424b6dcb1",
+        "east": "3d85fb233160"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cavepass5"
+    },
+    {
+      "id": "3f581fce6d83",
+      "slug": "room-cavepass6",
+      "name": "underground passageway",
+      "description": "This is a dark underground passageway. The walls are rough and bare. To the north is a room of some sort. The passageway continues south.",
+      "exits": {
+        "south": "91c609fa536f",
+        "north": "091a08d49f42"
+      },
+      "npcs": [
+        {
+          "name": "an armored orc",
+          "description": [
+            "This is a large adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An armored orc is here.",
+          "race": "orc",
+          "level": 4,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard4"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cavepass6"
+    },
+    {
+      "id": "3d85fb233160",
+      "slug": "room-cavepass7",
+      "name": "underground passageway",
+      "description": "This is a dark underground passageway. The walls are rough and bare. The passageway runs east and west. There are rooms to the north and south.",
+      "exits": {
+        "north": "b249809e35dc",
+        "south": "c696a21ed54a",
+        "west": "91c609fa536f",
+        "east": "1e43a31d8187"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cavepass7"
+    },
+    {
+      "id": "9b08c985be47",
+      "slug": "room-cavepass8",
+      "name": "underground passageway",
+      "description": "This is a dark underground passageway. The walls are rough and bare. The passageway runs southeast from here. There are rooms south, northeast, and northwest.",
+      "exits": {
+        "south": "9beb568a45f7",
+        "northeast": "f8978517f988",
+        "southeast": "9e63f0abb843",
+        "northwest": "4e92143ce153"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cavepass8"
+    },
+    {
+      "id": "9e63f0abb843",
+      "slug": "room-cavepass9",
+      "name": "underground passageway",
+      "description": "This is a dark underground passageway. The walls are rough and bare. The passageway runs southwest and northwest from here. There are rooms to the north, west, and south.",
+      "exits": {
+        "south": "0dd02d0a8519",
+        "west": "9beb568a45f7",
+        "northwest": "9b08c985be47",
+        "southwest": "1e43a31d8187",
+        "north": "ca093f6bde21"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cavepass9"
+    },
+    {
+      "id": "c62305080ca6",
+      "slug": "room-cavetroll",
+      "name": "troll pit",
+      "description": "This is a dark underground room. The walls are rough and bare. A passageway leads southwest.",
+      "exits": {
+        "southwest": "41ae339f5fc3"
+      },
+      "npcs": [
+        {
+          "name": "a cave troll",
+          "description": [
+            "Unlike its more civilized brethren, the cavetroll is a huge and monstrously powerful creature with an even more vicious temperament. Its rocklike skin makes it difficult to injure, and its gargantuan muscles make it difficult to survive in combat against it."
+          ],
+          "keywords": [
+            "troll",
+            "cavetroll",
+            "dirty",
+            "cave"
+          ],
+          "room_description": "A cave troll is here.",
+          "race": "troll",
+          "level": 13,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/cavetroll"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        },
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "room",
+          "keywords": [
+            "room",
+            "here",
+            "area"
+          ],
+          "description": [
+            "Carved roughly into the earth, this area has walls that expose underground rock."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/cavetroll"
+    },
+    {
+      "id": "0dd02d0a8519",
+      "slug": "room-chieftain",
+      "name": "underground room",
+      "description": "This is a dark underground room. The walls are rough and bare. Passageways lead south and north.",
+      "exits": {
+        "north": "9e63f0abb843",
+        "south": "6a26e1fa0d78"
+      },
+      "npcs": [
+        {
+          "name": "an orc chieftain",
+          "description": [
+            "This is a large orc, covered in ornate tattoos and markings of power and prestige. His powerful frame is clearly accustomed to physically establishing authority."
+          ],
+          "keywords": [
+            "orc",
+            "chieftain",
+            "chiklis",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An orc chieftain is here.",
+          "race": "orc",
+          "level": 10,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/chieftain"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        },
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "room",
+          "keywords": [
+            "room",
+            "here",
+            "area"
+          ],
+          "description": [
+            "Carved roughly into the earth, this area has walls that expose underground rock."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/chieftain"
+    },
+    {
+      "id": "091a08d49f42",
+      "slug": "room-common1",
+      "name": "underground room",
+      "description": "This is a dark underground room. The walls are rough and bare. A passageway leads away to the south.",
+      "exits": {
+        "south": "3f581fce6d83"
+      },
+      "npcs": [
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a male orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "adult",
+            "male"
+          ],
+          "room_description": "A male orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_male1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        },
+        {
+          "name": "a female orc",
+          "description": [
+            "This is an adult orc, a creature somewhat larger and stronger than a typical human."
+          ],
+          "keywords": [
+            "orc",
+            "female",
+            "adult"
+          ],
+          "room_description": "A female orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "female",
+          "source_path": "/domains/cave/npc/orc_female1"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        },
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "room",
+          "keywords": [
+            "room",
+            "here",
+            "area"
+          ],
+          "description": [
+            "Carved roughly into the earth, this area has walls that expose underground rock."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/common1"
+    },
+    {
+      "id": "a9cb629b0a44",
+      "slug": "room-common2",
+      "name": "underground room",
+      "description": "This is a dark underground passageway. The walls are rough and bare. The passageway continues west from here. There are rooms to the north, east, and south.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "west": "3d85fb233160",
+        "up": "ba2489f18731"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/common2"
+    },
+    {
+      "id": "0e1c399fa665",
+      "slug": "room-common3",
+      "name": "underground room",
+      "description": "This is a dark underground room. The walls are rough and bare. A passageway leads away to the south.",
+      "exits": {
+        "south": "c1f7f9c7be86"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        },
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "room",
+          "keywords": [
+            "room",
+            "here",
+            "area"
+          ],
+          "description": [
+            "Carved roughly into the earth, this area has walls that expose underground rock."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/common3"
+    },
+    {
+      "id": "fb259b130ffd",
+      "slug": "room-common4",
+      "name": "underground room",
+      "description": "This is a dark underground room. The walls are rough and bare. A passageway leads away to the north.",
+      "exits": {
+        "north": "02d071ed8e2d"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        },
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "room",
+          "keywords": [
+            "room",
+            "here",
+            "area"
+          ],
+          "description": [
+            "Carved roughly into the earth, this area has walls that expose underground rock."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/common4"
+    },
+    {
+      "id": "879c43cdc597",
+      "slug": "room-death",
+      "name": "off the mortal coil",
+      "description": "YOU ARE DEAD!!!\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "617c46f96acc"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/cave/room/death"
+    },
+    {
+      "id": "9beb568a45f7",
+      "slug": "room-dining1",
+      "name": "post commissary",
+      "description": "This is a dark underground room with rough walls. It is outfitted to accommodate personnel who want to eat and drink. Passageways lead north, east, and south from here.",
+      "exits": {
+        "south": "1e43a31d8187",
+        "east": "9e63f0abb843",
+        "north": "9b08c985be47"
+      },
+      "npcs": [
+        {
+          "name": "the orc cook",
+          "description": [
+            "Bizarrely large, fit, and alert, this orc cook would seem more in place in a uniform than serving food in a commissary. You can: ask cook for menu"
+          ],
+          "keywords": [
+            "orc cook",
+            "rybak",
+            "cook",
+            "orc"
+          ],
+          "room_description": "The orc cook is here.",
+          "race": "orc",
+          "level": 15,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rybak"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/dining1"
+    },
+    {
+      "id": "c696a21ed54a",
+      "slug": "room-food-storage1",
+      "name": "underground room",
+      "description": "This is a dark underground room. The walls are rough and bare. A passageway leads away to the north.",
+      "exits": {
+        "north": "3d85fb233160"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        },
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "room",
+          "keywords": [
+            "room",
+            "here",
+            "area"
+          ],
+          "description": [
+            "Carved roughly into the earth, this area has walls that expose underground rock."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/food_storage1"
+    },
+    {
+      "id": "1c8aeea9eac7",
+      "slug": "room-freezer",
+      "name": "The freezer",
+      "description": "The local freezer.  Go down to leave.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "c1168827bdd1"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/cave/room/freezer"
+    },
+    {
+      "id": "f5620348ceaa",
+      "slug": "room-guardroom1",
+      "name": "underground room",
+      "description": "This is a dark underground room. The walls are rough and bare. A passageway leads away to the southwest.",
+      "exits": {
+        "southwest": "6d51ad4f7de9"
+      },
+      "npcs": [
+        {
+          "name": "an armored orc",
+          "description": [
+            "This is an adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An armored orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard2"
+        },
+        {
+          "name": "an armored orc",
+          "description": [
+            "This is an adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An armored orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard2"
+        },
+        {
+          "name": "an armored orc",
+          "description": [
+            "This is an adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An armored orc is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard2"
+        },
+        {
+          "name": "an orc guard",
+          "description": [
+            "This is an adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "guard",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An orc guard is here.",
+          "race": "orc",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard1"
+        },
+        {
+          "name": "an orc guard",
+          "description": [
+            "This is an adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "guard",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An orc guard is here.",
+          "race": "orc",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard1"
+        },
+        {
+          "name": "an orc guard",
+          "description": [
+            "This is an adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "guard",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An orc guard is here.",
+          "race": "orc",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard1"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        },
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "room",
+          "keywords": [
+            "room",
+            "here",
+            "area"
+          ],
+          "description": [
+            "Carved roughly into the earth, this area has walls that expose underground rock."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/guardroom1"
+    },
+    {
+      "id": "b249809e35dc",
+      "slug": "room-guardroom2",
+      "name": "underground room",
+      "description": "This is a dark underground room. The walls are rough and bare. A passageway leads away to the south.",
+      "exits": {
+        "south": "3d85fb233160",
+        "north": "c8a962a72096"
+      },
+      "npcs": [
+        {
+          "name": "an armored orc",
+          "description": [
+            "This is a large adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An armored orc is here.",
+          "race": "orc",
+          "level": 4,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard4"
+        },
+        {
+          "name": "an armored orc",
+          "description": [
+            "This is a large adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An armored orc is here.",
+          "race": "orc",
+          "level": 4,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard4"
+        },
+        {
+          "name": "an orc guard",
+          "description": [
+            "This is an adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "guard",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An orc guard is here.",
+          "race": "orc",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard3"
+        },
+        {
+          "name": "an orc guard",
+          "description": [
+            "This is an adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "guard",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An orc guard is here.",
+          "race": "orc",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard3"
+        },
+        {
+          "name": "an orc guard",
+          "description": [
+            "This is an adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "guard",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An orc guard is here.",
+          "race": "orc",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_guard3"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/guardroom2"
+    },
+    {
+      "id": "f8978517f988",
+      "slug": "room-guardroom3",
+      "name": "underground room",
+      "description": "This is a dark underground room. The walls are rough and bare. A passageway leads away to the southwest.",
+      "exits": {
+        "southwest": "9b08c985be47"
+      },
+      "npcs": [
+        {
+          "name": "an orc soldier",
+          "description": [
+            "This is a large orc soldier."
+          ],
+          "keywords": [
+            "orc",
+            "soldier",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An orc soldier is here.",
+          "race": "orc",
+          "level": 7,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_soldier2"
+        },
+        {
+          "name": "an orc soldier",
+          "description": [
+            "This is a large orc soldier."
+          ],
+          "keywords": [
+            "orc",
+            "soldier",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An orc soldier is here.",
+          "race": "orc",
+          "level": 7,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_soldier2"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        },
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "room",
+          "keywords": [
+            "room",
+            "here",
+            "area"
+          ],
+          "description": [
+            "Carved roughly into the earth, this area has walls that expose underground rock."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/guardroom3"
+    },
+    {
+      "id": "4e92143ce153",
+      "slug": "room-guardroom4",
+      "name": "underground room",
+      "description": "This is a dark underground room. The walls are rough and bare. A passageway leads away to the southeast.",
+      "exits": {
+        "southeast": "9b08c985be47"
+      },
+      "npcs": [
+        {
+          "name": "an armored orc",
+          "description": [
+            "This is a very large adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An armored orc is here.",
+          "race": "orc",
+          "level": 5,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_soldier1"
+        },
+        {
+          "name": "an armored orc",
+          "description": [
+            "This is a very large adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An armored orc is here.",
+          "race": "orc",
+          "level": 5,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_soldier1"
+        },
+        {
+          "name": "an armored orc",
+          "description": [
+            "This is a very large adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An armored orc is here.",
+          "race": "orc",
+          "level": 5,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_soldier1"
+        },
+        {
+          "name": "an armored orc",
+          "description": [
+            "This is a very large adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An armored orc is here.",
+          "race": "orc",
+          "level": 5,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/orc_soldier1"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        },
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "room",
+          "keywords": [
+            "room",
+            "here",
+            "area"
+          ],
+          "description": [
+            "Carved roughly into the earth, this area has walls that expose underground rock."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/guardroom4"
+    },
+    {
+      "id": "c8a962a72096",
+      "slug": "room-kurogane",
+      "name": "commander's quarters",
+      "description": "This is a dark underground room. The walls are rough and bare. A passageway leads away to the south.",
+      "exits": {
+        "south": "b249809e35dc"
+      },
+      "npcs": [
+        {
+          "name": "an orc commander",
+          "description": [
+            "This is a very large adult orc. He seems to have a professional bearing, and a sense of purpose."
+          ],
+          "keywords": [
+            "orc",
+            "commander",
+            "kurogane",
+            "armored",
+            "professional"
+          ],
+          "room_description": "An orc commander is here.",
+          "race": "orc",
+          "level": 10,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/kurogane"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/kurogane"
+    },
+    {
+      "id": "8893efdfd0f0",
+      "slug": "room-pod",
+      "name": "the incept pod",
+      "description": "The incept pod. Some objects come here to be created and identified. Go down to get out.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "11d1c16a1ebb"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/cave/room/pod"
+    },
+    {
+      "id": "5fb911088768",
+      "slug": "room-rubbish",
+      "name": "underground garbage dump",
+      "description": "This underground area is full of foul piles of putrefying garbage and biological waste. A passageway leads west away from here.",
+      "exits": {
+        "west": "ac5d366c1326"
+      },
+      "npcs": [
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        },
+        {
+          "name": "a rodent of unusual size",
+          "description": [
+            "A very large, very dangerous-looking ratlike beast."
+          ],
+          "keywords": [
+            "rat",
+            "rous",
+            "beast",
+            "ratlike",
+            "unusual",
+            "large",
+            "very",
+            "dangerous",
+            "dangerous looking",
+            "rat like"
+          ],
+          "room_description": "A rodent of unusual size is here.",
+          "race": "rodent",
+          "level": 3,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/rat"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/rubbish"
+    },
+    {
+      "id": "ca093f6bde21",
+      "slug": "room-shop",
+      "name": "The General Store",
+      "description": "This is the local general store. You can buy or sell items here. A sign on the wall hangs here, explaining how things work. Try 'read sign'. East Village Road is south of here. The storeroom is below.",
+      "exits": {
+        "south": "9e63f0abb843",
+        "down": "8e8849163929"
+      },
+      "npcs": [
+        {
+          "name": "an orc shopkeep",
+          "description": [
+            "This is the manager of the local Post Exchange. You can sell things to him or buy things from him."
+          ],
+          "keywords": [
+            "orc",
+            "gorm",
+            "shopkeep",
+            "keeper",
+            "vendor",
+            "adult",
+            "male",
+            "shop"
+          ],
+          "room_description": "An orc shopkeep is here.",
+          "race": "orc",
+          "level": 2,
+          "gender": "male",
+          "source_path": "/domains/cave/npc/gorm"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "store",
+          "keywords": [
+            "store",
+            "shop",
+            "place"
+          ],
+          "description": [
+            "This is the local store."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign",
+            "sign on the wall"
+          ],
+          "description": [
+            "A sign on the wall, meant for reading."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/shop"
+    },
+    {
+      "id": "8e8849163929",
+      "slug": "room-shop2",
+      "name": "Gorm's storage room",
+      "description": "This is a small, bare room where Gorm keeps his goods. The main store is above.",
+      "exits": {
+        "up": "ca093f6bde21"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/cave/room/shop2"
+    },
+    {
+      "id": "8a4b2762e994",
+      "slug": "room-start",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "e62ec54b5a9f"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/cave/room/start"
+    },
+    {
+      "id": "b9357507392f",
+      "slug": "room-void",
+      "name": "the void",
+      "description": "The void.  Go down to get out.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "42a6867cb56e"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/cave/room/void"
+    },
+    {
+      "id": "2ccfb8193b17",
+      "slug": "room-weapon-storage1",
+      "name": "underground room",
+      "description": "This is a dark underground room. The walls are rough and bare. A passageway leads away to the south.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "2fe975210116"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "rock",
+            "rocks",
+            "earth",
+            "dirt",
+            "stone",
+            "stones"
+          ],
+          "description": [
+            "Rough and dirty, as one would expect from a simple underground area."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "rough walls",
+            "rough and bare walls",
+            "bare walls",
+            "bare and rough walls"
+          ],
+          "description": [
+            "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind."
+          ]
+        },
+        {
+          "name": "passage",
+          "keywords": [
+            "passage",
+            "passageway",
+            "This provides access to areas below the ground."
+          ],
+          "description": [
+            "This provides access to areas below the ground."
+          ]
+        },
+        {
+          "name": "room",
+          "keywords": [
+            "room",
+            "here",
+            "area"
+          ],
+          "description": [
+            "Carved roughly into the earth, this area has walls that expose underground rock."
+          ]
+        }
+      ],
+      "source_path": "/domains/cave/room/weapon_storage1"
+    },
+    {
+      "id": "b8b407cbd06e",
+      "slug": "room-wiz-hall",
+      "name": "Creators' Hall",
+      "description": "A generic Wiz Hall.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "efd8e5c96eff"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/cave/room/wiz_hall"
+    }
+  ]
+}

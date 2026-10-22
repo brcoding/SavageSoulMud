@@ -78,6 +78,7 @@ mod tests {
 
     fn stub_character() -> Character {
         Character {
+            credits: 100,
             id: grim_core::GrimId::new(),
             account_id: grim_core::GrimId::new(),
             created_at: chrono::Utc::now(),
@@ -87,6 +88,7 @@ mod tests {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
         }
     }
 

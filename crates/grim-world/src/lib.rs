@@ -27,3 +27,10 @@ pub use world::{resolve_room_address, room_location, RoomLookup};
 // ASCII area-map rendering (`world::map`): hoisted so consumers use
 // `grim_world::{MapConfig, render_map}`.
 pub use world::{render_map, MapConfig};
+
+/// Opt-in room darkness; games author which rooms lack illumination.
+#[derive(bevy::prelude::Component)]
+pub struct RoomDarkness;
+/// A lit portable or placed light; ownership/placement determines its room.
+#[derive(bevy::prelude::Component)]
+pub struct LightSource;

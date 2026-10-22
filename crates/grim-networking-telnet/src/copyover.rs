@@ -281,6 +281,7 @@ pub(crate) fn poll_copyover_signal(
             continue;
         };
         list.push(CopyoverConn {
+            peer_addr: Some(conn.addr),
             conn_id: conn.id,
             character: name.0.clone(),
             echo_hidden: conn.echo_hidden,
@@ -374,6 +375,7 @@ mod tests {
             .spawn((
                 GrimName("Hero".into()),
                 Character {
+                    credits: 100,
                     id: GrimId::new(),
                     account_id: GrimId::new(),
                     created_at: chrono::Utc::now(),
@@ -383,6 +385,7 @@ mod tests {
                     title: None,
                     restrings: std::collections::HashMap::new(),
                     config: std::collections::HashMap::new(),
+                    game_state: Default::default(),
                 },
                 Player {
                     connection: conn_new,
@@ -423,6 +426,7 @@ mod tests {
             entries: vec![HandoverEntry {
                 character: "Alice".into(),
                 echo_hidden: false,
+                peer_addr: Some("127.0.0.1:4000".parse().unwrap()),
             }],
         };
         write_handoff(&tx, &manifest, &[a.as_raw_fd(), b.as_raw_fd()]).unwrap();
@@ -527,6 +531,7 @@ mod tests {
             .spawn((
                 GrimName("Hero".into()),
                 Character {
+                    credits: 100,
                     id: GrimId::new(),
                     account_id: GrimId::new(),
                     created_at: chrono::Utc::now(),
@@ -536,6 +541,7 @@ mod tests {
                     title: None,
                     restrings: std::collections::HashMap::new(),
                     config: std::collections::HashMap::new(),
+                    game_state: Default::default(),
                 },
                 Player { connection: conn },
             ))

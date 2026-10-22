@@ -110,6 +110,7 @@ mod tests {
     fn spawn_character(app: &mut App, roles: Vec<Role>) -> Entity {
         app.world_mut()
             .spawn(Character {
+                credits: 100,
                 id: GrimId::new(),
                 account_id: GrimId::new(),
                 created_at: Utc::now(),
@@ -119,6 +120,7 @@ mod tests {
                 title: None,
                 restrings: std::collections::HashMap::new(),
                 config: std::collections::HashMap::new(),
+                game_state: Default::default(),
             })
             .id()
     }

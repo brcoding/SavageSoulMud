@@ -1,0 +1,21 @@
+{
+  "rat": {
+    "soul": {
+      "total_xp": 0,
+      "size": 0,
+      "mass": 0,
+      "attribute_modifiers": {
+        "body": 1,
+        "leadership": -4,
+        "melee_attack": -2,
+        "defense": -5,
+        "will_power": -3
+      },
+      "defense_mode": "none"
+    },
+    "combat_behavior": {
+      "can_be_trampled": true,
+      "xp_reward": 5
+    }
+  }
+}

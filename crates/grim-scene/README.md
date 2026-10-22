@@ -39,6 +39,7 @@ by `grim-auth`.
 Parsed by `grim-scene`'s registry (`src/parser.rs`); these verbs are handled **session-locally** in `src/command.rs` (they never reach the engine queue).
 
 | Command | Handler | Summary |
+| `read <target>` | parser → look handler (`src/parser.rs`, `grim-actor/src/commands/look.rs`) | Read a sign or other named fixture using its description. |
 | `desc …` | parser → engine queue (`src/parser.rs`, `grim-actor/src/commands/desc.rs`) | View/edit your description paragraphs (`clear`, `+ <line>`, `-` drops last, `edit` opens the line editor). |
 | `who` | `handle_ingame` → `format_who` (`src/who.rs`) | List online characters (admins first, then level/connect/name); linkdead characters are excluded (no live session — still visible in rooms via `look`); AFK sessions carry an `(AFK)` marker. |
 | `afk` | `handle_ingame` → `flag_afk` (`src/command.rs`) | Flag yourself AFK (auto-set after `IdleConfig::afk_after_secs` idle; any input clears; prompt becomes `<AFK> `). |
@@ -85,12 +86,33 @@ The shared render helpers in `src/formatter.rs` (`format_motd`, `format_selectio
 ## Notes
 - Single plugin: `ScenePlugin`. It is the **bridge** between `grim-networking` and `grim-command` (ARCHITECTURE.md §5.2/§5.3): reads raw in-game input, parses to `Command`, dispatches, and renders every domain event back per-recipient.
 - **Input routing split (Phase 2b + scene-stack thin slice).** One `handle_client_input` became two systems: `handle_ingame_input` here (stack top is `InGameScene`) and `handle_pregame_input` in `grim-auth` (every pre-game `ClientState`). The pre-game system runs first (`.before(SceneSystems::InGameInput)`); a line that advances a session into the world also pushes its in-game scene there and records the connection in `JustEnteredWorld`, so this crate's system skips that line the same tick and routes by stack from the next tick on.
-- Parser (`src/parser.rs`) owns direction aliases (`n`/`north` …), the `whisper`→`tell` alias, `help`→`commands`, and prefix resolution (last-registered wins on ties; e.g. `n` → north over social).
+- Parser (`src/parser.rs`) owns direction aliases (`n`/`north` … and `ne`/`nw`/`se`/`sw` with full diagonal names), the `whisper`→`tell` alias, `help`→`commands`, and prefix resolution (last-registered wins on ties; e.g. `n` → north over social).
 - `!` repeats the last input; blank lines re-trigger the prompt.
 - Admin-gated commands are byte-identical to "unknown command" for non-admins (no information leak) — see `dispatch_admin_gated`.
 - Scene stack (§5.3): thin slice landed — `SceneStack` + `InGameScene`, pushed at world entry, routing by top. Pre-game scenes, pop, and output policy are still deferred (ADR-0003).
 - Minimap: `emit_look_room` (`src/output.rs`) renders the looker's room through `grim_world::render_map` on the 9x7 canvas and staples it left of the room text (`formatter::staple_minimap`: 9-wide gutter + two spaces, no trailing blanks) whenever the resolved `minimap` setting (`grim-config`, per-character, default on) is on.
-- Look exit lines: `emit_look_room` (`src/look_output.rs`, `partition_exits`) splits the room's exits into `Exits: …` (plain exits plus open doors, hidden-open included) and `Doors: …` (closed doors), space-separated on one line, each `none` when empty. Admins additionally see closed secrets appended on the same line (`Secret: …`, itself `none` when the room hides nothing); non-admins never see the heading. Directions carry compass colours (north `{R`, south `{r`, east `{M`, west `{m`, up `{Y`, down `{y`, each terminated with the `{x` reset); room titles render `{B…{x` (blue), with admin debug ids after the reset so the colour never bleeds into them.
+- Look exit lines: `emit_look_room` (`src/look_output.rs`, `partition_exits`) splits the room's exits into `Exits: …` (plain exits plus open doors, hidden-open included) and `Doors: …` (closed doors), space-separated on one line, each `none` when empty. Admins additionally see closed secrets appended on the same line (`Secret: …`, itself `none` when the room hides nothing); non-admins never see the heading. Direction names use Savage Soul green (`{g`); item room lines are magenta (`{m`) and NPC names bright green (`{G`), each terminated with the `{x` reset. Authored NPC descriptions keep neutral prose where the name can be identified. Screen-reader and colors-off settings still strip all styling. NPC name highlights include leading articles and adjectives (for example, “An artrell”). The ASCII map uses green room markers and a red current-location marker; room titles render `{B…{x` (blue), with admin debug ids after the reset so the colour never bleeds into them.
 
 ---
 *Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
+
+`help [topic]` parses to `Command::Help`; the game-local `example-mud::help::HelpPlugin` supplies editable documentation. `commands` continues to list registered verbs.
+
+Royal Oak container intents preserve directional open/close. Non-directional open/close dispatch game object interactions; `get ... from ...`, desk inspection and note reading route through SavageSoul for the game-local desk handler. Other desk/note looks fall back to the ordinary Look event.
+
+`activate <target>` routes to the game-local Soulboy status handler through SavageSoul intent.
+
+`ask <person> <question>` and `talk to <person> <question>` route game-local
+NPC advice through SavageSoul intent; `royal_oak.rs` supplies Tully's dialogue.
+
+Object examination in look_output::emit_look_entity appends one relative Condition line, including for carried objects. It reads ItemCondition through the description query; room/being/fixture looks do not receive object condition labels.
+
+Room presence in look_output reads a character's optional posture_display only when posture_room matches the current room's stable GrimId. Seated/lying descriptions preserve AFK/linkdead indicators; characters without active posture retain normal standing text.
+
+MOTD selection (`grim-scene/src/formatter.rs`): each login independently chooses a nonblank line from runtime `assets/motdlist.txt`. One line is one complete message; blank lines are ignored, CRLF and UTF-8 BOM are supported. Edit the list without rebuilding or restarting. Missing/empty lists fall back to runtime `assets/motd.txt`, then its embedded copy. Normal entry waits for Enter; linkdead reconnects display a fresh message and resume immediately. Random selection can repeat messages.
+
+The game-specific `intermud`, `i3` and `imud` aliases are wizard-gated in `src/command.rs` before dispatch and hidden from mortal command listings. The game adapter independently checks current wizard roles for commands and inbound traffic.
+
+Room minimaps reserve an eleven-column gutter; `formatter::staple_minimap` wraps room text in the remaining 69 visible columns before combining rows, preserving long descriptions and colour tokens within the standard 80-column layout.
+
+Room/minimap text wrapping uses the connection's negotiated terminal width when available, defaulting to 80 columns.

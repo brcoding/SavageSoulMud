@@ -20,7 +20,7 @@ mod messages;
 mod plugin;
 mod wiznet;
 
-pub use connection::Connection;
+pub use connection::{Connection, TerminalSize};
 pub use copyover::{ConnectionResumed, HandoverEntry, HandoverManifest};
 pub use messages::{
     ConnectionClosed, ConnectionEstablished, ConnectionInput, ConnectionOutput, DisconnectRequest,

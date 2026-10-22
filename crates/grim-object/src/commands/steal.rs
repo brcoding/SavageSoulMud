@@ -80,8 +80,8 @@ pub(crate) fn handle_steal(
             &item_spec,
             carried
                 .iter()
-                .filter(|(_, _, _, _, _, held)| held.carrier == victim)
-                .map(|(e, nm, _, kw, _, _)| {
+                .filter(|(_, _, _, _, _, _, held)| held.carrier == victim)
+                .map(|(e, nm, _, kw, _, _, _)| {
                     (e, nm.0.as_str(), kw.map(|k| k.0.as_slice()).unwrap_or(&[]))
                 }),
         );
@@ -93,7 +93,7 @@ pub(crate) fn handle_steal(
             continue;
         }
         for entity in loot {
-            let Ok((_, name, _, _, _, _)) = carried.get(entity) else {
+            let Ok((_, name, _, _, _, _, _)) = carried.get(entity) else {
                 continue;
             };
             let short = name.0.clone();
@@ -130,6 +130,7 @@ mod tests {
 
     fn character() -> Character {
         Character {
+            credits: 100,
             id: GrimId::new(),
             account_id: GrimId::new(),
             created_at: chrono::Utc::now(),
@@ -139,6 +140,7 @@ mod tests {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
         }
     }
 

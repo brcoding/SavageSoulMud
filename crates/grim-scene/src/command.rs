@@ -70,7 +70,7 @@ fn character_is_admin(
 /// Registry names masked as unknown for non-admins (see `dispatch_admin_gated`
 /// and the session-local `sockets` gate). The `commands` grid hides these
 /// from non-admins so the list only shows what the actor can use.
-const ADMIN_GATED_NAMES: &[&str] = &["shutdown", "goto", "gecho", "ban", "sockets", "wiznet"];
+const ADMIN_GATED_NAMES: &[&str] = &["shutdown", "goto", "gecho", "ban", "sockets", "wiznet", "intermud", "i3", "imud", "zebedee", "i2", "grapevine", "gv"];
 
 /// Answer `commands`: the registry grid minus the `socials` section (listed
 /// by its own lister) and minus admin verbs for non-admins. What remains is
@@ -170,6 +170,18 @@ pub(crate) fn handle_ingame(
     };
 
     if let Some(cmd) = parser::parse_command(&res.registry, text_to_parse) {
+        // Game plugins can persist a generic restriction without coupling this
+        // session crate to their character rules.
+        let blocked = matches!(&cmd, Command::Move {..} | Command::Recall | Command::Open {..} | Command::Close {..} | Command::Get {..} | Command::Drop {..} | Command::Give {..} | Command::Steal {..} | Command::Buy {..} | Command::Sell {..});
+        if blocked {
+            if let Ok((_, character, _, _)) = characters.get(char_entity) {
+                let allow_drop=matches!(&cmd,Command::Drop {..})&&character.game_state.get("action_restriction_allow_drop").and_then(|v|v.as_bool()).unwrap_or(false);
+                if let Some(reason) = character.game_state.get("action_restriction").and_then(|v|v.as_str()).filter(|_|!allow_drop) {
+                    outputs.write(ConnectionOutput::new(conn, format!("{reason}\n")));
+                    return;
+                }
+            }
+        }
         // Update last_input for future "!" repeats (store only non-"!" input)
         client.last_input = Some(text_to_parse.to_string());
         // Handle special commands immediately
@@ -197,7 +209,13 @@ pub(crate) fn handle_ingame(
             Command::Desc { op: DescOp::Edit } => {
                 crate::editor::open_desc_edit(client, conn, char_entity, descriptions, outputs);
             }
-            Command::Equipment => answer_equipment(conn, outputs),
+            Command::Equipment => {
+                if let Ok((_, character, _, _)) = characters.get(char_entity) {
+                    if let Some(display) = character.game_state.get("equipment_display").and_then(|v|v.as_str()) {
+                        outputs.write(ConnectionOutput::new(conn, display));
+                    } else { answer_equipment(conn, outputs); }
+                }
+            },
             Command::Commands => answer_commands(conn, char_entity, characters, res, outputs),
             Command::Areas => {
                 outputs.write(ConnectionOutput {
@@ -224,6 +242,10 @@ pub(crate) fn handle_ingame(
                         ..ConnectionOutput::new(conn, tr!("error.unknown_command"))
                     });
                 }
+            }
+            Command::SavageSoul { ref verb, .. } if ["intermud", "i3", "imud", "zebedee", "i2", "grapevine", "gv"].contains(&verb.as_str()) => {
+                let is_admin = character_is_admin(characters, char_entity);
+                dispatch_admin_gated(cmd, is_admin, conn, &mut client.input_queue, outputs);
             }
             Command::Shutdown { .. }
             | Command::Reboot { .. }
@@ -338,8 +360,8 @@ pub(crate) fn process_command_queue(
                     // They re-spawn from the snapshot on next login.
                     let held: Vec<Entity> = pack
                         .iter()
-                        .filter(|(_, _, _, _, _, held)| held.carrier == char_entity)
-                        .map(|(e, _, _, _, _, _)| e)
+                        .filter(|(_, _, _, _, _, _, held)| held.carrier == char_entity)
+                        .map(|(e, _, _, _, _, _, _)| e)
                         .collect();
                     grim_object::persist::unload(&mut commands, held.into_iter());
                     commands.entity(char_entity).despawn();

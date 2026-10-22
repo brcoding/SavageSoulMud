@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::cardinal::Cardinal;
 
-// ─── Client → Engine ─────────────────────────────────────────────────
+// â”€â”€â”€ Client â†’ Engine â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 #[derive(Message, Debug)]
 pub struct EngineCommand {
@@ -13,30 +13,38 @@ pub struct EngineCommand {
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Command {
-    /// `look` or `look <target>` — the target is a `grim-target` being spec
+    /// Editable game help topic.
+    Help { topic: String },
+    /// Game-specific Savage Soul character, equipment, and combat commands.
+    SavageSoul { verb: String, arg: String },
+    ListShop,
+    Buy { target: String },
+    Sell { target: String },
+    Credits,
+    /// `look` or `look <target>` â€” the target is a `grim-target` being spec
     /// (`2.goblin` looks at the second; `"two words"` needs every word).
     Look { target: Option<String> },
-    /// `config` — list registered settings, show one (`config minimap`), or
+    /// `config` â€” list registered settings, show one (`config minimap`), or
     /// set one (`config minimap off`). Handled in `grim-actor`.
     Config {
         key: Option<String>,
         value: Option<String>,
     },
-    /// `map` — render the area around the actor's room as ASCII (`@` self,
-    /// `#` rooms, `--`/`|` exits, `,`/`'` up/down markers).
+    /// `map` â€” render the area around the actor's room as ASCII (`@` self,
+    /// `o` rooms, `--`/`|` exits, `,`/`'` up/down markers).
     Map,
-    /// `say <text>` — room-scoped
+    /// `say <text>` â€” room-scoped
     Say { text: String },
-    /// `yell <text>` — area-scoped
+    /// `yell <text>` â€” area-scoped
     Yell { text: String },
-    /// `ooc <text>` — global
+    /// `ooc <text>` â€” global
     Ooc { text: String },
-    /// `tell <target> <text>` — private message to one player (fuzzy-matched by
+    /// `tell <target> <text>` â€” private message to one player (fuzzy-matched by
     /// name; `self` targets the sender).
     Tell { target: String, text: String },
-    /// `reply <text>` — private message to the last player who whispered you.
+    /// `reply <text>` â€” private message to the last player who whispered you.
     Reply { text: String },
-    /// `<social> [target]` — a data-driven social (`grin`, `smile`, …,
+    /// `<social> [target]` â€” a data-driven social (`grin`, `smile`, â€¦,
     /// registered at startup from `grim-social`). `target` is the first word
     /// of the rest of the line, when present; the handler resolves it against
     /// the actor's roommates (`self` targets the sender).
@@ -44,10 +52,10 @@ pub enum Command {
         name: String,
         target: Option<String>,
     },
-    /// `socials` — list the data-driven socials (registered at startup from
+    /// `socials` â€” list the data-driven socials (registered at startup from
     /// `grim-social`). Answered from the command registry, like `commands`.
     SocialList,
-    /// `channel <name> <text>` — unified channel command (data-driven).
+    /// `channel <name> <text>` â€” unified channel command (data-driven).
     Channel { channel: String, text: String },
     /// `title <text>` sets the actor's WHO title (max 60 chars); a bare `title`
     /// (empty text) clears it.
@@ -58,84 +66,84 @@ pub enum Command {
     Desc { op: DescOp },
     /// Movement via cardinal direction
     Move { direction: Cardinal },
-    /// `open <direction>` — open the door guarding that exit.
+    /// `open <direction>` â€” open the door guarding that exit.
     /// Bare `open` is rejected as unknown (like `get`/`drop`).
     Open { direction: Cardinal },
-    /// `close <direction>` — close the door guarding that exit.
+    /// `close <direction>` â€” close the door guarding that exit.
     Close { direction: Cardinal },
-    /// `recall` — return to the Town Square (`haven:square`). No-op with a
+    /// `recall` â€” return to the Town Square (`haven:square`). No-op with a
     /// reply when already there. Available to every player.
     Recall,
-    /// `quit` — clean disconnect
+    /// `quit` â€” clean disconnect
     Quit,
-    /// `who` — list connected players
+    /// `who` â€” list connected players
     Who,
-    /// `wizlist` — list admin-flagged characters online
+    /// `wizlist` â€” list admin-flagged characters online
     Wizlist,
-    /// `where` — show who's in your area and their room
+    /// `where` â€” show who's in your area and their room
     Where,
-    /// `finger <name>` — show a character's description, online or off.
+    /// `finger <name>` â€” show a character's description, online or off.
     /// Online characters answer from their live description; offline ones
     /// load from disk (custom descriptions do not persist yet, so offline
     /// output is the default description for now).
     Finger { target: String },
-    /// `sockets` — admin-only, session-local. List every live connection
+    /// `sockets` â€” admin-only, session-local. List every live connection
     /// (id, address, session state, character, account, idle seconds).
     /// Masked as unknown for non-admins, like the other admin verbs.
     Sockets,
-    /// `wiznet` / `wiznet on|off|security|logins` — admin-only. List and
+    /// `wiznet` / `wiznet on|off|security|logins` â€” admin-only. List and
     /// toggle the admin-alert (wiznet) categories. Masked as unknown for
     /// non-admins, like the other admin verbs.
     Wiznet { arg: Option<String> },
-    /// `afk` — flag yourself as away. Auto-set after `IdleConfig::afk_after_secs`
+    /// `afk` â€” flag yourself as away. Auto-set after `IdleConfig::afk_after_secs`
     /// idle; any input line clears it. Shows on `who`; prompt becomes `<AFK>`.
     Afk,
-    /// `inventory` — list the short names of carried objects.
+    /// `inventory` â€” list the short names of carried objects.
     Inventory,
-    /// `equipment` — dummy: always reports empty (no item system yet).
+    /// `equipment` â€” dummy: always reports empty (no item system yet).
     Equipment,
-    /// `get <target>` — pick up matches from the room. A `grim-target` item
+    /// `get <target>` â€” pick up matches from the room. A `grim-target` item
     /// spec: one match by default, `2.coin` the second, `3*coin` up to three,
     /// `all [words]` every match.
     Get { target: String },
-    /// `drop <target>` — drop matches from the pack (same selectors as `get`).
+    /// `drop <target>` â€” drop matches from the pack (same selectors as `get`).
     Drop { target: String },
-    /// `give <item> <target>` — hand matches to a being here. Item-side
+    /// `give <item> <target>` â€” hand matches to a being here. Item-side
     /// selectors as in `get` (`give all sword bob`); the being is one
     /// recipient (`2.bob` for the second).
     Give { item: String, target: String },
-    /// `steal <item> <target>` — take matches from a being's pack here.
+    /// `steal <item> <target>` â€” take matches from a being's pack here.
     /// Selectors as in `give`. Existence checks only; no skill checks
     /// (example workflow).
     Steal { item: String, target: String },
-    /// `commands` — list all registered commands
+    /// `commands` â€” list all registered commands
     Commands,
-    /// `areas` — list every area in the world by its slug.
+    /// `areas` â€” list every area in the world by its slug.
     Areas,
-    /// `goto <address>` — admin-only. Teleport to a room resolved from an
+    /// `goto <address>` â€” admin-only. Teleport to a room resolved from an
     /// address (an entity id, `<area>:<room>`, or a bare room slug/grim id).
     Goto { target: String },
-    /// `gecho <text>` — admin-only. Echo a message to every player in the world,
+    /// `gecho <text>` â€” admin-only. Echo a message to every player in the world,
     /// including the sender. Other admins see it attributed (`Name> text`);
     /// everyone else sees the raw text.
     Gecho { text: String },
-    /// `shutdown [seconds]` — admin-only. Schedules a graceful server shutdown
+    /// `shutdown [seconds]` â€” admin-only. Schedules a graceful server shutdown
     /// after a countdown, broadcasting warnings to all connected players.
     Shutdown { seconds: u64 },
-    /// `reboot [seconds]` — admin-only. Like `shutdown`, but the process exits
+    /// `reboot [seconds]` â€” admin-only. Like `shutdown`, but the process exits
     /// non-zero at expiry so the service manager restarts it (cold restart:
     /// connections drop, the world reloads from disk).
     Reboot { seconds: u64 },
-    /// `copyover [seconds]` — admin-only. Warns like `shutdown`, then hands the
+    /// `copyover [seconds]` â€” admin-only. Warns like `shutdown`, then hands the
     /// live listener + player sockets to a successor process (hot restart:
     /// players stay connected). The telnet transport performs the handoff.
     Copyover { seconds: u64 },
-    /// `ban list [type]` — admin-only. List bans, optionally filtered by
+    /// `ban list [type]` â€” admin-only. List bans, optionally filtered by
     /// `ip` / `account` / `character`.
-    /// `ban add <type> <pattern>` — admin-only. Block an IP (exact or
+    /// `ban add <type> <pattern>` â€” admin-only. Block an IP (exact or
     /// `*`-wildcard prefix like `127.0.*`), an account (identifier or id), or
     /// a character (name; case-insensitive). Kicks every matching session.
-    /// `ban remove <type> <pattern>` — admin-only. Lift a ban.
+    /// `ban remove <type> <pattern>` â€” admin-only. Lift a ban.
     Ban { op: BanOp },
 }
 
@@ -184,11 +192,11 @@ impl std::fmt::Display for BanKind {
 /// The `ban` sub-operation: which blocklist edit or query to apply.
 #[derive(Debug, Clone, PartialEq)]
 pub enum BanOp {
-    /// `ban list [type]` — every ban, or only one kind.
+    /// `ban list [type]` â€” every ban, or only one kind.
     List { filter: Option<BanKind> },
-    /// `ban add <type> <pattern>` — block and kick matches.
+    /// `ban add <type> <pattern>` â€” block and kick matches.
     Add { kind: BanKind, pattern: String },
-    /// `ban remove <type> <pattern>` — lift.
+    /// `ban remove <type> <pattern>` â€” lift.
     Remove { kind: BanKind, pattern: String },
 }
 
@@ -216,9 +224,9 @@ mod tests {
     }
 }
 /// An object changed hands: picked up from a room or dropped into one.
-/// Rendered per-recipient — the actor sees the first-party line ("You pick
-/// up …"), everyone else in the room the third-party line ("<name> picks
-/// up …"). `actor_name` and `short` are precomputed so renderers need no
+/// Rendered per-recipient â€” the actor sees the first-party line ("You pick
+/// up â€¦"), everyone else in the room the third-party line ("<name> picks
+/// up â€¦"). `actor_name` and `short` are precomputed so renderers need no
 /// lookups.
 #[derive(Message, Debug, Clone, PartialEq)]
 pub struct ItemEvent {
@@ -237,10 +245,10 @@ pub enum ItemKind {
 }
 
 /// An object moved between two packs in a room: handed over (`give`) or taken
-/// (`steal`). Rendered per-recipient with all three wordings — the mover sees
-/// the first-party line ("You give …"), the other party the second-party line
-/// ("… gives you …" / "… steals your …"), and the rest of the room the
-/// third-party line ("… gives … to …"). Names and the short are precomputed
+/// (`steal`). Rendered per-recipient with all three wordings â€” the mover sees
+/// the first-party line ("You give â€¦"), the other party the second-party line
+/// ("â€¦ gives you â€¦" / "â€¦ steals your â€¦"), and the rest of the room the
+/// third-party line ("â€¦ gives â€¦ to â€¦"). Names and the short are precomputed
 /// so renderers need no lookups.
 #[derive(Message, Debug, Clone, PartialEq)]
 pub struct TransferEvent {
@@ -263,15 +271,15 @@ pub enum TransferKind {
 /// The `desc` sub-operation: which self-description edit to apply.
 #[derive(Debug, Clone, PartialEq)]
 pub enum DescOp {
-    /// Bare `desc` — show your own paragraphs.
+    /// Bare `desc` â€” show your own paragraphs.
     Show,
-    /// `desc clear` — drop every paragraph.
+    /// `desc clear` â€” drop every paragraph.
     Clear,
-    /// `desc + <line>` — append one paragraph.
+    /// `desc + <line>` â€” append one paragraph.
     Add(String),
-    /// `desc -` — drop the last paragraph.
+    /// `desc -` â€” drop the last paragraph.
     Remove,
-    /// `desc edit` — open the line editor on your paragraphs.
+    /// `desc edit` â€” open the line editor on your paragraphs.
     Edit,
 }
 
@@ -284,7 +292,7 @@ pub enum EditorKind {
     Description,
 }
 
-/// Engine → scene: open the line editor for `character`, preloaded with
+/// Engine â†’ scene: open the line editor for `character`, preloaded with
 /// `initial`. The scene attaches the modal session and shows the entry view.
 #[derive(Message, Debug, Clone, PartialEq)]
 pub struct OpenEditor {
@@ -293,7 +301,7 @@ pub struct OpenEditor {
     pub initial: Vec<String>,
 }
 
-/// Scene → engine: the editor closed. `lines` is `Some` on `@save` (apply
+/// Scene â†’ engine: the editor closed. `lines` is `Some` on `@save` (apply
 /// them) and `None` on `@exit` (discard). The consumer confirms to its actor.
 #[derive(Message, Debug, Clone, PartialEq)]
 pub struct EditorDone {
@@ -302,7 +310,7 @@ pub struct EditorDone {
     pub lines: Option<Vec<String>>,
 }
 
-// ─── Engine → Client (semantic events for formatting) ───────────────
+// â”€â”€â”€ Engine â†’ Client (semantic events for formatting) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /// "Show this room description to this client."
 #[derive(Message, Debug)]

@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+serde_json = { workspace = true }
 grim-core = { path = "../grim-core" }
 grim-world = { path = "../grim-world" }
 grim-networking = { path = "../grim-networking" }

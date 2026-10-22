@@ -1,0 +1,12 @@
+{
+  "enabled": false,
+  "host": "127.0.0.1",
+  "port": 4082,
+  "api_key_file": "var/intermud/api.key",
+  "channels": [
+    "intergossip"
+  ],
+  "wizard_only": true,
+  "activity_file": "var/intermud/activity.json",
+  "subscriptions_file": "var/intermud/subscriptions.json"
+}

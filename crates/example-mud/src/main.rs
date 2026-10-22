@@ -7,6 +7,31 @@ use example_mud::seed;
 use grim::GrimDefaultPlugins;
 
 fn main() {
+    let args: Vec<String> = std::env::args().collect();
+    if args.get(1).is_some_and(|arg| arg == "--validate-area") {
+        let result = args.get(2).ok_or("Missing area path".to_string())
+            .and_then(|path| std::fs::read_to_string(path).map_err(|e| e.to_string()))
+            .and_then(|text| seed::validate_area_json(&text));
+        if let Err(error) = result { eprintln!("{error}"); std::process::exit(1); }
+        return;
+    }
+
+    if args.get(1).is_some_and(|arg|arg=="--validate-races") {
+        let result=args.get(2).ok_or("Missing race catalogue path".to_string())
+            .and_then(|path|std::fs::read_to_string(path).map_err(|e|e.to_string()))
+            .and_then(|text|example_mud::species::Catalog::parse(&text).map(|_|()));
+        if let Err(error)=result {eprintln!("{error}");std::process::exit(1);}
+        return;
+    }
+
+    if args.get(1).is_some_and(|arg|arg=="--validate-creator") {
+        let result=args.get(2).ok_or("Missing creator configuration path".to_string())
+            .and_then(|path|std::fs::read_to_string(path).map_err(|e|e.to_string()))
+            .and_then(|text|example_mud::creator::Settings::parse(&text).map(|_|()));
+        if let Err(error)=result {eprintln!("{error}");std::process::exit(1);}
+        return;
+    }
+
     let mut app = App::new();
 
     // Headless server: cap the frame loop at 60 Hz. Bare `MinimalPlugins` runs
@@ -29,9 +54,16 @@ fn main() {
         telnet_port: 4000,
         ..Default::default()
     });
+    example_mud::species::install(&mut app);
+    app.insert_resource(grim::CharacterBuildMode::SavageSoul);
+    app.insert_resource(grim::AccessibilityOnboarding(true));
 
     // Seed the world
     app.add_systems(Startup, seed::seed_world);
+    app.add_plugins(example_mud::shop::ShopPlugin);
+    app.add_plugins(example_mud::help::HelpPlugin);
+    app.add_plugins(example_mud::intermud::IntermudPlugin);
+    app.add_plugins(example_mud::savage_soul::SavageSoulPlugin);
 
     app.run();
 }

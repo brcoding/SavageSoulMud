@@ -55,3 +55,7 @@ Player-facing verbs and where to find their handlers.
 
 ---
 *Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
+
+Pack persistence includes optional ItemCondition. Held/Carried queries snapshot it; restore_bundle preserves quality and absolute decay timestamps (default condition for legacy items). Picking up, dropping or transferring swaps placement only and never resets condition.
+
+CarriedBy is reexported from grim-core::components; existing grim_object::CarriedBy callers use the same component type.

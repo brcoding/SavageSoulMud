@@ -276,6 +276,7 @@ mod tests {
     fn spawn_char(app: &mut App, name: &str, admin: bool, conn: Entity) -> Entity {
         let roles = if admin { vec![Role::Admin] } else { vec![] };
         let (gname, actor, character) = StoredCharacter {
+            credits: 100,
             id: GrimId::new(),
             account_id: GrimId::new(),
             name: name.into(),
@@ -289,6 +290,7 @@ mod tests {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         }
         .into_components();

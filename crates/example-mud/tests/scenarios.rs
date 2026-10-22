@@ -19,9 +19,9 @@ const PW: &str = "secretpw";
 /// Map glyph colours (`grim_world::render_map` markup, asserted literally —
 /// the harness reads pre-render `ConnectionOutput` text).
 const ME: &str = "{R@@{x";
-const RM: &str = "{w#{x";
-const HL: &str = "{8-{x";
-const VL: &str = "{8|{x";
+const RM: &str = "{go{x";
+const HL: &str = "{w-{x";
+const VL: &str = "{w|{x";
 
 /// Create a brand-new account + character and enter the world. Leaves the
 /// session in-game, standing in the starting room.
@@ -885,7 +885,7 @@ fn map_centers_self_repeats_stably_and_recenters_on_move() {
     // down exit stays hidden, so no `'` marker appears for it).
     assert_eq!(
         rows[9],
-        "                                       {Y,{x{8|{x              {8|{x"
+        "                                       {Y,{x{w|{x              {w|{x"
     );
     assert_eq!(
         rows[8],
@@ -911,7 +911,7 @@ fn map_centers_self_repeats_stably_and_recenters_on_move() {
     // up-link still draws its `,` marker on this row.
     assert_eq!(
         rows[11],
-        "                                       {Y,{x{8|{x              {8|{x"
+        "                                       {Y,{x{w|{x              {w|{x"
     );
     assert_eq!(
         rows[12],

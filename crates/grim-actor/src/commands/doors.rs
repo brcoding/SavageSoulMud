@@ -212,6 +212,7 @@ mod tests {
                     gender: Gender::Neutral,
                 },
                 crate::character::Character {
+                    credits: 100,
                     id: GrimId::new(),
                     account_id: GrimId::new(),
                     created_at: chrono::Utc::now(),
@@ -221,6 +222,7 @@ mod tests {
                     title: None,
                     restrings: HashMap::new(),
                     config: HashMap::new(),
+                    game_state: Default::default(),
                 },
             ))
             .id()

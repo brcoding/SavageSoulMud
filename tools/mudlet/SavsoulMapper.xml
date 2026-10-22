@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MudletPackage version="1.001">
+  <ScriptPackage>
+    <Script isActive="yes" isFolder="no">
+      <name>SavsoulMapper</name>
+      <packageName>SavsoulMapper</packageName>
+      <script><![CDATA[
+SavsoulMapper = SavsoulMapper or {}
+for _, id in ipairs(SavsoulMapper.handlers or {}) do killAnonymousEventHandler(id) end
+SavsoulMapper.handlers = {}
+function SavsoulMapper.sync()
+  local info = gmcp and gmcp.Room and gmcp.Room.Info
+  local id = info and tonumber(info.num)
+  if id and id > 0 and roomExists(id) then centerview(id) end
+end
+mudlet = mudlet or {}
+mudlet.mapper_script = true
+if gmod and gmod.enableModule then gmod.enableModule('SavsoulMapper', 'Room.Info') end
+for _, event in ipairs({'gmcp.Room.Info', 'sysMapDownloadEvent', 'sysLoadEvent'}) do
+  table.insert(SavsoulMapper.handlers, registerAnonymousEventHandler(event, SavsoulMapper.sync))
+end
+SavsoulMapper.sync()
+      ]]></script>
+      <eventHandlerList/>
+    </Script>
+  </ScriptPackage>
+</MudletPackage>

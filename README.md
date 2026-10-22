@@ -1,86 +1,57 @@
-# GRIM Engine
+# The Savage Soul MUD
 
-A modular MUD engine built on Bevy ECS. Everything in the world is an entity, every interaction is an event. The engine is a library — a collection of Bevy plugins — and the running server is a binary that composes them.
+A recovered Savage Soul world running on a customized [GRIM](https://github.com/gvanderest/grim)
+Rust/Bevy engine. This repository stores the engine adaptations, converted world,
+authored rules/help, wizard editor, client support and deployment tools.
 
-**Connect now, in your terminal:**
+## Play
+
+- MUD: `savsoul.com:4000`
+- Secure MUD: `savsoul.com:4001` (TLS)
+- Website and browser terminal: https://savsoul.com/
+- Wizard editor: https://savsoul.com:4081/ (wizard MUD login required)
+
+## Included
+
+Savage Soul XP-based characters, species templates, combat, shops and credits,
+crafting, medical services and paid character rebuilding; restored rooms, NPCs,
+puzzles and gates; accessible output, combat detail options and prompts;
+wizard editing and map inspection; Mudlet saved sign-in and downloadable maps;
+I3, Zebedee and Grapevine integrations.
+
+## Build and configure
+
+Install the Rust toolchain specified in rust-toolchain.toml. Build on Linux/WSL:
 
 ```sh
-telnet grimtide.org 4000
+cargo build --locked --release -p example-mud --bin savsoul
+cargo run --locked -p example-mud --bin savsoul
 ```
 
-For context: I come from a MUD called Waterdeep and am recreating the general vibe with a modern twist in Rust.
+The plain MUD listens on port 4000. TLS and supporting web/network services have
+separate setup under tools/. External MUD networks are disabled in this checkout
+until configured with private credentials and a suitable unique development
+identity. Never use the production network identity for a second running copy.
 
-> NOTE: This project leverages AI assistance to develop the software. All code is reviewed and curated by a human maintainer.
-
-## Getting started
-
-```bash
-cargo run
-```
-
-The workspace has one binary, `example-mud`, so a bare `cargo run` builds and runs it (or `cargo run -p example-mud`). It listens on port **4000**:
-
-```bash
-telnet localhost 4000
-```
+Authored content is tracked under data/areas, data/help, data/quests,
+data/savage-soul and data/socials. Accounts and player saves are created locally
+under data/accounts and data/characters and are intentionally ignored.
+Preserve data/mudlet-map-ids.json to keep Mudlet room numbers stable.
 
 ## Documentation
 
-- **[docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)** — authoritative target architecture, the gap to today (§8), and the forward-looking roadmap.
-- **[CONTEXT.md](./CONTEXT.md)** — the glossary. Fixes the vocabulary (Session, Scene, Router, Actor, Attempt/Fact, Catalog, …) that crate, component, and event names must agree with.
-- **[AGENTS.md](./AGENTS.md)** — how to work in this repo (for AI agents and humans alike), incl. the conventions and editing discipline.
-- **Per-crate `README.md`** — each crate documents its own components, systems, and commands-with-handler-files, following [docs/README.template.md](./docs/README.template.md).
+- [Engine and game components](crates/example-mud/README.md)
+- [Wizard editor](tools/wizard-editor/README.md)
+- [Mudlet authentication and maps](tools/mudlet/README.md)
+- [Recovery and conversion notes](migration/)
+- [Engine architecture](docs/ARCHITECTURE.md)
+- [Original GRIM README](docs/GRIM-UPSTREAM-README.md)
+- [Attribution and unresolved licensing](UPSTREAM.md)
 
-## Crates
+This is a source/configuration backup, not a backup of private production state.
+Keep server credentials and player-data backups separately.
 
-Everything is a Bevy plugin unless noted. GRIM core is light on purpose: types, the command-registry shape, wire shapes, and session routing. The rest is the default D&D bundle shipped as `GrimDefaultPlugins` — every line replaceable. Dependencies point downward only; the `grim` facade re-exports every subsystem so a MUD author can depend on one crate. See each crate's README for its components, systems, and command→handler map.
-
-### Foundation (pure libraries — no `App` state)
-
-| Crate | What it holds |
-|---|---|
-| [`grim-color`](./crates/grim-color) | Colour markup (`{R`, `@xRGB`) → ANSI rendering, palette, escaping. No Bevy, no serde. |
-| [`grim-text`](./crates/grim-text) | Text catalog today (static `tr`/`tr!` with inlined defaults — interim; confirmed target is files + `Catalog` resource per ARCHITECTURE.md §5.4). Colour-safe `%{var}` substitution. Depends only on `grim-color`. |
-| [`grim-command`](./crates/grim-command) | `CommandRegistry<C>` — generic exact-then-prefix resolution with explicit, reorderable priority. Bevy-only. |
-| [`grim-core`](./crates/grim-core) | Transitional shared-types box (dissolving over time — each type moves to its owner; see ARCHITECTURE.md §8). Today: `GrimId`, `Cardinal`, `Name`, `Description`, `Gender`, `Command`, engine `Message` types. |
-| [`grim-config`](./crates/grim-config) | Player settings registry (`ConfigDef` key/valid/default/scope + fail-safe `resolve`). Plain library + `Resource`, no plugin; seeded and read by `grim-actor`, read by `grim-scene`. |
-
-### Transport
-
-| Crate | What it holds |
-|---|---|
-| [`grim-networking`](./crates/grim-networking) | `Connection` component + wire events (`ConnectionInput`/`Output`, `Established`/`Closed`, `DisconnectRequest`). Transport-agnostic. |
-| [`grim-networking-telnet`](./crates/grim-networking-telnet) | `TelnetPlugin`: TCP server, IAC negotiation, tokio↔Bevy bridge, ANSI on the wire, copyover hot-restart. |
-
-### Session
-
-| Crate | What it holds |
-|---|---|
-| [`grim-scene`](./crates/grim-scene) | `ScenePlugin`: in-game input dispatch, output formatting + broadcast, copyover resume. Owns the `CommandRegistry` resource + shared `formatter`. |
-| [`grim-auth`](./crates/grim-auth) | `AuthPlugin`: the pre-game flow — login, account/character creation, character-select, MOTD. `ClientState`-driven, layered on `grim-scene`. |
-
-### World & beings
-
-| Crate | What it holds |
-|---|---|
-| [`grim-world`](./crates/grim-world) | `WorldPlugin` (areas/rooms/exits topology + race/class registries) and `ShutdownPlugin` (countdown + SIGTERM). The being-free *stage*. |
-| [`grim-actor`](./crates/grim-actor) | `ActorPlugin`: the beings (`Character`/`Player`/`InRoom`/…) and the verbs that read them (`look`/`move`/`goto`/`quit`/`title`/`shutdown`). Depends on `grim-world`, never the reverse. |
-| [`grim-channel`](./crates/grim-channel) | `ChannelPlugin`: social channels — say (room), yell (area), ooc (global). |
-| [`grim-object`](./crates/grim-object) | `ObjectPlugin`: things (`Object`/`CarriedBy`) and the verbs that move them (`get`/`drop`/`inventory`). Depends on `grim-actor`, never the reverse. |
-| [`grim-script`](./crates/grim-script) | `ScriptPlugin`: sandboxed Lua triggers — scripted mob reactions on room entry/exit. Layers on `grim-actor` + `grim-channel`. |
-
-### Persistence & composition
-
-| Crate | What it holds |
-|---|---|
-| [`grim-persistence`](./crates/grim-persistence) | `PersistencePlugin`: load accounts/characters from disk, save on disconnect. |
-| [`grim`](./crates/grim) | Facade: depends on and re-exports every subsystem; offers `GrimDefaultPlugins` / `GrimHeadlessPlugins`. No logic of its own. |
-| [`example-mud`](./crates/example-mud) | The runnable binary: `GrimDefaultPlugins` + a hardcoded world seed. |
-
-## Architecture in one breath
-
-Event-passing gameplay: shared types and resources may be read downward (a `Name`, a `Connection`, a registry); game behaviour crosses crates via Bevy `Message` types. Transport frames bytes, the session turns input into a command event, gameplay plugins act on their command variant and emit world events, and the session formats those back to the connection. Colour markup is rendered to ANSI only at the transport edge, just before bytes hit the socket.
-
-> ⚠️ "Client" is a retired name — it conflated the session state machine, wire framing, and the user's terminal. The session crate is `grim-scene`. See [CONTEXT.md](./CONTEXT.md).
-
-**Status:** functional — telnet login, account creation, character management (gender/race/class/level), room movement, social channels, linkdead survival, and JSON world persistence. Security is proof-of-concept (SHA-256 password hashing, no TLS, no rate limiting) — not production-hardened.
+The initial CI checks compilation, character rules, saved sign-in and website
+building. Production deployment is not automatic. The inherited GRIM EC2
+workflow is retained only as deploy/upstream-deploy.yml.example; it is not the
+Savage Soul server deployment configuration.

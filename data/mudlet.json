@@ -1,0 +1,9 @@
+{
+  "name": "The Savage Soul",
+  "website": "",
+  "media_base_url": "http://localhost:4080/media/",
+  "tls_port": 4001,
+  "map_url": "https://savsoul.com/mudlet/savsoul.xml",
+  "gui_url": "https://savsoul.com/mudlet/SavsoulMapper.mpackage",
+  "gui_version": "1"
+}

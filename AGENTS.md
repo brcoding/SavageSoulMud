@@ -51,6 +51,8 @@ a crate:
 
 ## Key Conventions for Agents
 
+- When converting legacy content, preserve player command wording such as `read sign`; expose a compatible command alias rather than requiring users to discover a replacement.
+
 These describe **current** code. Several are slated to change — ARCHITECTURE.md §8
 lists every gap. Do not treat them as targets: notably "last registered wins" command
 resolution and the closed `Command` enum are documented as defects, not conventions to
@@ -122,3 +124,44 @@ When developing new features, start by asking:
   automatic time update, which overwrites manual `advance_by` (idle sweeps saw
   `elapsed == 0` forever). Clock-driven tests use a bare `App` plus
   `init_resource::<Time>()` and advance it manually — see `shutdown.rs` and `idle.rs`.
+`n- When recovered source has placeholders, label reconstruction as provisional. Prefer a supplied live-session transcript over older placeholders; do not invent missing puzzle behavior or silently present inferred rooms as faithful conversions.
+
+- WSL must execute the MUD from Linux storage, never the network-backed P: executable. Recreate the runtime image when /tmp is cleared; verify /proc/<pid>/exe after starting. Use Restart=on-failure for the local service.
+
+- Server-initiated disconnects must deliver queued explanation text before EOF. Drain the writer with a bounded timeout; never abort it immediately after enqueuing an authentication failure.
+
+- Converting a readable fixture requires resolving SetRead and its static file-backed callback, not just SetItems. A description telling players to read an object is incomplete without its written content.
+
+- Do not use forced NPC fleeing as a workaround for poor hit probability. Verify the requested combat outcome end-to-end; preserve size rules and implement appropriate rule-supported actions rather than hiding an unfinished fight.
+
+- Trample encounters must exercise the defender's opportunity to Attack a Moving Character before knockdown. Spending every NPC activation on Desperation Dive can silently remove all retaliation; verify both sides can attack and that reactions do not grant extra activations.
+
+- NPC death must end creature/script/merchant behavior and create actual remains, not just rewrite a living entity's room description. Verify corpse look/get/drop and transfer held possessions without duplication.
+
+- Route generic get-from commands by their named source before invoking quest handlers. Non-desk targets must never receive the trapped-desk error; test empty corpses and missing containers outside the quest room.
+
+- Brief combat must remain observable each round: summarize hits, misses and recovery on one line. Hiding all non-wounding attacks makes active combat look stopped, particularly after a live log-detail change.
+
+- Corpse expiry is absolute per-instance state: preserve it through snapshots, restores, pickup/drop and copyover. Save legacy carried corpse initialization and expired-pack removal atomically. Match removals by runtime entity, never shared corpse names; verify visible condition progression and actual disappearance.
+
+- Managed NPC populations count living spawn members across all rooms, not occupants of home rooms. Death releases exactly one slot with its delay; corpses and wandering must not duplicate replacements. Keep custom quest respawning exclusive with managed respawning. AI movement must use normal movement vetoes, stay within configured bounds and pause in combat.
+
+- The medical table regenerates the body placed on it; donating a creature corpse must never heal the donor. Regenerated creatures are contained, then identified as threats and vaporized after three seconds without rewards or new corpses. Sitting/lying heals the living patient separately. Never infer an unrelated corpse-as-healing-fuel mechanic from a room description.
+
+- Sitting/lying output must correspond to stored posture and have a working stand command. Save posture and table-owned prone together; match the stored room before rendering/blocking movement, and clear stale posture after teleport. Standing must not heal the character.
+
+- Browser content catalogs must avoid per-file stat/resolve/ancestor checks on the network-backed P: drive. Enumerate with scandir without following links, validate fixed roots once, cache only non-sensitive listing metadata briefly, and invalidate on save. Keep fresh authorization and full path validation for actual reads/writes; measure cold and warm endpoint times on the deployed filesystem.
+
+- Editor maps must preserve every room when inferred coordinates collide, separate floors/components before display packing, distinguish intentional one-way exits from broken targets, and label inferred geometry/artwork as schematic. Use current unsaved drafts for diagnostics; map navigation must not discard a draft or rewrite exits automatically.
+
+- Recovered crafting uses stable material identities across whole-pack snapshots. Do not confuse source craftsmanship tiers with wear, transplant LPC combat numbers into Savage Soul, or implement TODO recipes as established rules. Merge against live authored content and report missing tool/source dependencies explicitly.
+
+- Combat prose must follow the resolved outcome: Dodge for active avoidance, weapon parries/blocks only with an armed, capable defender, and no movement by incapacitated targets. Narrative variation must not consume combat dice or grant additional actions.
+
+- Intermud adapters must use bounded off-loop I/O, authenticated loopback APIs, fresh recipient authorization, and remote-text escaping. Keep router credentials outside authored content. After fresh startup, verify both MUD and channel caches; a ready TCP/router connection alone is insufficient. Do not replay chat/tells on reconnect or send public test messages.
+
+- Every Intermud alias and subcommand is wizard-only, including local history/activity and discovery. Enforce current roles at both session dispatch and delivery; a configuration flag must not grant mortal access. Bulk subscriptions must be paced and must not claim access to restricted network channels.
+
+- Remembered editor sessions need both an explicit persistent-cookie lifetime and a stable signing key stored in private local state. Do not generate a new key at every service restart; continue checking current wizard ownership, bans and credential fingerprints on each request.
+
+- Wrap room prose to the available text-column width before combining it with the ASCII minimap. Terminal/client wrapping starts at column zero and breaks the map gutter. Measure rendered colour-aware width, preserve explicit line breaks, and never truncate long descriptions or split colour tokens.

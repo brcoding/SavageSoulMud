@@ -1,0 +1,66 @@
+mud:
+  name: "The Savage Soul Dev"
+  port: 0
+  admin_email: "savagesoul@gmail.com"
+  mudlib: "The Savage Soul / Grim"
+  base_mudlib: "Grim"
+  driver: "Grim Rust / Bevy"
+  mud_type: "Custom"
+  open_status: "development - localhost only"
+  services:
+    tell: 1
+    emoteto: 1
+    channel: 1
+    who: 1
+    finger: 1
+    locate: 1
+    auth: 0
+    ucache: 0
+router:
+  primary:
+    name: "*i4"
+    host: "204.209.44.3"
+    port: 8080
+    password: 0
+  connection:
+    timeout: 30
+    keepalive_interval: 60
+    reconnect_delay: 30
+    max_reconnect_attempts: 1000000
+gateway:
+  host: "127.0.0.1"
+  auth:
+    enabled: true
+    secret: "${SAVSOUL_I3_GATEWAY_SECRET}"
+api:
+  enabled: true
+  host: "127.0.0.1"
+  port: 4081
+  tcp:
+    enabled: true
+    port: 4082
+    max_connections: 8
+  websocket:
+    enabled: false
+  auth:
+    enabled: true
+    api_keys:
+      - key: "${SAVSOUL_I3_API_KEY}"
+        mud_name: "The Savage Soul Dev"
+        permissions: ["*"]
+        rate_limit_override: 120
+  session:
+    timeout: 86400
+    max_queue_size: 128
+    queue_ttl: 30
+channels:
+  default_channels: []
+state:
+  directory: "/home/barry/.local/state/savsoul-intermud/router"
+  save_interval: 60
+logging:
+  level: "INFO"
+  format: "json"
+  file: "/home/barry/.local/state/savsoul-intermud/gateway.log"
+metrics:
+  enabled: false
