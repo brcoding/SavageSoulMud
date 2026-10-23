@@ -4,9 +4,10 @@ use grim::{Actor, Area, CarriedBy, Character, Connection, Doors, Exits, InRoom, 
 use grim::components::Name as GrimName;
 use serde::Deserialize;
 use serde_json::{json, Value};
-use std::collections::{BTreeMap, HashMap, HashSet};
+use std::collections::{BTreeMap, HashMap, HashSet, VecDeque};
 const REPORTABLE: &[&str] = &["INJURY", "MANA", "MANA_MAX", "EXPERIENCE", "EXPERIENCE_UNSPENT", "CREDITS", "WINDED", "FATIGUED", "STUNNED", "ROOM_VNUM", "ROOM_NAME", "AREA_NAME", "ROOM_EXITS", "CHARACTER_NAME"];
 const INPUTS_PER_TICK: usize = 16;
+const INPUT_BACKLOG: usize = 128;
 const MSDP_VALUES_PER_INPUT: usize = 32;
 const GMCP:u8=201; const MSDP:u8=69; const MSSP:u8=70; const ATCP:u8=200;
 
@@ -15,7 +16,7 @@ const GMCP:u8=201; const MSDP:u8=69; const MSSP:u8=70; const ATCP:u8=200;
 struct Settings { name:String, website:String, media_base_url:String, map_url:String, gui_url:String, gui_version:String, tls_port:u16, #[serde(skip)] boot_at:u64 }
 impl Default for Settings { fn default()->Self { Self { name:"The Savage Soul".into(), website:String::new(),media_base_url:String::new(),map_url:String::new(),gui_url:String::new(),gui_version:"1".into(),tls_port:0, boot_at:std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap_or_default().as_secs() } } }
 #[derive(Default)]
-struct ClientState { owner:Option<Entity>, last:HashMap<String,Value>, reported:HashSet<String>, mssp_sent:bool, last_inventory:Value, links_shown:bool, map_offered:bool }
+struct ClientState { owner:Option<Entity>, last:HashMap<String,Value>, reported:HashSet<String>, mssp_sent:bool, last_inventory:Value, links_shown:bool, map_offered:bool, pending:VecDeque<TelnetInput>, overloaded:bool }
 #[derive(Resource,Default,Deserialize)]
 struct MapperIds {rooms:BTreeMap<String,u32>}
 fn mapper_id(world:&World,id:&str)->Option<u32> {world.get_resource::<MapperIds>().and_then(|m|m.rooms.get(id).copied())}
@@ -97,17 +98,29 @@ fn package_supported(caps:&TelnetCapabilities,package:&str)->bool {
     caps.gmcp_supports.is_empty()||caps.gmcp_supports.iter().any(|supported| {let name=supported.split_whitespace().next().unwrap_or("");name==package||package.strip_prefix(name).is_some_and(|tail|tail.starts_with('.'))})
 }
 fn tick(world:&mut World,mut cursor:Local<MessageCursor<TelnetInput>>) {
-    let inputs:Vec<_>=cursor.read(world.resource::<Messages<TelnetInput>>()).cloned().collect();
+    let incoming:Vec<_>=cursor.read(world.resource::<Messages<TelnetInput>>()).cloned().collect();
     let mut state=world.remove_resource::<State>().unwrap_or_default();
+    for input in incoming {
+        if world.get::<Connection>(input.connection).is_none(){continue;}
+        let client=state.clients.entry(input.connection).or_default();
+        if client.overloaded {continue;}
+        if client.pending.len()>=INPUT_BACKLOG {
+            client.pending.clear();client.overloaded=true;
+            world.write_message(grim::ConnectionOutput::new(input.connection,"Too many pending protocol requests; reconnect to resynchronize.\n"));
+            world.write_message(grim::DisconnectRequest{connection:input.connection});
+        } else {client.pending.push_back(input);}
+    }
+    let mut inputs=Vec::new();
+    for (connection,client) in &mut state.clients {
+        if world.get::<Connection>(*connection).is_none(){client.pending.clear();continue;}
+        let count=client.pending.len().min(INPUTS_PER_TICK);
+        inputs.extend(client.pending.drain(..count));
+    }
     let online:HashMap<Entity,Entity>=world.query_filtered::<(Entity,&Player),With<Character>>().iter(world).map(|(actor,player)|(player.connection,actor)).collect();
-    let mut budgets:HashMap<Entity,usize>=HashMap::new();
     let mut snapshots=HashMap::new();
     let mut inventories=HashMap::new();
     let mut inventory_replied=HashSet::new();
     for input in inputs {
-        let used=budgets.entry(input.connection).or_default();
-        if *used>=INPUTS_PER_TICK {continue;}
-        *used+=1;
         if world.get::<Connection>(input.connection).is_none(){continue;}
         let Some(caps)=world.get::<TelnetCapabilities>(input.connection).cloned() else{continue;};
         let client=state.clients.entry(input.connection).or_default();
@@ -211,6 +224,39 @@ pub(crate) fn command(world:&mut World,actor:Entity,arg:&str)->Result<(),String>
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn deferred_reports_are_processed_in_order_on_the_next_tick() {
+        let mut app=App::new();
+        app.init_resource::<Time>().init_resource::<State>().init_resource::<Settings>().init_resource::<MapperIds>();
+        app.add_message::<TelnetInput>().add_message::<TelnetOutput>().add_systems(Update,tick);
+        let connection=app.world_mut().spawn((Connection{id:1,addr:"127.0.0.1:1234".parse().unwrap(),echo_hidden:false},TelnetCapabilities{gmcp:true,msdp:true,..Default::default()})).id();
+        for _ in 0..3 {app.world_mut().write_message(TelnetInput{connection,option:GMCP,payload:b"Core.Ping".to_vec()});}
+        for variable in REPORTABLE {app.world_mut().write_message(TelnetInput{connection,option:MSDP,payload:msdp_pair("REPORT",&json!(variable))});}
+        app.update();
+        let client=&app.world().resource::<State>().clients[&connection];
+        assert_eq!(client.reported.len(),13);assert_eq!(client.pending.len(),1);
+        assert!(!client.reported.contains("CHARACTER_NAME"));
+        app.update();
+        let client=&app.world().resource::<State>().clients[&connection];
+        assert_eq!(client.reported.len(),REPORTABLE.len());assert!(client.pending.is_empty());
+        assert!(client.reported.contains("CHARACTER_NAME"));
+    }
+
+    #[test]
+    fn backlog_overflow_requests_an_explicit_disconnect() {
+        let mut app=App::new();
+        app.init_resource::<Time>().init_resource::<State>().init_resource::<Settings>().init_resource::<MapperIds>();
+        app.add_message::<TelnetInput>().add_message::<TelnetOutput>().add_message::<grim::ConnectionOutput>().add_message::<grim::DisconnectRequest>().add_systems(Update,tick);
+        let connection=app.world_mut().spawn((Connection{id:1,addr:"127.0.0.1:1234".parse().unwrap(),echo_hidden:false},TelnetCapabilities{gmcp:true,..Default::default()})).id();
+        for _ in 0..=INPUT_BACKLOG {app.world_mut().write_message(TelnetInput{connection,option:GMCP,payload:b"Core.Ping".to_vec()});}
+        app.update();
+        let client=&app.world().resource::<State>().clients[&connection];
+        assert!(client.overloaded);assert!(client.pending.is_empty());
+        let requests=app.world().resource::<Messages<grim::DisconnectRequest>>();
+        assert_eq!(requests.get_cursor().read(requests).filter(|r|r.connection==connection).count(),1);
+        let messages=app.world().resource::<Messages<grim::ConnectionOutput>>();
+        assert!(messages.get_cursor().read(messages).any(|m|m.connection==connection&&m.text.contains("reconnect to resynchronize")));
+    }
     #[test]
     fn msdp_caps_total_values_and_commands_across_the_payload() {
         let payload=b"\x01SEND\x02MANA".repeat(100);

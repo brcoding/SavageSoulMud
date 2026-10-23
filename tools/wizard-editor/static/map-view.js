@@ -29,10 +29,12 @@ class MapView{
  setSplit(value,persist=false){const [min,max]=this.splitBounds();const actual=Math.max(min,Math.min(max,value));this.split=actual;this.body.style.setProperty('--inspector-width',(actual*100)+'%');const percent=Math.round(actual*100);this.widthInput.min=String(Math.ceil(min*100));this.widthInput.max=String(Math.floor(max*100));this.widthInput.value=String(percent);this.widthValue.value=percent+'%';this.widthValue.textContent=percent+'%';this.divider.setAttribute('aria-valuemin',String(Math.ceil(min*100)));this.divider.setAttribute('aria-valuemax',String(Math.floor(max*100)));this.divider.setAttribute('aria-valuenow',String(percent));this.divider.setAttribute('aria-valuetext',percent+' percent room inspector');if(persist)try{localStorage.setItem('savsoul-editor-map-inspector-share',String(actual));}catch(_){} }
  async refreshDraft(){return this.render(false,true);}
  async visit(node,fields=false,changes={}){
-  const previous={scope:this.scope,floor:this.floor,fitNext:this.fitNext};
-  const restore=async()=>{Object.assign(this,previous);this.scopeInput.value=this.scope;await this.render();};
+  const ticket=this.visitRequest=(this.visitRequest||0)+1;
+  const previous=this.visitBaseline||{scope:this.scope,floor:this.floor,fitNext:this.fitNext};
+  this.visitBaseline=previous;
+  const restore=async()=>{if(ticket!==this.visitRequest)return;Object.assign(this,previous);this.visitBaseline=null;this.scopeInput.value=this.scope;await this.render();};
   Object.assign(this,changes);this.scopeInput.value=this.scope;
-  try{const result=await this.hooks.select(node,fields);if(result===false)await restore();return result;}
+  try{const result=await this.hooks.select(node,fields);if(result===false)await restore();else if(ticket===this.visitRequest)this.visitBaseline=null;return result;}
   catch(error){await restore();throw error;}
  }
  async render(refresh=false,preserveInspector=false){const ticket=++this.request;try{const data=await this.hooks.data(refresh);if(ticket!==this.request)return;this.data=data;this.focus=data.focusKey||this.focus;this.model=M().build(data.areas,{scope:this.scope,areaPath:data.path,focusKey:this.focus});const focused=this.model.byKey.get(this.focus);const floor=this.floor==='auto'?focused?.logical.z??0:this.floor;this.floorInput.replaceChildren();for(const[value,label]of [['auto','Selected room floor'],['all','All floors — separate panels'],...this.model.levels.map(z=>[String(z),M().level(z)])]){const option=html('option',label);option.value=value;this.floorInput.append(option);}this.floorInput.value=this.floor;this.floorInput.disabled=this.scope==='world';this.layout=this.scope==='world'?this.atlasLayout():M().arrange(this.model,floor);this.draw();if(!preserveInspector)this.inspect();else this.refreshInspectorHeading();this.diagnostics();this.hooks.location?.();if(this.fitNext){this.fitNext=false;this.fit();}}catch(error){this.inspector.replaceChildren(html('p',error.message,'map-error'));}}

@@ -46,6 +46,8 @@ engine prefix priorities. Equipment reconciliation is throttled to once per seco
 Client protocol input is limited to 16 frames per connection per tick and 32
 MSDP commands/values per payload. SEND snapshots are lazy and shared within a
 tick; explicit inventory requests are coalesced and reuse the periodic snapshot.
+Deferred frames retain their order in a bounded per-connection backlog. Exceeding
+128 queued frames disconnects with an explanation rather than silently losing subscriptions.
 
 ## Resources & Events
 | Name | Kind (Resource/Message) | File |
