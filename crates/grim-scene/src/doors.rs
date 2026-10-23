@@ -10,13 +10,11 @@ use grim_core::cardinal::Cardinal;
 use grim_core::events::Command;
 
 fn open(rest: &str) -> Option<Command> {
-    let direction = Cardinal::parse(rest.trim())?;
-    Some(Command::Open { direction })
+    Cardinal::parse(rest.trim()).map(|direction| Command::Open { direction })
 }
 
 fn close(rest: &str) -> Option<Command> {
-    let direction = Cardinal::parse(rest.trim())?;
-    Some(Command::Close { direction })
+    Cardinal::parse(rest.trim()).map(|direction| Command::Close { direction })
 }
 
 /// Register both door verbs, parked behind older prefixes so `o` still

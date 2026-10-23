@@ -9,8 +9,11 @@
 //! them together and re-exports the public plugin.
 
 mod account;
+mod accessibility;
+mod build_mode;
 mod character_select;
 mod creation;
+mod creation_defaults;
 mod finalize;
 mod greeter;
 mod input;
@@ -28,5 +31,12 @@ pub mod validation;
 mod tests;
 
 pub use plugin::AuthPlugin;
+pub use accessibility::AccessibilityOnboarding;
+pub use build_mode::CharacterBuildMode;
 pub use throttle::ReconnectLimits;
 pub use validation::ReservedNamePrefixes;
+
+pub use creation_defaults::{CharacterCreationDefaults, StartingCredits};
+
+mod client_login;
+pub use client_login::{LoginCredentials,LoginResult,AuthSystems};

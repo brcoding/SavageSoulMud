@@ -16,7 +16,4 @@ pub struct Object;
 
 /// The carrier of a carried object. Present instead of `InRoom` — never
 /// alongside it (see the module docs).
-#[derive(Component, Debug, Clone, Copy)]
-pub struct CarriedBy {
-    pub carrier: Entity,
-}
+pub use grim_core::components::CarriedBy;

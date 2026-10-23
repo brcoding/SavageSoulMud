@@ -5,7 +5,7 @@
 //! carries the persistent player state that a creature has no use for (account,
 //! roles, class, title, restrings, last room). The shared "alive thing" fields
 //! (race, level, gender) live on [`Actor`](crate::Actor), and the display name
-//! lives on the `Name` component (`grim_core::components::Name`) — a
+//! lives on the `Name` component (`grim_core::components::Name`) â€” a
 //! `Character` no longer stores a `name`.
 //!
 //! `Character` is not itself serialized: its on-disk form is the flat
@@ -22,7 +22,7 @@ use grim_core::id::GrimId;
 use grim_world::RoomLocation;
 
 /// A privilege a character holds. Serialized lowercase (`"admin"`) so the
-/// character JSON stays human-editable — granting admin is a manual JSON edit
+/// character JSON stays human-editable â€” granting admin is a manual JSON edit
 /// today (see `docs/DEPLOY.md`). Serde stays on `Role` because the
 /// [`StoredCharacter`](crate::StoredCharacter) DTO carries it to disk.
 #[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
@@ -31,7 +31,7 @@ pub enum Role {
     Admin,
 }
 
-/// A player character — the PC-only being. Belongs to an account, can be
+/// A player character â€” the PC-only being. Belongs to an account, can be
 /// in-world. The name lives in the `Name` component and the shared race/level/
 /// gender in [`Actor`](crate::Actor); this struct holds only the PC-specific
 /// persistent state. Its disk form is [`StoredCharacter`](crate::StoredCharacter).
@@ -39,6 +39,8 @@ pub enum Role {
 pub struct Character {
     pub id: GrimId,
     pub account_id: GrimId,
+    /// Available money, measured in whole credits.
+    pub credits: u64,
     pub created_at: DateTime<Utc>,
     /// Last known room, as a stable [`RoomLocation`] (area + room `friendly_id`s).
     pub last_room: Option<RoomLocation>,
@@ -54,13 +56,15 @@ pub struct Character {
     /// Persisted per-character display overrides, keyed by a recognized name.
     /// The WHO renderer honours `who_level`, `who_gender`, `who_race`,
     /// `who_class`, `who_guild` (each overrides one stat column) and `who`
-    /// (replaces the whole stat block). No in-game setter yet — edited on disk.
+    /// (replaces the whole stat block). No in-game setter yet â€” edited on disk.
     pub restrings: HashMap<String, String>,
     /// Per-character config choices, keyed by registered option (`grim-config`).
     /// Only registered + valid values apply at read (via
     /// `ConfigRegistry::resolve`); anything else falls back to the default.
-    /// Empty for older characters — which therefore run all defaults.
+    /// Empty for older characters â€” which therefore run all defaults.
     pub config: HashMap<String, String>,
+    /// Namespaced, game-defined persistent state. Engine systems preserve it unchanged.
+    pub game_state: HashMap<String, serde_json::Value>,
 }
 
 impl Character {
@@ -76,6 +80,7 @@ mod tests {
 
     fn character(roles: Vec<Role>) -> Character {
         Character {
+            credits: 100,
             id: GrimId::new(),
             account_id: GrimId::new(),
             created_at: chrono::Utc::now(),
@@ -85,6 +90,7 @@ mod tests {
             title: None,
             restrings: HashMap::new(),
             config: HashMap::new(),
+            game_state: Default::default(),
         }
     }
 

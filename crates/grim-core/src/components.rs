@@ -14,6 +14,36 @@ use crate::id::GrimId;
 // `grim-actor`, which points *up* at this type.
 pub use crate::character::Gender;
 
+/// Shared placement link, reexported by grim-object for API compatibility.
+#[derive(Component, Debug, Clone, Copy)]
+pub struct CarriedBy {pub carrier:Entity}
+
+/// Per-instance physical condition. Optional absolute decay times survive saves.
+#[derive(Component, Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub struct ItemCondition {
+    #[serde(default = "full_quality")]
+    pub quality: u8,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub decay: Option<ItemDecay>,
+}
+fn full_quality() -> u8 {100}
+impl Default for ItemCondition {
+    fn default()->Self {Self{quality:100,decay:None}}
+}
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub struct ItemDecay {pub started_at:u64,pub expires_at:u64}
+impl ItemCondition {
+    pub fn label(&self)->&'static str {
+        match (self.decay.is_some(),self.quality.min(100)) {
+            (true,80..=100)=>"fresh",(true,60..=79)=>"starting to decay",
+            (true,30..=59)=>"decaying",(true,1..=29)=>"badly decayed",(true,0)=>"rotted away",
+            (false,90..=100)=>"excellent",(false,70..=89)=>"good",
+            (false,40..=69)=>"worn",(false,1..=39)=>"badly worn",(false,0)=>"ruined",
+            _=>unreachable!(),
+        }
+    }
+}
+
 // ─── Session ────────────────────────────────────────────────────────
 
 /// The client session state machine — one per connection, on a separate
@@ -114,6 +144,8 @@ pub enum ClientState {
     },
     /// MOTD prompt after character select — hit Enter to enter the world.
     MotdPrompt,
+    /// Optional one-time, per-character accessibility preference question.
+    AccessibilityPrompt,
     /// In-game — input is parsed and queued as commands.
     InGame,
 }

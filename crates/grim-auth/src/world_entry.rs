@@ -176,7 +176,7 @@ fn reconnect_linkdead(
     client.command_cooldown = Timer::from_seconds(0.5, TimerMode::Once);
     outputs.write(ConnectionOutput {
         echo: None,
-        ..ConnectionOutput::new(conn, "Reconnecting...\n")
+        ..ConnectionOutput::new(conn, format!("Reconnecting...\n{}\n", formatter::format_motd_message()))
     });
     // No playback for now: discard buffered output from before the disconnect
     // and don't auto-look. The player just gets the reconnection notice; they

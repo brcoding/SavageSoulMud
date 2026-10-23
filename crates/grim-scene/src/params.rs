@@ -85,6 +85,8 @@ impl RoomResolver<'_, '_> {
 /// rendering needs. Bundled because that system is at the 16-parameter ceiling.
 #[derive(bevy::ecs::system::SystemParam)]
 pub(crate) struct OutputReads<'w, 's> {
+    pub(crate) visibility: grim_actor::visibility::Visibility<'w,'s>,
+    pub(crate) terminals: Query<'w, 's, &'static grim_networking::TerminalSize>,
     pub(crate) login: MessageReader<'w, 's, LoginAnnounce>,
     pub(crate) logout: MessageReader<'w, 's, LogoutAnnounce>,
     pub(crate) linkdead: MessageReader<'w, 's, LinkdeadAnnounce>,

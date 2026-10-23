@@ -1,0 +1,15 @@
+[Unit]
+Description=Savage Soul wizard web editor
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/mnt/p/savsoulmud/grim
+Environment=GRIM_ROOT=/mnt/p/savsoulmud/grim
+ExecStart=/usr/bin/bash /mnt/p/savsoulmud/grim/start-editor.sh
+Restart=on-failure
+RestartSec=3
+UMask=0077
+
+[Install]
+WantedBy=default.target

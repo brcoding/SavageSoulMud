@@ -289,6 +289,7 @@ mod tests {
     /// spawning. Mirrors the pre-split `Character` field set.
     fn stored(name: &str, account_id: GrimId) -> StoredCharacter {
         StoredCharacter {
+            credits: 100,
             id: GrimId::new(),
             name: name.into(),
             account_id,
@@ -302,6 +303,7 @@ mod tests {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         }
     }

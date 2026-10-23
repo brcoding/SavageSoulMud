@@ -9,13 +9,16 @@
 //! at canvas middle `(width / 2, height / 2)`. `E`/`W` gaps are `--`, `N`/`S`
 //! gaps `|`; `Up` marks `,` at `(x - 1, y - 1)`, `Down` marks `'` at
 //! `(x + 1, y + 1)`. Layout is a BFS in fixed `Cardinal` order
-//! (N, E, S, W, Up, Down) — never `HashMap` iteration — so repeated calls
+//! (N, E, S, W, Up, Down, NE, NW, SE, SW) — never `HashMap` iteration — so repeated calls
 //! render byte-identical canvases; the first path to claim a cell wins and
 //! rooms past `±range` are neither placed nor traversed. Draw order is rooms,
 //! then connectors (gap cells for every exit link, so an off-canvas neighbour
 //! still leaves a visible stub), then up/down markers onto empty cells;
 //! everything clips to the canvas. Returned rows keep leading spaces and are
 //! trimmed of trailing spaces.
+//! Diagonals move one grid cell along each axis and draw two `/` or `\` gap glyphs.
+//! Conflicting links which would point at a different room are omitted. Incoming
+//! one-way connections to center never imply a return exit the actor cannot use.
 
 use std::collections::{HashMap, HashSet, VecDeque};
 
@@ -54,13 +57,17 @@ impl MapConfig {
 
 /// Fixed neighbour order: `Cardinal` declaration order, so BFS discovery is
 /// deterministic regardless of how the snapshot `HashMap`s iterate.
-const DIRS: [Cardinal; 6] = [
+const DIRS: [Cardinal; 10] = [
     Cardinal::North,
     Cardinal::East,
     Cardinal::South,
     Cardinal::West,
     Cardinal::Up,
     Cardinal::Down,
+    Cardinal::Northeast,
+    Cardinal::Northwest,
+    Cardinal::Southeast,
+    Cardinal::Southwest,
 ];
 
 /// Grid delta for a direction; `Up`/`Down` stay on their room's cell (they
@@ -71,6 +78,10 @@ fn delta(dir: Cardinal) -> (i32, i32) {
         Cardinal::East => (1, 0),
         Cardinal::South => (0, 1),
         Cardinal::West => (-1, 0),
+        Cardinal::Northeast => (1, -1),
+        Cardinal::Northwest => (-1, -1),
+        Cardinal::Southeast => (1, 1),
+        Cardinal::Southwest => (-1, 1),
         Cardinal::Up | Cardinal::Down => (0, 0),
     }
 }
@@ -93,7 +104,7 @@ fn put(canvas: &mut [Vec<char>], x: i32, y: i32, glyph: char) {
 /// `exits` is the live topology (room → its direction links); rooms absent
 /// from the snapshot are dead ends. A room with no snapshot entry still
 /// renders as a lone `@`. Glyphs carry transport-independent `{`-family colour
-/// markup (`@` `{R`, `#` `{w`, links `{8`, up `,` `{Y`, down `'` `{y`), each
+/// markup (`@` `{R`, `o` `{g`, links `{w`, up `,` `{Y`, down `'` `{y`), each
 /// reset with `{x` so colour never bleeds into neighbouring text. The `@`
 /// glyph is escaped (`@@`) — a bare `@` is a markup introducer.
 pub fn render_map(
@@ -157,6 +168,25 @@ pub fn render_map(
             Some(links) => links,
             None => continue,
         };
+        // Only draw links toward their actual target. A conflicting loop can
+        // place that target elsewhere, or put an unrelated room in this cell.
+        // Incoming one-way links must not suggest a usable exit from `center`.
+        let visible: HashMap<_, _> = links.iter().filter(|(dir, target)| {
+            if matches!(dir, Cardinal::Up | Cardinal::Down) { return true; }
+            let (dx, dy) = delta(**dir);
+            let expected = (gx + dx, gy + dy);
+            if placed.get(*target).is_some_and(|position| *position != expected) {
+                return false;
+            }
+            if cells.get(&expected).is_some_and(|occupant| occupant != *target) {
+                return false;
+            }
+            if expected == (0, 0) && *room != center {
+                return exits.get(&center).and_then(|out| out.get(&dir.opposite())) == Some(room);
+            }
+            true
+        }).map(|(dir, target)| (*dir, *target)).collect();
+        let links = &visible;
         let (x, y) = (cx + gx * 3, cy + gy * 2);
         if links.contains_key(&Cardinal::North) {
             put(&mut canvas, x, y - 1, '|');
@@ -171,6 +201,17 @@ pub fn render_map(
         if links.contains_key(&Cardinal::West) {
             put(&mut canvas, x - 1, y, '-');
             put(&mut canvas, x - 2, y, '-');
+        }
+        for (dir, dx, dy, glyph) in [
+            (Cardinal::Northeast, 1, -1, '/'),
+            (Cardinal::Northwest, -1, -1, '\\'),
+            (Cardinal::Southeast, 1, 1, '\\'),
+            (Cardinal::Southwest, -1, 1, '/'),
+        ] {
+            if links.contains_key(&dir) {
+                put(&mut canvas, x + dx, y + dy, glyph);
+                put(&mut canvas, x + 2 * dx, y + dy, glyph);
+            }
         }
         if links.contains_key(&Cardinal::Up) {
             put(&mut canvas, x - 1, y - 1, ',');
@@ -187,9 +228,11 @@ pub fn render_map(
             for glyph in row {
                 match glyph {
                     '@' => out.push_str("{R@@{x"),
-                    '#' => out.push_str("{w#{x"),
-                    '-' => out.push_str("{8-{x"),
-                    '|' => out.push_str("{8|{x"),
+                    '#' => out.push_str("{go{x"),
+                    '-' => out.push_str("{w-{x"),
+                    '|' => out.push_str("{w|{x"),
+                    '/' => out.push_str("{w/{x"),
+                    '\\' => out.push_str("{w\\{x"),
                     ',' => out.push_str("{Y,{x"),
                     '\'' => out.push_str("{y'{x"),
                     _ => out.push(glyph),
@@ -205,9 +248,9 @@ mod tests {
     use super::*;
 
     const ME: &str = "{R@@{x";
-    const RM: &str = "{w#{x";
-    const HL: &str = "{8-{x";
-    const VL: &str = "{8|{x";
+    const RM: &str = "{go{x";
+    const HL: &str = "{w-{x";
+    const VL: &str = "{w|{x";
     const UP: &str = "{Y,{x";
     const DN: &str = "{y'{x";
 
@@ -252,6 +295,48 @@ mod tests {
     }
 
     #[test]
+    fn overlapping_target_does_not_invent_an_east_exit() {
+        let mut exits = HashMap::new();
+        link(&mut exits, e(1), Cardinal::North, e(2));
+        link(&mut exits, e(1), Cardinal::Northeast, e(3));
+        link(&mut exits, e(3), Cardinal::South, e(4));
+        // The east neighbor points west to a different room which loses
+        // the center's cell. Its connector used to look like @--#.
+        link(&mut exits, e(4), Cardinal::West, e(5));
+        let rows = render_map(e(1), &exits, &MapConfig::MINIMAP);
+        assert_eq!(rows[3], format!("    {ME}  {RM}"));
+    }
+
+    #[test]
+    fn incoming_one_way_link_does_not_invent_a_return_exit() {
+        let mut exits = HashMap::new();
+        link(&mut exits, e(1), Cardinal::Northeast, e(2));
+        link(&mut exits, e(2), Cardinal::South, e(3));
+        link(&mut exits, e(3), Cardinal::West, e(1));
+        let rows = render_map(e(1), &exits, &MapConfig::MINIMAP);
+        assert_eq!(rows[3], format!("    {ME}  {RM}"));
+    }
+
+    #[test]
+    fn diagonal_exits_place_rooms_and_connectors() {
+        for (direction, dx, dy, glyph) in [
+            (Cardinal::Northeast, 1, -1, '/'),
+            (Cardinal::Northwest, -1, -1, '\\'),
+            (Cardinal::Southeast, 1, 1, '\\'),
+            (Cardinal::Southwest, -1, 1, '/'),
+        ] {
+            let mut exits = HashMap::new();
+            link(&mut exits, e(1), direction, e(2));
+            link(&mut exits, e(2), direction.opposite(), e(1));
+            let rows = render_map(e(1), &exits, &MapConfig::MAP);
+            assert_eq!(rows[(10 + 2 * dy) as usize], format!("{}{RM}", " ".repeat((40 + 3 * dx) as usize)));
+            let connector = format!("{{w{glyph}{{x");
+            assert_eq!(rows[(10 + dy) as usize].matches(connector.as_str()).count(), 2);
+            assert_eq!(rows, render_map(e(1), &exits, &MapConfig::MAP));
+        }
+    }
+
+    #[test]
     fn up_down_markers_offset_from_room() {
         let center = e(1);
         let mut exits = HashMap::new();
@@ -263,7 +348,7 @@ mod tests {
         assert_eq!(rows[9], format!("{:39}{UP}{VL}", ""));
         assert_eq!(rows[11], format!("{:41}{DN}", ""));
         // Up/down targets share the room's cell, so they never place.
-        assert_eq!(rows.iter().filter(|r| r.contains('#')).count(), 1);
+        assert_eq!(rows.iter().filter(|r| r.contains('o')).count(), 1);
     }
 
     #[test]
@@ -299,7 +384,7 @@ mod tests {
         assert_eq!(
             rows.iter()
                 .flat_map(|r| r.chars())
-                .filter(|&g| g == '#')
+                .filter(|&g| g == 'o')
                 .count(),
             3
         );
@@ -376,7 +461,7 @@ mod tests {
         link(&mut exits, center, Cardinal::Up, e(6));
         link(&mut exits, center, Cardinal::Down, e(7));
         let text = render_map(center, &exits, &MapConfig::MAP).join("\n");
-        let openers = ["{R", "{w", "{8", "{Y", "{y"]
+        let openers = ["{R", "{g", "{w", "{Y", "{y"]
             .iter()
             .map(|op| text.matches(op).count())
             .sum::<usize>();

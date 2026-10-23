@@ -13,6 +13,7 @@ use grim_actor::StoredObject;
 use grim_core::components::{Description, Keywords, Name as GrimName, RoomDescription};
 
 use crate::object::{CarriedBy, Object};
+use grim_core::components::ItemCondition;
 
 /// One carried object's snapshot inputs, as read from the world.
 pub type Held<'a> = (
@@ -20,6 +21,7 @@ pub type Held<'a> = (
     Option<&'a Description>,
     Option<&'a Keywords>,
     Option<&'a RoomDescription>,
+    Option<&'a ItemCondition>,
     &'a CarriedBy,
 );
 
@@ -28,11 +30,11 @@ pub type Held<'a> = (
 /// paragraphs, keywords, room line.
 pub fn snapshot<'a>(held: impl Iterator<Item = Held<'a>>, carrier: Entity) -> Vec<StoredObject> {
     let mut out: Vec<(String, StoredObject)> = held
-        .filter(|(_, _, _, _, held)| held.carrier == carrier)
-        .map(|(nm, desc, kw, line, _)| {
+        .filter(|(_, _, _, _, _, held)| held.carrier == carrier)
+        .map(|(nm, desc, kw, line, condition, _)| {
             (
                 nm.0.clone(),
-                StoredObject {
+                StoredObject { condition: condition.cloned(),
                     name: nm.0.clone(),
                     description: desc.map(|d| d.0.clone()).unwrap_or_default(),
                     keywords: kw.map(|k| k.0.clone()).unwrap_or_default(),
@@ -49,7 +51,7 @@ pub fn snapshot<'a>(held: impl Iterator<Item = Held<'a>>, carrier: Entity) -> Ve
 pub fn snapshot_pack(pack: &Carried, carrier: Entity) -> Vec<StoredObject> {
     snapshot(
         pack.iter()
-            .map(|(_, nm, desc, kw, line, held)| (nm, desc, kw, line, held)),
+            .map(|(_, nm, desc, kw, line, condition, held)| (nm, desc, kw, line, condition, held)),
         carrier,
     )
 }
@@ -65,6 +67,7 @@ pub type Carried<'w, 's> = Query<
         Option<&'static Description>,
         Option<&'static Keywords>,
         Option<&'static RoomDescription>,
+        Option<&'static ItemCondition>,
         &'static CarriedBy,
     ),
     With<Object>,
@@ -81,6 +84,7 @@ pub fn restore_bundle(
     Keywords,
     RoomDescription,
     CarriedBy,
+    ItemCondition,
 ) {
     (
         Object,
@@ -89,6 +93,7 @@ pub fn restore_bundle(
         Keywords(stored.keywords.clone()),
         RoomDescription(stored.room_description.clone()),
         CarriedBy { carrier },
+        stored.condition.clone().unwrap_or_default(),
     )
 }
 
@@ -119,6 +124,7 @@ mod tests {
         Option<Description>,
         Option<Keywords>,
         Option<RoomDescription>,
+        Option<ItemCondition>,
         CarriedBy,
     );
 
@@ -130,11 +136,12 @@ mod tests {
             Option<&Description>,
             Option<&Keywords>,
             Option<&RoomDescription>,
+            Option<&ItemCondition>,
             &CarriedBy,
         )>();
         state
             .iter(world)
-            .map(|(nm, d, k, l, h)| (nm.clone(), d.cloned(), k.cloned(), l.cloned(), *h))
+            .map(|(nm, d, k, l, c, h)| (nm.clone(), d.cloned(), k.cloned(), l.cloned(), c.cloned(), *h))
             .collect()
     }
 
@@ -159,7 +166,7 @@ mod tests {
         let snap = snapshot(
             owned
                 .iter()
-                .map(|(nm, d, k, l, h)| (nm, d.as_ref(), k.as_ref(), l.as_ref(), h)),
+                .map(|(nm, d, k, l, c, h)| (nm, d.as_ref(), k.as_ref(), l.as_ref(), c.as_ref(), h)),
             alice,
         );
         assert_eq!(snap.len(), 2);
@@ -175,13 +182,14 @@ mod tests {
         let mut app = App::new();
         app.add_plugins(MinimalPlugins);
         let carrier = app.world_mut().spawn_empty().id();
-        let stored = StoredObject {
+        let stored = StoredObject { condition: Some(ItemCondition {quality:45,decay:Some(grim_core::components::ItemDecay{started_at:100,expires_at:400})}),
             name: "brass lantern".into(),
             description: vec!["A sturdy brass lantern.".into()],
             keywords: vec!["lantern".into()],
             room_description: "A brass lantern rests here.".into(),
         };
-        let (obj, nm, desc, kw, line, held) = restore_bundle(&stored, carrier);
+        let (obj, nm, desc, kw, line, held, condition) = restore_bundle(&stored, carrier);
+        assert_eq!(Some(condition),stored.condition);
         let _ = obj;
         assert_eq!(nm.0, "brass lantern");
         assert_eq!(desc.0, vec!["A sturdy brass lantern.".to_string()]);

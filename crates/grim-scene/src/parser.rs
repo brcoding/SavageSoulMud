@@ -46,7 +46,7 @@ fn parse_tell(rest: &str) -> Option<Command> {
 }
 
 /// Parse `config [key] [value]`: bare lists settings, one word shows one,
-/// two words set one. More words are unknown — values are single tokens.
+/// two words set one. More words are unknown â€” values are single tokens.
 fn parse_config(rest: &str) -> Option<Command> {
     let mut words = rest.split_whitespace();
     let key = words.next();
@@ -64,7 +64,7 @@ fn parse_config(rest: &str) -> Option<Command> {
 /// optional `N*`/`N.` selector prefix plus a bare word or a `"quoted phrase"`.
 /// Usually the item is the first token and the being everything after it
 /// (`give "brass lantern" bob`), but an `all`-headed item (`all`, `all sword`,
-/// `all.sword`) is greedy — it runs to the last token so the being stays one
+/// `all.sword`) is greedy â€” it runs to the last token so the being stays one
 /// word (`give all sword "Grimmok Ironhand"`, quoted when multi-word). Both
 /// parts required; an unterminated quote is unknown.
 fn split_transfer(rest: &str) -> Option<(String, String)> {
@@ -167,7 +167,7 @@ fn is_all_head(token: &str) -> bool {
 fn build_registry() -> CommandRegistry<Command> {
     let mut r = CommandRegistry::new();
 
-    // ── Social commands ──────────────────────────────────────────
+    // â”€â”€ Social commands â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     r.register("say", |rest| {
         if rest.is_empty() {
             None
@@ -198,7 +198,7 @@ fn build_registry() -> CommandRegistry<Command> {
             })
         }
     });
-    // `channel <name> <text>` — a generic command for all configured channels.
+    // `channel <name> <text>` â€” a generic command for all configured channels.
     // This allows players to use custom channels added via ChannelRegistry.
     r.register("channel", |rest| {
         let rest = rest.trim();
@@ -216,7 +216,7 @@ fn build_registry() -> CommandRegistry<Command> {
     // non-empty message; a bare `tell` or `tell name` is rejected.
     r.register("tell", parse_tell);
     r.register("whisper", parse_tell);
-    // `reply <message>` — to the last player who whispered you.
+    // `reply <message>` â€” to the last player who whispered you.
     r.register("reply", |rest| {
         let text = rest.trim();
         (!text.is_empty()).then(|| Command::Reply {
@@ -231,7 +231,14 @@ fn build_registry() -> CommandRegistry<Command> {
         })
     });
 
-    // ── Game actions ─────────────────────────────────────────────
+    // â”€â”€ Game actions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Reading fixtures uses the same target lookup and description as looking.
+    r.register("read", |rest| {
+        (!rest.is_empty()).then(|| Command::Look {
+            target: Some(rest.to_string()),
+        })
+    });
+    r.deprioritize("read");
     r.register("look", |rest| {
         if rest.is_empty() {
             Some(Command::Look { target: None })
@@ -261,14 +268,14 @@ fn build_registry() -> CommandRegistry<Command> {
             })
         }
     });
-    // `map` — bare only (`map <anything>` is unknown, like `sockets`). The `m`
+    // `map` â€” bare only (`map <anything>` is unknown, like `sockets`). The `m`
     // prefix is uncontested, so this steals no abbreviation.
     r.register("map", |rest| rest.trim().is_empty().then_some(Command::Map));
     r.register("who", |_| Some(Command::Who));
     r.register("wizlist", |_| Some(Command::Wizlist));
     r.register("where", |_| Some(Command::Where));
     r.register("afk", |_| Some(Command::Afk));
-    // `finger <name>` — rejected with no argument so a bare `finger` is unknown.
+    // `finger <name>` â€” rejected with no argument so a bare `finger` is unknown.
     r.register("finger", |rest| {
         let target = rest.trim();
         (!target.is_empty()).then(|| Command::Finger {
@@ -276,25 +283,30 @@ fn build_registry() -> CommandRegistry<Command> {
         })
     });
     r.register("inventory", |_| Some(Command::Inventory));
+    r.register("list", |rest| rest.is_empty().then_some(Command::ListShop));
+    r.register("credits", |rest| rest.is_empty().then_some(Command::Credits));
+    r.register("buy", |rest| (!rest.is_empty()).then(|| Command::Buy { target: rest.to_string() }));
+    r.register("sell", |rest| (!rest.is_empty()).then(|| Command::Sell { target: rest.to_string() }));
+    for word in ["list", "credits", "buy", "sell"] { r.deprioritize(word); }
     r.register("equipment", |_| Some(Command::Equipment));
     r.register("inv", |_| Some(Command::Inventory));
     r.register("eq", |_| Some(Command::Equipment));
     r.register("areas", |_| Some(Command::Areas));
-    // `config [key] [value]` — list settings, cycle one, or set one.
+    // `config [key] [value]` â€” list settings, cycle one, or set one.
     // Registered BEFORE `commands` so the shared `c`/`co` abbreviations keep
-    // reaching the older verb (`con` never matched `commands` — `com` vs
-    // `con` — so it and longer prefixes reach `config`); exact words match.
+    // reaching the older verb (`con` never matched `commands` â€” `com` vs
+    // `con` â€” so it and longer prefixes reach `config`); exact words match.
     r.register("config", parse_config);
     r.register("commands", |_| Some(Command::Commands));
-    r.register("help", |_| Some(Command::Commands));
-    // `sockets` — admin-only, session-local (masked at dispatch, see
+    r.register("help", |rest| Some(Command::Help { topic: rest.to_string() }));
+    // `sockets` â€” admin-only, session-local (masked at dispatch, see
     // `handle_ingame`). Takes no argument, so `sockets <anything>` is unknown.
     // Registered before the directions so single-letter/short prefixes still
     // resolve to movement first.
     r.register("sockets", |rest| {
         rest.trim().is_empty().then_some(Command::Sockets)
     });
-    // `wiznet [on|off|security|logins]` — admin-only, engine-queued + masked
+    // `wiznet [on|off|security|logins]` â€” admin-only, engine-queued + masked
     // (see `handle_wiznet`). Bare lists; one token sets/toggles; more than
     // one word is unknown.
     r.register("wiznet", |rest| {
@@ -308,21 +320,21 @@ fn build_registry() -> CommandRegistry<Command> {
         }
     });
     // `wiz` is now contested (wizlist vs wiznet): keep it resolving to the
-    // older verb so no muscle memory breaks (`wizn…` still reaches wiznet).
+    // older verb so no muscle memory breaks (`wiznâ€¦` still reaches wiznet).
     r.prioritize("wizlist");
     r.register("quit", |_| Some(Command::Quit));
     r.register("exit", |_| Some(Command::Quit));
-    // `recall` — return to the Town Square. Bare only (`recall <anything>`
+    // `recall` â€” return to the Town Square. Bare only (`recall <anything>`
     // is unknown, like `map`/`sockets`).
     r.register("recall", |rest| {
         rest.trim().is_empty().then_some(Command::Recall)
     });
     // Bare-only factories reject the rest line, and resolution never falls
-    // through to the next prefix candidate — so a new bare verb must sink
+    // through to the next prefix candidate â€” so a new bare verb must sink
     // below the older verbs sharing its prefixes (`reboot`/`copyover` do the
-    // same): short `r`/`re` keep reaching `reply`, only `rec…` reaches recall.
+    // same): short `r`/`re` keep reaching `reply`, only `recâ€¦` reaches recall.
     r.deprioritize("recall");
-    // `get <keyword>` / `drop <keyword>` — need a target, so a bare `get` or
+    // `get <keyword>` / `drop <keyword>` â€” need a target, so a bare `get` or
     // `drop` is unknown. Registered before the admin verbs so the `ge` prefix
     // still resolves to `gecho` (later registrations win prefix ties).
     r.register("get", |rest| {
@@ -340,9 +352,9 @@ fn build_registry() -> CommandRegistry<Command> {
     // Door verbs (`open|close <direction>`) live in `doors.rs`
     // (factories + priority); register them here with the rest.
     crate::doors::register(&mut r);
-    // `give <item> <target>` / `steal <item> <target>` — quote-aware split
+    // `give <item> <target>` / `steal <item> <target>` â€” quote-aware split
     // (`split_transfer`): the item is one token (selector prefixes and
-    // `"quoted phrases"` stay glued), the being the rest — except an
+    // `"quoted phrases"` stay glued), the being the rest â€” except an
     // `all`-headed item, which runs to the last token. Alongside get/drop so
     // the `ge` prefix still reaches `gecho`.
     r.register("give", |rest| {
@@ -354,11 +366,11 @@ fn build_registry() -> CommandRegistry<Command> {
         Some(Command::Steal { item, target })
     });
 
-    // ── Admin ────────────────────────────────────────────────────
+    // â”€â”€ Admin â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Warned-countdown verbs (`shutdown|reboot|copyover`) live in
     // `countdown.rs` (factories + priority); register them here with the rest.
     crate::countdown::register(&mut r);
-    // `goto <address>` — admin-gated + masked at dispatch (see grim-scene
+    // `goto <address>` â€” admin-gated + masked at dispatch (see grim-scene
     // dispatcher). Rejected with no argument so a bare `goto` is unknown.
     r.register("goto", |rest| {
         let target = rest.trim();
@@ -366,7 +378,7 @@ fn build_registry() -> CommandRegistry<Command> {
             target: target.to_string(),
         })
     });
-    // `gecho <text>` — admin-gated + masked at dispatch. Rejected with no
+    // `gecho <text>` â€” admin-gated + masked at dispatch. Rejected with no
     // argument so a bare `gecho` is unknown.
     r.register("gecho", |rest| {
         let text = rest.trim();
@@ -375,17 +387,17 @@ fn build_registry() -> CommandRegistry<Command> {
         })
     });
     // `ban list [type]` / `ban add <type> <pattern>` /
-    // `ban remove <type> <pattern>` — admin-gated + masked at dispatch (see
+    // `ban remove <type> <pattern>` â€” admin-gated + masked at dispatch (see
     // `handle_ingame`). Anything else (bare `ban`, unknown type, missing or
     // extra args) is unknown, like the other admin verbs.
     r.register("ban", crate::ban::parse_ban);
-    // ── Cardinal directions (last = highest priority for single-char) ─
+    // â”€â”€ Cardinal directions (last = highest priority for single-char) â”€
     crate::directions::register(&mut r);
 
     // `goto` and `gecho` share the `g` prefix. `register` front-loads priority,
     // so `gecho` (registered later) would otherwise win the bare `g`
     // abbreviation. `goto` predates `gecho` and `g` has long meant goto, so keep
-    // it: promote `goto` above `gecho`. Longer prefixes (`ge…`) still reach
+    // it: promote `goto` above `gecho`. Longer prefixes (`geâ€¦`) still reach
     // `gecho` unambiguously.
     r.prioritize("goto");
 
@@ -405,7 +417,7 @@ mod tests {
         parse_command(&command_registry(), input)
     }
 
-    // ── Cardinal directions ──────────────────────────────────────
+    // â”€â”€ Cardinal directions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     #[test]
     fn test_north() {
         assert_eq!(
@@ -502,7 +514,7 @@ mod tests {
         );
     }
 
-    // ── Social commands ──────────────────────────────────────────
+    // â”€â”€ Social commands â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     #[test]
     fn test_say_with_text() {
         assert_eq!(
@@ -589,7 +601,7 @@ mod tests {
         assert_eq!(parse("tell Wrack   "), None);
     }
 
-    // ── Title ─────────────────────────────────────────────────────
+    // â”€â”€ Title â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     #[test]
     fn test_title_with_text() {
         assert_eq!(
@@ -617,12 +629,24 @@ mod tests {
         );
     }
 
-    // ── Look ──────────────────────────────────────────────────────
+    // â”€â”€ Look â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // `l` is not a registered name; it reaches `look` by prefix.
     #[test]
     fn test_look_without_target() {
         assert_eq!(parse("look"), Some(Command::Look { target: None }));
         assert_eq!(parse("l"), Some(Command::Look { target: None }));
+    }
+
+    #[test]
+    fn test_read_fixture() {
+        assert_eq!(
+            parse("read sign"),
+            Some(Command::Look {
+                target: Some("sign".to_string()),
+            })
+        );
+        assert_eq!(parse("READ   sign"), parse("look sign"));
+        assert_eq!(parse("read"), None);
     }
 
     #[test]
@@ -641,7 +665,7 @@ mod tests {
         );
     }
 
-    // ── Informational ─────────────────────────────────────────────
+    // â”€â”€ Informational â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     #[test]
     fn test_who() {
         assert_eq!(parse("who"), Some(Command::Who));
@@ -759,7 +783,7 @@ mod tests {
         // Unambiguous prefix resolves; an argument rejects (bare verb only).
         assert_eq!(parse("rec"), Some(Command::Recall));
         assert_eq!(parse("recall tavern"), None);
-        // The bare-only factory rejects, with no fall-through — so recall is
+        // The bare-only factory rejects, with no fall-through â€” so recall is
         // deprioritized and short `re` still reaches the older `reply`.
         assert_eq!(
             parse("re hello"),
@@ -869,7 +893,7 @@ mod tests {
     #[test]
     fn test_commands_and_help() {
         assert_eq!(parse("commands"), Some(Command::Commands));
-        assert_eq!(parse("help"), Some(Command::Commands));
+        assert_eq!(parse("help"), Some(Command::Help { topic: String::new() }));
     }
     #[test]
     fn test_inventory_and_equipment() {
@@ -887,7 +911,7 @@ mod tests {
         assert_eq!(parse("eq"), Some(Command::Equipment));
     }
 
-    // ── Get / drop ──────────────────────────────────────────────────
+    // â”€â”€ Get / drop â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     #[test]
     fn test_get_and_drop_need_targets() {
         assert_eq!(
@@ -930,7 +954,7 @@ mod tests {
         );
     }
 
-    // ── Give / steal ────────────────────────────────────────────────
+    // â”€â”€ Give / steal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     #[test]
     fn test_give_and_steal_split_item_and_target() {
         assert_eq!(
@@ -1030,18 +1054,18 @@ mod tests {
         // Multibyte words must not panic the `all` boundary check, and they
         // split like any other first token.
         assert_eq!(
-            parse("give épée bob"),
+            parse("give Ã©pÃ©e bob"),
             Some(Command::Give {
-                item: "épée".into(),
+                item: "Ã©pÃ©e".into(),
                 target: "bob".into()
             })
         );
     }
-    // ── Quit ──────────────────────────────────────────────────────
+    // â”€â”€ Quit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     #[test]
     fn test_give_and_steal_reject_text_glued_to_quote() {
         // Without a delimiter after the closing quote the item/being divide
-        // is a guess, so both verbs are unknown — never a half-split move.
+        // is a guess, so both verbs are unknown â€” never a half-split move.
         assert_eq!(parse("give \"sword\"bob"), None);
         assert_eq!(parse("give \"brass lantern\"x bob"), None);
         assert_eq!(parse("steal \"coin\"bob"), None);
@@ -1062,7 +1086,7 @@ mod tests {
         assert_eq!(parse("exit"), Some(Command::Quit));
     }
 
-    // ── Shutdown (admin; gating happens at dispatch) ───────────────
+    // â”€â”€ Shutdown (admin; gating happens at dispatch) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     #[test]
     fn test_shutdown_with_count() {
         assert_eq!(
@@ -1080,7 +1104,7 @@ mod tests {
         );
     }
 
-    // ── Reboot / copyover (admin; same countdown shape as shutdown) ──
+    // â”€â”€ Reboot / copyover (admin; same countdown shape as shutdown) â”€â”€
     #[test]
     fn test_reboot_with_count() {
         assert_eq!(parse("reboot 10"), Some(Command::Reboot { seconds: 10 }));
@@ -1179,7 +1203,7 @@ mod tests {
         );
     }
 
-    // ── Edge cases ────────────────────────────────────────────────
+    // â”€â”€ Edge cases â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     #[test]
     fn test_empty_input() {
         assert_eq!(parse(""), None);
@@ -1201,7 +1225,7 @@ mod tests {
 
     #[test]
     fn test_direction_wins_over_social() {
-        // "n" is a prefix of "north", which is registered — direction wins
+        // "n" is a prefix of "north", which is registered â€” direction wins
         assert_eq!(
             parse("n hello"),
             Some(Command::Move {
@@ -1257,7 +1281,7 @@ mod tests {
     fn test_config_keeps_older_c_prefixes() {
         // `config` registers before `commands`, so the shared `c`/`co`
         // abbreviations still reach the older verb. `con` is not a prefix of
-        // `commands` at all (`com` vs `con`) — it unambiguously reaches
+        // `commands` at all (`com` vs `con`) â€” it unambiguously reaches
         // `config`, as does `conf`.
         assert_eq!(parse("c"), Some(Command::Commands));
         assert_eq!(parse("co"), Some(Command::Commands));
@@ -1277,7 +1301,7 @@ mod tests {
         );
     }
 
-    // ── Prefix matching / registration order ────────────────────────────
+    // â”€â”€ Prefix matching / registration order â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     #[test]
     fn test_prefix_match_partial() {

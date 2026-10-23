@@ -15,6 +15,7 @@ use grim_networking::{
 use crate::bridge::{NetworkBridge, NetworkCommand, NetworkEvent};
 use crate::guard::GuardTrip;
 use crate::iac;
+use crate::protocols::TelnetInput;
 
 /// Spawn the `Connection` entity for a fresh accept and announce it.
 fn handle_connected(
@@ -74,7 +75,7 @@ fn handle_resumed(
     );
 }
 
-/// Filter one input line to printable ASCII and forward it, restoring
+/// Filter one input line to printable Unicode and forward it, restoring
 /// terminal echo first when password mode hid it.
 fn handle_input(
     bridge: &NetworkBridge,
@@ -84,11 +85,8 @@ fn handle_input(
     text: String,
 ) {
     if let Some((entity, mut conn)) = connections.iter_mut().find(|(_, c)| c.id == conn_id) {
-        // Filter to printable ASCII (32-126) — strip ANSI/control chars
-        let text: String = text
-            .chars()
-            .filter(|&c| c.is_ascii_graphic() || c == ' ')
-            .collect();
+        // UTF-8 is supported; reject C0/C1 terminal controls in all modes.
+        let text: String = text.chars().filter(|&c| !c.is_control()).collect();
 
         // If echo was hidden (password mode), auto-restore on user input.
         if conn.echo_hidden {
@@ -243,8 +241,10 @@ pub(crate) fn drain_creations(
 /// are applied and the `connections` query resolves them.
 #[allow(clippy::too_many_arguments)]
 pub(crate) fn drain_dependents(
+    mut commands: Commands,
     bridge: Res<NetworkBridge>,
     mut input: MessageWriter<ConnectionInput>,
+    mut protocol_input: MessageWriter<TelnetInput>,
     mut closed: MessageWriter<ConnectionClosed>,
     mut connections: Query<(Entity, &mut Connection)>,
     mut pending: ResMut<PendingDrain>,
@@ -252,6 +252,30 @@ pub(crate) fn drain_dependents(
 ) {
     for ev in std::mem::take(&mut pending.0) {
         match ev {
+            NetworkEvent::Protocol {
+                conn_id,
+                capabilities,
+                input: message,
+            } => {
+                if let Some((entity, _)) = connections.iter().find(|(_, c)| c.id == conn_id) {
+                    if capabilities.width > 0 {
+                        commands
+                            .entity(entity)
+                            .insert(grim_networking::TerminalSize {
+                                columns: capabilities.width.clamp(20, 1000),
+                                rows: capabilities.height,
+                            });
+                    }
+                    commands.entity(entity).insert(capabilities);
+                    if let Some((option, payload)) = message {
+                        protocol_input.write(TelnetInput {
+                            connection: entity,
+                            option,
+                            payload,
+                        });
+                    }
+                }
+            }
             NetworkEvent::Input { conn_id, text } => {
                 handle_input(&bridge, &mut connections, &mut input, conn_id, text);
             }

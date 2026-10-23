@@ -26,6 +26,7 @@ Registers no game commands itself. It owns the `CommandRegistry` — the infrast
 ## Notes
 - Resolution order: exact match wins outright; otherwise the highest-priority prefix match. Case-insensitive.
 - Priority is an explicit ordering, not a number. `register` inserts at the **front** (highest), so the last command to claim a prefix wins by default. `prioritize` / `deprioritize` move a name to front / back.
+- `replace(name, factory)` changes an existing factory while preserving its priority and listing section; returns false if absent.
 - Factories are `fn(&str) -> Option<C>`; returning `None` rejects the input (e.g. `say` with no text).
 - `contested_prefixes()` returns every prefix more than one command answers to, each with its `winner` and the `shadowed` commands, so ambiguity can be logged at startup rather than discovered by a confused player. A prefix that is itself an exact command name is not reported.
 - Generic over `C: Send + Sync + 'static` so it drags in no game types — only Bevy, to be usable as a resource.

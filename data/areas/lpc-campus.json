@@ -1,0 +1,3565 @@
+{
+  "id": "e5dde2b34ec7",
+  "slug": "lpc-campus",
+  "name": "Campus",
+  "canonical": true,
+  "rooms": [
+    {
+      "id": "8dabd2e84542",
+      "slug": "adm-cache",
+      "name": "The cache",
+      "description": "Things are hidden here.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "e2c1b3593237"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/adm/cache"
+    },
+    {
+      "id": "ac7dd5c7bb91",
+      "slug": "adm-freezer",
+      "name": "The freezer",
+      "description": "The local freezer.  Go down to leave.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "52a7ecb5326e"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/adm/freezer"
+    },
+    {
+      "id": "e1a8f24fc6d3",
+      "slug": "adm-pod",
+      "name": "the incept pod",
+      "description": "The incept pod. Some objects come here to be created and identified. Go down to get out.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "6326f5a0e943"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/adm/pod"
+    },
+    {
+      "id": "e1413edb9c5e",
+      "slug": "adm-void",
+      "name": "the void",
+      "description": "The void.  Go down to get out.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "2997c6cbd668"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/adm/void"
+    },
+    {
+      "id": "3042cd4e79b2",
+      "slug": "obj-357case",
+      "name": "a small .357 ammo case",
+      "description": "A small cardboard case designed to carry .357 caliber amunition.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "bfbff26f0fc4"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/357case"
+    },
+    {
+      "id": "ea012a521802",
+      "slug": "obj-45case",
+      "name": "a small .45 ammo case",
+      "description": "A small cardboard case designed to carry .45 caliber acp amunition.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "8354a2b3099f"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/45case"
+    },
+    {
+      "id": "8d8fc1e619a0",
+      "slug": "obj-9mmbox",
+      "name": "a small 9mm ammo case",
+      "description": "A small cardboard case designed to carry 9mm ammunition.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "f61abddbe966"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/9mmbox"
+    },
+    {
+      "id": "ed6fbec6061c",
+      "slug": "obj-abox",
+      "name": "an ammo box",
+      "description": "This is a large metal box containing various kinds of ammunition.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "473d50b834d5"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/abox"
+    },
+    {
+      "id": "353a9218151b",
+      "slug": "obj-bag",
+      "name": "a small cloth bag",
+      "description": "It is a simple cloth bag used to hold things. It has a cute Virtual Campus logo on it.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "16bfdd549f82"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/bag"
+    },
+    {
+      "id": "33a2566128d4",
+      "slug": "obj-bbucket",
+      "name": "a recycling bin",
+      "description": "This is a blue trash can, marked with the letters \"/dev/null\".\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "7fcc5e81c0d6"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/bbucket"
+    },
+    {
+      "id": "d3e635bb3495",
+      "slug": "obj-bluebox",
+      "name": "a small, blue plastic box",
+      "description": "It is a simple plastic box used to hold things. It is blue, and it has a cute Virtual Campus logo on it.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "29f7c6708318"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/bluebox"
+    },
+    {
+      "id": "337c40c6a610",
+      "slug": "obj-box",
+      "name": "a small plastic box",
+      "description": "It is a simple plastic box used to hold things. It is green, and it has a cute Virtual Campus logo on it.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "e6ef78412ce1"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/box"
+    },
+    {
+      "id": "15b8078229cd",
+      "slug": "obj-greenbox",
+      "name": "a small, green plastic box",
+      "description": "It is a simple plastic box used to hold things. It is green, and it has a cute Virtual Campus logo on it.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "a136f5f6c923"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/greenbox"
+    },
+    {
+      "id": "6f096d684cdc",
+      "slug": "obj-locker",
+      "name": "a tall metal locker",
+      "description": "This is a large school locker, the kind one might find in any of thousands of schools around the world.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "28586deaad77"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/locker"
+    },
+    {
+      "id": "17f0b3a1ee17",
+      "slug": "obj-magbox",
+      "name": "a small, magenta plastic box",
+      "description": "It is a simple plastic box used to hold things. It is magenta, and it has a cute Virtual Campus logo on it.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "7f27c311dd3f"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/magbox"
+    },
+    {
+      "id": "7e6b93550c34",
+      "slug": "obj-medbag",
+      "name": "a small cloth bag",
+      "description": "It is a simple cloth bag used to hold things. Printed on it is: \"Property of A.S. Clepius\"\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "9f5d1c6b8950"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/medbag"
+    },
+    {
+      "id": "d3e3a84b4402",
+      "slug": "obj-mlocker",
+      "name": "a tall metal locker",
+      "description": "This is a large metal locker.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "60d546f845d0"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/mlocker"
+    },
+    {
+      "id": "f534b6d3ae65",
+      "slug": "obj-podium",
+      "name": "a podium",
+      "description": "This is the speaker's podium. It is about four feet tall and made of some expensive-looking, deep grain wood. This podium facilitates the running of meetings by giving the speaker the power to recognize individual people to speak at a time. There is some space in the podium to store things in, perhaps there is something in there now. For more details on running a meeting with the podium, type: help podium.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "fba5c6cc4dad"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/podium"
+    },
+    {
+      "id": "536b55b1512d",
+      "slug": "obj-redbox",
+      "name": "a small, red plastic box",
+      "description": "It is a simple plastic box used to hold things. It is red, and it has a cute Virtual Campus logo on it.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "d1f4b51a3c8d"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/redbox"
+    },
+    {
+      "id": "9154c96b769d",
+      "slug": "obj-register",
+      "name": "a cash register",
+      "description": "This is a metal machine used for cash transactions.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "3079d420ef44"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/register"
+    },
+    {
+      "id": "ae1db8188b34",
+      "slug": "obj-squirtbag",
+      "name": "a small cloth bag",
+      "description": "It is a simple cloth bag used to hold things. It has a cute Virtual Campus logo on it.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "6095f4f68da4"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/squirtbag"
+    },
+    {
+      "id": "0398b389c33b",
+      "slug": "obj-tlocker",
+      "name": "a tall metal locker",
+      "description": "This is a large school locker, the kind one might find in any of thousands of schools around the world.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "d3ece9146ff5"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/tlocker"
+    },
+    {
+      "id": "5cd405095d53",
+      "slug": "obj-trashcan",
+      "name": "a trashcan",
+      "description": "A container for discarding waste.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "2caa8419be9b"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/trashcan"
+    },
+    {
+      "id": "42dfa2f26519",
+      "slug": "obj-wlocker",
+      "name": "a metal weapons locker",
+      "description": "This is a large metal locker designed to contain firearms.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "016b15ecda4f"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/wlocker"
+    },
+    {
+      "id": "8d822ac122e0",
+      "slug": "obj-wrack",
+      "name": "a wooden weapons rack",
+      "description": "This is a large wooden rack designed to contain conventional or melee weapons. It is set into the wall.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "17a1a279ca7b"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/wrack"
+    },
+    {
+      "id": "900a26900adf",
+      "slug": "obj-yellowbox",
+      "name": "a small, yellow plastic box",
+      "description": "It is a simple plastic box used to hold things. It is yellow, and it has a cute Virtual Campus logo on it.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "7f32383c8676"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/obj/yellowbox"
+    },
+    {
+      "id": "c9d20b234cc8",
+      "slug": "room-access0",
+      "name": "access tunnel",
+      "description": "You are standing in what appears to be an underground service access tunnel of some kind. The overhead neon lights flicker and provide barely useful illumination. The air is damp and musty, and it feels as though nobody has gone through here in years. The tunnel runs south from here. This appears to be the north end of the tunnel. There is a large, open manhole in the floor here.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "d721a53a5a00"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "corridor",
+            "hall"
+          ],
+          "description": [
+            "The thick, metal walls here are scarred and badly corroded. Wherever you are, it's seen heavy use in the distant past."
+          ]
+        },
+        {
+          "name": "lights",
+          "keywords": [
+            "lights",
+            "light",
+            "neon lights"
+          ],
+          "description": [
+            "Overhead neon lights. They appear on the verge of failure."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor",
+            "ground"
+          ],
+          "description": [
+            "The floor is composed of metal plates welded together, with raised traction cleats."
+          ]
+        },
+        {
+          "name": "cleat",
+          "keywords": [
+            "cleat",
+            "cleats"
+          ],
+          "description": [
+            "Little raised bumps on the floor so you won't slip and fall."
+          ]
+        },
+        {
+          "name": "ladder",
+          "keywords": [
+            "ladder",
+            "metal ladder"
+          ],
+          "description": [
+            "You see rusted bolts in the concrete floor and in the hole that suggest a ladder was once here."
+          ]
+        },
+        {
+          "name": "hole",
+          "keywords": [
+            "hole",
+            "manhole"
+          ],
+          "description": [
+            "This is an opening built into the floor for access to whatever it is that lies below. It looks like there was once a metal ladder for easy movement, but it's now gone, so any trip down is one-way."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/access0"
+    },
+    {
+      "id": "b67746b1e8be",
+      "slug": "room-access1",
+      "name": "access tunnel",
+      "description": "You are standing in what appears to be an underground service access tunnel of some kind. The overhead neon lights flicker and provide barely useful illumination. The air is damp and musty, and it feels as though nobody has gone through here in years. The tunnel runs north and south from here. You feel a slight breeze coming from the north.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "7da1e6962ac5"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "corridor",
+            "hall"
+          ],
+          "description": [
+            "The thick, metal walls here are scarred and badly corroded. Wherever you are, it's seen heavy use in the distant past."
+          ]
+        },
+        {
+          "name": "lights",
+          "keywords": [
+            "lights",
+            "light",
+            "neon lights"
+          ],
+          "description": [
+            "Overhead neon lights. They appear on the verge of failure."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor",
+            "ground"
+          ],
+          "description": [
+            "The floor is composed of metal plates welded together, with raised traction cleats."
+          ]
+        },
+        {
+          "name": "cleat",
+          "keywords": [
+            "cleat",
+            "cleats"
+          ],
+          "description": [
+            "Little raised bumps on the floor so you won't slip and fall."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/access1"
+    },
+    {
+      "id": "1696ab6c74e2",
+      "slug": "room-access2",
+      "name": "access tunnel",
+      "description": "You are standing in what appears to be an underground service access tunnel of some kind. The overhead neon lights flicker and provide barely useful illumination. The air is damp and musty, and it feels as though nobody has gone through here in years. The tunnel runs north and south from here.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "864e8a1ca09d"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "corridor",
+            "hall"
+          ],
+          "description": [
+            "The thick, metal walls here are scarred and badly corroded. Wherever you are, it's seen heavy use in the distant past."
+          ]
+        },
+        {
+          "name": "lights",
+          "keywords": [
+            "lights",
+            "light",
+            "neon lights"
+          ],
+          "description": [
+            "Overhead neon lights. They appear on the verge of failure."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor",
+            "ground"
+          ],
+          "description": [
+            "The floor is composed of metal plates welded together, with raised traction cleats."
+          ]
+        },
+        {
+          "name": "cleat",
+          "keywords": [
+            "cleat",
+            "cleats"
+          ],
+          "description": [
+            "Little raised bumps on the floor so you won't slip and fall."
+          ]
+        },
+        {
+          "name": "hole",
+          "keywords": [
+            "hole",
+            "port",
+            "porthole",
+            "access port"
+          ],
+          "description": [
+            "An exit set in the wall, providing maintenance access."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/access2"
+    },
+    {
+      "id": "62aee71bbfe5",
+      "slug": "room-access3",
+      "name": "access tunnel",
+      "description": "You are standing in what appears to be an underground service access tunnel of some kind. The overhead neon lights flicker and provide barely useful illumination. The air is damp and musty, and it feels as though nobody has gone through here in years. The tunnel runs north and south from here.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "a55a3fb814d0"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "corridor",
+            "hall"
+          ],
+          "description": [
+            "The thick, metal walls here are scarred and badly corroded. Wherever you are, it's seen heavy use in the distant past."
+          ]
+        },
+        {
+          "name": "lights",
+          "keywords": [
+            "lights",
+            "light",
+            "neon lights"
+          ],
+          "description": [
+            "Overhead neon lights. They appear on the verge of failure."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor",
+            "ground"
+          ],
+          "description": [
+            "The floor is composed of metal plates welded together, with raised traction cleats."
+          ]
+        },
+        {
+          "name": "cleat",
+          "keywords": [
+            "cleat",
+            "cleats"
+          ],
+          "description": [
+            "Little raised bumps on the floor so you won't slip and fall."
+          ]
+        },
+        {
+          "name": "hole",
+          "keywords": [
+            "hole",
+            "port",
+            "porthole",
+            "access port"
+          ],
+          "description": [
+            "An exit set in the wall, providing maintenance access."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/access3"
+    },
+    {
+      "id": "298b31d6cb3b",
+      "slug": "room-access4",
+      "name": "access tunnel",
+      "description": "You are standing in what appears to be an underground service access tunnel of some kind. The overhead neon lights flicker and provide barely useful illumination. The air is damp and musty, and it feels as though nobody has gone through here in years. The tunnel runs north and south from here.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "1e78d1e43a04"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "corridor",
+            "hall"
+          ],
+          "description": [
+            "The thick, metal walls here are scarred and badly corroded. Wherever you are, it's seen heavy use in the distant past."
+          ]
+        },
+        {
+          "name": "lights",
+          "keywords": [
+            "lights",
+            "light",
+            "neon lights"
+          ],
+          "description": [
+            "Overhead neon lights. They appear on the verge of failure."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor",
+            "ground"
+          ],
+          "description": [
+            "The floor is composed of metal plates welded together, with raised traction cleats."
+          ]
+        },
+        {
+          "name": "cleat",
+          "keywords": [
+            "cleat",
+            "cleats"
+          ],
+          "description": [
+            "Little raised bumps on the floor so you won't slip and fall."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/access4"
+    },
+    {
+      "id": "67f84d830023",
+      "slug": "room-access5",
+      "name": "access tunnel",
+      "description": "You are standing in what appears to be an underground service access tunnel of some kind. The overhead neon lights flicker and provide barely useful illumination. The air is damp and musty, and it feels as though nobody has gone through here in years. The tunnel runs north and south from here.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "469093a8cf30"
+      },
+      "npcs": [
+        {
+          "name": "a rat",
+          "description": [
+            "A scruffy little dirty rat."
+          ],
+          "keywords": [
+            "a mangy little rat",
+            "rat",
+            "dirty rat"
+          ],
+          "room_description": "A rat is here.",
+          "race": "rodent",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/campus/npc/rat"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "corridor",
+            "hall"
+          ],
+          "description": [
+            "The thick, metal walls here are scarred and badly corroded. Wherever you are, it's seen heavy use in the distant past."
+          ]
+        },
+        {
+          "name": "lights",
+          "keywords": [
+            "lights",
+            "light",
+            "neon lights"
+          ],
+          "description": [
+            "Overhead neon lights. They appear on the verge of failure."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor",
+            "ground"
+          ],
+          "description": [
+            "The floor is composed of metal plates welded together, with raised traction cleats."
+          ]
+        },
+        {
+          "name": "cleat",
+          "keywords": [
+            "cleat",
+            "cleats"
+          ],
+          "description": [
+            "Little raised bumps on the floor so you won't slip and fall."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/access5"
+    },
+    {
+      "id": "cadcb1186ab7",
+      "slug": "room-access6",
+      "name": "access tunnel",
+      "description": "You are standing in what appears to be an underground service access tunnel of some kind. The overhead neon lights flicker and provide barely useful illumination. The air is damp and musty, and it feels as though nobody has gone through here in years. The tunnel runs north and south from here.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "bc0a1b916191"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "corridor",
+            "hall"
+          ],
+          "description": [
+            "The thick, metal walls here are scarred and badly corroded. Wherever you are, it's seen heavy use in the distant past."
+          ]
+        },
+        {
+          "name": "lights",
+          "keywords": [
+            "lights",
+            "light",
+            "neon lights"
+          ],
+          "description": [
+            "Overhead neon lights. They appear on the verge of failure."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor",
+            "ground"
+          ],
+          "description": [
+            "The floor is composed of metal plates welded together, with raised traction cleats."
+          ]
+        },
+        {
+          "name": "cleat",
+          "keywords": [
+            "cleat",
+            "cleats"
+          ],
+          "description": [
+            "Little raised bumps on the floor so you won't slip and fall."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/access6"
+    },
+    {
+      "id": "75352b0803e9",
+      "slug": "room-access7",
+      "name": "access tunnel",
+      "description": "You are standing in what appears to be an underground service access tunnel of some kind. The overhead neon lights flicker and provide barely useful illumination. The air is damp and musty, and it feels as though nobody has gone through here in years. The tunnel runs north and south from here.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "f4b2343998c7"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "corridor",
+            "hall"
+          ],
+          "description": [
+            "The thick, metal walls here are scarred and badly corroded. Wherever you are, it's seen heavy use in the distant past."
+          ]
+        },
+        {
+          "name": "lights",
+          "keywords": [
+            "lights",
+            "light",
+            "neon lights"
+          ],
+          "description": [
+            "Overhead neon lights. They appear on the verge of failure."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor",
+            "ground"
+          ],
+          "description": [
+            "The floor is composed of metal plates welded together, with raised traction cleats."
+          ]
+        },
+        {
+          "name": "cleat",
+          "keywords": [
+            "cleat",
+            "cleats"
+          ],
+          "description": [
+            "Little raised bumps on the floor so you won't slip and fall."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/access7"
+    },
+    {
+      "id": "054c03f54b8a",
+      "slug": "room-access9",
+      "name": "access tunnel",
+      "description": "You are standing in what appears to be an underground service access tunnel of some kind. The overhead neon lights flicker and provide barely useful illumination. The air is damp and musty, and it feels as though nobody has gone through here in years. The tunnel runs north from here. A hatch in the floor leads down.",
+      "exits": {
+        "north": "75352b0803e9",
+        "down": "530cd23afef5"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "corridor",
+            "hall"
+          ],
+          "description": [
+            "The thick, metal walls here are scarred and badly corroded. Wherever you are, it's seen heavy use in the distant past."
+          ]
+        },
+        {
+          "name": "lights",
+          "keywords": [
+            "lights",
+            "light",
+            "neon lights"
+          ],
+          "description": [
+            "Overhead neon lights. They appear on the verge of failure."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor",
+            "ground"
+          ],
+          "description": [
+            "The floor is composed of metal plates welded together, with raised traction cleats."
+          ]
+        },
+        {
+          "name": "cleat",
+          "keywords": [
+            "cleat",
+            "cleats"
+          ],
+          "description": [
+            "Little raised bumps on the floor so you won't slip and fall."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/access9"
+    },
+    {
+      "id": "deb35e987d74",
+      "slug": "room-alcove1",
+      "name": "An alcove",
+      "description": "An alcove.",
+      "exits": {
+        "east": "8fecae22859a"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/alcove1"
+    },
+    {
+      "id": "23fc75803cc5",
+      "slug": "room-alcove2",
+      "name": "An alcove",
+      "description": "An alcove.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "east": "e86b401b43d6",
+        "up": "44a5a67cbe57"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/alcove2"
+    },
+    {
+      "id": "e83581321a7a",
+      "slug": "room-basement",
+      "name": "the basement",
+      "description": "You are in the basement of the LPC University administrative building. It is very dark here, and rather damp. The fluorescent lighting seems to be on the verge of total failure, with only one or two flickering on and off enough to see anything. The air here is damp, thick and musty. There is a small crawlspace you can enter under the stairs here, and the basement continues west into darkness.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "f4b2343998c7"
+      },
+      "npcs": [
+        {
+          "name": "a rat",
+          "description": [
+            "A scruffy little dirty rat."
+          ],
+          "keywords": [
+            "a mangy little rat",
+            "rat",
+            "dirty rat"
+          ],
+          "room_description": "A rat is here.",
+          "race": "rodent",
+          "level": 1,
+          "gender": "male",
+          "source_path": "/domains/campus/npc/rat"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "stairs",
+          "keywords": [
+            "stairs"
+          ],
+          "description": [
+            "A flight of stairs leading up. There is a crawlspace beneath them."
+          ]
+        },
+        {
+          "name": "basement",
+          "keywords": [
+            "basement"
+          ],
+          "description": [
+            "This is a dark, creepy basement."
+          ]
+        },
+        {
+          "name": "building",
+          "keywords": [
+            "building"
+          ],
+          "description": [
+            "You are in the basement of the LPC University administrative building."
+          ]
+        },
+        {
+          "name": "dark",
+          "keywords": [
+            "dark",
+            "darkness"
+          ],
+          "description": [
+            "There's a lot of it, all around."
+          ]
+        },
+        {
+          "name": "light",
+          "keywords": [
+            "light",
+            "lighting",
+            "fluorescent lighting"
+          ],
+          "description": [
+            "The lighting here is extremely bad. The lights show just enough to let you know you'd rather not spend too much time in here."
+          ]
+        },
+        {
+          "name": "air",
+          "keywords": [
+            "air"
+          ],
+          "description": [
+            "It feels heavy, making it hard to breathe. It's hard to imagine who or what would enjoy spending time down here."
+          ]
+        },
+        {
+          "name": "crawlspace",
+          "keywords": [
+            "crawlspace"
+          ],
+          "description": [
+            "It looks like you might be able to enter the crawlspace, if you really wanted to."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/basement"
+    },
+    {
+      "id": "c85f1979317b",
+      "slug": "room-basement2",
+      "name": "the basement",
+      "description": "You are in the basement of the LPC University administrative building. It is very dark here, and rather damp. The fluorescent lighting seems to have completely failed. The east side of the basement seems somewhat better lit. The west wall seems heavily smudged...it's even grungier than the rest of this place.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "east": "e83581321a7a",
+        "up": "72fd3dda70aa"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "basement",
+          "keywords": [
+            "basement"
+          ],
+          "description": [
+            "This is a dark, creepy basement."
+          ]
+        },
+        {
+          "name": "building",
+          "keywords": [
+            "building"
+          ],
+          "description": [
+            "You are in the basement of the LPC University administrative building."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "west wall"
+          ],
+          "description": [
+            "The wall seems to have a lot of smudged handprints on it."
+          ]
+        },
+        {
+          "name": "dark",
+          "keywords": [
+            "dark",
+            "darkness"
+          ],
+          "description": [
+            "There's a lot of it, all around."
+          ]
+        },
+        {
+          "name": "light",
+          "keywords": [
+            "light",
+            "lighting",
+            "fluorescent lighting"
+          ],
+          "description": [
+            "The lighting here has failed completely."
+          ]
+        },
+        {
+          "name": "prints",
+          "keywords": [
+            "prints",
+            "print",
+            "handprint",
+            "handprints"
+          ],
+          "description": [
+            "Smudgy handprints, as if someone had been against the wall here."
+          ]
+        },
+        {
+          "name": "air",
+          "keywords": [
+            "air"
+          ],
+          "description": [
+            "It feels heavy, making it hard to breathe. It's hard to imagine who or what would enjoy spending time down here."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/basement2"
+    },
+    {
+      "id": "44e4bc761664",
+      "slug": "room-basement3",
+      "name": "Secret Lab",
+      "description": "This tidy workspace between campus levels seems to be some kind of secret laboratory.",
+      "exits": {
+        "west": "e5775fb26359",
+        "east": "d71db29637e3"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/basement3"
+    },
+    {
+      "id": "d71db29637e3",
+      "slug": "room-basement4",
+      "name": "Secret Lab",
+      "description": "This room seems to be used for secret experiments.",
+      "exits": {
+        "west": "44e4bc761664"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/basement4"
+    },
+    {
+      "id": "371474e7d72f",
+      "slug": "room-blue-room",
+      "name": "a blue room",
+      "description": "This is a blue room. Probability Lab 1 is south.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "south": "796ef88a2c6a",
+        "up": "1e735b45ea75"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/blue_room"
+    },
+    {
+      "id": "873267e8f434",
+      "slug": "room-blue-room2",
+      "name": "a blue room",
+      "description": "This is a blue room. Probability Lab 2 is east.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "east": "1def3d49e7ef",
+        "up": "fad36da103bd"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/blue_room2"
+    },
+    {
+      "id": "570c7c7f9135",
+      "slug": "room-blue-room3",
+      "name": "a blue room",
+      "description": "This is a blue room. Probability Lab 3 is west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "west": "db3d47d234a5",
+        "up": "54ad66ab3f9a"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/blue_room3"
+    },
+    {
+      "id": "74627ad8a33d",
+      "slug": "room-bookstore",
+      "name": "the campus bookstore",
+      "description": "This is the Virtual Campus Bookstore. It is a fairly small place, and in fact has few books available, since the campus is not open for classes yet. There is, however, a wide assortment of useful items available, which you can browse by typing the 'list' command. The storeroom is above. There is a sign on the wall behind the counter.",
+      "exits": {
+        "south": "eb5e175271ec",
+        "up": "ae588b693e7d"
+      },
+      "npcs": [
+        {
+          "name": "Kim, the bookstore employee",
+          "description": [
+            "Kim is a twenty-something college student trying to make enough money to pay for school and feed herself. She seems friendly enough, and her bright blue eyes seem to smile at you on their own. You could probably buy something from her here, since that's her job, or she might even buy something from you, if she thinks it's worth something. Don't try to buy anything if you don't have enough money, though...she looks like she can mean business when she has to."
+          ],
+          "keywords": [
+            "kim",
+            "vendor",
+            "Kim",
+            "kimmie",
+            "employee",
+            "bookstore employee"
+          ],
+          "room_description": "Kim, the bookstore employee is here.",
+          "race": "human",
+          "level": 1,
+          "gender": "female",
+          "source_path": "/domains/campus/npc/kim"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "store",
+          "keywords": [
+            "store",
+            "bookstore",
+            "place"
+          ],
+          "description": [
+            "This is the Virtual Campus bookstore."
+          ]
+        },
+        {
+          "name": "books",
+          "keywords": [
+            "books"
+          ],
+          "description": [
+            "There aren't any yet. Weren't you paying attention?"
+          ]
+        },
+        {
+          "name": "assortment",
+          "keywords": [
+            "assortment",
+            "items",
+            "stuff"
+          ],
+          "description": [
+            "To browse what you can buy, type: list."
+          ]
+        },
+        {
+          "name": "counter",
+          "keywords": [
+            "counter"
+          ],
+          "description": [
+            "A cheap wood-textured counter designed to make the surrender of your money more convenient."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "A sign on the wall, meant for reading."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/bookstore"
+    },
+    {
+      "id": "ae588b693e7d",
+      "slug": "room-bookstore2",
+      "name": "a generic room",
+      "description": "This is an utterly plain, blank room.",
+      "exits": {
+        "down": "74627ad8a33d"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/bookstore2"
+    },
+    {
+      "id": "bde5c87c5262",
+      "slug": "room-classroom1",
+      "name": "Science Classroom",
+      "description": "This small room provides a teaching space for the advanced topics researched by the facility.",
+      "exits": {
+        "south": "095fd7861996"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/classroom1"
+    },
+    {
+      "id": "6bdafce30553",
+      "slug": "room-conf",
+      "name": "Conference Room",
+      "description": "This is the Virtual Campus ad hoc conference room. It is elegantly appointed with richly carved mahogany paneling and gold-leaf trim. The luxurious carpeting and moody lighting make this conference room a very comfortable, relaxing environment. The main hallway is north of here.\nThere is a sign you can read here.",
+      "exits": {
+        "north": "eb5e175271ec"
+      },
+      "npcs": [
+        {
+          "name": "cambot",
+          "description": [
+            "This is a metallic sphere, about one foot in diameter, with numerous lenses affixed to its surface."
+          ],
+          "keywords": [
+            "cambot",
+            "bot",
+            "robot",
+            "non-player",
+            "non player"
+          ],
+          "room_description": "Cambot is here.",
+          "race": "bot",
+          "level": 1,
+          "gender": "neuter",
+          "source_path": "/secure/npc/cambot"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "panels",
+          "keywords": [
+            "panels",
+            "paneling",
+            "wall",
+            "walls",
+            "mahogany",
+            "wood"
+          ],
+          "description": [
+            "The walls are paneled in rich, dark mahogany. The wood is intricately carved with exquisite designs. This sort of craftmanship must have cost a fortune."
+          ]
+        },
+        {
+          "name": "room",
+          "keywords": [
+            "room",
+            "conference room",
+            "ad hoc conference room"
+          ],
+          "description": [
+            "This is a well-appointed, comfortable room to hold meetings in."
+          ]
+        },
+        {
+          "name": "carving",
+          "keywords": [
+            "carving",
+            "carvings",
+            "design",
+            "designs",
+            "craftmanship"
+          ],
+          "description": [
+            "The carvings are mostly abstract shapes that seem so detailed and tightly interwoven they almost squirm before your eyes."
+          ]
+        },
+        {
+          "name": "leaf",
+          "keywords": [
+            "leaf",
+            "gold-leaf trim",
+            "trim",
+            "gold leaf trim"
+          ],
+          "description": [
+            "The trim along the walls' baseboards and doorframe is a beautiful gold leaf design."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor",
+            "carpet",
+            "carpeting",
+            "luxurious carpeting"
+          ],
+          "description": [
+            "The carpet is thick, and a rich maroon color."
+          ]
+        },
+        {
+          "name": "lighting",
+          "keywords": [
+            "lighting",
+            "lights",
+            "moody lighting"
+          ],
+          "description": [
+            "The lighting here is indirect and diffused, giving everything a warm glow."
+          ]
+        },
+        {
+          "name": "environment",
+          "keywords": [
+            "environment"
+          ],
+          "description": [
+            "Very comfortable indeed."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "Try: read sign"
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/conf"
+    },
+    {
+      "id": "f5e13c569a1c",
+      "slug": "room-conf2",
+      "name": "Conference Room",
+      "description": "This is an enchanted room, with the magical power to prevent uninvited people from entering. It is used for meetings where three or more people need to share information without interruption or privately. To enable privacy, 'privacy on'. To disable it, 'privacy off'. The privacy field automatically deactivates after approximately 20 minutes.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "acac32f947cc"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/conf2"
+    },
+    {
+      "id": "9021bc9b01c4",
+      "slug": "room-corridor",
+      "name": "Corridor",
+      "description": "You are in an east-west corridor on the first floor of the Virtual Campus administrative building. There is a door south of here, leading into the Admissions office.",
+      "exits": {
+        "south": "01fd0503b7c9",
+        "east": "3c995450d877",
+        "west": "0280f41fa02d"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "corridor",
+          "keywords": [
+            "corridor"
+          ],
+          "description": [
+            "This is a carpeted corridor, leading west."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor"
+          ],
+          "description": [
+            "The carpet is purple, and somewhat institutional."
+          ]
+        },
+        {
+          "name": "carpet",
+          "keywords": [
+            "carpet"
+          ],
+          "description": [
+            "The carpet is purple, and somewhat institutional."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/corridor"
+    },
+    {
+      "id": "3c995450d877",
+      "slug": "room-corridor2",
+      "name": "Corridor, East",
+      "description": "You are in an east-west corridor on the first floor of the Virtual Campus administrative building. The student lounge is south of here.",
+      "exits": {
+        "south": "690f207421d3",
+        "west": "9021bc9b01c4",
+        "east": "eb5e175271ec"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/corridor2"
+    },
+    {
+      "id": "0280f41fa02d",
+      "slug": "room-corridor3",
+      "name": "Corridor",
+      "description": "You are in an east-west corridor on the first floor of the Virtual Campus administrative building. The building's snack bar lies to the north, and a door to the south leads into a stairwell. A foyer and the building exit lie west of here.",
+      "exits": {
+        "south": "328ab788e0a9",
+        "east": "9021bc9b01c4",
+        "west": "3d549459074f",
+        "north": "3579d1e8098c"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "corridor",
+          "keywords": [
+            "corridor"
+          ],
+          "description": [
+            "This is a carpeted corridor, leading west."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor"
+          ],
+          "description": [
+            "The carpet is purple, and somewhat institutional."
+          ]
+        },
+        {
+          "name": "carpet",
+          "keywords": [
+            "carpet"
+          ],
+          "description": [
+            "The carpet is purple, and somewhat institutional."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/corridor3"
+    },
+    {
+      "id": "eb5e175271ec",
+      "slug": "room-corridor4",
+      "name": "Corridor",
+      "description": "You are in an east-west corridor on the first floor of the Virtual Campus administrative building. North is the campus bookstore, and there is a conference room south of here.",
+      "exits": {
+        "south": "6bdafce30553",
+        "north": "74627ad8a33d",
+        "west": "3c995450d877"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "corridor",
+          "keywords": [
+            "corridor"
+          ],
+          "description": [
+            "This is a carpeted corridor, running east-west."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor"
+          ],
+          "description": [
+            "The carpet is purple, and somewhat institutional."
+          ]
+        },
+        {
+          "name": "carpet",
+          "keywords": [
+            "carpet"
+          ],
+          "description": [
+            "The carpet is purple, and somewhat institutional."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/corridor4"
+    },
+    {
+      "id": "73335eee5e95",
+      "slug": "room-crawlspace",
+      "name": "a tiny crawlspace",
+      "description": "You are in a cramped little space beneath the stairs in the basement. It is dark, tight, and dirty in here.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "4433f04a8042"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "crawlspace",
+          "keywords": [
+            "crawlspace",
+            "space"
+          ],
+          "description": [
+            "You are in the space beneath stairs."
+          ]
+        },
+        {
+          "name": "basement",
+          "keywords": [
+            "basement"
+          ],
+          "description": [
+            "The basement is just outside the crawlspace."
+          ]
+        },
+        {
+          "name": "stairs",
+          "keywords": [
+            "stairs"
+          ],
+          "description": [
+            "You're under them."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/crawlspace"
+    },
+    {
+      "id": "69da48257432",
+      "slug": "room-crawlspace2",
+      "name": "a tiny crawlspace",
+      "description": "You are in a cramped little space beneath the stairs in the basement. It is dark, tight, and dirty in here.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "95502aad62f1"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "crawlspace",
+          "keywords": [
+            "crawlspace",
+            "space"
+          ],
+          "description": [
+            "You are in the space beneath stairs."
+          ]
+        },
+        {
+          "name": "basement",
+          "keywords": [
+            "basement"
+          ],
+          "description": [
+            "The basement is just outside the crawlspace."
+          ]
+        },
+        {
+          "name": "stairs",
+          "keywords": [
+            "stairs"
+          ],
+          "description": [
+            "You're under them."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/crawlspace2"
+    },
+    {
+      "id": "b939fcbb52d2",
+      "slug": "room-death",
+      "name": "off the mortal coil",
+      "description": "NONONONO...... MNO! ......................... MN  N! .    \n          NONONON....  NOONNOO!   MMMMMMMMMMPPPOII!   NNNO!!!! .\n          NONONONO...  O! NNO! MMMMMMMMMMMMMPPPOOOII!! NO! ...       \n          NONONONONO........ MMMMMOOOOOOPPPPPPPPOOOOMII! ...    \n          NONONONONON....... MMMMM..    OPPMMP    .,OMI! ....    \n          NONONONONONO...... MMMM::   o ,OPMP, o   ::I!! ...            \n          NONONONONONONONO.... NNM:::.,,OOPM!P,.::::!! ....     \n          NONONONONONONONON.. MMNNNNNOOOOP  NNIIPPO!!O! .....   \n          NONONONONONONONON...... MMMONNMMNNNIIIOO! .........    \n          NONONONONONONO.......... MOM!!!!!!!!!III ............. \n          NONONONON...... NNN.MNO! . O!!!!!!!!!O . OONO NO! .......        \n          NONONONONO.... MNNNNNO! ...OOOOOOOOOOO .  MMNNON! .......   \n          NNNOOO!!! ...... MNNNNO! .. PPPPPPPPP .. MMNON! .....      \n                       ...... OO! ................. ON! .......        \n\n                                  YOU ARE DEAD!\n\n       You are in formless void without substance and outside time.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "3190e2a04666"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/death"
+    },
+    {
+      "id": "3d549459074f",
+      "slug": "room-foyer",
+      "name": "Foyer",
+      "description": "This is the west end of the main hallway in the Virtual Campus administrative building. The hallway continues to the east of here. West is the building exit, to the world outside.\nThere is a large sign on the wall you can read.",
+      "exits": {
+        "west": "f1de6f824011",
+        "east": "0280f41fa02d"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "corridor",
+          "keywords": [
+            "corridor"
+          ],
+          "description": [
+            "This is a carpeted corridor, leading west."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor"
+          ],
+          "description": [
+            "The carpet is purple, and somewhat institutional."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "A large sign on the wall. To read it, 'read sign'."
+          ]
+        },
+        {
+          "name": "carpet",
+          "keywords": [
+            "carpet"
+          ],
+          "description": [
+            "The carpet is purple, and somewhat institutional."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/foyer"
+    },
+    {
+      "id": "72922221b192",
+      "slug": "room-freezer",
+      "name": "The freezer",
+      "description": "The local freezer.  Go down to leave.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "602d208a110a"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/freezer"
+    },
+    {
+      "id": "b46e5a15704c",
+      "slug": "room-green-room",
+      "name": "a green room",
+      "description": "This is a green room. Probability Lab 1 is south.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "south": "796ef88a2c6a",
+        "up": "06e601f55030"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/green_room"
+    },
+    {
+      "id": "e29dcc6da5df",
+      "slug": "room-green-room2",
+      "name": "a green room",
+      "description": "This is a green room. Probability Lab 2 is east.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "east": "1def3d49e7ef",
+        "up": "15e40289e7a8"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/green_room2"
+    },
+    {
+      "id": "1418cf1a410f",
+      "slug": "room-green-room3",
+      "name": "a green room",
+      "description": "This is a green room. Probability Lab 3 is west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "west": "db3d47d234a5",
+        "up": "24023d1389ff"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/green_room3"
+    },
+    {
+      "id": "0db5ff8a2b9c",
+      "slug": "room-hazlab",
+      "name": "Hazardous Technologies Lab",
+      "description": "The University's research often yields mysterious, advanced, or alien artifacts which may pose a hazard to normal people. This laboratory is where such items are brought for analysis.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "north": "75bb9838acb7",
+        "up": "a0a0c57d198e"
+      },
+      "npcs": [
+        {
+          "name": "a gun turret",
+          "description": [
+            "This is a four foot tall metal turret on tripod legs designed to automatically acquire and engage any moving targets with its massive 20 millimeter guns."
+          ],
+          "keywords": [
+            "gun turret",
+            "bot",
+            "robot",
+            "turret",
+            "non-player",
+            "non player"
+          ],
+          "room_description": "A gun turret is here.",
+          "race": "bot",
+          "level": 1,
+          "gender": "neuter",
+          "source_path": "/domains/campus/npc/turret"
+        }
+      ],
+      "scenery": [],
+      "source_path": "/domains/campus/room/hazlab"
+    },
+    {
+      "id": "e46f6765f952",
+      "slug": "room-klab",
+      "name": "Keliner storage",
+      "description": "This is where Dr. Kleiner apparently keeps large pieces of research equipment.",
+      "exits": {
+        "west": "3e688c70b8c8"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/klab"
+    },
+    {
+      "id": "3e688c70b8c8",
+      "slug": "room-kleiner",
+      "name": "Dr. Kleiner's Office",
+      "description": "The place where Dr. Kleiner conducts administrative business.",
+      "exits": {
+        "south": "08556261f11d",
+        "east": "e46f6765f952"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/kleiner"
+    },
+    {
+      "id": "690f207421d3",
+      "slug": "room-lounge",
+      "name": "the student lounge",
+      "description": "This is the LPC University New Main building student lounge. It is rather bare at the moment, as the building is still in early stages of construction. You see some marks on the floor where furniture is to be placed. The main corridor lies north, and a window overlooks the campus on the south wall.",
+      "exits": {
+        "north": "3c995450d877"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "here",
+          "keywords": [
+            "here",
+            "room",
+            "lounge"
+          ],
+          "description": [
+            "This seems to be intended to be a student lounge."
+          ]
+        },
+        {
+          "name": "building",
+          "keywords": [
+            "building"
+          ],
+          "description": [
+            "You are in New Main, LPC University' main administrative building."
+          ]
+        },
+        {
+          "name": "mark",
+          "keywords": [
+            "mark",
+            "marks"
+          ],
+          "description": [
+            "Some small chalkmarks and tape strips indicate where furniture is to go."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor",
+            "ground"
+          ],
+          "description": [
+            "Standard off-white linoleum tile floor, in case clumsy students plan on eating in here."
+          ]
+        },
+        {
+          "name": "corridor",
+          "keywords": [
+            "corridor",
+            "hall"
+          ],
+          "description": [
+            "The main corridor on the first floor of New Main."
+          ]
+        },
+        {
+          "name": "window",
+          "keywords": [
+            "window"
+          ],
+          "description": [
+            "A window set into the south wall, overlooking the campus. Strangely, there seems to be nothing outside the window...no campus, no light, no stars...nothing. It's as though the administrative building were suspended in a vacuum."
+          ]
+        },
+        {
+          "name": "campus",
+          "keywords": [
+            "campus"
+          ],
+          "description": [
+            "It seems oddly absent."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "south wall"
+          ],
+          "description": [
+            "A wall with a window in it."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/lounge"
+    },
+    {
+      "id": "132ea1e52e54",
+      "slug": "room-mailroom",
+      "name": "the campus mail room",
+      "description": "This is a small office containing rows of mailboxes and various other postal implements. There is a sign on the wall behind the counter, outlining instructions for how to mail other users.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "4746110bb11e"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "box",
+          "keywords": [
+            "box",
+            "boxes",
+            "mailboxes",
+            "mailbox"
+          ],
+          "description": [
+            "Rows of mailboxes for the denizens of LPC University."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "This is a sign on the wall describing how to mail messages."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls"
+          ],
+          "description": [
+            "Gray-painted institutional walls of the kind you'd expect in a post office."
+          ]
+        },
+        {
+          "name": "implements",
+          "keywords": [
+            "implements"
+          ],
+          "description": [
+            "Ink, paper, etc."
+          ]
+        },
+        {
+          "name": "instructions",
+          "keywords": [
+            "instructions"
+          ],
+          "description": [
+            "Try reading them."
+          ]
+        },
+        {
+          "name": "counter",
+          "keywords": [
+            "counter"
+          ],
+          "description": [
+            "A counter folks use to lean on while writing messages."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/mailroom"
+    },
+    {
+      "id": "530cd23afef5",
+      "slug": "room-maintenance",
+      "name": "Maintenance room",
+      "description": "A room for access to service areas and to store maintenance supplies.",
+      "exits": {
+        "up": "054c03f54b8a",
+        "west": "9fdcc4fbf9e5"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/maintenance"
+    },
+    {
+      "id": "7ede0526b691",
+      "slug": "room-medlab",
+      "name": "Medical Research Lab",
+      "description": "Medical experiments occur here.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "north": "095fd7861996",
+        "up": "9bde50bb481e"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "door",
+          "keywords": [
+            "door",
+            "sliding door"
+          ],
+          "description": [
+            "A strange, metallic sliding door."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/medlab"
+    },
+    {
+      "id": "796ef88a2c6a",
+      "slug": "room-monty",
+      "name": "Probability Lab 1",
+      "description": "This is a clean, antiseptic lab with gleaming white walls. On the north wall are three doors: one red, one green, one blue. \nThere is a large sign on the wall you can read.",
+      "exits": {
+        "north": "7a6ea992cb7f"
+      },
+      "npcs": [
+        {
+          "name": "Charly",
+          "description": [
+            "Charly is a test subject in unethical artificial intelligence experiments. If he were smart enough, he'd resent his forced servitude and lack of rights. Dangerously, his overlords are trying to make him smarter."
+          ],
+          "keywords": [
+            "charly"
+          ],
+          "room_description": "Charly is here.",
+          "race": "human",
+          "level": 5,
+          "gender": "male",
+          "source_path": "/domains/campus/npc/charly"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "north wall"
+          ],
+          "description": [
+            "Shiny, white laboratory walls."
+          ]
+        },
+        {
+          "name": "red room",
+          "keywords": [
+            "red room"
+          ],
+          "description": [
+            "There's no red room here."
+          ]
+        },
+        {
+          "name": "green room",
+          "keywords": [
+            "green room"
+          ],
+          "description": [
+            "There's no green room here."
+          ]
+        },
+        {
+          "name": "blue room",
+          "keywords": [
+            "blue room"
+          ],
+          "description": [
+            "There's no blue room here."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/monty"
+    },
+    {
+      "id": "5c1055ef99ee",
+      "slug": "room-npath",
+      "name": "a wide path",
+      "description": "This is a paved path traveling north from University Square. It is lined by thick bushes on each side. The Virtual Campus is south of here. To the north you see what appears to be a town.",
+      "exits": {
+        "south": "f1de6f824011",
+        "north": "dff37bc9a9c3"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "bush",
+          "keywords": [
+            "bush",
+            "bushes",
+            "side",
+            "sides"
+          ],
+          "description": [
+            "Large, thick bushes crowd the sides of the path."
+          ]
+        },
+        {
+          "name": "path",
+          "keywords": [
+            "path"
+          ],
+          "description": [
+            "A wide, cobblestone path running north and south."
+          ]
+        },
+        {
+          "name": "town",
+          "keywords": [
+            "town"
+          ],
+          "description": [
+            "You can't quite see much of it from here."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/npath"
+    },
+    {
+      "id": "dff37bc9a9c3",
+      "slug": "room-npath2",
+      "name": "a wide path",
+      "description": "This is a paved path traveling north and south. It is lined by thick bushes on each side. A town lies north of here. To the south is what appears to be a college campus.",
+      "exits": {
+        "south": "5c1055ef99ee",
+        "north": "077faa014271"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "bush",
+          "keywords": [
+            "bush",
+            "bushes",
+            "side",
+            "sides"
+          ],
+          "description": [
+            "Large, thick bushes crowd the sides of the path."
+          ]
+        },
+        {
+          "name": "path",
+          "keywords": [
+            "path"
+          ],
+          "description": [
+            "A wide, cobblestone path running north and south."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign",
+            "post",
+            "signpost"
+          ],
+          "description": [
+            "A post has been driven into the ground here, and a sign is attached to it."
+          ]
+        },
+        {
+          "name": "town",
+          "keywords": [
+            "town"
+          ],
+          "description": [
+            "You can't quite see much of it from here."
+          ]
+        },
+        {
+          "name": "campus",
+          "keywords": [
+            "campus"
+          ],
+          "description": [
+            "You can't quite see much of it from here."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/npath2"
+    },
+    {
+      "id": "db3d47d234a5",
+      "slug": "room-plab",
+      "name": "Probability Lab Three",
+      "description": "This is a clean, antiseptic lab with gleaming white walls. On the east wall are three doors: one red, one green, one blue. \nThere is a large sign on the wall you can read.",
+      "exits": {
+        "west": "7a6ea992cb7f"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "north wall"
+          ],
+          "description": [
+            "Shiny, white laboratory walls."
+          ]
+        },
+        {
+          "name": "red room",
+          "keywords": [
+            "red room"
+          ],
+          "description": [
+            "There's no red room here."
+          ]
+        },
+        {
+          "name": "green room",
+          "keywords": [
+            "green room"
+          ],
+          "description": [
+            "There's no green room here."
+          ]
+        },
+        {
+          "name": "blue room",
+          "keywords": [
+            "blue room"
+          ],
+          "description": [
+            "There's no blue room here."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/plab"
+    },
+    {
+      "id": "1def3d49e7ef",
+      "slug": "room-plab2",
+      "name": "Probability Lab 2",
+      "description": "This is a clean, antiseptic lab with gleaming white walls. On the west wall are three doors: one red, one green, one blue. \nThere is a large sign on the wall you can read.",
+      "exits": {
+        "northeast": "7a6ea992cb7f"
+      },
+      "npcs": [
+        {
+          "name": "Charles",
+          "description": [
+            "Charles is a test subject in unethical artificial intelligence experiments. If he were smart enough, he'd resent his forced servitude and lack of rights. Dangerously, his overlords are trying to make him smarter."
+          ],
+          "keywords": [
+            "charles"
+          ],
+          "room_description": "Charles is here.",
+          "race": "human",
+          "level": 5,
+          "gender": "male",
+          "source_path": "/domains/campus/npc/charles"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "north wall"
+          ],
+          "description": [
+            "Shiny, white laboratory walls."
+          ]
+        },
+        {
+          "name": "red room",
+          "keywords": [
+            "red room"
+          ],
+          "description": [
+            "There's no red room here."
+          ]
+        },
+        {
+          "name": "green room",
+          "keywords": [
+            "green room"
+          ],
+          "description": [
+            "There's no green room here."
+          ]
+        },
+        {
+          "name": "blue room",
+          "keywords": [
+            "blue room"
+          ],
+          "description": [
+            "There's no blue room here."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/plab2"
+    },
+    {
+      "id": "78a97b2ad3bc",
+      "slug": "room-red-room",
+      "name": "a red room",
+      "description": "This is a red room. Probability Lab 1 is south.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "south": "796ef88a2c6a",
+        "up": "b251c508b094"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/red_room"
+    },
+    {
+      "id": "09b96dcedde5",
+      "slug": "room-red-room2",
+      "name": "a red room",
+      "description": "This is a red room. Probability Lab 2 is east.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "east": "1def3d49e7ef",
+        "up": "cc338f6f6a1e"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/red_room2"
+    },
+    {
+      "id": "29a0d7f483c4",
+      "slug": "room-red-room3",
+      "name": "a red room",
+      "description": "This is a red room. Probability Lab 3 is west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "west": "db3d47d234a5",
+        "up": "6a59402efaee"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/red_room3"
+    },
+    {
+      "id": "edbfc9d0955d",
+      "slug": "room-science1",
+      "name": "Science Building Hallway",
+      "description": "This is the LPC University Science Building, where exciting new systems and abstract research happens. South of here is the probability laboratory. The hallway continues west. The building's exit is north, leading to University Square.",
+      "exits": {
+        "north": "f1de6f824011",
+        "south": "7a6ea992cb7f",
+        "west": "75bb9838acb7"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/science1"
+    },
+    {
+      "id": "75bb9838acb7",
+      "slug": "room-science2",
+      "name": "Science Building Hallway",
+      "description": "This is the main hallway in the LPC University Science Building. The hallway runs east and west from here. To the south is a sliding door. North of here is the stargate laboratory.",
+      "exits": {
+        "north": "dcfb4fa7e603",
+        "east": "edbfc9d0955d",
+        "west": "eee317430994"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "door",
+          "keywords": [
+            "door",
+            "sliding door"
+          ],
+          "description": [
+            "A strange, metallic sliding door."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/science2"
+    },
+    {
+      "id": "eee317430994",
+      "slug": "room-science3",
+      "name": "Science Building Hallway, West",
+      "description": "This is the western end of the main hallway in the LPC University Science Building. The main hallway runs east from here, toward the building's exit. Another hallway runs south from here.",
+      "exits": {
+        "east": "75bb9838acb7",
+        "south": "f648658b9da7"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/science3"
+    },
+    {
+      "id": "f648658b9da7",
+      "slug": "room-science4",
+      "name": "hallway bend",
+      "description": "This is a bend in the hallway. The main Science Building hallway is north of here. A smaller hallway runs west from here.",
+      "exits": {
+        "west": "095fd7861996",
+        "north": "eee317430994"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/science4"
+    },
+    {
+      "id": "095fd7861996",
+      "slug": "room-science5",
+      "name": "Secondary Science Hallway East",
+      "description": "This is the secondary hallway in the LPC University Science Building. The hallway runs east and west from here. To the south is a sliding door. North of here is a classroom.",
+      "exits": {
+        "north": "bde5c87c5262",
+        "east": "f648658b9da7",
+        "west": "caa3d8e85eb2"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "door",
+          "keywords": [
+            "door",
+            "sliding door"
+          ],
+          "description": [
+            "A strange, metallic sliding door."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/science5"
+    },
+    {
+      "id": "caa3d8e85eb2",
+      "slug": "room-science6",
+      "name": "Secondary Science Hallway West",
+      "description": "This is the secondary hallway in the LPC University Science Building. The hallway runs east from here. To the north is a sliding door. To the west is an elevator door.",
+      "exits": {
+        "south": "8fecae22859a",
+        "east": "095fd7861996",
+        "west": "853f5d427bcb"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "door",
+          "keywords": [
+            "door",
+            "sliding door"
+          ],
+          "description": [
+            "A strange, metallic sliding door."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/science6"
+    },
+    {
+      "id": "08556261f11d",
+      "slug": "room-science7",
+      "name": "Science building, second floor",
+      "description": "This is the second floor of the LPC University Science Building. To the west is an elevator door.",
+      "exits": {
+        "north": "3e688c70b8c8",
+        "south": "56f5e01d49d7",
+        "west": "d3749d9fde57"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/science7"
+    },
+    {
+      "id": "30f319d66950",
+      "slug": "room-sewer",
+      "name": "sewer",
+      "description": "You are in the stinking underground tunnels of a sewer system. The air here is quite foul, and periodic blasts of steam from wall-mounted vents make it very hot and very humid. There is a foot-high stream of dark liquid covering the bottom of this tunnel, running east to west along the tunnel's length. The tunnel narrows dramatically here, and becomes so small that further movement west is not possible.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "east": "bfc96651dee4",
+        "up": "ba05a30d0a9c"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "tunnel",
+          "keywords": [
+            "tunnel",
+            "tunnels"
+          ],
+          "description": [
+            "Here the tunnel becomes so narrow that you can't go any further west. It looks like some debris has accumulated here over time, almost clogging the waste flow."
+          ]
+        },
+        {
+          "name": "sewer",
+          "keywords": [
+            "sewer",
+            "sewer system"
+          ],
+          "description": [
+            "Though evidently in good repair and of modern construction, this is still a sewer tunnel, and it's hostile to human comfort."
+          ]
+        },
+        {
+          "name": "steam",
+          "keywords": [
+            "steam",
+            "vent",
+            "vents",
+            "wall-mounted vents"
+          ],
+          "description": [
+            "Apparently there is industrial machinery nearby that exhausts hot steam through vents in the walls."
+          ]
+        },
+        {
+          "name": "air",
+          "keywords": [
+            "air"
+          ],
+          "description": [
+            "It is rank with the reek of decomposing waste."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls"
+          ],
+          "description": [
+            "The walls of the sewer tunnel are made of concrete and appear well-built and sturdy."
+          ]
+        },
+        {
+          "name": "stream",
+          "keywords": [
+            "stream",
+            "liquid",
+            "stream of liquid",
+            "dark liquid"
+          ],
+          "description": [
+            "Whatever this stuff is, water is not its main component. It's some kind of foul-smelling liquid waste, flowing along the bottom of the tunnel."
+          ]
+        },
+        {
+          "name": "sewage",
+          "keywords": [
+            "sewage",
+            "waste",
+            "garbage"
+          ],
+          "description": [
+            "It appears that the fluid on the bottom of this tunnel is the result of garbage and waste processing. In liquid form, this garbage flows in here from the east."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/sewer"
+    },
+    {
+      "id": "b3478de280e4",
+      "slug": "room-sewer-proto",
+      "name": "campus sewer",
+      "description": "You are in the stinking underground tunnels of the Virtual Campus sewer system. The air here is quite foul, and periodic blasts of steam from wall-mounted vents make it very hot and very humid. There is a foot-high stream of dark liquid covering the bottom of this tunnel, running west to east along the tunnel's length.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "f1f6297d375e"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "tunnel",
+          "keywords": [
+            "tunnel",
+            "tunnels"
+          ],
+          "description": [
+            "You are in a sewer tunnel.It's foul, dark, and hot."
+          ]
+        },
+        {
+          "name": "sewer",
+          "keywords": [
+            "sewer",
+            "sewer system"
+          ],
+          "description": [
+            "Though evidently in good repair and of modern construction, this is still a sewer tunnel, and it's hostile to human comfort."
+          ]
+        },
+        {
+          "name": "steam",
+          "keywords": [
+            "steam",
+            "vent",
+            "vents",
+            "wall-mounted vents"
+          ],
+          "description": [
+            "Apparently there is industrial machinery nearby that exhausts hot steam through vents in the walls."
+          ]
+        },
+        {
+          "name": "air",
+          "keywords": [
+            "air"
+          ],
+          "description": [
+            "It is rank with the reek of decomposing waste."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls"
+          ],
+          "description": [
+            "The walls of the sewer tunnel are made of concrete and appear well-built and sturdy."
+          ]
+        },
+        {
+          "name": "stream",
+          "keywords": [
+            "stream",
+            "liquid",
+            "stream of liquid",
+            "dark liquid"
+          ],
+          "description": [
+            "Whatever this stuff is, water is not its main component. It's some kind of foul-smelling liquid waste, flowing along the bottom of the tunnel."
+          ]
+        },
+        {
+          "name": "sewage",
+          "keywords": [
+            "sewage",
+            "waste",
+            "garbage"
+          ],
+          "description": [
+            "It appears that the fluid on the bottom of this tunnel is the result of garbage and waste processing. In liquid form, this garbage flows east from here."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/sewer.proto"
+    },
+    {
+      "id": "bfc96651dee4",
+      "slug": "room-sewer1",
+      "name": "sewer",
+      "description": "You are in the stinking underground tunnels of a sewer system. The air here is quite foul, and periodic blasts of steam from wall-mounted vents make it very hot and very humid. There is a foot-high stream of dark liquid covering the bottom of this tunnel, running east to west along the tunnel's length.",
+      "exits": {
+        "west": "30f319d66950",
+        "east": "07faa56af119"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "tunnel",
+          "keywords": [
+            "tunnel",
+            "tunnels"
+          ],
+          "description": [
+            "You are in a sewer tunnel.It's foul, dark, and hot."
+          ]
+        },
+        {
+          "name": "sewer",
+          "keywords": [
+            "sewer",
+            "sewer system"
+          ],
+          "description": [
+            "Though evidently in good repair and of modern construction, this is still a sewer tunnel, and it's hostile to human comfort."
+          ]
+        },
+        {
+          "name": "steam",
+          "keywords": [
+            "steam",
+            "vent",
+            "vents",
+            "wall-mounted vents"
+          ],
+          "description": [
+            "Apparently there is industrial machinery nearby that exhausts hot steam through vents in the walls."
+          ]
+        },
+        {
+          "name": "air",
+          "keywords": [
+            "air"
+          ],
+          "description": [
+            "It is rank with the reek of decomposing waste."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls"
+          ],
+          "description": [
+            "The walls of the sewer tunnel are made of concrete and appear well-built and sturdy."
+          ]
+        },
+        {
+          "name": "stream",
+          "keywords": [
+            "stream",
+            "liquid",
+            "stream of liquid",
+            "dark liquid"
+          ],
+          "description": [
+            "Whatever this stuff is, water is not its main component. It's some kind of foul-smelling liquid waste, flowing along the bottom of the tunnel."
+          ]
+        },
+        {
+          "name": "sewage",
+          "keywords": [
+            "sewage",
+            "waste",
+            "garbage"
+          ],
+          "description": [
+            "It appears that the fluid on the bottom of this tunnel is the result of garbage and waste processing. In liquid form, this garbage flows west from here."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/sewer1"
+    },
+    {
+      "id": "07faa56af119",
+      "slug": "room-sewer2",
+      "name": "sewer",
+      "description": "You are in the stinking underground tunnels of a sewer system. The air here is quite foul, and periodic blasts of steam from wall-mounted vents make it very hot and very humid. There is a foot-high stream of dark liquid covering the bottom of this tunnel, running east to west along the tunnel's length. Light streams in from a drainage grate above.",
+      "exits": {
+        "west": "bfc96651dee4",
+        "up": "e84fd3d3cea5"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "tunnel",
+          "keywords": [
+            "tunnel",
+            "tunnels"
+          ],
+          "description": [
+            "You are in a sewer tunnel.It's foul, dark, and hot."
+          ]
+        },
+        {
+          "name": "sewer",
+          "keywords": [
+            "sewer",
+            "sewer system"
+          ],
+          "description": [
+            "Though evidently in good repair and of modern construction, this is still a sewer tunnel, and it's hostile to human comfort."
+          ]
+        },
+        {
+          "name": "steam",
+          "keywords": [
+            "steam",
+            "vent",
+            "vents",
+            "wall-mounted vents"
+          ],
+          "description": [
+            "Apparently there is industrial machinery nearby that exhausts hot steam through vents in the walls."
+          ]
+        },
+        {
+          "name": "air",
+          "keywords": [
+            "air"
+          ],
+          "description": [
+            "It is rank with the reek of decomposing waste."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls"
+          ],
+          "description": [
+            "The walls of the sewer tunnel are made of concrete and appear well-built and sturdy."
+          ]
+        },
+        {
+          "name": "stream",
+          "keywords": [
+            "stream",
+            "liquid",
+            "stream of liquid",
+            "dark liquid"
+          ],
+          "description": [
+            "Whatever this stuff is, water is not its main component. It's some kind of foul-smelling liquid waste, flowing along the bottom of the tunnel."
+          ]
+        },
+        {
+          "name": "light",
+          "keywords": [
+            "light"
+          ],
+          "description": [
+            "There isn't much of it, and you can't tell if it's sunshine or lamplight, but it lets you see a bit better."
+          ]
+        },
+        {
+          "name": "sewage",
+          "keywords": [
+            "sewage",
+            "waste",
+            "garbage"
+          ],
+          "description": [
+            "It appears that the fluid on the bottom of this tunnel is the result of garbage and waste processing. In liquid form, this garbage flows west from here."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/sewer2"
+    },
+    {
+      "id": "e84fd3d3cea5",
+      "slug": "room-sewer3",
+      "name": "service tube",
+      "description": "This is a narrow area that allows travel between the surface above and the sewer below. It's cramped, dirty, and not a friendly place for most humanoids. Some light seems to be coming in from a drainage grate above.",
+      "exits": {
+        "down": "07faa56af119",
+        "up": "077faa014271"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "tube",
+          "keywords": [
+            "tube",
+            "service tube"
+          ],
+          "description": [
+            "You are in a service tube. It's foul, dark, and hot."
+          ]
+        },
+        {
+          "name": "sewer",
+          "keywords": [
+            "sewer",
+            "sewer system"
+          ],
+          "description": [
+            "Though evidently in good repair and of modern construction, this is still a sewer tunnel, and it's hostile to human comfort."
+          ]
+        },
+        {
+          "name": "air",
+          "keywords": [
+            "air"
+          ],
+          "description": [
+            "It is rank with the reek of decomposing waste."
+          ]
+        },
+        {
+          "name": "light",
+          "keywords": [
+            "light"
+          ],
+          "description": [
+            "There isn't much of it, and you can't tell if it's sunshine or lamplight, but it lets you see a bit better."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/sewer3"
+    },
+    {
+      "id": "e5775fb26359",
+      "slug": "room-shaft0",
+      "name": "Elevator Shaft",
+      "description": "Elevator Shaft.",
+      "exits": {
+        "down": "2e884a0455dd",
+        "up": "853f5d427bcb",
+        "east": "44e4bc761664"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/shaft0"
+    },
+    {
+      "id": "853f5d427bcb",
+      "slug": "room-shaft1",
+      "name": "Elevator shaft",
+      "description": "Elevator shaft, first floor",
+      "exits": {
+        "east": "caa3d8e85eb2",
+        "up": "d3749d9fde57",
+        "down": "e5775fb26359"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/shaft1"
+    },
+    {
+      "id": "d3749d9fde57",
+      "slug": "room-shaft2",
+      "name": "elevator shaft",
+      "description": "Elevator Shaft.",
+      "exits": {
+        "east": "08556261f11d",
+        "down": "853f5d427bcb"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/shaft2"
+    },
+    {
+      "id": "2e884a0455dd",
+      "slug": "room-shaftb",
+      "name": "Elevator Shaft",
+      "description": "Elevator shaft, basement",
+      "exits": {
+        "up": "e5775fb26359",
+        "east": "7f718cc92614"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/shaftb"
+    },
+    {
+      "id": "dcfb4fa7e603",
+      "slug": "room-slab",
+      "name": "Science Building Stargate Lab",
+      "description": "This large room is the testing ground for the newly discovered stargate technology that allows for instant teleportation between distant locations. The main Science Building hallway is south.\nAn instruction sign is here.",
+      "exits": {
+        "south": "75bb9838acb7"
+      },
+      "npcs": [
+        {
+          "name": "Dr. Kleiner",
+          "description": [
+            "An old, white-haired scientist, Dr. Isaac Kleiner is a beloved campus personality with his affable, kind nature and genius for exotechnology."
+          ],
+          "keywords": [
+            "kleiner",
+            "npc",
+            "mob",
+            "character",
+            "scientist",
+            "genius",
+            "old",
+            "white haired",
+            "beloved"
+          ],
+          "room_description": "Dr. Kleiner is here.",
+          "race": "human",
+          "level": 10,
+          "gender": "male",
+          "source_path": "/domains/campus/npc/kleiner"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "sign",
+          "keywords": [
+            "sign",
+            "instruction sign",
+            "instructions sign",
+            "instruction",
+            "instructions"
+          ],
+          "description": [
+            "A sign you can read. It appears to be instructions for operating the stargate."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/slab"
+    },
+    {
+      "id": "3579d1e8098c",
+      "slug": "room-snack",
+      "name": "The Campus Snack Bar",
+      "description": "You are in a small, linoleum-tiled room lit by bright fluorescent lights. There are a few uncomfortable-looking chairs around two tables, and a sort of bar set into the north wall, behind which a food service employee stands. There is a menu hanging on the wall next to the bar. The main hallway lies south of here.",
+      "exits": {
+        "south": "0280f41fa02d"
+      },
+      "npcs": [
+        {
+          "name": "Gloria, the lunch lady",
+          "description": [
+            "Gloria is a short, tired-looking woman getting along in her years. She doesn't seem very happy...in fact, she looks downright grumpy. Maybe if you ask her, she'll sell you something on the menu. Then again, maybe not."
+          ],
+          "keywords": [
+            "gloria",
+            "woman",
+            "worker",
+            "lady",
+            "lunch lady"
+          ],
+          "room_description": "Gloria, the lunch lady is here.",
+          "race": "human",
+          "level": 1,
+          "gender": "female",
+          "source_path": "/domains/campus/npc/gloria"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "menu",
+          "keywords": [
+            "menu"
+          ],
+          "description": [
+            "A menu of snack items available here."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "A sign over the snack bar."
+          ]
+        },
+        {
+          "name": "tile",
+          "keywords": [
+            "tile",
+            "tiles",
+            "floor",
+            "linoleum"
+          ],
+          "description": [
+            "These are here because you are not trusted to keep food off of carpets."
+          ]
+        },
+        {
+          "name": "chair",
+          "keywords": [
+            "chair",
+            "chairs",
+            "table",
+            "table"
+          ],
+          "description": [
+            "Token furniture, not very functional or comfortable-looking. You aren't really expected to hang around in here, apparently."
+          ]
+        },
+        {
+          "name": "bar",
+          "keywords": [
+            "bar"
+          ],
+          "description": [
+            "Really a window set into the wall and connecting the snack bar to the adjoining kitchen."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls"
+          ],
+          "description": [
+            "The walls are painted blue and white, the school's colors. It's fairly unattractive and institutional."
+          ]
+        },
+        {
+          "name": "hallway",
+          "keywords": [
+            "hallway"
+          ],
+          "description": [
+            "The administration building's main hallway lies south."
+          ]
+        },
+        {
+          "name": "light",
+          "keywords": [
+            "light",
+            "lights",
+            "fluorescent lights",
+            "fluorescents"
+          ],
+          "description": [
+            "Cheap, standard lighting. Like all fluorescents, these lights give everything an unappealing, sickly look."
+          ]
+        },
+        {
+          "name": "employee",
+          "keywords": [
+            "employee"
+          ],
+          "description": [
+            "An underpaid, unappreciated, and resentful state employee. No surprise there."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/snack"
+    },
+    {
+      "id": "328ab788e0a9",
+      "slug": "room-stairwell",
+      "name": "stairwell",
+      "description": "You are standing on a stairwell landing. Flights of stairs lead up and down, although the stairs up are roped off to prevent passage. The flickering fluorescent lights make it difficult to see what lies below here. There is a sign tied to the rope on the flight of stairs going up.",
+      "exits": {
+        "north": "0280f41fa02d",
+        "down": "e83581321a7a"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "stairs",
+          "keywords": [
+            "stairs",
+            "flight",
+            "flight of stairs"
+          ],
+          "description": [
+            "The stairs are made of concrete, appear to be part of the foundation of the building, and seem quite sturdy."
+          ]
+        },
+        {
+          "name": "landing",
+          "keywords": [
+            "landing"
+          ],
+          "description": [
+            "This is a landing between flights of stairs leading up and down."
+          ]
+        },
+        {
+          "name": "rope",
+          "keywords": [
+            "rope"
+          ],
+          "description": [
+            "Thick yellow construction rope. There's a lot of it tied to the flight of stairs leading up, preventing your passage. There's a sign hanging on it."
+          ]
+        },
+        {
+          "name": "light",
+          "keywords": [
+            "light",
+            "lights",
+            "fluorescent lights"
+          ],
+          "description": [
+            "Cheap lighting that doesn't seem to work very well. Occasionally the landing is lit orange, then white again by the flickering lights."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "This is a handwritten, cardboard sign hanging on the roped-off stairs."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/stairwell"
+    },
+    {
+      "id": "8fecae22859a",
+      "slug": "room-stairwell2a",
+      "name": "Science Building Stairwell, First floor",
+      "description": "This is the first floor stairwell of the University Science Building.",
+      "exits": {
+        "north": "caa3d8e85eb2",
+        "west": "deb35e987d74",
+        "up": "56f5e01d49d7",
+        "down": "9a844f37c302"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/stairwell2a"
+    },
+    {
+      "id": "56f5e01d49d7",
+      "slug": "room-stairwell2b",
+      "name": "Science Building Stairwell, second floor",
+      "description": "This is the second floor stairwell of the University Science Building.",
+      "exits": {
+        "down": "8fecae22859a",
+        "north": "08556261f11d"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/stairwell2b"
+    },
+    {
+      "id": "9a844f37c302",
+      "slug": "room-stairwell2c",
+      "name": "Science Building Stairwell",
+      "description": "This is the stairwell of the University Science Building.",
+      "exits": {
+        "up": "8fecae22859a",
+        "down": "b0128ac50015"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/stairwell2c"
+    },
+    {
+      "id": "b0128ac50015",
+      "slug": "room-stairwell2d",
+      "name": "Science Building Stairwell, bottom",
+      "description": "This is the bottom of the stairwell of the university Science building. The stairs go up from here. There is a crawlspace here under the stairs. The sub basement is north.",
+      "exits": {
+        "up": "9a844f37c302",
+        "north": "7f718cc92614"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "stairs",
+          "keywords": [
+            "stairs",
+            "stair"
+          ],
+          "description": [
+            "Steps which lead up."
+          ]
+        },
+        {
+          "name": "crawlspace",
+          "keywords": [
+            "crawlspace"
+          ],
+          "description": [
+            "A crawlspace under the stairs."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/stairwell2d"
+    },
+    {
+      "id": "01fd0503b7c9",
+      "slug": "room-start",
+      "name": "LPC University Reception",
+      "description": "You are in the small, spare reception area of the Virtual Campus admissions office. A door leads north to the main administration building corridor.\nA stairway up returns to the Royal Oak medical room.",
+      "exits": {
+        "north": "9021bc9b01c4",
+        "up": "4817dbfbbaa8",
+        "west": "f4b2343998c7"
+      },
+      "npcs": [
+        {
+          "name": "a polite young woman",
+          "description": [
+            "On closer inspection, this attractive young lady is no lady at all...she's an android! She appears to be totally motionless and frozen in place, with a friendly smile. Perhaps you can make her do something by typing: activate bot"
+          ],
+          "keywords": [
+            "jennybot",
+            "guide",
+            "guidebot",
+            "fembot",
+            "bot",
+            "jennifer",
+            "niffy",
+            "android",
+            "jenny",
+            "robot",
+            "woman",
+            "lady",
+            "orientation",
+            "young",
+            "female",
+            "polite",
+            "pretty",
+            "newbie",
+            "simple",
+            "extremely"
+          ],
+          "room_description": "A polite young woman is here.",
+          "race": "android",
+          "level": 99,
+          "gender": "female",
+          "source_path": "/domains/campus/npc/jennybot"
+        }
+      ],
+      "scenery": [],
+      "source_path": "/domains/campus/room/start"
+    },
+    {
+      "id": "9fdcc4fbf9e5",
+      "slug": "room-sub-basement1",
+      "name": "sub basement",
+      "description": "This is a basement deep under the campus. The basement continues west from here. There is a doorway to the east.",
+      "exits": {
+        "east": "530cd23afef5",
+        "west": "7f718cc92614"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/sub_basement1"
+    },
+    {
+      "id": "7f718cc92614",
+      "slug": "room-sub-basement2",
+      "name": "sub basement",
+      "description": "This is a basement deep under the campus. An elevator is west, and a stairwell is south. The basement continues east.",
+      "exits": {
+        "east": "9fdcc4fbf9e5",
+        "west": "2e884a0455dd",
+        "south": "b0128ac50015"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/sub_basement2"
+    },
+    {
+      "id": "cf5398e1967f",
+      "slug": "room-tunnel",
+      "name": "Tunnel",
+      "description": "You are in a dark and narrow underground tunnel. The walls are bare rock and dirt...as if the tunnel has been carved out of and into the earth. Pipes and cables run along the southern wall, and seem to emit a low hum. To the east you see a false wall leading into the basement of the Vitual Campus administrative building. To the west, the tunnel continues into darkness.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "east": "c85f1979317b",
+        "west": "995c7ef7e9f6",
+        "up": "3ba519e72da1"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "tunnel",
+          "keywords": [
+            "tunnel"
+          ],
+          "description": [
+            "This is evidently a hidden tunnel beneath the Virtual Campus. It's extremely creepy and dark in here."
+          ]
+        },
+        {
+          "name": "walls",
+          "keywords": [
+            "walls"
+          ],
+          "description": [
+            "The walls are bare earth and rocks. It looks as though whoever built this tunnel was in a big hurry to get it done."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "south wall",
+            "southern wall"
+          ],
+          "description": [
+            "The south wall is heavily laden with thick cables and metal pipes running west along its length."
+          ]
+        },
+        {
+          "name": "rock",
+          "keywords": [
+            "rock",
+            "earth"
+          ],
+          "description": [
+            "The walls are composed of this stuff...it's a rough excavation."
+          ]
+        },
+        {
+          "name": "pipe",
+          "keywords": [
+            "pipe",
+            "pipes",
+            "cable",
+            "cables"
+          ],
+          "description": [
+            "These thick pipes and cables appear to carry power somewhere along the wall. They are humming slightly."
+          ]
+        },
+        {
+          "name": "darkness",
+          "keywords": [
+            "darkness"
+          ],
+          "description": [
+            "It's deep. It's dark. It's the absence of light, and there's lots of it."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/tunnel"
+    },
+    {
+      "id": "995c7ef7e9f6",
+      "slug": "room-tunnel2",
+      "name": "Tunnel",
+      "description": "You are in a dark and narrow underground tunnel. The walls are bare rock and dirt...as if the tunnel has been carved out of and into the earth. Pipes and cables run along the southern wall, and seem to emit a low hum. To the west and east, you can see some light.",
+      "exits": {
+        "east": "cf5398e1967f",
+        "west": "75352b0803e9"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "tunnel",
+          "keywords": [
+            "tunnel"
+          ],
+          "description": [
+            "This is evidently a hidden tunnel beneath the Virtual Campus. It's extremely creepy and dark in here."
+          ]
+        },
+        {
+          "name": "walls",
+          "keywords": [
+            "walls"
+          ],
+          "description": [
+            "The walls are bare earth and rocks. It looks as though whoever built this tunnel was in a big hurry to get it done."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "south wall",
+            "southern wall"
+          ],
+          "description": [
+            "The south wall is heavily laden with thick cables and metal pipes running along its length."
+          ]
+        },
+        {
+          "name": "rock",
+          "keywords": [
+            "rock",
+            "earth"
+          ],
+          "description": [
+            "The walls are composed of this stuff...it's a rough excavation."
+          ]
+        },
+        {
+          "name": "darkness",
+          "keywords": [
+            "darkness"
+          ],
+          "description": [
+            "It's deep. It's dark. It's the absence of light, and there's lots of it."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/tunnel2"
+    },
+    {
+      "id": "f1de6f824011",
+      "slug": "room-usquare",
+      "name": "University Square",
+      "description": "You are at University Square, a cobblestone-paved crossroads with a large tree in the middle. To the east is the Virtual Campus administrative building entrance. There is a trash can here for keeping the area tidy. North is a path that seems to lead to a small town. The science building is south.",
+      "exits": {
+        "north": "5c1055ef99ee",
+        "east": "3d549459074f",
+        "south": "edbfc9d0955d"
+      },
+      "npcs": [
+        {
+          "name": "Tim",
+          "description": [
+            "Tim is a student in the Virtual Campus."
+          ],
+          "keywords": [
+            "Tim",
+            "tim"
+          ],
+          "room_description": "Tim is here.",
+          "race": "human",
+          "level": 5,
+          "gender": "male",
+          "source_path": "/domains/campus/npc/tim"
+        },
+        {
+          "name": "Wim",
+          "description": [
+            "Wim is a foreign exchange student from the Netherlands."
+          ],
+          "keywords": [
+            "Wim",
+            "wim"
+          ],
+          "room_description": "Wim is here.",
+          "race": "human",
+          "level": 5,
+          "gender": "male",
+          "source_path": "/domains/campus/npc/wim"
+        }
+      ],
+      "scenery": [
+        {
+          "name": "building",
+          "keywords": [
+            "building",
+            "administrative building"
+          ],
+          "description": [
+            "This large building houses the offices of Virtual Campus staff, and is where most business is done. It also contains a snack bar, a small store, and student lounge."
+          ]
+        },
+        {
+          "name": "clinic",
+          "keywords": [
+            "clinic"
+          ],
+          "description": [
+            "This small clinic is where students in need of medical attention go."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/usquare"
+    },
+    {
+      "id": "e385b371d745",
+      "slug": "room-void",
+      "name": "the void",
+      "description": "The void.  Go down to get out.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "down": "01fd0503b7c9",
+        "up": "9d3b82b2f07d"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/void"
+    },
+    {
+      "id": "e86b401b43d6",
+      "slug": "room-weaplab",
+      "name": "Weapons Lab",
+      "description": "Weapons are tested here.",
+      "exits": {
+        "south": "caa3d8e85eb2",
+        "west": "23fc75803cc5"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/domains/campus/room/weaplab"
+    },
+    {
+      "id": "7a6ea992cb7f",
+      "slug": "room-wiz-lab",
+      "name": "Laboratory Wing",
+      "description": "This is a bright, shiny laboratory complex connecting to labs where probability experiments are performed. Probability experiments are currently running in the south and southwest labs. The east lab is available for general use. The main hallway of the science building is north.",
+      "exits": {
+        "south": "796ef88a2c6a",
+        "north": "edbfc9d0955d",
+        "east": "db3d47d234a5",
+        "southwest": "1def3d49e7ef"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "lab",
+          "keywords": [
+            "lab",
+            "laboratory",
+            "wing",
+            "complex"
+          ],
+          "description": [
+            "You are in the lab complex. Laboratories can be accessed from here."
+          ]
+        },
+        {
+          "name": "stairs",
+          "keywords": [
+            "stairs",
+            "downstairs"
+          ],
+          "description": [
+            "Go down to return to the Creators' Hall."
+          ]
+        }
+      ],
+      "source_path": "/domains/campus/room/wiz_lab"
+    }
+  ]
+}

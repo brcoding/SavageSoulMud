@@ -2,9 +2,9 @@ use std::fmt;
 
 use serde::{Deserialize, Serialize};
 
-/// The six cardinal directions used for room exits.
+/// The ten compass and vertical directions used for room exits.
 ///
-/// Variant order is the display order (north, east, south, west, up, down):
+/// Variant order keeps north, east, south, west, up, down first, then diagonals:
 /// the derived `Ord` sorts directions for listings, so keep the variants in
 /// this order.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
@@ -15,6 +15,10 @@ pub enum Cardinal {
     West,
     Up,
     Down,
+    Northeast,
+    Northwest,
+    Southeast,
+    Southwest,
 }
 
 impl Cardinal {
@@ -27,6 +31,10 @@ impl Cardinal {
             "w" | "west" => Some(Self::West),
             "u" | "up" => Some(Self::Up),
             "d" | "down" => Some(Self::Down),
+            "ne" | "northeast" => Some(Self::Northeast),
+            "nw" | "northwest" => Some(Self::Northwest),
+            "se" | "southeast" => Some(Self::Southeast),
+            "sw" | "southwest" => Some(Self::Southwest),
             _ => None,
         }
     }
@@ -40,6 +48,10 @@ impl Cardinal {
             Self::West => Self::East,
             Self::Up => Self::Down,
             Self::Down => Self::Up,
+            Self::Northeast => Self::Southwest,
+            Self::Northwest => Self::Southeast,
+            Self::Southeast => Self::Northwest,
+            Self::Southwest => Self::Northeast,
         }
     }
 }
@@ -53,6 +65,10 @@ impl fmt::Display for Cardinal {
             Self::West => write!(f, "west"),
             Self::Up => write!(f, "up"),
             Self::Down => write!(f, "down"),
+            Self::Northeast => write!(f, "northeast"),
+            Self::Northwest => write!(f, "northwest"),
+            Self::Southeast => write!(f, "southeast"),
+            Self::Southwest => write!(f, "southwest"),
         }
     }
 }
@@ -134,7 +150,7 @@ mod tests {
     #[test]
     fn parse_invalid() {
         assert_eq!(Cardinal::parse("foo"), None);
-        assert_eq!(Cardinal::parse("northwest"), None);
+        assert_eq!(Cardinal::parse("northnorthwest"), None);
         assert_eq!(Cardinal::parse("123"), None);
         assert_eq!(Cardinal::parse(" "), None);
     }
@@ -142,6 +158,23 @@ mod tests {
     #[test]
     fn parse_empty() {
         assert_eq!(Cardinal::parse(""), None);
+    }
+
+    #[test]
+    fn diagonal_roundtrips_and_opposites() {
+        for (short, dir) in [
+            ("ne", Cardinal::Northeast),
+            ("nw", Cardinal::Northwest),
+            ("se", Cardinal::Southeast),
+            ("sw", Cardinal::Southwest),
+        ] {
+            assert_eq!(Cardinal::parse(short), Some(dir));
+            assert_eq!(Cardinal::parse(&short.to_uppercase()), Some(dir));
+            assert_eq!(Cardinal::parse(&dir.to_string()), Some(dir));
+            assert_eq!(dir.opposite().opposite(), dir);
+        }
+        assert_eq!(Cardinal::Northeast.opposite(), Cardinal::Southwest);
+        assert_eq!(Cardinal::Northwest.opposite(), Cardinal::Southeast);
     }
 
     #[test]
@@ -214,6 +247,10 @@ mod tests {
             Cardinal::East,
             Cardinal::North,
             Cardinal::Up,
+            Cardinal::Southwest,
+            Cardinal::Southeast,
+            Cardinal::Northwest,
+            Cardinal::Northeast,
         ];
         dirs.sort();
         assert_eq!(
@@ -225,6 +262,10 @@ mod tests {
                 Cardinal::West,
                 Cardinal::Up,
                 Cardinal::Down,
+                Cardinal::Northeast,
+                Cardinal::Northwest,
+                Cardinal::Southeast,
+                Cardinal::Southwest,
             ]
         );
     }

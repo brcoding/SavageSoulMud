@@ -1,0 +1,18 @@
+{
+  "source": "P:\\savsoulmud\\dev37prodback\\ds3.7a7\\lib",
+  "route_from_south_main_street": [
+    "northeast",
+    "east",
+    "east",
+    "east",
+    "east",
+    "east",
+    "east",
+    "east",
+    "east",
+    "east"
+  ],
+  "world_rooms": 801,
+  "world_npcs": 143,
+  "unresolved": []
+}

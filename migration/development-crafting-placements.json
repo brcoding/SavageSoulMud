@@ -1,0 +1,971 @@
+{
+  "merchants": {
+    "metalhead": [
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "chunk of lead",
+          "description": [
+            "A small chunk of lead."
+          ],
+          "keywords": [
+            "chunk of lead",
+            "chunk",
+            "lead",
+            "metal",
+            "shiny",
+            "craft:chunk-of-lead"
+          ],
+          "room_description": "A chunk of lead is here."
+        },
+        "buy_price": 2,
+        "sell_price": 1
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "gram of gunpowder",
+          "description": [
+            "A gram of black gunpowder. This would be ideal to use for bullets or explosives."
+          ],
+          "keywords": [
+            "gram of gunpowder",
+            "powder",
+            "gunpowder",
+            "black",
+            "explosive",
+            "craft:gram-of-gunpowder"
+          ],
+          "room_description": "A gram of gunpowder is here."
+        },
+        "buy_price": 2,
+        "sell_price": 1
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "rivet",
+          "description": [
+            "This is a simple steel rivet."
+          ],
+          "keywords": [
+            "rivet",
+            "metal",
+            "steel",
+            "craft:rivet"
+          ],
+          "room_description": "A rivet is here."
+        },
+        "buy_price": 10,
+        "sell_price": 5
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "sheet of steel",
+          "description": [
+            "A sheet of steel that is approximately 30mm X 30mm."
+          ],
+          "keywords": [
+            "sheet of steel",
+            "sheet",
+            "metal",
+            "steel",
+            "craft:sheet-of-steel"
+          ],
+          "room_description": "A sheet of steel is here."
+        },
+        "buy_price": 10,
+        "sell_price": 5
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "steel rod",
+          "description": [
+            "A steel rod that is approximately 50mm with a 5mm radius."
+          ],
+          "keywords": [
+            "steel rod",
+            "steel",
+            "rod",
+            "pipe",
+            "pole",
+            "metal",
+            "shiny",
+            "craft:steel-rod"
+          ],
+          "room_description": "A steel rod is here."
+        },
+        "buy_price": 7,
+        "sell_price": 3
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "wood handle",
+          "description": [
+            "A wood handle that is approximately 40mm with a 10mm radius."
+          ],
+          "keywords": [
+            "wood handle",
+            "wood",
+            "handle",
+            "craft:wood-handle"
+          ],
+          "room_description": "A wood handle is here."
+        },
+        "buy_price": 5,
+        "sell_price": 2
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "pair of pliers",
+          "description": [
+            "This is a standard pair of standard pliers."
+          ],
+          "keywords": [
+            "pliers",
+            "pair of pliers",
+            "grip",
+            "metal",
+            "craft:pliers"
+          ],
+          "room_description": "A pair of pliers is here."
+        },
+        "buy_price": 12,
+        "sell_price": 6
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "chisel",
+          "description": [
+            "This is a standard chisel used to carve wood."
+          ],
+          "keywords": [
+            "chisel",
+            "grip",
+            "metal",
+            "craft:chisel"
+          ],
+          "room_description": "A chisel is here."
+        },
+        "buy_price": 30,
+        "sell_price": 15
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "claw hammer",
+          "description": [
+            "This is a standard claw hammer made of metal with a wooden handle."
+          ],
+          "keywords": [
+            "hammer",
+            "claw hammer",
+            "claw",
+            "metal",
+            "wood",
+            "craft:claw-hammer"
+          ],
+          "room_description": "A claw hammer is here."
+        },
+        "buy_price": 30,
+        "sell_price": 15
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "piece of wood",
+          "description": [
+            "A piece of roughly hewn wood that is approximately 50mm with a 20mm radius."
+          ],
+          "keywords": [
+            "wood",
+            "piece of wood",
+            "piece",
+            "wooden",
+            "craft:piece-of-wood"
+          ],
+          "room_description": "A piece of wood is here."
+        },
+        "buy_price": 10,
+        "sell_price": 5
+      }
+    ],
+    "rusty": [
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "ham sandwich",
+          "description": [
+            "This is a large, rather plain ham sandwich."
+          ],
+          "keywords": [
+            "ham sandwich",
+            "ham sand",
+            "sandwich",
+            "craft:ham-sand"
+          ],
+          "room_description": "A ham sandwich is here."
+        },
+        "buy_price": 10,
+        "sell_price": 5
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "slice of pork",
+          "description": [
+            "A thinly sliced portion of fresh pork."
+          ],
+          "keywords": [
+            "slice of pork",
+            "slice",
+            "pork",
+            "thin",
+            "pig",
+            "ham",
+            "craft:slice-of-pork"
+          ],
+          "room_description": "A slice of pork is here."
+        },
+        "buy_price": 2,
+        "sell_price": 1
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "gram of peanut butter",
+          "description": [
+            "A gram of thick and chunky peanut butter."
+          ],
+          "keywords": [
+            "gram of peanut butter",
+            "gram of peanutbutter",
+            "peanut",
+            "butter",
+            "thick",
+            "chunky",
+            "brown",
+            "craft:gram-of-peanutbutter"
+          ],
+          "room_description": "A gram of peanut butter is here."
+        },
+        "buy_price": 2,
+        "sell_price": 1
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "gram of grape jelly",
+          "description": [
+            "A gram of sweet sticky purple grape jelly."
+          ],
+          "keywords": [
+            "gram of grape jelly",
+            "grape",
+            "jelly",
+            "sugary",
+            "purple",
+            "craft:gram-of-grape-jelly"
+          ],
+          "room_description": "A gram of grape jelly is here."
+        },
+        "buy_price": 2,
+        "sell_price": 1
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "piece of white bread",
+          "description": [
+            "A piece of smooth and delcious white bread freshly baked."
+          ],
+          "keywords": [
+            "piece of white bread",
+            "white",
+            "bread",
+            "smooth",
+            "delicious",
+            "craft:piece-of-white-bread"
+          ],
+          "room_description": "A piece of white bread is here."
+        },
+        "buy_price": 2,
+        "sell_price": 1
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "poor quality knife (quality 0)",
+          "description": [
+            "A poor quality knife. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "knife",
+            "poor quality knife (quality 0)",
+            "knife q0",
+            "metal",
+            "craft:knife-q0",
+            "craft:knife"
+          ],
+          "room_description": "A poor quality knife is here."
+        },
+        "buy_price": 50,
+        "sell_price": 25
+      }
+    ],
+    "ron metalswiller": [
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "poor quality halberd (quality 0)",
+          "description": [
+            "A poor quality halberd is decayed with rust and a splintered handle. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "halberd",
+            "poor quality halberd (quality 0)",
+            "halberd q0",
+            "poor",
+            "rusted",
+            "rusty",
+            "splintered",
+            "pointed",
+            "metal",
+            "craft:halberd-q0"
+          ],
+          "room_description": "A poor quality halberd is here."
+        },
+        "buy_price": 300,
+        "sell_price": 150
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "poor quality hammer (quality 0)",
+          "description": [
+            "A poor quality hammer is decayed with rust and a splintered handle. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "hammer",
+            "poor quality hammer (quality 0)",
+            "hammer q0",
+            "poor",
+            "rusted",
+            "rusty",
+            "splintered",
+            "pointed",
+            "metal",
+            "craft:hammer-q0"
+          ],
+          "room_description": "A poor quality hammer is here."
+        },
+        "buy_price": 25,
+        "sell_price": 12
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "huge nearly broken club (quality 0)",
+          "description": [
+            "A huge wooden club that is fashioned from a what seems to be the trunk of a tree that is so cracked and splintered it is barely usable. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "club",
+            "huge nearly broken club (quality 0)",
+            "huge club q0",
+            "huge",
+            "wooden",
+            "splintered",
+            "craft:huge-club-q0"
+          ],
+          "room_description": "A huge nearly broken club is here."
+        },
+        "buy_price": 1,
+        "sell_price": 0
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "poor quality knife (quality 0)",
+          "description": [
+            "A poor quality knife. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "knife",
+            "poor quality knife (quality 0)",
+            "knife q0",
+            "metal",
+            "craft:knife-q0",
+            "craft:knife"
+          ],
+          "room_description": "A poor quality knife is here."
+        },
+        "buy_price": 50,
+        "sell_price": 25
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "knife (quality 1)",
+          "description": [
+            "A plain knife. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "knife",
+            "knife (quality 1)",
+            "knife q1",
+            "plain",
+            "craft:knife-q1",
+            "craft:knife"
+          ],
+          "room_description": "A knife is here."
+        },
+        "buy_price": 150,
+        "sell_price": 75
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "medium axe (quality 0)",
+          "description": [
+            "A poor quality medium hand axe, suitable for close combat. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "axe",
+            "medium axe (quality 0)",
+            "medium axe q0",
+            "poor",
+            "medium",
+            "craft:medium-axe-q0"
+          ],
+          "room_description": "A medium axe is here."
+        },
+        "buy_price": 150,
+        "sell_price": 75
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "nearly broken medium club (quality 0)",
+          "description": [
+            "A medium wooden club that is fashioned from a tree branch that is so cracked it is barely usable. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "club",
+            "nearly broken medium club (quality 0)",
+            "medium club q0",
+            "medium",
+            "wooden",
+            "splintered",
+            "craft:medium-club-q0"
+          ],
+          "room_description": "A nearly broken medium club is here."
+        },
+        "buy_price": 1,
+        "sell_price": 0
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "poor quality medium sword (quality 0)",
+          "description": [
+            "A poor quality medium sword, suitable for one handed melee combat but has a splintered handle and a slightly bent tang. Rust can be seen down the blades surface marring what was once a very average sword. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "medium sword",
+            "poor quality medium sword (quality 0)",
+            "medium sword q0",
+            "medium",
+            "sword",
+            "poor",
+            "craft:medium-sword-q0"
+          ],
+          "room_description": "A poor quality medium sword is here."
+        },
+        "buy_price": 150,
+        "sell_price": 75
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "medium sword (quality 1)",
+          "description": [
+            "An average quality medium sword, suitable for one handed melee combat. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "medium sword",
+            "medium sword (quality 1)",
+            "medium sword q1",
+            "average",
+            "medium",
+            "craft:medium-sword-q1"
+          ],
+          "room_description": "A medium sword is here."
+        },
+        "buy_price": 150,
+        "sell_price": 75
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "poor quality sharpened pole (quality 0)",
+          "description": [
+            "A pole that has been sharped at one end. The handle is splintered with years of abuse and is quite unsturdy. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "pole",
+            "poor quality sharpened pole (quality 0)",
+            "sharp pole q0",
+            "poor",
+            "splintered",
+            "pointed",
+            "sharp",
+            "craft:sharp-pole-q0"
+          ],
+          "room_description": "A poor quality sharpened pole is here."
+        },
+        "buy_price": 50,
+        "sell_price": 25
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "poor quality hand axe (quality 0)",
+          "description": [
+            "A small, dull and rusty hand axe with a splintered handle, suitable for close combat. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "axe",
+            "poor quality hand axe (quality 0)",
+            "small axe q0",
+            "poor",
+            "rusty",
+            "splintered",
+            "small",
+            "hand",
+            "craft:small-axe-q0"
+          ],
+          "room_description": "A poor quality hand axe is here."
+        },
+        "buy_price": 75,
+        "sell_price": 37
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "nearly broken small club (quality 0)",
+          "description": [
+            "A small wooden club that is fashioned from a tree branch that is so cracked it is barely usable. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "club",
+            "nearly broken small club (quality 0)",
+            "small club q0",
+            "small",
+            "wooden",
+            "splintered",
+            "craft:small-club-q0"
+          ],
+          "room_description": "A nearly broken small club is here."
+        },
+        "buy_price": 1,
+        "sell_price": 0
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "nearly broken small mace (quality 0)",
+          "description": [
+            "A small wood and metal mace that is fashioned from a tree branch that is so cracked it is barely usable with a rusty head that is falling apart. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "mace",
+            "nearly broken small mace (quality 0)",
+            "small mace q0",
+            "small",
+            "wooden",
+            "splintered",
+            "craft:small-mace-q0"
+          ],
+          "room_description": "A nearly broken small mace is here."
+        },
+        "buy_price": 25,
+        "sell_price": 12
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "nearly broken tiny club (quality 0)",
+          "description": [
+            "A tiny wooden club that is fashioned from a tree branch that is so cracked it is barely usable. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "club",
+            "nearly broken tiny club (quality 0)",
+            "tiny club q0",
+            "tiny",
+            "wooden",
+            "splintered",
+            "craft:tiny-club-q0"
+          ],
+          "room_description": "A nearly broken tiny club is here."
+        },
+        "buy_price": 1,
+        "sell_price": 0
+      }
+    ],
+    "trader sam": [
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "poor quality chainmail shirt (quality 0)",
+          "description": [
+            "A body-length suit of armor made of small metal rings fashioned together that are rusted and broken in a number of areas. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "chainmail shirt",
+            "poor quality chainmail shirt (quality 0)",
+            "chainmail shirt q0",
+            "armor",
+            "chainmail",
+            "mail",
+            "shirt",
+            "chain mail",
+            "poor",
+            "rusted",
+            "rusty",
+            "craft:chainmail-shirt-q0"
+          ],
+          "room_description": "A poor quality chainmail shirt is here."
+        },
+        "buy_price": 1000,
+        "sell_price": 500
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "sturdy chainmail shirt (quality 2)",
+          "description": [
+            "A body-length suit of armor made of small metal rings fashioned together that are polished to a fine sheen and recently oiled. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+          ],
+          "keywords": [
+            "chainmail shirt",
+            "sturdy chainmail shirt (quality 2)",
+            "chainmail shirt q2",
+            "armor",
+            "chainmail",
+            "mail",
+            "shirt",
+            "chain mail",
+            "sturdy",
+            "sturdy-looking",
+            "craft:chainmail-shirt-q2"
+          ],
+          "room_description": "A sturdy chainmail shirt is here."
+        },
+        "buy_price": 3000,
+        "sell_price": 1500
+      },
+      {
+        "item": {
+          "condition": {
+            "quality": 100
+          },
+          "name": "GH3 pistol round",
+          "description": [
+            "This is a GH3 caliber revolver bullet. It has not been fired."
+          ],
+          "keywords": [
+            "gh3 round",
+            "gh3 pistol round",
+            "round",
+            "bullet",
+            "gh3",
+            "caliber",
+            "revolver",
+            "pistol",
+            "craft:gh3-round"
+          ],
+          "room_description": "A GH3 pistol round is here."
+        },
+        "buy_price": 5,
+        "sell_price": 2
+      }
+    ]
+  },
+  "roomfixturepatches": {
+    "robarngrill03": [
+      {
+        "condition": {
+          "quality": 100
+        },
+        "name": "stove",
+        "description": [
+          "The stove is a simple wood fired stove that has a burner on top and a place for a pot or baking sheet to be placed inside."
+        ],
+        "keywords": [
+          "stove",
+          "metal",
+          "kitchen",
+          "cooking",
+          "craft:stove"
+        ],
+        "room_description": "Stove is here."
+      }
+    ],
+    "southfieldmetalshop": [
+      {
+        "condition": {
+          "quality": 100
+        },
+        "name": "bullet press",
+        "description": [
+          "The bullet press allows creations of new bullet rounds."
+        ],
+        "keywords": [
+          "bullet press",
+          "bullet",
+          "press",
+          "metal",
+          "craft:bullet-press"
+        ],
+        "room_description": "Bullet press is here."
+      },
+      {
+        "condition": {
+          "quality": 100
+        },
+        "name": "grinding wheel",
+        "description": [
+          "The grinding wheel is an electric motor with two wheels attached on each side."
+        ],
+        "keywords": [
+          "grinding wheel",
+          "grinding",
+          "wheel",
+          "spinning",
+          "circular",
+          "craft:grinding-wheel"
+        ],
+        "room_description": "Grinding wheel is here."
+      },
+      {
+        "condition": {
+          "quality": 100
+        },
+        "name": "die forge",
+        "description": [
+          "The die forge is a massive machine with a set of 2 plates that can be pressed together with tons of force to forge metal into any shape desired."
+        ],
+        "keywords": [
+          "die forge",
+          "die",
+          "forge",
+          "metal",
+          "craft:die-forge"
+        ],
+        "room_description": "Die forge is here."
+      },
+      {
+        "condition": {
+          "quality": 100
+        },
+        "name": "radial rivet machine",
+        "description": [
+          "The radial rivet machine is set in a large frame with an area to place the items to be riveted and a punch to push new rivets into place along with an electric motor to set them home."
+        ],
+        "keywords": [
+          "radial rivet machine",
+          "radial",
+          "rivet",
+          "machine",
+          "metal",
+          "electric",
+          "craft:radial-rivet-machine"
+        ],
+        "room_description": "Radial rivet machine is here."
+      }
+    ]
+  },
+  "source_ids": {
+    "/domains/crafting/tools/bullet_press": "bullet-press",
+    "/domains/crafting/tools/chisel": "chisel",
+    "/domains/crafting/tools/claw_hammer": "claw-hammer",
+    "/domains/crafting/tools/die_forge": "die-forge",
+    "/domains/crafting/tools/grinding_wheel": "grinding-wheel",
+    "/domains/crafting/tools/pliers": "pliers",
+    "/domains/crafting/tools/radial_rivet_machine": "radial-rivet-machine",
+    "/domains/crafting/tools/stove": "stove",
+    "/domains/crafting/resources/chunk_of_lead": "chunk-of-lead",
+    "/domains/crafting/resources/gram_of_grape_jelly": "gram-of-grape-jelly",
+    "/domains/crafting/resources/gram_of_gunpowder": "gram-of-gunpowder",
+    "/domains/crafting/resources/gram_of_peanutbutter": "gram-of-peanutbutter",
+    "/domains/crafting/resources/piece_of_white_bread": "piece-of-white-bread",
+    "/domains/crafting/resources/piece_of_wood": "piece-of-wood",
+    "/domains/crafting/resources/rivet": "rivet",
+    "/domains/crafting/resources/sheet_of_steel": "sheet-of-steel",
+    "/domains/crafting/resources/slice_of_pork": "slice-of-pork",
+    "/domains/crafting/resources/steel_rod": "steel-rod",
+    "/domains/crafting/resources/wood_handle": "wood-handle",
+    "/domains/crafting/meals/artrell_meat": "artrell-meat",
+    "/domains/crafting/meals/crawler_meat": "crawler-meat",
+    "/domains/crafting/meals/fish_stick": "fish-stick",
+    "/domains/crafting/meals/morlock_meat": "morlock-meat",
+    "/domains/crafting/meals/rat_meat": "rat-meat",
+    "/domains/crafting/weap/melee/akai_sword": "akai-sword",
+    "/domains/crafting/weap/melee/halberd_q0": "halberd-q0",
+    "/domains/crafting/weap/melee/halberd_q1": "halberd-q1",
+    "/domains/crafting/weap/melee/halberd_q2": "halberd-q2",
+    "/domains/crafting/weap/melee/halberd_q3": "halberd-q3",
+    "/domains/crafting/weap/melee/hammer_q0": "hammer-q0",
+    "/domains/crafting/weap/melee/hammer_q1": "hammer-q1",
+    "/domains/crafting/weap/melee/hammer_q2": "hammer-q2",
+    "/domains/crafting/weap/melee/hammer_q3": "hammer-q3",
+    "/domains/crafting/weap/melee/huge_axe_q0": "huge-axe-q0",
+    "/domains/crafting/weap/melee/huge_axe_q1": "huge-axe-q1",
+    "/domains/crafting/weap/melee/huge_axe_q2": "huge-axe-q2",
+    "/domains/crafting/weap/melee/huge_axe_q3": "huge-axe-q3",
+    "/domains/crafting/weap/melee/huge_club_q0": "huge-club-q0",
+    "/domains/crafting/weap/melee/huge_club_q1": "huge-club-q1",
+    "/domains/crafting/weap/melee/huge_club_q2": "huge-club-q2",
+    "/domains/crafting/weap/melee/huge_club_q3": "huge-club-q3",
+    "/domains/crafting/weap/melee/huge_mace_q0": "huge-mace-q0",
+    "/domains/crafting/weap/melee/huge_mace_q1": "huge-mace-q1",
+    "/domains/crafting/weap/melee/huge_mace_q2": "huge-mace-q2",
+    "/domains/crafting/weap/melee/huge_mace_q3": "huge-mace-q3",
+    "/domains/crafting/weap/melee/knife_q0": "knife-q0",
+    "/domains/crafting/weap/melee/knife_q1": "knife-q1",
+    "/domains/crafting/weap/melee/knife_q2": "knife-q2",
+    "/domains/crafting/weap/melee/knife_q3": "knife-q3",
+    "/domains/crafting/weap/melee/large_axe_q0": "large-axe-q0",
+    "/domains/crafting/weap/melee/large_axe_q1": "large-axe-q1",
+    "/domains/crafting/weap/melee/large_axe_q2": "large-axe-q2",
+    "/domains/crafting/weap/melee/large_axe_q3": "large-axe-q3",
+    "/domains/crafting/weap/melee/large_club_q0": "large-club-q0",
+    "/domains/crafting/weap/melee/large_club_q1": "large-club-q1",
+    "/domains/crafting/weap/melee/large_club_q2": "large-club-q2",
+    "/domains/crafting/weap/melee/large_club_q3": "large-club-q3",
+    "/domains/crafting/weap/melee/large_mace_q0": "large-mace-q0",
+    "/domains/crafting/weap/melee/large_mace_q1": "large-mace-q1",
+    "/domains/crafting/weap/melee/large_mace_q2": "large-mace-q2",
+    "/domains/crafting/weap/melee/large_mace_q3": "large-mace-q3",
+    "/domains/crafting/weap/melee/medium_axe_q0": "medium-axe-q0",
+    "/domains/crafting/weap/melee/medium_axe_q1": "medium-axe-q1",
+    "/domains/crafting/weap/melee/medium_axe_q2": "medium-axe-q2",
+    "/domains/crafting/weap/melee/medium_axe_q3": "medium-axe-q3",
+    "/domains/crafting/weap/melee/medium_club_q0": "medium-club-q0",
+    "/domains/crafting/weap/melee/medium_club_q1": "medium-club-q1",
+    "/domains/crafting/weap/melee/medium_club_q2": "medium-club-q2",
+    "/domains/crafting/weap/melee/medium_club_q3": "medium-club-q3",
+    "/domains/crafting/weap/melee/medium_mace_q0": "medium-mace-q0",
+    "/domains/crafting/weap/melee/medium_mace_q1": "medium-mace-q1",
+    "/domains/crafting/weap/melee/medium_mace_q2": "medium-mace-q2",
+    "/domains/crafting/weap/melee/medium_mace_q3": "medium-mace-q3",
+    "/domains/crafting/weap/melee/medium_sword_q0": "medium-sword-q0",
+    "/domains/crafting/weap/melee/medium_sword_q1": "medium-sword-q1",
+    "/domains/crafting/weap/melee/medium_sword_q2": "medium-sword-q2",
+    "/domains/crafting/weap/melee/medium_sword_q3": "medium-sword-q3",
+    "/domains/crafting/weap/melee/sharp_pole_q0": "sharp-pole-q0",
+    "/domains/crafting/weap/melee/sharp_pole_q1": "sharp-pole-q1",
+    "/domains/crafting/weap/melee/sharp_pole_q2": "sharp-pole-q2",
+    "/domains/crafting/weap/melee/sharp_pole_q3": "sharp-pole-q3",
+    "/domains/crafting/weap/melee/small_axe_q0": "small-axe-q0",
+    "/domains/crafting/weap/melee/small_axe_q1": "small-axe-q1",
+    "/domains/crafting/weap/melee/small_axe_q2": "small-axe-q2",
+    "/domains/crafting/weap/melee/small_axe_q3": "small-axe-q3",
+    "/domains/crafting/weap/melee/small_club_q0": "small-club-q0",
+    "/domains/crafting/weap/melee/small_club_q1": "small-club-q1",
+    "/domains/crafting/weap/melee/small_club_q2": "small-club-q2",
+    "/domains/crafting/weap/melee/small_club_q3": "small-club-q3",
+    "/domains/crafting/weap/melee/small_knife_q0": "small-knife-q0",
+    "/domains/crafting/weap/melee/small_knife_q1": "small-knife-q1",
+    "/domains/crafting/weap/melee/small_knife_q2": "small-knife-q2",
+    "/domains/crafting/weap/melee/small_knife_q3": "small-knife-q3",
+    "/domains/crafting/weap/melee/small_mace_q0": "small-mace-q0",
+    "/domains/crafting/weap/melee/small_mace_q1": "small-mace-q1",
+    "/domains/crafting/weap/melee/small_mace_q2": "small-mace-q2",
+    "/domains/crafting/weap/melee/small_mace_q3": "small-mace-q3",
+    "/domains/crafting/weap/melee/tiny_club_q0": "tiny-club-q0",
+    "/domains/crafting/weap/melee/tiny_club_q1": "tiny-club-q1",
+    "/domains/crafting/weap/melee/tiny_club_q2": "tiny-club-q2",
+    "/domains/crafting/weap/melee/tiny_club_q3": "tiny-club-q3",
+    "/domains/crafting/armor/chainmail_shirt_q0": "chainmail-shirt-q0",
+    "/domains/crafting/armor/chainmail_shirt_q1": "chainmail-shirt-q1",
+    "/domains/crafting/armor/chainmail_shirt_q2": "chainmail-shirt-q2",
+    "/domains/crafting/armor/chainmail_shirt_q3": "chainmail-shirt-q3",
+    "/domains/savsoul/weap/GH3round": "gh3-round",
+    "/domains/savsoul/weap/GH3shell": "gh3-shell",
+    "/domains/savsoul/meals/ham_sand": "ham-sand",
+    "/domains/savsoul/meals/pbnj_sand": "pbnj-sand",
+    "/domains/savsoul/weap/wrench": "wrench"
+  }
+}

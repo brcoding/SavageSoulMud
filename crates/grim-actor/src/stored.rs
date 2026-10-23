@@ -1,10 +1,10 @@
 //! [`StoredCharacter`]: the flat on-disk DTO for a player character.
 //!
-//! After the being split a PC is three components — `Name + Actor + Character`.
+//! After the being split a PC is three components â€” `Name + Actor + Character`.
 //! Persistence and copyover need a single serializable record, so
 //! `StoredCharacter` is the **only** serde surface for a character. Its field set
-//! is byte-for-byte the pre-split `Character` JSON layout — every optional field
-//! keeps its `#[serde(default)]` — so **old `data/characters/<name>.json` files
+//! is byte-for-byte the pre-split `Character` JSON layout â€” every optional field
+//! keeps its `#[serde(default)]` â€” so **old `data/characters/<name>.json` files
 //! still load unchanged**. That compatibility is the contract; a round-trip test
 //! against a pre-split blob guards it.
 
@@ -25,7 +25,12 @@ fn default_level() -> u32 {
     1
 }
 
-/// The flat, serializable form of a player character — the only disk surface.
+/// The starting credit balance for new and pre-credit-field characters.
+fn default_credits() -> u64 {
+    1000
+}
+
+/// The flat, serializable form of a player character â€” the only disk surface.
 /// Splits into `Name + Actor + Character` via [`into_components`], and is built
 /// from those three via [`from_components`]. Field order and `#[serde(default)]`
 /// placement mirror the pre-split `Character` exactly to keep the on-disk format
@@ -38,6 +43,9 @@ pub struct StoredCharacter {
     pub id: GrimId,
     pub name: String,
     pub account_id: GrimId,
+    /// Whole-credit balance. Older saves receive the starting balance once.
+    #[serde(default = "default_credits")]
+    pub credits: u64,
     pub created_at: DateTime<Utc>,
     /// Last known room. `#[serde(default)]` keeps old JSON loading cleanly.
     #[serde(default)]
@@ -45,7 +53,7 @@ pub struct StoredCharacter {
     /// Privileges. `#[serde(default)]` keeps pre-roles JSON loading cleanly.
     #[serde(default)]
     pub roles: Vec<Role>,
-    /// `#[serde(default)]` → [`Gender::Neutral`] for pre-gender JSON.
+    /// `#[serde(default)]` â†’ [`Gender::Neutral`] for pre-gender JSON.
     #[serde(default)]
     pub gender: Gender,
     /// Race slug. Empty on old JSON (and never picked); resolve leniently.
@@ -67,10 +75,13 @@ pub struct StoredCharacter {
     /// loading with an empty map (all registry defaults).
     #[serde(default)]
     pub config: HashMap<String, String>,
+    /// Namespaced game/plugin data, preserved across saves and copyovers.
+    #[serde(default)]
+    pub game_state: HashMap<String, serde_json::Value>,
     /// Full snapshot of every carried object instance, taken at save and
     /// re-spawned on login. `#[serde(default)]` keeps pre-inventory JSON
-    /// loading with an empty pack. Ground objects are never stored here —
-    /// they respawn from area blueprints — so a reboot restores the pack
+    /// loading with an empty pack. Ground objects are never stored here â€”
+    /// they respawn from area blueprints â€” so a reboot restores the pack
     /// while the room listing regenerates from seed.
     #[serde(default)]
     pub inventory: Vec<StoredObject>,
@@ -82,6 +93,9 @@ pub struct StoredCharacter {
 /// after pickup-then-reboot are correct state, not corruption.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
 pub struct StoredObject {
+    /// Optional per-instance condition, including a corpse's absolute expiry.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub condition: Option<grim_core::components::ItemCondition>,
     /// Short name: inventory rows, pickup lines, get/drop/give matching.
     #[serde(default)]
     pub name: String,
@@ -105,6 +119,7 @@ impl StoredCharacter {
             gender: self.gender,
         };
         let character = Character {
+            credits: self.credits,
             id: self.id,
             account_id: self.account_id,
             created_at: self.created_at,
@@ -114,6 +129,7 @@ impl StoredCharacter {
             title: self.title,
             restrings: self.restrings,
             config: self.config,
+            game_state: self.game_state,
         };
         (name, actor, character)
     }
@@ -121,6 +137,7 @@ impl StoredCharacter {
     /// Build the DTO from a live PC's components, ready to serialize to disk.
     pub fn from_components(name: &Name, actor: &Actor, character: &Character) -> Self {
         Self {
+            credits: character.credits,
             id: character.id,
             name: name.0.clone(),
             account_id: character.account_id,
@@ -134,7 +151,8 @@ impl StoredCharacter {
             title: character.title.clone(),
             restrings: character.restrings.clone(),
             config: character.config.clone(),
-            // Built from live components, which never carry a pack — saves
+            game_state: character.game_state.clone(),
+            // Built from live components, which never carry a pack â€” saves
             // attach the snapshot afterwards (see `grim-object::persist`).
             inventory: Vec::new(),
         }
@@ -158,9 +176,11 @@ mod tests {
         assert!(stored.race.is_empty());
         assert!(stored.class.is_empty());
         assert_eq!(stored.level, 1);
+        assert_eq!(stored.credits, 1000);
         assert!(stored.title.is_none());
         assert!(stored.restrings.is_empty());
         assert!(stored.config.is_empty());
+        assert!(stored.game_state.is_empty());
     }
 
     #[test]
@@ -173,10 +193,16 @@ mod tests {
         stored.race = "dwarf".into();
         stored.class = "mage".into();
         stored.level = 7;
+        stored.credits = 42;
         stored.title = Some("the Bold".into());
         stored.roles = vec![Role::Admin];
         stored.restrings.insert("who_class".into(), "God".into());
         stored.config.insert("minimap".into(), "off".into());
+        stored.game_state.insert(
+            "savage_soul".into(),
+            serde_json::json!({"version": 1, "attributes": {"strength": 3}, "peculiarities": ["survivor"]}),
+        );
+        stored.game_state.insert("other_plugin".into(), serde_json::json!([true, null, 42]));
         stored.last_room = Some(RoomLocation {
             area: "haven".into(),
             room: "square".into(),
@@ -190,7 +216,9 @@ mod tests {
         assert_eq!(actor.level, 7);
         assert_eq!(actor.gender, Gender::Female);
         assert_eq!(character.class, "mage");
+        assert_eq!(character.credits, 42);
         assert!(character.is_admin());
+        assert_eq!(character.game_state, original.game_state);
         assert_eq!(character.title.as_deref(), Some("the Bold"));
         assert_eq!(character.config.get("minimap"), Some(&"off".to_string()));
 
@@ -200,6 +228,17 @@ mod tests {
             serde_json::to_string(&rebuilt).unwrap(),
             serde_json::to_string(&original).unwrap()
         );
+    }
+
+    #[test]
+    fn explicit_zero_credits_is_not_reset() {
+        let stored: StoredCharacter = serde_json::from_str(
+            r#"{"id":"aaaaaaaaaaaa","name":"Broke","account_id":"bbbbbbbbbbbb","created_at":"2020-01-01T00:00:00Z","credits":0}"#,
+        )
+        .unwrap();
+        let (name, actor, character) = stored.into_components();
+        assert_eq!(character.credits, 0);
+        assert_eq!(StoredCharacter::from_components(&name, &actor, &character).credits, 0);
     }
 
     #[test]

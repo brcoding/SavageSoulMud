@@ -26,6 +26,8 @@ impl Plugin for AuthPlugin {
         // Reserved character-name prefixes. init_resource keeps the built-in
         // defaults unless the author inserted a custom list before this plugin.
         app.init_resource::<ReservedNamePrefixes>();
+        app.init_resource::<crate::CharacterBuildMode>();
+        app.init_resource::<crate::AccessibilityOnboarding>();
         // The routing-split guard is owned/defined by grim-scene, but the
         // pre-game dispatcher writes it, so init here too (idempotent with
         // ScenePlugin) — loading auth without scene would otherwise panic on the
@@ -54,18 +56,19 @@ impl Plugin for AuthPlugin {
         // here so AuthPlugin stands alone (a no-op when ScenePlugin, which
         // owns the message, is also present).
         app.add_message::<DisconnectRequest>();
+        app.add_message::<crate::LoginCredentials>().add_message::<crate::LoginResult>();
         app.add_message::<grim_networking::WiznetAlert>();
         app.add_systems(Startup, validate_registries);
         app.add_systems(
             Update,
             (
-                handle_connection_established,
+                handle_connection_established.in_set(crate::AuthSystems::Greet),
                 // Greeter must spawn the Client before the dispatcher reads
                 // input; the dispatcher must run before the scene in-game system
                 // so a line that advances a session into the world is not also
                 // re-dispatched as an in-game command that same tick (see
                 // input.rs module doc + JustEnteredWorld).
-                handle_pregame_input
+                handle_pregame_input.in_set(crate::AuthSystems::Input)
                     .after(handle_connection_established)
                     .after(SceneSystems::TouchInput)
                     .before(SceneSystems::InGameInput),
@@ -78,12 +81,19 @@ impl Plugin for AuthPlugin {
 /// with no tier-1 (creatable) classes, would leave character creation showing a
 /// menu with no options and no exit — trapping the player. Runs at Startup, after
 /// any author override has been inserted, so it validates the effective set.
-fn validate_registries(races: Res<RaceRegistry>, classes: Res<ClassRegistry>) {
+fn validate_registries(
+    races: Res<RaceRegistry>,
+    classes: Res<ClassRegistry>,
+    mode: Option<Res<crate::CharacterBuildMode>>,
+) {
     assert!(
         !races.0.is_empty(),
         "RaceRegistry is empty: character creation would trap players with no race \
          to pick. Seed at least one race."
     );
+    if mode.is_some_and(|mode| *mode == crate::CharacterBuildMode::SavageSoul) {
+        return;
+    }
     assert!(
         classes.creatable().next().is_some(),
         "ClassRegistry has no tier-1 (creatable) classes: character creation would \
@@ -94,6 +104,16 @@ fn validate_registries(races: Res<RaceRegistry>, classes: Res<ClassRegistry>) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn savage_soul_creation_does_not_require_classes() {
+        let mut app = App::new();
+        app.insert_resource(crate::CharacterBuildMode::SavageSoul);
+        app.insert_resource(RaceRegistry::default());
+        app.insert_resource(ClassRegistry(vec![]));
+        app.add_systems(Startup, validate_registries);
+        app.update();
+    }
 
     #[test]
     #[should_panic(expected = "RaceRegistry is empty")]

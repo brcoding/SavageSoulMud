@@ -49,7 +49,7 @@ pub(crate) fn format_output(
     room_occupants: Occupants,
     room_exits: RoomLinks,
     names: Query<&GrimName>,
-    descriptions: Query<&Description>,
+    descriptions: Query<(Option<&Description>, Option<&grim_core::components::ItemCondition>, Option<&Object>)>,
     characters: Query<&Character>,
     mut outputs: MessageWriter<ConnectionOutput>,
 ) {
@@ -110,13 +110,15 @@ pub(crate) fn format_output(
             &room_exits,
             &characters,
             &reads.clients,
+            &reads.terminals,
             &reads.linkdead_chars,
             &config_registry,
+            &reads.visibility,
             &mut outputs,
         );
     }
     for ev in look_entity_events.read() {
-        emit_look_entity(ev, &room_occupants, &names, &descriptions, &mut outputs);
+        emit_look_entity(ev, &room_occupants, &names, &descriptions, &reads.visibility, &mut outputs);
     }
     for ev in move_events.read() {
         emit_move(ev, &names, &room_occupants, &mut outputs);

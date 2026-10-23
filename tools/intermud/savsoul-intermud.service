@@ -1,0 +1,16 @@
+[Unit]
+Description=Savage Soul Intermud-3 gateway
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/barry/.local/share/savsoul-intermud/gateway
+ExecStart=/home/barry/.local/share/savsoul-intermud/venv/bin/python -m src --config /mnt/p/savsoulmud/grim/tools/intermud/gateway.yaml --env-file /home/barry/.local/state/savsoul-intermud/gateway.env
+Restart=on-failure
+RestartSec=15
+UMask=0077
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target

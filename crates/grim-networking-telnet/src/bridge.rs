@@ -10,23 +10,23 @@ use std::sync::mpsc as std_mpsc;
 use std::sync::{Arc, Mutex};
 
 use bevy::prelude::*;
-use grim_core::components::{Client, ClientState};
+use grim_actor::Character;
+use grim_core::components::{Client, ClientState, Name as GrimName};
 use grim_networking::{Connection, ConnectionOutput, DisconnectRequest};
-use tokio::io::{AsyncBufReadExt, AsyncReadExt, AsyncWriteExt, BufReader};
+use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::TcpStream;
-use tokio::time::Instant;
 
-use crate::guard::{discard_to_newline, frame_input, rate_tripped, GuardTrip};
+use crate::guard::{frame_input, rate_tripped, GuardTrip};
 use crate::limits::TelnetLimits;
+use crate::protocols::{ProtocolState, TelnetCapabilities, TelnetOutput, EOR, RAW_MARKUP};
 use crate::{iac, render};
 // ─── Internal bridge types ─────────────────────────────────────────
 
 pub(crate) struct Conn {
     pub(crate) write_tx: tokio::sync::mpsc::Sender<Vec<u8>>,
-    /// Both task handles are aborted on disconnect so *both* halves of the split
-    /// socket drop and the fd actually closes. Dropping `write_tx` alone does not
-    /// reliably end the write task across a chained copyover, which left the
-    /// socket open (the client never saw EOF on `quit`).
+    /// Disconnect aborts input and closes the write channel. The writer drains
+    /// queued messages before EOF, with a timeout that guarantees both halves
+    /// close even across chained copyovers.
     pub(crate) read_handle: tokio::task::JoinHandle<()>,
     pub(crate) write_handle: tokio::task::JoinHandle<()>,
     /// Raw fd of the underlying socket, recorded at accept/adopt time. Stays
@@ -50,6 +50,11 @@ pub(crate) enum NetworkEvent {
     Input {
         conn_id: usize,
         text: String,
+    },
+    Protocol {
+        conn_id: usize,
+        capabilities: TelnetCapabilities,
+        input: Option<(u8, Vec<u8>)>,
     },
     Disconnected {
         conn_id: usize,
@@ -96,6 +101,7 @@ pub(crate) struct CopyoverConn {
     pub(crate) conn_id: usize,
     pub(crate) character: String,
     pub(crate) echo_hidden: bool,
+    pub(crate) peer_addr: Option<SocketAddr>,
 }
 
 #[derive(Resource)]
@@ -110,8 +116,8 @@ pub(crate) struct TelnetPort(pub u16);
 // ─── Connection registration ───────────────────────────────────────
 
 /// Split `socket` into read/write tasks and register it under `conn_id`. Fresh
-/// accepts send the minimal telnet negotiation first (`handshake`); re-adopted
-/// copyover sockets have already negotiated, so they skip it.
+/// accepts negotiate optional client protocols immediately; adopted copyover
+/// sockets reset and renegotiate them without touching password echo.
 ///
 /// The read task enforces `limits` at framing, before any byte reaches Bevy:
 /// lines past `max_line_len` are truncated (remainder discarded to the
@@ -130,72 +136,118 @@ pub(crate) fn register_connection(
     let (read_half, mut write_half) = tokio::io::split(socket);
     let (write_tx, mut write_rx) = tokio::sync::mpsc::channel::<Vec<u8>>(32);
 
+    let mut protocol = ProtocolState::default();
+    let negotiation = protocol.handshake(!handshake);
+    let protocol_write_tx = write_tx.clone();
     let read_handle = tokio::spawn({
         let to_bevy_tx = to_bevy_tx.clone();
         let conns = conns.clone();
         async move {
-            // A zero cap would read nothing and drop every connection as EOF;
-            // floor it instead of trusting configuration.
             let line_cap = limits.max_line_len.max(1);
             let buf_cap = limits.buffer_cap();
-            // A zero window would prune every prior timestamp and never trip
-            // (fail open); floor it like the line cap.
             let window = std::time::Duration::from_secs(limits.rate_window_secs.max(1));
-            let mut line_times: VecDeque<Instant> = VecDeque::new();
-            let mut reason: Option<GuardTrip> = None;
-            let mut reader = BufReader::new(read_half);
-            let mut buf: Vec<u8> = Vec::new();
-            loop {
-                buf.clear();
-                let n = match (&mut reader)
-                    .take(line_cap as u64)
-                    .read_until(b'\n', &mut buf)
-                    .await
-                {
-                    Ok(0) => break,
+            let mut line_times = VecDeque::new();
+            let mut protocol_times = VecDeque::new();
+            let mut reason = None;
+            let mut reader = read_half;
+            let mut decoder = iac::Decoder::default();
+            let mut line = Vec::new();
+            let mut line_bytes = 0usize;
+            let mut truncated = false;
+            let mut bytes = [0u8; 4096];
+            'socket: loop {
+                let n = match reader.read(&mut bytes).await {
+                    Ok(0) | Err(_) => break,
                     Ok(n) => n,
-                    Err(_) => break,
                 };
-                // A short read without a newline is an EOF tail: deliver it
-                // exactly as the old uncapped loop did. Only a *full* cap
-                // without a newline is an overlong line.
-                if n == line_cap && !buf.ends_with(b"\n") {
-                    let text = frame_input(&buf);
-                    let _ = to_bevy_tx.send(NetworkEvent::Input { conn_id, text });
-                    if rate_tripped(&mut line_times, window, limits.max_lines) {
-                        reason = Some(GuardTrip::RateExceeded {
-                            lines: limits.max_lines,
-                            window_secs: limits.rate_window_secs,
+                let frames = match decoder.feed(&bytes[..n]) {
+                    Ok(frames) => frames,
+                    Err(_) => {
+                        reason = Some(GuardTrip::BufferExceeded {
+                            bytes: iac::MAX_SUBNEGOTIATION,
                         });
                         break;
                     }
-                    // buf doubles as the discard scratch: bounded by take, so
-                    // this single call can never run past the budget.
-                    if !discard_to_newline(&mut reader, &mut buf, buf_cap - line_cap).await {
-                        reason = Some(GuardTrip::BufferExceeded { bytes: buf_cap });
-                        break;
+                };
+                for frame in frames {
+                    if let iac::Frame::Data(byte) = frame {
+                        line_bytes = line_bytes.saturating_add(1);
+                        if byte == b'\n' {
+                            if !truncated {
+                                let text = frame_input(&line);
+                                let _ = to_bevy_tx.send(NetworkEvent::Input { conn_id, text });
+                                if rate_tripped(&mut line_times, window, limits.max_lines) {
+                                    reason = Some(GuardTrip::RateExceeded {
+                                        lines: limits.max_lines,
+                                        window_secs: limits.rate_window_secs,
+                                    });
+                                    break 'socket;
+                                }
+                            }
+                            line.clear();
+                            line_bytes = 0;
+                            truncated = false;
+                        } else {
+                            if line_bytes > buf_cap {
+                                reason = Some(GuardTrip::BufferExceeded { bytes: buf_cap });
+                                break 'socket;
+                            }
+                            if !truncated {
+                                line.push(byte);
+                                if line.len() == line_cap {
+                                    let text = frame_input(&line);
+                                    let _ = to_bevy_tx.send(NetworkEvent::Input { conn_id, text });
+                                    if rate_tripped(&mut line_times, window, limits.max_lines) {
+                                        reason = Some(GuardTrip::RateExceeded {
+                                            lines: limits.max_lines,
+                                            window_secs: limits.rate_window_secs,
+                                        });
+                                        break 'socket;
+                                    }
+                                    truncated = true;
+                                    line.clear();
+                                }
+                            }
+                        }
+                    } else {
+                        // Bound out-of-band traffic separately; normal client
+                        // negotiation must not consume the player's line quota.
+                        if rate_tripped(&mut protocol_times, std::time::Duration::from_secs(1), 128)
+                        {
+                            reason = Some(GuardTrip::RateExceeded {
+                                lines: 128,
+                                window_secs: 1,
+                            });
+                            break 'socket;
+                        }
+                        let before = protocol.capabilities.clone();
+                        let (reply, input) = protocol.accept(frame);
+                        if !reply.is_empty() && protocol_write_tx.try_send(reply).is_err() {
+                            break 'socket;
+                        }
+                        if input.is_some() || before != protocol.capabilities {
+                            let _ = to_bevy_tx.send(NetworkEvent::Protocol {
+                                conn_id,
+                                capabilities: protocol.capabilities.clone(),
+                                input,
+                            });
+                        }
                     }
-                    continue;
                 }
-                let text = frame_input(&buf);
+            }
+            if reason.is_none() && !truncated && !line.is_empty() {
+                let text = frame_input(&line);
                 let _ = to_bevy_tx.send(NetworkEvent::Input { conn_id, text });
-                if rate_tripped(&mut line_times, window, limits.max_lines) {
-                    reason = Some(GuardTrip::RateExceeded {
-                        lines: limits.max_lines,
-                        window_secs: limits.rate_window_secs,
-                    });
-                    break;
-                }
             }
             let _ = to_bevy_tx.send(NetworkEvent::Disconnected { conn_id, reason });
             conns.lock().unwrap().remove(&conn_id);
         }
     });
-
     let write_handle = tokio::spawn(async move {
-        if handshake {
-            // IAC WILL ECHO, IAC WILL SUPPRESS_GO_AHEAD.
-            let _ = write_half.write_all(&iac::HANDSHAKE).await;
+        // Negotiate immediately, even while the client hasn't sent a newline.
+        // Adopted sockets reset optional protocols but leave ECHO untouched.
+        if write_half.write_all(&negotiation).await.is_err() {
+            return;
         }
         while let Some(data) = write_rx.recv().await {
             if write_half.write_all(&data).await.is_err() {
@@ -223,7 +275,12 @@ pub(crate) fn send_network_commands(
     mut disconnect: MessageReader<DisconnectRequest>,
     mut connections: Query<&mut Connection>,
     clients: Query<&Client>,
+    characters: Query<(&Character, Option<&GrimName>)>,
+    capabilities: Query<&TelnetCapabilities>,
 ) {
+    // Keep connection order while grouping every in-game output for a frame.
+    // Login/echo messages retain their original wire order.
+    let mut pending: Vec<(Entity, usize, String, bool)> = Vec::new();
     for ev in output.read() {
         if let Ok(mut conn) = connections.get_mut(ev.connection) {
             if let Some(echo_state) = ev.echo {
@@ -244,14 +301,67 @@ pub(crate) fn send_network_commands(
                     });
                 }
             }
-            let (is_ingame, is_afk) = clients
-                .iter()
-                .find(|c| c.connection == ev.connection)
-                .map(|c| (c.state == ClientState::InGame, c.afk))
-                .unwrap_or((false, false));
-            let ready = render::render_output(&ev.text, is_ingame, is_afk, ev.prepend_newline);
+            let client = clients.iter().find(|c| c.connection == ev.connection);
+            let is_ingame = client.is_some_and(|c| c.state == ClientState::InGame);
+            if is_ingame {
+                if !ev.text.is_empty() {
+                    if let Some((_, _, text, _)) = pending
+                        .iter_mut()
+                        .find(|(entity, ..)| *entity == ev.connection)
+                    {
+                        if !text.ends_with('\n') {
+                            text.push('\n');
+                        }
+                        text.push_str(ev.text.trim_end_matches('\n'));
+                    } else {
+                        pending.push((
+                            ev.connection,
+                            conn.id,
+                            ev.text.trim_end_matches('\n').to_string(),
+                            ev.prepend_newline,
+                        ));
+                    }
+                }
+            } else {
+                let safe = safe_plain_text(&ev.text, capabilities.get(ev.connection).ok());
+                let ready = render::render_output_for_character(
+                    &safe,
+                    false,
+                    false,
+                    ev.prepend_newline,
+                    None,
+                );
+                let _ = bridge.to_network.try_send(NetworkCommand::Send {
+                    conn_id: conn.id,
+                    text: ready,
+                });
+            }
+        }
+    }
+    for (entity, conn_id, text, prepend) in pending {
+        let client = clients.iter().find(|c| c.connection == entity);
+        let character = client
+            .and_then(|c| c.character)
+            .and_then(|e| characters.get(e).ok())
+            .map(|(c, n)| (c, n.map(|n| n.0.as_str()).unwrap_or("You")));
+        let caps = capabilities.get(entity).ok();
+        let safe = safe_plain_text(&text, caps);
+        let ready = render::render_output_for_character(
+            &safe,
+            true,
+            client.is_some_and(|c| c.afk),
+            prepend,
+            character,
+        );
+        if caps.is_some_and(|c| c.eor) {
+            let mut data = ready.into_bytes();
+            data.extend([iac::IAC, 239]);
+            let _ = bridge
+                .to_network
+                .try_send(NetworkCommand::SendRaw { conn_id, data });
+        } else {
             let _ = bridge.to_network.try_send(NetworkCommand::Send {
-                conn_id: conn.id,
+                conn_id,
                 text: ready,
             });
         }
@@ -262,6 +372,59 @@ pub(crate) fn send_network_commands(
                 .to_network
                 .try_send(NetworkCommand::Disconnect { conn_id: conn.id });
         }
+    }
+}
+
+/// Text-bearing player/remote messages must not become executable MXP or MSP.
+fn safe_plain_text(text: &str, caps: Option<&TelnetCapabilities>) -> String {
+    let mut text = text.to_string();
+    if caps.is_some_and(|c| c.mxp) {
+        text = text
+            .replace('&', "&amp;")
+            .replace('<', "&lt;")
+            .replace('>', "&gt;");
+    }
+    if caps.is_some_and(|c| c.msp) {
+        text = text
+            .replace("!!SOUND(", "! !SOUND(")
+            .replace("!!MUSIC(", "! !MUSIC(");
+    }
+    text
+}
+
+pub(crate) fn send_protocol_commands(
+    bridge: Res<NetworkBridge>,
+    mut output: MessageReader<TelnetOutput>,
+    connections: Query<(&Connection, Option<&TelnetCapabilities>)>,
+) {
+    for event in output.read() {
+        let Ok((connection, caps)) = connections.get(event.connection) else {
+            continue;
+        };
+        if event.payload.len() > iac::MAX_SUBNEGOTIATION {
+            continue;
+        }
+        let data = if event.option == RAW_MARKUP {
+            // Explicit trusted author API, bypassing ordinary text escaping.
+            // Reject IAC: markup must not inject arbitrary telnet negotiation.
+            if event.payload.contains(&iac::IAC) {
+                continue;
+            }
+            event.payload.clone()
+        } else {
+            if !caps.is_some_and(|c| c.enabled(event.option)) {
+                continue;
+            }
+            if event.option == EOR {
+                vec![iac::IAC, 239]
+            } else {
+                iac::subnegotiation(event.option, &event.payload)
+            }
+        };
+        let _ = bridge.to_network.try_send(NetworkCommand::SendRaw {
+            conn_id: connection.id,
+            data,
+        });
     }
 }
 #[cfg(test)]
@@ -276,6 +439,120 @@ mod tests {
     use std::net::TcpStream;
     use std::time::Duration;
 
+    #[test]
+    fn fragmented_protocol_frames_are_immediate_and_never_player_input() {
+        let mut app = App::new();
+        app.add_plugins(MinimalPlugins)
+            .add_plugins(TelnetPlugin::new(19975));
+        app.update();
+        std::thread::sleep(Duration::from_millis(100));
+        let mut socket = TcpStream::connect("127.0.0.1:19975").unwrap();
+        socket
+            .set_read_timeout(Some(Duration::from_secs(1)))
+            .unwrap();
+        let mut greeting = [0u8; 128];
+        let _ = socket.read(&mut greeting).unwrap();
+        app.update();
+        socket.write_all(&[iac::IAC, iac::DO]).unwrap();
+        std::thread::sleep(Duration::from_millis(20));
+        socket
+            .write_all(&[
+                crate::GMCP,
+                iac::IAC,
+                iac::WILL,
+                crate::NAWS,
+                iac::IAC,
+                iac::SB,
+                crate::NAWS,
+                0,
+            ])
+            .unwrap();
+        std::thread::sleep(Duration::from_millis(20));
+        socket
+            .write_all(&[iac::IAC, iac::IAC, 0, 40, iac::IAC, iac::SE])
+            .unwrap();
+        std::thread::sleep(Duration::from_millis(40));
+        app.update();
+        let caps = app
+            .world_mut()
+            .query::<&TelnetCapabilities>()
+            .single(app.world())
+            .unwrap();
+        assert!(caps.gmcp);
+        assert_eq!((caps.width, caps.height), (255, 40));
+        let inputs = app.world().resource::<Messages<ConnectionInput>>();
+        assert!(inputs.get_cursor().read(inputs).next().is_none());
+        let protocols = app.world().resource::<Messages<crate::TelnetInput>>();
+        assert!(protocols
+            .get_cursor()
+            .read(protocols)
+            .any(|e| e.option == crate::GMCP));
+        socket.write_all("say café\u{0085}\n".as_bytes()).unwrap();
+        std::thread::sleep(Duration::from_millis(40));
+        app.update();
+        let inputs = app.world().resource::<Messages<ConnectionInput>>();
+        assert!(inputs
+            .get_cursor()
+            .read(inputs)
+            .any(|e| e.text == "say café"));
+    }
+
+    #[test]
+    fn negotiated_frames_escape_iac_and_text_cannot_inject_markup() {
+        let caps = TelnetCapabilities {
+            mxp: true,
+            msp: true,
+            ..Default::default()
+        };
+        assert_eq!(
+            safe_plain_text("<SEND> & !!SOUND(test)", Some(&caps)),
+            "&lt;SEND&gt; &amp; ! !SOUND(test)"
+        );
+        let mut app = App::new();
+        app.add_message::<TelnetOutput>();
+        let (tx, mut rx) = tokio::sync::mpsc::channel(16);
+        let (_events_tx, events_rx) = std_mpsc::channel();
+        app.insert_resource(NetworkBridge {
+            to_network: tx,
+            from_network: Arc::new(Mutex::new(events_rx)),
+        });
+        app.add_systems(Update, send_protocol_commands);
+        let conn = app
+            .world_mut()
+            .spawn((
+                Connection {
+                    id: 99,
+                    addr: "127.0.0.1:1".parse().unwrap(),
+                    echo_hidden: false,
+                },
+                TelnetCapabilities {
+                    gmcp: true,
+                    ..Default::default()
+                },
+            ))
+            .id();
+        for (option, payload) in [
+            (crate::GMCP, vec![255]),
+            (crate::MSDP, vec![1]),
+            (RAW_MARKUP, vec![255]),
+            (RAW_MARKUP, b"trusted".to_vec()),
+        ] {
+            app.world_mut().write_message(TelnetOutput {
+                connection: conn,
+                option,
+                payload,
+            });
+        }
+        app.update();
+        assert!(
+            matches!(rx.try_recv().unwrap(),NetworkCommand::SendRaw {data,..} if data==iac::subnegotiation(crate::GMCP,&[255]))
+        );
+        assert!(
+            matches!(rx.try_recv().unwrap(),NetworkCommand::SendRaw {data,..} if data==b"trusted")
+        );
+        assert!(rx.try_recv().is_err());
+    }
+
     /// Register the transport messages a bare `App` needs before driving the plugin.
     fn add_messages(app: &mut App) {
         app.add_message::<ConnectionEstablished>()
@@ -284,6 +561,47 @@ mod tests {
             .add_message::<ConnectionOutput>()
             .add_message::<DisconnectRequest>()
             .add_message::<WiznetAlert>();
+    }
+
+    #[test]
+    fn groups_frame_output_before_one_prompt_and_disconnect() {
+        let mut app = App::new();
+        app.add_plugins(MinimalPlugins);
+        add_messages(&mut app);
+        let (tx, mut rx) = tokio::sync::mpsc::channel(32);
+        let (_events_tx, events_rx) = std_mpsc::channel();
+        app.insert_resource(NetworkBridge {
+            to_network: tx,
+            from_network: Arc::new(Mutex::new(events_rx)),
+        });
+        app.add_systems(Update, send_network_commands);
+        let connection = app
+            .world_mut()
+            .spawn(Connection {
+                id: 1,
+                addr: "127.0.0.1:1".parse().unwrap(),
+                echo_hidden: false,
+            })
+            .id();
+        let mut client = Client::new(connection);
+        client.state = ClientState::InGame;
+        app.world_mut().spawn(client);
+        app.world_mut()
+            .write_message(ConnectionOutput::new(connection, "First."));
+        app.world_mut()
+            .write_message(ConnectionOutput::new(connection, "Second."));
+        app.world_mut()
+            .write_message(DisconnectRequest { connection });
+        app.update();
+        let NetworkCommand::Send { text, .. } = rx.try_recv().unwrap() else {
+            panic!("output before disconnect");
+        };
+        assert_eq!(text, "First.\r\nSecond.\r\n> ");
+        assert!(matches!(
+            rx.try_recv().unwrap(),
+            NetworkCommand::Disconnect { .. }
+        ));
+        assert!(rx.try_recv().is_err());
     }
 
     /// Accept loop: a fresh connection produces `ConnectionEstablished`, input
@@ -308,7 +626,7 @@ mod tests {
             )
             .expect("should connect to telnet server");
 
-            let mut handshake = [0u8; 6];
+            let mut handshake = [0u8; 128];
             stream
                 .set_read_timeout(Some(Duration::from_millis(200)))
                 .ok();
@@ -367,7 +685,7 @@ mod tests {
             )
             .expect("should connect");
 
-            let mut handshake = [0u8; 6];
+            let mut handshake = [0u8; 128];
             stream
                 .set_read_timeout(Some(Duration::from_millis(200)))
                 .ok();
@@ -421,7 +739,7 @@ mod tests {
             )
             .expect("should connect");
 
-            let mut handshake = [0u8; 6];
+            let mut handshake = [0u8; 128];
             stream
                 .set_read_timeout(Some(Duration::from_millis(200)))
                 .ok();
@@ -481,7 +799,7 @@ mod tests {
             )
             .expect("should connect");
 
-            let mut handshake = [0u8; 6];
+            let mut handshake = [0u8; 128];
             stream
                 .set_read_timeout(Some(Duration::from_millis(200)))
                 .ok();
@@ -568,7 +886,7 @@ mod tests {
             )
             .expect("should connect");
 
-            let mut handshake = [0u8; 6];
+            let mut handshake = [0u8; 128];
             stream
                 .set_read_timeout(Some(Duration::from_millis(200)))
                 .ok();
@@ -622,7 +940,7 @@ mod tests {
             )
             .expect("should connect");
 
-            let mut handshake = [0u8; 6];
+            let mut handshake = [0u8; 128];
             stream
                 .set_read_timeout(Some(Duration::from_millis(200)))
                 .ok();
@@ -686,7 +1004,7 @@ mod tests {
             )
             .expect("should connect");
 
-            let mut handshake = [0u8; 6];
+            let mut handshake = [0u8; 128];
             stream
                 .set_read_timeout(Some(Duration::from_millis(200)))
                 .ok();
@@ -755,7 +1073,7 @@ mod tests {
             )
             .expect("should connect");
 
-            let mut handshake = [0u8; 6];
+            let mut handshake = [0u8; 128];
             stream
                 .set_read_timeout(Some(Duration::from_millis(200)))
                 .ok();
@@ -815,7 +1133,7 @@ mod tests {
             )
             .expect("should connect");
             // Drain the IAC handshake so later reads see only test bytes.
-            let mut handshake = [0u8; 6];
+            let mut handshake = [0u8; 128];
             stream
                 .set_read_timeout(Some(Duration::from_millis(200)))
                 .ok();
@@ -1028,8 +1346,10 @@ mod tests {
                 .map(|(e, _)| e)
                 .next()
                 .expect("accepted socket must spawn a Connection");
+            app.world_mut()
+                .write_message(ConnectionOutput::new(conn_e, "Incorrect password\n"));
             // Server-side sever (idle sweep, ban kick, takeover): the network
-            // thread aborts the socket tasks, which can no longer report EOF
+            // thread stops the input task, which can no longer report EOF
             // themselves — the echoed Disconnected must close the loop
             // (issue #141: without it no ConnectionClosed ever arrives).
             app.world_mut()
@@ -1042,9 +1362,15 @@ mod tests {
                 1,
                 "server-initiated sever must surface ConnectionClosed"
             );
-            let mut buf = [0u8; 8];
-            stream.set_read_timeout(Some(Duration::from_secs(2))).ok();
-            assert_eq!(stream.read(&mut buf).ok(), Some(0), "client must see EOF");
+            stream.set_read_timeout(Some(Duration::from_secs(3))).ok();
+            let mut received = Vec::new();
+            stream
+                .read_to_end(&mut received)
+                .expect("client must see EOF");
+            assert!(
+                String::from_utf8_lossy(&received).contains("Incorrect password"),
+                "final explanation must arrive before disconnect"
+            );
         }
     }
 }

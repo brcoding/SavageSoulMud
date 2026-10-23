@@ -1,0 +1,3324 @@
+{
+  "items": {
+    "bullet-press": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "bullet press",
+      "description": [
+        "The bullet press allows creations of new bullet rounds."
+      ],
+      "keywords": [
+        "bullet press",
+        "bullet",
+        "press",
+        "metal",
+        "craft:bullet-press"
+      ],
+      "room_description": "Bullet press is here."
+    },
+    "chisel": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "chisel",
+      "description": [
+        "This is a standard chisel used to carve wood."
+      ],
+      "keywords": [
+        "chisel",
+        "grip",
+        "metal",
+        "craft:chisel"
+      ],
+      "room_description": "A chisel is here."
+    },
+    "claw-hammer": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "claw hammer",
+      "description": [
+        "This is a standard claw hammer made of metal with a wooden handle."
+      ],
+      "keywords": [
+        "hammer",
+        "claw hammer",
+        "claw",
+        "metal",
+        "wood",
+        "craft:claw-hammer"
+      ],
+      "room_description": "A claw hammer is here."
+    },
+    "die-forge": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "die forge",
+      "description": [
+        "The die forge is a massive machine with a set of 2 plates that can be pressed together with tons of force to forge metal into any shape desired."
+      ],
+      "keywords": [
+        "die forge",
+        "die",
+        "forge",
+        "metal",
+        "craft:die-forge"
+      ],
+      "room_description": "Die forge is here."
+    },
+    "grinding-wheel": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "grinding wheel",
+      "description": [
+        "The grinding wheel is an electric motor with two wheels attached on each side."
+      ],
+      "keywords": [
+        "grinding wheel",
+        "grinding",
+        "wheel",
+        "spinning",
+        "circular",
+        "craft:grinding-wheel"
+      ],
+      "room_description": "Grinding wheel is here."
+    },
+    "pliers": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "pair of pliers",
+      "description": [
+        "This is a standard pair of standard pliers."
+      ],
+      "keywords": [
+        "pliers",
+        "pair of pliers",
+        "grip",
+        "metal",
+        "craft:pliers"
+      ],
+      "room_description": "A pair of pliers is here."
+    },
+    "radial-rivet-machine": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "radial rivet machine",
+      "description": [
+        "The radial rivet machine is set in a large frame with an area to place the items to be riveted and a punch to push new rivets into place along with an electric motor to set them home."
+      ],
+      "keywords": [
+        "radial rivet machine",
+        "radial",
+        "rivet",
+        "machine",
+        "metal",
+        "electric",
+        "craft:radial-rivet-machine"
+      ],
+      "room_description": "Radial rivet machine is here."
+    },
+    "stove": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "stove",
+      "description": [
+        "The stove is a simple wood fired stove that has a burner on top and a place for a pot or baking sheet to be placed inside."
+      ],
+      "keywords": [
+        "stove",
+        "metal",
+        "kitchen",
+        "cooking",
+        "craft:stove"
+      ],
+      "room_description": "Stove is here."
+    },
+    "chunk-of-lead": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "chunk of lead",
+      "description": [
+        "A small chunk of lead."
+      ],
+      "keywords": [
+        "chunk of lead",
+        "chunk",
+        "lead",
+        "metal",
+        "shiny",
+        "craft:chunk-of-lead"
+      ],
+      "room_description": "A chunk of lead is here."
+    },
+    "gram-of-grape-jelly": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "gram of grape jelly",
+      "description": [
+        "A gram of sweet sticky purple grape jelly."
+      ],
+      "keywords": [
+        "gram of grape jelly",
+        "grape",
+        "jelly",
+        "sugary",
+        "purple",
+        "craft:gram-of-grape-jelly"
+      ],
+      "room_description": "A gram of grape jelly is here."
+    },
+    "gram-of-gunpowder": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "gram of gunpowder",
+      "description": [
+        "A gram of black gunpowder. This would be ideal to use for bullets or explosives."
+      ],
+      "keywords": [
+        "gram of gunpowder",
+        "powder",
+        "gunpowder",
+        "black",
+        "explosive",
+        "craft:gram-of-gunpowder"
+      ],
+      "room_description": "A gram of gunpowder is here."
+    },
+    "gram-of-peanutbutter": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "gram of peanut butter",
+      "description": [
+        "A gram of thick and chunky peanut butter."
+      ],
+      "keywords": [
+        "gram of peanut butter",
+        "gram of peanutbutter",
+        "peanut",
+        "butter",
+        "thick",
+        "chunky",
+        "brown",
+        "craft:gram-of-peanutbutter"
+      ],
+      "room_description": "A gram of peanut butter is here."
+    },
+    "piece-of-white-bread": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "piece of white bread",
+      "description": [
+        "A piece of smooth and delcious white bread freshly baked."
+      ],
+      "keywords": [
+        "piece of white bread",
+        "white",
+        "bread",
+        "smooth",
+        "delicious",
+        "craft:piece-of-white-bread"
+      ],
+      "room_description": "A piece of white bread is here."
+    },
+    "piece-of-wood": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "piece of wood",
+      "description": [
+        "A piece of roughly hewn wood that is approximately 50mm with a 20mm radius."
+      ],
+      "keywords": [
+        "wood",
+        "piece of wood",
+        "piece",
+        "wooden",
+        "craft:piece-of-wood"
+      ],
+      "room_description": "A piece of wood is here."
+    },
+    "rivet": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "rivet",
+      "description": [
+        "This is a simple steel rivet."
+      ],
+      "keywords": [
+        "rivet",
+        "metal",
+        "steel",
+        "craft:rivet"
+      ],
+      "room_description": "A rivet is here."
+    },
+    "sheet-of-steel": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "sheet of steel",
+      "description": [
+        "A sheet of steel that is approximately 30mm X 30mm."
+      ],
+      "keywords": [
+        "sheet of steel",
+        "sheet",
+        "metal",
+        "steel",
+        "craft:sheet-of-steel"
+      ],
+      "room_description": "A sheet of steel is here."
+    },
+    "slice-of-pork": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "slice of pork",
+      "description": [
+        "A thinly sliced portion of fresh pork."
+      ],
+      "keywords": [
+        "slice of pork",
+        "slice",
+        "pork",
+        "thin",
+        "pig",
+        "ham",
+        "craft:slice-of-pork"
+      ],
+      "room_description": "A slice of pork is here."
+    },
+    "steel-rod": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "steel rod",
+      "description": [
+        "A steel rod that is approximately 50mm with a 5mm radius."
+      ],
+      "keywords": [
+        "steel rod",
+        "steel",
+        "rod",
+        "pipe",
+        "pole",
+        "metal",
+        "shiny",
+        "craft:steel-rod"
+      ],
+      "room_description": "A steel rod is here."
+    },
+    "wood-handle": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "wood handle",
+      "description": [
+        "A wood handle that is approximately 40mm with a 10mm radius."
+      ],
+      "keywords": [
+        "wood handle",
+        "wood",
+        "handle",
+        "craft:wood-handle"
+      ],
+      "room_description": "A wood handle is here."
+    },
+    "artrell-meat": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "chunk of green artrell meat",
+      "description": [
+        "This is a large, chunk of green artrell meat."
+      ],
+      "keywords": [
+        "meat",
+        "chunk of green artrell meat",
+        "artrell meat",
+        "wasteland",
+        "artrell",
+        "raw",
+        "craft:artrell-meat"
+      ],
+      "room_description": "A chunk of green artrell meat is here."
+    },
+    "crawler-meat": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "chunk of raw crawler meat",
+      "description": [
+        "This is a large, chunk of raw crawler meat."
+      ],
+      "keywords": [
+        "meat",
+        "chunk of raw crawler meat",
+        "crawler meat",
+        "wasteland",
+        "crawler",
+        "raw",
+        "craft:crawler-meat"
+      ],
+      "room_description": "A chunk of raw crawler meat is here."
+    },
+    "fish-stick": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "single raw fish stick",
+      "description": [
+        "This is a single large raw fish stick (without breading)."
+      ],
+      "keywords": [
+        "fish stick",
+        "single raw fish stick",
+        "wasteland",
+        "fish",
+        "stick",
+        "raw",
+        "craft:fish-stick"
+      ],
+      "room_description": "A single raw fish stick is here."
+    },
+    "morlock-meat": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "chunk of raw grey morlock meat",
+      "description": [
+        "This is a large, chunk of raw grey morlock meat."
+      ],
+      "keywords": [
+        "meat",
+        "chunk of raw grey morlock meat",
+        "morlock meat",
+        "wasteland",
+        "morlock",
+        "raw",
+        "craft:morlock-meat"
+      ],
+      "room_description": "A chunk of raw grey morlock meat is here."
+    },
+    "rat-meat": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "chunk of raw rat meat",
+      "description": [
+        "This is a small chunk of raw rat meat."
+      ],
+      "keywords": [
+        "meat",
+        "chunk of raw rat meat",
+        "rat meat",
+        "rat",
+        "raw",
+        "craft:rat-meat"
+      ],
+      "room_description": "A chunk of raw rat meat is here."
+    },
+    "akai-sword": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "sharp medium sword",
+      "description": [
+        "A sharp medium sword, suitable for close combat. There is a small enscription on the blade reading 'Sharpened by Damien for Akai'"
+      ],
+      "keywords": [
+        "akai medium sword",
+        "sharp medium sword",
+        "akai sword",
+        "akai",
+        "medium",
+        "sword",
+        "sharp",
+        "craft:akai-sword"
+      ],
+      "room_description": "A sharp medium sword is here."
+    },
+    "halberd-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "poor quality halberd (quality 0)",
+      "description": [
+        "A poor quality halberd is decayed with rust and a splintered handle. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "halberd",
+        "poor quality halberd (quality 0)",
+        "halberd q0",
+        "poor",
+        "rusted",
+        "rusty",
+        "splintered",
+        "pointed",
+        "metal",
+        "craft:halberd-q0"
+      ],
+      "room_description": "A poor quality halberd is here."
+    },
+    "halberd-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "halberd (quality 1)",
+      "description": [
+        "The halberd is a standard weapon for piercing mounted or elevated foes. The handle is a long wooden pole with a small axe head at the top. Past the axe head a long spike protrudes. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "halberd",
+        "halberd (quality 1)",
+        "halberd q1",
+        "pointed",
+        "wooden",
+        "metal",
+        "craft:halberd-q1"
+      ],
+      "room_description": "A halberd is here."
+    },
+    "halberd-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "sharp halberd (quality 2)",
+      "description": [
+        "The halberd is a standard weapon for piercing mounted or elevated foes. The handle is a long wooden pole with a small axe head at the top. Past the axe head a long spike protrudes. The weapon looks particularly deadly as the edges have all been sharpened and hardened. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "halberd",
+        "sharp halberd (quality 2)",
+        "halberd q2",
+        "pointed",
+        "wooden",
+        "metal",
+        "craft:halberd-q2"
+      ],
+      "room_description": "A sharp halberd is here."
+    },
+    "halberd-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional halberd (quality 3)",
+      "description": [
+        "This halberd is a exceptional weapon that has been crafted to stand the test of time. The handle is beautifully carved and lacquered carefully to give it strength and weather resistance. The axe head depicts a mounted calvary-man being stabbed off of his mount. From this depiction etched into the large spike that extends gleams with a precision point. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "halberd",
+        "exceptional halberd (quality 3)",
+        "halberd q3",
+        "pointed",
+        "wooden",
+        "metal",
+        "craft:halberd-q3"
+      ],
+      "room_description": "An exceptional halberd is here."
+    },
+    "hammer-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "poor quality hammer (quality 0)",
+      "description": [
+        "A poor quality hammer is decayed with rust and a splintered handle. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "hammer",
+        "poor quality hammer (quality 0)",
+        "hammer q0",
+        "poor",
+        "rusted",
+        "rusty",
+        "splintered",
+        "pointed",
+        "metal",
+        "craft:hammer-q0"
+      ],
+      "room_description": "A poor quality hammer is here."
+    },
+    "hammer-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "hammer (quality 1)",
+      "description": [
+        "A large war hammer can be to cause blunt damage to enemies. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "hammer",
+        "hammer (quality 1)",
+        "hammer q1",
+        "war",
+        "metal",
+        "craft:hammer-q1"
+      ],
+      "room_description": "A hammer is here."
+    },
+    "hammer-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "hardened hammer (quality 2)",
+      "description": [
+        "A large hardened war hammer can be to cause blunt damage to enemies. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "hammer",
+        "hardened hammer (quality 2)",
+        "hammer q2",
+        "war",
+        "metal",
+        "craft:hammer-q2"
+      ],
+      "room_description": "A hardened hammer is here."
+    },
+    "hammer-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exquisite hammer (quality 3)",
+      "description": [
+        "A large exquisite war hammer can be to cause blunt damage to enemies. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "hammer",
+        "exquisite hammer (quality 3)",
+        "hammer q3",
+        "war",
+        "metal",
+        "craft:hammer-q3"
+      ],
+      "room_description": "A exquisite hammer is here."
+    },
+    "huge-axe-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "poor huge axe (quality 0)",
+      "description": [
+        "A poor quality huge axe is decayed with rust and a splintered handle. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "poor huge axe (quality 0)",
+        "huge axe q0",
+        "poor",
+        "huge",
+        "hand",
+        "craft:huge-axe-q0"
+      ],
+      "room_description": "A poor huge axe is here."
+    },
+    "huge-axe-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "huge axe (quality 1)",
+      "description": [
+        "A huge axe which has an oversized handle to fit the massive axe head. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "huge axe (quality 1)",
+        "huge axe q1",
+        "huge",
+        "craft:huge-axe-q1"
+      ],
+      "room_description": "A huge axe is here."
+    },
+    "huge-axe-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "huge axe (quality 2)",
+      "description": [
+        "A sharp huge axe which has an oversized handle to fit the massive axe head. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "huge axe (quality 2)",
+        "huge axe q2",
+        "sharp",
+        "huge",
+        "craft:huge-axe-q2"
+      ],
+      "room_description": "A huge axe is here."
+    },
+    "huge-axe-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional huge axe (quality 3)",
+      "description": [
+        "An exceptional huge axe gleams brightly as its surface shines. The blade has been honed to a razor edge while still keeping a perfect balance with the slightly counterbalanced handle. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "exceptional huge axe (quality 3)",
+        "huge axe q3",
+        "exceptional",
+        "huge",
+        "craft:huge-axe-q3"
+      ],
+      "room_description": "An exceptional huge axe is here."
+    },
+    "huge-club-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "huge nearly broken club (quality 0)",
+      "description": [
+        "A huge wooden club that is fashioned from a what seems to be the trunk of a tree that is so cracked and splintered it is barely usable. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "huge nearly broken club (quality 0)",
+        "huge club q0",
+        "huge",
+        "wooden",
+        "splintered",
+        "craft:huge-club-q0"
+      ],
+      "room_description": "A huge nearly broken club is here."
+    },
+    "huge-club-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "huge club (quality 1)",
+      "description": [
+        "A huge wooden club that is fashioned from the trunk of a tree. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "huge club (quality 1)",
+        "huge club q1",
+        "huge",
+        "wooden",
+        "craft:huge-club-q1"
+      ],
+      "room_description": "A huge club is here."
+    },
+    "huge-club-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "solid huge club (quality 2)",
+      "description": [
+        "A solid huge wooden club that is fashioned from a thick sturdy tree trunk. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "solid huge club (quality 2)",
+        "huge club q2",
+        "huge",
+        "large",
+        "wooden",
+        "craft:huge-club-q2"
+      ],
+      "room_description": "A solid huge club is here."
+    },
+    "huge-club-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional huge club (quality 3)",
+      "description": [
+        "An exceptional huge wooden club that is fashioned from Verawood tree trunk which is massive, yet it still seems like a wieldable weapon in the right hands. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "exceptional huge club (quality 3)",
+        "huge club q3",
+        "huge",
+        "exceptional",
+        "solid",
+        "wooden",
+        "craft:huge-club-q3"
+      ],
+      "room_description": "An exceptional huge club is here."
+    },
+    "huge-mace-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "huge nearly broken mace (quality 0)",
+      "description": [
+        "A huge wood and metal mace is so cracked, rusted, and splintered it is barely usable. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "huge nearly broken mace (quality 0)",
+        "huge mace q0",
+        "huge",
+        "wooden",
+        "splintered",
+        "rusted",
+        "rusty",
+        "craft:huge-mace-q0"
+      ],
+      "room_description": "A huge nearly broken mace is here."
+    },
+    "huge-mace-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "huge mace (quality 1)",
+      "description": [
+        "A huge wood and metal mace has a massive handle and a giant set of banded steel wrapped over the tip giving it enormous weight. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "huge mace (quality 1)",
+        "huge mace q1",
+        "huge",
+        "metal",
+        "wooden",
+        "wood",
+        "craft:huge-mace-q1"
+      ],
+      "room_description": "A huge mace is here."
+    },
+    "huge-mace-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "solid huge mace (quality 2)",
+      "description": [
+        "A huge solid wood and metal mace has a massive handle and a giant set of banded steel wrapped over the tip giving it enormous weight. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "solid huge mace (quality 2)",
+        "huge mace q2",
+        "huge",
+        "metal",
+        "wood",
+        "wooden",
+        "craft:huge-mace-q2"
+      ],
+      "room_description": "A solid huge mace is here."
+    },
+    "huge-mace-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional huge mace (quality 3)",
+      "description": [
+        "The huge mace is crafted from an old hardwood that merges precisely with the metal head that is engraved with skyscrapers over its surface. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "exceptional huge mace (quality 3)",
+        "huge mace q3",
+        "huge",
+        "exceptional",
+        "solid",
+        "wooden",
+        "craft:huge-mace-q3"
+      ],
+      "room_description": "An exceptional huge mace is here."
+    },
+    "knife-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "poor quality knife (quality 0)",
+      "description": [
+        "A poor quality knife. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "knife",
+        "poor quality knife (quality 0)",
+        "knife q0",
+        "metal",
+        "craft:knife-q0",
+        "craft:knife"
+      ],
+      "room_description": "A poor quality knife is here."
+    },
+    "knife-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "knife (quality 1)",
+      "description": [
+        "A plain knife. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "knife",
+        "knife (quality 1)",
+        "knife q1",
+        "plain",
+        "craft:knife-q1",
+        "craft:knife"
+      ],
+      "room_description": "A knife is here."
+    },
+    "knife-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "sharp knife (quality 2)",
+      "description": [
+        "A sharp knife has a very fine honed edge. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "knife",
+        "sharp knife (quality 2)",
+        "knife q2",
+        "sharp",
+        "craft:knife-q2",
+        "craft:knife"
+      ],
+      "room_description": "A sharp knife is here."
+    },
+    "knife-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exquisite knife (quality 3)",
+      "description": [
+        "The exquisite knife has a smooth ivory handle and a hardened razor sharp blade. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "knife",
+        "exquisite knife (quality 3)",
+        "knife q3",
+        "exquisite",
+        "sharp",
+        "craft:knife-q3",
+        "craft:knife"
+      ],
+      "room_description": "An exquisite knife is here."
+    },
+    "large-axe-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "poor large axe (quality 0)",
+      "description": [
+        "A poor quality large axe is decayed with rust and a splintered handle. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "poor large axe (quality 0)",
+        "large axe q0",
+        "poor",
+        "large",
+        "hand",
+        "craft:large-axe-q0"
+      ],
+      "room_description": "A poor large axe is here."
+    },
+    "large-axe-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "large axe (quality 1)",
+      "description": [
+        "An average quality large axe with a long handle. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "large axe (quality 1)",
+        "large axe q1",
+        "average",
+        "large",
+        "craft:large-axe-q1"
+      ],
+      "room_description": "A large axe is here."
+    },
+    "large-axe-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "large axe (quality 2)",
+      "description": [
+        "An sharp large axe with a long handle. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "large axe (quality 2)",
+        "large axe q2",
+        "sharp",
+        "large",
+        "craft:large-axe-q2"
+      ],
+      "room_description": "A large axe is here."
+    },
+    "large-axe-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional large axe (quality 3)",
+      "description": [
+        "An exceptional large axe gleams brightly as its surface shines. The blade has been honed to a razor edge while still keeping a perfect balance with the slightly counterbalanced handle. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "exceptional large axe (quality 3)",
+        "large axe q3",
+        "exceptional",
+        "large",
+        "craft:large-axe-q3"
+      ],
+      "room_description": "An exceptional large axe is here."
+    },
+    "large-club-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "nearly broken large club (quality 0)",
+      "description": [
+        "A large wooden club that is fashioned from a tree branch that is so cracked it is barely usable. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "nearly broken large club (quality 0)",
+        "large club q0",
+        "large",
+        "wooden",
+        "splintered",
+        "craft:large-club-q0"
+      ],
+      "room_description": "A nearly broken large club is here."
+    },
+    "large-club-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "large club (quality 1)",
+      "description": [
+        "A large wooden club that is fashioned from a tree branch. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "large club (quality 1)",
+        "large club q1",
+        "large",
+        "wooden",
+        "craft:large-club-q1"
+      ],
+      "room_description": "A large club is here."
+    },
+    "large-club-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "solid large club (quality 2)",
+      "description": [
+        "A solid large wooden club that is fashioned from a thick sturdy tree branch. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "solid large club (quality 2)",
+        "large club q2",
+        "solid",
+        "large",
+        "wooden",
+        "craft:large-club-q2"
+      ],
+      "room_description": "A solid large club is here."
+    },
+    "large-club-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional large club (quality 3)",
+      "description": [
+        "An exceptional large wooden club that is fashioned from Lignum Vitae wood giving it quite a bit of weight and balance. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "exceptional large club (quality 3)",
+        "large club q3",
+        "large",
+        "exceptional",
+        "solid",
+        "wooden",
+        "craft:large-club-q3"
+      ],
+      "room_description": "An exceptional large club is here."
+    },
+    "large-mace-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "nearly broken large mace (quality 0)",
+      "description": [
+        "A large wood and metal mace is fashioned from a splintered tree branch that is so cracked it is barely usable. The metal head is loose and threatens to fall off. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "nearly broken large mace (quality 0)",
+        "large mace q0",
+        "large",
+        "wooden",
+        "splintered",
+        "craft:large-mace-q0"
+      ],
+      "room_description": "A nearly broken large mace is here."
+    },
+    "large-mace-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "large mace (quality 1)",
+      "description": [
+        "A large wood and metal mace has a heavy metal head attached to a wooden handle. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "large mace (quality 1)",
+        "large mace q1",
+        "large",
+        "wood",
+        "metal",
+        "craft:large-mace-q1"
+      ],
+      "room_description": "A large mace is here."
+    },
+    "large-mace-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "solid large mace (quality 2)",
+      "description": [
+        "A solid medium wood and metal mace has a heavy metal head attached to a wooden handle. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "solid large mace (quality 2)",
+        "large mace q2",
+        "solid",
+        "large",
+        "wooden",
+        "craft:large-mace-q2"
+      ],
+      "room_description": "A solid large mace is here."
+    },
+    "large-mace-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional large mace (quality 3)",
+      "description": [
+        "The large mace is crafted from an old hardwood that merges precisely with the metal head that is engraved with tree branches over its surface. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "exceptional large mace (quality 3)",
+        "large mace q3",
+        "large",
+        "exceptional",
+        "solid",
+        "wooden",
+        "craft:large-mace-q3"
+      ],
+      "room_description": "An exceptional large mace is here."
+    },
+    "medium-axe-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "medium axe (quality 0)",
+      "description": [
+        "A poor quality medium hand axe, suitable for close combat. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "medium axe (quality 0)",
+        "medium axe q0",
+        "poor",
+        "medium",
+        "craft:medium-axe-q0"
+      ],
+      "room_description": "A medium axe is here."
+    },
+    "medium-axe-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "medium axe (quality 1)",
+      "description": [
+        "A medium hand axe, suitable for close combat. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "medium axe (quality 1)",
+        "medium axe q1",
+        "average",
+        "medium",
+        "craft:medium-axe-q1"
+      ],
+      "room_description": "A medium axe is here."
+    },
+    "medium-axe-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "sharp medium axe (quality 2)",
+      "description": [
+        "A sharp medium axe, suitable for close combat. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "sharp medium axe (quality 2)",
+        "medium axe q2",
+        "sharp",
+        "medium",
+        "craft:medium-axe-q2"
+      ],
+      "room_description": "A sharp medium axe is here."
+    },
+    "medium-axe-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional medium axe (quality 3)",
+      "description": [
+        "An exceptional medium axe gleams brightly as its surface shines. The blade has been honed to a razor edge while still keeping a perfect balance with the slightly counterbalanced handle. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "exceptional medium axe (quality 3)",
+        "medium axe q3",
+        "exceptional",
+        "medium",
+        "craft:medium-axe-q3"
+      ],
+      "room_description": "An exceptional medium axe is here."
+    },
+    "medium-club-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "nearly broken medium club (quality 0)",
+      "description": [
+        "A medium wooden club that is fashioned from a tree branch that is so cracked it is barely usable. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "nearly broken medium club (quality 0)",
+        "medium club q0",
+        "medium",
+        "wooden",
+        "splintered",
+        "craft:medium-club-q0"
+      ],
+      "room_description": "A nearly broken medium club is here."
+    },
+    "medium-club-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "medium club (quality 1)",
+      "description": [
+        "A medium wooden club that is fashioned from a tree branch. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "medium club (quality 1)",
+        "medium club q1",
+        "medium",
+        "wooden",
+        "craft:medium-club-q1"
+      ],
+      "room_description": "A medium club is here."
+    },
+    "medium-club-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "solid medium club (quality 2)",
+      "description": [
+        "A solid medium wooden club that is fashioned from a thick sturdy tree branch. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "solid medium club (quality 2)",
+        "medium club q2",
+        "solid",
+        "medium",
+        "wooden",
+        "craft:medium-club-q2"
+      ],
+      "room_description": "A solid medium club is here."
+    },
+    "medium-club-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional medium club (quality 3)",
+      "description": [
+        "An exceptional medium wooden club that is fashioned from Gabon Ebony wood giving it quite a bit of weight and balance. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "exceptional medium club (quality 3)",
+        "medium club q3",
+        "medium",
+        "exceptional",
+        "solid",
+        "wooden",
+        "craft:medium-club-q3"
+      ],
+      "room_description": "An exceptional medium club is here."
+    },
+    "medium-mace-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "nearly broken medium mace (quality 0)",
+      "description": [
+        "A medium wooden mace that is fashioned from a tree branch that is so cracked it is barely usable. Attached with some rusted nails is a metal cap. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "nearly broken medium mace (quality 0)",
+        "medium mace q0",
+        "medium",
+        "wooden",
+        "splintered",
+        "poor",
+        "rusted",
+        "rusty",
+        "craft:medium-mace-q0"
+      ],
+      "room_description": "A nearly broken medium mace is here."
+    },
+    "medium-mace-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "medium mace (quality 1)",
+      "description": [
+        "A medium wood and metal mace has a heavy metal head attached to a wooden handle. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "medium mace (quality 1)",
+        "medium mace q1",
+        "medium",
+        "wooden",
+        "craft:medium-mace-q1"
+      ],
+      "room_description": "A medium mace is here."
+    },
+    "medium-mace-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "solid medium mace (quality 2)",
+      "description": [
+        "A solid medium wood and metal mace has a heavy metal head attached to a wooden handle. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "solid medium mace (quality 2)",
+        "medium mace q2",
+        "solid",
+        "medium",
+        "wooden",
+        "craft:medium-mace-q2"
+      ],
+      "room_description": "A solid medium mace is here."
+    },
+    "medium-mace-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional medium mace (quality 3)",
+      "description": [
+        "The medium mace is crafted from an old hardwood that merges precisely with the metal head that is engraved with vines covering it's surface. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "exceptional medium mace (quality 3)",
+        "medium mace q3",
+        "medium",
+        "exceptional",
+        "solid",
+        "wooden",
+        "craft:medium-mace-q3"
+      ],
+      "room_description": "An exceptional medium mace is here."
+    },
+    "medium-sword-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "poor quality medium sword (quality 0)",
+      "description": [
+        "A poor quality medium sword, suitable for one handed melee combat but has a splintered handle and a slightly bent tang. Rust can be seen down the blades surface marring what was once a very average sword. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "medium sword",
+        "poor quality medium sword (quality 0)",
+        "medium sword q0",
+        "medium",
+        "sword",
+        "poor",
+        "craft:medium-sword-q0"
+      ],
+      "room_description": "A poor quality medium sword is here."
+    },
+    "medium-sword-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "medium sword (quality 1)",
+      "description": [
+        "An average quality medium sword, suitable for one handed melee combat. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "medium sword",
+        "medium sword (quality 1)",
+        "medium sword q1",
+        "average",
+        "medium",
+        "craft:medium-sword-q1"
+      ],
+      "room_description": "A medium sword is here."
+    },
+    "medium-sword-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "sharp medium sword (quality 2)",
+      "description": [
+        "A sharp medium sword, suitable for close combat. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "sharp medium sword",
+        "sharp medium sword (quality 2)",
+        "medium sword q2",
+        "sharp",
+        "medium",
+        "sword",
+        "craft:medium-sword-q2"
+      ],
+      "room_description": "A sharp medium sword is here."
+    },
+    "medium-sword-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional medium sword (quality 3)",
+      "description": [
+        "This blade is of the highest quality. The patterns across the blades surface show the metal has been folded hundreds of times to form a flexible yet unbreakable sword that is razor sharp. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "exceptional medium sword",
+        "exceptional medium sword (quality 3)",
+        "medium sword q3",
+        "exceptional",
+        "medium",
+        "sword",
+        "shiny",
+        "craft:medium-sword-q3"
+      ],
+      "room_description": "An exceptional medium sword is here."
+    },
+    "sharp-pole-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "poor quality sharpened pole (quality 0)",
+      "description": [
+        "A pole that has been sharped at one end. The handle is splintered with years of abuse and is quite unsturdy. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "pole",
+        "poor quality sharpened pole (quality 0)",
+        "sharp pole q0",
+        "poor",
+        "splintered",
+        "pointed",
+        "sharp",
+        "craft:sharp-pole-q0"
+      ],
+      "room_description": "A poor quality sharpened pole is here."
+    },
+    "sharp-pole-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "sharpened pole (quality 1)",
+      "description": [
+        "The long wooden pole has been sharpened to a deadly point allowing stabbing and piercing attacks. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "pole",
+        "sharpened pole (quality 1)",
+        "sharp pole q1",
+        "pointed",
+        "wooden",
+        "sharpened",
+        "craft:sharp-pole-q1"
+      ],
+      "room_description": "A sharpened pole is here."
+    },
+    "sharp-pole-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "hardened sharp pole (quality 2)",
+      "description": [
+        "The long wooden pole has been sharpened to a deadly point allowing stabbing and piercing attacks. The weapon looks particularly deadly as the point has been sharpened and hardened. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "pole",
+        "hardened sharp pole (quality 2)",
+        "sharp pole q2",
+        "pointed",
+        "wooden",
+        "wood",
+        "sharp",
+        "sharpened",
+        "hardened",
+        "craft:sharp-pole-q2"
+      ],
+      "room_description": "A hardened sharp pole is here."
+    },
+    "sharp-pole-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional sharpened pole (quality 3)",
+      "description": [
+        "This pole has a long metal spike at the end providing a deadly point to pierce enemies and withstand pushing through armor. The handle is beautifully carved and lacquered carefully to give it strength and weather resistance. Spiral tribal etchings can be seen in the wooden handle. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "pole",
+        "exceptional sharpened pole (quality 3)",
+        "sharp pole q3",
+        "pointed",
+        "wood",
+        "wooden",
+        "metal",
+        "sharp",
+        "sharpened",
+        "craft:sharp-pole-q3"
+      ],
+      "room_description": "An exceptional sharpened pole is here."
+    },
+    "small-axe-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "poor quality hand axe (quality 0)",
+      "description": [
+        "A small, dull and rusty hand axe with a splintered handle, suitable for close combat. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "poor quality hand axe (quality 0)",
+        "small axe q0",
+        "poor",
+        "rusty",
+        "splintered",
+        "small",
+        "hand",
+        "craft:small-axe-q0"
+      ],
+      "room_description": "A poor quality hand axe is here."
+    },
+    "small-axe-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "hand axe (quality 1)",
+      "description": [
+        "A small, hand axe, suitable for close combat. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "hand axe (quality 1)",
+        "small axe q1",
+        "small",
+        "hand",
+        "craft:small-axe-q1"
+      ],
+      "room_description": "A hand axe is here."
+    },
+    "small-axe-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "sharp hand axe (quality 2)",
+      "description": [
+        "A small, sharp hand axe, suitable for close combat. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "sharp hand axe (quality 2)",
+        "small axe q2",
+        "sharp",
+        "small",
+        "hand",
+        "craft:small-axe-q2"
+      ],
+      "room_description": "A sharp hand axe is here."
+    },
+    "small-axe-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional hand axe (quality 3)",
+      "description": [
+        "An exceptional small hand axe gleams brightly as its surface shines. The blade has been honed to a razor edge while still keeping a perfect balance with the slightly counterbalanced handle. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "axe",
+        "exceptional hand axe (quality 3)",
+        "small axe q3",
+        "exceptional",
+        "small",
+        "hand",
+        "craft:small-axe-q3"
+      ],
+      "room_description": "An exceptional hand axe is here."
+    },
+    "small-club-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "nearly broken small club (quality 0)",
+      "description": [
+        "A small wooden club that is fashioned from a tree branch that is so cracked it is barely usable. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "nearly broken small club (quality 0)",
+        "small club q0",
+        "small",
+        "wooden",
+        "splintered",
+        "craft:small-club-q0"
+      ],
+      "room_description": "A nearly broken small club is here."
+    },
+    "small-club-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "small club (quality 1)",
+      "description": [
+        "A small wooden club that is fashioned from a tree branch. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "small club (quality 1)",
+        "small club q1",
+        "small",
+        "wooden",
+        "craft:small-club-q1"
+      ],
+      "room_description": "A small club is here."
+    },
+    "small-club-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "solid small club (quality 2)",
+      "description": [
+        "A solid small wooden club that is fashioned from a thick sturdy tree branch. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "solid small club (quality 2)",
+        "small club q2",
+        "solid",
+        "small",
+        "wooden",
+        "craft:small-club-q2"
+      ],
+      "room_description": "A solid small club is here."
+    },
+    "small-club-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional small club (quality 3)",
+      "description": [
+        "An exceptional small wooden club that is fashioned from Verawood giving it quite a bit of weight and balance. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "exceptional small club (quality 3)",
+        "small club q3",
+        "small",
+        "exceptional",
+        "solid",
+        "wooden",
+        "craft:small-club-q3"
+      ],
+      "room_description": "An exceptional small club is here."
+    },
+    "small-knife-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "poor quality small knife (quality 0)",
+      "description": [
+        "A poor quality small knife. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "knife",
+        "poor quality small knife (quality 0)",
+        "small knife q0",
+        "small",
+        "craft:small-knife-q0",
+        "craft:knife"
+      ],
+      "room_description": "A poor quality small knife is here."
+    },
+    "small-knife-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "small knife (quality 1)",
+      "description": [
+        "A small plain knife. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "knife",
+        "small knife (quality 1)",
+        "small knife q1",
+        "small",
+        "craft:small-knife-q1",
+        "craft:knife"
+      ],
+      "room_description": "A small knife is here."
+    },
+    "small-knife-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "sharp small knife (quality 2)",
+      "description": [
+        "A sharp small knife has a very fine honed edge. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "knife",
+        "sharp small knife (quality 2)",
+        "small knife q2",
+        "sharp",
+        "small",
+        "craft:small-knife-q2",
+        "craft:knife"
+      ],
+      "room_description": "A sharp small knife is here."
+    },
+    "small-knife-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exquisite small knife (quality 3)",
+      "description": [
+        "The exquisite knife has an ivory handle and a hardened razor shop blade. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "knife",
+        "exquisite small knife (quality 3)",
+        "small knife q3",
+        "exquisite",
+        "sharp",
+        "small",
+        "craft:small-knife-q3",
+        "craft:knife"
+      ],
+      "room_description": "An exquisite small knife is here."
+    },
+    "small-mace-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "nearly broken small mace (quality 0)",
+      "description": [
+        "A small wood and metal mace that is fashioned from a tree branch that is so cracked it is barely usable with a rusty head that is falling apart. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "nearly broken small mace (quality 0)",
+        "small mace q0",
+        "small",
+        "wooden",
+        "splintered",
+        "craft:small-mace-q0"
+      ],
+      "room_description": "A nearly broken small mace is here."
+    },
+    "small-mace-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "small mace (quality 1)",
+      "description": [
+        "A small wood and metal mace has a heavy metal head attached to a wooden handle. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "small mace (quality 1)",
+        "small mace q1",
+        "small",
+        "metal",
+        "wooden",
+        "craft:small-mace-q1"
+      ],
+      "room_description": "A small mace is here."
+    },
+    "small-mace-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "small sturdy mace (quality 2)",
+      "description": [
+        "A small sturdy wood and metal mace has a heavy metal head attached to a wooden handle. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "small sturdy mace (quality 2)",
+        "small mace q2",
+        "small",
+        "metal",
+        "sturdy",
+        "wooden",
+        "craft:small-mace-q2"
+      ],
+      "room_description": "A small sturdy mace is here."
+    },
+    "small-mace-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional small mace (quality 3)",
+      "description": [
+        "The small mace is crafted from an old hardwood that merges precisely with the metal head that is engraved with the head of a buck. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "mace",
+        "exceptional small mace (quality 3)",
+        "small mace q3",
+        "small",
+        "exceptional",
+        "solid",
+        "wooden",
+        "craft:small-mace-q3"
+      ],
+      "room_description": "An exceptional small mace is here."
+    },
+    "tiny-club-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "nearly broken tiny club (quality 0)",
+      "description": [
+        "A tiny wooden club that is fashioned from a tree branch that is so cracked it is barely usable. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "nearly broken tiny club (quality 0)",
+        "tiny club q0",
+        "tiny",
+        "wooden",
+        "splintered",
+        "craft:tiny-club-q0"
+      ],
+      "room_description": "A nearly broken tiny club is here."
+    },
+    "tiny-club-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "tiny club (quality 1)",
+      "description": [
+        "A tiny wooden club that is fashioned from a tree branch. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "tiny club (quality 1)",
+        "tiny club q1",
+        "tiny",
+        "wooden",
+        "craft:tiny-club-q1"
+      ],
+      "room_description": "A tiny club is here."
+    },
+    "tiny-club-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "solid tiny club (quality 2)",
+      "description": [
+        "A solid tiny wooden club that is fashioned from a thick sturdy tree branch. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "solid tiny club (quality 2)",
+        "tiny club q2",
+        "tiny",
+        "wooden",
+        "craft:tiny-club-q2"
+      ],
+      "room_description": "A solid tiny club is here."
+    },
+    "tiny-club-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "exceptional tiny club (quality 3)",
+      "description": [
+        "An exceptional tiny wooden club that is fashioned from African Blackwood giving it quite a bit of weight and balance. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "club",
+        "exceptional tiny club (quality 3)",
+        "tiny club q3",
+        "tiny",
+        "exceptional",
+        "solid",
+        "wooden",
+        "craft:tiny-club-q3"
+      ],
+      "room_description": "An exceptional tiny club is here."
+    },
+    "chainmail-shirt-q0": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "poor quality chainmail shirt (quality 0)",
+      "description": [
+        "A body-length suit of armor made of small metal rings fashioned together that are rusted and broken in a number of areas. Craftsmanship tier: 0 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "chainmail shirt",
+        "poor quality chainmail shirt (quality 0)",
+        "chainmail shirt q0",
+        "armor",
+        "chainmail",
+        "mail",
+        "shirt",
+        "chain mail",
+        "poor",
+        "rusted",
+        "rusty",
+        "craft:chainmail-shirt-q0"
+      ],
+      "room_description": "A poor quality chainmail shirt is here."
+    },
+    "chainmail-shirt-q1": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "chainmail shirt (quality 1)",
+      "description": [
+        "A body-length suit of armor made of small metal rings fashioned together. Craftsmanship tier: 1 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "chainmail shirt",
+        "chainmail shirt (quality 1)",
+        "chainmail shirt q1",
+        "armor",
+        "chainmail",
+        "mail",
+        "shirt",
+        "chain mail",
+        "craft:chainmail-shirt-q1"
+      ],
+      "room_description": "A chainmail shirt is here."
+    },
+    "chainmail-shirt-q2": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "sturdy chainmail shirt (quality 2)",
+      "description": [
+        "A body-length suit of armor made of small metal rings fashioned together that are polished to a fine sheen and recently oiled. Craftsmanship tier: 2 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "chainmail shirt",
+        "sturdy chainmail shirt (quality 2)",
+        "chainmail shirt q2",
+        "armor",
+        "chainmail",
+        "mail",
+        "shirt",
+        "chain mail",
+        "sturdy",
+        "sturdy-looking",
+        "craft:chainmail-shirt-q2"
+      ],
+      "room_description": "A sturdy chainmail shirt is here."
+    },
+    "chainmail-shirt-q3": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "intricate chainmail shirt (quality 3)",
+      "description": [
+        "A body-length suit of armor made of small metal rings fashioned together with intricate rivited rings that seem to be hand forged and polished to a high sheen. The quality of the rivets is such that it appears to provide better protection than standard chainmail. This is a high-quality chainmail armor. Craftsmanship tier: 3 of 3. Wear is tracked separately."
+      ],
+      "keywords": [
+        "chainmail shirt",
+        "intricate chainmail shirt (quality 3)",
+        "chainmail shirt q3",
+        "armor",
+        "chainmail",
+        "mail",
+        "shirt",
+        "chain mail",
+        "intricate",
+        "polished",
+        "high-quality",
+        "craft:chainmail-shirt-q3"
+      ],
+      "room_description": "A intricate chainmail shirt is here."
+    },
+    "gh3-round": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "GH3 pistol round",
+      "description": [
+        "This is a GH3 caliber revolver bullet. It has not been fired."
+      ],
+      "keywords": [
+        "gh3 round",
+        "gh3 pistol round",
+        "round",
+        "bullet",
+        "gh3",
+        "caliber",
+        "revolver",
+        "pistol",
+        "craft:gh3-round"
+      ],
+      "room_description": "A GH3 pistol round is here."
+    },
+    "gh3-shell": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "GH3 shell casing",
+      "description": [
+        "This is the spent casing of a GH3 magnum bullet."
+      ],
+      "keywords": [
+        "gh3shell",
+        "gh3 shell casing",
+        "gh3 shell",
+        "shell",
+        "casing",
+        "spent bullet",
+        "gh3",
+        "spent",
+        "magnum",
+        "craft:gh3-shell"
+      ],
+      "room_description": "A GH3 shell casing is here."
+    },
+    "ham-sand": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "ham sandwich",
+      "description": [
+        "This is a large, rather plain ham sandwich."
+      ],
+      "keywords": [
+        "ham sandwich",
+        "ham sand",
+        "sandwich",
+        "craft:ham-sand"
+      ],
+      "room_description": "A ham sandwich is here."
+    },
+    "pbnj-sand": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "peanut butter and jelly sandwich",
+      "description": [
+        "This is a large, rather delicious peanut butter and jelly sandwich."
+      ],
+      "keywords": [
+        "sandwich",
+        "peanut butter and jelly sandwich",
+        "pbnj sand",
+        "pbnj sandwich",
+        "craft:pbnj-sand"
+      ],
+      "room_description": "A peanut butter and jelly sandwich is here."
+    },
+    "wrench": {
+      "condition": {
+        "quality": 100
+      },
+      "name": "adjustable wrench",
+      "description": [
+        "This is a standard adjustable wrench designed to tighten or loosen bolts."
+      ],
+      "keywords": [
+        "wrench",
+        "adjustable wrench",
+        "adjustible",
+        "metal",
+        "craft:wrench"
+      ],
+      "room_description": "An adjustable wrench is here."
+    }
+  },
+  "recipes": [
+    {
+      "id": "chisel",
+      "name": "chisel",
+      "aliases": [
+        "chisel"
+      ],
+      "ingredients": {
+        "steel-rod": 1
+      },
+      "tools": [
+        "die-forge",
+        "grinding-wheel",
+        "radial-rivet-machine"
+      ],
+      "products": {
+        "chisel": 1
+      },
+      "unavailable": null,
+      "source": "crafting/recipes/chisel.c",
+      "legacy_skills": {
+        "metalsmith": 1
+      }
+    },
+    {
+      "id": "claw-hammer",
+      "name": "claw hammer",
+      "aliases": [
+        "claw hammer"
+      ],
+      "ingredients": {
+        "steel-rod": 1,
+        "wood-handle": 1
+      },
+      "tools": [
+        "die-forge",
+        "grinding-wheel",
+        "radial-rivet-machine"
+      ],
+      "products": {
+        "claw-hammer": 1
+      },
+      "unavailable": null,
+      "source": "crafting/recipes/claw_hammer.c",
+      "legacy_skills": {
+        "metalsmith": 1
+      }
+    },
+    {
+      "id": "gh3-round",
+      "name": "gh3 round",
+      "aliases": [
+        "gh3 round"
+      ],
+      "ingredients": {
+        "gram-of-gunpowder": 3,
+        "gh3-shell": 1,
+        "chunk-of-lead": 1
+      },
+      "tools": [
+        "bullet-press"
+      ],
+      "products": {
+        "gh3-round": 1
+      },
+      "unavailable": null,
+      "source": "crafting/recipes/gh3_round.c",
+      "legacy_skills": {
+        "metalsmith": 1
+      }
+    },
+    {
+      "id": "gh3-shell",
+      "name": "gh3 shell",
+      "aliases": [
+        "gh3 shell"
+      ],
+      "ingredients": {
+        "sheet-of-steel": 1
+      },
+      "tools": [
+        "bullet-press"
+      ],
+      "products": {
+        "gh3-shell": 6
+      },
+      "unavailable": null,
+      "source": "crafting/recipes/gh3_shell.c",
+      "legacy_skills": {
+        "metalsmith": 1
+      }
+    },
+    {
+      "id": "ham-sandwich",
+      "name": "ham sandwich",
+      "aliases": [
+        "ham sandwich"
+      ],
+      "ingredients": {
+        "piece-of-white-bread": 2,
+        "slice-of-pork": 2
+      },
+      "tools": [
+        "knife"
+      ],
+      "products": {
+        "ham-sand": 1
+      },
+      "unavailable": null,
+      "source": "crafting/recipes/ham_sandwich.c",
+      "legacy_skills": {
+        "cooking": 1
+      }
+    },
+    {
+      "id": "peanut-butter-and-jelly-sandwich",
+      "name": "peanut butter and jelly sandwich",
+      "aliases": [
+        "peanut butter and jelly sandwich",
+        "pbj",
+        "pbnj",
+        "pbj sandwich"
+      ],
+      "ingredients": {
+        "piece-of-white-bread": 2,
+        "gram-of-peanutbutter": 1,
+        "gram-of-grape-jelly": 1
+      },
+      "tools": [
+        "knife"
+      ],
+      "products": {
+        "pbnj-sand": 1
+      },
+      "unavailable": null,
+      "source": "crafting/recipes/pbnj.c",
+      "legacy_skills": {
+        "cooking": 1
+      }
+    },
+    {
+      "id": "plier",
+      "name": "plier",
+      "aliases": [
+        "plier",
+        "pliers"
+      ],
+      "ingredients": {
+        "steel-rod": 2,
+        "rivet": 1
+      },
+      "tools": [
+        "die-forge",
+        "grinding-wheel",
+        "radial-rivet-machine"
+      ],
+      "products": {
+        "pliers": 1
+      },
+      "unavailable": null,
+      "source": "crafting/recipes/pliers.c",
+      "legacy_skills": {
+        "metalsmith": 1
+      }
+    },
+    {
+      "id": "wood-handle",
+      "name": "wood handle",
+      "aliases": [
+        "wood handle"
+      ],
+      "ingredients": {
+        "piece-of-wood": 1
+      },
+      "tools": [
+        "grinding-wheel",
+        "bandsaw"
+      ],
+      "products": {
+        "wood-handle": 1
+      },
+      "unavailable": "The development backup contains no bandsaw tool. Buy a wood handle from Metalhead instead.",
+      "source": "crafting/recipes/wood_handle.c",
+      "legacy_skills": {
+        "woodworker": 1
+      }
+    }
+  ],
+  "reductions": [
+    {
+      "id": "artrell-corpse",
+      "name": "artrell corpse",
+      "aliases": [
+        "artrell corpse",
+        "corpse of the artrell",
+        "corpse of artrell"
+      ],
+      "ingredients": {
+        "artrell-corpse": 1
+      },
+      "tools": [
+        "knife"
+      ],
+      "products": {
+        "artrell-meat": 1
+      },
+      "unavailable": null,
+      "source": "crafting/reductions/artrell_meat.c",
+      "legacy_skills": {
+        "medical": 5
+      }
+    },
+    {
+      "id": "artrell-warrior-corpse",
+      "name": "artrell warrior corpse",
+      "aliases": [
+        "artrell warrior corpse",
+        "corpse of the artrell warrior",
+        "corpse of artrell warrior"
+      ],
+      "ingredients": {
+        "artrell-warrior-corpse": 1
+      },
+      "tools": [
+        "knife"
+      ],
+      "products": {
+        "artrell-meat": 1
+      },
+      "unavailable": null,
+      "source": "crafting/reductions/artrell_warrior_meat.c",
+      "legacy_skills": {
+        "medical": 5
+      }
+    },
+    {
+      "id": "crawler-corpse",
+      "name": "crawler corpse",
+      "aliases": [
+        "crawler corpse",
+        "corpse of the crawler",
+        "corpse of crawler"
+      ],
+      "ingredients": {
+        "crawler-corpse": 1
+      },
+      "tools": [
+        "knife"
+      ],
+      "products": {
+        "crawler-meat": 1
+      },
+      "unavailable": null,
+      "source": "crafting/reductions/crawler_meat.c",
+      "legacy_skills": {
+        "medical": 5
+      }
+    },
+    {
+      "id": "fish-man-corpse",
+      "name": "fish-man corpse",
+      "aliases": [
+        "fish-man corpse",
+        "fish man corpse",
+        "corpse of the fish-man",
+        "corpse of fish-man"
+      ],
+      "ingredients": {
+        "fish-man-corpse": 1
+      },
+      "tools": [
+        "knife"
+      ],
+      "products": {
+        "fish-stick": 1
+      },
+      "unavailable": null,
+      "source": "crafting/reductions/fishman_stick.c",
+      "legacy_skills": {
+        "medical": 5
+      }
+    },
+    {
+      "id": "gh3-round",
+      "name": "gh3 round",
+      "aliases": [
+        "gh3 round"
+      ],
+      "ingredients": {
+        "gh3-round": 1
+      },
+      "tools": [
+        "pliers"
+      ],
+      "products": {
+        "gram-of-gunpowder": 3,
+        "gh3-shell": 1,
+        "chunk-of-lead": 1
+      },
+      "unavailable": null,
+      "source": "crafting/reductions/gh3_round.c",
+      "legacy_skills": {
+        "metalsmith": 1
+      }
+    },
+    {
+      "id": "ham-sandwich",
+      "name": "ham sandwich",
+      "aliases": [
+        "ham sandwich"
+      ],
+      "ingredients": {
+        "ham-sand": 1
+      },
+      "tools": [
+        "knife"
+      ],
+      "products": {
+        "slice-of-pork": 2,
+        "piece-of-white-bread": 2
+      },
+      "unavailable": null,
+      "source": "crafting/reductions/ham_sandwich.c",
+      "legacy_skills": {
+        "cooking": 1
+      }
+    },
+    {
+      "id": "morlock-corpse",
+      "name": "morlock corpse",
+      "aliases": [
+        "morlock corpse",
+        "corpse of the morlock",
+        "corpse of morlock"
+      ],
+      "ingredients": {
+        "morlock-corpse": 1
+      },
+      "tools": [
+        "knife"
+      ],
+      "products": {
+        "morlock-meat": 1
+      },
+      "unavailable": null,
+      "source": "crafting/reductions/morlock_meat.c",
+      "legacy_skills": {
+        "medical": 5
+      }
+    },
+    {
+      "id": "morlock-warrior-corpse",
+      "name": "morlock warrior corpse",
+      "aliases": [
+        "morlock warrior corpse",
+        "corpse of the morlock warrior",
+        "corpse of morlock warrior"
+      ],
+      "ingredients": {
+        "morlock-warrior-corpse": 1
+      },
+      "tools": [
+        "knife"
+      ],
+      "products": {
+        "morlock-meat": 1
+      },
+      "unavailable": null,
+      "source": "crafting/reductions/morlock_warrior_meat.c",
+      "legacy_skills": {
+        "medical": 5
+      }
+    },
+    {
+      "id": "morlock-worker-corpse",
+      "name": "morlock worker corpse",
+      "aliases": [
+        "morlock worker corpse",
+        "corpse of the morlock worker",
+        "corpse of morlock worker"
+      ],
+      "ingredients": {
+        "morlock-worker-corpse": 1
+      },
+      "tools": [
+        "knife"
+      ],
+      "products": {
+        "morlock-meat": 1
+      },
+      "unavailable": null,
+      "source": "crafting/reductions/morlock_worker_meat.c",
+      "legacy_skills": {
+        "medical": 5
+      }
+    },
+    {
+      "id": "pliers",
+      "name": "pliers",
+      "aliases": [
+        "pliers"
+      ],
+      "ingredients": {
+        "pliers": 1
+      },
+      "tools": [
+        "die-forge"
+      ],
+      "products": {
+        "steel-rod": 1
+      },
+      "unavailable": null,
+      "source": "crafting/reductions/pliers.c",
+      "legacy_skills": {
+        "metalsmith": 1
+      }
+    },
+    {
+      "id": "rat-corpse",
+      "name": "rat corpse",
+      "aliases": [
+        "rat corpse",
+        "corpse of the rat",
+        "corpse of rat"
+      ],
+      "ingredients": {
+        "rat-corpse": 1
+      },
+      "tools": [
+        "knife"
+      ],
+      "products": {
+        "rat-meat": 1
+      },
+      "unavailable": null,
+      "source": "crafting/reductions/rat_meat.c",
+      "legacy_skills": {
+        "medical": 1
+      }
+    },
+    {
+      "id": "short-sword",
+      "name": "short sword",
+      "aliases": [
+        "short sword"
+      ],
+      "ingredients": {
+        "short-sword": 1
+      },
+      "tools": [
+        "die-forge"
+      ],
+      "products": {
+        "steel-rod": 2
+      },
+      "unavailable": null,
+      "source": "crafting/reductions/short_sword.c",
+      "legacy_skills": {
+        "metalsmith": 1
+      }
+    },
+    {
+      "id": "wrench",
+      "name": "wrench",
+      "aliases": [
+        "wrench"
+      ],
+      "ingredients": {
+        "wrench": 1
+      },
+      "tools": [
+        "die-forge"
+      ],
+      "products": {
+        "steel-rod": 1
+      },
+      "unavailable": null,
+      "source": "crafting/reductions/wrench.c",
+      "legacy_skills": {
+        "metalsmith": 1
+      }
+    }
+  ],
+  "meals": {
+    "artrell-meat": {
+      "verb": "eat",
+      "message": "You eat the raw artrell meat. Mmm!",
+      "diet": "meat"
+    },
+    "crawler-meat": {
+      "verb": "eat",
+      "message": "You eat the raw crawler meat. Mmm!",
+      "diet": "meat"
+    },
+    "fish-stick": {
+      "verb": "eat",
+      "message": "You eat the raw fish stick. It seems it would be better with breading...",
+      "diet": "meat"
+    },
+    "morlock-meat": {
+      "verb": "eat",
+      "message": "You eat the raw morlock meat. Mmm!",
+      "diet": "meat"
+    },
+    "rat-meat": {
+      "verb": "eat",
+      "message": "You eat the raw rat meat. Mmm!",
+      "diet": "meat"
+    },
+    "ham-sand": {
+      "verb": "eat",
+      "message": "You eat a ham sandwich. Mmm!"
+    },
+    "pbnj-sand": {
+      "verb": "eat",
+      "message": "You eat a peanut butter and jelly sandwich. Mmm!"
+    }
+  },
+  "source_items": {
+    "bullet-press": {
+      "source": "domains/crafting/tools/bullet_press.c",
+      "sha256": "713718363ff1393b3f4555dcc451ecd30aa9a883ccf89c2439dd58be1bb252d3",
+      "price_credits": 10000
+    },
+    "chisel": {
+      "source": "domains/crafting/tools/chisel.c",
+      "sha256": "d8fe79368314e6b6ab9fca9676be3cd379bc507d55b848124a36da6b80f382b3",
+      "price_credits": 30,
+      "equipment_adapter": "Combat Knife"
+    },
+    "claw-hammer": {
+      "source": "domains/crafting/tools/claw_hammer.c",
+      "sha256": "35a2195f9ff938ab35eadad6cdf13a54470dca7a2d6278837f9e27f128f4a987",
+      "price_credits": 30,
+      "equipment_adapter": "Light Club"
+    },
+    "die-forge": {
+      "source": "domains/crafting/tools/die_forge.c",
+      "sha256": "be40c831368c558da80f57dcfce9090eac1cdfb8b020f2f6831339ea48054dab",
+      "price_credits": 100000
+    },
+    "grinding-wheel": {
+      "source": "domains/crafting/tools/grinding_wheel.c",
+      "sha256": "df9c272a9cfb13058f7e711cd759fe96a11d3528b1fe3925e9d42b46a92a98a0",
+      "price_credits": 1000
+    },
+    "pliers": {
+      "source": "domains/crafting/tools/pliers.c",
+      "sha256": "adb6a4727988823d6840c7c4158d6bfb7cd1659cc293e63ea87c0be86bfa73be",
+      "price_credits": 12,
+      "equipment_adapter": "Light Club"
+    },
+    "radial-rivet-machine": {
+      "source": "domains/crafting/tools/radial_rivet_machine.c",
+      "sha256": "45e3a9af60582216a4e1319f15e73a5b160b656c45bc0b46fcd52cceabf286b5",
+      "price_credits": 10000
+    },
+    "stove": {
+      "source": "domains/crafting/tools/stove.c",
+      "sha256": "cdd020988c9fdb0637b1c6a581cb8fb0f01c690e6502b473360a731e41c1325d",
+      "price_credits": 100000
+    },
+    "chunk-of-lead": {
+      "source": "domains/crafting/resources/chunk_of_lead.c",
+      "sha256": "00a54692bfe5cc3db2f3d7d097a445e9e10b57620a7bc1286e6de607d22809f0",
+      "price_credits": 2
+    },
+    "gram-of-grape-jelly": {
+      "source": "domains/crafting/resources/gram_of_grape_jelly.c",
+      "sha256": "f4e6999fe246bcffcf8d1d46b469d0cdd5cb1ec98709807d2a2b0aa7d0573058",
+      "price_credits": 2
+    },
+    "gram-of-gunpowder": {
+      "source": "domains/crafting/resources/gram_of_gunpowder.c",
+      "sha256": "23918947e781e171458b167a05cb98c13a2f3b453ccc806e6d2e8be88cce4fea",
+      "price_credits": 2
+    },
+    "gram-of-peanutbutter": {
+      "source": "domains/crafting/resources/gram_of_peanutbutter.c",
+      "sha256": "78299ff825562071df614caaf8dc295580fbe62e7f6b3f1d941d30580eb2b8a7",
+      "price_credits": 2
+    },
+    "piece-of-white-bread": {
+      "source": "domains/crafting/resources/piece_of_white_bread.c",
+      "sha256": "d6aabf51514f39fd3014833a101164d7b3d985f945d038cfeb08862395a6e499",
+      "price_credits": 2
+    },
+    "piece-of-wood": {
+      "source": "domains/crafting/resources/piece_of_wood.c",
+      "sha256": "e53fe11666f2405ab854a92f9bd298540d2b8dd3581c3d306fab1c72ccdcb2bd",
+      "price_credits": 10
+    },
+    "rivet": {
+      "source": "domains/crafting/resources/rivet.c",
+      "sha256": "b768aee89b9ab0bf2d19e1212fcf4b754f089c593319f2a0d375dab7ea6c1207",
+      "price_credits": 10
+    },
+    "sheet-of-steel": {
+      "source": "domains/crafting/resources/sheet_of_steel.c",
+      "sha256": "acdf29db51af11aeb6187ea061c1427f4db34d6004bdfa07885963998fd78695",
+      "price_credits": 10
+    },
+    "slice-of-pork": {
+      "source": "domains/crafting/resources/slice_of_pork.c",
+      "sha256": "9346c11ad0c7ebe3e44876e1761b0413e94f138143cc2509d701815c0c4e837c",
+      "price_credits": 2
+    },
+    "steel-rod": {
+      "source": "domains/crafting/resources/steel_rod.c",
+      "sha256": "8de525fbf553564a0c54bfcc309d718e011d7b51a6e0b035a135871d7731d1ff",
+      "price_credits": 7
+    },
+    "wood-handle": {
+      "source": "domains/crafting/resources/wood_handle.c",
+      "sha256": "a036a94748ee1a9034c2d3e1bb749646a16e19860482629637595a0c0ebd8d22",
+      "price_credits": 5
+    },
+    "artrell-meat": {
+      "source": "domains/crafting/meals/artrell_meat.c",
+      "sha256": "2ca99581d1d71a3bb6ff8a8d984771071dbeb4bcdacb2f04c8b29fd3ccec13fc",
+      "price_credits": 10
+    },
+    "crawler-meat": {
+      "source": "domains/crafting/meals/crawler_meat.c",
+      "sha256": "d524bc77d6d1d89faf90a44036eb6ecac61d184b611cdcbd74cbbe330eb99caa",
+      "price_credits": 10
+    },
+    "fish-stick": {
+      "source": "domains/crafting/meals/fish_stick.c",
+      "sha256": "32ea5ba71d7b3a53123df59f3e61c332021b915835c7dd259a5dd3fd71d989fd",
+      "price_credits": 10
+    },
+    "morlock-meat": {
+      "source": "domains/crafting/meals/morlock_meat.c",
+      "sha256": "bc4d3b01b9e0939f1b578bc6827f24a9979ac34842bb59dde044dc78adde6832",
+      "price_credits": 10
+    },
+    "rat-meat": {
+      "source": "domains/crafting/meals/rat_meat.c",
+      "sha256": "5f021f9d51037a10828b9c02a80ba1b1dc92d6ea4e0d688e25e84cbcd543355a",
+      "price_credits": 4
+    },
+    "akai-sword": {
+      "source": "domains/crafting/weap/melee/akai_sword.c",
+      "sha256": "600727117706825d31f8b40334bb90cd7f43e8cadb9ea4fd336a2bbb02bfea77",
+      "price_credits": 900,
+      "equipment_adapter": "Light Sword"
+    },
+    "halberd-q0": {
+      "source": "domains/crafting/weap/melee/halberd_q0.c",
+      "sha256": "756e9034dd5d1879dcbc21f2c2e87d5ac85d6503f6dc4da09fa808043840ceaa",
+      "price_credits": 300,
+      "craftsmanship": 0,
+      "equipment_adapter": "Heavy Sword"
+    },
+    "halberd-q1": {
+      "source": "domains/crafting/weap/melee/halberd_q1.c",
+      "sha256": "7718d6bebfde27cd5421692605a5ab1ef66f3b887ee09943efd786386246456b",
+      "price_credits": 600,
+      "craftsmanship": 1,
+      "equipment_adapter": "Heavy Sword"
+    },
+    "halberd-q2": {
+      "source": "domains/crafting/weap/melee/halberd_q2.c",
+      "sha256": "b0712b093d2179e65d2b2737dd775882ddb8847ad8b033c28c08d6aae31cb2ee",
+      "price_credits": 1800,
+      "craftsmanship": 2,
+      "equipment_adapter": "Heavy Sword"
+    },
+    "halberd-q3": {
+      "source": "domains/crafting/weap/melee/halberd_q3.c",
+      "sha256": "926a9a4bde40f1d9c657eb031846661cdbe754a2c691efb9855718b8c84d18bc",
+      "price_credits": 6000,
+      "craftsmanship": 3,
+      "equipment_adapter": "Heavy Sword"
+    },
+    "hammer-q0": {
+      "source": "domains/crafting/weap/melee/hammer_q0.c",
+      "sha256": "a35950ebf3581c2b59c37e773b7eac1b328f1eac3fd41861026355f3b9de1e0f",
+      "price_credits": 25,
+      "craftsmanship": 0,
+      "equipment_adapter": "Light Club"
+    },
+    "hammer-q1": {
+      "source": "domains/crafting/weap/melee/hammer_q1.c",
+      "sha256": "4d192aaa4f9967e7497873ed437dce7650dd445537681d6470ff143e37d79845",
+      "price_credits": 50,
+      "craftsmanship": 1,
+      "equipment_adapter": "Light Club"
+    },
+    "hammer-q2": {
+      "source": "domains/crafting/weap/melee/hammer_q2.c",
+      "sha256": "26b650fdd844926e5dff5fdf80b3a466f4eb2da997bc8a5a9c5bc97289f4de54",
+      "price_credits": 150,
+      "craftsmanship": 2,
+      "equipment_adapter": "Light Club"
+    },
+    "hammer-q3": {
+      "source": "domains/crafting/weap/melee/hammer_q3.c",
+      "sha256": "cd3aeb9719077e2701f571460166596d5e57e654e13095c0d140d16722111b21",
+      "price_credits": 500,
+      "craftsmanship": 3,
+      "equipment_adapter": "Light Club"
+    },
+    "huge-axe-q0": {
+      "source": "domains/crafting/weap/melee/huge_axe_q0.c",
+      "sha256": "73bcad0a03ccaa21a15195bb7ad9e4ebdabfe51b70753bd29fd31581daca9086",
+      "price_credits": 900,
+      "craftsmanship": 0,
+      "equipment_adapter": "Heavy Sword"
+    },
+    "huge-axe-q1": {
+      "source": "domains/crafting/weap/melee/huge_axe_q1.c",
+      "sha256": "dbd2add825d4022eb39e0dbf682a8353e816c4ff5ea532d6ba2e84579560c823",
+      "price_credits": 1800,
+      "craftsmanship": 1,
+      "equipment_adapter": "Heavy Sword"
+    },
+    "huge-axe-q2": {
+      "source": "domains/crafting/weap/melee/huge_axe_q2.c",
+      "sha256": "ae51ff8d4885c945e75d65f955174917470a38e4e261fd77b6e1a8e3883d46d9",
+      "price_credits": 5400,
+      "craftsmanship": 2,
+      "equipment_adapter": "Heavy Sword"
+    },
+    "huge-axe-q3": {
+      "source": "domains/crafting/weap/melee/huge_axe_q3.c",
+      "sha256": "0b6b7d03645db0b6a65fee52f84e76cea1a60ba9c73d0da175568726200299a5",
+      "price_credits": 18000,
+      "craftsmanship": 3,
+      "equipment_adapter": "Heavy Sword"
+    },
+    "huge-club-q0": {
+      "source": "domains/crafting/weap/melee/huge_club_q0.c",
+      "sha256": "6c00357de68413f666ac3f5000842c87b3d9017e5af95f67cadc79baa593ec91",
+      "price_credits": 1,
+      "craftsmanship": 0,
+      "equipment_adapter": "Heavy Club"
+    },
+    "huge-club-q1": {
+      "source": "domains/crafting/weap/melee/huge_club_q1.c",
+      "sha256": "534b5980e3b41c8dc5d35c81cb06c0cfdb6ff1bf0b212886597a70ddcc406ecf",
+      "price_credits": 300,
+      "craftsmanship": 1,
+      "equipment_adapter": "Heavy Club"
+    },
+    "huge-club-q2": {
+      "source": "domains/crafting/weap/melee/huge_club_q2.c",
+      "sha256": "b04906221dfcc559e37e4c49923d6351d66bce3a72228dd26d21729e5b0db34d",
+      "price_credits": 900,
+      "craftsmanship": 2,
+      "equipment_adapter": "Heavy Club"
+    },
+    "huge-club-q3": {
+      "source": "domains/crafting/weap/melee/huge_club_q3.c",
+      "sha256": "a206096188b2d62dde6cfc16398be23b6d44a2200facb4c086fab9f24484c625",
+      "price_credits": 3000,
+      "craftsmanship": 3,
+      "equipment_adapter": "Heavy Club"
+    },
+    "huge-mace-q0": {
+      "source": "domains/crafting/weap/melee/huge_mace_q0.c",
+      "sha256": "182c4c5290c57f58126578b8b2b4a02900d8f071ec11ae73eb0e8a69766651ff",
+      "price_credits": 300,
+      "craftsmanship": 0,
+      "equipment_adapter": "Heavy Club"
+    },
+    "huge-mace-q1": {
+      "source": "domains/crafting/weap/melee/huge_mace_q1.c",
+      "sha256": "a2329b9d827d3aae69ff96ab9b8d9116f6693470ad90eacefbcbb62a4658ea92",
+      "price_credits": 600,
+      "craftsmanship": 1,
+      "equipment_adapter": "Heavy Club"
+    },
+    "huge-mace-q2": {
+      "source": "domains/crafting/weap/melee/huge_mace_q2.c",
+      "sha256": "76f19f9f6028a98a8ded7fb9687c6c555eeee35737393b6023e1c7d5e0f08443",
+      "price_credits": 1800,
+      "craftsmanship": 2,
+      "equipment_adapter": "Heavy Club"
+    },
+    "huge-mace-q3": {
+      "source": "domains/crafting/weap/melee/huge_mace_q3.c",
+      "sha256": "180caa609cfc7c389786dfe234d1cfc954908fdad4aba77207fc797b537b5514",
+      "price_credits": 6000,
+      "craftsmanship": 3,
+      "equipment_adapter": "Heavy Club"
+    },
+    "knife-q0": {
+      "source": "domains/crafting/weap/melee/knife_q0.c",
+      "sha256": "62751ebecd64a0c5c5f84fe9979bdbd5db5515d3100409dcbc811409fc7c7240",
+      "price_credits": 50,
+      "craftsmanship": 0,
+      "equipment_adapter": "Combat Knife"
+    },
+    "knife-q1": {
+      "source": "domains/crafting/weap/melee/knife_q1.c",
+      "sha256": "d0b308b58b7344220bcaeaeca4ef6d0f486d492cfe2f84bca8c06191fecc1f02",
+      "price_credits": 150,
+      "craftsmanship": 1,
+      "equipment_adapter": "Combat Knife"
+    },
+    "knife-q2": {
+      "source": "domains/crafting/weap/melee/knife_q2.c",
+      "sha256": "543075e0e1ea1780da27d8ac90919063619617cd99436c435bc4518782c72116",
+      "price_credits": 300,
+      "craftsmanship": 2,
+      "equipment_adapter": "Combat Knife"
+    },
+    "knife-q3": {
+      "source": "domains/crafting/weap/melee/knife_q3.c",
+      "sha256": "4bcf8711dad5ea610070cca2157b63357ea42b319623e8549c28513ab60d5ea5",
+      "price_credits": 600,
+      "craftsmanship": 3,
+      "equipment_adapter": "Combat Knife"
+    },
+    "large-axe-q0": {
+      "source": "domains/crafting/weap/melee/large_axe_q0.c",
+      "sha256": "9b516e1aee4c20871c0bfa29eb0be445e6add76395d43daec0fc5f1d1f277dbb",
+      "price_credits": 450,
+      "craftsmanship": 0,
+      "equipment_adapter": "Heavy Sword"
+    },
+    "large-axe-q1": {
+      "source": "domains/crafting/weap/melee/large_axe_q1.c",
+      "sha256": "b336a1ac7c4ef28c2743d6649ef675f0edeece4cac2e9d2ad8dc624609da2538",
+      "price_credits": 900,
+      "craftsmanship": 1,
+      "equipment_adapter": "Heavy Sword"
+    },
+    "large-axe-q2": {
+      "source": "domains/crafting/weap/melee/large_axe_q2.c",
+      "sha256": "639d026dbf94de7a50a557039c5b6df86b3875baf10eb56a6fa32b839cace970",
+      "price_credits": 2700,
+      "craftsmanship": 2,
+      "equipment_adapter": "Heavy Sword"
+    },
+    "large-axe-q3": {
+      "source": "domains/crafting/weap/melee/large_axe_q3.c",
+      "sha256": "d8766fcd7032bcd55908cce1998177b8f9ef44e05c3b79327f2e9b2e686e7f98",
+      "price_credits": 2700,
+      "craftsmanship": 3,
+      "equipment_adapter": "Heavy Sword"
+    },
+    "large-club-q0": {
+      "source": "domains/crafting/weap/melee/large_club_q0.c",
+      "sha256": "2f5bb8eb7fd3687bfb0134c2669139610e4e4f6290a4700f76bbb8d7f9021458",
+      "price_credits": 1,
+      "craftsmanship": 0,
+      "equipment_adapter": "Heavy Club"
+    },
+    "large-club-q1": {
+      "source": "domains/crafting/weap/melee/large_club_q1.c",
+      "sha256": "1b7dc84fed7f483ae0043d3b7603827b91252778505bc00a9f690c611d17ce71",
+      "price_credits": 150,
+      "craftsmanship": 1,
+      "equipment_adapter": "Heavy Club"
+    },
+    "large-club-q2": {
+      "source": "domains/crafting/weap/melee/large_club_q2.c",
+      "sha256": "ebe9a5b5f7fdc2a929bdf459aa17a2a18f4edb66e2994356227b651dd5440830",
+      "price_credits": 450,
+      "craftsmanship": 2,
+      "equipment_adapter": "Heavy Club"
+    },
+    "large-club-q3": {
+      "source": "domains/crafting/weap/melee/large_club_q3.c",
+      "sha256": "bbf11274ad85c4b1b94128ba05699648e56e0184753f395c7b448cfb3de99810",
+      "price_credits": 3000,
+      "craftsmanship": 3,
+      "equipment_adapter": "Heavy Club"
+    },
+    "large-mace-q0": {
+      "source": "domains/crafting/weap/melee/large_mace_q0.c",
+      "sha256": "a1dfe2e5c8989d9b9e7bbb1c88cb56b39f5b3f895322b9067f21970abac4c628",
+      "price_credits": 150,
+      "craftsmanship": 0,
+      "equipment_adapter": "Heavy Club"
+    },
+    "large-mace-q1": {
+      "source": "domains/crafting/weap/melee/large_mace_q1.c",
+      "sha256": "3625e28402838c37418bb6d43dc5e9d91d299619c2c345cb830acf56f696aab1",
+      "price_credits": 300,
+      "craftsmanship": 1,
+      "equipment_adapter": "Heavy Club"
+    },
+    "large-mace-q2": {
+      "source": "domains/crafting/weap/melee/large_mace_q2.c",
+      "sha256": "071237b673302cb9479089d32f08e81b26b2916e7837ea729d464abc4580d4e6",
+      "price_credits": 900,
+      "craftsmanship": 2,
+      "equipment_adapter": "Heavy Club"
+    },
+    "large-mace-q3": {
+      "source": "domains/crafting/weap/melee/large_mace_q3.c",
+      "sha256": "a4feb180c59b64086a1135dacff172f9cd7e36a3a18e35655c56a395d59174f0",
+      "price_credits": 3100,
+      "craftsmanship": 3,
+      "equipment_adapter": "Heavy Club"
+    },
+    "medium-axe-q0": {
+      "source": "domains/crafting/weap/melee/medium_axe_q0.c",
+      "sha256": "48e49634ff364efadae3e770ab0fd9d497f0dd7e54c4e0760fbe4853b13ef553",
+      "price_credits": 150,
+      "craftsmanship": 0,
+      "equipment_adapter": "Light Sword"
+    },
+    "medium-axe-q1": {
+      "source": "domains/crafting/weap/melee/medium_axe_q1.c",
+      "sha256": "ac00f1d153f8ddc508e4ed4470e3e95a2a8b490fa43b3076f01949fc2a6c2295",
+      "price_credits": 300,
+      "craftsmanship": 1,
+      "equipment_adapter": "Light Sword"
+    },
+    "medium-axe-q2": {
+      "source": "domains/crafting/weap/melee/medium_axe_q2.c",
+      "sha256": "77de5dc150ef2559b759ba27bbf3c068f47c1f0d27a48884169b10364d2a4053",
+      "price_credits": 900,
+      "craftsmanship": 2,
+      "equipment_adapter": "Light Sword"
+    },
+    "medium-axe-q3": {
+      "source": "domains/crafting/weap/melee/medium_axe_q3.c",
+      "sha256": "4859d0f5040b12888dddc0a0a06dbc315fe9bd786b826b40ba0c0cb7216d352d",
+      "price_credits": 3000,
+      "craftsmanship": 3,
+      "equipment_adapter": "Light Sword"
+    },
+    "medium-club-q0": {
+      "source": "domains/crafting/weap/melee/medium_club_q0.c",
+      "sha256": "bb4d1de799f749c39612d65b634193a46517ac0a1c40a7eb43056d96efaee810",
+      "price_credits": 1,
+      "craftsmanship": 0,
+      "equipment_adapter": "Heavy Club"
+    },
+    "medium-club-q1": {
+      "source": "domains/crafting/weap/melee/medium_club_q1.c",
+      "sha256": "7267fadff816c168b0cca690e3eb0cfd82adf3729fe67ab71f3bfbc05a57ae3c",
+      "price_credits": 35,
+      "craftsmanship": 1,
+      "equipment_adapter": "Heavy Club"
+    },
+    "medium-club-q2": {
+      "source": "domains/crafting/weap/melee/medium_club_q2.c",
+      "sha256": "586059db68aa57e2070c34352ccefaf830597785fbc719eb95736068e7093537",
+      "price_credits": 150,
+      "craftsmanship": 2,
+      "equipment_adapter": "Heavy Club"
+    },
+    "medium-club-q3": {
+      "source": "domains/crafting/weap/melee/medium_club_q3.c",
+      "sha256": "7ba7e7de9d9ba78e62e5b6e0c4ebcd66f07d1ff4a20cd2f5d650e13ac4d7514e",
+      "price_credits": 1000,
+      "craftsmanship": 3,
+      "equipment_adapter": "Heavy Club"
+    },
+    "medium-mace-q0": {
+      "source": "domains/crafting/weap/melee/medium_mace_q0.c",
+      "sha256": "60ff1fe7ec0010ece4e4c35c018feb538f601f95a929fc27ae0c3f0331af7222",
+      "price_credits": 50,
+      "craftsmanship": 0,
+      "equipment_adapter": "Heavy Club"
+    },
+    "medium-mace-q1": {
+      "source": "domains/crafting/weap/melee/medium_mace_q1.c",
+      "sha256": "1dc5c86151ec86ae54e27a09d58f7002349eb6c03c47ecadddb9add2a2b78600",
+      "price_credits": 100,
+      "craftsmanship": 1,
+      "equipment_adapter": "Heavy Club"
+    },
+    "medium-mace-q2": {
+      "source": "domains/crafting/weap/melee/medium_mace_q2.c",
+      "sha256": "de81d2fe07176835e175fb7e25a18d6cecbb711cd45bc4c609bf97b1ad35c188",
+      "price_credits": 300,
+      "craftsmanship": 2,
+      "equipment_adapter": "Heavy Club"
+    },
+    "medium-mace-q3": {
+      "source": "domains/crafting/weap/melee/medium_mace_q3.c",
+      "sha256": "d341b29a1a2037c67487c757a83b09743de2d030229de580335cdd34d124518c",
+      "price_credits": 1100,
+      "craftsmanship": 3,
+      "equipment_adapter": "Heavy Club"
+    },
+    "medium-sword-q0": {
+      "source": "domains/crafting/weap/melee/medium_sword_q0.c",
+      "sha256": "3ca840b49286cc8528516e7fb74d9b245af56f19847746af2a7e43eed98a31e8",
+      "price_credits": 150,
+      "craftsmanship": 0,
+      "equipment_adapter": "Light Sword"
+    },
+    "medium-sword-q1": {
+      "source": "domains/crafting/weap/melee/medium_sword_q1.c",
+      "sha256": "2b43aab7a7f0584144307fc47a5e57e799a3cc1840600bc7778ad337962c80ad",
+      "price_credits": 150,
+      "craftsmanship": 1,
+      "equipment_adapter": "Light Sword"
+    },
+    "medium-sword-q2": {
+      "source": "domains/crafting/weap/melee/medium_sword_q2.c",
+      "sha256": "959b65d22c4d8b4da05e109b328a7db5daaeeac22af6619d98c0d54fca72d897",
+      "price_credits": 900,
+      "craftsmanship": 2,
+      "equipment_adapter": "Light Sword"
+    },
+    "medium-sword-q3": {
+      "source": "domains/crafting/weap/melee/medium_sword_q3.c",
+      "sha256": "5f8362a569bf9e99fc5d244ca3e2d8a734c2d431153a1a70f2d6369a2b45f124",
+      "price_credits": 900,
+      "craftsmanship": 3,
+      "equipment_adapter": "Light Sword"
+    },
+    "sharp-pole-q0": {
+      "source": "domains/crafting/weap/melee/sharp_pole_q0.c",
+      "sha256": "f1060bd9bfb113a833675f72ca7a41f99a0a052febf21d97931568d9d74df286",
+      "price_credits": 50,
+      "craftsmanship": 0,
+      "equipment_adapter": "Light Sword"
+    },
+    "sharp-pole-q1": {
+      "source": "domains/crafting/weap/melee/sharp_pole_q1.c",
+      "sha256": "3831f901dac8f42bc8711088f4076751a7c8bcdfef8e15dc79d8c74fe2ff83ea",
+      "price_credits": 100,
+      "craftsmanship": 1,
+      "equipment_adapter": "Light Sword"
+    },
+    "sharp-pole-q2": {
+      "source": "domains/crafting/weap/melee/sharp_pole_q2.c",
+      "sha256": "7762dcc708c2c62352e6500b42b4888076f3db360b3fe060353b09c5065136da",
+      "price_credits": 300,
+      "craftsmanship": 2,
+      "equipment_adapter": "Light Sword"
+    },
+    "sharp-pole-q3": {
+      "source": "domains/crafting/weap/melee/sharp_pole_q3.c",
+      "sha256": "17ddc6ec4e7e4d93eefb28ac5b7b5f617984ee8d98f0544015c9ca69bbfa9288",
+      "price_credits": 1000,
+      "craftsmanship": 3,
+      "equipment_adapter": "Light Sword"
+    },
+    "small-axe-q0": {
+      "source": "domains/crafting/weap/melee/small_axe_q0.c",
+      "sha256": "b76e9f5a5c69fd1453ea09cdc1399974e7725e3c4a8653cb624c9e2121e40257",
+      "price_credits": 75,
+      "craftsmanship": 0,
+      "equipment_adapter": "Light Sword"
+    },
+    "small-axe-q1": {
+      "source": "domains/crafting/weap/melee/small_axe_q1.c",
+      "sha256": "d980369ae9b4658b16a4bf19f677be082613d0d847562e6d342633951e1b5a23",
+      "price_credits": 150,
+      "craftsmanship": 1,
+      "equipment_adapter": "Light Sword"
+    },
+    "small-axe-q2": {
+      "source": "domains/crafting/weap/melee/small_axe_q2.c",
+      "sha256": "b09cbb9c4bd9d78f21d48f0246a88bc201cbc6a2f526b8f10aa07561ebd95094",
+      "price_credits": 450,
+      "craftsmanship": 2,
+      "equipment_adapter": "Light Sword"
+    },
+    "small-axe-q3": {
+      "source": "domains/crafting/weap/melee/small_axe_q3.c",
+      "sha256": "ef0b570b292433b1b6b65d909db0a60952365acad348dc4384c0f7def9dc06f7",
+      "price_credits": 1500,
+      "craftsmanship": 3,
+      "equipment_adapter": "Light Sword"
+    },
+    "small-club-q0": {
+      "source": "domains/crafting/weap/melee/small_club_q0.c",
+      "sha256": "e1548ebcab3a8c2efbdbe41646fd1f9072c7d02379e3429503525ae04d1da2e2",
+      "price_credits": 1,
+      "craftsmanship": 0,
+      "equipment_adapter": "Light Club"
+    },
+    "small-club-q1": {
+      "source": "domains/crafting/weap/melee/small_club_q1.c",
+      "sha256": "c06f42348c507da209db2c62913930ffad962f5aa335541fd70ca82f0046d139",
+      "price_credits": 25,
+      "craftsmanship": 1,
+      "equipment_adapter": "Light Club"
+    },
+    "small-club-q2": {
+      "source": "domains/crafting/weap/melee/small_club_q2.c",
+      "sha256": "f853127878fd4f3667d7af4b186e0bc94251b7c39fc4925c0002fe2f8482075f",
+      "price_credits": 75,
+      "craftsmanship": 2,
+      "equipment_adapter": "Light Club"
+    },
+    "small-club-q3": {
+      "source": "domains/crafting/weap/melee/small_club_q3.c",
+      "sha256": "8ed7a493cfee1becc7720ea92574a2ade10ebd953b49f81781a2d9ca8a49b5a3",
+      "price_credits": 600,
+      "craftsmanship": 3,
+      "equipment_adapter": "Light Club"
+    },
+    "small-knife-q0": {
+      "source": "domains/crafting/weap/melee/small_knife_q0.c",
+      "sha256": "3f5c800843dc24b32cb97f787f44616866f4cf775fb2012b9768b8be7903eb86",
+      "price_credits": 50,
+      "craftsmanship": 0,
+      "equipment_adapter": "Pocket Knife"
+    },
+    "small-knife-q1": {
+      "source": "domains/crafting/weap/melee/small_knife_q1.c",
+      "sha256": "2d3f5671df4de623adc57b52a0eb4d0ec3766764bc7b9e42f4c741ba69268681",
+      "price_credits": 150,
+      "craftsmanship": 1,
+      "equipment_adapter": "Pocket Knife"
+    },
+    "small-knife-q2": {
+      "source": "domains/crafting/weap/melee/small_knife_q2.c",
+      "sha256": "d74e6929158dad4abfa2a828a04c446f03a3025d0e49bd21ca69abfb8132eb68",
+      "price_credits": 250,
+      "craftsmanship": 2,
+      "equipment_adapter": "Pocket Knife"
+    },
+    "small-knife-q3": {
+      "source": "domains/crafting/weap/melee/small_knife_q3.c",
+      "sha256": "8a5a2edda710ef3ca5691411e80ffad216e792390a313c9c36e59a147c6ce86f",
+      "price_credits": 500,
+      "craftsmanship": 3,
+      "equipment_adapter": "Pocket Knife"
+    },
+    "small-mace-q0": {
+      "source": "domains/crafting/weap/melee/small_mace_q0.c",
+      "sha256": "b7c2bbcaa80c006b363226756b409885cb1a8d351c445fc3e17d2f44b6f33ea1",
+      "price_credits": 25,
+      "craftsmanship": 0,
+      "equipment_adapter": "Light Club"
+    },
+    "small-mace-q1": {
+      "source": "domains/crafting/weap/melee/small_mace_q1.c",
+      "sha256": "1dc51254326ab5cf0e3c9757b8adf8f1052e37c617a97234f2a9b5d9efc3dc51",
+      "price_credits": 50,
+      "craftsmanship": 1,
+      "equipment_adapter": "Light Club"
+    },
+    "small-mace-q2": {
+      "source": "domains/crafting/weap/melee/small_mace_q2.c",
+      "sha256": "936bae0efcc081df1e92267448de8170e0824dd639c939fe848dc25c6a802e74",
+      "price_credits": 150,
+      "craftsmanship": 2,
+      "equipment_adapter": "Light Club"
+    },
+    "small-mace-q3": {
+      "source": "domains/crafting/weap/melee/small_mace_q3.c",
+      "sha256": "e69b025f84b6d54648a85c27c493f5ed8d71dd65f9c92932f36dd82d3d99209e",
+      "price_credits": 650,
+      "craftsmanship": 3,
+      "equipment_adapter": "Light Club"
+    },
+    "tiny-club-q0": {
+      "source": "domains/crafting/weap/melee/tiny_club_q0.c",
+      "sha256": "b7bd697ddf3b0be9630a9cfba747d86838f5768d86a02036157ba9be8be8048a",
+      "price_credits": 1,
+      "craftsmanship": 0,
+      "equipment_adapter": "Light Club"
+    },
+    "tiny-club-q1": {
+      "source": "domains/crafting/weap/melee/tiny_club_q1.c",
+      "sha256": "cd9dee3fa71a358fb86699fe2c1b857b4d756b423bcbe036292dacc7d4166903",
+      "price_credits": 3,
+      "craftsmanship": 1,
+      "equipment_adapter": "Light Club"
+    },
+    "tiny-club-q2": {
+      "source": "domains/crafting/weap/melee/tiny_club_q2.c",
+      "sha256": "9b4b8c4ea5cc62e14a350de9f768eb56989687be1f513b435852cac0dc007e96",
+      "price_credits": 15,
+      "craftsmanship": 2,
+      "equipment_adapter": "Light Club"
+    },
+    "tiny-club-q3": {
+      "source": "domains/crafting/weap/melee/tiny_club_q3.c",
+      "sha256": "fac864ab06b95e7488fe31c5b1d0d95a1a8821cb874e44543fb97aa9d90d4128",
+      "price_credits": 500,
+      "craftsmanship": 3,
+      "equipment_adapter": "Light Club"
+    },
+    "chainmail-shirt-q0": {
+      "source": "domains/crafting/armor/chainmail_shirt_q0.c",
+      "sha256": "912cceb82a2907104e595be4b432c6dcf6a60881e8b2ec26b2585f77d86f7369",
+      "price_credits": 1000,
+      "craftsmanship": 0,
+      "equipment_adapter": "Medium Armor"
+    },
+    "chainmail-shirt-q1": {
+      "source": "domains/crafting/armor/chainmail_shirt_q1.c",
+      "sha256": "214954b4e83f444735b7405c33a62c88e549ca2831355ce5665129b995b12e23",
+      "price_credits": 1200,
+      "craftsmanship": 1,
+      "equipment_adapter": "Medium Armor"
+    },
+    "chainmail-shirt-q2": {
+      "source": "domains/crafting/armor/chainmail_shirt_q2.c",
+      "sha256": "3c705137bf3f4d5c54ee8e585be59276985bb20d8da664472d5f87ad925ff36c",
+      "price_credits": 3000,
+      "craftsmanship": 2,
+      "equipment_adapter": "Medium Armor"
+    },
+    "chainmail-shirt-q3": {
+      "source": "domains/crafting/armor/chainmail_shirt_q3.c",
+      "sha256": "ac7e0790e5e8c831e6b5ddadb1919d9c919de0eb8e06385873bb499008d0e90b",
+      "price_credits": 6000,
+      "craftsmanship": 3,
+      "equipment_adapter": "Medium Armor"
+    },
+    "gh3-round": {
+      "source": "domains/savsoul/weap/GH3round.c",
+      "sha256": "c25c93ceeeaa8bd9731d57a871f29b4d4ec57dc84b1b5c668aa53fc24adb7cd9",
+      "price_credits": 5
+    },
+    "gh3-shell": {
+      "source": "domains/savsoul/weap/GH3shell.c",
+      "sha256": "4553769e47ea2868f3a6d1508be40b218e73948b50f488c44043b59c0452c712",
+      "price_credits": 1
+    },
+    "ham-sand": {
+      "source": "domains/savsoul/meals/ham_sand.c",
+      "sha256": "430606ad8f8ab49fcd8532fdd7af46b8b797d7a26c594ab6e99179507b51cacf",
+      "price_credits": 10
+    },
+    "pbnj-sand": {
+      "source": "domains/savsoul/meals/pbnj_sand.c",
+      "sha256": "7b2393f8100019a7dd18fcc37b98f6298ebdaffc6dc58b6ca0af415f2459234a",
+      "price_credits": 14
+    },
+    "wrench": {
+      "source": "domains/savsoul/weap/wrench.c",
+      "sha256": "134235026b8f093677ac11dbb1f420728886544b40b8af37cfed06f343aa778b",
+      "price_credits": 10,
+      "equipment_adapter": "Light Club"
+    }
+  }
+}

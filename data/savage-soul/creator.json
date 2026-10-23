@@ -1,0 +1,26 @@
+{
+  "procedure_credits": 10000,
+  "race_change_xp": 400,
+  "race_change_xp_overrides": {
+    "android": 800,
+    "replicant": 800
+  },
+  "med_bays": [
+    {
+      "area": "savsoul",
+      "room": "start"
+    }
+  ],
+  "race_change_materials": {
+    "android": {
+      "sheet-of-steel": 6,
+      "steel-rod": 4,
+      "rivet": 12
+    },
+    "replicant": {
+      "sheet-of-steel": 6,
+      "steel-rod": 4,
+      "rivet": 12
+    }
+  }
+}

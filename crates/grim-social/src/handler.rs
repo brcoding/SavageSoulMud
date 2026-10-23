@@ -379,6 +379,7 @@ mod tests {
 
     fn character() -> Character {
         Character {
+            credits: 100,
             id: GrimId::new(),
             account_id: GrimId::new(),
             created_at: chrono::Utc::now(),
@@ -388,6 +389,7 @@ mod tests {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
         }
     }
 

@@ -1,0 +1,1121 @@
+{
+  "id": "4ecbb88bdeb8",
+  "slug": "royaloak-wasteland",
+  "name": "Royal Oak Wastelands",
+  "canonical": true,
+  "rooms": [
+    {
+      "id": "4b9da380ac1f",
+      "slug": "wasteland-2-14",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel west. A path west leads into East Southfield.",
+      "exits": {
+        "north": "6647da3a5dcb",
+        "northeast": "ba0ffa940e30",
+        "east": "4f3f20f1a4dc",
+        "west": "b84876414811"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6647da3a5dcb",
+      "slug": "wasteland-2-13",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel west.",
+      "exits": {
+        "north": "ac046482c141",
+        "northeast": "ec429c85c3ca",
+        "east": "ba0ffa940e30",
+        "southeast": "4f3f20f1a4dc",
+        "south": "4b9da380ac1f"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ac046482c141",
+      "slug": "wasteland-2-12",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel west.",
+      "exits": {
+        "north": "228ecbdf9198",
+        "northeast": "405658fbe9e2",
+        "east": "ec429c85c3ca",
+        "southeast": "ba0ffa940e30",
+        "south": "6647da3a5dcb"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "228ecbdf9198",
+      "slug": "wasteland-2-11",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel west.",
+      "exits": {
+        "north": "7f0545e427e8",
+        "northeast": "7f92e8c9fc49",
+        "east": "405658fbe9e2",
+        "southeast": "ec429c85c3ca",
+        "south": "ac046482c141"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7f0545e427e8",
+      "slug": "wasteland-2-10",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel west.",
+      "exits": {
+        "north": "3f56eaa70781",
+        "northeast": "d6aa9fe5e014",
+        "east": "7f92e8c9fc49",
+        "southeast": "405658fbe9e2",
+        "south": "228ecbdf9198"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3f56eaa70781",
+      "slug": "wasteland-2-9",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel west.",
+      "exits": {
+        "north": "d20891d0689a",
+        "northeast": "b8c3d3a60ccd",
+        "east": "d6aa9fe5e014",
+        "southeast": "7f92e8c9fc49",
+        "south": "7f0545e427e8"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d20891d0689a",
+      "slug": "wasteland-2-8",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel west.",
+      "exits": {
+        "north": "0701d39f98df",
+        "northeast": "920cfadf7efc",
+        "east": "b8c3d3a60ccd",
+        "southeast": "d6aa9fe5e014",
+        "south": "3f56eaa70781"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "0701d39f98df",
+      "slug": "wasteland-2-7",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel west.",
+      "exits": {
+        "north": "eb3b3001ac15",
+        "northeast": "5274325228a0",
+        "east": "920cfadf7efc",
+        "southeast": "b8c3d3a60ccd",
+        "south": "d20891d0689a"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eb3b3001ac15",
+      "slug": "wasteland-2-6",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel west.",
+      "exits": {
+        "north": "0d19d5602855",
+        "northeast": "fda281ec747b",
+        "east": "5274325228a0",
+        "southeast": "920cfadf7efc",
+        "south": "0701d39f98df"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "0d19d5602855",
+      "slug": "wasteland-2-5",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel west.",
+      "exits": {
+        "north": "a71835265434",
+        "northeast": "29358bd0035a",
+        "east": "fda281ec747b",
+        "southeast": "5274325228a0",
+        "south": "eb3b3001ac15"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a71835265434",
+      "slug": "wasteland-2-4",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel west.",
+      "exits": {
+        "north": "5bcc5946958e",
+        "northeast": "f82e57183d57",
+        "east": "29358bd0035a",
+        "southeast": "fda281ec747b",
+        "south": "0d19d5602855"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5bcc5946958e",
+      "slug": "wasteland-2-3",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel west.",
+      "exits": {
+        "north": "c58d9c6c3e22",
+        "northeast": "564c82c3503d",
+        "east": "f82e57183d57",
+        "southeast": "29358bd0035a",
+        "south": "a71835265434"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c58d9c6c3e22",
+      "slug": "wasteland-2-2",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel west.",
+      "exits": {
+        "north": "5b7939a489da",
+        "northeast": "b437642f6449",
+        "east": "564c82c3503d",
+        "southeast": "f82e57183d57",
+        "south": "5bcc5946958e"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5b7939a489da",
+      "slug": "wasteland-2-1",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel west.",
+      "exits": {
+        "north": "ca25979585b2",
+        "northeast": "abe59f480a17",
+        "east": "b437642f6449",
+        "southeast": "564c82c3503d",
+        "south": "c58d9c6c3e22"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ca25979585b2",
+      "slug": "wasteland-2-0",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel north.",
+      "exits": {
+        "east": "abe59f480a17",
+        "southeast": "b437642f6449",
+        "south": "5b7939a489da"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4f3f20f1a4dc",
+      "slug": "wasteland-3-14",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "ba0ffa940e30",
+        "northeast": "9a0397aba728",
+        "east": "b59f6fd6dc2e",
+        "west": "4b9da380ac1f",
+        "northwest": "6647da3a5dcb"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ba0ffa940e30",
+      "slug": "wasteland-3-13",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "ec429c85c3ca",
+        "northeast": "aadc06fddbea",
+        "east": "9a0397aba728",
+        "southeast": "b59f6fd6dc2e",
+        "south": "4f3f20f1a4dc",
+        "southwest": "4b9da380ac1f",
+        "west": "6647da3a5dcb",
+        "northwest": "ac046482c141"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ec429c85c3ca",
+      "slug": "wasteland-3-12",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "405658fbe9e2",
+        "northeast": "daa5e4029dae",
+        "east": "aadc06fddbea",
+        "southeast": "9a0397aba728",
+        "south": "ba0ffa940e30",
+        "southwest": "6647da3a5dcb",
+        "west": "ac046482c141",
+        "northwest": "228ecbdf9198"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "405658fbe9e2",
+      "slug": "wasteland-3-11",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "7f92e8c9fc49",
+        "northeast": "c6eb5dddbaf9",
+        "east": "daa5e4029dae",
+        "southeast": "aadc06fddbea",
+        "south": "ec429c85c3ca",
+        "southwest": "ac046482c141",
+        "west": "228ecbdf9198",
+        "northwest": "7f0545e427e8"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7f92e8c9fc49",
+      "slug": "wasteland-3-10",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "d6aa9fe5e014",
+        "northeast": "ffa7eafb8fbd",
+        "east": "c6eb5dddbaf9",
+        "southeast": "daa5e4029dae",
+        "south": "405658fbe9e2",
+        "southwest": "228ecbdf9198",
+        "west": "7f0545e427e8",
+        "northwest": "3f56eaa70781"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d6aa9fe5e014",
+      "slug": "wasteland-3-9",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "b8c3d3a60ccd",
+        "northeast": "7c5c22365ded",
+        "east": "ffa7eafb8fbd",
+        "southeast": "c6eb5dddbaf9",
+        "south": "7f92e8c9fc49",
+        "southwest": "7f0545e427e8",
+        "west": "3f56eaa70781",
+        "northwest": "d20891d0689a"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b8c3d3a60ccd",
+      "slug": "wasteland-3-8",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "920cfadf7efc",
+        "northeast": "87560f480fa0",
+        "east": "7c5c22365ded",
+        "southeast": "ffa7eafb8fbd",
+        "south": "d6aa9fe5e014",
+        "southwest": "3f56eaa70781",
+        "west": "d20891d0689a",
+        "northwest": "0701d39f98df"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "920cfadf7efc",
+      "slug": "wasteland-3-7",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "5274325228a0",
+        "northeast": "28a56e3b90a0",
+        "east": "87560f480fa0",
+        "southeast": "7c5c22365ded",
+        "south": "b8c3d3a60ccd",
+        "southwest": "d20891d0689a",
+        "west": "0701d39f98df",
+        "northwest": "eb3b3001ac15"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5274325228a0",
+      "slug": "wasteland-3-6",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "fda281ec747b",
+        "northeast": "7141ae76f231",
+        "east": "28a56e3b90a0",
+        "southeast": "87560f480fa0",
+        "south": "920cfadf7efc",
+        "southwest": "0701d39f98df",
+        "west": "eb3b3001ac15",
+        "northwest": "0d19d5602855"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fda281ec747b",
+      "slug": "wasteland-3-5",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "29358bd0035a",
+        "northeast": "e2a8105bba53",
+        "east": "7141ae76f231",
+        "southeast": "28a56e3b90a0",
+        "south": "5274325228a0",
+        "southwest": "eb3b3001ac15",
+        "west": "0d19d5602855",
+        "northwest": "a71835265434"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "29358bd0035a",
+      "slug": "wasteland-3-4",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "f82e57183d57",
+        "northeast": "827ce296d736",
+        "east": "e2a8105bba53",
+        "southeast": "7141ae76f231",
+        "south": "fda281ec747b",
+        "southwest": "0d19d5602855",
+        "west": "a71835265434",
+        "northwest": "5bcc5946958e"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f82e57183d57",
+      "slug": "wasteland-3-3",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "564c82c3503d",
+        "northeast": "379ea8b46bc3",
+        "east": "827ce296d736",
+        "southeast": "e2a8105bba53",
+        "south": "29358bd0035a",
+        "southwest": "a71835265434",
+        "west": "5bcc5946958e",
+        "northwest": "c58d9c6c3e22"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "564c82c3503d",
+      "slug": "wasteland-3-2",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "b437642f6449",
+        "northeast": "8fcd967884cc",
+        "east": "379ea8b46bc3",
+        "southeast": "827ce296d736",
+        "south": "f82e57183d57",
+        "southwest": "5bcc5946958e",
+        "west": "c58d9c6c3e22",
+        "northwest": "5b7939a489da"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b437642f6449",
+      "slug": "wasteland-3-1",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "abe59f480a17",
+        "northeast": "ed81ea0f46bf",
+        "east": "8fcd967884cc",
+        "southeast": "379ea8b46bc3",
+        "south": "564c82c3503d",
+        "southwest": "c58d9c6c3e22",
+        "west": "5b7939a489da",
+        "northwest": "ca25979585b2"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "abe59f480a17",
+      "slug": "wasteland-3-0",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction. A large pile of garbage prevents further travel north.",
+      "exits": {
+        "east": "ed81ea0f46bf",
+        "southeast": "8fcd967884cc",
+        "south": "b437642f6449",
+        "southwest": "5b7939a489da",
+        "west": "ca25979585b2"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b59f6fd6dc2e",
+      "slug": "wasteland-4-14",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "9a0397aba728",
+        "west": "4f3f20f1a4dc",
+        "northwest": "ba0ffa940e30"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "9a0397aba728",
+      "slug": "wasteland-4-13",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "aadc06fddbea",
+        "south": "b59f6fd6dc2e",
+        "southwest": "4f3f20f1a4dc",
+        "west": "ba0ffa940e30",
+        "northwest": "ec429c85c3ca"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aadc06fddbea",
+      "slug": "wasteland-4-12",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "daa5e4029dae",
+        "south": "9a0397aba728",
+        "southwest": "ba0ffa940e30",
+        "west": "ec429c85c3ca",
+        "northwest": "405658fbe9e2"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "daa5e4029dae",
+      "slug": "wasteland-4-11",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "c6eb5dddbaf9",
+        "south": "aadc06fddbea",
+        "southwest": "ec429c85c3ca",
+        "west": "405658fbe9e2",
+        "northwest": "7f92e8c9fc49"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c6eb5dddbaf9",
+      "slug": "wasteland-4-10",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "ffa7eafb8fbd",
+        "south": "daa5e4029dae",
+        "southwest": "405658fbe9e2",
+        "west": "7f92e8c9fc49",
+        "northwest": "d6aa9fe5e014"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ffa7eafb8fbd",
+      "slug": "wasteland-4-9",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "7c5c22365ded",
+        "south": "c6eb5dddbaf9",
+        "southwest": "7f92e8c9fc49",
+        "west": "d6aa9fe5e014",
+        "northwest": "b8c3d3a60ccd"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7c5c22365ded",
+      "slug": "wasteland-4-8",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "87560f480fa0",
+        "south": "ffa7eafb8fbd",
+        "southwest": "d6aa9fe5e014",
+        "west": "b8c3d3a60ccd",
+        "northwest": "920cfadf7efc"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "87560f480fa0",
+      "slug": "wasteland-4-7",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "28a56e3b90a0",
+        "south": "7c5c22365ded",
+        "southwest": "b8c3d3a60ccd",
+        "west": "920cfadf7efc",
+        "northwest": "5274325228a0"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "28a56e3b90a0",
+      "slug": "wasteland-4-6",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "7141ae76f231",
+        "south": "87560f480fa0",
+        "southwest": "920cfadf7efc",
+        "west": "5274325228a0",
+        "northwest": "fda281ec747b"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7141ae76f231",
+      "slug": "wasteland-4-5",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "e2a8105bba53",
+        "south": "28a56e3b90a0",
+        "southwest": "5274325228a0",
+        "west": "fda281ec747b",
+        "northwest": "29358bd0035a"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e2a8105bba53",
+      "slug": "wasteland-4-4",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "827ce296d736",
+        "south": "7141ae76f231",
+        "southwest": "fda281ec747b",
+        "west": "29358bd0035a",
+        "northwest": "f82e57183d57"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "827ce296d736",
+      "slug": "wasteland-4-3",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "379ea8b46bc3",
+        "south": "e2a8105bba53",
+        "southwest": "29358bd0035a",
+        "west": "f82e57183d57",
+        "northwest": "564c82c3503d"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "379ea8b46bc3",
+      "slug": "wasteland-4-2",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "8fcd967884cc",
+        "south": "827ce296d736",
+        "southwest": "f82e57183d57",
+        "west": "564c82c3503d",
+        "northwest": "b437642f6449"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8fcd967884cc",
+      "slug": "wasteland-4-1",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "north": "ed81ea0f46bf",
+        "south": "379ea8b46bc3",
+        "southwest": "564c82c3503d",
+        "west": "b437642f6449",
+        "northwest": "abe59f480a17"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ed81ea0f46bf",
+      "slug": "wasteland-4-0",
+      "name": "Wastelands",
+      "description": "The wastelands spread out from here offering little solstice as the grit blows about the area in all direction.",
+      "exits": {
+        "south": "8fcd967884cc",
+        "southwest": "b437642f6449",
+        "west": "abe59f480a17",
+        "north": "fedeaf867c47"
+      },
+      "scenery": [
+        {
+          "name": "wasteland",
+          "keywords": [
+            "wasteland"
+          ],
+          "description": [
+            "A place of violent death and great destruction."
+          ]
+        }
+      ]
+    }
+  ]
+}

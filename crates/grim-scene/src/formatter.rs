@@ -1,4 +1,4 @@
-use grim_color::{escape_codes, visible_width};
+use grim_color::{escape_codes, truncate_visible, visible_width};
 use grim_text::{table, tr, Align};
 
 /// Room identity ids appended to a room title for admins only.
@@ -80,12 +80,18 @@ pub const MINIMAP_WIDTH: usize = 9;
 /// short side pads with blanks, and padding never leaves trailing spaces — a
 /// missing map row emits blanks, a missing text line emits the map row bare.
 pub fn staple_minimap(map_rows: &[String], text: &str) -> String {
-    let text_rows: Vec<&str> = text.split('\n').collect();
+    staple_minimap_width(map_rows, text, 80)
+}
+
+pub fn staple_minimap_width(map_rows: &[String], text: &str, columns: usize) -> String {
+    // Wrap before zipping: client-side wrapping would put continuation text
+    // back in column zero, visually breaking the next minimap row.
+    let text_rows = wrap_room_column(text, columns.clamp(20, 1000) - MINIMAP_WIDTH - 2);
     let height = map_rows.len().max(text_rows.len());
     let mut out = String::new();
     for i in 0..height {
         let map = map_rows.get(i).map(String::as_str).unwrap_or("");
-        let line = text_rows.get(i).copied().unwrap_or("");
+        let line = text_rows.get(i).map(String::as_str).unwrap_or("");
         if line.is_empty() {
             out.push_str(map);
         } else if map.is_empty() {
@@ -103,6 +109,35 @@ pub fn staple_minimap(map_rows: &[String], text: &str) -> String {
         }
     }
     out
+}
+
+/// Wrap the room column using rendered width, preserving explicit newlines
+/// and complete colour tokens. Long unbroken names/URLs must fit too.
+fn wrap_room_column(text: &str, width: usize) -> Vec<String> {
+    let mut rows = Vec::new();
+    for paragraph in text.split('\n') {
+        if visible_width(paragraph) <= width {
+            rows.push(paragraph.to_string());
+            continue;
+        }
+        let mut line = String::new();
+        for mut word in paragraph.split_whitespace() {
+            if !line.is_empty() && visible_width(&line) + 1 + visible_width(word) > width {
+                rows.push(std::mem::take(&mut line));
+            }
+            while visible_width(word) > width {
+                let chunk = truncate_visible(word, width);
+                word = word.get(chunk.len()..).unwrap_or(""); // Token-safe UTF-8 prefix.
+                rows.push(chunk);
+            }
+            if !word.is_empty() {
+                if !line.is_empty() { line.push(' '); }
+                line.push_str(word);
+            }
+        }
+        rows.push(line);
+    }
+    rows
 }
 
 /// Format a look at a specific entity.
@@ -259,9 +294,31 @@ pub fn format_commands(names: &[String]) -> String {
     "Available commands:\n".to_string() + &grim_text::column_grid(names, 80)
 }
 
-/// Format the MOTD.
+/// Choose one nonblank line per login. Runtime reads let operators edit the
+/// list without restarting; the legacy MOTD remains a safe fallback.
 pub fn format_motd() -> String {
-    include_str!("../../../assets/motd.txt").to_string()
+    std::fs::read_to_string("assets/motdlist.txt")
+        .ok()
+        .and_then(|list| random_motd(&list))
+        .unwrap_or_else(|| {
+            std::fs::read_to_string("assets/motd.txt")
+                .unwrap_or_else(|_| include_str!("../../../assets/motd.txt").to_string())
+        })
+}
+
+/// MOTD for immediate reconnects, which do not pause for Enter.
+pub fn format_motd_message() -> String {
+    let text = format_motd();
+    text.trim_end().strip_suffix("(Press Enter to Continue)")
+        .unwrap_or(text.trim_end()).trim_end().to_string()
+}
+
+fn random_motd(list: &str) -> Option<String> {
+    let entries: Vec<_> = list.trim_start_matches('\u{feff}').lines()
+        .map(str::trim).filter(|line| !line.is_empty()).collect();
+    if entries.is_empty() { return None; }
+    let entry = entries[rand::random_range(0..entries.len())];
+    Some(format!("{entry}\n\n(Press Enter to Continue)\n"))
 }
 
 /// One row of a creation menu: a display `name`, an identifying `slug` (matched
@@ -438,6 +495,29 @@ mod tests {
     }
 
     // ── staple_minimap ───────────────────────────────────────────
+
+    #[test]
+    fn long_descriptions_stay_beside_every_minimap_row() {
+        let map = vec!["#--#--#".into(), "|  |  |".into(), "#--@@--#".into(), "|  |  |".into()];
+        let description = "A large wall fashioned of overturned cars, road signs, garbage, and twisted metal parts to the south forms a gate. To the north a few buildings can be seen down a broken asphalt road.";
+        let output = staple_minimap(&map, &format!("Royal Oak Wall Gate\n{description}\n\nExits: north west"));
+        for (i, row) in output.lines().enumerate() {
+            assert!(visible_width(row) <= 80, "{row}");
+            if let Some(map_row) = map.get(i) { assert!(row.starts_with(map_row)); }
+        }
+        let column = output.lines().map(|row|row.get(11..).unwrap_or("")).collect::<Vec<_>>().join(" ");
+        assert!(column.contains("metal parts to the south forms a gate."));
+        assert!(column.contains("Exits: north west"));
+    }
+
+    #[test]
+    fn room_column_wrap_keeps_unicode_and_colour_tokens() {
+        let word = format!("{{R{}{{x", "é".repeat(150));
+        let rows = wrap_room_column(&word, 69);
+        assert!(rows.iter().all(|row| visible_width(row) <= 69));
+        assert_eq!(rows.concat(), word);
+        assert_eq!(wrap_room_column("Title\n\nShort.", 69), vec!["Title", "", "Short."]);
+    }
 
     #[test]
     fn minimap_gutter_matches_canvas_width() {
@@ -664,6 +744,18 @@ mod tests {
     fn commands_grid_empty_is_header_only() {
         assert_eq!(format_commands(&[]), "Available commands:\n");
     }
+    #[test]
+    fn motd_list_uses_one_nonblank_line() {
+        assert!(random_motd("\u{feff} \r\n \n").is_none());
+        assert_eq!(random_motd("\u{feff}Only entry\r\n\r\n"),
+            Some("Only entry\n\n(Press Enter to Continue)\n".to_string()));
+        for _ in 0..16 {
+            let message = random_motd("First\r\n\nSecond\n").unwrap();
+            assert!(message.starts_with("First\n") || message.starts_with("Second\n"));
+            assert!(!(message.contains("First") && message.contains("Second")));
+        }
+    }
+
     #[test]
     fn motd_non_empty() {
         let got = format_motd();

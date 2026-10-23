@@ -273,6 +273,7 @@ mod tests {
             .world_mut()
             .spawn((
                 Character {
+                    credits: 100,
                     id: GrimId::new(),
                     account_id: GrimId::new(),
                     created_at: Utc::now(),
@@ -282,6 +283,7 @@ mod tests {
                     title: None,
                     restrings: Default::default(),
                     config: Default::default(),
+                    game_state: Default::default(),
                 },
                 Actor {
                     race: "human".into(),
@@ -337,6 +339,7 @@ mod tests {
             .world_mut()
             .spawn((
                 Character {
+                    credits: 100,
                     id: GrimId::new(),
                     account_id: GrimId::new(),
                     created_at: Utc::now(),
@@ -346,6 +349,7 @@ mod tests {
                     title: None,
                     restrings: Default::default(),
                     config: Default::default(),
+                    game_state: Default::default(),
                 },
                 Actor {
                     race: "human".into(),

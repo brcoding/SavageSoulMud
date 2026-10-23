@@ -13,6 +13,14 @@ pub struct EngineCommand {
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Command {
+    /// Editable game help topic.
+    Help { topic: String },
+    /// Game-specific Savage Soul character, equipment, and combat commands.
+    SavageSoul { verb: String, arg: String },
+    ListShop,
+    Buy { target: String },
+    Sell { target: String },
+    Credits,
     /// `look` or `look <target>` — the target is a `grim-target` being spec
     /// (`2.goblin` looks at the second; `"two words"` needs every word).
     Look { target: Option<String> },
@@ -23,7 +31,7 @@ pub enum Command {
         value: Option<String>,
     },
     /// `map` — render the area around the actor's room as ASCII (`@` self,
-    /// `#` rooms, `--`/`|` exits, `,`/`'` up/down markers).
+    /// `o` rooms, `--`/`|` exits, `,`/`'` up/down markers).
     Map,
     /// `say <text>` — room-scoped
     Say { text: String },

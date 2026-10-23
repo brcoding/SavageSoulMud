@@ -1,0 +1,2615 @@
+{
+  "robarngrill01": {
+    "name": "Royal Oak Bar N Grill",
+    "description": "A long bar stretches along the back wall showing a number of empty bottles and is riddled with stains lined with bar stools. The room is very dim lit by a few lights under the bar and some track lighting that could have been considered stylish before the building started to rot. \nTo the west a small seating area can be seen. To the east a stairway leads up.",
+    "scenery": [
+      {
+        "name": "stairs",
+        "keywords": [
+          "stairs",
+          "stairway"
+        ],
+        "description": [
+          "To the east an old oak stairway ascends up past a small archway."
+        ]
+      },
+      {
+        "name": "long bar",
+        "keywords": [
+          "long bar",
+          "bar",
+          "long",
+          "wall"
+        ],
+        "description": [
+          "The bar is ancient even by standards of a fossil. The surface is carved with numerous names and innuendoes and stained with countless marks from bottles and what looks like a poem is carved into the bar as well."
+        ]
+      },
+      {
+        "name": "floor",
+        "keywords": [
+          "floor"
+        ],
+        "description": [
+          "The floor is a mix of dirt and peanut shells ground into a fine powder on heavy wooden planks."
+        ]
+      },
+      {
+        "name": "carving",
+        "keywords": [
+          "carving",
+          "poem"
+        ],
+        "description": [
+          "Carved into the bars surface is a poem\n \"As I went down the hill along the wall \nThere was a gate I had leaned at for the view  \nAnd had just turned from when I first saw you  \nAs you came up the hill. We met. But all  \nWe did that day was mingle great and small  \nFootprints in summer dust as if we drew  \nThe figure of our being less than two  \nBut more than one as yet. Your parasol  \nPointed the decimal off with one deep thrust.  \nAnd all the time we talked you seemed to see  \nSomething down there to smile at in the dust.  \n(Oh, it was without prejudice to me!)  \nAfterward I went past what you had passed  \nBefore we met and you what I had passed.\" - Robert Frost"
+        ]
+      },
+      {
+        "name": "bottles",
+        "keywords": [
+          "bottles",
+          "bottle"
+        ],
+        "description": [
+          "The bottles line the back wall and appear to be empty and covered in dust."
+        ]
+      },
+      {
+        "name": "lights",
+        "keywords": [
+          "lights",
+          "lighting",
+          "light",
+          "track lighting"
+        ],
+        "description": [
+          "The lights across the ceiling are dim and flicker on occasion, from under the bar a steady blue light illuminates the bar stools."
+        ]
+      },
+      {
+        "name": "bar stools",
+        "keywords": [
+          "bar stools",
+          "stools",
+          "bar stool",
+          "stool",
+          "seat"
+        ],
+        "description": [
+          "A number of bar stools made of stout wood line the bar along the wall."
+        ]
+      },
+      {
+        "name": "a digital forum",
+        "keywords": [
+          "digital",
+          "forum",
+          "forum board",
+          "screen"
+        ],
+        "description": [
+          "A digital forum is here."
+        ]
+      }
+    ],
+    "exits": {
+      "south": "448e6fa34f92",
+      "north": "3aa2956c1409",
+      "west": "a31a31f0313d",
+      "east": "6b921c243e8d"
+    },
+    "npcs": [
+      {
+        "name": "Rusty",
+        "keywords": [
+          "rusty",
+          "owner",
+          "barkeep",
+          "bartender",
+          "keeper",
+          "vendor"
+        ],
+        "description": [
+          "Rusty is the owner of the Bar N Grill, an old and famous drinking establishment in the heart of Royal Oak.  He has bright red hair and seems to be amused by you looking at him. A shiney button on his shirt says WHITE%^\"Ask me about Crafting\""
+        ],
+        "room_description": "Rusty the barkeep is standing here.",
+        "race": "human",
+        "gender": "male",
+        "level": 20
+      }
+    ]
+  },
+  "robarngrill02": {
+    "name": "Royal Oak Bar N Grill",
+    "description": "There is a small room behind the bar area that should hold extra booze. Currently the room is empty of any hooch.",
+    "scenery": [
+      {
+        "name": "buildings",
+        "keywords": [
+          "buildings",
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "asphalt"
+        ],
+        "description": [
+          "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+        ]
+      },
+      {
+        "name": "medical",
+        "keywords": [
+          "medical",
+          "building"
+        ],
+        "description": [
+          "The building to the west appears to be a medical building."
+        ]
+      }
+    ],
+    "exits": {
+      "south": "16e58ff172b6"
+    }
+  },
+  "robarngrill03": {
+    "name": "Royal Oak Bar N Grill",
+    "description": "The hole has been recently cut into the wall to make room for a new stove. The room radiates from heat coming from the stove. This looks like an ideal place to cook a meal. \nThe main bar area can be seen to the east.",
+    "scenery": [
+      {
+        "name": "seats",
+        "keywords": [
+          "seats",
+          "tables",
+          "chairs",
+          "seat",
+          "table",
+          "chair"
+        ],
+        "description": [
+          "Tables are placed haphazardly across the room with chairs roughly placed nearby them."
+        ]
+      },
+      {
+        "name": "floor",
+        "keywords": [
+          "floor"
+        ],
+        "description": [
+          "The floor is a mix of dirt and peanut shells ground into a fine powder on heavy wooden planks."
+        ]
+      },
+      {
+        "name": "stove",
+        "keywords": [
+          "stove"
+        ],
+        "description": [
+          "The stove is a simple wood fired stove that has a burner on top and a place for a pot or baking sheet to be placed inside."
+        ]
+      }
+    ],
+    "exits": {
+      "east": "16e58ff172b6"
+    }
+  },
+  "robarngrill04": {
+    "name": "Royal Oak Bar N Grill",
+    "description": "A rickety stairway leads up to the second floor that has seen many travelers feet due to the deep grooves in the center of the stairs. \nTo the west the main bar opens up through an archway.",
+    "scenery": [
+      {
+        "name": "stairs",
+        "keywords": [
+          "stairs",
+          "stair",
+          "stairway",
+          "rickety"
+        ],
+        "description": [
+          "The stairs seem sturdy yet very old, they are the type of stairs that will creek just loud enough to wake everyone up."
+        ]
+      },
+      {
+        "name": "archway",
+        "keywords": [
+          "archway"
+        ],
+        "description": [
+          "A large archway leads back into the main bar."
+        ]
+      }
+    ],
+    "exits": {
+      "west": "16e58ff172b6",
+      "up": "a37a2f564e62"
+    }
+  },
+  "robarngrillfl101": {
+    "name": "Royal Oak Bar N Grill Second Floor",
+    "description": "The top of the stairs leads to a small hallway to the west and back down to the bar.",
+    "scenery": [
+      {
+        "name": "buildings",
+        "keywords": [
+          "buildings",
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "asphalt"
+        ],
+        "description": [
+          "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+        ]
+      },
+      {
+        "name": "medical",
+        "keywords": [
+          "medical",
+          "building"
+        ],
+        "description": [
+          "The building to the west appears to be a medical building."
+        ]
+      }
+    ],
+    "exits": {
+      "down": "6b921c243e8d",
+      "west": "fd9195c3139c"
+    }
+  },
+  "robarngrillfl102": {
+    "name": "Royal Oak Bar N Grill Second Floor",
+    "description": "The small hallway leads to two rooms north and south. There is a stairway leading down to the east.",
+    "scenery": [
+      {
+        "name": "buildings",
+        "keywords": [
+          "buildings",
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "asphalt"
+        ],
+        "description": [
+          "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+        ]
+      },
+      {
+        "name": "medical",
+        "keywords": [
+          "medical",
+          "building"
+        ],
+        "description": [
+          "The building to the west appears to be a medical building."
+        ]
+      }
+    ],
+    "exits": {
+      "east": "a37a2f564e62",
+      "west": "c5fe065f96bd",
+      "north": "742e2a65b1ed"
+    }
+  },
+  "robarngrillfl103": {
+    "name": "Royal Oak Bar N Grill Second Floor",
+    "description": "The small room appears to be a standard with a twin bed. This would be a nice quiet place to get some rest at night. \nTo the east a door leads into a hallway.",
+    "scenery": [
+      {
+        "name": "buildings",
+        "keywords": [
+          "buildings",
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "asphalt"
+        ],
+        "description": [
+          "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+        ]
+      },
+      {
+        "name": "medical",
+        "keywords": [
+          "medical",
+          "building"
+        ],
+        "description": [
+          "The building to the west appears to be a medical building."
+        ]
+      }
+    ],
+    "exits": {
+      "east": "fd9195c3139c"
+    }
+  },
+  "rotradersams01": {
+    "name": "Trader Sams Checkout",
+    "description": "A battered counter separates the checkout from shelves of salvaged supplies. Trader Sam watches the entrance from behind the counter. A hand-painted sign hangs above him, and the doorway east leads back to Main Street.",
+    "scenery": [
+      {
+        "name": "counter",
+        "keywords": [
+          "counter",
+          "checkout"
+        ],
+        "description": [
+          "Scratches and dents cover the well-used checkout counter."
+        ]
+      },
+      {
+        "name": "shelves",
+        "keywords": [
+          "shelves",
+          "supplies"
+        ],
+        "description": [
+          "Salvaged supplies are stacked on the shelves behind Sam."
+        ]
+      },
+      {
+        "name": "shop sign",
+        "keywords": [
+          "sign",
+          "shop sign"
+        ],
+        "description": [
+          "TRADER SAM'S — SALVAGED GOODS. Type list, buy <item>, or sell <item>. All prices are in credits."
+        ]
+      }
+    ],
+    "npcs": [
+      {
+        "name": "Trader Sam",
+        "description": [
+          "Sam is a weathered human trader in a patched coat. He stands behind the checkout counter, keeping a careful eye on his stock and anyone who enters."
+        ],
+        "keywords": [
+          "sam",
+          "trader",
+          "merchant",
+          "shopkeeper",
+          "trader sam"
+        ],
+        "room_description": "Trader Sam stands behind the checkout counter.",
+        "race": "human",
+        "level": 1,
+        "gender": "male",
+        "triggers": [
+          {
+            "on": "enter",
+            "script": "self.say(\"Welcome to Trader Sam's! Type list to see my stock. I buy and sell for credits.\")"
+          }
+        ],
+        "shop": {
+          "stock": [
+            {
+              "item": {
+                "name": "shovel",
+                "description": [
+                  "A sturdy shovel with a worn wooden handle."
+                ],
+                "keywords": [
+                  "shovel",
+                  "tool"
+                ],
+                "room_description": "Shovel lies here."
+              },
+              "buy_price": 20,
+              "sell_price": 10
+            },
+            {
+              "item": {
+                "name": "ration pack",
+                "description": [
+                  "A sealed pack of preserved food."
+                ],
+                "keywords": [
+                  "ration",
+                  "rations",
+                  "pack",
+                  "food"
+                ],
+                "room_description": "Ration pack lies here."
+              },
+              "buy_price": 5,
+              "sell_price": 2
+            },
+            {
+              "item": {
+                "name": "water bottle",
+                "description": [
+                  "A capped bottle of clean drinking water."
+                ],
+                "keywords": [
+                  "water",
+                  "bottle",
+                  "drink"
+                ],
+                "room_description": "Water bottle lies here."
+              },
+              "buy_price": 3,
+              "sell_price": 1
+            },
+            {
+              "item": {
+                "name": "Combat Knife",
+                "description": [
+                  "An Average-quality combat knife. It weighs 0.5 kg."
+                ],
+                "keywords": [
+                  "knife",
+                  "combat",
+                  "combat knife",
+                  "weapon"
+                ],
+                "room_description": "Combat Knife lies here."
+              },
+              "buy_price": 200,
+              "sell_price": 100
+            },
+            {
+              "item": {
+                "name": "Pocket Knife",
+                "description": [
+                  "An Average-quality pocket knife. It weighs 0.25 kg."
+                ],
+                "keywords": [
+                  "knife",
+                  "pocket",
+                  "pocket knife",
+                  "weapon"
+                ],
+                "room_description": "Pocket Knife lies here."
+              },
+              "buy_price": 100,
+              "sell_price": 50
+            },
+            {
+              "item": {
+                "name": "Light Sword",
+                "description": [
+                  "An Average-quality light sword. It weighs 1.0 kg."
+                ],
+                "keywords": [
+                  "sword",
+                  "light",
+                  "light sword",
+                  "weapon"
+                ],
+                "room_description": "Light Sword lies here."
+              },
+              "buy_price": 400,
+              "sell_price": 200
+            },
+            {
+              "item": {
+                "name": "Heavy Sword",
+                "description": [
+                  "An Average-quality heavy sword. It weighs 2.0 kg."
+                ],
+                "keywords": [
+                  "sword",
+                  "heavy",
+                  "heavy sword",
+                  "weapon"
+                ],
+                "room_description": "Heavy Sword lies here."
+              },
+              "buy_price": 600,
+              "sell_price": 300
+            },
+            {
+              "item": {
+                "name": "Light Club",
+                "description": [
+                  "An Average-quality light club. It weighs 1.0 kg."
+                ],
+                "keywords": [
+                  "club",
+                  "light",
+                  "light club",
+                  "organic",
+                  "wooden",
+                  "weapon"
+                ],
+                "room_description": "Light Club lies here."
+              },
+              "buy_price": 50,
+              "sell_price": 25
+            },
+            {
+              "item": {
+                "name": "Heavy Club",
+                "description": [
+                  "An Average-quality heavy club. It weighs 2.0 kg."
+                ],
+                "keywords": [
+                  "club",
+                  "heavy",
+                  "heavy club",
+                  "organic",
+                  "wooden",
+                  "weapon"
+                ],
+                "room_description": "Heavy Club lies here."
+              },
+              "buy_price": 100,
+              "sell_price": 50
+            },
+            {
+              "item": {
+                "name": "Light Armor",
+                "description": [
+                  "An Average-quality light armor. It weighs 5.0 kg."
+                ],
+                "keywords": [
+                  "armor",
+                  "light armor",
+                  "light"
+                ],
+                "room_description": "Light Armor lies here."
+              },
+              "buy_price": 500,
+              "sell_price": 250
+            },
+            {
+              "item": {
+                "name": "Medium Armor",
+                "description": [
+                  "An Average-quality medium armor. It weighs 15.0 kg."
+                ],
+                "keywords": [
+                  "armor",
+                  "medium armor",
+                  "medium"
+                ],
+                "room_description": "Medium Armor lies here."
+              },
+              "buy_price": 1000,
+              "sell_price": 500
+            },
+            {
+              "item": {
+                "name": "Heavy Armor",
+                "description": [
+                  "An Average-quality heavy armor. It weighs 35.0 kg."
+                ],
+                "keywords": [
+                  "armor",
+                  "heavy armor",
+                  "heavy"
+                ],
+                "room_description": "Heavy Armor lies here."
+              },
+              "buy_price": 2000,
+              "sell_price": 1000
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "robarngrillfl104": {
+    "name": "Royal Oak Bar N Grill Second Floor",
+    "description": "This is small upstairs room that looks like a standard rental room for the Bar. It looks as if someone was in a hurry when they left, Rusty still hasn't had anyone up to clean the room. The bed is in shambles and the desk and bed have been shoved out of place. \nTo the south a door leads into a hallway.",
+    "scenery": [
+      {
+        "name": "a guest bed",
+        "keywords": [
+          "guest bed",
+          "bed",
+          "covers",
+          "sheet",
+          "pillow",
+          "shambles",
+          "blanket"
+        ],
+        "description": [
+          "This is a comfortable-looking bed for guests to sleep on."
+        ]
+      },
+      {
+        "name": "Wooden Desk",
+        "keywords": [
+          "desk",
+          "wooden desk",
+          "drawer"
+        ],
+        "description": [
+          "The wooden desk is a standard plain desk that has been shoved a few inches from the wall. There is a drawer in the desk that seem to have an obvious boobytrap with a string rigged along the front. Perhaps you can Disarm the drawer."
+        ]
+      }
+    ],
+    "exits": {
+      "south": "fd9195c3139c"
+    },
+    "id": "742e2a65b1ed",
+    "slug": "robarngrillfl104"
+  },
+  "romainstwallgate": {
+    "id": "c075a7d8a465",
+    "slug": "romainstwallgate",
+    "name": "Royal Oak Wall Gate",
+    "description": "A large wall fashioned of overturned cars, road signs, garbage, and twisted metal parts to the south to form a gate. To the north a few buildings can be seen down a broken asphalt road.\nA weathered Savsoul door to the east leads back to Haven.",
+    "exits": {
+      "north": "6e3f3acd2688",
+      "west": "238009a5cbde",
+      "south": "80aa08c140e0",
+      "east": "C7Ee6NQVAfBr"
+    },
+    "scenery": [
+      {
+        "name": "gate",
+        "keywords": [
+          "gate",
+          "fence",
+          "entry",
+          "exit"
+        ],
+        "description": [
+          "The gate is made of a chain link fence covered with street signs and various bits of sheet metal."
+        ]
+      },
+      {
+        "name": "wall",
+        "keywords": [
+          "wall",
+          "cars",
+          "signs",
+          "road signs",
+          "garbage",
+          "metal"
+        ],
+        "description": [
+          "The wall is a pile of rusting metal parts consisting of mostly garbage and old car parts. There are signs that the wall has been repaired many times by piling more garbage where breaks occur."
+        ]
+      },
+      {
+        "name": "bonfire",
+        "keywords": [
+          "bonfire"
+        ],
+        "description": [
+          "A small bonfire is here illuminating the gate, there appears to be fires outside the gate as well."
+        ]
+      }
+    ],
+    "doors": {
+      "east": {
+        "name": "the Savsoul door",
+        "keywords": [
+          "savsoul door",
+          "savsoul",
+          "portal"
+        ],
+        "open": false
+      },
+      "south": {
+        "name": "the south city gate",
+        "keywords": [
+          "gate",
+          "city gate",
+          "south gate"
+        ],
+        "open": false
+      }
+    }
+  },
+  "rogatesystem": {
+    "id": "238009a5cbde",
+    "slug": "rogatesystem",
+    "name": "Royal Oak Gate Controls",
+    "description": "A large metal box has been ripped open showing a bank of lights and a terminal is visible from a small nook near the wall. This appears to be the control system for the electrified wall protecting the city of Royal Oak.\nTo the east the main gate of the wall can be seen.",
+    "exits": {
+      "east": "c075a7d8a465"
+    },
+    "scenery": [
+      {
+        "name": "gate",
+        "keywords": [
+          "gate",
+          "fence",
+          "entry",
+          "exit"
+        ],
+        "description": [
+          "The gate can be seen to the east."
+        ]
+      },
+      {
+        "name": "wall",
+        "keywords": [
+          "wall",
+          "cars",
+          "signs",
+          "road signs",
+          "garbage",
+          "metal"
+        ],
+        "description": [
+          "The wall is a pile of rusting metal parts consisting of mostly garbage and old car parts. There are signs that the wall has been repaired many times by piling more garbage where breaks occur."
+        ]
+      },
+      {
+        "name": "Gate Terminal",
+        "keywords": [
+          "terminal",
+          "interface",
+          "computer",
+          "screen",
+          "display"
+        ],
+        "description": [
+          "A small keyboard is affixed to the wall, with large cables leading upward. The faint orange screen reads: ACCESS LOCKED. Use hack terminal to attempt an emergency override."
+        ],
+        "hackable": {
+          "id": "royal-oak-gate-terminal",
+          "attempts": 4,
+          "lockout_seconds": 60,
+          "effect": {
+            "kind": "royal_oak_gate"
+          }
+        }
+      }
+    ]
+  },
+  "rosouthroad01": {
+    "id": "80aa08c140e0",
+    "slug": "rosouthroad01",
+    "name": "Royal Oak South Road",
+    "description": "The road stretches to the south along a barren wasteland. To the north a sturdy chainlink fence lined with sheet metal and street signs blocks the way.",
+    "exits": {
+      "north": "c075a7d8a465",
+      "south": "87d90bcdc433"
+    },
+    "scenery": [
+      {
+        "name": "gate",
+        "keywords": [
+          "gate",
+          "fence",
+          "entry",
+          "exit"
+        ],
+        "description": [
+          "The gate is made of a chain link fence covered with street signs and various bits of sheet metal."
+        ]
+      },
+      {
+        "name": "wall",
+        "keywords": [
+          "wall",
+          "cars",
+          "signs",
+          "road signs",
+          "garbage",
+          "metal"
+        ],
+        "description": [
+          "The wall is a pile of rusting metal parts consisting of mostly garbage and old car parts. There are signs that the wall has been repaired many times by piling more garbage where breaks occur."
+        ]
+      },
+      {
+        "name": "bonfire",
+        "keywords": [
+          "bonfire"
+        ],
+        "description": [
+          "A small bonfire is here illuminating the gate, there appears to be fires outside the gate as well."
+        ]
+      }
+    ],
+    "doors": {
+      "north": {
+        "name": "the south city gate",
+        "keywords": [
+          "gate",
+          "city gate",
+          "north gate"
+        ],
+        "open": false
+      }
+    }
+  },
+  "rosouthroad02": {
+    "id": "87d90bcdc433",
+    "slug": "rosouthroad02",
+    "name": "Road South of Royal Oak",
+    "description": "The road stretches to the south along a barren wasteland. To the north the wall to the town of Royal Oak can be seen.",
+    "exits": {
+      "north": "80aa08c140e0",
+      "south": "f39205b19c36"
+    },
+    "scenery": [
+      {
+        "name": "gate",
+        "keywords": [
+          "gate",
+          "fence",
+          "entry",
+          "exit"
+        ],
+        "description": [
+          "The gate is made of a chain link fence covered with street signs and various bits of sheet metal."
+        ]
+      },
+      {
+        "name": "wall",
+        "keywords": [
+          "wall",
+          "cars",
+          "signs",
+          "road signs",
+          "garbage",
+          "metal"
+        ],
+        "description": [
+          "The wall is a pile of rusting metal parts consisting of mostly garbage and old car parts. There are signs that the wall has been repaired many times by piling more garbage where breaks occur."
+        ]
+      },
+      {
+        "name": "bonfire",
+        "keywords": [
+          "bonfire"
+        ],
+        "description": [
+          "A small bonfire is here illuminating the gate, there appears to be fires outside the gate as well."
+        ]
+      }
+    ]
+  },
+  "rosouthroad03": {
+    "id": "f39205b19c36",
+    "slug": "rosouthroad03",
+    "name": "Road South of Royal Oak",
+    "description": "The road stretches to the south along a barren wasteland. To the north the city of Royal Oak can be see in the distance.",
+    "exits": {
+      "north": "87d90bcdc433",
+      "south": "c4c0142b0a9f"
+    },
+    "scenery": [
+      {
+        "name": "debris",
+        "keywords": [
+          "debris",
+          "road",
+          "wasteland"
+        ],
+        "description": [
+          "The wasteland is a desolate stretch of road that heads to the north and south of here, rubble and debris litter the grounds making it impossible to pass."
+        ]
+      },
+      {
+        "name": "bonfire",
+        "keywords": [
+          "bonfire"
+        ],
+        "description": [
+          "Far to the north a small bonfire is illuminates the gate."
+        ]
+      }
+    ]
+  },
+  "rosouthroad04": {
+    "id": "c4c0142b0a9f",
+    "slug": "rosouthroad04",
+    "name": "Road South of Royal Oak",
+    "description": "The road stretches to the north and south along a barren wasteland. There is a split in the road here to the southeast the road appears to go down a smaller path. The main road follows the path to the southwest.",
+    "exits": {
+      "north": "f39205b19c36",
+      "southwest": "2e9ad7fb2491",
+      "southeast": "fc3dd3684763"
+    },
+    "scenery": [
+      {
+        "name": "debris",
+        "keywords": [
+          "debris",
+          "road",
+          "wasteland"
+        ],
+        "description": [
+          "The wasteland is a desolate stretch of road that heads to the north of here to the southwest and southeast the road splits. Rubble and debris litter the grounds making it impossible to pass to the east and west."
+        ]
+      }
+    ]
+  },
+  "rosouthroad05": {
+    "id": "2e9ad7fb2491",
+    "slug": "rosouthroad05",
+    "name": "South Road - West Fork",
+    "description": "The road stretches to the south along a barren wasteland. To the north the road heads towards the town of Royal Oak. To the east and south a small shack can be seen in the distance.",
+    "exits": {
+      "south": "714fe875e17d",
+      "northeast": "c4c0142b0a9f",
+      "east": "fc3dd3684763"
+    },
+    "scenery": [
+      {
+        "name": "gate",
+        "keywords": [
+          "gate",
+          "fence",
+          "entry",
+          "exit"
+        ],
+        "description": [
+          "The gate is made of a chain link fence covered with street signs and various bits of sheet metal."
+        ]
+      },
+      {
+        "name": "wall",
+        "keywords": [
+          "wall",
+          "cars",
+          "signs",
+          "road signs",
+          "garbage",
+          "metal"
+        ],
+        "description": [
+          "The wall is a pile of rusting metal parts consisting of mostly garbage and old car parts. There are signs that the wall has been repaired many times by piling more garbage where breaks occur."
+        ]
+      },
+      {
+        "name": "bonfire",
+        "keywords": [
+          "bonfire"
+        ],
+        "description": [
+          "A small bonfire is here illuminating the gate, there appears to be fires outside the gate as well."
+        ]
+      }
+    ]
+  },
+  "rosouthroad06": {
+    "id": "714fe875e17d",
+    "slug": "rosouthroad06",
+    "name": "South Road",
+    "description": "The road stretches to the south along a barren wasteland winding through overturned cars, and debris. To the north the road leads towards a split in the road.",
+    "exits": {
+      "north": "2e9ad7fb2491",
+      "south": "32ba41cd8eba"
+    },
+    "scenery": []
+  },
+  "rosouthroad07": {
+    "id": "32ba41cd8eba",
+    "slug": "rosouthroad07",
+    "name": "South Road",
+    "description": "The road continues to the south along a well worn path through the wastelands. To the west a small trail leads off the road heading towards higher ground. To the north lies the town of Royal Oak.",
+    "exits": {
+      "south": "cd80dd610775",
+      "north": "714fe875e17d"
+    },
+    "scenery": [
+      {
+        "name": "path",
+        "keywords": [
+          "path",
+          "trail"
+        ],
+        "description": [
+          "The trail heading west is imprinted with large footsteps."
+        ]
+      },
+      {
+        "name": "road",
+        "keywords": [
+          "road",
+          "cars",
+          "signs",
+          "road signs",
+          "garbage",
+          "metal"
+        ],
+        "description": [
+          "The road is littered with broken ashphalt and the bones of those long dead. The road is lined with garbage and overturned cars as far as the eye can see."
+        ]
+      },
+      {
+        "name": "bones",
+        "keywords": [
+          "bones"
+        ],
+        "description": [
+          "Scattered bones are dashed about the road and scattered among the garbage."
+        ]
+      }
+    ]
+  },
+  "rosouthroad08": {
+    "id": "cd80dd610775",
+    "slug": "rosouthroad08",
+    "name": "South Road",
+    "description": "A hill rises up to the south which is covered in tires and buried cars. A path curves to the southwest around the hill and heads north. There is a strange green haze falling over the landscape to the west.",
+    "exits": {
+      "north": "32ba41cd8eba",
+      "southwest": "3fe62aff44b2"
+    },
+    "scenery": [
+      {
+        "name": "hill",
+        "keywords": [
+          "hill",
+          "path",
+          "tires",
+          "cars"
+        ],
+        "description": [
+          "A small hill comprised mostly of tires and overturned cars rises to the south."
+        ]
+      },
+      {
+        "name": "green",
+        "keywords": [
+          "green",
+          "haze",
+          "green haze"
+        ],
+        "description": [
+          "The haze seems to hover off to the west casting a green shade over the devastated landscape."
+        ]
+      }
+    ]
+  },
+  "rosouthroad09": {
+    "id": "3fe62aff44b2",
+    "slug": "rosouthroad09",
+    "name": "South Road",
+    "description": "The foot of a hill covered with tires and destroyed cars lies to the southeast. A path curves to the northeast around the hill and heads south. There is a strange green haze falling over the landscape to the west.",
+    "exits": {
+      "northeast": "cd80dd610775",
+      "south": "301bef13f006"
+    },
+    "scenery": [
+      {
+        "name": "hill",
+        "keywords": [
+          "hill",
+          "path",
+          "tires",
+          "cars"
+        ],
+        "description": [
+          "A small hill comprised mostly of tires and overturned cars rises to the southeast."
+        ]
+      },
+      {
+        "name": "green",
+        "keywords": [
+          "green",
+          "haze",
+          "green haze"
+        ],
+        "description": [
+          "The haze seems to hover off to the west casting a green shade over the devastated landscape."
+        ]
+      }
+    ]
+  },
+  "rosouthroad10": {
+    "id": "301bef13f006",
+    "slug": "rosouthroad10",
+    "name": "South Road",
+    "description": "A hill lies to the east that is made up almost entirely of tires and over-turned cars. A small path can be seen leading north and curving southeast around the hill.",
+    "exits": {
+      "north": "3fe62aff44b2",
+      "southeast": "444e8057cebf"
+    },
+    "scenery": [
+      {
+        "name": "hill",
+        "keywords": [
+          "hill",
+          "path",
+          "tires",
+          "cars"
+        ],
+        "description": [
+          "A small hill comprised mostly of tires and overturned cars rises to the northeast."
+        ]
+      },
+      {
+        "name": "green",
+        "keywords": [
+          "green",
+          "haze",
+          "green haze"
+        ],
+        "description": [
+          "The haze seems to hover off to the west casting a green shade over the devastated landscape."
+        ]
+      }
+    ]
+  },
+  "rosouthroad11": {
+    "id": "444e8057cebf",
+    "slug": "rosouthroad11",
+    "name": "South Road",
+    "description": "A large hill covered in tires and overturned cars blocks the view to the north. A small path can be seen heading to the northwest around the hill and heading south into the wastelands.",
+    "exits": {
+      "northwest": "301bef13f006",
+      "south": "b6ac7140c728"
+    },
+    "scenery": [
+      {
+        "name": "hill",
+        "keywords": [
+          "hill",
+          "path",
+          "tires",
+          "cars"
+        ],
+        "description": [
+          "A small hill comprised mostly of tires and overturned cars rises to the north."
+        ]
+      },
+      {
+        "name": "green",
+        "keywords": [
+          "green",
+          "haze",
+          "green haze"
+        ],
+        "description": [
+          "The haze seems to hover off to the west casting a green shade over the devastated landscape."
+        ]
+      }
+    ]
+  },
+  "rosouthroad12": {
+    "id": "b6ac7140c728",
+    "slug": "rosouthroad12",
+    "name": "South Road",
+    "description": "A large hill covered in tires and overturned cars blocks the view to the north. A asphalt road leads north and south off into the barren wasteland beyond.",
+    "exits": {
+      "north": "444e8057cebf",
+      "south": "25b01e8b58fc"
+    },
+    "scenery": [
+      {
+        "name": "hill",
+        "keywords": [
+          "hill",
+          "path",
+          "tires",
+          "cars"
+        ],
+        "description": [
+          "A small hill comprised mostly of tires and overturned cars rises to the north."
+        ]
+      },
+      {
+        "name": "asphalt",
+        "keywords": [
+          "asphalt",
+          "road",
+          "asphalt road"
+        ],
+        "description": [
+          "The asphalt road is broken in many places and large chunks of concrete would make foot travel difficult."
+        ]
+      }
+    ]
+  },
+  "rosouthroad13": {
+    "id": "25b01e8b58fc",
+    "slug": "rosouthroad13",
+    "name": "South Road",
+    "description": "A large hill covered in tires and overturned cars blocks the view to the north. A asphalt road leads north and curves to the southeast leading into the barren wasteland beyond.",
+    "exits": {
+      "north": "b6ac7140c728",
+      "southeast": "04486788b2a0"
+    },
+    "scenery": [
+      {
+        "name": "hill",
+        "keywords": [
+          "hill",
+          "path",
+          "tires",
+          "cars"
+        ],
+        "description": [
+          "A small hill comprised mostly of tires and overturned cars rises to the north."
+        ]
+      },
+      {
+        "name": "asphalt",
+        "keywords": [
+          "asphalt",
+          "road",
+          "asphalt road"
+        ],
+        "description": [
+          "The asphalt road is broken in many places and large chunks of concrete would make foot travel difficult."
+        ]
+      }
+    ]
+  },
+  "rosouthroad14": {
+    "id": "fc3dd3684763",
+    "slug": "rosouthroad14",
+    "name": "Small Forked Path",
+    "description": "The small path follows a curve down south towards what appears to be a small white shack. To the northwest and west the main road can be seen.",
+    "exits": {
+      "west": "2e9ad7fb2491",
+      "northwest": "c4c0142b0a9f",
+      "south": "ebf47934cb30"
+    },
+    "scenery": [
+      {
+        "name": "path",
+        "keywords": [
+          "path",
+          "debris",
+          "road",
+          "wasteland"
+        ],
+        "description": [
+          "The small path heads away from the main road towards a small white shack."
+        ]
+      }
+    ]
+  },
+  "rosouthroad15": {
+    "id": "ebf47934cb30",
+    "slug": "rosouthroad15",
+    "name": "Small Path",
+    "description": "The small path follows a curve down south towards what appears to be a small white shack. The door of the shack is open but you cannot see inside. To the north the path widens.",
+    "exits": {
+      "north": "fc3dd3684763",
+      "south": "efa0cf421e24"
+    },
+    "scenery": [
+      {
+        "name": "path",
+        "keywords": [
+          "path",
+          "debris",
+          "road",
+          "wasteland"
+        ],
+        "description": [
+          "The small path heads away from the main road towards a small white shack."
+        ]
+      },
+      {
+        "name": "white",
+        "keywords": [
+          "white",
+          "small white shack",
+          "small shack",
+          "white shack",
+          "shack",
+          "small",
+          "building",
+          "door"
+        ],
+        "description": [
+          "The small white shack does not appear to be too interesting. The door is open and there is scattered garbage out front."
+        ]
+      }
+    ]
+  },
+  "rosouthroad16": {
+    "id": "04486788b2a0",
+    "slug": "rosouthroad16",
+    "name": "South Road",
+    "description": "The asphalt road heads around a bend to the northwest and splits off to the south and east. To the east it appears there is a abandoned car-charging station for and to the south the road stretches on.",
+    "exits": {
+      "northwest": "25b01e8b58fc",
+      "east": "933dcae6c047",
+      "south": "fedeaf867c47"
+    },
+    "scenery": [
+      {
+        "name": "hill",
+        "keywords": [
+          "hill",
+          "path",
+          "tires",
+          "cars"
+        ],
+        "description": [
+          "A small hill comprised mostly of tires and overturned cars rises to the north."
+        ]
+      },
+      {
+        "name": "asphalt",
+        "keywords": [
+          "asphalt",
+          "road",
+          "asphalt road"
+        ],
+        "description": [
+          "The asphalt road is broken in many places and large chunks of concrete would make foot travel difficult."
+        ]
+      }
+    ]
+  },
+  "rosouthroad17": {
+    "id": "fedeaf867c47",
+    "slug": "rosouthroad17",
+    "name": "South Road",
+    "description": "The asphalt road heads north and south. To the northeast a charging station can be seen. The wastelands stretch out to the south into an empty and hollow world of sand and vaporized buildings.",
+    "exits": {
+      "north": "04486788b2a0"
+    },
+    "scenery": [
+      {
+        "name": "hill",
+        "keywords": [
+          "hill",
+          "path",
+          "tires",
+          "cars"
+        ],
+        "description": [
+          "A small hill comprised mostly of tires and overturned cars rises to the north."
+        ]
+      },
+      {
+        "name": "asphalt",
+        "keywords": [
+          "asphalt",
+          "road",
+          "asphalt road"
+        ],
+        "description": [
+          "The asphalt road is broken in many places and large chunks of concrete would make foot travel difficult."
+        ]
+      }
+    ]
+  },
+  "rochargingstation01": {
+    "id": "933dcae6c047",
+    "slug": "rochargingstation01",
+    "name": "Charging Station Parking Lot",
+    "description": "The parking lot here has an assortment of power terminals for powering cars and devices. It has long since gone dark lacking the infrastructure to keep the lights running. The lot itself seems to be mostly clear of bodies, cars, and garbage suggesting someone is cleaning on a regular basis.",
+    "exits": {
+      "west": "04486788b2a0",
+      "east": "a7a133a18851"
+    },
+    "scenery": [
+      {
+        "name": "tires",
+        "keywords": [
+          "tires",
+          "cars"
+        ],
+        "description": [
+          "No evidence of cars can be seen here, there are deep ruts that suggested heavy use of the lot in the past."
+        ]
+      },
+      {
+        "name": "asphalt",
+        "keywords": [
+          "asphalt",
+          "lot",
+          "parking lot",
+          "parking"
+        ],
+        "description": [
+          "The asphalt log is broken in many places but seems to be clear and ready to open and be used by a vehicle."
+        ]
+      }
+    ]
+  },
+  "rochargingstation02": {
+    "id": "a7a133a18851",
+    "slug": "rochargingstation02",
+    "name": "Royal Oak Charging Station",
+    "description": "The charging station has some emergency lights powering the small area inside adding faintly to the daylight streaming in from the windows that line the wall near the ceiling. Along the wall a large rack of weapons can be seen. Tiny weapons up to massive weapons are lined up with small prices written in marker below each. There seems to be a careful order to everything in the shop in the arrangement of the items. Even the personal effects of the person living here are in a clean yet gritty order.",
+    "exits": {
+      "west": "933dcae6c047"
+    },
+    "scenery": [
+      {
+        "name": "charging station",
+        "keywords": [
+          "charging station",
+          "station",
+          "charging"
+        ],
+        "description": [
+          "The station was once a center for car charging for motorists on the freeway."
+        ]
+      },
+      {
+        "name": "asphalt",
+        "keywords": [
+          "asphalt",
+          "lot",
+          "parking lot",
+          "parking"
+        ],
+        "description": [
+          "The parking lot outside appears to be well maintained and in good order."
+        ]
+      },
+      {
+        "name": "emergency lights",
+        "keywords": [
+          "emergency lights",
+          "lights",
+          "emergency",
+          "glow"
+        ],
+        "description": [
+          "The emergency lights give off a familiar security light glow illuminating the small space in the charging station with an effecient and delicate light."
+        ]
+      },
+      {
+        "name": "window",
+        "keywords": [
+          "window",
+          "wall",
+          "ceiling"
+        ],
+        "description": [
+          "A set of 1 foot windows line the wall near the ceiling allowing light in but not allowing the air to pass through."
+        ]
+      },
+      {
+        "name": "weapons",
+        "keywords": [
+          "weapons",
+          "rack",
+          "prices"
+        ],
+        "description": [
+          "You can find out more about what is available and the price with the list command."
+        ]
+      },
+      {
+        "name": "personal",
+        "keywords": [
+          "personal",
+          "personal effects",
+          "effects"
+        ],
+        "description": [
+          "A small number of personal items are neatly arranged near the wall that suggest this is not only a shop but also a home."
+        ]
+      }
+    ]
+  },
+  "smallwhiteshack": {
+    "id": "efa0cf421e24",
+    "slug": "smallwhiteshack",
+    "name": "Small Shack Interior",
+    "description": "The small shack is littered with garbage and refuse. The walls appear to be slanting in slightly as the paint peels from them. The water damage does not appear to stop at just the walls but the floor as well.",
+    "exits": {
+      "north": "ebf47934cb30"
+    },
+    "scenery": [
+      {
+        "name": "garbage",
+        "keywords": [
+          "garbage",
+          "debris",
+          "junk",
+          "refuse"
+        ],
+        "description": [
+          "You could probably search through the scattered garbage to see if anything valuable turns up."
+        ]
+      },
+      {
+        "name": "walls",
+        "keywords": [
+          "walls",
+          "paint"
+        ],
+        "description": [
+          "The walls look precarious at best. The whole shack seems to be held up by stubbornness more than structure."
+        ]
+      },
+      {
+        "name": "white",
+        "keywords": [
+          "white",
+          "small white shack",
+          "small shack",
+          "white shack",
+          "shack",
+          "small",
+          "building",
+          "door"
+        ],
+        "description": [
+          "The small white shack does not appear to be too interesting. The door is open and there is scattered garbage across the floor."
+        ]
+      }
+    ]
+  },
+  "fadedtrail01": {
+    "id": "0a211e8ca627",
+    "slug": "fadedtrail01",
+    "name": "Faded Trail",
+    "description": "There is a heavy mist here covering the area which gets thicker the farther east you look. A faded trail can be made out heading to the east. The village can be seen to the south west.",
+    "exits": {
+      "southwest": "6e3f3acd2688",
+      "east": "9eca19cfdc3e"
+    },
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "The faded trail seems no more than a game trail."
+        ]
+      }
+    ],
+    "npcs": []
+  },
+  "fadedtrail02": {
+    "id": "9eca19cfdc3e",
+    "slug": "fadedtrail02",
+    "name": "Faded Trail",
+    "description": "There is a heavy mist here covering the area which gets thicker the farther east you look. A faded trail can be made out heading to the east and west.",
+    "exits": {
+      "west": "0a211e8ca627",
+      "east": "9dc74bec16fa"
+    },
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "The faded trail seems no more than a game trail."
+        ]
+      }
+    ],
+    "npcs": []
+  },
+  "fadedtrail03": {
+    "id": "9dc74bec16fa",
+    "slug": "fadedtrail03",
+    "name": "Faded Trail",
+    "description": "There is a heavy mist here covering the area which gets thicker the farther east you look. A faded trail can be made out heading to the east and west.",
+    "exits": {
+      "west": "9eca19cfdc3e",
+      "east": "b7e946e7fcf6"
+    },
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "The faded trail seems no more than a game trail."
+        ]
+      }
+    ],
+    "npcs": []
+  },
+  "fadedtrail04": {
+    "id": "b7e946e7fcf6",
+    "slug": "fadedtrail04",
+    "name": "Faded Trail",
+    "description": "A strange mist covers the area getting thicker to the east where some ruins can be seen poking out from the mist like rib bones from the ground. There is a large sign here.",
+    "exits": {
+      "west": "9dc74bec16fa",
+      "east": "d0e53648f0af"
+    },
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "sign",
+        "keywords": [
+          "sign"
+        ],
+        "description": [
+          "A large warning sign is pushed into the ground.",
+          "Beware the ruins!\n\nHorrors await all who enter, never attack the Archwraith!"
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "The faded trail seems no more than a game trail."
+        ]
+      }
+    ],
+    "npcs": []
+  },
+  "fadedtrail05": {
+    "id": "d0e53648f0af",
+    "slug": "fadedtrail05",
+    "name": "Faded Trail",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. The trail from the west seems to fade and spread out into the ruins to the north, south, and east.",
+    "exits": {
+      "north": "619dd2caf92b",
+      "east": "203d4b274984",
+      "west": "b7e946e7fcf6",
+      "south": "2c28cb6a7fe8"
+    },
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "The faded trail seems no more than a game trail."
+        ]
+      }
+    ],
+    "npcs": []
+  },
+  "zombiemarsh01": {
+    "id": "619dd2caf92b",
+    "slug": "zombiemarsh01",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "south": "d0e53648f0af",
+      "east": "a111875e668c"
+    },
+    "npcs": []
+  },
+  "zombiemarsh02": {
+    "id": "a111875e668c",
+    "slug": "zombiemarsh02",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "east": "2fb2668f6bc4",
+      "west": "619dd2caf92b",
+      "south": "203d4b274984"
+    },
+    "npcs": []
+  },
+  "zombiemarsh03": {
+    "id": "2fb2668f6bc4",
+    "slug": "zombiemarsh03",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "east": "464f611d5f4b",
+      "west": "a111875e668c",
+      "south": "23cdef2aa843"
+    },
+    "npcs": [
+      {
+        "name": "rat",
+        "keywords": [
+          "rat"
+        ],
+        "description": [
+          "A scruffy little dirty rat."
+        ],
+        "room_description": "a rat is here.",
+        "race": "rodent",
+        "gender": "male",
+        "level": 1,
+        "soul": {
+          "total_xp": 0,
+          "size": 0,
+          "mass": 0,
+          "attribute_modifiers": {
+            "body": 1,
+            "leadership": -4,
+            "melee_attack": -2,
+            "defense": -5,
+            "will_power": -3
+          },
+          "defense_mode": "none"
+        },
+        "combat_behavior": {
+          "can_be_trampled": true,
+          "xp_reward": 5
+        }
+      }
+    ]
+  },
+  "zombiemarsh04": {
+    "id": "464f611d5f4b",
+    "slug": "zombiemarsh04",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "east": "96c0bcf0a576",
+      "west": "2fb2668f6bc4",
+      "south": "167f636ed4bb"
+    },
+    "npcs": []
+  },
+  "zombiemarsh05": {
+    "id": "96c0bcf0a576",
+    "slug": "zombiemarsh05",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "east": "97cfa2eee57a",
+      "west": "464f611d5f4b",
+      "south": "0de585c3e645"
+    },
+    "npcs": []
+  },
+  "zombiemarsh06": {
+    "id": "97cfa2eee57a",
+    "slug": "zombiemarsh06",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "west": "96c0bcf0a576",
+      "south": "4af300376acf"
+    },
+    "npcs": [
+      {
+        "name": "spider",
+        "keywords": [
+          "spider",
+          "npc",
+          "mob",
+          "character",
+          "mobile"
+        ],
+        "description": [
+          "This is a humongous hairy spider about the size of a housecat. It looks absolutely vile and it has some kind of viscous fluid is dripping from its mouthparts."
+        ],
+        "room_description": "a huge spider is here.",
+        "race": "arachnid",
+        "gender": "",
+        "level": 5
+      }
+    ]
+  },
+  "zombiemarsh07": {
+    "id": "4af300376acf",
+    "slug": "zombiemarsh07",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here. There is a small patch of disturbed earth here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "road",
+        "keywords": [
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      },
+      {
+        "name": "disturbed",
+        "keywords": [
+          "disturbed",
+          "earth",
+          "ground"
+        ],
+        "description": [
+          "Looking at the fresh dirt you notice a small stone with writing on its side."
+        ]
+      },
+      {
+        "name": "stone",
+        "keywords": [
+          "stone",
+          "writing"
+        ],
+        "description": [
+          "The writing on the stone is hastely written in blood 'Please forgive me, for unleashing this horrible beast. It has stolen the key to the gate for Royal Oak. I feel it leaching my strength away even now. You must find the dagger I left in the inn. Be cauti..'"
+        ]
+      }
+    ],
+    "exits": {
+      "north": "97cfa2eee57a",
+      "west": "0de585c3e645",
+      "south": "9f70de7b5169"
+    },
+    "npcs": [
+      {
+        "name": "archwraith",
+        "keywords": [
+          "archwraith",
+          "wraith",
+          "specter",
+          "ghost",
+          "apparition",
+          "manifestation"
+        ],
+        "description": [
+          "This shadowy manifestation is an undead, unholy apparition, oozing malevolence and spite."
+        ],
+        "room_description": "an archwraith is here.",
+        "race": "wraith",
+        "gender": "neuter",
+        "level": 20
+      }
+    ]
+  },
+  "zombiemarsh08": {
+    "id": "0de585c3e645",
+    "slug": "zombiemarsh08",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "south": "0bd6bc2481df",
+      "east": "4af300376acf",
+      "west": "167f636ed4bb",
+      "north": "96c0bcf0a576"
+    },
+    "npcs": []
+  },
+  "zombiemarsh09": {
+    "id": "167f636ed4bb",
+    "slug": "zombiemarsh09",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "south": "6af45cb1ab7e",
+      "east": "0de585c3e645",
+      "west": "23cdef2aa843",
+      "north": "464f611d5f4b"
+    },
+    "npcs": []
+  },
+  "zombiemarsh10": {
+    "id": "23cdef2aa843",
+    "slug": "zombiemarsh10",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "south": "aa9a89f395f4",
+      "east": "167f636ed4bb",
+      "west": "203d4b274984",
+      "north": "2fb2668f6bc4"
+    },
+    "npcs": []
+  },
+  "zombiemarsh11": {
+    "id": "203d4b274984",
+    "slug": "zombiemarsh11",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "south": "624c451b19cf",
+      "east": "23cdef2aa843",
+      "west": "d0e53648f0af",
+      "north": "a111875e668c"
+    },
+    "npcs": []
+  },
+  "zombiemarsh12": {
+    "id": "624c451b19cf",
+    "slug": "zombiemarsh12",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "north": "203d4b274984",
+      "east": "aa9a89f395f4",
+      "west": "2c28cb6a7fe8"
+    },
+    "npcs": []
+  },
+  "zombiemarsh13": {
+    "id": "aa9a89f395f4",
+    "slug": "zombiemarsh13",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "east": "6af45cb1ab7e",
+      "west": "624c451b19cf",
+      "north": "23cdef2aa843"
+    },
+    "npcs": []
+  },
+  "zombiemarsh14": {
+    "id": "6af45cb1ab7e",
+    "slug": "zombiemarsh14",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "east": "0bd6bc2481df",
+      "west": "aa9a89f395f4",
+      "north": "167f636ed4bb"
+    },
+    "npcs": []
+  },
+  "zombiemarsh15": {
+    "id": "0bd6bc2481df",
+    "slug": "zombiemarsh15",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "east": "9f70de7b5169",
+      "west": "6af45cb1ab7e",
+      "north": "0de585c3e645"
+    },
+    "npcs": [
+      {
+        "name": "rat",
+        "keywords": [
+          "rat"
+        ],
+        "description": [
+          "A scruffy little dirty rat."
+        ],
+        "room_description": "a rat is here.",
+        "race": "rodent",
+        "gender": "male",
+        "level": 1,
+        "soul": {
+          "total_xp": 0,
+          "size": 0,
+          "mass": 0,
+          "attribute_modifiers": {
+            "body": 1,
+            "leadership": -4,
+            "melee_attack": -2,
+            "defense": -5,
+            "will_power": -3
+          },
+          "defense_mode": "none"
+        },
+        "combat_behavior": {
+          "can_be_trampled": true,
+          "xp_reward": 5
+        }
+      }
+    ]
+  },
+  "zombiemarsh16": {
+    "id": "9f70de7b5169",
+    "slug": "zombiemarsh16",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "west": "0bd6bc2481df",
+      "north": "4af300376acf"
+    },
+    "npcs": []
+  },
+  "zombiemarsh17": {
+    "id": "2c28cb6a7fe8",
+    "slug": "zombiemarsh17",
+    "name": "Misty Ruins",
+    "description": "Mist rises up like a wall in all directions. There are pieces of broken building scattered across the ground. There is no clear path here.",
+    "scenery": [
+      {
+        "name": "ruins",
+        "keywords": [
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "trail"
+        ],
+        "description": [
+          "There is no clear path here."
+        ]
+      }
+    ],
+    "exits": {
+      "east": "624c451b19cf",
+      "north": "d0e53648f0af"
+    },
+    "npcs": []
+  },
+  "romainst01": {
+    "id": "6e3f3acd2688",
+    "slug": "romainst01",
+    "name": "South Royal Oak Main Street",
+    "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "exits": {
+      "south": "c075a7d8a465",
+      "north": "684490fede56",
+      "west": "8ce9395af4ab",
+      "northeast": "0a211e8ca627"
+    },
+    "scenery": [
+      {
+        "name": "buildings",
+        "keywords": [
+          "buildings",
+          "ruins",
+          "mist",
+          "destroyed"
+        ],
+        "description": [
+          "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+        ]
+      },
+      {
+        "name": "ground",
+        "keywords": [
+          "ground",
+          "road",
+          "asphalt"
+        ],
+        "description": [
+          "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+        ]
+      },
+      {
+        "name": "medical",
+        "keywords": [
+          "medical",
+          "building"
+        ],
+        "description": [
+          "The building to the west appears to be a medical building."
+        ]
+      }
+    ]
+  },
+  "medical-center-hub": {
+    "id": "8ce9395af4ab",
+    "slug": "medical-center-hub",
+    "name": "Medical Center Hub",
+    "description": "The room is lit by a number of dull florescent lights hanging overhead showing a dirty floor and sagging water soaked plaster walls. What was once a bright center for healing appears to be slowly decaying with time. There is a sign on the west wall above a curtained door.\nUse 'read sign' or 'look sign' to read the medical center sign.",
+    "exits": {
+      "west": "4817dbfbbaa8",
+      "east": "6e3f3acd2688"
+    },
+    "scenery": [
+      {
+        "name": "light",
+        "keywords": [
+          "light",
+          "florescent",
+          "lights"
+        ],
+        "description": [
+          "The florescent lights flicker faintly illuminating the dirty room. They appear to run on the buildings main power supply."
+        ]
+      },
+      {
+        "name": "floor",
+        "keywords": [
+          "floor"
+        ],
+        "description": [
+          "The floor is tiled with misplaced and broken tiles showing years of decay."
+        ]
+      },
+      {
+        "name": "sign",
+        "keywords": [
+          "sign"
+        ],
+        "description": [
+          "A small backlit sign on the wall. Use 'read sign' or 'look sign' to read it.\nFor injuries or purchases please step through the curtain."
+        ]
+      },
+      {
+        "name": "wall",
+        "keywords": [
+          "wall",
+          "walls",
+          "plaster"
+        ],
+        "description": [
+          "The plaster walls are chipped and threatening to fall as time has slowly destroyed them."
+        ]
+      },
+      {
+        "name": "curtain",
+        "keywords": [
+          "curtain",
+          "curtains"
+        ],
+        "description": [
+          "The parted curtains were once sterile white are now torn and threadbare showing an exit to the west."
+        ]
+      }
+    ],
+    "npcs": [
+      {
+        "name": "Sue Rodgers",
+        "keywords": [
+          "Sue Rodgers",
+          "vendor",
+          "human",
+          "sue",
+          "rodgers",
+          "nurse"
+        ],
+        "description": [
+          "Sue Rodgers is a beautiful 6 foot tall blonde nurse. She works quietly as she goes about healing the sick."
+        ],
+        "room_description": "Nurse Sue Rodgers is here.",
+        "race": "human",
+        "gender": "female",
+        "level": 100
+      }
+    ]
+  }
+}

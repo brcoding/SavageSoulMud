@@ -1,0 +1,17 @@
+'use strict';
+const assert=require('node:assert/strict');
+const M=require('./static/map-model.js');
+const room=(id,exits={})=>({id,name:id,slug:id,description:'',exits});
+const area=rooms=>[{path:'data/areas/test.json',id:'area',slug:'test',name:'Test',canonical:true,rooms}];
+const build=rooms=>M.build(area(rooms),{scope:'area',areaPath:'data/areas/test.json'});
+let result=build([room('a',{east:'b',up:'c'}),room('b',{west:'a'}),room('c',{down:'a'})]);
+assert.equal(result.issues.length,0);assert.equal(result.byId.get('c')[0].logical.z,1);
+assert.equal(M.arrange(result,'all').positions.size,3);assert.equal(M.arrange(result,0).positions.size,2);
+result=build([room('a',{east:'b'}),room('b')]);assert(result.issues.some(i=>i.kind==='one-way'&&i.severity==='info'));
+result=build([room('a',{east:'b'}),room('b',{west:'c'}),room('c')]);assert(result.issues.some(i=>i.kind==='return'));
+result=build([room('a',{east:'missing',sideways:'b'}),room('b')]);assert(result.issues.some(i=>i.kind==='missing'));assert(result.issues.some(i=>i.kind==='direction'));
+result=build([room('a'),room('b')]);assert.equal(result.components.length,2);assert(!result.issues.some(i=>i.kind==='overlap'));const positions=[...M.arrange(result,'all').positions.values()];assert.notDeepEqual([positions[0].x,positions[0].y],[positions[1].x,positions[1].y]);
+const inconsistent=[room('a',{east:'b',south:'c'}),room('b',{south:'d'}),room('c',{east:'e'}),room('d'),room('e')];const before=JSON.stringify(inconsistent);result=build(inconsistent);assert(result.issues.some(i=>i.kind==='overlap'));assert.equal(result.nodes.length,5);assert.equal(M.arrange(result,'all').positions.size,5);assert.equal(JSON.stringify(inconsistent),before);
+result=build([room('a',{east:'b',south:'c',southeast:'d'}),room('b',{west:'a'}),room('c',{north:'a',east:'d',northeast:'b'}),room('d',{west:'c',northwest:'a'})]);assert(result.issues.some(i=>i.kind==='crossing'));
+result=build([room('a',{east:'b'}),room('b',{west:'a',north:'c'}),room('c',{south:'b',west:'a'})]);assert(result.issues.some(i=>i.kind==='geometry'));
+console.log('PASS: floor separation, reciprocity, dangling/unknown exits, disconnected packing, visible collisions, crossings, geometry and immutable source.');

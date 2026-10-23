@@ -66,6 +66,8 @@ struct RoomBlueprint {
     slug: String,
     name: String,
     description: String,
+    #[serde(default)]
+    dark: bool,
     /// direction name (`"north"`) -> destination room **Grim ID** (not slug),
     /// so renaming a room's slug never breaks the link.
     #[serde(default)]
@@ -78,12 +80,29 @@ struct RoomBlueprint {
     npcs: Vec<NpcBlueprint>,
     #[serde(default)]
     objects: Vec<ObjectBlueprint>,
+    /// Inspectable room fixtures, deliberately not pickable objects.
+    #[serde(default)]
+    scenery: Vec<ObjectBlueprint>,
 }
 
 /// A non-player character placed in a room.
-#[derive(Deserialize)]
-struct NpcBlueprint {
-    name: String,
+#[derive(Clone,Deserialize)]
+pub(crate) struct NpcBlueprint {
+    #[serde(default)]
+    pub(crate) spawn: Option<crate::population::SpawnConfig>,
+    #[serde(default)]
+    combat_behavior: Option<crate::savage_soul::NpcCombatBehavior>,
+    #[serde(default)]
+    soul: Option<crate::savage_rules::SoulData>,
+    #[serde(default)]
+    shop: Option<crate::shop::Merchant>,
+    #[serde(default)]
+    race: String,
+    #[serde(default = "default_npc_level")]
+    level: u32,
+    #[serde(default)]
+    gender: String,
+    pub(crate) name: String,
     /// Look paragraphs (`look <name>` shows them newline-joined).
     description: Vec<String>,
     /// Extra `look <keyword>` words (matched case-insensitively).
@@ -99,9 +118,15 @@ struct NpcBlueprint {
     triggers: Vec<TriggerDef>,
 }
 
+fn default_npc_level() -> u32 { 1 }
+
 /// A pickable object placed in a room.
 #[derive(Deserialize)]
 struct ObjectBlueprint {
+    #[serde(default)]
+    hackable: Option<crate::hack::Hackable>,
+    #[serde(default)]
+    condition: Option<grim::components::ItemCondition>,
     /// Short name: inventory rows, pickup lines, `get`/`drop` name matching.
     name: String,
     /// Look paragraphs (`look <name>` shows them newline-joined).
@@ -255,6 +280,7 @@ fn stamp_area_rooms(
                 Exits::default(),
             ))
             .id();
+        if r.dark {commands.entity(entity).insert(grim::RoomDarkness);}
         room_ents.insert(r.id, entity);
     }
     Some(area)
@@ -278,8 +304,11 @@ fn wire_area_contents(
             doors: crate::seed_doors::resolve_doors(&bp.slug, &r.slug, &r.doors),
         });
 
-        for npc in &r.npcs {
-            spawn_npc(commands, &bp.slug, npc, from);
+        for (index,npc) in r.npcs.iter().enumerate() {
+            let entity=spawn_npc(commands, &bp.slug, npc, from);
+            commands.entity(entity).insert(crate::population::Candidate{
+                key:format!("{}:{}:{index}",bp.id,r.id),home:from,area:bp.slug.clone(),template:npc.clone(),
+            });
         }
         for obj in &r.objects {
             commands.spawn((
@@ -288,8 +317,18 @@ fn wire_area_contents(
                 Description(obj.description.clone()),
                 Keywords(obj.keywords.clone()),
                 RoomDescription(obj.room_description.clone()),
+                obj.condition.clone().unwrap_or_default(),
                 InRoom { room: from },
             ));
+        }
+        for fixture in &r.scenery {
+            let mut entity = commands.spawn((
+                GrimName(fixture.name.clone()),
+                Description(fixture.description.clone()),
+                Keywords(fixture.keywords.clone()),
+                InRoom { room: from },
+            ));
+            if let Some(hackable) = &fixture.hackable { entity.insert(hackable.clone()); }
         }
     }
 }
@@ -324,7 +363,7 @@ fn resolve_exits(
 /// Stamp one NPC blueprint into `room`: the being bundle plus its compiled
 /// script triggers. A trigger that fails to compile is logged and skipped —
 /// the mob still spawns, triggerless for that moment.
-fn spawn_npc(commands: &mut Commands, area_slug: &str, npc: &NpcBlueprint, room: Entity) {
+pub(crate) fn spawn_npc(commands: &mut Commands, area_slug: &str, npc: &NpcBlueprint, room: Entity)->Entity {
     // Compile each trigger once now: a typo fails loudly at startup (logged,
     // trigger skipped) instead of on a player's move.
     let mut compiled = Vec::with_capacity(npc.triggers.len());
@@ -346,9 +385,13 @@ fn spawn_npc(commands: &mut Commands, area_slug: &str, npc: &NpcBlueprint, room:
         // defaults (no race/build data in blueprints yet): empty race,
         // level 1, neutral gender.
         Actor {
-            race: String::new(),
-            level: 1,
-            gender: Gender::Neutral,
+            race: npc.race.clone(),
+            level: npc.level,
+            gender: match npc.gender.as_str() {
+                "male" => Gender::Male,
+                "female" => Gender::Female,
+                _ => Gender::Neutral,
+            },
         },
         GrimName(npc.name.clone()),
         Description(npc.description.clone()),
@@ -356,6 +399,9 @@ fn spawn_npc(commands: &mut Commands, area_slug: &str, npc: &NpcBlueprint, room:
         RoomDescription(npc.room_description.clone()),
         InRoom { room },
     ));
+    if let Some(shop) = &npc.shop { mob.insert(shop.clone()); }
+    if let Some(soul) = &npc.soul { mob.insert(soul.clone()); }
+    if let Some(behavior) = &npc.combat_behavior { mob.insert(behavior.clone()); }
     if !compiled.is_empty() {
         info!(
             "area '{area_slug}' npc '{}': {} script trigger(s) loaded",
@@ -364,6 +410,7 @@ fn spawn_npc(commands: &mut Commands, area_slug: &str, npc: &NpcBlueprint, room:
         );
         mob.insert(ScriptTriggers(compiled));
     }
+    mob.id()
 }
 
 #[cfg(test)]
@@ -389,7 +436,7 @@ mod tests {
         let square = &bp.rooms[1];
         assert_eq!(tavern.slug, "tavern");
         // starting_room references the tavern by Grim ID, not slug.
-        assert_eq!(bp.starting_room, Some(tavern.id));
+        assert_eq!(bp.starting_room, None);
         // The tavern's north exit references the square by Grim ID.
         assert_eq!(tavern.exits.get("north"), Some(&square.id));
         // The privy hangs east of the tavern behind a closed door; the
@@ -449,14 +496,14 @@ mod tests {
 
         // Two areas: Haven (14 rooms) plus Whisperwood (4 rooms).
         let areas = app.world_mut().query::<&Area>().iter(app.world()).count();
-        assert_eq!(areas, 2);
+        assert_eq!(areas, 12);
         let rooms: Vec<String> = app
             .world_mut()
             .query::<&Room>()
             .iter(app.world())
             .map(|r| r.friendly_id.clone())
             .collect();
-        assert_eq!(rooms.len(), 18);
+        assert_eq!(rooms.len(), 945);
         assert!(rooms.contains(&"tavern".to_string()));
         assert!(rooms.contains(&"bear-cavern".to_string()));
 
@@ -468,7 +515,7 @@ mod tests {
             .unwrap()
             .friendly_id
             .clone();
-        assert_eq!(name, "tavern");
+        assert_eq!(name, "start");
 
         // Tavern's north exit is wired to the square.
         let (tavern_entity, _) = app
@@ -491,11 +538,11 @@ mod tests {
             .query::<&Creature>()
             .iter(app.world())
             .count();
-        assert_eq!(creatures, 2);
+        assert_eq!(creatures, 160);
 
         // Grimmok spawned with both greeting triggers compiled.
-        let mut scripted = app.world_mut().query::<&ScriptTriggers>();
-        let triggers = scripted.iter(app.world()).next().expect("Grimmok scripted");
+        let mut scripted = app.world_mut().query::<(&GrimName, &ScriptTriggers)>();
+        let (_, triggers) = scripted.iter(app.world()).find(|(name, _)| name.0 == "Grimmok Ironhand").expect("Grimmok scripted");
         assert_eq!(triggers.0.len(), 2);
         assert!(triggers.0.iter().any(|t| t.on == TriggerKind::Enter));
         assert!(triggers.0.iter().any(|t| t.on == TriggerKind::AttemptLeave));
@@ -585,8 +632,8 @@ mod tests {
             .iter(app.world())
             .map(|(_, _, nm, kw, line, ir)| (nm.0.clone(), kw.0.clone(), line.0.clone(), ir.room))
             .collect();
-        assert_eq!(found.len(), 1);
-        let (name, keywords, line, room) = &found[0];
+        assert_eq!(found.len(), 4);
+        let (name, keywords, line, room) = found.iter().find(|(name, _, _, _)| name == "brass lantern").expect("brass lantern");
         assert_eq!(name, "brass lantern");
         assert!(keywords.contains(&"lantern".to_string()));
         assert_eq!(
@@ -614,4 +661,17 @@ mod tests {
         app.add_systems(Startup, seed_world);
         app.update();
     }
+}
+
+/// Validate editor input with the same Rust DTOs the live seed loader uses.
+/// This parses only; it never spawns entities or executes scripted triggers.
+pub fn validate_area_json(text: &str) -> Result<(), String> {
+    let area: AreaBlueprint = serde_json::from_str(text).map_err(|e| e.to_string())?;
+    let mut ids = std::collections::HashSet::new();
+    let mut slugs = std::collections::HashSet::new();
+    for room in &area.rooms {
+        if !ids.insert(room.id) { return Err(format!("Duplicate room ID {}", room.id)); }
+        if !slugs.insert(&room.slug) { return Err(format!("Duplicate room slug {}", room.slug)); }
+    }
+    Ok(())
 }

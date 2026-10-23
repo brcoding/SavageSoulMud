@@ -198,6 +198,7 @@ pub(crate) fn authenticate(
                 // transport restores echo on its own when the connection
                 // closes.
                 client.state = ClientState::Disconnecting;
+                warn!("Authentication rejected: incorrect password from {peer}");
                 outputs.write(ConnectionOutput {
                     echo: Some(true),
                     ..ConnectionOutput::new(conn, tr!("login.bad_password"))

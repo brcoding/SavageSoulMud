@@ -3,13 +3,22 @@ name = "example-mud"
 version = "0.1.0"
 edition = "2021"
 # Two bins (the MUD + the copyover test fixture); make bare `cargo run` the MUD.
-default-run = "example-mud"
+default-run = "savsoul"
+
+[[bin]]
+name = "savsoul"
+path = "src/main.rs"
 
 [dependencies]
+rand = "0.10"
 grim = { path = "../grim" }
 bevy = { workspace = true, default-features = false }
 serde = { workspace = true }
 serde_json = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+tungstenite = { version = "0.30", features = ["rustls-tls-webpki-roots"] }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
 
 [dev-dependencies]
 # Dependency-direction guard (tests/dep_direction.rs) reads the workspace graph.

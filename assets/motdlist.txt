@@ -1,0 +1,732 @@
+MOTD: 2195 Detroit weather report: Acid rain with a slight chance of spontaneous gene-altering virus mutations.
+MOTD: Please do not use Walt's ATM to stash your radioactive mutant body parts. It clogs the machinery.
+MOTD: Sue Rogers wants everyone to know she is tired of being used to test experimental sorcery frameworks.
+MOTD: Out of memory errors are just immersive simulations of the post-apocalyptic dark landscape.
+MOTD: Your physics-based radiation counter has reached lethal levels. Please drop your glowing gear before you melt.
+MOTD: Unique Peculiarities System warning: If you suddenly sprout a third leg, update your equipment script accordingly.
+MOTD: The Dead Souls LPC Mudlib crashed because someone tried to combine high-level magic with a 21st-century toaster.
+MOTD: Reminder to Shelties: The outside world is completely free to play, but corpse recovery is definitely not free of pain.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the wastes. Please stop losing them to zombies.
+MOTD: Shamblers are reminded that chewing on other players inside safe zones is strictly against the server rules.
+MOTD: If your unique Peculiarity causes your limbs to fall off in Detroit Ruins, the administration is not responsible.
+MOTD: Today's forecast for Morlocks, Sleepers, and Sorcerers alike: Unstable with a 100% chance of sudden corpse recovery.
+MOTD: Your Peculiarities system has reached lethal levels in the 5000 rooms. Please drop your glowing gear.
+MOTD: Sue Rogers in Detroit Ruins wants everyone to know she is tired of being used to test experimental physics-based radiation counter code.
+MOTD: If your unique Peculiarity causes your limbs to fall off in Midgaard, the administration is not responsible.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against glitched NPCs in Walt's ATM.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Shelter 7. Please stop losing them to mutants.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against cannibals in the irradiated wastes.
+MOTD: Please do not use the Dark Forest to stash your radioactive mutant body parts. It clogs the machinery.
+MOTD: The Dead Souls LPC Mudlib crashed because a Morlock tried to combine high-level magic with advanced machinery.
+MOTD: Please do not use Shelter 7 to stash your radioactive mutant body parts. It clogs the machinery.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against glitched NPCs in the irradiated wastes.
+MOTD: Sue Rogers in Midgaard wants everyone to know she is tired of being used to test experimental gene-altering virus code.
+MOTD: Unique Peculiarities System warning: If you suddenly sprout a third arm while fighting mutants, file a bug report.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Walt's ATM. Please stop losing them to cannibals.
+MOTD: Attention Shelties! The Peculiarities system in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Lost in Detroit Ruins? Just remember: if the description mentions glitched NPCs, you're in the wrong neighborhood.
+MOTD: Lost in the irradiated wastes? Just remember: if the description mentions undead Shamblers, you're in the wrong neighborhood.
+MOTD: RNGesus update: The gene-altering virus has mutated in the Dark Forest. You are now 15% more likely to look like a mutant.
+MOTD: Please do not use Royal Oak to stash your radioactive mutant body parts. It clogs the machinery.
+MOTD: If your unique Peculiarity causes your limbs to fall off in the Dark Forest, the administration is not responsible.
+MOTD: Reminder to all Androids exploring the irradiated wastes: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Lost in the irradiated wastes? Just remember: if the description mentions cannibals, you're in the wrong neighborhood.
+MOTD: Typo fixed: Typing 'look sign' at Royal Oak will no longer cause a nuclear meltdown. Probably.
+MOTD: RNGesus update: The gene-altering virus has mutated in Royal Oak. You are now 15% more likely to look like a mutant.
+MOTD: RNGesus update: The gene-altering virus has mutated in Shelter 7. You are now 15% more likely to look like a mutant.
+MOTD: Unique Peculiarities System warning: If you suddenly sprout a third arm while fighting glitched NPCs, file a bug report.
+MOTD: Sue Rogers in Shelter 7 wants everyone to know she is tired of being used to test experimental Peculiarities system code.
+MOTD: Sue Rogers in Shelter 7 wants everyone to know she is tired of being used to test experimental physics-based radiation counter code.
+MOTD: Unique Peculiarities System warning: If you suddenly sprout a third arm while fighting undead Shamblers, file a bug report.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the irradiated wastes. Please stop losing them to undead Shamblers.
+MOTD: RNGesus update: The gene-altering virus has mutated in Walt's ATM. You are now 15% more likely to look like a mutant.
+MOTD: Sue Rogers in the irradiated wastes wants everyone to know she is tired of being used to test experimental Peculiarities system code.
+MOTD: Attention Morlocks! The Dead Souls LPC library in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shamblers exploring the 5000 rooms: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Lost in the Dark Forest? Just remember: if the description mentions zombies, you're in the wrong neighborhood.
+MOTD: Your physics-based radiation counter has reached lethal levels in Shelter 7. Please drop your glowing gear.
+MOTD: Attention Zisters! The physics-based radiation counter in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: The Dead Souls LPC Mudlib crashed because a Shambler tried to combine high-level magic with advanced machinery.
+MOTD: Reminder to all Shelties exploring the irradiated wastes: the gene-altering virus is active and completely unforgiving.
+MOTD: Lost in Detroit Ruins? Just remember: if the description mentions cannibals, you're in the wrong neighborhood.
+MOTD: Lost in Walt's ATM? Just remember: if the description mentions glitched NPCs, you're in the wrong neighborhood.
+MOTD: If your unique Peculiarity causes your limbs to fall off in the irradiated wastes, the administration is not responsible.
+MOTD: Sue Rogers in the Dark Forest wants everyone to know she is tired of being used to test experimental physics-based radiation counter code.
+MOTD: Typo fixed: Typing 'look sign' at the Dark Forest will no longer cause a nuclear meltdown. Probably.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Midgaard. Please stop losing them to mutants.
+MOTD: Reminder to all Sorcerers exploring the Dark Forest: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Unique Peculiarities System warning: If you suddenly sprout a third arm while fighting cannibals, file a bug report.
+MOTD: RNGesus update: The gene-altering virus has mutated in the irradiated wastes. You are now 15% more likely to look like a mutant.
+MOTD: Welcome back to 2195 Detroit! If you hear mutants chewing in Shelter 7, check if it's chewing on you.
+MOTD: Lost in Royal Oak? Just remember: if the description mentions cannibals, you're in the wrong neighborhood.
+MOTD: Typo fixed: Typing 'look sign' at Detroit Ruins will no longer cause a nuclear meltdown. Probably.
+MOTD: Sue Rogers in Midgaard wants everyone to know she is tired of being used to test experimental Dead Souls LPC library code.
+MOTD: Attention Androids! The gene-altering virus in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Attention Morlocks! The Dead Souls LPC library in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Attention Zisters! The Dead Souls LPC library in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Attention Shamblers! The gene-altering virus in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Welcome back to 2195 Detroit! If you hear undead Shamblers chewing in Royal Oak, check if it's chewing on you.
+MOTD: RNGesus update: The gene-altering virus has mutated in Detroit Ruins. You are now 15% more likely to look like a mutant.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against mutants in Walt's ATM.
+MOTD: Sue Rogers in Royal Oak wants everyone to know she is tired of being used to test experimental Dead Souls LPC library code.
+MOTD: Reminder to all Shamblers exploring the 5000 rooms: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against mutants in Midgaard.
+MOTD: Typo fixed: Typing 'look sign' at Walt's ATM will no longer cause a nuclear meltdown. Probably.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against cannibals in the 5000 rooms.
+MOTD: Attention Morlocks! The physics-based radiation counter in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Lost in Royal Oak? Just remember: if the description mentions undead Shamblers, you're in the wrong neighborhood.
+MOTD: Attention Sorcerers! The physics-based radiation counter in Midgaard has been recalibrated. Watch your vitals.
+MOTD: The Dead Souls LPC Mudlib crashed because a Sheltie tried to combine high-level magic with advanced machinery.
+MOTD: Lost in Midgaard? Just remember: if the description mentions glitched NPCs, you're in the wrong neighborhood.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against mutants in the 5000 rooms.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against undead Shamblers in the Dark Forest.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the 5000 rooms. Please stop losing them to undead Shamblers.
+MOTD: Today's forecast for Zisters, Sleepers, and Sorcerers alike: Unstable with a 100% chance of sudden corpse recovery.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against zombies in the 5000 rooms.
+MOTD: Sue Rogers in Detroit Ruins wants everyone to know she is tired of being used to test experimental gene-altering virus code.
+MOTD: Lost in Shelter 7? Just remember: if the description mentions zombies, you're in the wrong neighborhood.
+MOTD: Sue Rogers in Shelter 7 wants everyone to know she is tired of being used to test experimental gene-altering virus code.
+MOTD: Attention Zisters! The gene-altering virus in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Attention Sorcerers! The physics-based radiation counter in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Your gene-altering virus has reached lethal levels in Midgaard. Please drop your glowing gear.
+MOTD: Lost in the irradiated wastes? Just remember: if the description mentions zombies, you're in the wrong neighborhood.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Royal Oak. Please stop losing them to mutants.
+MOTD: If your unique Peculiarity causes your limbs to fall off in the 5000 rooms, the administration is not responsible.
+MOTD: Please do not use Detroit Ruins to stash your radioactive mutant body parts. It clogs the machinery.
+MOTD: Attention Zisters! The Peculiarities system in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Please do not use the 5000 rooms to stash your radioactive mutant body parts. It clogs the machinery.
+MOTD: Welcome back to 2195 Detroit! If you hear cannibals chewing in Midgaard, check if it's chewing on you.
+MOTD: Reminder to all Sleepers exploring Walt's ATM: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Lost in Shelter 7? Just remember: if the description mentions mutants, you're in the wrong neighborhood.
+MOTD: Welcome back to 2195 Detroit! If you hear glitched NPCs chewing in the Dark Forest, check if it's chewing on you.
+MOTD: Today's forecast for Shelties, Sleepers, and Sorcerers alike: Unstable with a 100% chance of sudden corpse recovery.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against undead Shamblers in the 5000 rooms.
+MOTD: Lost in the Dark Forest? Just remember: if the description mentions cannibals, you're in the wrong neighborhood.
+MOTD: The Dead Souls LPC Mudlib crashed because a Zister tried to combine high-level magic with advanced machinery.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against cannibals in Walt's ATM.
+MOTD: Your Peculiarities system has reached lethal levels in the Dark Forest. Please drop your glowing gear.
+MOTD: Attention Morlocks! The gene-altering virus in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Royal Oak. Please stop losing them to undead Shamblers.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against undead Shamblers in Detroit Ruins.
+MOTD: The Dead Souls LPC Mudlib crashed because a Sorcerer tried to combine high-level magic with advanced machinery.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against glitched NPCs in the 5000 rooms.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the Dark Forest. Please stop losing them to glitched NPCs.
+MOTD: Reminder to all Androids exploring Detroit Ruins: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Androids exploring the 5000 rooms: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Zisters! The gene-altering virus in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Typo fixed: Typing 'look sign' at Shelter 7 will no longer cause a nuclear meltdown. Probably.
+MOTD: Welcome back to 2195 Detroit! If you hear glitched NPCs chewing in Royal Oak, check if it's chewing on you.
+MOTD: Welcome back to 2195 Detroit! If you hear undead Shamblers chewing in Walt's ATM, check if it's chewing on you.
+MOTD: Lost in the 5000 rooms? Just remember: if the description mentions cannibals, you're in the wrong neighborhood.
+MOTD: Reminder to all Shamblers exploring the irradiated wastes: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Please do not use the irradiated wastes to stash your radioactive mutant body parts. It clogs the machinery.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the Dark Forest. Please stop losing them to undead Shamblers.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against undead Shamblers in Royal Oak.
+MOTD: Lost in Midgaard? Just remember: if the description mentions mutants, you're in the wrong neighborhood.
+MOTD: Your Peculiarities system has reached lethal levels in Detroit Ruins. Please drop your glowing gear.
+MOTD: Lost in Walt's ATM? Just remember: if the description mentions cannibals, you're in the wrong neighborhood.
+MOTD: Welcome back to 2195 Detroit! If you hear undead Shamblers chewing in Shelter 7, check if it's chewing on you.
+MOTD: Attention Shelties! The Dead Souls LPC library in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: The Dead Souls LPC Mudlib crashed because a Android tried to combine high-level magic with advanced machinery.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the 5000 rooms. Please stop losing them to glitched NPCs.
+MOTD: The Dead Souls LPC Mudlib crashed because a Sleeper tried to combine high-level magic with advanced machinery.
+MOTD: Your Dead Souls LPC library has reached lethal levels in Midgaard. Please drop your glowing gear.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Detroit Ruins. Please stop losing them to cannibals.
+MOTD: Sue Rogers in Royal Oak wants everyone to know she is tired of being used to test experimental physics-based radiation counter code.
+MOTD: Lost in Walt's ATM? Just remember: if the description mentions mutants, you're in the wrong neighborhood.
+MOTD: Reminder to all Androids exploring the Dark Forest: the Peculiarities system is active and completely unforgiving.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Detroit Ruins. Please stop losing them to undead Shamblers.
+MOTD: Attention Shamblers! The physics-based radiation counter in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Lost in the Dark Forest? Just remember: if the description mentions glitched NPCs, you're in the wrong neighborhood.
+MOTD: RNGesus update: The gene-altering virus has mutated in Midgaard. You are now 15% more likely to look like a mutant.
+MOTD: Reminder to all Androids exploring Walt's ATM: the Peculiarities system is active and completely unforgiving.
+MOTD: Reminder to all Morlocks exploring Midgaard: the Peculiarities system is active and completely unforgiving.
+MOTD: Welcome back to 2195 Detroit! If you hear glitched NPCs chewing in Walt's ATM, check if it's chewing on you.
+MOTD: If your unique Peculiarity causes your limbs to fall off in Shelter 7, the administration is not responsible.
+MOTD: Attention Sorcerers! The Dead Souls LPC library in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: RNGesus update: The gene-altering virus has mutated in the 5000 rooms. You are now 15% more likely to look like a mutant.
+MOTD: If your unique Peculiarity causes your limbs to fall off in Royal Oak, the administration is not responsible.
+MOTD: Typo fixed: Typing 'look sign' at Midgaard will no longer cause a nuclear meltdown. Probably.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the 5000 rooms. Please stop losing them to cannibals.
+MOTD: Today's forecast for Shamblers, Sleepers, and Sorcerers alike: Unstable with a 100% chance of sudden corpse recovery.
+MOTD: Unique Peculiarities System warning: If you suddenly sprout a third arm while fighting zombies, file a bug report.
+MOTD: Attention Morlocks! The gene-altering virus in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Attention Morlocks! The physics-based radiation counter in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring Shelter 7: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Today's forecast for Androids, Sleepers, and Sorcerers alike: Unstable with a 100% chance of sudden corpse recovery.
+MOTD: Sue Rogers in the 5000 rooms wants everyone to know she is tired of being used to test experimental physics-based radiation counter code.
+MOTD: Reminder to all Shelties exploring the 5000 rooms: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring Royal Oak: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Sue Rogers in Detroit Ruins wants everyone to know she is tired of being used to test experimental Peculiarities system code.
+MOTD: Reminder to all Androids exploring Detroit Ruins: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Androids exploring the Dark Forest: the physics-based radiation counter is active and completely unforgiving.
+MOTD: If your unique Peculiarity causes your limbs to fall off in Walt's ATM, the administration is not responsible.
+MOTD: Attention Zisters! The physics-based radiation counter in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Welcome back to 2195 Detroit! If you hear undead Shamblers chewing in the Dark Forest, check if it's chewing on you.
+MOTD: Typo fixed: Typing 'look sign' at the 5000 rooms will no longer cause a nuclear meltdown. Probably.
+MOTD: Welcome back to 2195 Detroit! If you hear cannibals chewing in Royal Oak, check if it's chewing on you.
+MOTD: Welcome back to 2195 Detroit! If you hear mutants chewing in Royal Oak, check if it's chewing on you.
+MOTD: Reminder to all Zisters exploring Midgaard: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Androids! The Dead Souls LPC library in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Sue Rogers in the 5000 rooms wants everyone to know she is tired of being used to test experimental Peculiarities system code.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the irradiated wastes. Please stop losing them to cannibals.
+MOTD: Welcome back to 2195 Detroit! If you hear mutants chewing in Detroit Ruins, check if it's chewing on you.
+MOTD: Reminder to all Shamblers exploring Walt's ATM: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Sue Rogers in the 5000 rooms wants everyone to know she is tired of being used to test experimental Dead Souls LPC library code.
+MOTD: Attention Sorcerers! The Dead Souls LPC library in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Your Peculiarities system has reached lethal levels in Walt's ATM. Please drop your glowing gear.
+MOTD: Your Peculiarities system has reached lethal levels in the irradiated wastes. Please drop your glowing gear.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against zombies in the irradiated wastes.
+MOTD: Reminder to all Sorcerers exploring Walt's ATM: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Sue Rogers in the irradiated wastes wants everyone to know she is tired of being used to test experimental Dead Souls LPC library code.
+MOTD: Lost in Midgaard? Just remember: if the description mentions undead Shamblers, you're in the wrong neighborhood.
+MOTD: Sue Rogers in Walt's ATM wants everyone to know she is tired of being used to test experimental Dead Souls LPC library code.
+MOTD: Sue Rogers in the Dark Forest wants everyone to know she is tired of being used to test experimental Peculiarities system code.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against cannibals in Shelter 7.
+MOTD: Lost in Royal Oak? Just remember: if the description mentions mutants, you're in the wrong neighborhood.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the Dark Forest. Please stop losing them to zombies.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Walt's ATM. Please stop losing them to glitched NPCs.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against zombies in Royal Oak.
+MOTD: Your physics-based radiation counter has reached lethal levels in the Dark Forest. Please drop your glowing gear.
+MOTD: Welcome back to 2195 Detroit! If you hear zombies chewing in Shelter 7, check if it's chewing on you.
+MOTD: Reminder to all Shamblers exploring Midgaard: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against zombies in Detroit Ruins.
+MOTD: Typo fixed: Typing 'look sign' at the irradiated wastes will no longer cause a nuclear meltdown. Probably.
+MOTD: Please do not use Midgaard to stash your radioactive mutant body parts. It clogs the machinery.
+MOTD: Attention Morlocks! The Dead Souls LPC library in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Your gene-altering virus has reached lethal levels in Walt's ATM. Please drop your glowing gear.
+MOTD: Sue Rogers in Walt's ATM wants everyone to know she is tired of being used to test experimental physics-based radiation counter code.
+MOTD: Your physics-based radiation counter has reached lethal levels in Walt's ATM. Please drop your glowing gear.
+MOTD: Your Dead Souls LPC library has reached lethal levels in the 5000 rooms. Please drop your glowing gear.
+MOTD: Reminder to all Androids exploring Shelter 7: the gene-altering virus is active and completely unforgiving.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against mutants in Royal Oak.
+MOTD: Welcome back to 2195 Detroit! If you hear zombies chewing in Walt's ATM, check if it's chewing on you.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the Dark Forest. Please stop losing them to cannibals.
+MOTD: Reminder to all Sorcerers exploring the Dark Forest: the Peculiarities system is active and completely unforgiving.
+MOTD: Your Dead Souls LPC library has reached lethal levels in the irradiated wastes. Please drop your glowing gear.
+MOTD: Sue Rogers in Shelter 7 wants everyone to know she is tired of being used to test experimental Dead Souls LPC library code.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Shelter 7. Please stop losing them to undead Shamblers.
+MOTD: Attention Androids! The Dead Souls LPC library in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Today's forecast for Sleepers, Sleepers, and Sorcerers alike: Unstable with a 100% chance of sudden corpse recovery.
+MOTD: Reminder to all Androids exploring the irradiated wastes: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Morlocks! The physics-based radiation counter in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Welcome back to 2195 Detroit! If you hear cannibals chewing in Detroit Ruins, check if it's chewing on you.
+MOTD: Reminder to all Sorcerers exploring Shelter 7: the Peculiarities system is active and completely unforgiving.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Royal Oak. Please stop losing them to glitched NPCs.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Royal Oak. Please stop losing them to cannibals.
+MOTD: Attention Zisters! The physics-based radiation counter in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Lost in Shelter 7? Just remember: if the description mentions cannibals, you're in the wrong neighborhood.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Shelter 7. Please stop losing them to zombies.
+MOTD: Attention Androids! The Peculiarities system in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Attention Sorcerers! The gene-altering virus in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against cannibals in Midgaard.
+MOTD: Reminder to all Sorcerers exploring Royal Oak: the gene-altering virus is active and completely unforgiving.
+MOTD: Lost in Royal Oak? Just remember: if the description mentions zombies, you're in the wrong neighborhood.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Detroit Ruins. Please stop losing them to glitched NPCs.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against cannibals in the Dark Forest.
+MOTD: Reminder to all Sleepers exploring the Dark Forest: the gene-altering virus is active and completely unforgiving.
+MOTD: Sue Rogers in Royal Oak wants everyone to know she is tired of being used to test experimental Peculiarities system code.
+MOTD: Your gene-altering virus has reached lethal levels in the 5000 rooms. Please drop your glowing gear.
+MOTD: Attention Sleepers! The Peculiarities system in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Today's forecast for Sorcerers, Sleepers, and Sorcerers alike: Unstable with a 100% chance of sudden corpse recovery.
+MOTD: Lost in Walt's ATM? Just remember: if the description mentions zombies, you're in the wrong neighborhood.
+MOTD: Welcome back to 2195 Detroit! If you hear cannibals chewing in Walt's ATM, check if it's chewing on you.
+MOTD: Reminder to all Sorcerers exploring Royal Oak: the Peculiarities system is active and completely unforgiving.
+MOTD: Your physics-based radiation counter has reached lethal levels in the irradiated wastes. Please drop your glowing gear.
+MOTD: Attention Sleepers! The gene-altering virus in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shamblers exploring Walt's ATM: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Zisters! The physics-based radiation counter in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Welcome back to 2195 Detroit! If you hear cannibals chewing in the 5000 rooms, check if it's chewing on you.
+MOTD: Attention Shamblers! The physics-based radiation counter in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Lost in the Dark Forest? Just remember: if the description mentions mutants, you're in the wrong neighborhood.
+MOTD: Lost in Shelter 7? Just remember: if the description mentions glitched NPCs, you're in the wrong neighborhood.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against zombies in Walt's ATM.
+MOTD: Welcome back to 2195 Detroit! If you hear zombies chewing in Midgaard, check if it's chewing on you.
+MOTD: Sue Rogers in the 5000 rooms wants everyone to know she is tired of being used to test experimental gene-altering virus code.
+MOTD: Lost in the 5000 rooms? Just remember: if the description mentions mutants, you're in the wrong neighborhood.
+MOTD: Your physics-based radiation counter has reached lethal levels in Royal Oak. Please drop your glowing gear.
+MOTD: Reminder to all Morlocks exploring Midgaard: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Androids! The gene-altering virus in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the irradiated wastes. Please stop losing them to glitched NPCs.
+MOTD: Reminder to all Shamblers exploring Shelter 7: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Sorcerers exploring the 5000 rooms: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the irradiated wastes. Please stop losing them to mutants.
+MOTD: Attention Sleepers! The gene-altering virus in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shelties exploring Shelter 7: the gene-altering virus is active and completely unforgiving.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against cannibals in Royal Oak.
+MOTD: Lost in Detroit Ruins? Just remember: if the description mentions mutants, you're in the wrong neighborhood.
+MOTD: Reminder to all Morlocks exploring the 5000 rooms: the gene-altering virus is active and completely unforgiving.
+MOTD: Your Dead Souls LPC library has reached lethal levels in Walt's ATM. Please drop your glowing gear.
+MOTD: Sue Rogers in Walt's ATM wants everyone to know she is tired of being used to test experimental gene-altering virus code.
+MOTD: Attention Sleepers! The physics-based radiation counter in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Your gene-altering virus has reached lethal levels in Detroit Ruins. Please drop your glowing gear.
+MOTD: Reminder to all Androids exploring Detroit Ruins: the Peculiarities system is active and completely unforgiving.
+MOTD: Welcome back to 2195 Detroit! If you hear undead Shamblers chewing in Detroit Ruins, check if it's chewing on you.
+MOTD: Welcome back to 2195 Detroit! If you hear zombies chewing in the Dark Forest, check if it's chewing on you.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Walt's ATM. Please stop losing them to undead Shamblers.
+MOTD: Sue Rogers in Royal Oak wants everyone to know she is tired of being used to test experimental gene-altering virus code.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against cannibals in Detroit Ruins.
+MOTD: Reminder to all Sorcerers exploring the 5000 rooms: the Peculiarities system is active and completely unforgiving.
+MOTD: Welcome back to 2195 Detroit! If you hear cannibals chewing in the irradiated wastes, check if it's chewing on you.
+MOTD: Attention Sorcerers! The physics-based radiation counter in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Walt's ATM. Please stop losing them to zombies.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Royal Oak. Please stop losing them to zombies.
+MOTD: Your gene-altering virus has reached lethal levels in Royal Oak. Please drop your glowing gear.
+MOTD: Attention Androids! The physics-based radiation counter in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Attention Sleepers! The gene-altering virus in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Lost in the irradiated wastes? Just remember: if the description mentions glitched NPCs, you're in the wrong neighborhood.
+MOTD: Lost in Midgaard? Just remember: if the description mentions zombies, you're in the wrong neighborhood.
+MOTD: Reminder to all Sorcerers exploring Walt's ATM: the gene-altering virus is active and completely unforgiving.
+MOTD: Welcome back to 2195 Detroit! If you hear mutants chewing in the 5000 rooms, check if it's chewing on you.
+MOTD: Reminder to all Sleepers exploring Midgaard: the Peculiarities system is active and completely unforgiving.
+MOTD: Reminder to all Sleepers exploring Walt's ATM: the gene-altering virus is active and completely unforgiving.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against zombies in the Dark Forest.
+MOTD: Lost in Midgaard? Just remember: if the description mentions cannibals, you're in the wrong neighborhood.
+MOTD: Welcome back to 2195 Detroit! If you hear mutants chewing in Midgaard, check if it's chewing on you.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against glitched NPCs in Detroit Ruins.
+MOTD: Attention Androids! The gene-altering virus in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Your Peculiarities system has reached lethal levels in Midgaard. Please drop your glowing gear.
+MOTD: Welcome back to 2195 Detroit! If you hear glitched NPCs chewing in Shelter 7, check if it's chewing on you.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Shelter 7. Please stop losing them to cannibals.
+MOTD: Reminder to all Sleepers exploring the Dark Forest: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Sorcerers! The Peculiarities system in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Midgaard. Please stop losing them to glitched NPCs.
+MOTD: Your physics-based radiation counter has reached lethal levels in the 5000 rooms. Please drop your glowing gear.
+MOTD: Reminder to all Zisters exploring the irradiated wastes: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Shamblers! The Peculiarities system in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Attention Androids! The gene-altering virus in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Attention Shamblers! The gene-altering virus in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Attention Sleepers! The gene-altering virus in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Midgaard. Please stop losing them to zombies.
+MOTD: Attention Zisters! The Peculiarities system in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Your gene-altering virus has reached lethal levels in the Dark Forest. Please drop your glowing gear.
+MOTD: Your physics-based radiation counter has reached lethal levels in Midgaard. Please drop your glowing gear.
+MOTD: Sue Rogers in the Dark Forest wants everyone to know she is tired of being used to test experimental Dead Souls LPC library code.
+MOTD: Attention Androids! The physics-based radiation counter in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring Detroit Ruins: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Morlocks exploring Detroit Ruins: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Your Dead Souls LPC library has reached lethal levels in Royal Oak. Please drop your glowing gear.
+MOTD: Lost in the 5000 rooms? Just remember: if the description mentions glitched NPCs, you're in the wrong neighborhood.
+MOTD: Welcome back to 2195 Detroit! If you hear mutants chewing in Walt's ATM, check if it's chewing on you.
+MOTD: Attention Shamblers! The Peculiarities system in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Attention Sorcerers! The gene-altering virus in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Walt's ATM. Please stop losing them to mutants.
+MOTD: Attention Sleepers! The gene-altering virus in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Attention Morlocks! The Dead Souls LPC library in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the Dark Forest. Please stop losing them to mutants.
+MOTD: Welcome back to 2195 Detroit! If you hear glitched NPCs chewing in Detroit Ruins, check if it's chewing on you.
+MOTD: Sue Rogers in the irradiated wastes wants everyone to know she is tired of being used to test experimental physics-based radiation counter code.
+MOTD: Attention Shamblers! The Dead Souls LPC library in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against zombies in Midgaard.
+MOTD: Welcome back to 2195 Detroit! If you hear undead Shamblers chewing in the 5000 rooms, check if it's chewing on you.
+MOTD: Welcome back to 2195 Detroit! If you hear mutants chewing in the irradiated wastes, check if it's chewing on you.
+MOTD: Lost in the Dark Forest? Just remember: if the description mentions undead Shamblers, you're in the wrong neighborhood.
+MOTD: Your physics-based radiation counter has reached lethal levels in Detroit Ruins. Please drop your glowing gear.
+MOTD: Attention Shelties! The physics-based radiation counter in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Welcome back to 2195 Detroit! If you hear glitched NPCs chewing in the 5000 rooms, check if it's chewing on you.
+MOTD: Reminder to all Sleepers exploring Detroit Ruins: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Morlocks! The Peculiarities system in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the 5000 rooms. Please stop losing them to mutants.
+MOTD: Attention Shamblers! The Dead Souls LPC library in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring Midgaard: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Sleepers! The Dead Souls LPC library in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Sue Rogers in the Dark Forest wants everyone to know she is tired of being used to test experimental gene-altering virus code.
+MOTD: Attention Shelties! The physics-based radiation counter in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Attention Androids! The Peculiarities system in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Sue Rogers in Midgaard wants everyone to know she is tired of being used to test experimental Peculiarities system code.
+MOTD: Attention Androids! The physics-based radiation counter in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Welcome back to 2195 Detroit! If you hear mutants chewing in the Dark Forest, check if it's chewing on you.
+MOTD: Reminder to all Androids exploring Royal Oak: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Morlocks exploring Walt's ATM: the Peculiarities system is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring the Dark Forest: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Zisters exploring Royal Oak: the gene-altering virus is active and completely unforgiving.
+MOTD: Your gene-altering virus has reached lethal levels in the irradiated wastes. Please drop your glowing gear.
+MOTD: Lost in the irradiated wastes? Just remember: if the description mentions mutants, you're in the wrong neighborhood.
+MOTD: Attention Androids! The Peculiarities system in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Welcome back to 2195 Detroit! If you hear zombies chewing in Detroit Ruins, check if it's chewing on you.
+MOTD: Reminder to all Sorcerers exploring Shelter 7: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Welcome back to 2195 Detroit! If you hear zombies chewing in Royal Oak, check if it's chewing on you.
+MOTD: Reminder to all Shelties exploring the 5000 rooms: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Androids exploring the Dark Forest: the gene-altering virus is active and completely unforgiving.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against glitched NPCs in Royal Oak.
+MOTD: Attention Morlocks! The Peculiarities system in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Welcome back to 2195 Detroit! If you hear zombies chewing in the 5000 rooms, check if it's chewing on you.
+MOTD: Attention Zisters! The Peculiarities system in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Attention Sleepers! The gene-altering virus in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Attention Shamblers! The Dead Souls LPC library in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Lost in Walt's ATM? Just remember: if the description mentions undead Shamblers, you're in the wrong neighborhood.
+MOTD: Reminder to all Zisters exploring Detroit Ruins: the Peculiarities system is active and completely unforgiving.
+MOTD: Reminder to all Sorcerers exploring Detroit Ruins: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Shamblers! The Dead Souls LPC library in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring Walt's ATM: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against mutants in Shelter 7.
+MOTD: Reminder to all Sleepers exploring Midgaard: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Shamblers! The Peculiarities system in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Attention Morlocks! The physics-based radiation counter in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Attention Androids! The Dead Souls LPC library in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring Shelter 7: the gene-altering virus is active and completely unforgiving.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against glitched NPCs in the Dark Forest.
+MOTD: Sue Rogers in the irradiated wastes wants everyone to know she is tired of being used to test experimental gene-altering virus code.
+MOTD: Attention Sleepers! The Peculiarities system in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Attention Sleepers! The Peculiarities system in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Attention Sorcerers! The Dead Souls LPC library in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Welcome back to 2195 Detroit! If you hear undead Shamblers chewing in the irradiated wastes, check if it's chewing on you.
+MOTD: Attention Shelties! The Dead Souls LPC library in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sleepers exploring Royal Oak: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Sorcerers! The Peculiarities system in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shelties exploring Detroit Ruins: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Sue Rogers in Detroit Ruins wants everyone to know she is tired of being used to test experimental Dead Souls LPC library code.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Detroit Ruins. Please stop losing them to zombies.
+MOTD: Reminder to all Shelties exploring the irradiated wastes: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Shamblers! The gene-altering virus in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring Midgaard: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against zombies in Shelter 7.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the irradiated wastes. Please stop losing them to zombies.
+MOTD: Attention Androids! The physics-based radiation counter in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Attention Sorcerers! The Peculiarities system in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against undead Shamblers in the irradiated wastes.
+MOTD: Attention Morlocks! The Dead Souls LPC library in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Attention Shamblers! The Peculiarities system in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Attention Zisters! The Peculiarities system in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Your gene-altering virus has reached lethal levels in Shelter 7. Please drop your glowing gear.
+MOTD: Attention Shelties! The physics-based radiation counter in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Attention Sorcerers! The physics-based radiation counter in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Attention Shelties! The gene-altering virus in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Attention Zisters! The physics-based radiation counter in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring Detroit Ruins: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Shelties! The Peculiarities system in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shelties exploring Royal Oak: the gene-altering virus is active and completely unforgiving.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Midgaard. Please stop losing them to cannibals.
+MOTD: Attention Morlocks! The physics-based radiation counter in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Detroit Ruins. Please stop losing them to mutants.
+MOTD: Attention Shamblers! The Dead Souls LPC library in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring Royal Oak: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Morlocks! The gene-altering virus in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shelties exploring the Dark Forest: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Welcome back to 2195 Detroit! If you hear glitched NPCs chewing in Midgaard, check if it's chewing on you.
+MOTD: Attention Sleepers! The Dead Souls LPC library in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against glitched NPCs in Shelter 7.
+MOTD: Lost in Shelter 7? Just remember: if the description mentions undead Shamblers, you're in the wrong neighborhood.
+MOTD: Attention Morlocks! The gene-altering virus in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Welcome back to 2195 Detroit! If you hear zombies chewing in the irradiated wastes, check if it's chewing on you.
+MOTD: Reminder to all Androids exploring the 5000 rooms: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Androids exploring Midgaard: the gene-altering virus is active and completely unforgiving.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against undead Shamblers in Shelter 7.
+MOTD: Reminder to all Shamblers exploring Walt's ATM: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Morlocks exploring the irradiated wastes: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Morlocks exploring the 5000 rooms: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Zisters! The Peculiarities system in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Attention Shamblers! The gene-altering virus in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Midgaard. Please stop losing them to undead Shamblers.
+MOTD: Reminder to all Androids exploring Royal Oak: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Shelties! The gene-altering virus in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Attention Zisters! The physics-based radiation counter in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against undead Shamblers in Walt's ATM.
+MOTD: Reminder to all Androids exploring the 5000 rooms: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Welcome back to 2195 Detroit! If you hear undead Shamblers chewing in Midgaard, check if it's chewing on you.
+MOTD: Reminder to all Sorcerers exploring Royal Oak: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Your Peculiarities system has reached lethal levels in Shelter 7. Please drop your glowing gear.
+MOTD: Reminder to all Androids exploring the 5000 rooms: the Peculiarities system is active and completely unforgiving.
+MOTD: Your Peculiarities system has reached lethal levels in Royal Oak. Please drop your glowing gear.
+MOTD: Reminder to all Androids exploring Royal Oak: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Sorcerers! The gene-altering virus in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against glitched NPCs in Midgaard.
+MOTD: Reminder to all Shelties exploring Detroit Ruins: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring Royal Oak: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Shamblers! The Peculiarities system in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sleepers exploring the irradiated wastes: the Peculiarities system is active and completely unforgiving.
+MOTD: Your Dead Souls LPC library has reached lethal levels in Shelter 7. Please drop your glowing gear.
+MOTD: Reminder to all Zisters exploring Detroit Ruins: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Zisters exploring the Dark Forest: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Shamblers! The gene-altering virus in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Attention Morlocks! The physics-based radiation counter in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Sue Rogers in Walt's ATM wants everyone to know she is tired of being used to test experimental Peculiarities system code.
+MOTD: Reminder to all Shelties exploring Midgaard: the Peculiarities system is active and completely unforgiving.
+MOTD: Reminder to all Sleepers exploring the irradiated wastes: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Android maintenance note: Replacement limbs are hard to find in the 5000 rooms. Please stop losing them to zombies.
+MOTD: Welcome back to 2195 Detroit! If you hear cannibals chewing in Shelter 7, check if it's chewing on you.
+MOTD: Lost in the 5000 rooms? Just remember: if the description mentions zombies, you're in the wrong neighborhood.
+MOTD: Reminder to all Shelties exploring Shelter 7: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Morlocks! The Peculiarities system in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Attention Zisters! The gene-altering virus in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Androids exploring the irradiated wastes: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Sorcerers! The Dead Souls LPC library in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Your Dead Souls LPC library has reached lethal levels in the Dark Forest. Please drop your glowing gear.
+MOTD: Reminder to all Sorcerers exploring Detroit Ruins: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Sorcerers exploring the Dark Forest: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Sleepers! The physics-based radiation counter in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Attention Sorcerers! The gene-altering virus in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring the Dark Forest: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Androids! The Dead Souls LPC library in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against undead Shamblers in Midgaard.
+MOTD: Reminder to all Shelties exploring Walt's ATM: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Zisters exploring the irradiated wastes: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Zisters! The Dead Souls LPC library in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring the irradiated wastes: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Morlocks! The gene-altering virus in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring Midgaard: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Shelties! The Peculiarities system in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Lost in Detroit Ruins? Just remember: if the description mentions undead Shamblers, you're in the wrong neighborhood.
+MOTD: Lost in Royal Oak? Just remember: if the description mentions glitched NPCs, you're in the wrong neighborhood.
+MOTD: Reminder to all Shelties exploring Midgaard: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Sorcerers! The gene-altering virus in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Attention Sorcerers! The gene-altering virus in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring Walt's ATM: the Peculiarities system is active and completely unforgiving.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against mutants in the irradiated wastes.
+MOTD: Reminder to all Zisters exploring Walt's ATM: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Shelties exploring the Dark Forest: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Zisters! The Dead Souls LPC library in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring Midgaard: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring Walt's ATM: the Peculiarities system is active and completely unforgiving.
+MOTD: Reminder to all Shelties exploring Royal Oak: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Shelties! The gene-altering virus in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Attention Shelties! The gene-altering virus in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring Detroit Ruins: the Peculiarities system is active and completely unforgiving.
+MOTD: Lost in the 5000 rooms? Just remember: if the description mentions undead Shamblers, you're in the wrong neighborhood.
+MOTD: Reminder to all Androids exploring Midgaard: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Shelties exploring the irradiated wastes: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Shelties exploring Detroit Ruins: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Shamblers! The physics-based radiation counter in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring Midgaard: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Shelties! The physics-based radiation counter in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Attention Shamblers! The gene-altering virus in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Android maintenance note: Replacement limbs are hard to find in Shelter 7. Please stop losing them to glitched NPCs.
+MOTD: Sue Rogers in Midgaard wants everyone to know she is tired of being used to test experimental physics-based radiation counter code.
+MOTD: Welcome back to 2195 Detroit! If you hear glitched NPCs chewing in the irradiated wastes, check if it's chewing on you.
+MOTD: Attention Zisters! The Dead Souls LPC library in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring the Dark Forest: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Zisters exploring Shelter 7: the gene-altering virus is active and completely unforgiving.
+MOTD: Your Dead Souls LPC library has reached lethal levels in Detroit Ruins. Please drop your glowing gear.
+MOTD: Reminder to all Zisters exploring Royal Oak: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Shamblers! The Dead Souls LPC library in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shamblers exploring Midgaard: the Peculiarities system is active and completely unforgiving.
+MOTD: Reminder to all Shelties exploring Walt's ATM: the Peculiarities system is active and completely unforgiving.
+MOTD: Reminder to all Morlocks exploring Shelter 7: the Peculiarities system is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring Detroit Ruins: the Peculiarities system is active and completely unforgiving.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against mutants in the Dark Forest.
+MOTD: Reminder to all Zisters exploring Detroit Ruins: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Android Alert: Oil leaks are not an excuse for poor performance against mutants in Detroit Ruins.
+MOTD: Attention Androids! The Dead Souls LPC library in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring the irradiated wastes: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Lost in Detroit Ruins? Just remember: if the description mentions zombies, you're in the wrong neighborhood.
+MOTD: Reminder to all Androids exploring Walt's ATM: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Morlocks exploring Shelter 7: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Shamblers! The Peculiarities system in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sleepers exploring Midgaard: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Sleepers! The Dead Souls LPC library in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shamblers exploring the 5000 rooms: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Zisters! The gene-altering virus in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Attention Sorcerers! The physics-based radiation counter in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sleepers exploring Shelter 7: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring Shelter 7: the Peculiarities system is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring the Dark Forest: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Zisters exploring the 5000 rooms: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Morlocks! The Peculiarities system in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring the 5000 rooms: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Sleepers exploring Detroit Ruins: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring the 5000 rooms: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Androids! The Peculiarities system in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shelties exploring Detroit Ruins: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Androids! The Peculiarities system in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Attention Shelties! The Peculiarities system in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Androids exploring the Dark Forest: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Androids! The gene-altering virus in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring the irradiated wastes: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Zisters! The Peculiarities system in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shamblers exploring Royal Oak: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Sorcerers! The Peculiarities system in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Attention Morlocks! The Dead Souls LPC library in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sleepers exploring Royal Oak: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Sorcerers! The Peculiarities system in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sleepers exploring the 5000 rooms: the Peculiarities system is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring the Dark Forest: the Peculiarities system is active and completely unforgiving.
+MOTD: Reminder to all Sleepers exploring the Dark Forest: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Welcome back to 2195 Detroit! If you hear cannibals chewing in the Dark Forest, check if it's chewing on you.
+MOTD: Attention Zisters! The Peculiarities system in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Attention Sorcerers! The physics-based radiation counter in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring the 5000 rooms: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Sleepers! The Peculiarities system in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Attention Sleepers! The Dead Souls LPC library in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shamblers exploring Shelter 7: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Shelties exploring Walt's ATM: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Morlocks exploring the 5000 rooms: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Androids exploring Shelter 7: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Shelties! The Peculiarities system in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring the 5000 rooms: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Zisters! The gene-altering virus in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring the irradiated wastes: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Shelties! The Dead Souls LPC library in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sleepers exploring the Dark Forest: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Sorcerers! The gene-altering virus in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Attention Sleepers! The gene-altering virus in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shelties exploring the 5000 rooms: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Sleepers! The Peculiarities system in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shamblers exploring Detroit Ruins: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Shelties! The gene-altering virus in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring Shelter 7: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Sleepers! The Dead Souls LPC library in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring Walt's ATM: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Morlocks! The Peculiarities system in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Attention Sleepers! The Peculiarities system in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Attention Shamblers! The Peculiarities system in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring the irradiated wastes: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Shamblers! The physics-based radiation counter in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring the Dark Forest: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Shelties! The physics-based radiation counter in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shelties exploring Walt's ATM: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring the irradiated wastes: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Sleepers exploring Royal Oak: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Zisters! The physics-based radiation counter in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Attention Sorcerers! The Peculiarities system in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Androids exploring Midgaard: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Androids! The Dead Souls LPC library in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sleepers exploring the 5000 rooms: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring the irradiated wastes: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Sleepers! The gene-altering virus in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring Detroit Ruins: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Shelties! The gene-altering virus in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Attention Shamblers! The Dead Souls LPC library in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Androids exploring Shelter 7: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Sorcerers! The gene-altering virus in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Androids exploring Shelter 7: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Shelties exploring the 5000 rooms: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Sorcerers! The Dead Souls LPC library in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sleepers exploring the 5000 rooms: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring Shelter 7: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Sleepers exploring Walt's ATM: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Sleepers! The physics-based radiation counter in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Attention Shelties! The Peculiarities system in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Attention Sleepers! The Dead Souls LPC library in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Attention Androids! The physics-based radiation counter in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring Royal Oak: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Androids! The Peculiarities system in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring the Dark Forest: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Sleepers! The physics-based radiation counter in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Attention Shelties! The physics-based radiation counter in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sleepers exploring Midgaard: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Sorcerers! The Peculiarities system in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring Royal Oak: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Zisters! The gene-altering virus in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring Walt's ATM: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Androids! The Dead Souls LPC library in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring Shelter 7: the Peculiarities system is active and completely unforgiving.
+MOTD: Reminder to all Sleepers exploring Walt's ATM: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Androids! The Peculiarities system in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Attention Shamblers! The Peculiarities system in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shelties exploring Midgaard: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Sorcerers exploring the 5000 rooms: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Zisters exploring the 5000 rooms: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Shelties exploring Royal Oak: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Morlocks! The Peculiarities system in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring Midgaard: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Sleepers exploring Shelter 7: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Shelties! The gene-altering virus in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring Walt's ATM: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Shamblers! The physics-based radiation counter in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Attention Morlocks! The gene-altering virus in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sleepers exploring Shelter 7: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Zisters! The Peculiarities system in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Attention Sleepers! The physics-based radiation counter in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Attention Morlocks! The Dead Souls LPC library in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Attention Morlocks! The gene-altering virus in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring the irradiated wastes: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Shelties exploring the Dark Forest: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Androids exploring Royal Oak: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Androids! The gene-altering virus in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Attention Shelties! The Dead Souls LPC library in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Attention Shelties! The physics-based radiation counter in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sleepers exploring Royal Oak: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Morlocks exploring Royal Oak: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Sleepers exploring Detroit Ruins: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Shelties exploring Shelter 7: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Sleepers! The Peculiarities system in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Attention Zisters! The Dead Souls LPC library in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Attention Androids! The physics-based radiation counter in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shamblers exploring Detroit Ruins: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Shelties! The Dead Souls LPC library in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring Walt's ATM: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Shelties! The Peculiarities system in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring the Dark Forest: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring Midgaard: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring Detroit Ruins: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Zisters exploring Shelter 7: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Sorcerers! The Dead Souls LPC library in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Attention Sleepers! The Peculiarities system in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Attention Shamblers! The physics-based radiation counter in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Attention Androids! The gene-altering virus in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Attention Zisters! The gene-altering virus in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Attention Morlocks! The physics-based radiation counter in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Attention Androids! The gene-altering virus in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring Detroit Ruins: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Zisters! The Dead Souls LPC library in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Attention Sleepers! The Dead Souls LPC library in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Attention Shelties! The gene-altering virus in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Attention Shamblers! The physics-based radiation counter in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Attention Sleepers! The Dead Souls LPC library in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Attention Sleepers! The physics-based radiation counter in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring Royal Oak: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Morlocks exploring the irradiated wastes: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Shamblers! The gene-altering virus in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring the irradiated wastes: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Shelties! The Peculiarities system in Royal Oak has been recalibrated. Watch your vitals.
+MOTD: Attention Zisters! The Dead Souls LPC library in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shelties exploring the irradiated wastes: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Androids! The physics-based radiation counter in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring Midgaard: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Zisters exploring the Dark Forest: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Sleepers exploring the irradiated wastes: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Shamblers! The gene-altering virus in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Attention Zisters! The gene-altering virus in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Attention Zisters! The physics-based radiation counter in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring Shelter 7: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Morlocks exploring Walt's ATM: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Shelties! The Dead Souls LPC library in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Androids exploring Midgaard: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring the Dark Forest: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Sorcerers! The physics-based radiation counter in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shamblers exploring Midgaard: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Sorcerers! The Dead Souls LPC library in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Attention Androids! The Dead Souls LPC library in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring Royal Oak: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring the irradiated wastes: the Peculiarities system is active and completely unforgiving.
+MOTD: Reminder to all Sleepers exploring the irradiated wastes: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Morlocks exploring Midgaard: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Shelties exploring Shelter 7: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Sorcerers exploring the 5000 rooms: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Androids! The Peculiarities system in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Androids exploring Walt's ATM: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Androids exploring the irradiated wastes: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Morlocks! The Dead Souls LPC library in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring Royal Oak: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Morlocks! The physics-based radiation counter in Walt's ATM has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Zisters exploring the Dark Forest: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Morlocks! The Peculiarities system in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring the Dark Forest: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Sorcerers! The Dead Souls LPC library in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Attention Sleepers! The physics-based radiation counter in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Attention Morlocks! The Peculiarities system in Detroit Ruins has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sleepers exploring Detroit Ruins: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Shamblers! The Dead Souls LPC library in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sorcerers exploring Midgaard: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Zisters exploring Walt's ATM: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Morlocks! The gene-altering virus in the irradiated wastes has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shelties exploring Royal Oak: the Peculiarities system is active and completely unforgiving.
+MOTD: Attention Shelties! The Dead Souls LPC library in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring the irradiated wastes: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Sleepers! The physics-based radiation counter in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shelties exploring the Dark Forest: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Sorcerers! The Peculiarities system in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Androids exploring Detroit Ruins: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Shelties! The Dead Souls LPC library in the 5000 rooms has been recalibrated. Watch your vitals.
+MOTD: Attention Androids! The physics-based radiation counter in Midgaard has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Morlocks exploring Shelter 7: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Shelties! The physics-based radiation counter in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Shelties exploring Midgaard: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Reminder to all Sleepers exploring Shelter 7: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Reminder to all Shamblers exploring Royal Oak: the physics-based radiation counter is active and completely unforgiving.
+MOTD: Attention Sorcerers! The physics-based radiation counter in Shelter 7 has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Sleepers exploring the 5000 rooms: the gene-altering virus is active and completely unforgiving.
+MOTD: Reminder to all Morlocks exploring Detroit Ruins: the gene-altering virus is active and completely unforgiving.
+MOTD: Attention Zisters! The Dead Souls LPC library in the Dark Forest has been recalibrated. Watch your vitals.
+MOTD: Reminder to all Androids exploring Walt's ATM: the Dead Souls LPC library is active and completely unforgiving.
+MOTD: Attention Shamblers! The physics-based radiation counter in Detroit Ruins has been recalibrated. Watch your vitals.

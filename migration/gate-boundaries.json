@@ -1,0 +1,12 @@
+[
+  {
+    "room": "ROSouthRoad07",
+    "direction": "west",
+    "target": "/domains/savsoul/room/MorlockCavesTrail01.c"
+  },
+  {
+    "room": "ROSouthRoad17",
+    "direction": "south",
+    "target": "/domains/savsoul/virtual/ROWasteland/4,0"
+  }
+]

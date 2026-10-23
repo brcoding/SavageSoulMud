@@ -1,13 +1,48 @@
-target/
-coverage/
-# Player/runtime saves are not committed; committed content lives in
-# data/areas (world blueprints) and data/socials (social overrides).
-/data/*
-!/data/areas/
-!/data/socials/
-# Per-crate test scratch data dirs.
+# Rust/build output
+/target/
+/bin/
+/coverage/
+*.pdb
+*.rs.bk
+rustc-ice-*.txt
+**/mutants.out*/
+# Runtime/private state; authored world and rules stay tracked
+/var/
+/data/accounts/
+/data/characters/
+/data/rebuild-backups/
+/data/bans.json
+/data/tls-proxy-port.txt
+/data/intermud.json
+/data/grapevine.json
+/data/zebedee.json
 crates/*/data/
-
-# Agent worktrees and local planning (not committed)
-.claude/
+*.log
+.env
+.env.*
+!.env.example
+creds.txt
+credentials.json
+credentials.*.json
+session-signing.key
+api.key
+*.pem
+*.key
+*.p12
+*.pfx
+# Editor/dependency caches
+**/.vs/
+**/.idea/
+**/__pycache__/
+*.py[cod]
+**/node_modules/
+/website/dist/
+# Local planning and original backup archives
 .planning/
+.claude/
+/migration/current-lpc/
+/migration/development-source/
+/migration/production-bar-source/
+/migration/production-gate-source/
+/migration/production-marsh-source/
+/migration/savsoul-lpc/

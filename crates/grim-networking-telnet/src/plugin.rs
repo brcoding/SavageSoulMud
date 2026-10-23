@@ -8,14 +8,18 @@ use grim_networking::{
     DisconnectRequest, WiznetAlert,
 };
 
-use crate::bridge::{send_network_commands, TelnetPort};
+use crate::bridge::{send_network_commands, send_protocol_commands, TelnetPort};
 use crate::copyover::{
     finish_copyover, install_copyover_signal, poll_copyover_signal, trigger_copyover_on_due,
     CopyoverDone, CopyoverSignal,
 };
 use crate::drain::{drain_creations, drain_dependents, PendingDrain};
 use crate::limits::TelnetLimits;
+use crate::protocols::{TelnetInput, TelnetOutput};
 use crate::server::start_telnet_server;
+
+#[derive(SystemSet,Debug,Clone,PartialEq,Eq,Hash)]
+pub enum TelnetSystems {Send}
 
 pub struct TelnetPlugin {
     pub port: u16,
@@ -39,6 +43,8 @@ impl TelnetPlugin {
 impl Plugin for TelnetPlugin {
     fn build(&self, app: &mut App) {
         app.add_message::<ConnectionEstablished>()
+            .add_message::<TelnetInput>()
+            .add_message::<TelnetOutput>()
             .add_message::<ConnectionInput>()
             .add_message::<ConnectionClosed>()
             .add_message::<ConnectionOutput>()
@@ -59,7 +65,8 @@ impl Plugin for TelnetPlugin {
                     // the next system), dependents resolve after.
                     drain_creations,
                     drain_dependents,
-                    send_network_commands,
+                    send_protocol_commands.in_set(TelnetSystems::Send),
+                    send_network_commands.in_set(TelnetSystems::Send),
                     // Bridge an expired in-game `copyover` countdown into the
                     // same latched flag `SIGUSR2` raises; `poll` picks it up
                     // below (order is non-critical — the flag latches).

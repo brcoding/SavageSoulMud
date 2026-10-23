@@ -15,7 +15,8 @@ use std::time::Duration;
 use bevy::log::{error, info};
 use bevy::prelude::*;
 use grim_networking::{HandoverEntry, HandoverManifest};
-use tokio::net::{TcpListener, TcpStream};
+use tokio::io::AsyncReadExt;
+use tokio::net::{TcpListener, TcpSocket, TcpStream};
 
 use crate::bridge::{
     register_connection, Conn, CopyoverConn, NetworkBridge, NetworkCommand, NetworkEvent,
@@ -122,6 +123,7 @@ async fn serve(
 
     let (listener, resumed, ack) = adopt_or_bind(handoff, port).await;
     let listener_fd = listener.as_raw_fd();
+    let proxy_listener = bind_proxy_listener();
 
     resume_connections(&state, resumed);
     signal_ready(ack);
@@ -129,6 +131,7 @@ async fn serve(
         &state,
         listener,
         listener_fd,
+        proxy_listener,
         &mut to_tokio_rx,
         copyover_done,
     )
@@ -169,9 +172,10 @@ async fn adopt_or_bind(
 
 /// Bind the telnet listener fresh (the non-copyover path).
 async fn bind_fresh(port: u16) -> TcpListener {
-    match TcpListener::bind(("0.0.0.0", port)).await {
+    let host = std::env::var("GRIM_BIND_HOST").unwrap_or_else(|_| "127.0.0.1".into());
+    match TcpListener::bind((host.as_str(), port)).await {
         Ok(listener) => {
-            info!("Telnet server listening on port {}", port);
+            info!("Telnet server listening on {host}:{port}");
             listener
         }
         Err(e) => {
@@ -179,10 +183,76 @@ async fn bind_fresh(port: u16) -> TcpListener {
             // swallowed and leave the MUD running with no transport. Exit the
             // whole process instead (systemd `Restart=on-failure` handles the
             // real box; locally you get a clean, obvious crash).
-            error!("failed to bind telnet listener on port {port}: {e}");
+            error!("failed to bind telnet listener on {host}:{port}: {e}");
             std::process::exit(1);
         }
     }
+}
+
+/// An explicitly enabled, loopback-only ingress for our independent TLS proxy.
+/// SO_REUSEPORT lets a copyover successor bind before its predecessor exits.
+/// The ordinary Telnet listener never interprets PROXY headers.
+fn bind_proxy_listener() -> Option<TcpListener> {
+    let configured = std::env::var("GRIM_PROXY_PORT").ok().or_else(||std::fs::read_to_string("data/tls-proxy-port.txt").ok())?;
+    let port = configured.trim().parse::<u16>().ok().filter(|p| *p != 0);
+    let Some(port) = port else {
+        error!("invalid GRIM_PROXY_PORT; trusted proxy ingress disabled");
+        return None;
+    };
+    let bind = || -> std::io::Result<TcpListener> {
+        let socket = TcpSocket::new_v4()?;
+        socket.set_reuseaddr(true)?;
+        socket.set_reuseport(true)?;
+        socket.bind(([127, 0, 0, 1], port).into())?;
+        socket.listen(128)
+    };
+    match bind() {
+        Ok(listener) => {
+            info!("Trusted TLS proxy ingress listening on 127.0.0.1:{port}");
+            Some(listener)
+        }
+        Err(e) => {
+            error!("failed to bind configured trusted proxy ingress: {e}");
+            std::process::exit(1);
+        }
+    }
+}
+
+fn parse_proxy_header(header: &[u8]) -> Option<SocketAddr> {
+    if header.len() > 108 || !header.ends_with(b"\r\n") {
+        return None;
+    }
+    let line = std::str::from_utf8(&header[..header.len() - 2]).ok()?;
+    let fields: Vec<_> = line.split(' ').collect();
+    if fields.len() != 6 || fields[0] != "PROXY" {
+        return None;
+    }
+    let source = fields[2].parse::<std::net::IpAddr>().ok()?;
+    let destination = fields[3].parse::<std::net::IpAddr>().ok()?;
+    match fields[1] {
+        "TCP4" if source.is_ipv4() && destination.is_ipv4() => {}
+        "TCP6" if source.is_ipv6() && destination.is_ipv6() => {}
+        _ => return None,
+    }
+    let port = fields[4].parse::<u16>().ok().filter(|port| *port > 0)?;
+    fields[5].parse::<u16>().ok().filter(|port| *port > 0)?;
+    Some(SocketAddr::new(source, port))
+}
+
+async fn read_proxy_header(socket: &mut TcpStream) -> Option<SocketAddr> {
+    tokio::time::timeout(Duration::from_secs(2), async {
+        let mut header = Vec::with_capacity(108);
+        while header.len() < 108 {
+            header.push(socket.read_u8().await.ok()?);
+            if header.ends_with(b"\r\n") {
+                return parse_proxy_header(&header);
+            }
+        }
+        None
+    })
+    .await
+    .ok()
+    .flatten()
 }
 
 /// Re-adopt each socket carried across a copyover into a live connection and ask
@@ -195,9 +265,11 @@ fn resume_connections(state: &ServeState, resumed: Vec<(RawFd, HandoverEntry)>) 
         if std_stream.set_nonblocking(true).is_err() {
             continue;
         }
-        let addr = std_stream
-            .peer_addr()
-            .unwrap_or_else(|_| "0.0.0.0:0".parse().unwrap());
+        let addr = entry.peer_addr.unwrap_or_else(|| {
+            std_stream
+                .peer_addr()
+                .unwrap_or_else(|_| "0.0.0.0:0".parse().unwrap())
+        });
         let Ok(socket) = TcpStream::from_std(std_stream) else {
             continue;
         };
@@ -242,13 +314,45 @@ async fn run_accept_loop(
     state: &ServeState,
     listener: TcpListener,
     listener_fd: RawFd,
+    proxy_listener: Option<TcpListener>,
     to_tokio_rx: &mut tokio::sync::mpsc::Receiver<NetworkCommand>,
     copyover_done: Arc<AtomicBool>,
 ) {
     let mut accepting = true;
+    let proxy_slots = Arc::new(tokio::sync::Semaphore::new(64));
+    let (proxy_tx, mut proxy_rx) = tokio::sync::mpsc::channel::<(TcpStream, SocketAddr)>(32);
 
     loop {
         tokio::select! {
+            Ok((mut socket, peer)) = async {
+                match &proxy_listener {
+                    Some(listener) => listener.accept().await,
+                    None => std::future::pending().await,
+                }
+            }, if accepting => {
+                // Only this dedicated loopback listener is trusted. A bounded
+                // handshake runs separately so slow headers cannot stall I/O.
+                if !peer.ip().is_loopback() { continue; }
+                let Ok(slot) = proxy_slots.clone().try_acquire_owned() else { continue; };
+                let tx = proxy_tx.clone();
+                tokio::spawn(async move {
+                    let _slot = slot;
+                    if let Some(addr) = read_proxy_header(&mut socket).await {
+                        let _ = tx.try_send((socket, addr));
+                    }
+                });
+            }
+            Some((socket, addr)) = proxy_rx.recv(), if accepting => {
+                match gate_accept(&state.limits, &state.shed) {
+                    AcceptOutcome::Admit => admit_connection(state, socket, addr),
+                    AcceptOutcome::AdmitWith(ev) => {
+                        let _ = state.to_bevy_tx.send(ev);
+                        admit_connection(state, socket, addr);
+                    }
+                    AcceptOutcome::Drop => {},
+                    AcceptOutcome::DropWith(ev) => { let _ = state.to_bevy_tx.send(ev); }
+                }
+            }
             Ok((socket, addr)) = listener.accept(), if accepting => {
                 match gate_accept(&state.limits, &state.shed) {
                     AcceptOutcome::Admit => admit_connection(state, socket, addr),
@@ -278,10 +382,19 @@ async fn run_accept_loop(
                     }
                     NetworkCommand::Disconnect { conn_id } => {
                         if let Some(conn) = state.conns.lock().unwrap().remove(&conn_id) {
-                            // Abort both tasks so both halves of the split socket
-                            // drop and the fd closes.
+                            // Stop input immediately, but drain queued output before
+                            // EOF so rejection/quit messages actually reach the client.
                             conn.read_handle.abort();
-                            conn.write_handle.abort();
+                            drop(conn.write_tx);
+                            tokio::spawn(async move {
+                                let mut writer = conn.write_handle;
+                                if tokio::time::timeout(Duration::from_secs(2), &mut writer)
+                                    .await
+                                    .is_err()
+                                {
+                                    writer.abort();
+                                }
+                            });
                         }
                         // The aborted read task can no longer report EOF, so echo
                         // the close: without this the session layer never learns
@@ -323,6 +436,7 @@ fn collect_handoff(
             entries.push(HandoverEntry {
                 character: c.character.clone(),
                 echo_hidden: c.echo_hidden,
+                peer_addr: c.peer_addr,
             });
             let _ = conn
                 .write_tx
@@ -366,6 +480,55 @@ async fn handle_copyover(
 mod tests {
     use super::*;
     use tokio::time::Instant;
+
+    #[test]
+    fn proxy_header_accepts_valid_v4_and_v6_only() {
+        assert_eq!(
+            parse_proxy_header(b"PROXY TCP4 192.0.2.9 127.0.0.1 32123 4001\r\n"),
+            Some("192.0.2.9:32123".parse().unwrap())
+        );
+        assert_eq!(
+            parse_proxy_header(b"PROXY TCP6 2001:db8::1 ::1 32123 4001\r\n"),
+            Some("[2001:db8::1]:32123".parse().unwrap())
+        );
+        for invalid in [
+            "PROXY UNKNOWN\r\n",
+            "PROXY TCP4 ::1 ::1 10 4001\r\n",
+            "PROXY TCP4 127.0.0.1 127.0.0.1 0 4001\r\n",
+            "PROXY TCP4 127.0.0.1 127.0.0.1 100 70000\r\n",
+            "PROXY TCP4 127.0.0.1 127.0.0.1 100 4001\n",
+            "PROXY  TCP4 127.0.0.1 127.0.0.1 100 4001\r\n",
+        ] {
+            assert!(
+                parse_proxy_header(invalid.as_bytes()).is_none(),
+                "{invalid:?}"
+            );
+        }
+        assert!(parse_proxy_header(&[b'x'; 109]).is_none());
+    }
+
+    #[tokio::test]
+    async fn proxy_header_does_not_consume_telnet_bytes() {
+        use tokio::io::AsyncWriteExt;
+        let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+        let address = listener.local_addr().unwrap();
+        let write = tokio::spawn(async move {
+            let mut client = TcpStream::connect(address).await.unwrap();
+            client
+                .write_all(b"PROXY TCP4 192.0.2.9 127.0.0.1 1234 4001\r\nlook\n")
+                .await
+                .unwrap();
+        });
+        let (mut socket, _) = listener.accept().await.unwrap();
+        assert_eq!(
+            read_proxy_header(&mut socket).await,
+            Some("192.0.2.9:1234".parse().unwrap())
+        );
+        let mut command = [0; 5];
+        socket.read_exact(&mut command).await.unwrap();
+        assert_eq!(&command, b"look\n");
+        write.await.unwrap();
+    }
 
     fn test_state(limits: TelnetLimits) -> ServeState {
         let (tx, _rx) = std_mpsc::channel();

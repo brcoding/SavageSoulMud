@@ -1,0 +1,162 @@
+{
+  "FadedTrail01": {
+    "id": "0a211e8ca627",
+    "slug": "fadedtrail01",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": ""
+  },
+  "FadedTrail02": {
+    "id": "9eca19cfdc3e",
+    "slug": "fadedtrail02",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": ""
+  },
+  "FadedTrail03": {
+    "id": "9dc74bec16fa",
+    "slug": "fadedtrail03",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": ""
+  },
+  "FadedTrail04": {
+    "id": "b7e946e7fcf6",
+    "slug": "fadedtrail04",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": ""
+  },
+  "FadedTrail05": {
+    "id": "d0e53648f0af",
+    "slug": "fadedtrail05",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": ""
+  },
+  "Medical_Center_Hub": {
+    "id": "8ce9395af4ab",
+    "slug": "medical-center-hub",
+    "climate": "indoors",
+    "day": "",
+    "night": "",
+    "long": "The room is lit by a number of dull florescent lights hanging overhead showing a dirty floor and sagging water soaked plaster walls. What was once a bright center for healing appears to be slowly decaying with time. There is a sign on the west wall above a curtained door."
+  },
+  "ROBarNGrill01": {
+    "id": "16e58ff172b6",
+    "slug": "robarngrill01",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": "Main street leads to the north to a few outlying buildings. To the south a building stands to the southwest and further south is a ramshackle wall."
+  },
+  "ROBarNGrill02": {
+    "id": "3aa2956c1409",
+    "slug": "robarngrill02",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": "Main street leads to the north to a few outlying buildings. To the south a building stands to the southwest and further south is a ramshackle wall."
+  },
+  "ROBarNGrill03": {
+    "id": "a31a31f0313d",
+    "slug": "robarngrill03",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": "Main street leads to the north to a few outlying buildings. To the south a building stands to the southwest and further south is a ramshackle wall."
+  },
+  "ROBarNGrill04": {
+    "id": "6b921c243e8d",
+    "slug": "robarngrill04",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": "Main street leads to the north to a few outlying buildings. To the south a building stands to the southwest and further south is a ramshackle wall."
+  },
+  "ROBarNGrillFl101": {
+    "id": "a37a2f564e62",
+    "slug": "robarngrillfl101",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": "Main street leads to the north to a few outlying buildings. To the south a building stands to the southwest and further south is a ramshackle wall."
+  },
+  "ROBarNGrillFl102": {
+    "id": "fd9195c3139c",
+    "slug": "robarngrillfl102",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": "Main street leads to the north to a few outlying buildings. To the south a building stands to the southwest and further south is a ramshackle wall."
+  },
+  "ROBarNGrillFl103": {
+    "id": "c5fe065f96bd",
+    "slug": "robarngrillfl103",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": "Main street leads to the north to a few outlying buildings. To the south a building stands to the southwest and further south is a ramshackle wall."
+  },
+  "ROMainSt01": {
+    "id": "6e3f3acd2688",
+    "slug": "romainst01",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the northeast a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the northeast a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": ""
+  },
+  "ROMainSt02": {
+    "id": "684490fede56",
+    "slug": "romainst02",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": "Main street leads to the north to a few outlying buildings. To the south a building stands to the southwest and further south is a ramshackle wall."
+  },
+  "ROMainSt03": {
+    "id": "f73e57d8f1f0",
+    "slug": "romainst03",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": "Main street leads to the north to a few outlying buildings. To the south a building stands to the southwest and further south is a ramshackle wall."
+  },
+  "ROMainSt04": {
+    "id": "448e6fa34f92",
+    "slug": "romainst04",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": "Main street leads to the north to a few outlying buildings. To the south a building stands to the southwest and further south is a ramshackle wall."
+  },
+  "ROMainStWallGate": {
+    "id": "c075a7d8a465",
+    "slug": "romainstwallgate",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": ""
+  },
+  "ROTraderSams01": {
+    "id": "b0e5509b3d07",
+    "slug": "rotradersams01",
+    "climate": "outdoors",
+    "day": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.",
+    "night": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west illuminating the area with torches mounted to either side of the door.",
+    "long": "Main street leads to the north to a few outlying buildings. To the south a building stands to the southwest and further south is a ramshackle wall."
+  },
+  "start": {
+    "id": "4817dbfbbaa8",
+    "slug": "start",
+    "climate": "indoors",
+    "day": "",
+    "night": "",
+    "long": "The room is dimly lit with a long metal table and a series of cabinets along the wall. There is a small lighted sign and to the east an exit can be seen through slightly parted curtains."
+  }
+}

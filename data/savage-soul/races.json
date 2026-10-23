@@ -1,0 +1,114 @@
+[
+  {
+    "slug": "human",
+    "name": "Human (Zister)",
+    "abbrev": "Human",
+    "version": 1,
+    "description": "Adaptable survivor. No mandatory traits; spend your starting XP and capacity freely.",
+    "source": "MUD-authored Scorched Earth template; trait costs/effects: The Savage Soul 2026, appendices A1/A2/A3/A6/A8/A10. See help races for references and current subsystem limits.",
+    "advantages": {},
+    "disadvantages": {},
+    "appearance": "A human survivor, weathered by life in the scorched earth."
+  },
+  {
+    "slug": "human-sheltie",
+    "name": "Human-Sheltie",
+    "abbrev": "Sheltie",
+    "version": 1,
+    "description": "Shelter descendant: no mana or mutations; those two limitations grant 3 extra C.",
+    "source": "MUD-authored Scorched Earth template; trait costs/effects: The Savage Soul 2026, appendices A1/A2/A3/A6/A8/A10. See help races for references and current subsystem limits.",
+    "advantages": {},
+    "disadvantages": {
+      "no mana": 1,
+      "no mutations": 1
+    },
+    "appearance": "A human shelter descendant, with the bearing of someone raised away from the wastes."
+  },
+  {
+    "slug": "android",
+    "name": "Android",
+    "abbrev": "Android",
+    "version": 1,
+    "description": "Electronic: poison/disease resistant, no breathing requirement; requires repairs rather than medical healing.",
+    "source": "MUD-authored Scorched Earth template; trait costs/effects: The Savage Soul 2026, appendices A1/A2/A3/A6/A8/A10. See help races for references and current subsystem limits.",
+    "advantages": {
+      "electronic": 1
+    },
+    "disadvantages": {},
+    "appearance": "A visibly mechanical humanoid, its synthetic shell and exposed joints unmistakably artificial."
+  },
+  {
+    "slug": "gurnin",
+    "name": "Gurnin",
+    "abbrev": "Gurnin",
+    "version": 1,
+    "description": "Brutish (+1 Strength, -1 Intellect), with natural light armor. No stacking hide with worn armor.",
+    "source": "MUD-authored Scorched Earth template; trait costs/effects: The Savage Soul 2026, appendices A1/A2/A3/A6/A8/A10. See help races for references and current subsystem limits.",
+    "advantages": {
+      "brutish": 1,
+      "natural armor": 2
+    },
+    "disadvantages": {},
+    "appearance": "A green-skinned humanoid with thick, leathery hide and a powerful build."
+  },
+  {
+    "slug": "tater",
+    "name": "Tater",
+    "abbrev": "Tater",
+    "version": 1,
+    "description": "Size/Mass 7 and Burly: powerful but easier to hit, slower to dodge, and too large for standard human armor.",
+    "source": "MUD-authored Scorched Earth template; trait costs/effects: The Savage Soul 2026, appendices A1/A2/A3/A6/A8/A10. See help races for references and current subsystem limits.",
+    "advantages": {
+      "stature large": 2,
+      "burly": 1
+    },
+    "disadvantages": {},
+    "appearance": "A towering, massively built humanoid whose sheer bulk dwarfs an ordinary human."
+  },
+  {
+    "slug": "morlock",
+    "name": "Morlock",
+    "abbrev": "Morlock",
+    "version": 1,
+    "description": "Brutish with strong natural claws and night vision; can eat only meat.",
+    "source": "MUD-authored Scorched Earth template; trait costs/effects: The Savage Soul 2026, appendices A1/A2/A3/A6/A8/A10. See help races for references and current subsystem limits.",
+    "advantages": {
+      "brutish": 1,
+      "sharp strike": 2,
+      "enhanced vision": 1
+    },
+    "disadvantages": {
+      "carnivore": 1
+    },
+    "appearance": "A wiry subterranean humanoid with sharp claws and eyes adapted to the darkness."
+  },
+  {
+    "slug": "replicant",
+    "name": "Replicant",
+    "abbrev": "Repl",
+    "version": 1,
+    "description": "Electronic with a human-like exterior. Requires repairs; its full package uses all 600 starting XP.",
+    "source": "MUD-authored Scorched Earth template; trait costs/effects: The Savage Soul 2026, appendices A1/A2/A3/A6/A8/A10. See help races for references and current subsystem limits.",
+    "advantages": {
+      "electronic": 1,
+      "deceptive appearance": 1
+    },
+    "disadvantages": {},
+    "appearance": "An ordinary-looking human. Nothing about the face or movements reveals an artificial nature."
+  },
+  {
+    "slug": "poleepkwa",
+    "name": "Poleepkwa",
+    "abbrev": "Poleep",
+    "version": 1,
+    "description": "Brutish insectoid with chitin light armor and natural cutting claws.",
+    "source": "MUD-authored Scorched Earth template; trait costs/effects: The Savage Soul 2026, appendices A1/A2/A3/A6/A8/A10. See help races for references and current subsystem limits.",
+    "advantages": {
+      "brutish": 1,
+      "natural armor": 2,
+      "sharp strike": 1
+    },
+    "disadvantages": {},
+    "appearance": "A strong insectoid humanoid with a chitinous shell and sharp cutting claws."
+  }
+]

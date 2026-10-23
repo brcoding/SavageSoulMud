@@ -4,7 +4,7 @@
 //! targets resolve through [`grim_target`] (see [`find_subject`]).
 
 use bevy::prelude::*;
-use grim_core::components::{Keywords, Name};
+use grim_core::components::{CarriedBy, Keywords, Name};
 use grim_core::events::{Command, EngineCommand, InfoMessage, LookEntity, LookRoom};
 use grim_target::{parse_target, query, ParseOptions};
 
@@ -16,6 +16,7 @@ pub(crate) fn handle_look(
     mut engine: MessageReader<EngineCommand>,
     inroom: Query<&InRoom>,
     named: Query<(Entity, &InRoom, &Name, Option<&Keywords>)>,
+    carried: Query<(Entity, &CarriedBy, &Name, Option<&Keywords>)>,
     mut look_room: MessageWriter<LookRoom>,
     mut look_entity: MessageWriter<LookEntity>,
     mut info: MessageWriter<InfoMessage>,
@@ -36,7 +37,12 @@ pub(crate) fn handle_look(
                 });
             }
             Some(name) => {
-                let subject = find_subject(name, actor, actor_room.room, &named);
+                let subject = find_subject(name, actor, actor_room.room, &named).or_else(|| {
+                    let spec=parse_target(name,ParseOptions::BEING)?;
+                    query(&spec,carried.iter().filter(|(_,held,_,_)|held.carrier==actor)
+                        .map(|(e,_,n,k)|(e,n.0.as_str(),k.map(|k|k.0.as_slice()).unwrap_or(&[]))))
+                        .into_iter().next()
+                });
                 match subject {
                     Some(subject) => {
                         look_entity.write(LookEntity {

@@ -1,0 +1,410 @@
+{
+  "source": "C:\\Users\\barry\\Documents\\mudbackup\\lib",
+  "areas": {
+    "campus": {
+      "rooms": 108,
+      "npc_instances": 12
+    },
+    "town": {
+      "rooms": 103,
+      "npc_instances": 27
+    },
+    "cave": {
+      "rooms": 43,
+      "npc_instances": 84
+    },
+    "Ylsrim": {
+      "rooms": 25,
+      "npc_instances": 5
+    },
+    "Praxis": {
+      "rooms": 155,
+      "npc_instances": 6
+    },
+    "hells": {
+      "rooms": 66,
+      "npc_instances": 0
+    }
+  },
+  "npc_definitions_placed": 60,
+  "npc_instances": 134,
+  "concourse_rooms": 224,
+  "gaps": [
+    {
+      "source": "/domains/campus/room/furnace",
+      "issue": "No static room name; retained in source archive"
+    },
+    {
+      "source": "/domains/town/room/furnace",
+      "issue": "No static room name; retained in source archive"
+    },
+    {
+      "source": "/domains/cave/etc/cave_room",
+      "issue": "No static room name; retained in source archive"
+    },
+    {
+      "source": "/domains/cave/room/furnace",
+      "issue": "No static room name; retained in source archive"
+    },
+    {
+      "source": "/domains/Ylsrim/room/furnace",
+      "issue": "No static room name; retained in source archive"
+    },
+    {
+      "source": "/domains/Praxis/council_vote",
+      "issue": "No static room name; retained in source archive"
+    },
+    {
+      "source": "/domains/Praxis/setter",
+      "issue": "No static room name; retained in source archive"
+    },
+    {
+      "source": "/domains/campus/room/crawlspace2",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "out",
+      "target": "/domains/campus/room/stairwell2d"
+    },
+    {
+      "source": "/domains/town/room/adv_guild",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "south",
+      "target": "/domains/default/room/builder_hall"
+    },
+    {
+      "source": "/domains/town/room/cave_entrance",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "out",
+      "target": "/domains/town/virtual/forest/24,25"
+    },
+    {
+      "source": "/domains/town/room/cave_entrance",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "south",
+      "target": "/domains/town/virtual/forest/24,25"
+    },
+    {
+      "source": "/domains/town/room/forest_path1",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "north",
+      "target": "/domains/town/virtual/forest/24,1"
+    },
+    {
+      "source": "/domains/town/room/healer",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "out",
+      "target": "/domains/town/room/road"
+    },
+    {
+      "source": "/domains/town/room/mansion_room11",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "out",
+      "target": "/domains/town/room/mansion_mbdroom"
+    },
+    {
+      "source": "/domains/town/room/mansion_uhall1",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "window",
+      "target": "/domains/town/room/mansion_ext"
+    },
+    {
+      "source": "/domains/town/room/shack",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "out",
+      "target": "/domains/town/room/garden"
+    },
+    {
+      "source": "/domains/town/room/shower",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "out",
+      "target": "/domains/town/room/mansion_room3"
+    },
+    {
+      "source": "/domains/town/room/tavern",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "out",
+      "target": "/domains/town/room/road"
+    },
+    {
+      "source": "/domains/Ylsrim/room/adv_hall",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "up",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/adv_hall",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "south",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/armory",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "west",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/armory_storage",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "west",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/bazaar",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "north",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/bazaar",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "south",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/church",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "south",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/fighter",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "south",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/kaliid3",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "north",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/kaliid3",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "west",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/kaliid5",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "east",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/kaliid5",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "west",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/kaliid5",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "north",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/kaliid6",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "east",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/kaliid6",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "west",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/kaliid7",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "east",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/kaliid7",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "west",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/pub",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "east",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/s_bazaar",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "north",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/sand_hole",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "up",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/tower",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "down",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/weaponry",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "east",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Ylsrim/room/weaponry_storage",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "west",
+      "target": "/domains/Ylsrim/room/"
+    },
+    {
+      "source": "/domains/Praxis/cleric_hall",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "council",
+      "target": "/domains/Praxis/council_hall"
+    },
+    {
+      "source": "/domains/Praxis/council_hall",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "leave",
+      "target": "/domains/Praxis/square"
+    },
+    {
+      "source": "/domains/Praxis/fighter_hall",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "council",
+      "target": "/domains/Praxis/council_hall"
+    },
+    {
+      "source": "/domains/Praxis/freezer",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "square",
+      "target": "/domains/Praxis/square"
+    },
+    {
+      "source": "/domains/Praxis/inn105",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "leave",
+      "target": "/domains/Praxis/hall3"
+    },
+    {
+      "source": "/domains/Praxis/inn106",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "leave",
+      "target": "/domains/Praxis/hall3"
+    },
+    {
+      "source": "/domains/Praxis/inn107",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "leave",
+      "target": "/domains/Praxis/hall3"
+    },
+    {
+      "source": "/domains/Praxis/inn108",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "leave",
+      "target": "/domains/Praxis/hall3"
+    },
+    {
+      "source": "/domains/Praxis/inn109",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "leave",
+      "target": "/domains/Praxis/hall5"
+    },
+    {
+      "source": "/domains/Praxis/inn110",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "leave",
+      "target": "/domains/Praxis/hall5"
+    },
+    {
+      "source": "/domains/Praxis/kataan_hall",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "council",
+      "target": "/domains/Praxis/council_hall"
+    },
+    {
+      "source": "/domains/Praxis/locked",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "square",
+      "target": "/domains/Praxis/square"
+    },
+    {
+      "source": "/domains/Praxis/mage_hall",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "council",
+      "target": "/domains/Praxis/council_hall"
+    },
+    {
+      "source": "/domains/Praxis/mage_hall",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "stairs",
+      "target": "/domains/Praxis/trunk"
+    },
+    {
+      "source": "/domains/Praxis/mage_join",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "out",
+      "target": "/domains/Praxis/west_road3"
+    },
+    {
+      "source": "/domains/Praxis/monk_hall",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "council",
+      "target": "/domains/Praxis/council_hall"
+    },
+    {
+      "source": "/domains/Praxis/mountains/entrance",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "out",
+      "target": "/domains/Praxis/pass2"
+    },
+    {
+      "source": "/domains/Praxis/party",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "square",
+      "target": "/domains/Praxis/square"
+    },
+    {
+      "source": "/domains/Praxis/realty",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "north",
+      "target": "/"
+    },
+    {
+      "source": "/domains/Praxis/rogue_hall",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "council",
+      "target": "/domains/Praxis/council_hall"
+    },
+    {
+      "source": "/domains/Praxis/sheriff",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "south",
+      "target": "/"
+    },
+    {
+      "source": "/domains/Praxis/sheriff",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "west",
+      "target": "/"
+    },
+    {
+      "source": "/domains/Praxis/w_boc_la2",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "north",
+      "target": "/domains/Praxis/sage_room"
+    },
+    {
+      "source": "/realms/hells/workroom",
+      "issue": "Exit needs manual/virtual conversion",
+      "direction": "down",
+      "target": "/domains/default/room/wiz_hall"
+    }
+  ]
+}

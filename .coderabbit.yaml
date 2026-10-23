@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+reviews:
+  path_filters:
+    # Authored world/configuration data is maintained separately from code review.
+    - "!**/*.json"
+    # Keep the initial source import within CodeRabbit's 300-file limit.
+    - "!data/help/**"
+    # Bundled upstream libraries are not our application source.
+    - "!website/vendor/**"

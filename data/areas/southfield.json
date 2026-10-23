@@ -1,0 +1,421 @@
+{
+  "id": "2a0bf994e809",
+  "slug": "southfield",
+  "name": "Southfield",
+  "canonical": true,
+  "rooms": [
+    {
+      "id": "b84876414811",
+      "slug": "southfieldcityeast01",
+      "name": "East Southfield",
+      "description": "A sprawling city lies to the west with a variety of wastelanders walking from shop to shop. The bustle of the shop keepers move about keeping basic order to the carnival of shops.",
+      "exits": {
+        "east": "4b9da380ac1f",
+        "west": "701074ef9c7b"
+      },
+      "scenery": [],
+      "npcs": [],
+      "objects": []
+    },
+    {
+      "id": "701074ef9c7b",
+      "slug": "southfieldcityeast02",
+      "name": "East Southfield",
+      "description": "A small courtyard is nicely paved which stands out in a stark contrast to the wastelands that invades in from the east. To the north a small restaurant spills out on to the courtyard. To the south a metalshop has various wares hanging from racks that can be seen from here.",
+      "exits": {
+        "north": "0722dda27470",
+        "east": "b84876414811",
+        "south": "67e715cf61db"
+      },
+      "scenery": [],
+      "npcs": [],
+      "objects": []
+    },
+    {
+      "id": "67e715cf61db",
+      "slug": "southfieldmetalshop",
+      "name": "Southfield Metalshop",
+      "description": "The shop is lined with heavy duty shelves that act as work spaces. The workshop walls are covered with deathmetal band posters and a variety of nudie pics of girls.",
+      "exits": {
+        "north": "701074ef9c7b"
+      },
+      "scenery": [
+        {
+          "name": "poster",
+          "keywords": [
+            "poster",
+            "deathmetal",
+            "band",
+            "death",
+            "death metal"
+          ],
+          "description": [
+            "The posters of the death metal bands show some huge spikey haired guys wearing leather and brandishing an assortment of brutal weapons and instruments, all throwing devil signs."
+          ]
+        },
+        {
+          "name": "pics",
+          "keywords": [
+            "pics",
+            "nudes",
+            "nude",
+            "nudie",
+            "girls",
+            "women"
+          ],
+          "description": [
+            "There are pictures of a few blonds and some brunettes showing off their tits while working with a metal buffer and using a welding torch to pointlessly heat some metal."
+          ]
+        },
+        {
+          "name": "bullet press",
+          "keywords": [
+            "bullet press",
+            "bullet",
+            "press",
+            "craft:bullet-press",
+            "metal"
+          ],
+          "description": [
+            "The bullet press allows creations of new bullet rounds."
+          ],
+          "room_description": "bullet press."
+        },
+        {
+          "name": "grinding wheel",
+          "keywords": [
+            "grinding wheel",
+            "grinding",
+            "wheel",
+            "craft:grinding-wheel",
+            "spinning",
+            "circular"
+          ],
+          "description": [
+            "The grinding wheel is an electric motor with two wheels attached on each side."
+          ],
+          "room_description": "grinding wheel."
+        },
+        {
+          "name": "die forge",
+          "keywords": [
+            "die forge",
+            "die",
+            "forge",
+            "craft:die-forge",
+            "metal"
+          ],
+          "description": [
+            "The die forge is a massive machine with a set of 2 plates that can be pressed together with tons of force to forge metal into any shape desired."
+          ],
+          "room_description": "die forge."
+        },
+        {
+          "name": "radial rivet machine",
+          "keywords": [
+            "radial rivet machine",
+            "radial",
+            "rivet",
+            "machine",
+            "craft:radial-rivet-machine",
+            "metal",
+            "electric"
+          ],
+          "description": [
+            "The radial rivet machine is set in a large frame with an area to place the items to be riveted and a punch to push new rivets into place along with an electric motor to set them home."
+          ],
+          "room_description": "radial rivet machine."
+        }
+      ],
+      "npcs": [
+        {
+          "name": "metalhead",
+          "keywords": [
+            "metalhead",
+            "vendor",
+            "metal",
+            "owner",
+            "head",
+            "metal head"
+          ],
+          "description": [
+            "Metalhead is wearing an Black sabbath t-shirt and is rocking super long hair. Make sure you ask metalhead help."
+          ],
+          "room_description": "Metalhead.",
+          "race": "human",
+          "gender": "male",
+          "level": 40,
+          "spawn": {
+            "max_alive": 1,
+            "respawn_seconds": 150,
+            "movement": {
+              "mode": "stay",
+              "interval_seconds": 15,
+              "max_distance": 2,
+              "same_area": true
+            }
+          },
+          "shop": {
+            "stock": [
+              {
+                "item": {
+                  "condition": {
+                    "quality": 100
+                  },
+                  "name": "chunk of lead",
+                  "description": [
+                    "A small chunk of lead."
+                  ],
+                  "keywords": [
+                    "chunk of lead",
+                    "chunk",
+                    "lead",
+                    "metal",
+                    "shiny",
+                    "craft:chunk-of-lead"
+                  ],
+                  "room_description": "A chunk of lead is here."
+                },
+                "buy_price": 2,
+                "sell_price": 1
+              },
+              {
+                "item": {
+                  "condition": {
+                    "quality": 100
+                  },
+                  "name": "gram of gunpowder",
+                  "description": [
+                    "A gram of black gunpowder. This would be ideal to use for bullets or explosives."
+                  ],
+                  "keywords": [
+                    "gram of gunpowder",
+                    "powder",
+                    "gunpowder",
+                    "black",
+                    "explosive",
+                    "craft:gram-of-gunpowder"
+                  ],
+                  "room_description": "A gram of gunpowder is here."
+                },
+                "buy_price": 2,
+                "sell_price": 1
+              },
+              {
+                "item": {
+                  "condition": {
+                    "quality": 100
+                  },
+                  "name": "rivet",
+                  "description": [
+                    "This is a simple steel rivet."
+                  ],
+                  "keywords": [
+                    "rivet",
+                    "metal",
+                    "steel",
+                    "craft:rivet"
+                  ],
+                  "room_description": "A rivet is here."
+                },
+                "buy_price": 10,
+                "sell_price": 5
+              },
+              {
+                "item": {
+                  "condition": {
+                    "quality": 100
+                  },
+                  "name": "sheet of steel",
+                  "description": [
+                    "A sheet of steel that is approximately 30mm X 30mm."
+                  ],
+                  "keywords": [
+                    "sheet of steel",
+                    "sheet",
+                    "metal",
+                    "steel",
+                    "craft:sheet-of-steel"
+                  ],
+                  "room_description": "A sheet of steel is here."
+                },
+                "buy_price": 10,
+                "sell_price": 5
+              },
+              {
+                "item": {
+                  "condition": {
+                    "quality": 100
+                  },
+                  "name": "steel rod",
+                  "description": [
+                    "A steel rod that is approximately 50mm with a 5mm radius."
+                  ],
+                  "keywords": [
+                    "steel rod",
+                    "steel",
+                    "rod",
+                    "pipe",
+                    "pole",
+                    "metal",
+                    "shiny",
+                    "craft:steel-rod"
+                  ],
+                  "room_description": "A steel rod is here."
+                },
+                "buy_price": 7,
+                "sell_price": 3
+              },
+              {
+                "item": {
+                  "condition": {
+                    "quality": 100
+                  },
+                  "name": "wood handle",
+                  "description": [
+                    "A wood handle that is approximately 40mm with a 10mm radius."
+                  ],
+                  "keywords": [
+                    "wood handle",
+                    "wood",
+                    "handle",
+                    "craft:wood-handle"
+                  ],
+                  "room_description": "A wood handle is here."
+                },
+                "buy_price": 5,
+                "sell_price": 2
+              },
+              {
+                "item": {
+                  "condition": {
+                    "quality": 100
+                  },
+                  "name": "pair of pliers",
+                  "description": [
+                    "This is a standard pair of standard pliers."
+                  ],
+                  "keywords": [
+                    "pliers",
+                    "pair of pliers",
+                    "grip",
+                    "metal",
+                    "craft:pliers"
+                  ],
+                  "room_description": "A pair of pliers is here."
+                },
+                "buy_price": 12,
+                "sell_price": 6
+              },
+              {
+                "item": {
+                  "condition": {
+                    "quality": 100
+                  },
+                  "name": "chisel",
+                  "description": [
+                    "This is a standard chisel used to carve wood."
+                  ],
+                  "keywords": [
+                    "chisel",
+                    "grip",
+                    "metal",
+                    "craft:chisel"
+                  ],
+                  "room_description": "A chisel is here."
+                },
+                "buy_price": 30,
+                "sell_price": 15
+              },
+              {
+                "item": {
+                  "condition": {
+                    "quality": 100
+                  },
+                  "name": "claw hammer",
+                  "description": [
+                    "This is a standard claw hammer made of metal with a wooden handle."
+                  ],
+                  "keywords": [
+                    "hammer",
+                    "claw hammer",
+                    "claw",
+                    "metal",
+                    "wood",
+                    "craft:claw-hammer"
+                  ],
+                  "room_description": "A claw hammer is here."
+                },
+                "buy_price": 30,
+                "sell_price": 15
+              },
+              {
+                "item": {
+                  "condition": {
+                    "quality": 100
+                  },
+                  "name": "piece of wood",
+                  "description": [
+                    "A piece of roughly hewn wood that is approximately 50mm with a 20mm radius."
+                  ],
+                  "keywords": [
+                    "wood",
+                    "piece of wood",
+                    "piece",
+                    "wooden",
+                    "craft:piece-of-wood"
+                  ],
+                  "room_description": "A piece of wood is here."
+                },
+                "buy_price": 10,
+                "sell_price": 5
+              }
+            ]
+          }
+        }
+      ],
+      "objects": []
+    },
+    {
+      "id": "0722dda27470",
+      "slug": "southfieldrestaurant",
+      "name": "Southfield Grub",
+      "description": "The small restaurant has a few tables and a fully stocked kitchen.",
+      "exits": {
+        "south": "701074ef9c7b"
+      },
+      "scenery": [],
+      "npcs": [
+        {
+          "name": "francoise",
+          "keywords": [
+            "francoise",
+            "cook",
+            "owner",
+            "head",
+            "head chef",
+            "chef"
+          ],
+          "description": [
+            "Chef Françoise is wearing a simple black smock and an enormous white hat that along with his name gives him the credentials to be a critical success in the culinary arts. Make sure you ask francoise help."
+          ],
+          "room_description": "Chef Francoise.",
+          "race": "human",
+          "gender": "male",
+          "level": 20,
+          "spawn": {
+            "max_alive": 1,
+            "respawn_seconds": 150,
+            "movement": {
+              "mode": "stay",
+              "interval_seconds": 15,
+              "max_distance": 2,
+              "same_area": true
+            }
+          }
+        }
+      ],
+      "objects": []
+    }
+  ]
+}

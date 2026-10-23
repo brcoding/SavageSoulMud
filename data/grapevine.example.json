@@ -1,0 +1,10 @@
+{
+  "enabled": false,
+  "endpoint": "wss://grapevine.haus/socket",
+  "credentials_file": "var/grapevine/credentials.json",
+  "channels": [
+    "gossip",
+    "testing"
+  ],
+  "activity_file": "var/grapevine/activity.json"
+}

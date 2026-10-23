@@ -7,6 +7,7 @@
 ## Components
 | Component | File | Purpose |
 |---|---|---|
+| `TerminalSize` | `src/connection.rs` | Negotiated terminal columns and rows. |
 | `Connection` | `src/connection.rs` | A live transport-level link. Carries the transport-side `id`, peer `addr`, and `echo_hidden` (whether the server has hidden input, e.g. for a password). Spawned by a transport; knows nothing about the game. |
 
 ## Systems
@@ -40,6 +41,9 @@ None. This crate carries no game vocabulary.
 - `ConnectionOutput` carries optional `echo` (toggle terminal echo before the text, for password masking) and `prepend_newline` (avoid landing unsolicited events on the user's prompt line). Use `ConnectionOutput::new(entity, text)` for the common case.
 - Copyover (hot restart): `ConnectionResumed` is raised for a re-adopted socket so the session layer places `character` straight back into the world, skipping login. `HandoverManifest` is the serde payload sent alongside the live socket fds; entry index *i* pairs with the *i*-th fd, so no transport-side id needs to survive the restart. See `docs/DEPLOY.md`.
 - Per `docs/ARCHITECTURE.md` §5.1, this crate is intended to own the tokio bridge once a second transport exists; for now the bridge still lives in `grim-networking-telnet`.
+
+
+TerminalSize stores negotiated columns/rows independently of a client protocol. HandoverEntry optionally carries the original peer address for trusted proxy connections across copyover; older manifests remain compatible.
 
 ---
 *Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*

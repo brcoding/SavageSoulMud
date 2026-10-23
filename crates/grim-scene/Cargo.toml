@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+rand = "0.10"
 grim-core = { path = "../grim-core" }
 grim-networking = { path = "../grim-networking" }
 grim-command = { path = "../grim-command" }

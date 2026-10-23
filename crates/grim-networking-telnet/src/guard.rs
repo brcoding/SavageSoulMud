@@ -8,10 +8,7 @@
 use std::collections::VecDeque;
 use std::time::Duration;
 
-use tokio::io::{AsyncBufReadExt, AsyncReadExt};
 use tokio::time::Instant;
-
-use crate::iac;
 
 /// Why an input guard dropped a connection. Logged with the peer address on
 /// the Bevy side so guard trips are distinguishable from clean disconnects.
@@ -36,12 +33,11 @@ impl std::fmt::Display for GuardTrip {
     }
 }
 
-/// Frame one raw read into session text: strip IAC sequences, lossily decode
+/// Frame already Telnet-decoded bytes into session text: lossily decode
 /// UTF-8 (a multibyte split by truncation degrades to �, never panics), and
 /// trim the line ending.
 pub(crate) fn frame_input(buf: &[u8]) -> String {
-    let clean = iac::strip_iac(buf);
-    String::from_utf8_lossy(&clean)
+    String::from_utf8_lossy(buf)
         .trim_end_matches(['\r', '\n'])
         .to_string()
 }
@@ -62,29 +58,6 @@ pub(crate) fn rate_tripped(
     }
     line_times.push_back(now);
     line_times.len() > max
-}
-
-/// Consume the remainder of an overlong line up to the newline. `buf` is
-/// reused as scratch; the single capped read can never hold more than
-/// `budget + 1` bytes. Returns false when the remainder runs past the
-/// budget (flood) — true on newline, EOF, or socket error (the outer loop
-/// then ends the line normally on its next read).
-pub(crate) async fn discard_to_newline(
-    reader: &mut (impl tokio::io::AsyncBufRead + Unpin),
-    buf: &mut Vec<u8>,
-    budget: usize,
-) -> bool {
-    buf.clear();
-    let cap = budget.saturating_add(1);
-    let n = match (&mut *reader).take(cap as u64).read_until(b'\n', buf).await {
-        Ok(n) => n,
-        Err(_) => return true,
-    };
-    // A short read means the stream ended first: the line is over.
-    if n < cap {
-        return true;
-    }
-    buf.ends_with(b"\n")
 }
 
 #[cfg(test)]

@@ -154,6 +154,7 @@ fn spawn_ingame(app: &mut App, conn: Entity, stored: StoredCharacter) -> Entity 
 /// surface; split into `Name + Actor + Character` when spawning a live entity.
 fn make_character(roles: Vec<Role>) -> StoredCharacter {
     StoredCharacter {
+        credits: 100,
         id: GrimId::new(),
         name: "Hero".into(),
         account_id: GrimId::new(),
@@ -167,6 +168,7 @@ fn make_character(roles: Vec<Role>) -> StoredCharacter {
         title: None,
         restrings: std::collections::HashMap::new(),
         config: std::collections::HashMap::new(),
+        game_state: Default::default(),
         inventory: Vec::new(),
     }
 }
@@ -544,6 +546,7 @@ mod output_format {
         roles: Vec<Role>,
     ) -> (GrimName, Actor, Character, InRoom, Player, OutputHistory) {
         let (gname, actor, character) = StoredCharacter {
+            credits: 100,
             id: GrimId::new(),
             account_id: GrimId::new(),
             name: name.into(),
@@ -557,6 +560,7 @@ mod output_format {
             title: None,
             restrings: std::collections::HashMap::new(),
             config: std::collections::HashMap::new(),
+            game_state: Default::default(),
             inventory: Vec::new(),
         }
         .into_components();
@@ -1475,9 +1479,9 @@ mod output_format {
             "no summary line; got:\n{text}"
         );
         let zara_at = text.find("Zara is standing here.").expect("player line");
-        let goblin_at = text.find("Goblin is here.").expect("fallback line");
+        let goblin_at = text.find("{GGoblin{x is here.").expect("fallback line");
         let grimmok_at = text
-            .find("Grimmok Ironhand stands here, hammering metal.")
+            .find("{GGrimmok Ironhand{x stands here, hammering metal.")
             .expect("room line");
         assert!(
             zara_at < goblin_at && zara_at < grimmok_at,
@@ -1541,7 +1545,7 @@ mod output_format {
             .map(|o| o.text.clone())
             .collect();
         let creature_at = text
-            .find("Grimmok Ironhand stands here, hammering metal.")
+            .find("{GGrimmok Ironhand{x stands here, hammering metal.")
             .expect("creature line");
         let object_at = text
             .find("A brass lantern rests here.")
@@ -1551,7 +1555,7 @@ mod output_format {
             "objects list under creatures; got:\n{text}"
         );
         assert!(
-            text.contains("hammering metal.\n           A brass lantern rests here."),
+            text.contains("hammering metal.\n           {mA brass lantern rests here.{x"),
             "no blank line between creatures and objects; got:\n{text}"
         );
         assert!(
@@ -1674,7 +1678,7 @@ mod output_format {
             .map(|o| o.text.clone())
             .collect();
         assert!(
-            text.contains("Exits: {Rnorth{x {rsouth{x {mwest{x {Yup{x  Doors: {Meast{x {ydown{x\n"),
+            text.contains("Exits: {gnorth{x {gsouth{x {gwest{x {gup{x  Doors: {geast{x {gdown{x\n"),
             "open door + plain exits in NESWUD order on one line; got:\n{text}"
         );
     }
@@ -1687,8 +1691,8 @@ mod output_format {
         use std::collections::HashMap;
 
         for (admin, expected) in [
-            (false, "Exits: {Rnorth{x  Doors: none\n"),
-            (true, "Exits: {Rnorth{x  Doors: none  Secret: {ydown{x\n"),
+            (false, "Exits: {gnorth{x  Doors: none\n"),
+            (true, "Exits: {gnorth{x  Doors: none  Secret: {gdown{x\n"),
         ] {
             let mut app = test_app();
             let room = spawn_room(&mut app);
@@ -1800,7 +1804,7 @@ mod output_format {
             .map(|o| o.text.clone())
             .collect();
         assert!(
-            text.contains("Exits: {ydown{x  Doors: none\n"),
+            text.contains("Exits: {gdown{x  Doors: none\n"),
             "open secret lists under Exits like any open door; got:\n{text}"
         );
     }

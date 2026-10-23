@@ -68,7 +68,7 @@ Non-component types this crate defines.
 |---|---|---|---|
 | `RoomLocation` | serde struct (`area`, `room` `friendly_id`s) | `src/world/location.rs` | The stable, entity-independent storage location of a room — survives a reseed. Persisted on `grim_actor::Character.last_room` / `StoredCharacter.last_room`. Relocated here from `grim-core` (Placement Phase 2a step 3) so it sits below its consumers with no cycle. |
 | `RoomLookup` | enum (`Found`/`NotFound`/`Ambiguous`) | `src/world/area.rs` | Outcome of resolving a room address. |
-| `MapConfig` / `render_map` | pure fn (`center`, topology snapshot, config → canvas rows) | `src/world/map.rs` | ASCII area-map rendering shared by the `map` verb (`grim-actor`) and the look minimap (`grim-scene`): BFS in fixed `Cardinal` order (deterministic, first-claim wins), rooms → connectors → up/down markers, clipped to canvas. Glyphs carry `{`-family colour (`@` `{R`, `#` `{w`, links `{8`, up `,` `{Y`, down `'` `{y`, each `{x`-reset; `@` escaped as `@@`). |
+| `MapConfig` / `render_map` | pure fn (`center`, topology snapshot, config → canvas rows) | `src/world/map.rs` | ASCII area-map rendering shared by the `map` verb (`grim-actor`) and the look minimap (`grim-scene`): BFS in fixed `Cardinal` order (deterministic, first-claim wins), rooms → connectors (including diagonal `/` and `\`) → up/down markers, clipped to canvas. Glyphs carry `{`-family colour (`@` `{R`, `#` `{w`, links `{8`, up `,` `{Y`, down `'` `{y`, each `{x`-reset; `@` escaped as `@@`). |
 
 ## Notes
 - Two plugins: `WorldPlugin` (world-event vocabulary) and `ShutdownPlugin`
@@ -85,3 +85,9 @@ Non-component types this crate defines.
 
 ---
 *Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
+
+ASCII maps and room minimaps share the Savage Soul palette: green `o` rooms, red `@` current location, white paths, and yellow up/down markers. Topology and secret-exit filtering are unchanged.
+
+`RoomDarkness` opts a room into unlit visibility. `LightSource` marks a lit
+object independently of its later placement/ownership. Both are being-free
+markers; perception and ownership resolution remain in `grim-actor`.

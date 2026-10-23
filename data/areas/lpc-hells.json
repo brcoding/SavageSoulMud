@@ -1,0 +1,2282 @@
+{
+  "id": "d06fc86e9d55",
+  "slug": "lpc-hells",
+  "name": "Hells",
+  "canonical": true,
+  "rooms": [
+    {
+      "id": "0366e3abd1b1",
+      "slug": "area-obj-case",
+      "name": "a glass case",
+      "description": "This is an expensive looking, ornamented glass case. It looks perfect for storing trophies or jewelry for display. It is an example of a transparent container.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "3225fd89ff3f"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/area/obj/case"
+    },
+    {
+      "id": "515ddb7284f5",
+      "slug": "area-obj-chest",
+      "name": "a wooden chest",
+      "description": "This is a sturdy wooden chest used to store valuable items.\nIt is an example of an opaque container.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "bdcf7efa9e6b"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/area/obj/chest"
+    },
+    {
+      "id": "89bf1c12381d",
+      "slug": "area-room-sample-room",
+      "name": "Sample Room",
+      "description": "This is a room you can use as a template.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "090765ef1200"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "template",
+          "keywords": [
+            "template"
+          ],
+          "description": [
+            "That's what this is."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/area/room/sample_room"
+    },
+    {
+      "id": "6449abe381d2",
+      "slug": "area-room-sample-two",
+      "name": "Second Sample Room",
+      "description": "This is another sample room.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "a9aeec2692b4"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "template",
+          "keywords": [
+            "template"
+          ],
+          "description": [
+            "That's what this is."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/area/room/sample_two"
+    },
+    {
+      "id": "084b43bf9ffb",
+      "slug": "test1",
+      "name": "copy of workroom.c",
+      "description": "You are standing in the workroom of the mighty\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "north": "98a4c8754e47",
+        "up": "2faa69826ace"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "workroom",
+          "keywords": [
+            "workroom"
+          ],
+          "description": [
+            "It looks very nice."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign",
+            "hint",
+            "hints"
+          ],
+          "description": [
+            "A sign with hints for creators."
+          ]
+        },
+        {
+          "name": "sheet",
+          "keywords": [
+            "sheet",
+            "reminder",
+            "reminders"
+          ],
+          "description": [
+            "A sheet with quick reminders for creators."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/test1"
+    },
+    {
+      "id": "27f13bd63448",
+      "slug": "tmp-afflknhf1331051839",
+      "name": "Royal Oak Bar N Grill",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "2feed2190d1c"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/afflknhf1331051839"
+    },
+    {
+      "id": "f00342d25b22",
+      "slug": "tmp-akncehkd1331051839",
+      "name": "Royal Oak Bar N Grill",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "0f8355b0e9cb"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/akncehkd1331051839"
+    },
+    {
+      "id": "cbf7e233315b",
+      "slug": "tmp-amkaicfj1331051868",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "832d7c660d83"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/amkaicfj1331051868"
+    },
+    {
+      "id": "36aa5d0b6ea2",
+      "slug": "tmp-ballllnb1331052553",
+      "name": "Faded Trail",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "00b778deef85"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/ballllnb1331052553"
+    },
+    {
+      "id": "854a2f4d643e",
+      "slug": "tmp-bekchjma1331052494",
+      "name": "Faded Trail",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "4ea7098bf8b3"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/bekchjma1331052494"
+    },
+    {
+      "id": "10270768184c",
+      "slug": "tmp-bhbjccln1331051924",
+      "name": "copy of ROBarNGrill04.c",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "fdc0d2e45fc7"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/bhbjccln1331051924"
+    },
+    {
+      "id": "7af5e7ed1ea7",
+      "slug": "tmp-bhhnnige1331051025",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "c24d65cefedb"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/bhhnnige1331051025"
+    },
+    {
+      "id": "078b4819e89e",
+      "slug": "tmp-celdahno1331051381",
+      "name": "copy of ROMainSt01.c",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "5fc447ca8a66"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/celdahno1331051381"
+    },
+    {
+      "id": "bcae5525830b",
+      "slug": "tmp-cfdebhfe1331052494",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "3cdcd3209081"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/cfdebhfe1331052494"
+    },
+    {
+      "id": "8e97ff0ea15e",
+      "slug": "tmp-cghdliha1331051868",
+      "name": "Royal Oak Bar N Grill",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "0c2c0472a3e9"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/cghdliha1331051868"
+    },
+    {
+      "id": "a60175e36f5f",
+      "slug": "tmp-ciendjaf1331052449",
+      "name": "South Royal Oak Main Street",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "1b62e98f9066"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/ciendjaf1331052449"
+    },
+    {
+      "id": "bb73fca5602c",
+      "slug": "tmp-cjkfajjb1331051924",
+      "name": "copy of ROBarNGrill04.c",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "e9d977e1e832"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/cjkfajjb1331051924"
+    },
+    {
+      "id": "b4759404ad88",
+      "slug": "tmp-cmldckmn1331051877",
+      "name": "Royal Oak Bar N Grill",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "3329bf8d7138"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/cmldckmn1331051877"
+    },
+    {
+      "id": "3e96e2733462",
+      "slug": "tmp-cocgmnlm1331051924",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "6ab229e0f1ae"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/cocgmnlm1331051924"
+    },
+    {
+      "id": "c4f6ca196a61",
+      "slug": "tmp-dbongghm1331052510",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "765b68c3e2e1"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/dbongghm1331052510"
+    },
+    {
+      "id": "29582f3728ff",
+      "slug": "tmp-dffgimme1330734910",
+      "name": "workroom",
+      "description": "You are standing in the workroom of the mighty\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "1c0fd8d38cfd"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "workroom",
+          "keywords": [
+            "workroom"
+          ],
+          "description": [
+            "It looks very nice."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign",
+            "hint",
+            "hints"
+          ],
+          "description": [
+            "A sign with hints for creators."
+          ]
+        },
+        {
+          "name": "sheet",
+          "keywords": [
+            "sheet",
+            "reminder",
+            "reminders"
+          ],
+          "description": [
+            "A sheet with quick reminders for creators."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/dffgimme1330734910"
+    },
+    {
+      "id": "108fd7ad1fa3",
+      "slug": "tmp-dfibkcma1331051839",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "9162b800862b"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/dfibkcma1331051839"
+    },
+    {
+      "id": "106b45ccdd41",
+      "slug": "tmp-ecbhdain1331051490",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "805905c92bb9"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/ecbhdain1331051490"
+    },
+    {
+      "id": "96fa5a99313b",
+      "slug": "tmp-ehkbbeig1331052494",
+      "name": "Faded Trail",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "a0c6ed9cf93a"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/ehkbbeig1331052494"
+    },
+    {
+      "id": "0f430bb2a341",
+      "slug": "tmp-ekcnfmeo1331051490",
+      "name": "copy of ROMainSt02.c",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "a6c44f8739a0"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/ekcnfmeo1331051490"
+    },
+    {
+      "id": "b4e91a707976",
+      "slug": "tmp-emeannnm1331027935",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "86a05b515378"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/emeannnm1331027935"
+    },
+    {
+      "id": "c59747221277",
+      "slug": "tmp-enahebid1330734910",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "d9d0f510bce5"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/enahebid1330734910"
+    },
+    {
+      "id": "aaf27754bd0a",
+      "slug": "tmp-enohkkao1331052553",
+      "name": "Faded Trail",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "821e000e7f2d"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/enohkkao1331052553"
+    },
+    {
+      "id": "36360b85154e",
+      "slug": "tmp-fbialokk1330938840",
+      "name": "Royal Oak Med Room",
+      "description": "The room is dimly lit with a long metal table and a series of cabinets along the wall. There is a small lighted sign and to the east an exit can be seen through slightly parted curtains.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "8dd47e153113"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "cabinets",
+          "keywords": [
+            "cabinets"
+          ],
+          "description": [
+            "The cabinets that line the wall are simple and white with a red cross adorning each."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor"
+          ],
+          "description": [
+            "The floor is a simple concrete that looks stained in years of blood."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "A small backlit sign on the wall. To read it, 'read sign'."
+          ]
+        },
+        {
+          "name": "curtains",
+          "keywords": [
+            "curtains"
+          ],
+          "description": [
+            "The parted curtains allow a small amount of light through leading to the east."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/fbialokk1330938840"
+    },
+    {
+      "id": "ef8dac379fb4",
+      "slug": "tmp-fdnedhfb1330938840",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "60eea53af034"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/fdnedhfb1330938840"
+    },
+    {
+      "id": "108e9eca1eec",
+      "slug": "tmp-fkkgiebc1331051025",
+      "name": "Royal Oak Main Street",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "3bd7427eb238"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/fkkgiebc1331051025"
+    },
+    {
+      "id": "2d03212fc2c3",
+      "slug": "tmp-focmdhmf1331052510",
+      "name": "Faded Trail",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "642330976758"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/focmdhmf1331052510"
+    },
+    {
+      "id": "d00223d69507",
+      "slug": "tmp-gllbajdh1330938840",
+      "name": "Royal Oak Med Room",
+      "description": "The room is dimly lit with a long metal table and a series of cabinets along the wall. There is a small lighted sign and to the east an exit can be seen through slightly parted curtains.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "cb32ebaca7af"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "cabinets",
+          "keywords": [
+            "cabinets"
+          ],
+          "description": [
+            "The cabinets that line the wall are simple and white with a red cross adorning each."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor"
+          ],
+          "description": [
+            "The floor is a simple concrete that looks stained in years of blood."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "A small backlit sign on the wall. To read it, 'read sign'."
+          ]
+        },
+        {
+          "name": "curtains",
+          "keywords": [
+            "curtains"
+          ],
+          "description": [
+            "The parted curtains allow a small amount of light through leading to the east."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/gllbajdh1330938840"
+    },
+    {
+      "id": "823495d36e06",
+      "slug": "tmp-hedmbldl1331051381",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "942bd6a31db4"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/hedmbldl1331051381"
+    },
+    {
+      "id": "3c52cb9df167",
+      "slug": "tmp-hijmlmdc1331051436",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "455a7fb8132a"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/hijmlmdc1331051436"
+    },
+    {
+      "id": "2e64316329d5",
+      "slug": "tmp-hlnbamic1331051877",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "1fe19825d060"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/hlnbamic1331051877"
+    },
+    {
+      "id": "30a09bbb8f38",
+      "slug": "tmp-hmdibamg1331052449",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "fb91c7722553"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/hmdibamg1331052449"
+    },
+    {
+      "id": "dd990c0831b0",
+      "slug": "tmp-iaalackj1331051805",
+      "name": "North Royal Oak Main Street",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "82919b832c08"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/iaalackj1331051805"
+    },
+    {
+      "id": "6c092d2b20e1",
+      "slug": "tmp-ianncaha1331052553",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "e63e19d75199"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/ianncaha1331052553"
+    },
+    {
+      "id": "2b2608ad8efa",
+      "slug": "tmp-ikicekdf1331027935",
+      "name": "Medical Center Hub",
+      "description": "The room is lit by a number of dull florescent lights hanging overhead showing a dirty floor and sagging water soaked plaster walls. What was once a bright center for healing appears to be slowly decaying with time. There is a sign on the west wall above a curtained door.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "db87975699df"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "light",
+          "keywords": [
+            "light",
+            "florescent",
+            "lights"
+          ],
+          "description": [
+            "The florescent lights flicker faintly illuminating the dirty room. They appear to run on the buildings main power supply."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor"
+          ],
+          "description": [
+            "The floor is tiled with misplaced and broken tiles showing years of decay."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "A small backlit sign on the wall. To read it, 'read sign'."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "plaster"
+          ],
+          "description": [
+            "The plaster walls are chipped and threatening to fall as time has slowly destroyed them."
+          ]
+        },
+        {
+          "name": "curtain",
+          "keywords": [
+            "curtain",
+            "curtains"
+          ],
+          "description": [
+            "The parted curtains were once sterile white are now torn and threadbare showing an exit to the west."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/ikicekdf1331027935"
+    },
+    {
+      "id": "5d2d0a451ebe",
+      "slug": "tmp-jejnejeo1331052531",
+      "name": "Faded Trail",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "beee0bd54546"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/jejnejeo1331052531"
+    },
+    {
+      "id": "d8521bb78ce9",
+      "slug": "tmp-jmmbjhjb1331051910",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "b7882669b037"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/jmmbjhjb1331051910"
+    },
+    {
+      "id": "516d62b34b25",
+      "slug": "tmp-jngbcdni1331051910",
+      "name": "copy of ROBarNGrill01.c",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "8edb12c5f3d2"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/jngbcdni1331051910"
+    },
+    {
+      "id": "eee620f91f3b",
+      "slug": "tmp-kddnjokl1331051805",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "010ecec600f8"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/kddnjokl1331051805"
+    },
+    {
+      "id": "3372d3381588",
+      "slug": "tmp-kdnoedel1331052258",
+      "name": "South Royal Oak Main Street",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "2ef082c243ed"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/kdnoedel1331052258"
+    },
+    {
+      "id": "1e6a5606a96c",
+      "slug": "tmp-kichheel1331051436",
+      "name": "copy of ROMainSt02.c",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "7279a69fbce1"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/kichheel1331051436"
+    },
+    {
+      "id": "f8ed68d1a0c7",
+      "slug": "tmp-kinialai1331052258",
+      "name": "South Royal Oak Main Street",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "6413bbf1a0de"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/kinialai1331052258"
+    },
+    {
+      "id": "43c64be904db",
+      "slug": "tmp-leeobdaj1331027935",
+      "name": "Medical Center Hub",
+      "description": "The room is lit by a number of dull florescent lights hanging overhead showing a dirty floor and sagging water soaked plaster walls. What was once a bright center for healing appears to be slowly decaying with time. There is a sign on the west wall above a curtained door.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "d9d3096fb5f6"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "light",
+          "keywords": [
+            "light",
+            "florescent",
+            "lights"
+          ],
+          "description": [
+            "The florescent lights flicker faintly illuminating the dirty room. They appear to run on the buildings main power supply."
+          ]
+        },
+        {
+          "name": "floor",
+          "keywords": [
+            "floor"
+          ],
+          "description": [
+            "The floor is tiled with misplaced and broken tiles showing years of decay."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign"
+          ],
+          "description": [
+            "A small backlit sign on the wall. To read it, 'read sign'."
+          ]
+        },
+        {
+          "name": "wall",
+          "keywords": [
+            "wall",
+            "walls",
+            "plaster"
+          ],
+          "description": [
+            "The plaster walls are chipped and threatening to fall as time has slowly destroyed them."
+          ]
+        },
+        {
+          "name": "curtain",
+          "keywords": [
+            "curtain",
+            "curtains"
+          ],
+          "description": [
+            "The parted curtains were once sterile white are now torn and threadbare showing an exit to the west."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/leeobdaj1331027935"
+    },
+    {
+      "id": "548afa1b2e3e",
+      "slug": "tmp-lfjmbiej1331052258",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "c0a9d7c638ae"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/lfjmbiej1331052258"
+    },
+    {
+      "id": "b317f577a0a1",
+      "slug": "tmp-lfmdgbnf1331051490",
+      "name": "copy of ROMainSt02.c",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "5f065733f716"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/lfmdgbnf1331051490"
+    },
+    {
+      "id": "97c81a8b1da8",
+      "slug": "tmp-lgkoekdc1331051910",
+      "name": "copy of ROBarNGrill01.c",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "bee8eed2caac"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/lgkoekdc1331051910"
+    },
+    {
+      "id": "dcd88f856dbd",
+      "slug": "tmp-lkefkmkl1330734910",
+      "name": "workroom",
+      "description": "You are standing in the workroom of the mighty\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "adbdb7ca0046"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "workroom",
+          "keywords": [
+            "workroom"
+          ],
+          "description": [
+            "It looks very nice."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign",
+            "hint",
+            "hints"
+          ],
+          "description": [
+            "A sign with hints for creators."
+          ]
+        },
+        {
+          "name": "sheet",
+          "keywords": [
+            "sheet",
+            "reminder",
+            "reminders"
+          ],
+          "description": [
+            "A sheet with quick reminders for creators."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/lkefkmkl1330734910"
+    },
+    {
+      "id": "9eb0fffe80d4",
+      "slug": "tmp-lmgchlji1331052531",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "3b9d52ba38e7"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/lmgchlji1331052531"
+    },
+    {
+      "id": "a60ae8c61b80",
+      "slug": "tmp-mcelmgnm1331051805",
+      "name": "North Royal Oak Main Street",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "bd2c6fdb6c2b"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/mcelmgnm1331051805"
+    },
+    {
+      "id": "01502f3ead7d",
+      "slug": "tmp-mebnmcne1331051381",
+      "name": "copy of ROMainSt01.c",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "51d933f3d754"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/mebnmcne1331051381"
+    },
+    {
+      "id": "3847b315e077",
+      "slug": "tmp-mlnnbehn1331052510",
+      "name": "Faded Trail",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "8d75375ecd70"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/mlnnbehn1331052510"
+    },
+    {
+      "id": "dbf7714bfab2",
+      "slug": "tmp-ndkaejgo1331051868",
+      "name": "Royal Oak Bar N Grill",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "cfd65499c49b"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/ndkaejgo1331051868"
+    },
+    {
+      "id": "14583b723ee5",
+      "slug": "tmp-nggdhihm1331051025",
+      "name": "Royal Oak Main Street",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "a354f6829798"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/nggdhihm1331051025"
+    },
+    {
+      "id": "993d3ef3205f",
+      "slug": "tmp-nijcnlhj1331051930",
+      "name": "copy of ROBarNGrillFl101.c",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "e4b2af11ea56"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/nijcnlhj1331051930"
+    },
+    {
+      "id": "3ea1b50d41ca",
+      "slug": "tmp-nlhbmblm1331051436",
+      "name": "copy of ROMainSt02.c",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "9a56566b5a8b"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/nlhbmblm1331051436"
+    },
+    {
+      "id": "664dbaf09d96",
+      "slug": "tmp-nnabkcnn1331051930",
+      "name": "a blank room",
+      "description": "A featureless area.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "c34ff4e286cd"
+      },
+      "npcs": [],
+      "scenery": [],
+      "source_path": "/realms/hells/tmp/nnabkcnn1331051930"
+    },
+    {
+      "id": "492137dab4e9",
+      "slug": "tmp-odnnemac1331052531",
+      "name": "Faded Trail",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "6fa0710a7853"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/odnnemac1331052531"
+    },
+    {
+      "id": "c2a956c1c9cc",
+      "slug": "tmp-ogimfoil1331051877",
+      "name": "Royal Oak Bar N Grill",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "ce2b920e7b46"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/ogimfoil1331051877"
+    },
+    {
+      "id": "210f88c40860",
+      "slug": "tmp-oncdgldk1331051930",
+      "name": "copy of ROBarNGrillFl101.c",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "c4e607091bba"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/oncdgldk1331051930"
+    },
+    {
+      "id": "250b59b5f2c8",
+      "slug": "tmp-oohgehdj1331052449",
+      "name": "South Royal Oak Main Street",
+      "description": "The center of main street shows a dusty asphalt road leading north and south. To the east a faded mist overlays destroyed buildings. A small building with a red cross lies to the west.\nA marked archway up returns to the Travel Concourse.",
+      "exits": {
+        "up": "df9a30d95044"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "buildings",
+          "keywords": [
+            "buildings",
+            "ruins",
+            "mist",
+            "destroyed"
+          ],
+          "description": [
+            "The ruins stretching to the east are shrouded in a strange mist evoking primal fears of the unknown."
+          ]
+        },
+        {
+          "name": "ground",
+          "keywords": [
+            "ground",
+            "road",
+            "asphalt"
+          ],
+          "description": [
+            "The faded road stretches to the north showing more of Royal Oak. To the south the road leads to a large impromptu wall."
+          ]
+        },
+        {
+          "name": "medical",
+          "keywords": [
+            "medical",
+            "building"
+          ],
+          "description": [
+            "The building to the west appears to be a medical building."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/tmp/oohgehdj1331052449"
+    },
+    {
+      "id": "98a4c8754e47",
+      "slug": "workroom",
+      "name": "workroom",
+      "description": "You are standing in the workroom of the mighty",
+      "exits": {
+        "east": "89bf1c12381d",
+        "south": "084b43bf9ffb"
+      },
+      "npcs": [],
+      "scenery": [
+        {
+          "name": "workroom",
+          "keywords": [
+            "workroom"
+          ],
+          "description": [
+            "It looks very nice."
+          ]
+        },
+        {
+          "name": "sign",
+          "keywords": [
+            "sign",
+            "hint",
+            "hints"
+          ],
+          "description": [
+            "A sign with hints for creators."
+          ]
+        },
+        {
+          "name": "sheet",
+          "keywords": [
+            "sheet",
+            "reminder",
+            "reminders"
+          ],
+          "description": [
+            "A sheet with quick reminders for creators."
+          ]
+        }
+      ],
+      "source_path": "/realms/hells/workroom"
+    }
+  ]
+}
