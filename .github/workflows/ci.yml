@@ -1,6 +1,8 @@
-name: Build and focused checks
+name: CI and production release
 on:
   pull_request:
+    branches: [main]
+  push:
     branches: [main]
   workflow_dispatch:
 permissions:
@@ -21,6 +23,8 @@ jobs:
           cargo test --locked -p grim-auth --lib structured_login
       - name: Check website sources
         run: python3 website/build.py
+      - name: Release preservation and validation checks
+        run: python3 -m unittest discover -s tools/server-host -p test_release.py
   quality:
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -37,3 +41,72 @@ jobs:
       - name: Coverage
         if: ${{ !cancelled() }}
         run: make coverage
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-unknown-linux-musl
+      - uses: Swatinem/rust-cache@v2
+      - name: Install static linker
+        run: sudo apt-get update && sudo apt-get install -y musl-tools
+      - name: Build compatible server executable
+        run: cargo build --locked --release -p example-mud --bin savsoul --target x86_64-unknown-linux-musl
+      - name: Verify static linking
+        run: |
+          file target/x86_64-unknown-linux-musl/release/savsoul
+          readelf -l target/x86_64-unknown-linux-musl/release/savsoul > program-headers.txt
+          ! grep -q INTERP program-headers.txt
+      - name: Package code and authored content
+        run: |
+          python3 website/build.py
+          python3 tools/server-host/package_release.py \
+            --binary target/x86_64-unknown-linux-musl/release/savsoul \
+            --revision "$GITHUB_SHA" --output release.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ github.sha }}
+          path: release.tar.gz
+          retention-days: 7
+          if-no-files-found: error
+  deploy:
+    needs: [build, quality, package]
+    if: github.repository == 'brcoding/SavageSoulMud' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    environment:
+      name: production
+      url: https://savsoul.com
+    concurrency:
+      group: savsoul-production
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-${{ github.sha }}
+      - name: Deploy the checked revision over restricted SSH
+        env:
+          DEPLOY_KEY: ${{ secrets.SAVSOUL_DEPLOY_KEY }}
+          KNOWN_HOSTS: ${{ secrets.SAVSOUL_KNOWN_HOSTS }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote https://github.com/brcoding/SavageSoulMud.git refs/heads/main | cut -f1)" = "$GITHUB_SHA" || {
+            echo 'A newer main revision exists; refusing an out-of-order release.' >&2; exit 1;
+          }
+          umask 077
+          install -d -m 700 "$RUNNER_TEMP/deploy-ssh"
+          trap 'rm -f "$RUNNER_TEMP/deploy-ssh/key" "$RUNNER_TEMP/deploy-ssh/known_hosts"' EXIT
+          printf '%s\n' "$DEPLOY_KEY" > "$RUNNER_TEMP/deploy-ssh/key"
+          printf '%s\n' "$KNOWN_HOSTS" > "$RUNNER_TEMP/deploy-ssh/known_hosts"
+          unset DEPLOY_KEY KNOWN_HOSTS
+          ssh -T -i "$RUNNER_TEMP/deploy-ssh/key" \
+            -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$RUNNER_TEMP/deploy-ssh/known_hosts" \
+            -o ConnectTimeout=20 -o ServerAliveInterval=15 -o ServerAliveCountMax=4 \
+            root@173.255.210.234 "deploy $GITHUB_SHA" < release.tar.gz
+          printf 'Released `%s` to https://savsoul.com (game :4000 / TLS :4001).\n' "$GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
