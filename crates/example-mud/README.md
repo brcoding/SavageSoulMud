@@ -26,6 +26,8 @@ Player-facing verbs and where to find their handlers.
 |---|---|---|
 | `grapevine` / `gv` | `src/grapevine.rs` | Wizard-only Grapevine status, subscriptions, channel chat, tells, games/players, history and credential reload. |
 | `score`, `train`, `pecs`, `learn`, `wield`, `wear`, `attack`, `kill`, `stop`, `defend`, `rest`, `recover`, `task`, `exchange` | `savage_soul::run_command` (`src/savage_soul.rs`) | Savage Soul character and combat actions. |
+| `remove` | `savage_soul::run_command` (`src/savage_soul.rs`) | Unequip an item. |
+| `soulheal`, `awardxp` | `savage_soul::wizard_command` (`src/savage_soul.rs`) | Wizard-only healing and XP grants. |
 | `creator`, `rebuild`, `respec`, `races`, `race`, `buyoff` | `creator::command` (`src/creator.rs`) | Preview and commit med-bay character changes. |
 | `list`, `credits`, `buy`, `sell` | `shop::handle_shop` (`src/shop.rs`) | Shop transactions. |
 | `help` | `help::answer_help` (`src/help.rs`) | General and command help. |
@@ -41,6 +43,9 @@ Game command vocabulary is installed by `src/game_commands.rs` from
 `SavageSoulPlugin`; the shared scene parser remains game-independent.
 The plugin replaces look/read/get/open/close factories without changing their
 engine prefix priorities. Equipment reconciliation is throttled to once per second.
+Client protocol input is limited to 16 frames per connection per tick and 32
+MSDP commands/values per payload. SEND snapshots are lazy and shared within a
+tick; explicit inventory requests are coalesced and reuse the periodic snapshot.
 
 ## Resources & Events
 | Name | Kind (Resource/Message) | File |

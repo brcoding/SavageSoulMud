@@ -28,8 +28,8 @@ def initialize(root):
         keypath, env = root / 'api.key', root / 'gateway.env'
         values = dict(line.split('=', 1) for line in env.read_text().splitlines()
                       if '=' in line) if env.exists() else {}
-        key = keypath.read_text().strip() if keypath.exists() else values.get('SAVSOUL_I3_API_KEY', '')
-        key = key or secrets.token_urlsafe(48)
+        key = keypath.read_text().strip() if keypath.exists() else ''
+        key = key or values.get('SAVSOUL_I3_API_KEY', '').strip() or secrets.token_urlsafe(48)
         values['SAVSOUL_I3_API_KEY'] = key
         values['SAVSOUL_I3_GATEWAY_SECRET'] = values.get('SAVSOUL_I3_GATEWAY_SECRET') or secrets.token_urlsafe(48)
         # Recover from partial loss, or reconcile an explicitly rotated api.key.

@@ -392,10 +392,7 @@ fn worker(config: Config, requests: Receiver<Request>, events: SyncSender<Incomi
                                     }
                                 }
                             } else {
-                                match events.try_send(Incoming::Packet(packet)) {
-                                    Ok(()) | Err(mpsc::TrySendError::Full(_)) => {},
-                                    Err(mpsc::TrySendError::Disconnected(_)) => return Err(std::io::ErrorKind::BrokenPipe.into()),
-                                }
+                                forward_packet(&events,packet)?;
                             }
                         }
                     }
@@ -552,6 +549,16 @@ fn save_subscriptions(path: &str, channels: &[String]) -> std::io::Result<()> {
     file.sync_data()?;
     drop(file);
     std::fs::rename(temp, path)
+}
+/// Router recovery is a control event: unlike excess chat, it cannot be dropped.
+fn forward_packet(events:&SyncSender<Incoming>,packet:Value)->std::io::Result<()> {
+    if packet["method"]=="gateway_reconnected" {
+        return events.send(Incoming::Packet(packet)).map_err(|_|std::io::ErrorKind::BrokenPipe.into());
+    }
+    match events.try_send(Incoming::Packet(packet)) {
+        Ok(()) | Err(mpsc::TrySendError::Full(_)) => Ok(()),
+        Err(mpsc::TrySendError::Disconnected(_)) => Err(std::io::ErrorKind::BrokenPipe.into()),
+    }
 }
 fn rejoin(bridge: &mut Bridge) {
     bridge.confirmed.clear();
@@ -1012,6 +1019,18 @@ fn request_notice(p: &Value) -> Option<String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn router_recovery_survives_a_saturated_event_queue() {
+        let (tx,rx)=mpsc::sync_channel(1);
+        forward_packet(&tx,json!({"method":"channel_message"})).unwrap();
+        forward_packet(&tx,json!({"method":"channel_message"})).unwrap();
+        let worker=std::thread::spawn(move ||forward_packet(&tx,json!({"method":"gateway_reconnected"})));
+        let Incoming::Packet(first)=rx.recv_timeout(Duration::from_secs(2)).unwrap() else {panic!("packet expected")};
+        assert_eq!(first["method"],"channel_message");
+        let Incoming::Packet(control)=rx.recv_timeout(Duration::from_secs(2)).unwrap() else {panic!("control expected")};
+        assert_eq!(control["method"],"gateway_reconnected");
+        worker.join().unwrap().unwrap();
+    }
     #[test]
     fn discovery_notice_is_local_sanitized_and_has_no_reply_data() {
         let p=json!({"request":"who-req","from_user":"Crawler","from_mud":"MUIndex","users":["private"]});

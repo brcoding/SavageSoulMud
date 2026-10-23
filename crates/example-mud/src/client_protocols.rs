@@ -6,6 +6,8 @@ use serde::Deserialize;
 use serde_json::{json, Value};
 use std::collections::{BTreeMap, HashMap, HashSet};
 const REPORTABLE: &[&str] = &["INJURY", "MANA", "MANA_MAX", "EXPERIENCE", "EXPERIENCE_UNSPENT", "CREDITS", "WINDED", "FATIGUED", "STUNNED", "ROOM_VNUM", "ROOM_NAME", "AREA_NAME", "ROOM_EXITS", "CHARACTER_NAME"];
+const INPUTS_PER_TICK: usize = 16;
+const MSDP_VALUES_PER_INPUT: usize = 32;
 const GMCP:u8=201; const MSDP:u8=69; const MSSP:u8=70; const ATCP:u8=200;
 
 #[derive(Resource, Clone, Deserialize)]
@@ -73,10 +75,13 @@ fn msdp_pair(name:&str,value:&Value)->Vec<u8> {let mut out=vec![1];out.extend(na
 fn msdp_commands(payload:&[u8])->Vec<(String,Vec<String>)> {
     if payload.len()>8192{return vec![];}
     let mut commands=Vec::new();
-    for part in payload.split(|byte|*byte==1).skip(1) {
+    let mut remaining=MSDP_VALUES_PER_INPUT;
+    for part in payload.split(|byte|*byte==1).skip(1).take(MSDP_VALUES_PER_INPUT) {
+        if remaining==0 {break;}
         let Some(split)=part.iter().position(|b|*b==2) else{continue;};
         let name=String::from_utf8_lossy(&part[..split]).to_uppercase();
-        let values=part[split+1..].split(|byte|matches!(*byte,2|5|6)).map(|value|String::from_utf8_lossy(value).trim().to_uppercase()).filter(|value|!value.is_empty()&&value.len()<=64&&value.bytes().all(|byte|byte.is_ascii_alphanumeric()||byte==b'_')).take(32).collect();
+        let values:Vec<_>=part[split+1..].split(|byte|matches!(*byte,2|5|6)).map(|value|String::from_utf8_lossy(value).trim().to_uppercase()).filter(|value|!value.is_empty()&&value.len()<=64&&value.bytes().all(|byte|byte.is_ascii_alphanumeric()||byte==b'_')).take(remaining).collect();
+        remaining-=values.len();
         commands.push((name,values));
     }
     commands
@@ -95,7 +100,14 @@ fn tick(world:&mut World,mut cursor:Local<MessageCursor<TelnetInput>>) {
     let inputs:Vec<_>=cursor.read(world.resource::<Messages<TelnetInput>>()).cloned().collect();
     let mut state=world.remove_resource::<State>().unwrap_or_default();
     let online:HashMap<Entity,Entity>=world.query_filtered::<(Entity,&Player),With<Character>>().iter(world).map(|(actor,player)|(player.connection,actor)).collect();
+    let mut budgets:HashMap<Entity,usize>=HashMap::new();
+    let mut snapshots=HashMap::new();
+    let mut inventories=HashMap::new();
+    let mut inventory_replied=HashSet::new();
     for input in inputs {
+        let used=budgets.entry(input.connection).or_default();
+        if *used>=INPUTS_PER_TICK {continue;}
+        *used+=1;
         if world.get::<Connection>(input.connection).is_none(){continue;}
         let Some(caps)=world.get::<TelnetCapabilities>(input.connection).cloned() else{continue;};
         let client=state.clients.entry(input.connection).or_default();
@@ -106,19 +118,26 @@ fn tick(world:&mut World,mut cursor:Local<MessageCursor<TelnetInput>>) {
             if text.trim()=="Core.Ping" {protocol(world,input.connection,GMCP,b"Core.Ping".to_vec());}
             if text.starts_with("Core.Supports.")||input.payload.is_empty(){client.last.clear();}
             if let Some(actor)=online.get(&input.connection) {
-                if text.trim()=="Char.Items.Inv" {let items=inventory(world,*actor);gmcp(world,input.connection,"Char.Items.List",&json!({"location":"inv","items":items}));}
+                if text.trim()=="Char.Items.Inv" && inventory_replied.insert(input.connection) {
+                    let items=inventories.entry(*actor).or_insert_with(||json!(inventory(world,*actor)));
+                    gmcp(world,input.connection,"Char.Items.List",&json!({"location":"inv","items":items}));
+                }
             }
         }
         if input.option==MSDP&&caps.msdp {
             for(command,values)in msdp_commands(&input.payload) {
                 for value in values {
-                    let vars=online.get(&input.connection).map(|actor|variables(&snapshot(world,*actor))).unwrap_or_default();
                     match command.as_str() {
                         "LIST"=>{let list=match value.as_str(){"COMMANDS"=>Some(json!(["LIST","SEND","REPORT","UNREPORT","RESET"])),"LISTS"=>Some(json!(["COMMANDS","LISTS","REPORTABLE_VARIABLES","REPORTED_VARIABLES","SENDABLE_VARIABLES"])),"REPORTABLE_VARIABLES"|"SENDABLE_VARIABLES"=>Some(json!(REPORTABLE)),"REPORTED_VARIABLES"=>Some(json!(client.reported.iter().collect::<Vec<_>>())),_=>None};if let Some(list)=list{protocol(world,input.connection,MSDP,msdp_pair(&value,&list));}},
                         "REPORT" if REPORTABLE.contains(&value.as_str())=>{client.reported.insert(value);client.last.clear();},
                         "UNREPORT"=>{client.reported.remove(&value);},
                         "RESET"=>client.reported.clear(),
-                        "SEND"=>{if let Some(data)=vars.get(&value){protocol(world,input.connection,MSDP,msdp_pair(&value,data));}},_=>{}
+                        "SEND" if REPORTABLE.contains(&value.as_str())=>{
+                            if let Some(actor)=online.get(&input.connection) {
+                                let vars=snapshots.entry(*actor).or_insert_with(||variables(&snapshot(world,*actor)));
+                                if let Some(data)=vars.get(&value){protocol(world,input.connection,MSDP,msdp_pair(&value,data));}
+                            }
+                        },_=>{}
                     }
                 }
             }
@@ -146,7 +165,7 @@ fn tick(world:&mut World,mut cursor:Local<MessageCursor<TelnetInput>>) {
             if !client.links_shown&&world.get::<Character>(actor).is_some_and(|c|c.config.get("client_links").is_some_and(|v|v=="on")){client.links_shown=client_links(world,connection,&caps);}
             let data=snapshot(world,actor);
             if caps.gmcp {for(package,value)in &data {if package_supported(&caps,package)&&client.last.get(package)!=Some(value){gmcp(world,connection,package,value);client.last.insert(package.clone(),value.clone());}}
-                if package_supported(&caps,"Char.Items.List") {let items=json!(inventory(world,actor));if items!=client.last_inventory{gmcp(world,connection,"Char.Items.List",&json!({"location":"inv","items":items}));client.last_inventory=items;}}
+                if package_supported(&caps,"Char.Items.List") {let items=inventories.entry(actor).or_insert_with(||json!(inventory(world,actor)));if *items!=client.last_inventory{gmcp(world,connection,"Char.Items.List",&json!({"location":"inv","items":items}));client.last_inventory=items.clone();}}
             }
             if caps.msdp {for(name,value)in variables(&data){let key=format!("MSDP:{name}");if client.reported.contains(&name)&&client.last.get(&key)!=Some(&value){protocol(world,connection,MSDP,msdp_pair(&name,&value));client.last.insert(key,value);}}}
             if caps.atcp&&!caps.gmcp {if let Some(room)=data.get("Room.Info"){if client.last.get("ATCP:Room")!=Some(room){protocol(world,connection,ATCP,format!("Room.Brief {}",room["name"].as_str().unwrap_or("")).into_bytes());client.last.insert("ATCP:Room".into(),room.clone());}}}
@@ -192,6 +211,33 @@ pub(crate) fn command(world:&mut World,actor:Entity,arg:&str)->Result<(),String>
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn msdp_caps_total_values_and_commands_across_the_payload() {
+        let payload=b"\x01SEND\x02MANA".repeat(100);
+        let commands=msdp_commands(&payload);
+        assert_eq!(commands.iter().map(|(_,values)|values.len()).sum::<usize>(),MSDP_VALUES_PER_INPUT);
+        assert!(commands.len()<=MSDP_VALUES_PER_INPUT);
+        let payload=b"\x01\x02".repeat(2000);
+        assert!(msdp_commands(&payload).len()<=MSDP_VALUES_PER_INPUT);
+    }
+
+    #[test]
+    fn protocol_bursts_obey_each_connections_tick_budget() {
+        let mut app=App::new();
+        app.init_resource::<Time>().init_resource::<State>().init_resource::<Settings>().init_resource::<MapperIds>();
+        app.add_message::<TelnetInput>().add_message::<TelnetOutput>().add_systems(Update,tick);
+        let mut connections=Vec::new();
+        for id in 1..=2 {
+            let connection=app.world_mut().spawn((Connection{id,addr:"127.0.0.1:1234".parse().unwrap(),echo_hidden:false},TelnetCapabilities{gmcp:true,..Default::default()})).id();
+            connections.push(connection);
+            for _ in 0..100 {app.world_mut().write_message(TelnetInput{connection,option:GMCP,payload:b"Core.Ping".to_vec()});}
+        }
+        app.update();
+        let outputs=app.world().resource::<Messages<TelnetOutput>>();
+        let mut cursor=outputs.get_cursor();
+        let frames:Vec<_>=cursor.read(outputs).collect();
+        for connection in connections {assert_eq!(frames.iter().filter(|f|f.connection==connection&&f.payload==b"Core.Ping").count(),INPUTS_PER_TICK);}
+    }
     #[test]
     fn msdp_array_and_table_are_structured_not_json_text() {
         assert_eq!(msdp_pair("ROOM_EXITS",&json!({"n":"abc"})),b"\x01ROOM_EXITS\x02\x03\x01n\x02abc\x04");

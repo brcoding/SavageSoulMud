@@ -79,7 +79,8 @@ pub(crate) fn submit(world: &mut World, actor: Entity, npc: Entity, question: &s
 fn tick(world: &mut World) {
     let responses: Vec<_> = { let bridge = world.resource::<Bridge>(); let Ok(rx) = bridge.rx.lock() else { return; }; rx.try_iter().collect() };
     for (request, intent) in responses {
-        if world.resource_mut::<Bridge>().pending.remove(&request.actor) != Some(request.id) { continue; }
+        if world.resource::<Bridge>().pending.get(&request.actor) != Some(&request.id) { continue; }
+        world.resource_mut::<Bridge>().pending.remove(&request.actor);
         if world.get::<Player>(request.actor).is_none_or(|p| p.connection != request.connection)
             || world.get::<Character>(request.actor).is_none()
             || world.get::<InRoom>(request.actor).is_none_or(|p| p.room != request.room)
@@ -132,6 +133,22 @@ pub(crate) fn cancel(world:&mut World,actor:Entity) {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn canceled_response_does_not_remove_a_newer_question() {
+        let mut world=World::new();
+        world.init_resource::<Messages<grim::events::InfoMessage>>();
+        let actor=world.spawn_empty().id();
+        let (tx,_requests)=mpsc::sync_channel(4);
+        let (results,rx)=mpsc::sync_channel(4);
+        world.insert_resource(Bridge{tx,rx:Mutex::new(rx),pending:HashMap::from([(actor,2)]),next:2});
+        let request=|id|Request{id,actor,connection:actor,npc:actor,room:actor,question:"attributes".into(),at:Instant::now()};
+        results.send((request(1),None)).unwrap();
+        tick(&mut world);
+        assert_eq!(world.resource::<Bridge>().pending.get(&actor),Some(&2));
+        results.send((request(2),None)).unwrap();
+        tick(&mut world);
+        assert!(!world.resource::<Bridge>().pending.contains_key(&actor));
+    }
     #[test]
     fn model_cannot_return_commands_or_unknown_subjects() {
         assert!(serde_json::from_str::<Intent>(r#"{"topic":"awardxp","subject":"1000"}"#).is_err());

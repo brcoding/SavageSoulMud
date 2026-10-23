@@ -302,12 +302,13 @@ fn worker(config: Config, rx: Receiver<Outgoing>, tx: SyncSender<Incoming>) {
                         if data.len() <= 900 {
                             let _ = socket.send_to(&data, address);
                         } else {
+                            let fragment_id=fragment_id(&job.packet);
                             let chunks: Vec<_> = data.chunks(800).collect();
                             for (i, chunk) in chunks.iter().enumerate() {
                                 let mut part = format!(
                                     "PKT:{}:{}:{}/{}|",
                                     config.mud_name,
-                                    job.packet.get("ID"),
+                                    fragment_id,
                                     i + 1,
                                     chunks.len()
                                 )
@@ -399,6 +400,15 @@ fn send(bridge: &mut Bridge, peer: usize, packet: Packet) -> Result<(), String> 
         .tx
         .try_send(Outgoing { peer, packet })
         .map_err(|_| "Zebedee queue is busy or worker unavailable.".into())
+}
+
+/// Fragment groups need transport identity even for chat, which expects no reply.
+fn fragment_id(packet: &Packet) -> String {
+    if !packet.get("ID").is_empty() {return packet.get("ID").to_string();}
+    use std::sync::{OnceLock,atomic::{AtomicU64,Ordering}};
+    static NEXT: OnceLock<AtomicU64> = OnceLock::new();
+    NEXT.get_or_init(||AtomicU64::new(rand::random_range(1_000_000..u64::MAX/2)))
+        .fetch_add(1,Ordering::Relaxed).to_string()
 }
 fn request(
     bridge: &mut Bridge,
@@ -557,9 +567,8 @@ fn command_inner(
             p.set("REQ","channel");p.set("CHANNEL",channel);p.data=message.trim().into();
             if b.config.peers.is_empty(){return Err("No configured Zebedee peers.".into());}
             if !b.ready{return Err(b.status.clone());}
-            if b.pending.len().saturating_add(b.config.peers.len())>MAX_PENDING{return Err("Zebedee has too many unanswered requests.".into());}
             let mut failed=false;
-            for peer in 0..b.config.peers.len(){if request(b,actor,peer,p.clone()).is_err(){failed=true;}}
+            for peer in 0..b.config.peers.len(){if send(b,peer,p.clone()).is_err(){failed=true;}}
             b.cooldown.insert(actor,Instant::now());
             if failed{return Err("Some Zebedee sends could not be queued; wait before retrying.".into());}
             say(world,actor,"Zebedee channel message queued; UDP delivery is not guaranteed.");return Ok(());
@@ -788,6 +797,20 @@ fn deliver(world: &mut World, b: &mut Bridge, peer: usize, p: Packet) {
 mod tests {
     use super::*;
     #[test]
+    fn untracked_chat_has_unique_transport_fragment_ids() {
+        let mut packet=Packet::default();
+        packet.set("REQ","channel");
+        packet.data="x".repeat(1024);
+        assert!(encode(&packet).unwrap().len()>900);
+        let first=fragment_id(&packet);
+        let second=fragment_id(&packet);
+        assert_ne!(first,second);
+        assert!(first.parse::<u64>().is_ok());
+        assert_eq!(packet.get("ID"),"");
+        packet.set("ID",42);
+        assert_eq!(fragment_id(&packet),"42");
+    }
+    #[test]
     fn framing_preserves_data_delimiters_and_quoted_strings() {
         let mut p = Packet::default();
         p.set("REQ", "tell");
@@ -1010,6 +1033,7 @@ fn relay_worker(config: Config, rx: Receiver<Outgoing>, tx: SyncSender<Incoming>
                                     let chunks: Vec<Vec<u8>> = if data.len() <= 900 {
                                         vec![data]
                                     } else {
+                                        let fragment_id=fragment_id(&job.packet);
                                         let count = data.len().div_ceil(800);
                                         data.chunks(800)
                                             .enumerate()
@@ -1017,7 +1041,7 @@ fn relay_worker(config: Config, rx: Receiver<Outgoing>, tx: SyncSender<Incoming>
                                                 let mut out = format!(
                                                     "PKT:{}:{}:{}/{}|",
                                                     config.mud_name,
-                                                    job.packet.get("ID"),
+                                                    fragment_id,
                                                     i + 1,
                                                     count
                                                 )
