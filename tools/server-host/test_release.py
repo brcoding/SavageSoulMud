@@ -1,0 +1,158 @@
+import hashlib
+import io
+import json
+import os
+from pathlib import Path
+import tarfile
+import tempfile
+import unittest
+from unittest.mock import patch
+
+import receive_release as release
+import release_entry as entry
+
+
+def checksum(content):
+    return hashlib.sha256(content).hexdigest()
+
+
+class ReleaseTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.base = Path(self.temp.name)
+        self.root, self.stage = self.base / 'live', self.base / 'stage'
+        self.root.mkdir()
+        self.stage.mkdir()
+        self.backup = self.base / 'backup'
+
+    def write(self, root, name, data):
+        path = root / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(data)
+
+    def test_live_authored_edits_and_accounts_are_preserved(self):
+        files = {'bin/savsoul': b'new-binary', 'data/areas/town.json': b'new-room',
+                 'assets/motdlist.txt': b'new-motd'}
+        for name, data in files.items():
+            self.write(self.stage, name, data)
+        self.write(self.root, 'bin/savsoul', b'old-binary')
+        self.write(self.root, 'data/areas/town.json', b'live-editor-change')
+        self.write(self.root, 'assets/motdlist.txt', b'old-motd')
+        self.write(self.root, 'data/characters/rawr.json', b'private-player-progress')
+        manifest = {'files': {n: checksum(data) for n, data in files.items()}}
+        baseline = {'files': {'data/areas/town.json': checksum(b'old-room'),
+                              'assets/motdlist.txt': checksum(b'old-motd')}}
+        release.apply(self.stage, self.backup, manifest, baseline, self.root)
+        self.assertEqual((self.root / 'bin/savsoul').read_bytes(), b'new-binary')
+        self.assertEqual((self.root / 'data/areas/town.json').read_bytes(), b'live-editor-change')
+        self.assertEqual((self.root / 'assets/motdlist.txt').read_bytes(), b'new-motd')
+        self.assertEqual((self.root / 'data/characters/rawr.json').read_bytes(), b'private-player-progress')
+        release.restore(self.backup, self.root)
+        self.assertEqual((self.root / 'bin/savsoul').read_bytes(), b'old-binary')
+        self.assertEqual((self.root / 'assets/motdlist.txt').read_bytes(), b'old-motd')
+        self.assertEqual((self.root / 'data/characters/rawr.json').read_bytes(), b'private-player-progress')
+
+    def test_removed_code_restored_and_new_seed_removed_on_rollback(self):
+        self.write(self.root, 'tools/obsolete.py', b'old-code')
+        self.write(self.stage, 'data/help/new.md', b'new-help')
+        release.apply(self.stage, self.backup,
+                      {'files': {'data/help/new.md': checksum(b'new-help')}},
+                      {'files': {'tools/obsolete.py': checksum(b'old-code')}}, self.root)
+        self.assertFalse((self.root / 'tools/obsolete.py').exists())
+        release.restore(self.backup, self.root)
+        self.assertEqual((self.root / 'tools/obsolete.py').read_bytes(), b'old-code')
+        self.assertFalse((self.root / 'data/help/new.md').exists())
+
+    def test_rejects_private_and_escaping_paths(self):
+        for name in ('../evil', '/bin/savsoul', 'tools/../evil', 'data/characters/rawr.json',
+                     'data/intermud.json', 'data/mudlet-map-ids.json', 'tools\\evil', 'tools//evil'):
+            with self.subTest(name=name):
+                self.assertFalse(release.allowed(name))
+
+    def test_destination_symlink_rejected(self):
+        (self.root / 'tools').symlink_to(self.stage, target_is_directory=True)
+        with self.assertRaises(ValueError):
+            release.safe_target(self.root, 'tools/file.py')
+
+    def archive(self, files, revision='a' * 40, extra=None):
+        buffer = io.BytesIO()
+        manifest = {'revision': revision, 'files': {n: checksum(d) for n, d in files.items()}}
+        with tarfile.open(fileobj=buffer, mode='w:gz') as archive:
+            for name, data in {**files, 'manifest.json': json.dumps(manifest).encode()}.items():
+                entry = tarfile.TarInfo(name)
+                entry.size = len(data)
+                archive.addfile(entry, io.BytesIO(data))
+            if extra:
+                archive.addfile(extra)
+        buffer.seek(0)
+        return buffer
+
+    def test_valid_archive(self):
+        stream = self.archive({'bin/savsoul': b'binary', 'public/index.html': b'page'})
+        manifest = release.unpack(stream, self.stage, 'a' * 40)
+        self.assertEqual(len(manifest['files']), 2)
+
+    def test_revision_mismatch(self):
+        with self.assertRaises(ValueError):
+            release.unpack(self.archive({'bin/savsoul': b'b', 'public/index.html': b'p'}),
+                           self.stage, 'b' * 40)
+
+    def test_archive_symlink_rejected(self):
+        link = tarfile.TarInfo('tools/link')
+        link.type, link.linkname = tarfile.SYMTYPE, '/etc/passwd'
+        with self.assertRaises(ValueError):
+            release.unpack(self.archive({'bin/savsoul': b'b', 'public/index.html': b'p'}, extra=link),
+                           self.stage, 'a' * 40)
+
+    def test_duplicate_member_rejected(self):
+        extra = tarfile.TarInfo('bin/savsoul')
+        with self.assertRaises(ValueError):
+            release.unpack(self.archive({'bin/savsoul': b'b', 'public/index.html': b'p'}, extra=extra),
+                           self.stage, 'a' * 40)
+
+    def test_duplicate_preflight_cannot_run_rollback_or_stop_services(self):
+        with patch.dict('os.environ', {'SSH_ORIGINAL_COMMAND': 'deploy ' + 'a' * 40}), \
+                patch.object(entry, 'receiver', side_effect=ValueError('already attempted')) as receiver, \
+                patch.object(entry, 'BACKUPS', str(self.base)), \
+                patch('builtins.open', return_value=io.StringIO()), \
+                patch.object(entry.fcntl, 'flock'), \
+                patch.object(entry.subprocess, 'check_call') as command:
+            with self.assertRaises(ValueError):
+                entry.main()
+            receiver.assert_called_once_with('preflight', 'a' * 40)
+            command.assert_not_called()
+
+    def test_privileged_site_names_are_static_only(self):
+        for name in ('vendor/shadow', 'vendor/.htaccess', 'config.php', '../index.html'):
+            self.assertFalse(entry.website_name(name))
+        self.assertTrue(entry.website_name('vendor/xterm.js'))
+        self.assertTrue(entry.website_name('index.au.html'))
+
+    def test_fifo_source_rejected_without_blocking(self):
+        fifo = self.base / 'pipe'
+        os.mkfifo(fifo)
+        with self.assertRaises(ValueError):
+            entry.read_regular(str(fifo))
+
+    def test_rollback_restores_public_map(self):
+        self.backup.mkdir()
+        (self.backup / 'journal.json').write_text('[]')
+        (self.backup / 'public-map.xml').write_bytes(b'previous-map')
+        public = self.base / 'map.xml'
+        public.write_bytes(b'failed-map')
+        with patch.object(release, 'PUBLIC_MAP', public):
+            release.restore(self.backup, self.root)
+        self.assertEqual(public.read_bytes(), b'previous-map')
+
+    def test_requirements_ignore_line_endings_but_detect_changed_pins(self):
+        old, new = self.base / 'old.txt', self.base / 'new.txt'
+        old.write_bytes(b'# installed\r\naiohttp==3.14.5\r\r\ntelnetlib3==5.0.1\r\n')
+        new.write_bytes(b'telnetlib3==5.0.1\naiohttp==3.14.5\n')
+        self.assertEqual(release.requirements(old), release.requirements(new))
+        new.write_bytes(b'telnetlib3==5.0.2\naiohttp==3.14.5\n')
+        self.assertNotEqual(release.requirements(old), release.requirements(new))
+
+
+if __name__ == '__main__':
+    unittest.main()
