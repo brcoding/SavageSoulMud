@@ -105,6 +105,18 @@ class EditorTests(unittest.TestCase):
         (self.root / "assets/escape.txt").symlink_to(self.root / "data/accounts/a.json")
         self.assertEqual(self.get("file?path=assets/escape.txt").status_code, 403)
         self.assertEqual(self.client.get("/", base_url="http://evil.example").status_code, 403)
+    def test_release_blocks_saves_until_transaction_finishes(self):
+        self.login()
+        loaded = self.get('file?path=assets/motdlist.txt').json
+        block = self.root / 'editor-save-block'
+        self.app.config['RELEASE_SAVE_BLOCK'] = str(block)
+        block.touch()
+        payload = {'path': 'assets/motdlist.txt', 'revision': loaded['revision'], 'text': 'changed\n'}
+        self.assertEqual(self.post('save', payload).status_code, 503)
+        self.assertEqual((self.root / 'assets/motdlist.txt').read_text(), 'original\n')
+        block.unlink()
+        self.assertEqual(self.post('save', payload).status_code, 200)
+
     def test_save_conflict_backup_and_restore(self):
         self.login()
         loaded = self.get("file?path=assets/motdlist.txt").json

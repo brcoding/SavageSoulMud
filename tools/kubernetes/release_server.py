@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import re
+import sys
 import time
 
 from release_transaction import Transaction
@@ -58,7 +59,8 @@ class Handler(BaseHTTPRequestHandler):
         elif self.path == '/ready':
             try:
                 if ((self.server.transaction.state / 'active.json').exists() or
-                        (self.server.transaction.runner / 'release-in-progress').exists()):
+                        (self.server.transaction.runner / 'release-in-progress').exists() or
+                        (self.server.transaction.runner / 'editor-save-block').exists()):
                     raise RuntimeError('An unfinished release requires recovery')
                 self.server.transaction.confirm_running()
                 ports = {f[1].split(':')[-1] for f in
@@ -89,7 +91,8 @@ class Handler(BaseHTTPRequestHandler):
         try:
             result = self.server.transaction.release(LimitedBody(self.rfile, int(length)), match[1])
             self.reply(200, result)
-        except Exception:
+        except Exception as error:
+            print('Release failed: ' + type(error).__name__, file=sys.stderr, flush=True)
             self.reply(500, {'error': 'Release failed; inspect private receiver state before retrying'})
 
 

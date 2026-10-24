@@ -57,6 +57,7 @@ class Transaction:
         if active.exists():
             # A crash can occur during the temporary unfreeze used to verify services.
             files.write_journal(self.runner / 'release-in-progress', json.loads(active.read_text()))
+            files.write_journal(self.runner / 'editor-save-block', json.loads(active.read_text()))
             stop_editor(self.root)
 
     def validate(self, stage, manifest):
@@ -133,6 +134,7 @@ class Transaction:
         baseline = self.baseline()
         self.validate(stage, manifest)
         active, marker = self.state / 'active.json', self.runner / 'release-in-progress'
+        save_block = self.runner / 'editor-save-block'
         if (baseline.get('revision') == manifest['revision'] and
                 files.digest(self.root / 'bin/savsoul') == manifest['files']['bin/savsoul']):
             if active.exists() and json.loads(active.read_text()).get('revision') != manifest['revision']:
@@ -141,17 +143,19 @@ class Transaction:
             if active.exists():
                 marker.unlink(missing_ok=True)
                 self.wait_services()
+                save_block.unlink(missing_ok=True)
                 active.unlink()
-            elif marker.exists():
+            elif marker.exists() or save_block.exists():
                 raise RuntimeError('An unexplained editor freeze requires operator recovery')
             return {'revision': manifest['revision'], 'version': manifest['version'], 'already_applied': True}
-        if active.exists() or marker.exists():
+        if active.exists() or marker.exists() or save_block.exists():
             raise RuntimeError('An unfinished release requires operator recovery before retrying')
         backup = self.state / ('backup-' + manifest['revision'] + '-' + secrets.token_hex(4))
         filtered = {**manifest, 'files': {n: h for n, h in manifest['files'].items() if n not in INSTANCE}}
         previous = {**baseline, 'files': {n: h for n, h in baseline.get('files', {}).items() if n not in INSTANCE}}
         files.check_destinations(set(filtered['files']) | set(previous['files']), self.root)
         files.write_journal(active, {'revision': manifest['revision'], 'backup': backup.name})
+        files.write_journal(save_block, {'revision': manifest['revision']})
         files.write_journal(marker, {'revision': manifest['revision']})
         restored = False
         try:
@@ -192,6 +196,7 @@ class Transaction:
         finally:
             if restored:
                 marker.unlink(missing_ok=True)
+                save_block.unlink(missing_ok=True)
                 active.unlink(missing_ok=True)
 
     def release(self, stream, revision):

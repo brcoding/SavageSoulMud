@@ -45,7 +45,9 @@ and installed dependency locks. It durably freezes editor startup, stops the
 editor, journals replacements on the retained volume, publishes group-readable
 website assets and signals the verified game process for copyover. It checks the
 successor executable and waits for editor/browser-terminal listeners before
-committing `state/releases/current.json`. An identical healthy retry is a no-op.
+committing `state/releases/current.json`. A separate durable `editor-save-block`
+prevents saves while the editor is restarted for verification; it clears only
+after successful commit or complete rollback. An identical healthy retry is a no-op.
 Three recent backup directories are retained after successful release processing.
 
 Player/account JSON and private network state are excluded from artifacts. Live
@@ -55,7 +57,8 @@ Candidate I3/Grapevine/Zebedee settings remain disabled until cutover.
 
 Failures restore journaled files, public assets and the previous manifest, then
 copy over to the restored executable. An incomplete rollback retains
-`state/releases/active.json` and `state/runner/release-in-progress`; editor startup
+`state/releases/active.json`, `state/runner/editor-save-block` and
+`state/runner/release-in-progress`; editor startup
 stays frozen and subsequent releases fail closed. Do not simply delete markers.
 An operator must inspect the named private backup's `journal.json`,
 `public-journal.json`, `previous.json`, data snapshot and copyover status, restore

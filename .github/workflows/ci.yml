@@ -62,6 +62,10 @@ jobs:
           cargo test --locked -p grim-auth --lib structured_login
       - name: Check website sources
         run: python3 website/build.py
+      - name: Wizard editor release-save guard
+        run: |
+          python3 -m pip install -r tools/wizard-editor/requirements.txt
+          python3 -m unittest discover -s tools/wizard-editor -p test_editor.py
       - name: Release preservation and validation checks
         run: python3 -m unittest discover -s tools/server-host -p test_release.py
   quality:

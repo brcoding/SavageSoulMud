@@ -80,8 +80,17 @@ class CandidateReleaseTests(unittest.TestCase):
             self.tx.execute(self.stage, self.new)
         self.assertTrue((self.state / 'active.json').exists())
         self.assertTrue((self.runner / 'release-in-progress').exists())
+        self.assertTrue((self.runner / 'editor-save-block').exists())
         with self.assertRaisesRegex(RuntimeError, 'unfinished release'):
             self.tx.execute(self.stage, self.new)
+
+    def test_save_block_stays_until_supporting_services_are_verified(self):
+        def verify():
+            self.assertFalse((self.runner / 'release-in-progress').exists())
+            self.assertTrue((self.runner / 'editor-save-block').exists())
+        self.wait_services.side_effect = verify
+        self.tx.execute(self.stage, self.new)
+        self.assertFalse((self.runner / 'editor-save-block').exists())
 
     def test_removed_bridge_module_requires_restart(self):
         self.write(self.root, 'tools/web-terminal/obsolete.py', 'old module')
@@ -104,6 +113,7 @@ class CandidateReleaseTests(unittest.TestCase):
         self.assertFalse((self.runner / 'release-in-progress').exists())
         self.tx.recover_startup()
         self.assertTrue((self.runner / 'release-in-progress').exists())
+        self.assertTrue((self.runner / 'editor-save-block').exists())
         with self.assertRaisesRegex(RuntimeError, 'unfinished release'):
             self.tx.execute(self.stage, self.new)
 

@@ -70,6 +70,7 @@ def create_app(root, state=None, validator=None, reload_command=None, port=4080,
     state.mkdir(parents=True, exist_ok=True)
     app = Flask(__name__, static_folder="static", static_url_path="/static")
     app.secret_key = session_signing_key(state)
+    app.config['RELEASE_SAVE_BLOCK'] = os.environ.get('SAVSOUL_EDITOR_SAVE_BLOCK')
     app.config.update(MAX_CONTENT_LENGTH=MAX_FILE + 8192, SESSION_COOKIE_NAME="savsoul_editor",
                       SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE="Strict",
                       PERMANENT_SESSION_LIFETIME=dt.timedelta(days=30),
@@ -303,9 +304,15 @@ def create_app(root, state=None, validator=None, reload_command=None, port=4080,
         with (state / "audit.jsonl").open("a", encoding="utf-8") as log:
             log.write(json.dumps(record) + "\n")
 
+    def check_save_block():
+        block = app.config.get('RELEASE_SAVE_BLOCK')
+        if block and Path(block).exists():
+            abort(503, "A server release is in progress. Your draft has not been saved; try again shortly.")
+
     def commit(rel, text, revision):
         path = allowed(rel)
         with write_lock:
+            check_save_block()
             old = path.read_bytes() if path.exists() else None
             expected = digest(old) if old is not None else "new"
             if not isinstance(revision, str) or not hmac.compare_digest(expected, revision):
@@ -327,6 +334,7 @@ def create_app(root, state=None, validator=None, reload_command=None, port=4080,
                 with tempfile.NamedTemporaryFile(dir=path.parent, prefix=".editor-", delete=False) as handle:
                     temp = handle.name
                     handle.write(new); handle.flush(); os.fsync(handle.fileno())
+                check_save_block()
                 os.replace(temp, path)
                 temp = None
                 with catalog_lock:
