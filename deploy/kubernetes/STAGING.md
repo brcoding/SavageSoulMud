@@ -25,7 +25,7 @@ Verified on the candidate:
   process running.
 - CPU trainer health and a bounded inference request return200. Inference used
   767MiB at the initial768MiB cap; the final manifest increases its cap to896MiB
-  and request to768MiB. Sum of container memory limits is1536MiB.
+  and request to768MiB. With the release receiver, container limits total1664MiB.
 - Editor copyover helper regenerated944 public rooms in12 areas. A disposable
   invisible tester authenticated, entered the world, survived copyover on the
   same socket and received a fresh room response. Its temporary account and
@@ -53,8 +53,18 @@ nosniff/referrer/CSP/cache headers, and public TLS remains valid.
 Not yet cut over: final live-state synchronization, authenticated wizard editing
 with a user's login, actual game login using existing player credentials, new
 Intermud cache/identity verification after old adapter shutdown, Namecheap DNS
-records, scoped Kubernetes CI release identity, off-cluster backup scheduling.
+records and off-cluster backup scheduling.
 Do not use cluster-admin credentials in CI.
+
+The candidate release receiver and restricted CI identity were subsequently
+installed. Live authorization checks allow only named-pod GET/port-forward and
+deny exec, Secret reads, workload mutation, other pods and other namespaces.
+The successful main artifact `01aa42341d8d786b17464540896daf829f4ae1d1`
+was released as version0.3.0 through the same scoped CI client; successor
+executable and game/editor/web readiness were verified. GitHub's main-only
+`kubernetes-candidate` environment holds only its scoped token and independent
+release key. Automatic merge deployment begins when the accompanying workflow
+change is merged. VM production deployment and DNS remain unchanged.
 
 UDP4002 is not exposed: the provider's UDP support is a Premium NodeBalancer
 limited beta, so the standard candidate exposes TCP only. The owner confirmed

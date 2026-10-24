@@ -65,7 +65,14 @@ def containers():
     nginx['image'] = NGINX
     nginx['command'] = ['nginx', '-c', '/etc/savsoul/nginx.conf', '-g', 'daemon off;']
     nginx['readinessProbe'] = {'httpGet': {'path': '/healthz', 'port': 9080}, 'periodSeconds': 5}
-    return [game, editor, web, gateway, trainer, nginx]
+    release = container('release', [mount('grim'), mount('state/releases'), mount('state/runner'), marker,
+                                   mount('public', target='/var/www/lpmud')], '128Mi', '48Mi')
+    release['volumeMounts'].append({'name': 'release-auth', 'mountPath': '/run/savsoul-release', 'readOnly': True})
+    release['readinessProbe'] = {'exec': {'command': ['python', '-c',
+        "from pathlib import Path; assert any(len(f)>3 and f[1].endswith(':0FFC') and f[3]=='0A' "
+        "for f in (line.split() for line in Path('/proc/net/tcp').read_text().splitlines()[1:]))"]},
+        'periodSeconds': 5}
+    return [game, editor, web, gateway, trainer, nginx, release]
 
 
 def main():
@@ -73,6 +80,9 @@ def main():
               'metadata': {'name': 'savsoul-runtime', 'namespace': 'savsoul'},
               'data': {name: (DEST / name).read_text() for name in ('nginx.conf', 'services.json')}}
     config['data']['launch.py'] = (ROOT / 'tools/kubernetes/launch.py').read_text()
+    for name in ('release_server.py', 'release_transaction.py'):
+        config['data'][name] = (ROOT / 'tools/kubernetes' / name).read_text()
+    config['data']['receive_release.py'] = (ROOT / 'tools/server-host/receive_release.py').read_text()
     apps = containers()
     pod = {'automountServiceAccountToken': False, 'shareProcessNamespace': True,
            'terminationGracePeriodSeconds': 60,
@@ -82,6 +92,7 @@ def main():
            'containers': apps,
            'volumes': [{'name': 'home', 'persistentVolumeClaim': {'claimName': 'savsoul-home'}},
                        {'name': 'config', 'configMap': {'name': 'savsoul-runtime'}},
+                       {'name': 'release-auth', 'secret': {'secretName': 'savsoul-release-auth', 'defaultMode': 0o440}},
                        {'name': 'tls', 'secret': {'secretName': 'savsoul-tls', 'defaultMode': 0o440,
                         'items': [{'key': 'tls.crt', 'path': 'server.crt'},
                                   {'key': 'tls.key', 'path': 'server.key'}]}}]

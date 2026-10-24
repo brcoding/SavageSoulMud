@@ -164,3 +164,44 @@ jobs:
             -o ConnectTimeout=20 -o ServerAliveInterval=15 -o ServerAliveCountMax=4 \
             savsoul-deploy@173.255.210.234 "deploy $GITHUB_SHA" < release.tar.gz
           printf 'Released `%s` (`%s`) to https://savsoul.com (game :4000 / TLS :4001).\n' "$SAVSOUL_VERSION" "$GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
+  deploy-kubernetes:
+    needs: [version, build, quality, package]
+    if: github.repository == 'brcoding/SavageSoulMud' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    environment:
+      name: kubernetes-candidate
+      url: http://69.164.205.149
+    concurrency:
+      group: savsoul-kubernetes-candidate
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v7
+        with:
+          name: release-${{ github.sha }}
+      - name: Install verified Kubernetes client
+        shell: bash
+        run: |
+          set -euo pipefail
+          client_path="$RUNNER_TEMP/kubectl"
+          curl --fail --silent --show-error --location https://dl.k8s.io/release/v1.37.1/bin/linux/amd64/kubectl -o "$client_path"
+          curl --fail --silent --show-error --location https://dl.k8s.io/release/v1.37.1/bin/linux/amd64/kubectl.sha256 -o "$client_path.sha256"
+          printf '%s  %s\n' "$(cat "$client_path.sha256")" "$client_path" | sha256sum --check
+          chmod 700 "$client_path"
+          echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
+      - name: Release to Kubernetes and verify copyover
+        env:
+          SAVSOUL_KUBE_SERVER: ${{ vars.SAVSOUL_KUBE_SERVER }}
+          SAVSOUL_KUBE_CA: ${{ vars.SAVSOUL_KUBE_CA }}
+          SAVSOUL_KUBE_TOKEN: ${{ secrets.SAVSOUL_KUBE_TOKEN }}
+          SAVSOUL_KUBE_RELEASE_TOKEN: ${{ secrets.SAVSOUL_KUBE_RELEASE_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote https://github.com/brcoding/SavageSoulMud.git refs/heads/main | cut -f1)" = "$GITHUB_SHA" || {
+            echo 'A newer main revision exists; refusing an out-of-order Kubernetes release.' >&2; exit 1;
+          }
+          python3 tools/kubernetes/ci_deploy.py --revision "$GITHUB_SHA" --artifact release.tar.gz

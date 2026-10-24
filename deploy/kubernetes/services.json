@@ -1,4 +1,9 @@
 {
+  "release": {
+    "cwd": "/home/savsoul/grim",
+    "command": ["/usr/local/bin/python3", "/etc/savsoul/release_server.py"],
+    "env": {}
+  },
   "grim": {
     "cwd": "/home/savsoul/grim",
     "command": [
