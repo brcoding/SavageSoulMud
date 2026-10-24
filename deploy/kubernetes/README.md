@@ -11,7 +11,7 @@ and TLS/static frontend. It fits a single node; replica count must remain one.
 `OnDelete` prevents an ordinary configuration apply from disconnecting players.
 All private APIs use pod loopback. Shared process visibility allows the editor's
 existing executable-verified copyover helper to signal the game.
-Nginx runs as UID1012, distinct from the game/editor UID1009. Its TLS Secret is
+Nginx runs as UID 1012, distinct from the game/editor UID 1009. Its TLS Secret is
 mounted only there, so shared process visibility does not give the other services
 access to its key through `/proc/<pid>/root`. Public assets are group-readable;
 private game state keeps its existing owner-only permissions.
@@ -52,17 +52,17 @@ commit private data in ConfigMaps. The existing game binary and private state ar
 on the retained volume, not in public images. The public Nginx container mounts
 only the managed website and the current certificate/key Secret.
 
-The NodeBalancer uses PROXY v1 for TCP80/443/4000/4001/4080/4081; Nginx restores
-the client address and forwards the game through trusted loopback ingress4003.
+The NodeBalancer uses PROXY v1 for TCP 80/443/4000/4001/4080/4081; Nginx restores
+the client address and forwards the game through trusted loopback ingress 4003.
 NodeBalancer health traffic is terminated by Nginx without opening a game session;
 game readiness checks its process/listener without connecting as a player.
-UDP4002 is not exposed in this candidate: Linode requires Premium NodeBalancers
+UDP 4002 is not exposed in this candidate: Linode requires Premium NodeBalancers
 and account-specific beta access for UDP. The owner elected to proceed with I3
 and leave Zebedee disabled; it does not block the main-stack cutover. Any future UDP frontend
 must use no PROXY framing. NetworkPolicy accepts frontend traffic only from
-the NodeBalancer backend range192.168.255.0/24, preventing public NodePort clients
+the NodeBalancer backend range 192.168.255.0/24, preventing public NodePort clients
 from supplying forged PROXY headers. Verify this range and actual policy
-enforcement before publishing DNS. Backend4085/4086/4091 are never Services.
+enforcement before publishing DNS. Backend ports 4085/4086/4091 are never Services.
 
 ## Verification and cutover
 

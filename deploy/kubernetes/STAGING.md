@@ -13,7 +13,7 @@ This was a live warm snapshot; final paused-writer sync remains required.
 Verified on the candidate:
 
 - All six containers running with nonroot identities on modern images:
-  Python services use Debian13 and UID1009/GID1011; Alpine Nginx uses UID1012.
+  Python services use Debian 13 and UID 1009/GID 1011; Alpine Nginx uses UID 1012.
 - Website, wizard landing page and public Mudlet map return200 over validated
   savsoul.com TLS using an IP override; DNS was not changed.
 - Plain MUD4000 and TLS MUD4001 present the Savage Soul login greeting.
@@ -40,7 +40,7 @@ The initial TCP readiness and NodeBalancer probes opened game sessions and
 triggered wiznet reconnect-flood warnings. Readiness now inspects the verified
 process and listening socket without connecting. Nginx terminates private
 NodeBalancer health traffic itself instead of forwarding it into the game.
-The final live check found zero probe connections/flood warnings over60 seconds.
+The final live check found zero probe connections/flood warnings over 60 seconds.
 
 CodeRabbit's TLS-isolation finding was fixed with a distinct frontend UID and a
 namespace TLS Secret mounted only into Nginx. The approved key was streamed from

@@ -28,7 +28,7 @@ def main():
             path.write_text(json.dumps(config, indent=2) + '\n')
             path.chmod(0o600)
     environment = HOME / 'runtime/venv'
-    subprocess.run([sys.executable, '-m', 'venv', str(environment)], check=True)
+    subprocess.run([sys.executable, '-m', 'venv', str(environment)], check=True, timeout=300)
     requirements = ['tools/wizard-editor/requirements.txt', 'tools/web-terminal/requirements.txt',
                     'tools/intermud/requirements.lock']
     args = [str(environment / 'bin/python'), '-m', 'pip', 'install',
