@@ -58,9 +58,10 @@ def containers():
     trainer['startupProbe'] = {'exec': {'command': ['python', '-c',
         "import urllib.request; urllib.request.urlopen('http://127.0.0.1:4091/health',timeout=2)"]},
         'periodSeconds': 5, 'failureThreshold': 60}
-    nginx = container('nginx', [mount('public', True, '/var/www/lpmud'),
-                               mount('state/tls/server.crt', True, '/run/savsoul-tls/server.crt'),
-                               mount('state/tls/server.key', True, '/run/savsoul-tls/server.key')], '64Mi', '32Mi')
+    nginx = container('nginx', [mount('public', True, '/var/www/lpmud')], '64Mi', '32Mi')
+    nginx['volumeMounts'].append({'name': 'tls', 'mountPath': '/run/savsoul-tls', 'readOnly': True})
+    # A different UID prevents same-pod services reading the key via /proc/PID/root.
+    nginx['securityContext'].update({'runAsUser': 1012, 'runAsGroup': 1012})
     nginx['image'] = NGINX
     nginx['command'] = ['nginx', '-c', '/etc/savsoul/nginx.conf', '-g', 'daemon off;']
     nginx['readinessProbe'] = {'httpGet': {'path': '/healthz', 'port': 9080}, 'periodSeconds': 5}
@@ -80,7 +81,10 @@ def main():
                                'seccompProfile': {'type': 'RuntimeDefault'}},
            'containers': apps,
            'volumes': [{'name': 'home', 'persistentVolumeClaim': {'claimName': 'savsoul-home'}},
-                       {'name': 'config', 'configMap': {'name': 'savsoul-runtime'}}]
+                       {'name': 'config', 'configMap': {'name': 'savsoul-runtime'}},
+                       {'name': 'tls', 'secret': {'secretName': 'savsoul-tls', 'defaultMode': 0o440,
+                        'items': [{'key': 'tls.crt', 'path': 'server.crt'},
+                                  {'key': 'tls.key', 'path': 'server.key'}]}}]
                       + [{'name': app['name'] + '-tmp', 'emptyDir': {'sizeLimit': '64Mi'}} for app in apps]}
     stateful = {'apiVersion': 'apps/v1', 'kind': 'StatefulSet',
                 'metadata': {'name': 'savsoul', 'namespace': 'savsoul'},

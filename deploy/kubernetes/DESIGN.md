@@ -27,16 +27,21 @@ Preserve game data/private state and static web content. Rebuild isolated Python
 environment from pinned requirements, retain gateway source/model/binary. Snapshot
 is for candidate testing; final writer-paused synchronization is required at cutover.
 
-Run one StatefulSet Pod (OnDelete) with common UID/GID, shared process namespace and
+Run one StatefulSet Pod (OnDelete) with shared process visibility and
 retained home/PVC: existing notify runner/game, wizard editor, web bridge, private
 I3 gateway, CPU model and Nginx front end. All APIs stay loopback in pod. Readonly
 root filesystems, dropped capabilities, no Kubernetes token mounted, bounded resource
 requests/limits. Use official images, shared writable PVC for runtime/app state;
 versioned images/config manifests contain no private state. Mount website directory
 at /var/www/lpmud so existing map refresh path works.
+Game/editor use UID1009 for verified copyover; Nginx uses distinct UID1012 and a
+read-only TLS Secret mount. The private source key stays retained but is not
+mounted into any application container. This prevents same-UID `/proc/PID/root`
+access to the frontend key without requiring root or chown in the seed pod.
+Public assets are group-readable via GID1011; private state remains owner-only.
 
-A single LKE NodeBalancer Service publishes site80/443, game4000/4001, editor4080/4081
-and Zebedee UDP4002. Provider official CCM docs support mixedUDP and per-port config.
+A single standard LKE NodeBalancer publishes TCP site80/443, game4000/4001 and
+editor4080/4081. The owner elected to leave optional Zebedee UDP disabled.
 Use PROXYv1 on TCP ports; Nginx accepts it, restores source IP from trusted LB CIDR,
 and forwards game bytes via the existing loopback trusted ingress4003 with PROXY.
 Nginx terminates MUD/site/editor TLS using the existing PositiveSSL chain/key.
@@ -54,8 +59,7 @@ generate secret-free manifest/config; deploy and verify internal/public site/gam
 editor/websocket/trainer/map and copyover; document LB IP and exact DNS changes without
 changing DNS. Plan final freeze/sync, I3 activation and scoped Kubernetes CI deployment
 identity; keep current VM release path until cutover. Write separate legacy-site plan.
-If UDP provider feature is unavailable, report concrete controller error before any
-DNS move and provide a supported UDP exposure option. No quiet protocol regression.
+Optional UDP exposure is outside this cutover; I3 remains the required network.
 
 Implementation decisions after review: Akamai's current primary docs restrict
 UDP to Premium NodeBalancers with account-specific beta access. The renderer now

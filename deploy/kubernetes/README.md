@@ -11,6 +11,10 @@ and TLS/static frontend. It fits a single node; replica count must remain one.
 `OnDelete` prevents an ordinary configuration apply from disconnecting players.
 All private APIs use pod loopback. Shared process visibility allows the editor's
 existing executable-verified copyover helper to signal the game.
+Nginx runs as UID1012, distinct from the game/editor UID1009. Its TLS Secret is
+mounted only there, so shared process visibility does not give the other services
+access to its key through `/proc/<pid>/root`. Public assets are group-readable;
+private game state keeps its existing owner-only permissions.
 
 ## Initial staging
 
@@ -30,6 +34,15 @@ Copy the public `tools/kubernetes` directory into `/tmp/kubernetes` in the seed
 pod and run `/tmp/kubernetes/bootstrap.py`, so its gateway preparation helper is
 available beside it. The helper rebases inherited I3 state/log paths to the
 retained private home, preserving the original config and router password.
+Before starting the stack, stream the approved certificate/key into the
+namespace's TLS Secret without a local file or logged payload:
+
+```sh
+kubectl -n savsoul exec savsoul-seed -- python /tmp/kubernetes/prepare_frontend.py --emit-secret | kubectl apply --server-side --field-manager=savsoul-tls -f -
+```
+
+Use the same private stream on future certificate rotation, then validate and
+reload Nginx. Never run `--emit-secret` into a terminal, log or tracked file.
 
 Run `python tools/kubernetes/render.py` to regenerate `stack.json` after changing
 the deployment inputs. Remove the completed seed pod before starting the
@@ -37,7 +50,7 @@ StatefulSet so the RWO volume can attach on either node. Validate with server-si
 dry run, then apply it. Do not
 commit private data in ConfigMaps. The existing game binary and private state are
 on the retained volume, not in public images. The public Nginx container mounts
-only the managed website and the current certificate/key files.
+only the managed website and the current certificate/key Secret.
 
 The NodeBalancer uses PROXY v1 for TCP80/443/4000/4001/4080/4081; Nginx restores
 the client address and forwards the game through trusted loopback ingress4003.

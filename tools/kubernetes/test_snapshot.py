@@ -37,6 +37,14 @@ class SnapshotTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     import_snapshot(self.archive(name, kind), Path(folder))
 
+    def test_public_assets_are_readable_by_frontend_group(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            import_snapshot(self.archive('public/mudlet/map.xml'), root)
+            self.assertEqual((root / 'public/mudlet/map.xml').stat().st_mode & 0o777, 0o640)
+            self.assertEqual((root / 'public/mudlet').stat().st_mode & 0o777, 0o750)
+            self.assertEqual((root / 'state').stat().st_mode & 0o777, 0o700)
+
 
 if __name__ == '__main__':
     unittest.main()

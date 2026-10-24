@@ -38,9 +38,19 @@ def import_snapshot(stream, root=HOME):
                         out.write(chunk)
                 target.chmod(member.mode & 0o777)
                 hashes[member.name] = digest.hexdigest()
+    # Public assets are readable by the separate frontend UID through fsGroup.
+    # Private state retains its owner-only directory/file permissions.
+    public = root / 'public'
+    if public.is_dir():
+        public.chmod(0o750)
+        for path in public.rglob('*'):
+            path.chmod(0o750 if path.is_dir() else 0o640)
+    (root / 'state').mkdir(exist_ok=True, mode=0o700)
+    (root / 'state').chmod(0o700)
     state = root / 'state/kubernetes'
     state.mkdir(parents=True, exist_ok=True, mode=0o700)
     (state / 'warm-snapshot.json').write_text(json.dumps({'files': hashes, 'bytes': total}))
+    (state / 'warm-snapshot.json').chmod(0o600)
     (root / '.seed-in-progress').unlink()
     print('Imported warm snapshot:', len(hashes), 'files,', total, 'bytes; hashes retained privately.')
 

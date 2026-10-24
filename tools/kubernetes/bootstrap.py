@@ -50,6 +50,7 @@ def main():
     else:
         target.symlink_to(sys.executable)
     (HOME / 'public/mudlet').mkdir(mode=0o700, exist_ok=True)
+    subprocess.run([sys.executable, str(Path(__file__).with_name('prepare_frontend.py'))], check=True)
     (STATE / 'bootstrap-complete').touch(mode=0o600)
     print('Candidate runtime prepared. External network adapters remain disabled.')
 
