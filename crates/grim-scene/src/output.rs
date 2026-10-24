@@ -297,10 +297,10 @@ fn emit_info(
     });
 }
 
-/// Admin `gecho`: broadcast to every connected player in the world, including
-/// the sender. Another admin sees it attributed (`Name> text`); the sender and
-/// non-admins see the raw text. Rendering is per-recipient, so this cannot be
-/// formatted once and broadcast.
+/// Admin `gecho`: broadcast to connected players who can see the sender.
+/// Hidden staff actions stay silent to ordinary players, including anonymous
+/// echoes. Another admin sees it attributed (`Name> text`); the sender and
+/// visible non-admin recipients see raw text. Rendering is per-recipient.
 fn emit_gecho(
     ev: &GlobalEcho,
     names: &Query<&GrimName>,

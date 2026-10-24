@@ -132,6 +132,10 @@ Room/minimap text wrapping uses the connection's negotiated terminal width when 
 
 `staff::sync_testing` runs at PostStartup and before in-game input/output. Lists, attributed broadcasts, room/entity presence and offline lookups use shared perception, retaining admin supervision.
 
+`gecho` also respects hidden staff actions: ordinary players receive no echo from
+an invisible wizard or testing identity, even though its text would be anonymous.
+Self and supervising wizards retain their normal output and attribution.
+
 See [staff testing](../../docs/STAFF-TESTING.md) for permissions and shared-world limitations.
 
 `testaccount` is deprioritized in the command registry so `t` still sets a title

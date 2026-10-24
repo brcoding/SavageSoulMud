@@ -19,6 +19,8 @@ speech, socials, item actions, doors, recall and attributed puzzle/table reactio
 are silent to them. Hidden actors cannot privately message, give to or steal from
 ordinary players while hidden. Target ranking excludes hidden candidates first.
 Self and other wizards can still see hidden staff for supervision and auditing.
+This includes `gecho`: even its anonymous text is a hidden staff action and stays
+silent to ordinary players. Use a visible wizard for a public global announcement.
 The tester role alone does not grant admin commands, network chat or editor login.
 
 Public I3/Zebedee listings and Grapevine presence omit hidden wizards. Outgoing

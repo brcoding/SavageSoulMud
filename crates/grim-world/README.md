@@ -19,6 +19,8 @@ their only users (the `quit` handler and the `goto`/`title` escapes) moved into
 | `Area` | `src/world/topology.rs` | A named region grouping rooms (yell scope). |
 | `Room` | `src/world/topology.rs` | A single location; carries its owning `area`. |
 | `Exits` | `src/world/topology.rs` | Directional links from a room to adjacent rooms. |
+| `RoomDarkness` | `src/lighting.rs` | Marks a room as unlit unless a light source or viewer ability permits sight. |
+| `LightSource` | `src/lighting.rs` | Marks an object as a source of light, independently of its placement. |
 | `Door` / `Doors` | `src/world/topology.rs` | A door on one exit side (name/keywords/open/hidden) + the per-room direction map; closed blocks `move`. `hidden` is per-side (never flipped by `open`/`close`), so a one-way secret hides one side only. |
 
 (The `Npc` marker moved to `grim_actor::Creature` — creatures are beings, so the

@@ -581,76 +581,99 @@ mod output_format {
         )
     }
 
-    /// `gecho` reaches everyone including the sender; another admin sees it
-    /// attributed (`Name> text`) while the sender and non-admins see raw text.
+    /// Visible echoes reach everyone; hidden actions remain silent to mortals.
+    /// Other admins always receive attribution, while the sender sees raw text.
     #[test]
-    fn format_output_gecho_attributes_for_other_admins_only() {
-        let mut app = test_app();
-        let room = spawn_room(&mut app);
-        app.world_mut().insert_resource(StartingRoom(room));
+    fn format_output_gecho_respects_attribution_and_hidden_actions() {
+        for mode in ["visible", "wizinvis", "tester"] {
+            let mut app = test_app();
+            let room = spawn_room(&mut app);
+            app.world_mut().insert_resource(StartingRoom(room));
 
-        let mk_conn = |app: &mut App, id: usize, port: u16| -> Entity {
-            app.world_mut()
-                .spawn(Connection {
-                    id,
-                    addr: format!("127.0.0.1:{port}").parse().unwrap(),
-                    echo_hidden: false,
-                })
-                .id()
-        };
-        let sender_conn = mk_conn(&mut app, 1, 12345);
-        let admin2_conn = mk_conn(&mut app, 2, 12346);
-        let normal_conn = mk_conn(&mut app, 3, 12347);
+            let mk_conn = |app: &mut App, id: usize, port: u16| -> Entity {
+                app.world_mut()
+                    .spawn(Connection {
+                        id,
+                        addr: format!("127.0.0.1:{port}").parse().unwrap(),
+                        echo_hidden: false,
+                    })
+                    .id()
+            };
+            let sender_conn = mk_conn(&mut app, 1, 12345);
+            let admin2_conn = mk_conn(&mut app, 2, 12346);
+            let normal_conn = mk_conn(&mut app, 3, 12347);
 
-        let sender = app
-            .world_mut()
-            .spawn(char_bundle("Boss", sender_conn, room, vec![Role::Admin]))
-            .id();
-        let _admin2 = app
-            .world_mut()
-            .spawn(char_bundle("Deputy", admin2_conn, room, vec![Role::Admin]))
-            .id();
-        let _normal = app
-            .world_mut()
-            .spawn(char_bundle("Peon", normal_conn, room, Vec::new()))
-            .id();
+            let sender = app
+                .world_mut()
+                .spawn(char_bundle("Boss", sender_conn, room, vec![Role::Admin]))
+                .id();
+            let _admin2 = app
+                .world_mut()
+                .spawn(char_bundle("Deputy", admin2_conn, room, vec![Role::Admin]))
+                .id();
+            let _normal = app
+                .world_mut()
+                .spawn(char_bundle("Peon", normal_conn, room, Vec::new()))
+                .id();
 
-        app.world_mut().write_message(GlobalEcho {
-            actor: sender,
-            text: "reboot".into(),
-        });
-        app.update();
+            match mode {
+                "wizinvis" => {
+                    app.world_mut()
+                        .get_mut::<Character>(sender)
+                        .unwrap()
+                        .game_state
+                        .insert("wizinvis".into(), serde_json::json!(true));
+                }
+                "tester" => {
+                    app.world_mut()
+                        .get_mut::<Character>(sender)
+                        .unwrap()
+                        .roles
+                        .push(Role::Tester);
+                }
+                _ => {}
+            }
+            app.world_mut().write_message(GlobalEcho {
+                actor: sender,
+                text: "reboot".into(),
+            });
+            app.update();
 
-        let msgs = app.world().resource::<Messages<ConnectionOutput>>();
-        let mut cursor = msgs.get_cursor();
-        let outputs: Vec<&ConnectionOutput> = cursor.read(msgs).collect();
-        let text_for = |conn: Entity| -> String {
-            outputs
-                .iter()
-                .filter(|o| o.connection == conn)
-                .map(|o| o.text.clone())
-                .collect()
-        };
+            let msgs = app.world().resource::<Messages<ConnectionOutput>>();
+            let mut cursor = msgs.get_cursor();
+            let outputs: Vec<&ConnectionOutput> = cursor.read(msgs).collect();
+            let text_for = |conn: Entity| -> String {
+                outputs
+                    .iter()
+                    .filter(|o| o.connection == conn)
+                    .map(|o| o.text.clone())
+                    .collect()
+            };
 
-        // Sender sees raw text, not attributed to themselves.
-        let sender_text = text_for(sender_conn);
-        assert!(sender_text.contains("reboot"), "sender should see the echo");
-        assert!(
-            !sender_text.contains("Boss>"),
-            "sender should not see own name prefix"
-        );
-        // Another admin sees it attributed.
-        assert!(
-            text_for(admin2_conn).contains("Boss> reboot"),
-            "other admin should see attributed echo"
-        );
-        // Non-admin sees raw text only.
-        let normal_text = text_for(normal_conn);
-        assert!(normal_text.contains("reboot"), "non-admin should see echo");
-        assert!(
-            !normal_text.contains("Boss>"),
-            "non-admin should not see attribution"
-        );
+            // Sender sees raw text, not attributed to themselves.
+            let sender_text = text_for(sender_conn);
+            assert!(sender_text.contains("reboot"), "sender should see the echo");
+            assert!(
+                !sender_text.contains("Boss>"),
+                "sender should not see own name prefix"
+            );
+            // Another admin sees it attributed.
+            assert!(
+                text_for(admin2_conn).contains("Boss> reboot"),
+                "other admin should see attributed echo"
+            );
+            // Non-admin sees raw text only.
+            let normal_text = text_for(normal_conn);
+            assert_eq!(
+                normal_text.contains("reboot"),
+                mode == "visible",
+                "hidden staff actions must stay silent: {mode}"
+            );
+            assert!(
+                !normal_text.contains("Boss>"),
+                "non-admin should not see attribution"
+            );
+        }
     }
 
     /// Verify that format_output handles LoginAnnounce: only the subject's
