@@ -1,0 +1,79 @@
+{
+  "grim": {
+    "cwd": "/home/savsoul/grim",
+    "command": [
+      "/usr/local/bin/python3",
+      "/home/savsoul/grim/tools/server-host/notify_runner.py",
+      "--state",
+      "/home/savsoul/state/runner",
+      "--",
+      "/home/savsoul/grim/bin/savsoul"
+    ],
+    "env": {
+      "GRIM_BIND_HOST": "0.0.0.0"
+    }
+  },
+  "editor": {
+    "cwd": "/home/savsoul/grim",
+    "command": [
+      "/home/savsoul/runtime/venv/bin/python",
+      "tools/server-host/remote_editor.py"
+    ],
+    "env": {
+      "GRIM_BIND_HOST": "0.0.0.0"
+    }
+  },
+  "intermud": {
+    "cwd": "/home/savsoul/runtime/i3-gateway",
+    "command": [
+      "/home/savsoul/runtime/venv/bin/python",
+      "-m",
+      "src",
+      "--config",
+      "/home/savsoul/grim/tools/intermud/gateway.yaml",
+      "--env-file",
+      "/home/savsoul/.local/state/savsoul-intermud/gateway.env"
+    ],
+    "env": {
+      "GRIM_BIND_HOST": "0.0.0.0"
+    }
+  },
+  "web-terminal": {
+    "cwd": "/home/savsoul/grim",
+    "command": [
+      "/home/savsoul/runtime/venv/bin/python",
+      "/home/savsoul/grim/tools/web-terminal/bridge.py"
+    ],
+    "env": {
+      "GRIM_BIND_HOST": "0.0.0.0"
+    }
+  },
+  "trainer": {
+    "cwd": "/home/savsoul/runtime/trainer",
+    "command": [
+      "/home/savsoul/runtime/trainer/llama-server",
+      "--model",
+      "/home/savsoul/runtime/trainer/model.gguf",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "4091",
+      "--ctx-size",
+      "1024",
+      "--threads",
+      "1",
+      "--threads-batch",
+      "1",
+      "--parallel",
+      "1",
+      "--jinja",
+      "--reasoning-budget",
+      "0",
+      "--no-webui",
+      "--log-disable"
+    ],
+    "env": {
+      "GRIM_BIND_HOST": "0.0.0.0"
+    }
+  }
+}

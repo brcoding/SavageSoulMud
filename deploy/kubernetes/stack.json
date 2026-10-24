@@ -1,0 +1,744 @@
+{
+  "apiVersion": "v1",
+  "kind": "List",
+  "items": [
+    {
+      "apiVersion": "v1",
+      "kind": "ConfigMap",
+      "metadata": {
+        "name": "savsoul-runtime",
+        "namespace": "savsoul"
+      },
+      "data": {
+        "nginx.conf": "worker_processes 1;\npid /tmp/nginx.pid;\nerror_log /dev/stderr warn;\nevents { worker_connections 1024; }\n\nstream {\n    set_real_ip_from 192.168.255.0/24;\n    set_real_ip_from 127.0.0.1;\n    proxy_connect_timeout 5s;\n    proxy_timeout 24h;\n    # NodeBalancer TCP checks carry its private address, not a player address.\n    geo $proxy_protocol_addr $balancer_health_check {\n        default 0;\n        192.168.255.0/24 1;\n    }\n    map $balancer_health_check $mud_backend {\n        default 127.0.0.1:4003;\n        1 127.0.0.1:9081;\n    }\n    server {\n        listen 127.0.0.1:9081;\n        return '';\n    }\n    server {\n        listen 14000 proxy_protocol;\n        proxy_pass $mud_backend;\n        proxy_protocol on;\n    }\n    server {\n        listen 14001 ssl proxy_protocol;\n        ssl_certificate /run/savsoul-tls/server.crt;\n        ssl_certificate_key /run/savsoul-tls/server.key;\n        ssl_protocols TLSv1.2 TLSv1.3;\n        proxy_pass $mud_backend;\n        proxy_protocol on;\n    }\n}\n\nhttp {\n    include /etc/nginx/mime.types;\n    default_type application/octet-stream;\n    access_log off;\n    server_tokens off;\n    client_max_body_size 32m;\n    client_body_temp_path /tmp/client;\n    proxy_temp_path /tmp/proxy;\n    fastcgi_temp_path /tmp/fastcgi;\n    uwsgi_temp_path /tmp/uwsgi;\n    scgi_temp_path /tmp/scgi;\n    set_real_ip_from 192.168.255.0/24;\n    set_real_ip_from 127.0.0.1;\n    real_ip_header proxy_protocol;\n    map $http_upgrade $connection_upgrade { default upgrade; '' close; }\n\n    server {\n        listen 9080;\n        location = /healthz { access_log off; return 200 'ready\\n'; }\n        location / { return 404; }\n    }\n    server {\n        listen 8080 proxy_protocol default_server;\n        root /var/www/lpmud;\n        index index.html;\n        location ~ /\\. { deny all; }\n        location / { try_files $uri $uri/ =404; }\n    }\n    server {\n        listen 8080 proxy_protocol;\n        server_name savsoul.com www.savsoul.com;\n        return 301 https://$host$request_uri;\n    }\n    server {\n        listen 8443 ssl proxy_protocol;\n        server_name savsoul.com www.savsoul.com;\n        ssl_certificate /run/savsoul-tls/server.crt;\n        ssl_certificate_key /run/savsoul-tls/server.key;\n        ssl_protocols TLSv1.2 TLSv1.3;\n        root /var/www/lpmud;\n        index index.html;\n        add_header X-Content-Type-Options nosniff always;\n        add_header Referrer-Policy same-origin always;\n        location ~ /\\. { deny all; }\n        location = /playnow.html {\n            add_header X-Content-Type-Options nosniff always;\n            add_header Referrer-Policy same-origin always;\n            add_header Content-Security-Policy \"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' wss://savsoul.com wss://www.savsoul.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self'\" always;\n            add_header Cache-Control no-cache always;\n        }\n        location = /mud-websocket {\n            proxy_pass http://127.0.0.1:4086;\n            proxy_http_version 1.1;\n            proxy_set_header Host $http_host;\n            proxy_set_header Upgrade $http_upgrade;\n            proxy_set_header Connection $connection_upgrade;\n            proxy_set_header X-Forwarded-For $remote_addr;\n            proxy_set_header X-Savsoul-Client-IP '';\n            proxy_read_timeout 24h;\n        }\n        location / { try_files $uri $uri/ =404; }\n    }\n    server {\n        listen 14080 proxy_protocol;\n        return 301 https://$host:4081$request_uri;\n    }\n    server {\n        listen 14481 ssl proxy_protocol;\n        server_name savsoul.com www.savsoul.com;\n        ssl_certificate /run/savsoul-tls/server.crt;\n        ssl_certificate_key /run/savsoul-tls/server.key;\n        ssl_protocols TLSv1.2 TLSv1.3;\n        location / {\n            proxy_pass http://127.0.0.1:4085;\n            proxy_set_header Host $http_host;\n            proxy_set_header X-Forwarded-For $remote_addr;\n            proxy_set_header X-Forwarded-Proto https;\n            proxy_read_timeout 90s;\n        }\n    }\n}\n",
+        "services.json": "{\n  \"grim\": {\n    \"cwd\": \"/home/savsoul/grim\",\n    \"command\": [\n      \"/usr/local/bin/python3\",\n      \"/home/savsoul/grim/tools/server-host/notify_runner.py\",\n      \"--state\",\n      \"/home/savsoul/state/runner\",\n      \"--\",\n      \"/home/savsoul/grim/bin/savsoul\"\n    ],\n    \"env\": {\n      \"GRIM_BIND_HOST\": \"0.0.0.0\"\n    }\n  },\n  \"editor\": {\n    \"cwd\": \"/home/savsoul/grim\",\n    \"command\": [\n      \"/home/savsoul/runtime/venv/bin/python\",\n      \"tools/server-host/remote_editor.py\"\n    ],\n    \"env\": {\n      \"GRIM_BIND_HOST\": \"0.0.0.0\"\n    }\n  },\n  \"intermud\": {\n    \"cwd\": \"/home/savsoul/runtime/i3-gateway\",\n    \"command\": [\n      \"/home/savsoul/runtime/venv/bin/python\",\n      \"-m\",\n      \"src\",\n      \"--config\",\n      \"/home/savsoul/grim/tools/intermud/gateway.yaml\",\n      \"--env-file\",\n      \"/home/savsoul/.local/state/savsoul-intermud/gateway.env\"\n    ],\n    \"env\": {\n      \"GRIM_BIND_HOST\": \"0.0.0.0\"\n    }\n  },\n  \"web-terminal\": {\n    \"cwd\": \"/home/savsoul/grim\",\n    \"command\": [\n      \"/home/savsoul/runtime/venv/bin/python\",\n      \"/home/savsoul/grim/tools/web-terminal/bridge.py\"\n    ],\n    \"env\": {\n      \"GRIM_BIND_HOST\": \"0.0.0.0\"\n    }\n  },\n  \"trainer\": {\n    \"cwd\": \"/home/savsoul/runtime/trainer\",\n    \"command\": [\n      \"/home/savsoul/runtime/trainer/llama-server\",\n      \"--model\",\n      \"/home/savsoul/runtime/trainer/model.gguf\",\n      \"--host\",\n      \"127.0.0.1\",\n      \"--port\",\n      \"4091\",\n      \"--ctx-size\",\n      \"1024\",\n      \"--threads\",\n      \"1\",\n      \"--threads-batch\",\n      \"1\",\n      \"--parallel\",\n      \"1\",\n      \"--jinja\",\n      \"--reasoning-budget\",\n      \"0\",\n      \"--no-webui\",\n      \"--log-disable\"\n    ],\n    \"env\": {\n      \"GRIM_BIND_HOST\": \"0.0.0.0\"\n    }\n  }\n}\n",
+        "launch.py": "\"\"\"Foreground container launcher; activation is a separate coordinated cutover.\"\"\"\nimport argparse\nimport json\nimport os\nfrom pathlib import Path\nimport sys\nimport time\n\nHOME = Path('/home/savsoul')\nSTATE = HOME / 'state/kubernetes'\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument('service', choices=('grim', 'editor', 'web-terminal', 'intermud', 'trainer'))\n    args = parser.parse_args()\n    if not (STATE / 'bootstrap-complete').is_file():\n        raise RuntimeError('Candidate runtime has not been prepared')\n    if args.service == 'intermud' and not (STATE / 'networks-active').exists():\n        print('Intermud waits for coordinated cutover; no gateway process is running.', flush=True)\n        while not (STATE / 'networks-active').exists():\n            time.sleep(2)\n    if args.service == 'grim' and not (STATE / 'networks-active').exists():\n        for name in ('intermud', 'grapevine', 'zebedee'):\n            path = HOME / ('grim/data/' + name + '.json')\n            if path.exists() and json.loads(path.read_text()).get('enabled'):\n                raise RuntimeError('Candidate external network adapter must remain disabled')\n    if args.service == 'trainer' and 'avx2' not in Path('/proc/cpuinfo').read_text():\n        raise RuntimeError('Retained trainer binary requires an AVX2-capable node')\n    services = json.loads(Path('/etc/savsoul/services.json').read_text())\n    service = services[args.service]\n    os.chdir(service['cwd'])\n    os.environ.update(service.get('env', {}))\n    os.environ.update({'HOME': str(HOME), 'PYTHONDONTWRITEBYTECODE': '1',\n                      'SSL_CERT_FILE': '/etc/ssl/certs/ca-certificates.crt',\n                      'REQUESTS_CA_BUNDLE': '/etc/ssl/certs/ca-certificates.crt'})\n    if args.service == 'grim':\n        os.environ['GRIM_PROXY_PORT'] = '4003'\n    command = service['command']\n    os.execv(command[0], command)\n\n\nif __name__ == '__main__':\n    main()\n"
+      }
+    },
+    {
+      "apiVersion": "networking.k8s.io/v1",
+      "kind": "NetworkPolicy",
+      "metadata": {
+        "name": "savsoul-candidate",
+        "namespace": "savsoul"
+      },
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app.kubernetes.io/name": "savsoul"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ],
+        "ingress": [
+          {
+            "from": [
+              {
+                "ipBlock": {
+                  "cidr": "192.168.255.0/24"
+                }
+              }
+            ],
+            "ports": [
+              {
+                "protocol": "TCP",
+                "port": 8080
+              },
+              {
+                "protocol": "TCP",
+                "port": 8443
+              },
+              {
+                "protocol": "TCP",
+                "port": 14000
+              },
+              {
+                "protocol": "TCP",
+                "port": 14001
+              },
+              {
+                "protocol": "TCP",
+                "port": 14080
+              },
+              {
+                "protocol": "TCP",
+                "port": 14481
+              }
+            ]
+          }
+        ],
+        "egress": [
+          {
+            "to": [
+              {
+                "namespaceSelector": {
+                  "matchLabels": {
+                    "kubernetes.io/metadata.name": "kube-system"
+                  }
+                },
+                "podSelector": {
+                  "matchLabels": {
+                    "k8s-app": "kube-dns"
+                  }
+                }
+              }
+            ],
+            "ports": [
+              {
+                "protocol": "UDP",
+                "port": 53
+              },
+              {
+                "protocol": "TCP",
+                "port": 53
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "name": "savsoul-internal",
+        "namespace": "savsoul"
+      },
+      "spec": {
+        "clusterIP": "None",
+        "selector": {
+          "app.kubernetes.io/name": "savsoul"
+        },
+        "ports": [
+          {
+            "port": 4000
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "apps/v1",
+      "kind": "StatefulSet",
+      "metadata": {
+        "name": "savsoul",
+        "namespace": "savsoul"
+      },
+      "spec": {
+        "serviceName": "savsoul-internal",
+        "replicas": 1,
+        "updateStrategy": {
+          "type": "OnDelete"
+        },
+        "selector": {
+          "matchLabels": {
+            "app.kubernetes.io/name": "savsoul"
+          }
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "app.kubernetes.io/name": "savsoul"
+            }
+          },
+          "spec": {
+            "automountServiceAccountToken": false,
+            "shareProcessNamespace": true,
+            "terminationGracePeriodSeconds": 60,
+            "securityContext": {
+              "runAsNonRoot": true,
+              "runAsUser": 1009,
+              "runAsGroup": 1011,
+              "fsGroup": 1011,
+              "fsGroupChangePolicy": "OnRootMismatch",
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            },
+            "containers": [
+              {
+                "name": "grim",
+                "image": "docker.io/library/python:3.12-slim-trixie@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+                "command": [
+                  "python",
+                  "/etc/savsoul/launch.py",
+                  "grim"
+                ],
+                "securityContext": {
+                  "allowPrivilegeEscalation": false,
+                  "readOnlyRootFilesystem": true,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  }
+                },
+                "resources": {
+                  "requests": {
+                    "cpu": "25m",
+                    "memory": "64Mi"
+                  },
+                  "limits": {
+                    "cpu": "750m",
+                    "memory": "128Mi"
+                  }
+                },
+                "volumeMounts": [
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/grim",
+                    "subPath": "grim",
+                    "readOnly": false
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/state/runner",
+                    "subPath": "state/runner",
+                    "readOnly": false
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/state/kubernetes",
+                    "subPath": "state/kubernetes",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/var/www/lpmud",
+                    "subPath": "public",
+                    "readOnly": false
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/runtime/venv",
+                    "subPath": "runtime/venv",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/runtime/python",
+                    "subPath": "runtime/python",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "config",
+                    "mountPath": "/etc/savsoul",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "grim-tmp",
+                    "mountPath": "/tmp"
+                  }
+                ],
+                "ports": [
+                  {
+                    "name": "telnet",
+                    "containerPort": 4000
+                  }
+                ],
+                "readinessProbe": {
+                  "exec": {
+                    "command": [
+                      "python",
+                      "-c",
+                      "from pathlib import Path; p=Path('/home/savsoul/state/runner/mud.pid').read_text().strip(); assert Path('/proc/'+p+'/exe').resolve()==Path('/home/savsoul/grim/bin/savsoul'); assert any(len(f)>3 and f[1].endswith(':0FA0') and f[3]=='0A' for f in (line.split() for line in Path('/proc/net/tcp').read_text().splitlines()[1:]))"
+                    ]
+                  },
+                  "periodSeconds": 5
+                }
+              },
+              {
+                "name": "editor",
+                "image": "docker.io/library/python:3.12-slim-trixie@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+                "command": [
+                  "python",
+                  "/etc/savsoul/launch.py",
+                  "editor"
+                ],
+                "securityContext": {
+                  "allowPrivilegeEscalation": false,
+                  "readOnlyRootFilesystem": true,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  }
+                },
+                "resources": {
+                  "requests": {
+                    "cpu": "25m",
+                    "memory": "64Mi"
+                  },
+                  "limits": {
+                    "cpu": "750m",
+                    "memory": "128Mi"
+                  }
+                },
+                "volumeMounts": [
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/grim",
+                    "subPath": "grim",
+                    "readOnly": false
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/state/editor",
+                    "subPath": "state/editor",
+                    "readOnly": false
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/state/runner",
+                    "subPath": "state/runner",
+                    "readOnly": false
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/state/kubernetes",
+                    "subPath": "state/kubernetes",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/var/www/lpmud",
+                    "subPath": "public",
+                    "readOnly": false
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/runtime/venv",
+                    "subPath": "runtime/venv",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/runtime/python",
+                    "subPath": "runtime/python",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "config",
+                    "mountPath": "/etc/savsoul",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "editor-tmp",
+                    "mountPath": "/tmp"
+                  }
+                ],
+                "readinessProbe": {
+                  "exec": {
+                    "command": [
+                      "python",
+                      "-c",
+                      "import socket; socket.create_connection(('127.0.0.1',4085),timeout=2).close()"
+                    ]
+                  },
+                  "periodSeconds": 5
+                }
+              },
+              {
+                "name": "web-terminal",
+                "image": "docker.io/library/python:3.12-slim-trixie@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+                "command": [
+                  "python",
+                  "/etc/savsoul/launch.py",
+                  "web-terminal"
+                ],
+                "securityContext": {
+                  "allowPrivilegeEscalation": false,
+                  "readOnlyRootFilesystem": true,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  }
+                },
+                "resources": {
+                  "requests": {
+                    "cpu": "25m",
+                    "memory": "48Mi"
+                  },
+                  "limits": {
+                    "cpu": "750m",
+                    "memory": "128Mi"
+                  }
+                },
+                "volumeMounts": [
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/grim/tools/web-terminal",
+                    "subPath": "grim/tools/web-terminal",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/state/kubernetes",
+                    "subPath": "state/kubernetes",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/runtime/venv",
+                    "subPath": "runtime/venv",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/runtime/python",
+                    "subPath": "runtime/python",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "config",
+                    "mountPath": "/etc/savsoul",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "web-terminal-tmp",
+                    "mountPath": "/tmp"
+                  }
+                ],
+                "readinessProbe": {
+                  "exec": {
+                    "command": [
+                      "python",
+                      "-c",
+                      "import socket; socket.create_connection(('127.0.0.1',4086),timeout=2).close()"
+                    ]
+                  },
+                  "periodSeconds": 5
+                }
+              },
+              {
+                "name": "intermud",
+                "image": "docker.io/library/python:3.12-slim-trixie@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+                "command": [
+                  "python",
+                  "/etc/savsoul/launch.py",
+                  "intermud"
+                ],
+                "securityContext": {
+                  "allowPrivilegeEscalation": false,
+                  "readOnlyRootFilesystem": true,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  }
+                },
+                "resources": {
+                  "requests": {
+                    "cpu": "25m",
+                    "memory": "64Mi"
+                  },
+                  "limits": {
+                    "cpu": "750m",
+                    "memory": "192Mi"
+                  }
+                },
+                "volumeMounts": [
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/runtime/i3-gateway",
+                    "subPath": "runtime/i3-gateway",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/.local/state/savsoul-intermud",
+                    "subPath": ".local/state/savsoul-intermud",
+                    "readOnly": false
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/grim/tools/intermud",
+                    "subPath": "grim/tools/intermud",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/state/kubernetes",
+                    "subPath": "state/kubernetes",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/runtime/venv",
+                    "subPath": "runtime/venv",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/runtime/python",
+                    "subPath": "runtime/python",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "config",
+                    "mountPath": "/etc/savsoul",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "intermud-tmp",
+                    "mountPath": "/tmp"
+                  }
+                ]
+              },
+              {
+                "name": "trainer",
+                "image": "docker.io/library/python:3.12-slim-trixie@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+                "command": [
+                  "python",
+                  "/etc/savsoul/launch.py",
+                  "trainer"
+                ],
+                "securityContext": {
+                  "allowPrivilegeEscalation": false,
+                  "readOnlyRootFilesystem": true,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  }
+                },
+                "resources": {
+                  "requests": {
+                    "cpu": "25m",
+                    "memory": "768Mi"
+                  },
+                  "limits": {
+                    "cpu": "750m",
+                    "memory": "896Mi"
+                  }
+                },
+                "volumeMounts": [
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/runtime/trainer",
+                    "subPath": "runtime/trainer",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "home",
+                    "mountPath": "/home/savsoul/state/kubernetes",
+                    "subPath": "state/kubernetes",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "config",
+                    "mountPath": "/etc/savsoul",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "trainer-tmp",
+                    "mountPath": "/tmp"
+                  }
+                ],
+                "startupProbe": {
+                  "exec": {
+                    "command": [
+                      "python",
+                      "-c",
+                      "import urllib.request; urllib.request.urlopen('http://127.0.0.1:4091/health',timeout=2)"
+                    ]
+                  },
+                  "periodSeconds": 5,
+                  "failureThreshold": 60
+                }
+              },
+              {
+                "name": "nginx",
+                "image": "docker.io/library/nginx:stable-alpine@sha256:47928bf67eb62a1863cb08d9ecb52d3e704304ba614eaee17884204677702951",
+                "command": [
+                  "nginx",
+                  "-c",
+                  "/etc/savsoul/nginx.conf",
+                  "-g",
+                  "daemon off;"
+                ],
+                "securityContext": {
+                  "allowPrivilegeEscalation": false,
+                  "readOnlyRootFilesystem": true,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  },
+                  "runAsUser": 1012,
+                  "runAsGroup": 1012
+                },
+                "resources": {
+                  "requests": {
+                    "cpu": "25m",
+                    "memory": "32Mi"
+                  },
+                  "limits": {
+                    "cpu": "750m",
+                    "memory": "64Mi"
+                  }
+                },
+                "volumeMounts": [
+                  {
+                    "name": "home",
+                    "mountPath": "/var/www/lpmud",
+                    "subPath": "public",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "config",
+                    "mountPath": "/etc/savsoul",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "nginx-tmp",
+                    "mountPath": "/tmp"
+                  },
+                  {
+                    "name": "tls",
+                    "mountPath": "/run/savsoul-tls",
+                    "readOnly": true
+                  }
+                ],
+                "readinessProbe": {
+                  "httpGet": {
+                    "path": "/healthz",
+                    "port": 9080
+                  },
+                  "periodSeconds": 5
+                }
+              }
+            ],
+            "volumes": [
+              {
+                "name": "home",
+                "persistentVolumeClaim": {
+                  "claimName": "savsoul-home"
+                }
+              },
+              {
+                "name": "config",
+                "configMap": {
+                  "name": "savsoul-runtime"
+                }
+              },
+              {
+                "name": "tls",
+                "secret": {
+                  "secretName": "savsoul-tls",
+                  "defaultMode": 288,
+                  "items": [
+                    {
+                      "key": "tls.crt",
+                      "path": "server.crt"
+                    },
+                    {
+                      "key": "tls.key",
+                      "path": "server.key"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "grim-tmp",
+                "emptyDir": {
+                  "sizeLimit": "64Mi"
+                }
+              },
+              {
+                "name": "editor-tmp",
+                "emptyDir": {
+                  "sizeLimit": "64Mi"
+                }
+              },
+              {
+                "name": "web-terminal-tmp",
+                "emptyDir": {
+                  "sizeLimit": "64Mi"
+                }
+              },
+              {
+                "name": "intermud-tmp",
+                "emptyDir": {
+                  "sizeLimit": "64Mi"
+                }
+              },
+              {
+                "name": "trainer-tmp",
+                "emptyDir": {
+                  "sizeLimit": "64Mi"
+                }
+              },
+              {
+                "name": "nginx-tmp",
+                "emptyDir": {
+                  "sizeLimit": "64Mi"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "name": "savsoul-public",
+        "namespace": "savsoul",
+        "annotations": {
+          "service.beta.kubernetes.io/linode-loadbalancer-default-protocol": "tcp",
+          "service.beta.kubernetes.io/linode-loadbalancer-default-proxy-protocol": "v1",
+          "service.beta.kubernetes.io/linode-loadbalancer-nodebalancer-type": "common"
+        }
+      },
+      "spec": {
+        "type": "LoadBalancer",
+        "externalTrafficPolicy": "Local",
+        "selector": {
+          "app.kubernetes.io/name": "savsoul"
+        },
+        "ports": [
+          {
+            "name": "http",
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 8080
+          },
+          {
+            "name": "https",
+            "protocol": "TCP",
+            "port": 443,
+            "targetPort": 8443
+          },
+          {
+            "name": "mud",
+            "protocol": "TCP",
+            "port": 4000,
+            "targetPort": 14000
+          },
+          {
+            "name": "mud-tls",
+            "protocol": "TCP",
+            "port": 4001,
+            "targetPort": 14001
+          },
+          {
+            "name": "editor-http",
+            "protocol": "TCP",
+            "port": 4080,
+            "targetPort": 14080
+          },
+          {
+            "name": "editor-tls",
+            "protocol": "TCP",
+            "port": 4081,
+            "targetPort": 14481
+          }
+        ]
+      }
+    }
+  ]
+}

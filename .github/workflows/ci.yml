@@ -36,6 +36,11 @@ jobs:
           fi
       - name: Version history regression checks
         run: python3 -m unittest discover -s tools/server-host -p test_build_version.py
+      - name: Kubernetes staging tool checks
+        run: |
+          python3 -m unittest discover -s tools/kubernetes -p 'test_*.py'
+          python3 tools/kubernetes/render.py
+          git diff --exit-code -- deploy/kubernetes/stack.json
   build:
     needs: version
     env:
