@@ -125,3 +125,24 @@ before services stop. To retry, fix the cause and push a new commit. To revert a
 successful release, merge a Git revert PR; it follows the same checked pipeline.
 If automatic recovery fails, inspect `/var/log/upstart/savsoul-*.log`, the failed
 Actions log and these backup directories over administrator SSH before restarting.
+
+## Destination permissions and failed attempts
+
+The `savsoul` UID must be able to create and replace files in managed destination
+directories, including `tools/web-terminal`. File ownership alone is insufficient:
+atomic replacement creates a temporary sibling in the parent directory. The
+receiver checks these permissions before live mutation; the installed baseline
+is also checked before stopping the editor. Do not grant the deploy account
+additional or general sudo permissions, or make the separately provisioned
+`/usr/local/lib/savsoul-release` helpers writable.
+Reprovision reviewed helper changes there as root; payload copies do not update them.
+
+A service restart after an exception is recovery, not a successful release.
+Check `current.json` and the running executable. Preserve failed journals and
+backups. Normally retry with a new merged revision. If an operator must retry the
+same revision, first complete its rollback and verify recovery, then archive the
+entire failed game backup outside the `backup-*` namespace. If publication began,
+also verify public-site rollback and archive `/var/lib/savsoul-release/SHA/`
+outside `/var/lib/savsoul-release/`; that directory independently blocks a retry.
+Preserve both directories' recovery metadata so the retry creates fresh journals;
+never reuse or erase the failed attempt's metadata.
