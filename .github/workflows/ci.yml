@@ -32,15 +32,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
         with:
-          components: clippy, rustfmt, llvm-tools-preview
+          components: clippy, rustfmt
       - uses: Swatinem/rust-cache@v2
-      - name: Install coverage runner
-        run: cargo install cargo-llvm-cov --locked
       - name: Lint
         run: make lint
-      - name: Coverage
+      - name: Workspace tests
         if: ${{ !cancelled() }}
-        run: make coverage
+        run: make test
   package:
     runs-on: ubuntu-24.04
     timeout-minutes: 30

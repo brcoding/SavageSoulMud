@@ -1,4 +1,4 @@
-.PHONY: all precommit lint format coverage clean
+.PHONY: all precommit lint format test coverage clean
 
 all: precommit
 
@@ -29,7 +29,10 @@ fmt-check:
 format:
 	cargo fmt
 
-ci: lint coverage
+test:
+	RUSTFLAGS="-D warnings" cargo test --locked --workspace --tests
+
+ci: lint test
 
 # ─── Coverage report (no percentage threshold) ─────────────────────────
 
