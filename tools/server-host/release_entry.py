@@ -159,12 +159,14 @@ def game_recovery_needed(revision):
 
 
 def main():
-    command = os.environ.get('SSH_ORIGINAL_COMMAND', '')
+    if len(sys.argv) > 2:
+        raise ValueError('Expected one release command')
+    command = sys.argv[1] if len(sys.argv) == 2 else os.environ.get('SSH_ORIGINAL_COMMAND', '')
     if command == 'check':
         healthy()
         print('Restricted release command ready; production listeners healthy.')
         return
-    match = re.match(r'^(deploy|validate) ([0-9a-f]{40})$', command)
+    match = re.match(r'^(deploy|validate) ([0-9a-f]{40})\Z', command)
     if not match:
         raise ValueError('Only check, validate <revision>, or deploy <revision> is allowed')
     action, revision = match.groups()

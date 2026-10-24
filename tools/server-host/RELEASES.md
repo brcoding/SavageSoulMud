@@ -24,11 +24,30 @@ the existing private Python 3.12 only after dropping to the `savsoul` UID/GID.
 They are provisioned separately over administrator SSH and cannot update themselves
 from a release payload. Changes to these two files require an administrator to
 re-provision them. Copies under the game's `tools/` are reference sources only.
+The same root ownership applies to `deploy_ssh.py` and the wrapper installed as
+`/usr/local/sbin/savsoul-deploy`. The templates `deploy-sshd.conf` and
+`deploy-sudoers.conf` record the account restrictions; validate SSH changes with
+`sshd -t` and sudo changes with `visudo -cf` before activating them.
 
-A dedicated Ed25519 public key in root's `authorized_keys` has a forced command
-and disables PTY, forwarding and agent access. It permits only `check`,
-`validate FULL_GIT_SHA`, and `deploy FULL_GIT_SHA`. Root's password is not shared
-with GitHub. The encrypted production environment secrets are:
+SSH uses the dedicated `savsoul-deploy` account, with a locked password, no
+administrative groups and a root-owned home. Its root-owned public key file is
+`/etc/ssh/savsoul-deploy.keys`. The key and an sshd `Match User` block force
+`deploy_ssh.py`, disable forwarding/PTY access and permit public-key sign-in only.
+Shell commands, SFTP/SCP, arbitrary test scripts and reading private game files
+through SSH are unavailable. CI runs unit/integration tests on GitHub runners;
+server-side testing is limited to the release `check` and `validate` commands.
+
+Its only sudo permission is the root-owned `/usr/local/sbin/savsoul-deploy`
+wrapper. That invokes the fixed dispatcher, which independently validates one
+`check`, `validate FULL_GIT_SHA`, or `deploy FULL_GIT_SHA` command. The account
+cannot use general root commands or change these helpers. The dispatcher has
+only the existing MUD-stack operations described below, including publishing its
+generated website and managing the fixed game/editor/bridge services. Payload
+parsing and application code still run as the separate `savsoul` game UID.
+
+The old root-authorized CI key is removed. Neither the root password nor an
+unrestricted administrator key is shared with GitHub. The encrypted production
+environment secrets are:
 
 - `SAVSOUL_DEPLOY_KEY`: that dedicated private key.
 - `SAVSOUL_KNOWN_HOSTS`: the verified server public host key for `173.255.210.234`.

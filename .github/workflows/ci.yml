@@ -112,5 +112,5 @@ jobs:
             -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes \
             -o UserKnownHostsFile="$RUNNER_TEMP/deploy-ssh/known_hosts" \
             -o ConnectTimeout=20 -o ServerAliveInterval=15 -o ServerAliveCountMax=4 \
-            root@173.255.210.234 "deploy $GITHUB_SHA" < release.tar.gz
+            savsoul-deploy@173.255.210.234 "deploy $GITHUB_SHA" < release.tar.gz
           printf 'Released `%s` to https://savsoul.com (game :4000 / TLS :4001).\n' "$GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"

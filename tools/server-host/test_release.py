@@ -11,6 +11,7 @@ from unittest.mock import patch
 
 import receive_release as release
 import release_entry as entry
+import deploy_ssh
 
 
 def checksum(content):
@@ -114,6 +115,7 @@ class ReleaseTests(unittest.TestCase):
 
     def test_duplicate_preflight_cannot_run_rollback_or_stop_services(self):
         with patch.dict('os.environ', {'SSH_ORIGINAL_COMMAND': 'deploy ' + 'a' * 40}), \
+                patch.object(entry.sys, 'argv', ['release_entry.py']), \
                 patch.object(entry, 'receiver', side_effect=ValueError('already attempted')) as receiver, \
                 patch.object(entry, 'BACKUPS', str(self.base)), \
                 patch('builtins.open', return_value=io.StringIO()), \
@@ -169,6 +171,7 @@ class ReleaseTests(unittest.TestCase):
                     raise failure
 
         with patch.dict('os.environ', {'SSH_ORIGINAL_COMMAND': 'deploy ' + revision}), \
+                patch.object(entry.sys, 'argv', ['release_entry.py']), \
                 patch.object(entry, 'STATE', str(self.base)), \
                 patch.object(entry, 'BACKUPS', str(backups)), \
                 patch.object(entry, 'LOCK', str(self.base / 'release.lock')), \
@@ -218,6 +221,33 @@ class ReleaseTests(unittest.TestCase):
                 patch.object(release.time, 'sleep'):
             with self.assertRaisesRegex(RuntimeError, 'Successor game'):
                 release.copyover(self.backup)
+
+    def test_deploy_account_only_invokes_fixed_sudo_wrapper(self):
+        for command in ('check', 'validate ' + 'a' * 40, 'deploy ' + 'b' * 40):
+            with self.subTest(command=command), \
+                    patch.dict('os.environ', {'SSH_ORIGINAL_COMMAND': command}), \
+                    patch.object(deploy_ssh.subprocess, 'call', return_value=0) as run:
+                self.assertEqual(deploy_ssh.main(), 0)
+                run.assert_called_once_with(['/usr/bin/sudo', '-n', '/usr/local/sbin/savsoul-deploy', command])
+
+    def test_deploy_account_rejects_shell_sftp_and_extra_commands(self):
+        for command in ('', 'sh', 'id', 'sudo -n sh', 'internal-sftp', 'scp -t /tmp/test',
+                        'check; id', 'deploy ' + 'a' * 40 + '\nid', 'deploy ' + 'a' * 40 + '\n'):
+            with self.subTest(command=command), \
+                    patch.dict('os.environ', {'SSH_ORIGINAL_COMMAND': command}), \
+                    patch.object(deploy_ssh.subprocess, 'call') as run:
+                with self.assertRaises(ValueError):
+                    deploy_ssh.main()
+                run.assert_not_called()
+
+    def test_root_dispatcher_accepts_only_one_explicit_command(self):
+        with patch.object(entry.sys, 'argv', ['release_entry.py', 'check']), \
+                patch.object(entry, 'healthy') as healthy:
+            entry.main()
+            healthy.assert_called_once()
+        with patch.object(entry.sys, 'argv', ['release_entry.py', 'check', 'id']):
+            with self.assertRaises(ValueError):
+                entry.main()
 
 
 if __name__ == '__main__':
