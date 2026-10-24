@@ -981,5 +981,21 @@
     ],
     "wizard": false,
     "file": "creator.md"
+  },
+  {
+    "id": "wizinvis",
+    "title": "Wizard invisibility",
+    "category": "Wizard",
+    "aliases": [],
+    "wizard": true,
+    "file": "wizinvis.md"
+  },
+  {
+    "id": "testaccount",
+    "title": "Hidden test accounts",
+    "category": "Wizard",
+    "aliases": [],
+    "wizard": true,
+    "file": "testaccount.md"
   }
 ]

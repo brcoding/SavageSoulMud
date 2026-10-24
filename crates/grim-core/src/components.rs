@@ -16,7 +16,9 @@ pub use crate::character::Gender;
 
 /// Shared placement link, reexported by grim-object for API compatibility.
 #[derive(Component, Debug, Clone, Copy)]
-pub struct CarriedBy {pub carrier:Entity}
+pub struct CarriedBy {
+    pub carrier: Entity,
+}
 
 /// Per-instance physical condition. Optional absolute decay times survive saves.
 #[derive(Component, Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
@@ -26,20 +28,36 @@ pub struct ItemCondition {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub decay: Option<ItemDecay>,
 }
-fn full_quality() -> u8 {100}
+fn full_quality() -> u8 {
+    100
+}
 impl Default for ItemCondition {
-    fn default()->Self {Self{quality:100,decay:None}}
+    fn default() -> Self {
+        Self {
+            quality: 100,
+            decay: None,
+        }
+    }
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
-pub struct ItemDecay {pub started_at:u64,pub expires_at:u64}
+pub struct ItemDecay {
+    pub started_at: u64,
+    pub expires_at: u64,
+}
 impl ItemCondition {
-    pub fn label(&self)->&'static str {
-        match (self.decay.is_some(),self.quality.min(100)) {
-            (true,80..=100)=>"fresh",(true,60..=79)=>"starting to decay",
-            (true,30..=59)=>"decaying",(true,1..=29)=>"badly decayed",(true,0)=>"rotted away",
-            (false,90..=100)=>"excellent",(false,70..=89)=>"good",
-            (false,40..=69)=>"worn",(false,1..=39)=>"badly worn",(false,0)=>"ruined",
-            _=>unreachable!(),
+    pub fn label(&self) -> &'static str {
+        match (self.decay.is_some(), self.quality.min(100)) {
+            (true, 80..=100) => "fresh",
+            (true, 60..=79) => "starting to decay",
+            (true, 30..=59) => "decaying",
+            (true, 1..=29) => "badly decayed",
+            (true, 0) => "rotted away",
+            (false, 90..=100) => "excellent",
+            (false, 70..=89) => "good",
+            (false, 40..=69) => "worn",
+            (false, 1..=39) => "badly worn",
+            (false, 0) => "ruined",
+            _ => unreachable!(),
         }
     }
 }
@@ -155,6 +173,9 @@ pub enum ClientState {
 /// An account — persists across sessions. Saved to `data/accounts/<id>.json`.
 #[derive(Component, Serialize, Deserialize, Clone, Debug)]
 pub struct Account {
+    /// Staff-managed test identity. Never grants administrator privileges.
+    #[serde(default)]
+    pub testing: bool,
     pub id: GrimId,
     /// The user-facing identifier (username or email, normalized lowercase).
     pub identifier: String,

@@ -8,6 +8,8 @@ use grim::{
     StoredObject,
 };
 use std::collections::HashMap;
+mod dialogue;
+pub(crate) use dialogue::ask;
 
 const QUEST: &str = "Savior of Royal Oak";
 #[derive(Resource, Default)]
@@ -31,72 +33,9 @@ fn reply(world: &mut World, actor: Entity, text: impl Into<String>) {
     });
 }
 
-/// Recovered trainer interaction, adapted to Savage Soul XP rather than LP skills.
-pub(crate) fn ask(world: &mut World, actor: Entity, arg: &str) -> Result<(), String> {
-    let input = arg.trim().to_lowercase();
-    let room = world.get::<InRoom>(actor).ok_or("You are nowhere.")?.room;
-    let candidates: Vec<_> = world.query::<(Entity, &GrimName, &InRoom, Option<&Keywords>, &Creature)>()
-        .iter(world).filter(|(_, _, location, _, _)| location.room == room)
-        .map(|(entity, name, _, keywords, _)| (entity, name.0.clone(), keywords.map(|k| k.0.clone()).unwrap_or_default())).collect();
-    let input = input.strip_prefix("to ").unwrap_or(&input);
-    let mut names: Vec<_> = candidates.iter().flat_map(|(_, name, keywords)| std::iter::once(name.to_lowercase()).chain(keywords.iter().map(|k| k.to_lowercase()))).collect();
-    names.sort_by_key(|name| std::cmp::Reverse(name.len()));
-    let target = names.iter().find(|name| input == name.as_str() || input.strip_prefix(name.as_str()).is_some_and(|tail| tail.starts_with(' '))).ok_or("Name someone here, followed by your question. For example: ask tully how do I level up?")?;
-    let topic = input[target.len()..].trim();
-    let topic = topic.strip_prefix("for ").or_else(|| topic.strip_prefix("about ")).unwrap_or(topic);
-    let spec = grim::parse_target(target, grim::ParseOptions::BEING).ok_or("Who would you like to ask?")?;
-    let matches = grim::query(&spec, candidates.iter().map(|(entity, name, keywords)| (*entity, name.as_str(), keywords.as_slice())));
-    let npc = *matches.first().ok_or("That person is not here.")?;
-    let name = &world.get::<GrimName>(npc).ok_or("That person is not here.")?.0;
-    if !name.eq_ignore_ascii_case("tully") {
-        reply(world, actor, format!("{name} has no advice about that."));
-        return Ok(());
-    }
-    let mut question = topic.to_string();
-    if let Some(previous) = world.get::<crate::trainer::Conversation>(actor).filter(|previous| previous.npc == npc) {
-        let words: Vec<_> = topic.split(|c: char| !c.is_alphanumeric()).collect();
-        if words.iter().any(|word| ["it", "that", "this"].contains(word)) && !crate::savage_rules::ATTRIBUTES.iter().any(|a| topic.contains(&a.replace('_', " "))) {
-            question.push(' ');question.push_str(&previous.attribute.replace('_', " "));
-        }
-    }
-    if crate::trainer_ai::submit(world, actor, npc, &question) { return Ok(()); }
-    let soul = world.get::<SoulData>(actor).ok_or("Your Savage Soul record could not be loaded.")?;
-    let text = crate::trainer::advice(soul, &question);
-    if let Some(attribute) = crate::savage_rules::ATTRIBUTES.iter().find(|a| question.contains(&a.replace('_', " "))) {
-        world.entity_mut(actor).insert(crate::trainer::Conversation { npc, attribute: attribute.to_string() });
-    }
-    reply(world, actor, text);
-    Ok(())
-}
-
-#[cfg(test)]
-mod trainer_tests {
-    use super::*;
-    #[test]
-    fn conversational_questions_keep_personal_context_and_require_local_npc() {
-        let mut world = World::new();
-        world.init_resource::<Messages<InfoMessage>>();
-        let room = world.spawn_empty().id();
-        let actor = world.spawn((SoulData::default(), InRoom { room })).id();
-        let npc = world.spawn((Creature, GrimName("tully".into()), Keywords(vec!["old man tully".into()]), InRoom { room })).id();
-        ask(&mut world, actor, "tully how much does melee attack cost?").unwrap();
-        assert_eq!(world.get::<crate::trainer::Conversation>(actor).unwrap().attribute, "melee_attack");
-        ask(&mut world, actor, "tully can I afford it?").unwrap();
-        ask(&mut world, actor, "to old man tully how do I level up?").unwrap();
-        let messages = world.resource::<Messages<InfoMessage>>();
-        let mut cursor = messages.get_cursor();
-        let texts: Vec<_> = cursor.read(messages).map(|message| message.text.clone()).collect();
-        assert!(texts[1].contains("Your base melee attack is"));
-        assert!(texts[1].contains("You can afford it"));
-        assert!(texts[2].contains("no automatic class-level"));
-        assert_eq!(world.get::<SoulData>(actor).unwrap().available_xp(), 600);
-        let elsewhere = world.spawn_empty().id();
-        world.entity_mut(npc).insert(InRoom { room: elsewhere });
-        assert!(ask(&mut world, actor, "tully for help").is_err());
-    }
-}
 fn key() -> StoredObject {
-    StoredObject { condition: None,
+    StoredObject {
+        condition: None,
         name: "metal gate key".into(),
         description: vec!["The key to the Royal Oak Village Gate.".into()],
         keywords: vec![
@@ -270,13 +209,15 @@ fn defeat(world: &mut World, actor: Entity, npc: Entity) -> Result<(), String> {
             .unwrap_or_default(),
     };
     save(world, actor, character, soul, &[dagger], &additions)?;
-    let managed=world.get::<crate::population::Member>(npc).is_some();
+    let managed = world.get::<crate::population::Member>(npc).is_some();
     world.despawn(npc);
-    if !managed {world.resource_mut::<Progress>().respawn.push(template);}
-    if crate::preferences::detail(world,actor)==crate::preferences::Detail::Brief {
+    if !managed {
+        world.resource_mut::<Progress>().respawn.push(template);
+    }
+    if crate::preferences::detail(world, actor) == crate::preferences::Detail::Brief {
         reply(world,actor,"Archwraith defeated. Savior of Royal Oak complete. XP +2000. Quest points +10. Gate key received; mist dagger consumed.");
     } else {
-    reply(world,actor,"With the sound of ripping paper, the mist dagger plunges into the wraith, tearing through dimensional walls. With a pop, the wraith disappears along with your dagger.\nYou have completed Savior of Royal Oak! You receive 10 quest points and 2000 XP. Your gate key and quest progress are saved. Return to Royal Oak's south gate with your Soulboy.");
+        reply(world,actor,"With the sound of ripping paper, the mist dagger plunges into the wraith, tearing through dimensional walls. With a pop, the wraith disappears along with your dagger.\nYou have completed Savior of Royal Oak! You receive 10 quest points and 2000 XP. Your gate key and quest progress are saved. Return to Royal Oak's south gate with your Soulboy.");
     }
     Ok(())
 }
@@ -389,4 +330,47 @@ pub(crate) fn tick(world: &mut World) {
         }
     }
     world.insert_resource(progress);
+}
+
+#[cfg(test)]
+mod trainer_tests {
+    use super::*;
+    #[test]
+    fn conversational_questions_keep_personal_context_and_require_local_npc() {
+        let mut world = World::new();
+        world.init_resource::<Messages<InfoMessage>>();
+        let room = world.spawn_empty().id();
+        let actor = world.spawn((SoulData::default(), InRoom { room })).id();
+        let npc = world
+            .spawn((
+                Creature,
+                GrimName("tully".into()),
+                Keywords(vec!["old man tully".into()]),
+                InRoom { room },
+            ))
+            .id();
+        ask(&mut world, actor, "tully how much does melee attack cost?").unwrap();
+        assert_eq!(
+            world
+                .get::<crate::trainer::Conversation>(actor)
+                .unwrap()
+                .attribute,
+            "melee_attack"
+        );
+        ask(&mut world, actor, "tully can I afford it?").unwrap();
+        ask(&mut world, actor, "to old man tully how do I level up?").unwrap();
+        let messages = world.resource::<Messages<InfoMessage>>();
+        let mut cursor = messages.get_cursor();
+        let texts: Vec<_> = cursor
+            .read(messages)
+            .map(|message| message.text.clone())
+            .collect();
+        assert!(texts[1].contains("Your base melee attack is"));
+        assert!(texts[1].contains("You can afford it"));
+        assert!(texts[2].contains("no automatic class-level"));
+        assert_eq!(world.get::<SoulData>(actor).unwrap().available_xp(), 600);
+        let elsewhere = world.spawn_empty().id();
+        world.entity_mut(npc).insert(InRoom { room: elsewhere });
+        assert!(ask(&mut world, actor, "tully for help").is_err());
+    }
 }

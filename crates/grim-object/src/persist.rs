@@ -34,7 +34,8 @@ pub fn snapshot<'a>(held: impl Iterator<Item = Held<'a>>, carrier: Entity) -> Ve
         .map(|(nm, desc, kw, line, condition, _)| {
             (
                 nm.0.clone(),
-                StoredObject { condition: condition.cloned(),
+                StoredObject {
+                    condition: condition.cloned(),
                     name: nm.0.clone(),
                     description: desc.map(|d| d.0.clone()).unwrap_or_default(),
                     keywords: kw.map(|k| k.0.clone()).unwrap_or_default(),
@@ -141,7 +142,16 @@ mod tests {
         )>();
         state
             .iter(world)
-            .map(|(nm, d, k, l, c, h)| (nm.clone(), d.cloned(), k.cloned(), l.cloned(), c.cloned(), *h))
+            .map(|(nm, d, k, l, c, h)| {
+                (
+                    nm.clone(),
+                    d.cloned(),
+                    k.cloned(),
+                    l.cloned(),
+                    c.cloned(),
+                    *h,
+                )
+            })
             .collect()
     }
 
@@ -182,14 +192,21 @@ mod tests {
         let mut app = App::new();
         app.add_plugins(MinimalPlugins);
         let carrier = app.world_mut().spawn_empty().id();
-        let stored = StoredObject { condition: Some(ItemCondition {quality:45,decay:Some(grim_core::components::ItemDecay{started_at:100,expires_at:400})}),
+        let stored = StoredObject {
+            condition: Some(ItemCondition {
+                quality: 45,
+                decay: Some(grim_core::components::ItemDecay {
+                    started_at: 100,
+                    expires_at: 400,
+                }),
+            }),
             name: "brass lantern".into(),
             description: vec!["A sturdy brass lantern.".into()],
             keywords: vec!["lantern".into()],
             room_description: "A brass lantern rests here.".into(),
         };
         let (obj, nm, desc, kw, line, held, condition) = restore_bundle(&stored, carrier);
-        assert_eq!(Some(condition),stored.condition);
+        assert_eq!(Some(condition), stored.condition);
         let _ = obj;
         assert_eq!(nm.0, "brass lantern");
         assert_eq!(desc.0, vec!["A sturdy brass lantern.".to_string()]);

@@ -4,6 +4,15 @@
 **Role:** vertical — example game (the workspace's only binary)
 **Depends on:** `grim`
 
+Large subsystems use private child modules while retaining their parent entry
+points. `savage_soul/` separates saved state, commands, conditions and combat;
+combat separates initiative, activations, narration and final persistence.
+`creator/` separates draft commands from transactions, `population/` navigation
+from simulation, and `crafting/transaction.rs` planning from publication.
+`intermud/`, `zebedee/` and `grapevine/` separate transport, command handling and
+delivery; `client_protocols/` separates snapshots, codecs and session updates.
+Plugin scheduling, authored data formats and player commands are unchanged.
+
 ## Components
 | Component | File | Purpose |
 |---|---|---|
@@ -24,20 +33,20 @@
 Player-facing verbs and where to find their handlers.
 | Command | Handler | Summary |
 |---|---|---|
-| `grapevine` / `gv` | `src/grapevine.rs` | Wizard-only Grapevine status, subscriptions, channel chat, tells, games/players, history and credential reload. |
-| `score`, `train`, `pecs`, `learn`, `wield`, `wear`, `attack`, `kill`, `stop`, `defend`, `rest`, `recover`, `task`, `exchange` | `savage_soul::run_command` (`src/savage_soul.rs`) | Savage Soul character and combat actions. |
-| `remove` | `savage_soul::run_command` (`src/savage_soul.rs`) | Unequip an item. |
-| `soulheal`, `awardxp` | `savage_soul::wizard_command` (`src/savage_soul.rs`) | Wizard-only healing and XP grants. |
-| `creator`, `rebuild`, `respec`, `races`, `race`, `buyoff` | `creator::command` (`src/creator.rs`) | Preview and commit med-bay character changes. |
+| `grapevine` / `gv` | `src/grapevine/commands.rs` | Wizard-only Grapevine status, subscriptions, channel chat, tells, games/players, history and credential reload. |
+| `score`, `train`, `pecs`, `learn`, `wield`, `wear`, `attack`, `kill`, `stop`, `defend`, `rest`, `recover`, `task`, `exchange` | `savage_soul::run_command` (`src/savage_soul/commands.rs`) | Savage Soul character and combat actions. |
+| `remove` | `savage_soul::run_command` (`src/savage_soul/commands.rs`) | Unequip an item. |
+| `soulheal`, `awardxp` | `savage_soul::wizard_command` (`src/savage_soul/commands/display.rs`) | Wizard-only healing and XP grants. |
+| `creator`, `rebuild`, `respec`, `races`, `race`, `buyoff` | `creator::command` (`src/creator/commands.rs`) | Preview and commit med-bay character changes. |
 | `list`, `credits`, `buy`, `sell` | `shop::handle_shop` (`src/shop.rs`) | Shop transactions. |
 | `help` | `help::answer_help` (`src/help.rs`) | General and command help. |
 | `drink`, `eat` | `consumables::consume` (`src/consumables.rs`) | Consume carried supplies. |
-| `ask`, `talk` | `royal_oak::ask` (`src/royal_oak.rs`) | Trainer conversation. |
+| `ask`, `talk` | `royal_oak::ask` (`src/royal_oak/dialogue.rs`) | Trainer conversation. |
 | `put`, `place`, `sit`, `lie`, `lay`, `stand` | `medical::place` / `rest` / `stand` (`src/medical.rs`) | Table, body and posture interactions. |
 | `hack` | `hack::command` (`src/hack.rs`) | Terminal puzzles. |
 | `craft`, `reduce`, `recipes`, `reductions`, `resources` | `crafting::command` (`src/crafting.rs`) | Material and crafting actions. |
 | `screenreader`, `combatlog`, `prompt` | `preferences::command` (`src/preferences.rs`) | Saved presentation preferences. |
-| `intermud`, `i3`, `imud` / `zebedee`, `i2` / `protocols` | `src/intermud.rs`, `src/zebedee.rs`, `src/client_protocols.rs` | Network adapters and client protocols. |
+| `intermud`, `i3`, `imud` / `zebedee`, `i2` / `protocols` | `src/intermud/delivery.rs`, `src/zebedee/commands.rs`, `src/client_protocols/commands.rs` | Network adapters and client protocols. |
 
 Game command vocabulary is installed by `src/game_commands.rs` from
 `SavageSoulPlugin`; the shared scene parser remains game-independent.
@@ -172,7 +181,8 @@ repair and condition-based prices are not implemented.
 
 ## NPC population and movement
 
-`src/population.rs` owns Candidate discovery, Member spawn ownership, managed
+`src/population.rs` owns Candidate discovery and Member spawn ownership;
+`src/population/simulation.rs` handles managed
 Point budgets, replacement cooldowns and movement objectives. Seed captures each
 complete NpcBlueprint at its original area/room/ordinal; spawn_npc is reused for
 replacement so scripts, merchants and combat profiles are retained. Per-blueprint
@@ -230,7 +240,7 @@ The wizard editor includes a native SVG world atlas, inferred multi-floor room m
 
 Recovered Morlock machine: `press <color> button` and `get suit from panel` are handled in `src/morlock.rs`; one-time rewards and loot use complete character snapshots. Source audit and route notes: `migration/DEVELOPMENT-ROOMS.md`.
 
-Combat avoidance narration in `src/savage_soul.rs` distinguishes active Dodge, passive armed guard and wild swings; detail settings retain the same resolution and activation economy.
+Combat avoidance narration in `src/savage_soul/narration.rs` distinguishes active Dodge, passive armed guard and wild swings; detail settings retain the same resolution and activation economy.
 
 `src/intermud.rs` provides `intermud` / `i3` / `imud`: an optional authenticated gateway plugin for remote channels, tells, MUD/channel discovery and who. Game settings live in `data/intermud.json`; gateway installation and operation are documented in `tools/intermud/README.md`. Network I/O never runs on the ECS update thread.
 
@@ -263,3 +273,9 @@ private backup goes outside the character scan directory into rebuild-backups.
 Injuries, mana already spent, quests, roles, location and preferences survive.
 
 `--validate-creator <path>` validates creator settings for the wizard editor.
+
+## Staff testing visibility
+
+Wizard commands `wizinvis [on\|off]` and `testaccount <character> on\|off` use `grim-scene/src/staff.rs`. Custom medical/Morlock announcements retain hidden origin; public Intermud/Grapevine/Zebedee presence excludes hidden staff.
+
+See [staff testing](../../docs/STAFF-TESTING.md) for permissions and shared-world limitations.

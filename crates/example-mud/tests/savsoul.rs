@@ -36,8 +36,12 @@ fn savsoul_door_routes_signs_scenery_and_return() {
     mud.send(s, "read sign")
         .assert_contains("For injuries or purchases");
     mud.send(s, "west").assert_contains("Royal Oak Med Room");
-    mud.send(s, "look sign").assert_contains("Healing Powder");
-    mud.send(s, "read sign").assert_contains("Healing Powder");
+    for command in ["look sign", "read sign"] {
+        mud.send(s, command)
+            .assert_contains("sit table")
+            .assert_contains("creator")
+            .assert_contains("10,000 credits");
+    }
     mud.send(s, "look table").assert_contains("stainless steel");
     mud.send(s, "get table").assert_excludes("You get");
     mud.send(s, "down").assert_contains("A polite young woman");
@@ -48,13 +52,14 @@ fn savsoul_door_routes_signs_scenery_and_return() {
     mud.send(s, "east").assert_contains("Medical Center Hub");
     mud.send(s, "east")
         .assert_contains("South Royal Oak Main Street");
-    mud.send(s, "east").assert_contains("Faded Trail");
+    mud.send(s, "northeast").assert_contains("Faded Trail");
     for _ in 0..4 {
         mud.send(s, "east").assert_contains("Faded Trail");
     }
-    for _ in 0..5 {
+    for _ in 0..4 {
         let _ = mud.send(s, "west");
     }
+    let _ = mud.send(s, "southwest");
     mud.send(s, "look")
         .assert_contains("South Royal Oak Main Street");
     for _ in 0..3 {

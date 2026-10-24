@@ -212,8 +212,9 @@ pub(crate) fn format_who(
     linkdead: &Query<&Linkdead>,
     afk_chars: &HashSet<Entity>,
     res: &SessionRes,
+    viewer: Option<Entity>,
 ) -> String {
-    let mut data = collect_who_data(player_chars, linkdead, afk_chars, res);
+    let mut data = collect_who_data(player_chars, linkdead, afk_chars, res, viewer);
     // Linkdead bodies stay seeable in rooms (`look`); the online list is for
     // live sessions only. `wizlist` keeps its own marked rows via the shared
     // collector — this filter is `who`-only.
@@ -230,11 +231,18 @@ pub(crate) fn collect_who_data<'a>(
     linkdead: &Query<&Linkdead>,
     afk_chars: &HashSet<Entity>,
     res: &SessionRes,
+    viewer: Option<Entity>,
 ) -> Vec<WhoData<'a>> {
     player_chars
         .iter()
         .filter_map(|(e, n, _, actor, character, _, connected)| {
             let ch = character?;
+            let observer = viewer
+                .and_then(|v| player_chars.get(v).ok())
+                .and_then(|(_, _, _, _, c, _, _)| c);
+            if !ch.visible_to(observer, viewer == Some(e)) {
+                return None;
+            }
             // Race/level/gender live on the shared `Actor` base now.
             let actor = actor?;
             let is_admin = ch.is_admin();
@@ -299,7 +307,14 @@ pub(crate) fn format_where(
         .unzip();
     let mut entries: Vec<(String, String)> = Vec::new();
     if let (Some(area), Some(name)) = (area, area_name) {
-        for (_, n, ir, _, character, creature, _) in player_chars.iter() {
+        for (e, n, ir, _, character, creature, _) in player_chars.iter() {
+            let observer = player_chars
+                .get(char_entity)
+                .ok()
+                .and_then(|(_, _, _, _, c, _, _)| c);
+            if character.is_some_and(|c| !c.visible_to(observer, e == char_entity)) {
+                continue;
+            }
             if character.is_none() && creature.is_none() {
                 continue;
             }

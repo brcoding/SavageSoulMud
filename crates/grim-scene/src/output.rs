@@ -19,9 +19,12 @@ use crate::channel_output::emit_channel;
 use crate::formatter;
 use crate::look_output::{emit_look_entity, emit_look_room, RoomLinks};
 use crate::params::OutputReads;
+mod broadcast;
+use broadcast::broadcast_room;
+pub(crate) use broadcast::{broadcast_from, format_server_broadcast};
 
 /// Room-occupant query shape, shared by every broadcast helper below.
-pub(crate) type Occupants<'w, 's> = Query<
+type Members<'w, 's> = Query<
     'w,
     's,
     (
@@ -33,6 +36,36 @@ pub(crate) type Occupants<'w, 's> = Query<
         Option<&'static Object>,
     ),
 >;
+
+type Occupant<'a> = (
+    Entity,
+    &'a InRoom,
+    Option<&'a Player>,
+    &'a GrimName,
+    Option<&'a RoomDescription>,
+    Option<&'a Object>,
+);
+#[derive(bevy::ecs::system::SystemParam)]
+pub(crate) struct Occupants<'w, 's> {
+    members: Members<'w, 's>,
+    characters: Query<'w, 's, &'static Character>,
+}
+impl Occupants<'_, '_> {
+    pub fn iter(&self) -> impl Iterator<Item = Occupant<'_>> {
+        self.members.iter()
+    }
+    pub fn get(&self, entity: Entity) -> Result<Occupant<'_>, bevy::ecs::query::QueryEntityError> {
+        self.members.get(entity)
+    }
+    pub fn sees(&self, viewer: Entity, subject: Entity) -> bool {
+        self.characters.get(subject).map_or(true, |c| {
+            c.visible_to(self.characters.get(viewer).ok(), viewer == subject)
+        })
+    }
+    pub fn hidden(&self, subject: Entity) -> bool {
+        self.characters.get(subject).is_ok_and(Character::is_hidden)
+    }
+}
 
 #[allow(clippy::too_many_arguments)]
 pub(crate) fn format_output(
@@ -49,7 +82,11 @@ pub(crate) fn format_output(
     room_occupants: Occupants,
     room_exits: RoomLinks,
     names: Query<&GrimName>,
-    descriptions: Query<(Option<&Description>, Option<&grim_core::components::ItemCondition>, Option<&Object>)>,
+    descriptions: Query<(
+        Option<&Description>,
+        Option<&grim_core::components::ItemCondition>,
+        Option<&Object>,
+    )>,
     characters: Query<&Character>,
     mut outputs: MessageWriter<ConnectionOutput>,
 ) {
@@ -59,9 +96,11 @@ pub(crate) fn format_output(
     // the name query). Logout carries its room: the quitter is despawned.
     for ev in reads.login.read() {
         if let Ok((_, ir, _, _, _, _)) = room_occupants.get(ev.subject) {
-            broadcast_room(
-                &format!("{} has connected.\n", ev.name),
+            broadcast_from(
                 ir.room,
+                &[],
+                ev.subject,
+                &format!("{} has connected.\n", ev.name),
                 &room_occupants,
                 &mut outputs,
             );
@@ -80,7 +119,14 @@ pub(crate) fn format_output(
     for ev in reads.linkdead.read() {
         if let Ok((_, ir, _, _, _, _)) = room_occupants.get(ev.subject) {
             let formatted = formatter::format_linkdead(&ev.name, ev.reconnecting);
-            broadcast_room(&formatted, ir.room, &room_occupants, &mut outputs);
+            broadcast_from(
+                ir.room,
+                &[],
+                ev.subject,
+                &formatted,
+                &room_occupants,
+                &mut outputs,
+            );
         }
     }
     // Causal order, not arrival order: attempt-phase speech (channel) and
@@ -118,7 +164,14 @@ pub(crate) fn format_output(
         );
     }
     for ev in look_entity_events.read() {
-        emit_look_entity(ev, &room_occupants, &names, &descriptions, &reads.visibility, &mut outputs);
+        emit_look_entity(
+            ev,
+            &room_occupants,
+            &names,
+            &descriptions,
+            &reads.visibility,
+            &mut outputs,
+        );
     }
     for ev in move_events.read() {
         emit_move(ev, &names, &room_occupants, &mut outputs);
@@ -153,9 +206,23 @@ fn emit_move(
     };
     let dir_str = ev.direction.to_string();
     let leave_msg = formatter::format_move(&actor_name.0, &dir_str, true);
-    broadcast_to_room(ev.from, &[ev.actor], &leave_msg, room_occupants, outputs);
+    broadcast_from(
+        ev.from,
+        &[ev.actor],
+        ev.actor,
+        &leave_msg,
+        room_occupants,
+        outputs,
+    );
     let arrive_msg = formatter::format_move(&actor_name.0, &dir_str, false);
-    broadcast_to_room(ev.to, &[ev.actor], &arrive_msg, room_occupants, outputs);
+    broadcast_from(
+        ev.to,
+        &[ev.actor],
+        ev.actor,
+        &arrive_msg,
+        room_occupants,
+        outputs,
+    );
 }
 
 /// Per-recipient door rendering: the actor gets the first-party line, the
@@ -197,7 +264,14 @@ fn emit_door(
         name = ev.name.as_str(),
         heading = dir.as_str()
     );
-    broadcast_to_room(ev.from, &[ev.actor], &witness, room_occupants, outputs);
+    broadcast_from(
+        ev.from,
+        &[ev.actor],
+        ev.actor,
+        &witness,
+        room_occupants,
+        outputs,
+    );
     // Far room: "The privy door opens to the west." — recipient-relative
     // direction, sentence-cased after any leading colour markup.
     let far_key = if ev.opened {
@@ -208,7 +282,7 @@ fn emit_door(
     let far_dir = ev.direction.opposite().to_string();
     let capped = grim_color::capitalize_first(&ev.name);
     let far = tr!(far_key, name = capped.as_str(), heading = far_dir.as_str());
-    broadcast_to_room(ev.to, &[], &far, room_occupants, outputs);
+    broadcast_from(ev.to, &[], ev.actor, &far, room_occupants, outputs);
 }
 
 fn emit_info(
@@ -223,10 +297,10 @@ fn emit_info(
     });
 }
 
-/// Admin `gecho`: broadcast to every connected player in the world, including
-/// the sender. Another admin sees it attributed (`Name> text`); the sender and
-/// non-admins see the raw text. Rendering is per-recipient, so this cannot be
-/// formatted once and broadcast.
+/// Admin `gecho`: broadcast to connected players who can see the sender.
+/// Hidden staff actions stay silent to ordinary players, including anonymous
+/// echoes. Another admin sees it attributed (`Name> text`); the sender and
+/// visible non-admin recipients see raw text. Rendering is per-recipient.
 fn emit_gecho(
     ev: &GlobalEcho,
     names: &Query<&GrimName>,
@@ -243,6 +317,9 @@ fn emit_gecho(
         let Some(p) = player else {
             continue;
         };
+        if !room_occupants.sees(entity, ev.actor) {
+            continue;
+        }
         let conn = p.connection;
         let is_other_admin = entity != ev.actor
             && characters
@@ -276,84 +353,6 @@ pub(crate) fn capture_output(
     for ev in output.read() {
         if let Ok(mut history) = histories.get_mut(ev.connection) {
             history.push(&ev.text);
-        }
-    }
-}
-/// Send text to every player in the given room, skipping `exclude`.
-/// Membership funnels through the shared [`in_room`] helper (mapped from the
-/// rich `Occupants` tuple); the player check stays local.
-pub(crate) fn broadcast_to_room(
-    room: Entity,
-    exclude: &[Entity],
-    text: &str,
-    occupants: &Occupants,
-    outputs: &mut MessageWriter<ConnectionOutput>,
-) {
-    for entity in in_room(room, occupants.iter().map(|(e, ir, ..)| (e, ir.room)), None) {
-        if exclude.contains(&entity) {
-            continue;
-        }
-        if let Ok((_, _, Some(p), ..)) = occupants.get(entity) {
-            outputs.write(ConnectionOutput {
-                prepend_newline: true,
-                ..ConnectionOutput::new(p.connection, text.to_string())
-            });
-        }
-    }
-}
-
-/// Out-of-band server messages (shutdown warnings) to every connected player.
-/// A separate system from `format_output` because that one is already at Bevy's
-/// system-parameter ceiling.
-pub(crate) fn format_server_broadcast(
-    mut broadcasts: MessageReader<ServerBroadcast>,
-    occupants: Occupants,
-    mut outputs: MessageWriter<ConnectionOutput>,
-) {
-    for ev in broadcasts.read() {
-        broadcast_global(&ev.text, &occupants, &mut outputs);
-    }
-}
-
-/// Send text to every connected player standing in `room`. Objects share the
-/// query but never speak, so they are excluded from the audience (ground
-/// objects have no `Player` either, but the explicit cut keeps the render
-/// contract obvious).
-fn broadcast_room(
-    text: &str,
-    room: Entity,
-    occupants: &Occupants,
-    outputs: &mut MessageWriter<ConnectionOutput>,
-) {
-    for entity in in_room(
-        room,
-        occupants
-            .iter()
-            .filter(|(_, _, _, _, _, o)| o.is_none())
-            .map(|(e, ir, ..)| (e, ir.room)),
-        None,
-    ) {
-        if let Ok((_, _, Some(p), ..)) = occupants.get(entity) {
-            outputs.write(ConnectionOutput {
-                prepend_newline: true,
-                ..ConnectionOutput::new(p.connection, text.to_string())
-            });
-        }
-    }
-}
-
-/// Send text to every connected player.
-fn broadcast_global(
-    text: &str,
-    occupants: &Occupants,
-    outputs: &mut MessageWriter<ConnectionOutput>,
-) {
-    for (_, _, player, _, _, _) in occupants.iter() {
-        if let Some(p) = player {
-            outputs.write(ConnectionOutput {
-                prepend_newline: true,
-                ..ConnectionOutput::new(p.connection, text.to_string())
-            });
         }
     }
 }

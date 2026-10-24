@@ -202,7 +202,9 @@ mod tests {
             "savage_soul".into(),
             serde_json::json!({"version": 1, "attributes": {"strength": 3}, "peculiarities": ["survivor"]}),
         );
-        stored.game_state.insert("other_plugin".into(), serde_json::json!([true, null, 42]));
+        stored
+            .game_state
+            .insert("other_plugin".into(), serde_json::json!([true, null, 42]));
         stored.last_room = Some(RoomLocation {
             area: "haven".into(),
             room: "square".into(),
@@ -238,7 +240,10 @@ mod tests {
         .unwrap();
         let (name, actor, character) = stored.into_components();
         assert_eq!(character.credits, 0);
-        assert_eq!(StoredCharacter::from_components(&name, &actor, &character).credits, 0);
+        assert_eq!(
+            StoredCharacter::from_components(&name, &actor, &character).credits,
+            0
+        );
     }
 
     #[test]

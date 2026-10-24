@@ -128,3 +128,9 @@ normal ownership/bans/takeover. Manual input wins a mixed same-tick batch.
 
 ---
 *Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
+
+## Staff testing visibility
+
+The pre-game dispatcher runs before `SceneSystems::Visibility`, so account testing status is applied before public output and in-game input. New accounts always begin with testing disabled.
+
+See [staff testing](../../docs/STAFF-TESTING.md) for permissions and shared-world limitations.

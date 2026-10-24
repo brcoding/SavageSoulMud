@@ -12,6 +12,7 @@ fn terminal_progress_survives_abort_and_reconnect_and_reward_is_once() {
         "c",
         "Hacker",
         "1",
+        "human",
         "",
     ] {
         let _ = mud.send(s, line);
@@ -72,13 +73,11 @@ fn terminal_progress_survives_abort_and_reconnect_and_reward_is_once() {
         Some(xp + 2000)
     );
     assert_eq!(saved.game_state["quest_points"], 10);
-    assert!(
-        saved.game_state["quests"]
-            .as_array()
-            .unwrap()
-            .iter()
-            .any(|v| v == "Escape from Royal Oak")
-    );
+    assert!(saved.game_state["quests"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|v| v == "Escape from Royal Oak"));
     let _ = mud.send(s, "east");
     let _ = mud.send(s, "drop soulboy");
     mud.send(s, "south")
@@ -98,6 +97,7 @@ fn failed_challenge_locks_and_cannot_be_reset_by_reconnecting_to_device() {
         "c",
         "Locked",
         "1",
+        "human",
         "",
     ] {
         let _ = mud.send(s, line);

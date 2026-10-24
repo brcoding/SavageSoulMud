@@ -83,7 +83,12 @@ impl<C: Send + Sync + 'static> CommandRegistry<C> {
         name: &str,
         factory: impl Fn(&str) -> Option<C> + Send + Sync + 'static,
     ) -> bool {
-        let Some(idx) = self.priority.iter().copied().find(|&i| self.entries[i].name.eq_ignore_ascii_case(name)) else {
+        let Some(idx) = self
+            .priority
+            .iter()
+            .copied()
+            .find(|&i| self.entries[i].name.eq_ignore_ascii_case(name))
+        else {
             return false;
         };
         self.entries[idx].factory = Box::new(factory);
@@ -201,7 +206,10 @@ mod resolution_tests {
         registry.register("look", |_| Some(Cmd::North));
         registry.register("long", |_| Some(Cmd::Nordic(String::new())));
         assert!(registry.replace("LOOK", |_| Some(Cmd::Note("replacement".into()))));
-        assert_eq!(registry.resolve("look", ""), Some(Cmd::Note("replacement".into())));
+        assert_eq!(
+            registry.resolve("look", ""),
+            Some(Cmd::Note("replacement".into()))
+        );
         assert_eq!(registry.resolve("l", ""), Some(Cmd::Nordic(String::new())));
         assert!(!registry.replace("missing", look));
     }

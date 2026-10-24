@@ -162,10 +162,17 @@ pub(crate) fn finalize_character(
     let char_id = GrimId::new();
     // The flat DTO is the disk surface; it splits into `Name + Actor + Character`
     // for the live entity.
-    let game_state = res.creation_defaults.as_ref()
-        .and_then(|defaults| defaults.0.get(&race)).cloned().unwrap_or_default();
+    let game_state = res
+        .creation_defaults
+        .as_ref()
+        .and_then(|defaults| defaults.0.get(&race))
+        .cloned()
+        .unwrap_or_default();
     let stored = StoredCharacter {
-        credits: res.starting_credits.as_ref().map_or(100, |credits| credits.0),
+        credits: res
+            .starting_credits
+            .as_ref()
+            .map_or(100, |credits| credits.0),
         game_state,
         id: char_id,
         name: name.clone(),

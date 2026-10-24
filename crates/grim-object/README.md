@@ -60,3 +60,9 @@ CarriedBy is reexported from grim-core::components; existing grim_object::Carrie
 
 ---
 *Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
+
+## Staff testing visibility
+
+Give/steal resolve only mutually visible participants before ranking or changing inventory. Their scene-side action messages respect staff visibility, including hidden recipients.
+
+See [staff testing](../../docs/STAFF-TESTING.md) for permissions and shared-world limitations.

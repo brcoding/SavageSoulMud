@@ -5,7 +5,16 @@ use harness::Mud;
 fn desk_disarm_loot_and_read_survive_reconnect_without_refilling() {
     let mut mud = Mud::with_savage_soul();
     let (s, _) = mud.connect();
-    for line in ["desk@example.com", "y", "secretpw", "c", "Visitor", "1", "human", ""] {
+    for line in [
+        "desk@example.com",
+        "y",
+        "secretpw",
+        "c",
+        "Visitor",
+        "1",
+        "human",
+        "",
+    ] {
         let _ = mud.send(s, line);
     }
     mud.send(s, "disarm drawer")
@@ -33,7 +42,14 @@ fn desk_disarm_loot_and_read_survive_reconnect_without_refilling() {
     mud.send(s, "wield dagger")
         .assert_contains("wield mist dagger");
     let saved = mud.saved_character("Visitor");
-    assert_eq!(saved.inventory.iter().filter(|o|o.name=="mist dagger"||o.name=="dagger note").count(), 2);
+    assert_eq!(
+        saved
+            .inventory
+            .iter()
+            .filter(|o| o.name == "mist dagger" || o.name == "dagger note")
+            .count(),
+        2
+    );
     let _ = mud.send(s, "quit");
     mud.disconnect(s);
     mud.reboot();

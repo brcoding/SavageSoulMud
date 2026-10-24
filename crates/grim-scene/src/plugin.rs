@@ -37,11 +37,34 @@ pub enum SceneSystems {
     TouchInput,
     /// The in-game input dispatcher ([`handle_ingame_input`]).
     InGameInput,
+    Visibility,
+    Output,
+    Staff,
 }
 
 pub struct ScenePlugin;
 impl Plugin for ScenePlugin {
     fn build(&self, app: &mut App) {
+        app.add_systems(PostStartup, crate::staff::sync_testing);
+        app.configure_sets(
+            Update,
+            (
+                SceneSystems::Visibility,
+                SceneSystems::InGameInput,
+                SceneSystems::Staff,
+                SceneSystems::Output,
+            )
+                .chain(),
+        );
+        app.add_systems(
+            Update,
+            (
+                crate::staff::sync_testing.in_set(SceneSystems::Visibility),
+                crate::staff::handle_staff
+                    .after(process_command_queue)
+                    .in_set(SceneSystems::Staff),
+            ),
+        );
         crate::ban::register(app);
         app.insert_resource(parser::command_registry());
         // Scene writes character JSON on `quit` and reads it on copyover resume,
@@ -109,7 +132,7 @@ impl Plugin for ScenePlugin {
             .add_systems(
                 Update,
                 (
-                    handle_connection_resumed,
+                    handle_connection_resumed.before(SceneSystems::Visibility),
                     touch_sessions_on_input
                         .in_set(SceneSystems::TouchInput)
                         .before(SceneSystems::InGameInput),
@@ -119,14 +142,16 @@ impl Plugin for ScenePlugin {
                     // is never re-flagged in the same tick.
                     check_idle.after(SceneSystems::InGameInput),
                     process_command_queue,
-                    format_output,
-                    format_item_events,
-                    format_transfer_events,
+                    format_output.in_set(SceneSystems::Output),
+                    format_item_events.in_set(SceneSystems::Output),
+                    format_transfer_events.in_set(SceneSystems::Output),
                     // The pack block belongs below the description `format_output`
                     // just wrote for the same `LookEntity`.
-                    format_look_pack.after(format_output),
-                    format_server_broadcast,
-                    format_recall,
+                    format_look_pack
+                        .after(format_output)
+                        .in_set(SceneSystems::Output),
+                    format_server_broadcast.in_set(SceneSystems::Output),
+                    format_recall.in_set(SceneSystems::Output),
                     capture_output,
                 ),
             );

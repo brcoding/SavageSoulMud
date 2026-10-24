@@ -49,7 +49,8 @@ pub(crate) fn held(world: &mut World, actor: Entity) -> Vec<(Entity, StoredObjec
         .map(|(e, n, d, k, r, condition, _)| {
             (
                 e,
-                StoredObject { condition: condition.cloned(),
+                StoredObject {
+                    condition: condition.cloned(),
                     name: n.0.clone(),
                     description: d.map(|x| x.0.clone()).unwrap_or_default(),
                     keywords: k.map(|x| x.0.clone()).unwrap_or_default(),
@@ -112,40 +113,9 @@ fn transact(world: &mut World, actor: Entity, command: Command) -> Result<(), St
         );
         return Ok(());
     }
-    let room = world
-        .get::<InRoom>(actor)
-        .ok_or("You are not in a room.")?
-        .room;
-    let mut merchants: Vec<_> = world
-        .query_filtered::<(Entity, &Merchant, &InRoom, &GrimName), With<Creature>>()
-        .iter(world)
-        .filter(|(_, _, location, _)| location.room == room)
-        .map(|(e, m, _, n)| (e, m.clone(), n.0.clone()))
-        .collect();
-    merchants.sort_by_key(|(e, _, _)| e.to_bits());
-    let (merchant_entity, merchant, name) = merchants.first().ok_or("There is no shopkeeper here.")?;
-    if world.get::<crate::savage_rules::SoulData>(*merchant_entity).is_some_and(|s|s.is_incapacitated()) {
-        return Err("The shopkeeper cannot trade in their current condition.".into());
-    }
-    if merchant
-        .stock
-        .iter()
-        .any(|o| o.buy_price == 0 || o.sell_price > o.buy_price)
-    {
-        return Err("This shop's prices need correcting.".into());
-    }
+    let (merchant, name) = available_merchant(world, actor)?;
     if command == Command::ListShop {
-        let mut text = format!("{name}'s stock (credits):\n");
-        for offer in &merchant.stock {
-            text.push_str(&format!(
-                "  {} — buy {}, sell {}\n",
-                offer.item.name, offer.buy_price, offer.sell_price
-            ));
-        }
-        text.push_str(&format!(
-            "You have {} credits. Use buy <item> or sell <item>.",
-            character.credits
-        ));
+        let text = stock_listing(&merchant, &name, character.credits);
         reply(world, actor, text);
         return Ok(());
     }
@@ -154,78 +124,8 @@ fn transact(world: &mut World, actor: Entity, command: Command) -> Result<(), St
         Command::Sell { target } => (target, false),
         _ => return Ok(()),
     };
-    let spec = grim::parse_target(&target, grim::ParseOptions::ITEM)
-        .ok_or("Use an item name, 2.item, 2*item, or all <item>.")?;
     let pack = held(world, actor);
-    let mut purchased = Vec::new();
-    let mut removed = Vec::new();
-    let mut total = 0u64;
-    if buying {
-        // Catalog row entities are temporary selector identities, never spawned.
-        let catalog: Vec<_> = merchant
-            .stock
-            .iter()
-            .enumerate()
-            .map(|(i, o)| (Entity::from_raw_u32(i as u32).unwrap(), o))
-            .collect();
-        let matches = grim::query(
-            &spec,
-            catalog
-                .iter()
-                .map(|(e, o)| (*e, o.item.name.as_str(), o.item.keywords.as_slice())),
-        );
-        if matches.is_empty() {
-            return Err("The shop does not stock that item.".into());
-        }
-        let count = match spec.selector {
-            grim::Selector::Many(n) => n.get(),
-            _ => 1,
-        };
-        // A quantity repeats the best catalog item; all buys one of each match.
-        for e in matches
-            .iter()
-            .take(if count > 1 { 1 } else { matches.len() })
-        {
-            let offer = catalog.iter().find(|(id, _)| id == e).unwrap().1;
-            if count > 100 {
-                return Err("You can buy at most 100 items at once.".into());
-            }
-            let price = offer
-                .buy_price
-                .checked_mul(count as u64)
-                .ok_or("The total is too large.")?;
-            total = total.checked_add(price).ok_or("The total is too large.")?;
-            purchased.extend(std::iter::repeat_n(offer.item.clone(), count));
-        }
-    } else {
-        removed = grim::query(
-            &spec,
-            pack.iter()
-                .map(|(e, o)| (*e, o.name.as_str(), o.keywords.as_slice())),
-        );
-        if removed.is_empty() {
-            return Err("You are not carrying that item.".into());
-        }
-        for e in &removed {
-            let item = &pack.iter().find(|(id, _)| id == e).unwrap().1;
-            let offer = merchant
-                .stock
-                .iter()
-                // Match the item definition, not mutable instance condition.
-                .find(|o| o.item.name==item.name && o.item.description==item.description
-                    && o.item.keywords==item.keywords && o.item.room_description==item.room_description)
-                .ok_or_else(|| format!("{name} will not buy {}. Nothing was sold.", item.name))?;
-            if offer.sell_price == 0 {
-                return Err(format!(
-                    "{name} will not buy {}. Nothing was sold.",
-                    item.name
-                ));
-            }
-            total = total
-                .checked_add(offer.sell_price)
-                .ok_or("The total is too large.")?;
-        }
-    }
+    let (purchased, removed, total) = quote(&merchant, &name, &target, buying, &pack)?;
     let balance = if buying {
         character
             .credits
@@ -285,4 +185,134 @@ fn transact(world: &mut World, actor: Entity, command: Command) -> Result<(), St
         ),
     );
     Ok(())
+}
+
+fn quote(
+    merchant: &Merchant,
+    name: &str,
+    target: &str,
+    buying: bool,
+    pack: &[(Entity, StoredObject)],
+) -> Result<(Vec<StoredObject>, Vec<Entity>, u64), String> {
+    let spec = grim::parse_target(target, grim::ParseOptions::ITEM)
+        .ok_or("Use an item name, 2.item, 2*item, or all <item>.")?;
+    let mut purchased = Vec::new();
+    let mut removed = Vec::new();
+    let mut total = 0u64;
+    if buying {
+        // Catalog row entities are temporary selector identities, never spawned.
+        let catalog: Vec<_> = merchant
+            .stock
+            .iter()
+            .enumerate()
+            .map(|(i, o)| (Entity::from_raw_u32(i as u32).unwrap(), o))
+            .collect();
+        let matches = grim::query(
+            &spec,
+            catalog
+                .iter()
+                .map(|(e, o)| (*e, o.item.name.as_str(), o.item.keywords.as_slice())),
+        );
+        if matches.is_empty() {
+            return Err("The shop does not stock that item.".into());
+        }
+        let count = match spec.selector {
+            grim::Selector::Many(n) => n.get(),
+            _ => 1,
+        };
+        // A quantity repeats the best catalog item; all buys one of each match.
+        for e in matches
+            .iter()
+            .take(if count > 1 { 1 } else { matches.len() })
+        {
+            let offer = catalog.iter().find(|(id, _)| id == e).unwrap().1;
+            if count > 100 {
+                return Err("You can buy at most 100 items at once.".into());
+            }
+            let price = offer
+                .buy_price
+                .checked_mul(count as u64)
+                .ok_or("The total is too large.")?;
+            total = total.checked_add(price).ok_or("The total is too large.")?;
+            purchased.extend(std::iter::repeat_n(offer.item.clone(), count));
+        }
+    } else {
+        removed = grim::query(
+            &spec,
+            pack.iter()
+                .map(|(e, o)| (*e, o.name.as_str(), o.keywords.as_slice())),
+        );
+        if removed.is_empty() {
+            return Err("You are not carrying that item.".into());
+        }
+        for e in &removed {
+            let item = &pack.iter().find(|(id, _)| id == e).unwrap().1;
+            let offer = merchant
+                .stock
+                .iter()
+                // Match the item definition, not mutable instance condition.
+                .find(|o| {
+                    o.item.name == item.name
+                        && o.item.description == item.description
+                        && o.item.keywords == item.keywords
+                        && o.item.room_description == item.room_description
+                })
+                .ok_or_else(|| format!("{name} will not buy {}. Nothing was sold.", item.name))?;
+            if offer.sell_price == 0 {
+                return Err(format!(
+                    "{name} will not buy {}. Nothing was sold.",
+                    item.name
+                ));
+            }
+            total = total
+                .checked_add(offer.sell_price)
+                .ok_or("The total is too large.")?;
+        }
+    }
+    Ok((purchased, removed, total))
+}
+
+fn stock_listing(merchant: &Merchant, name: &str, credits: u64) -> String {
+    let mut text = format!("{name}'s stock (credits):\n");
+    for offer in &merchant.stock {
+        text.push_str(&format!(
+            "  {} — buy {}, sell {}\n",
+            offer.item.name, offer.buy_price, offer.sell_price
+        ));
+    }
+    text.push_str(&format!(
+        "You have {} credits. Use buy <item> or sell <item>.",
+        credits
+    ));
+    text
+}
+
+fn available_merchant(world: &mut World, actor: Entity) -> Result<(Merchant, String), String> {
+    let room = world
+        .get::<InRoom>(actor)
+        .ok_or("You are not in a room.")?
+        .room;
+    let mut merchants: Vec<_> = world
+        .query_filtered::<(Entity, &Merchant, &InRoom, &GrimName), With<Creature>>()
+        .iter(world)
+        .filter(|(_, _, location, _)| location.room == room)
+        .map(|(e, m, _, n)| (e, m.clone(), n.0.clone()))
+        .collect();
+    merchants.sort_by_key(|(e, _, _)| e.to_bits());
+    let (merchant_entity, merchant, name) =
+        merchants.first().ok_or("There is no shopkeeper here.")?;
+    if world
+        .get::<crate::savage_rules::SoulData>(*merchant_entity)
+        .is_some_and(|s| s.is_incapacitated())
+    {
+        return Err("The shopkeeper cannot trade in their current condition.".into());
+    }
+    if merchant
+        .stock
+        .iter()
+        .any(|o| o.buy_price == 0 || o.sell_price > o.buy_price)
+    {
+        return Err("This shop's prices need correcting.".into());
+    }
+    Ok((merchant.clone(), name.clone()))
 }

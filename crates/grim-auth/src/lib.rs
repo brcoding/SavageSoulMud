@@ -8,8 +8,8 @@
 //! Cohesive concerns live in sibling modules; this file is a shell that wires
 //! them together and re-exports the public plugin.
 
-mod account;
 mod accessibility;
+mod account;
 mod build_mode;
 mod character_select;
 mod creation;
@@ -27,16 +27,16 @@ mod world_entry;
 
 pub mod validation;
 
-#[cfg(test)]
-mod tests;
-
-pub use plugin::AuthPlugin;
 pub use accessibility::AccessibilityOnboarding;
 pub use build_mode::CharacterBuildMode;
+pub use plugin::AuthPlugin;
 pub use throttle::ReconnectLimits;
 pub use validation::ReservedNamePrefixes;
 
 pub use creation_defaults::{CharacterCreationDefaults, StartingCredits};
 
 mod client_login;
-pub use client_login::{LoginCredentials,LoginResult,AuthSystems};
+pub use client_login::{AuthSystems, LoginCredentials, LoginResult};
+
+#[cfg(test)]
+mod tests;

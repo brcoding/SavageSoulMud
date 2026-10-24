@@ -66,14 +66,22 @@ mod tests {
         let mut registry = CommandRegistry::new();
         register(&mut registry);
         for (word, direction) in [
-            ("n", Cardinal::North), ("e", Cardinal::East),
-            ("s", Cardinal::South), ("w", Cardinal::West),
-            ("ne", Cardinal::Northeast), ("northeast", Cardinal::Northeast),
-            ("nw", Cardinal::Northwest), ("northwest", Cardinal::Northwest),
-            ("se", Cardinal::Southeast), ("southeast", Cardinal::Southeast),
-            ("sw", Cardinal::Southwest), ("southwest", Cardinal::Southwest),
+            ("n", Cardinal::North),
+            ("e", Cardinal::East),
+            ("s", Cardinal::South),
+            ("w", Cardinal::West),
+            ("ne", Cardinal::Northeast),
+            ("northeast", Cardinal::Northeast),
+            ("nw", Cardinal::Northwest),
+            ("northwest", Cardinal::Northwest),
+            ("se", Cardinal::Southeast),
+            ("southeast", Cardinal::Southeast),
+            ("sw", Cardinal::Southwest),
+            ("southwest", Cardinal::Southwest),
         ] {
-            assert!(matches!(registry.resolve(word, ""), Some(Command::Move { direction: actual }) if actual == direction));
+            assert!(
+                matches!(registry.resolve(word, ""), Some(Command::Move { direction: actual }) if actual == direction)
+            );
         }
     }
 }

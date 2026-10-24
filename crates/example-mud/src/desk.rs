@@ -54,7 +54,8 @@ fn dagger() -> StoredObject {
     StoredObject { condition: None,name:"mist dagger".into(),keywords:vec!["dagger".into(),"mist".into(),"mist dagger".into(),"weapon".into()],description:vec!["The handle of the dagger seems very simple and plain. The blade is made up of a smokey mist that seems to be part of another reality.".into()],room_description:"A mist-bladed dagger lies here.".into()}
 }
 fn note() -> StoredObject {
-    StoredObject { condition: None,
+    StoredObject {
+        condition: None,
         name: "dagger note".into(),
         keywords: vec![
             "note".into(),
@@ -165,31 +166,7 @@ pub(crate) fn interact(
         .ok_or("Missing Savage Soul record.")?
         .clone();
     if verb == "inspect" {
-        let target = arg.trim().strip_prefix("in ").unwrap_or(arg);
-        if !is_desk(target) {
-            return Err("Look in what? Try look in desk.".into());
-        }
-        let mut text=format!("Wooden Desk\nThe plain wooden desk has been shoved a few inches from the wall. A drawer runs along its front.\nThe desk is {}. The needle trap is {}.",if state.open{"open"}else{"closed"},if state.safe{"disarmed or spent"}else{"armed"});
-        if state.open {
-            let mut contents = Vec::new();
-            if !state.dagger_taken {
-                contents.push("a mist-bladed dagger");
-            }
-            if !state.note_taken {
-                contents.push("a note");
-            }
-            text.push_str(&format!(
-                "\nInside: {}.\nUse get <item> from desk.",
-                if contents.is_empty() {
-                    "nothing".into()
-                } else {
-                    contents.join(", ")
-                }
-            ));
-        } else {
-            text.push_str("\nDisarm drawer, then open desk to inspect its contents.");
-        }
-        reply(world, actor, text);
+        inspect_desk(world, actor, arg, &state)?;
         return Ok(());
     }
     if soul.is_incapacitated() {
@@ -232,62 +209,7 @@ pub(crate) fn interact(
                 )
             }
         }
-        "get_from" => {
-            let lower = arg.to_ascii_lowercase();
-            let at = lower.rfind(" from ").ok_or("Use get <item> from desk.")?;
-            let target = arg.get(..at).ok_or("Invalid item target.")?;
-            let container = arg.get(at + 6..).ok_or("Invalid container target.")?;
-            if !is_desk(container) {
-                return Err("That container is not supported here.".into());
-            }
-            if !state.open {
-                return Err("The desk is closed. Disarm drawer, then open desk.".into());
-            }
-            let items = [dagger(), note()];
-            let mut available = Vec::new();
-            if !state.dagger_taken {
-                available.push((0, &items[0]));
-            }
-            if !state.note_taken {
-                available.push((1, &items[1]));
-            }
-            let spec = grim::parse_target(target, grim::ParseOptions::ITEM)
-                .ok_or("Use get <item> from desk.")?;
-            let selected = grim::query(
-                &spec,
-                available.iter().map(|(id, o)| {
-                    (
-                        Entity::from_raw_u32(*id as u32).unwrap(),
-                        o.name.as_str(),
-                        o.keywords.as_slice(),
-                    )
-                }),
-            );
-            if selected.is_empty() {
-                return Err("There is no matching item left in the desk.".into());
-            }
-            for entity in selected {
-                let id = available
-                    .iter()
-                    .find(|(id, _)| Entity::from_raw_u32(*id as u32) == Some(entity))
-                    .unwrap()
-                    .0;
-                if id == 0 {
-                    state.dagger_taken = true;
-                } else {
-                    state.note_taken = true;
-                }
-                additions.push(items[id].clone());
-            }
-            format!(
-                "You take {} from the desk.",
-                additions
-                    .iter()
-                    .map(|o| o.name.as_str())
-                    .collect::<Vec<_>>()
-                    .join(" and ")
-            )
-        }
+        "get_from" => take_from_desk(arg, &mut state, &mut additions)?,
         _ => return Err("Unknown desk interaction.".into()),
     };
     save(world, actor, &state, &soul, &additions)?;
@@ -296,7 +218,10 @@ pub(crate) fn interact(
 }
 
 fn venom_check(state: &mut State, soul: &mut SoulData, dice: impl FnMut() -> i32) -> String {
-    if soul.trait_level("resistant to poison")>=2 {state.venom_next=None;return "Your poison resistance makes the venom harmless.".into();}
+    if soul.trait_level("resistant to poison") >= 2 {
+        state.venom_next = None;
+        return "Your poison resistance makes the venom harmless.".into();
+    }
 
     let result = rules::resolve_task(soul.attribute("body"), 10, false, dice);
     if result.critical_failure {
@@ -345,6 +270,96 @@ pub(crate) fn tick_venom(world: &mut World) {
             error!("Venom save failed: {error}");
         }
     }
+}
+
+fn take_from_desk(
+    arg: &str,
+    state: &mut State,
+    additions: &mut Vec<StoredObject>,
+) -> Result<String, String> {
+    let lower = arg.to_ascii_lowercase();
+    let at = lower.rfind(" from ").ok_or("Use get <item> from desk.")?;
+    let target = arg.get(..at).ok_or("Invalid item target.")?;
+    let container = arg.get(at + 6..).ok_or("Invalid container target.")?;
+    if !is_desk(container) {
+        return Err("That container is not supported here.".into());
+    }
+    if !state.open {
+        return Err("The desk is closed. Disarm drawer, then open desk.".into());
+    }
+    let items = [dagger(), note()];
+    let mut available = Vec::new();
+    if !state.dagger_taken {
+        available.push((0, &items[0]));
+    }
+    if !state.note_taken {
+        available.push((1, &items[1]));
+    }
+    let spec =
+        grim::parse_target(target, grim::ParseOptions::ITEM).ok_or("Use get <item> from desk.")?;
+    let selected = grim::query(
+        &spec,
+        available.iter().map(|(id, o)| {
+            (
+                Entity::from_raw_u32(*id as u32).unwrap(),
+                o.name.as_str(),
+                o.keywords.as_slice(),
+            )
+        }),
+    );
+    if selected.is_empty() {
+        return Err("There is no matching item left in the desk.".into());
+    }
+    for entity in selected {
+        let id = available
+            .iter()
+            .find(|(id, _)| Entity::from_raw_u32(*id as u32) == Some(entity))
+            .unwrap()
+            .0;
+        if id == 0 {
+            state.dagger_taken = true;
+        } else {
+            state.note_taken = true;
+        }
+        additions.push(items[id].clone());
+    }
+    Ok(format!(
+        "You take {} from the desk.",
+        additions
+            .iter()
+            .map(|o| o.name.as_str())
+            .collect::<Vec<_>>()
+            .join(" and ")
+    ))
+}
+
+fn inspect_desk(world: &mut World, actor: Entity, arg: &str, state: &State) -> Result<(), String> {
+    let target = arg.trim().strip_prefix("in ").unwrap_or(arg);
+    if !is_desk(target) {
+        return Err("Look in what? Try look in desk.".into());
+    }
+    let mut text=format!("Wooden Desk\nThe plain wooden desk has been shoved a few inches from the wall. A drawer runs along its front.\nThe desk is {}. The needle trap is {}.",if state.open{"open"}else{"closed"},if state.safe{"disarmed or spent"}else{"armed"});
+    if state.open {
+        let mut contents = Vec::new();
+        if !state.dagger_taken {
+            contents.push("a mist-bladed dagger");
+        }
+        if !state.note_taken {
+            contents.push("a note");
+        }
+        text.push_str(&format!(
+            "\nInside: {}.\nUse get <item> from desk.",
+            if contents.is_empty() {
+                "nothing".into()
+            } else {
+                contents.join(", ")
+            }
+        ));
+    } else {
+        text.push_str("\nDisarm drawer, then open desk to inspect its contents.");
+    }
+    reply(world, actor, text);
+    Ok(())
 }
 
 #[cfg(test)]

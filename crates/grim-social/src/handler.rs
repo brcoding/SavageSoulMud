@@ -32,6 +32,7 @@ pub(crate) fn handle_social(
     occupants: Query<(Entity, &InRoom, &Name)>,
     names: Query<&Name>,
     beings: Query<&Actor>,
+    visibility: grim_actor::visibility::Visibility,
     mut info: MessageWriter<InfoMessage>,
     mut performed: MessageWriter<SocialPerformed>,
 ) {
@@ -70,7 +71,10 @@ pub(crate) fn handle_social(
             continue;
         };
         let actor_gender = gender_of(&beings, actor);
-        let here = roommates(&occupants, actor_room);
+        let here: Vec<_> = roommates(&occupants, actor_room)
+            .into_iter()
+            .filter(|(e, _)| visibility.sees_actor(actor, *e) && visibility.sees_actor(*e, actor))
+            .collect();
         let word = target.as_deref().and_then(|t| t.split_whitespace().next());
         let Some(word) = word else {
             emit_solo(&mut info, def, actor, &actor_name, actor_gender, &here);

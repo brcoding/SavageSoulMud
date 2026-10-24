@@ -12,5 +12,7 @@ pub struct CharacterCreationDefaults(pub HashMap<String, HashMap<String, serde_j
 pub struct StartingCredits(pub u64);
 
 impl Default for StartingCredits {
-    fn default() -> Self { Self(100) }
+    fn default() -> Self {
+        Self(100)
+    }
 }

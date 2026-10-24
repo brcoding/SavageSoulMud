@@ -1,0 +1,5 @@
+#!/bin/sh
+# Root-owned, only sudo command granted to savsoul-deploy. No shell input eval.
+set -eu
+[ "$#" -eq 1 ] || exit 64
+exec /usr/bin/python3 -I /usr/local/lib/savsoul-release/release_entry.py "$1"

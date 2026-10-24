@@ -336,6 +336,7 @@ mod tests {
             let _ = fs::remove_dir_all("data/characters");
             let account_id = GrimId::new();
             let account = Account {
+                testing: false,
                 id: account_id,
                 identifier: "testuser".into(),
                 password_hash: "hash".into(),
@@ -469,6 +470,7 @@ mod tests {
             let _ = fs::create_dir_all("data/characters");
 
             let account = Account {
+                testing: false,
                 id: GrimId::new(),
                 identifier: "dualuser".into(),
                 password_hash: "hash".into(),
@@ -578,6 +580,7 @@ mod tests {
             let conn = make_connection(&mut app, 1);
 
             let account = Account {
+                testing: false,
                 id: GrimId::new(),
                 identifier: "acctonly".into(),
                 password_hash: "hash".into(),
@@ -665,6 +668,7 @@ mod tests {
             let conn = make_connection(&mut app, 1);
 
             let account = Account {
+                testing: false,
                 id: GrimId::new(),
                 identifier: "fullsave".into(),
                 password_hash: "hash".into(),
@@ -764,6 +768,7 @@ mod tests {
             });
 
             let account = Account {
+                testing: false,
                 id: GrimId::new(),
                 identifier: "roomtest".into(),
                 password_hash: "hash".into(),
@@ -816,6 +821,7 @@ mod tests {
             app.world_mut().entity_mut(conn).insert(history.clone());
 
             let account = Account {
+                testing: false,
                 id: GrimId::new(),
                 identifier: "historytest".into(),
                 password_hash: "hash".into(),
@@ -860,6 +866,7 @@ mod tests {
             let conn = make_connection(&mut app, 1);
 
             let account = Account {
+                testing: false,
                 id: GrimId::new(),
                 identifier: "errortest".into(),
                 password_hash: "hash".into(),
@@ -981,6 +988,7 @@ mod tests {
             // Save: disconnect an account; the file must land in the configured dir.
             let conn = make_connection(&mut app, 1);
             let account = Account {
+                testing: false,
                 id: GrimId::new(),
                 identifier: "cfguser".into(),
                 password_hash: "hash".into(),

@@ -5,6 +5,8 @@ use grim::components::{Keywords, Name as GrimName};
 use grim::{Actor, Area, Cardinal, Character, Doors, Exits, InRoom, Room, StoredCharacter};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
+mod challenge;
+use challenge::{display, fresh, likeness};
 
 const WORDS: [&str; 8] = [
     "CRANE", "CRATE", "TRACE", "GRACE", "BRACE", "BRAKE", "FLAME", "FRAME",
@@ -57,47 +59,7 @@ fn now() -> u64 {
         .unwrap_or_default()
         .as_secs()
 }
-fn likeness(a: &str, b: &str) -> usize {
-    a.chars().zip(b.chars()).filter(|(a, b)| a == b).count()
-}
-fn fresh(room: String, device: String, attempts: u8) -> Challenge {
-    let mut words: Vec<_> = WORDS.iter().map(|w| w.to_string()).collect();
-    for i in (1..words.len()).rev() {
-        let j = rand::random_range(0..=i);
-        words.swap(i, j);
-    }
-    let answer = words[rand::random_range(0..words.len())].clone();
-    Challenge {
-        room,
-        device,
-        words,
-        answer,
-        remaining: attempts,
-        guesses: vec![],
-        locked_until: 0,
-        solved: false,
-    }
-}
-fn display(c: &Challenge) -> String {
-    if c.solved {
-        return "Access granted. Use hack terminal to apply the override again.".into();
-    }
-    let mut out = format!(
-        "Terminal challenge: {} attempts left.\nCodes: {}\nUse hack try WORD. Feedback counts letters in the correct position (0 to 5).",
-        c.remaining,
-        c.words.join(", ")
-    );
-    for (guess, score) in &c.guesses {
-        out.push_str(&format!("\n{guess}: {score}/5"));
-    }
-    if c.locked_until > now() {
-        out.push_str(&format!(
-            "\nLocked out for {} seconds.",
-            c.locked_until.saturating_sub(now())
-        ));
-    }
-    out
-}
+
 fn reply(world: &mut World, actor: Entity, text: String) {
     world.write_message(grim::events::InfoMessage {
         target: actor,
@@ -262,6 +224,67 @@ pub(crate) fn command(world: &mut World, actor: Entity, arg: &str) -> Result<(),
     if soul.is_incapacitated() {
         return Err("You cannot hack in your current condition.".into());
     }
+    let guess = lower
+        .strip_prefix("try ")
+        .or_else(|| lower.strip_prefix("guess "))
+        .map(|w| w.trim().to_ascii_uppercase());
+    let (room_id, key, device, fixtures) =
+        select_device(world, actor, input, guess.is_some(), &state)?;
+    if device.id.is_empty() || device.attempts < 4 || device.attempts > 20 {
+        return Err("This terminal needs its hacking configuration repaired.".into());
+    }
+    if fixtures
+        .iter()
+        .filter(|(_, h, _, _)| h.id == device.id)
+        .count()
+        != 1
+    {
+        return Err("This terminal has an ambiguous device identity.".into());
+    }
+    let doors = effect_doors(world, &device.effect)?;
+    state.active = Some(key.clone());
+    let c = state
+        .devices
+        .entry(key)
+        .or_insert_with(|| fresh(room_id.clone(), device.id.clone(), device.attempts));
+    if c.locked_until > now() {
+        return Err(format!(
+            "Terminal locked. Try again in {} seconds.",
+            c.locked_until.saturating_sub(now())
+        ));
+    }
+    if !c.solved && c.remaining == 0 {
+        *c = fresh(room_id, device.id.clone(), device.attempts);
+    }
+    let mut message = attempt(c, guess, &device, &mut character, &mut soul)?;
+    let solved = c.solved;
+    save(world, actor, character, soul, &state)?;
+    if solved {
+        for (room, dir) in doors {
+            if let Some(mut d) = world.get_mut::<Doors>(room) {
+                if let Some(d) = d.doors.get_mut(&dir) {
+                    d.open = true;
+                }
+            }
+        }
+        if matches!(device.effect, Effect::RoyalOakGate) {
+            message.push_str(
+                "\nThe city gate slides open. Its wrist scanner still requires a carried Soulboy.",
+            );
+        }
+    }
+    reply(world, actor, message);
+    Ok(())
+}
+
+type Fixture = (Entity, Hackable, String, Vec<String>);
+fn select_device(
+    world: &mut World,
+    actor: Entity,
+    input: &str,
+    guessing: bool,
+    state: &State,
+) -> Result<(String, String, Hackable, Vec<Fixture>), String> {
     let room = world
         .get::<InRoom>(actor)
         .ok_or("You are not in a room.")?
@@ -284,11 +307,7 @@ pub(crate) fn command(world: &mut World, actor: Entity, arg: &str) -> Result<(),
             )
         })
         .collect();
-    let guess = lower
-        .strip_prefix("try ")
-        .or_else(|| lower.strip_prefix("guess "))
-        .map(|w| w.trim().to_ascii_uppercase());
-    let (key, device) = if guess.is_some() {
+    let (key, device) = if guessing {
         let key = state
             .active
             .clone()
@@ -322,32 +341,16 @@ pub(crate) fn command(world: &mut World, actor: Entity, arg: &str) -> Result<(),
             .ok_or("There is no hackable device matching that here.")?;
         (format!("{room_id}:{}", device.id), device)
     };
-    if device.id.is_empty() || device.attempts < 4 || device.attempts > 20 {
-        return Err("This terminal needs its hacking configuration repaired.".into());
-    }
-    if fixtures
-        .iter()
-        .filter(|(_, h, _, _)| h.id == device.id)
-        .count()
-        != 1
-    {
-        return Err("This terminal has an ambiguous device identity.".into());
-    }
-    let doors = effect_doors(world, &device.effect)?;
-    state.active = Some(key.clone());
-    let c = state
-        .devices
-        .entry(key)
-        .or_insert_with(|| fresh(room_id.clone(), device.id.clone(), device.attempts));
-    if c.locked_until > now() {
-        return Err(format!(
-            "Terminal locked. Try again in {} seconds.",
-            c.locked_until.saturating_sub(now())
-        ));
-    }
-    if !c.solved && c.remaining == 0 {
-        *c = fresh(room_id, device.id.clone(), device.attempts);
-    }
+    Ok((room_id, key, device, fixtures))
+}
+
+fn attempt(
+    c: &mut Challenge,
+    guess: Option<String>,
+    device: &Hackable,
+    character: &mut Character,
+    soul: &mut SoulData,
+) -> Result<String, String> {
     let mut message: String;
     if c.solved {
         message = "Access granted. Override reapplied; no additional reward.".into();
@@ -367,7 +370,7 @@ pub(crate) fn command(world: &mut World, actor: Entity, arg: &str) -> Result<(),
         if score == 5 {
             c.solved = true;
             message = "Access granted.".into();
-            message.push_str(&reward(&mut character, &mut soul, &device.effect)?);
+            message.push_str(&reward(character, soul, &device.effect)?);
         } else if c.remaining == 0 {
             c.locked_until = now().saturating_add(device.lockout_seconds);
             message = format!(
@@ -380,24 +383,7 @@ pub(crate) fn command(world: &mut World, actor: Entity, arg: &str) -> Result<(),
     } else {
         message = display(c);
     }
-    let solved = c.solved;
-    save(world, actor, character, soul, &state)?;
-    if solved {
-        for (room, dir) in doors {
-            if let Some(mut d) = world.get_mut::<Doors>(room) {
-                if let Some(d) = d.doors.get_mut(&dir) {
-                    d.open = true;
-                }
-            }
-        }
-        if matches!(device.effect, Effect::RoyalOakGate) {
-            message.push_str(
-                "\nThe city gate slides open. Its wrist scanner still requires a carried Soulboy.",
-            );
-        }
-    }
-    reply(world, actor, message);
-    Ok(())
+    Ok(message)
 }
 
 #[cfg(test)]

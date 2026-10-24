@@ -28,6 +28,8 @@ use grim::prelude::{
     StartingRoom, TriggerDef,
 };
 use serde::Deserialize;
+mod spawning;
+pub(crate) use spawning::spawn_npc;
 
 /// Directory the area blueprints (`*.json`) are read from at startup. Resolved
 /// against the process working directory when relative. Insert this resource
@@ -86,7 +88,7 @@ struct RoomBlueprint {
 }
 
 /// A non-player character placed in a room.
-#[derive(Clone,Deserialize)]
+#[derive(Clone, Deserialize)]
 pub(crate) struct NpcBlueprint {
     #[serde(default)]
     pub(crate) spawn: Option<crate::population::SpawnConfig>,
@@ -118,7 +120,9 @@ pub(crate) struct NpcBlueprint {
     triggers: Vec<TriggerDef>,
 }
 
-fn default_npc_level() -> u32 { 1 }
+fn default_npc_level() -> u32 {
+    1
+}
 
 /// A pickable object placed in a room.
 #[derive(Deserialize)]
@@ -280,7 +284,9 @@ fn stamp_area_rooms(
                 Exits::default(),
             ))
             .id();
-        if r.dark {commands.entity(entity).insert(grim::RoomDarkness);}
+        if r.dark {
+            commands.entity(entity).insert(grim::RoomDarkness);
+        }
         room_ents.insert(r.id, entity);
     }
     Some(area)
@@ -304,11 +310,16 @@ fn wire_area_contents(
             doors: crate::seed_doors::resolve_doors(&bp.slug, &r.slug, &r.doors),
         });
 
-        for (index,npc) in r.npcs.iter().enumerate() {
-            let entity=spawn_npc(commands, &bp.slug, npc, from);
-            commands.entity(entity).insert(crate::population::Candidate{
-                key:format!("{}:{}:{index}",bp.id,r.id),home:from,area:bp.slug.clone(),template:npc.clone(),
-            });
+        for (index, npc) in r.npcs.iter().enumerate() {
+            let entity = spawn_npc(commands, &bp.slug, npc, from);
+            commands
+                .entity(entity)
+                .insert(crate::population::Candidate {
+                    key: format!("{}:{}:{index}", bp.id, r.id),
+                    home: from,
+                    area: bp.slug.clone(),
+                    template: npc.clone(),
+                });
         }
         for obj in &r.objects {
             commands.spawn((
@@ -328,7 +339,9 @@ fn wire_area_contents(
                 Keywords(fixture.keywords.clone()),
                 InRoom { room: from },
             ));
-            if let Some(hackable) = &fixture.hackable { entity.insert(hackable.clone()); }
+            if let Some(hackable) = &fixture.hackable {
+                entity.insert(hackable.clone());
+            }
         }
     }
 }
@@ -360,57 +373,21 @@ fn resolve_exits(
     resolved
 }
 
-/// Stamp one NPC blueprint into `room`: the being bundle plus its compiled
-/// script triggers. A trigger that fails to compile is logged and skipped —
-/// the mob still spawns, triggerless for that moment.
-pub(crate) fn spawn_npc(commands: &mut Commands, area_slug: &str, npc: &NpcBlueprint, room: Entity)->Entity {
-    // Compile each trigger once now: a typo fails loudly at startup (logged,
-    // trigger skipped) instead of on a player's move.
-    let mut compiled = Vec::with_capacity(npc.triggers.len());
-    for def in &npc.triggers {
-        match compile(&def.script) {
-            Ok(bytecode) => compiled.push(CompiledTrigger {
-                on: def.on,
-                bytecode,
-            }),
-            Err(error) => error!(
-                "area '{area_slug}' npc '{}': skipping trigger that does not compile: {error}",
-                npc.name
-            ),
+/// Validate editor input with the same Rust DTOs the live seed loader uses.
+/// This parses only; it never spawns entities or executes scripted triggers.
+pub fn validate_area_json(text: &str) -> Result<(), String> {
+    let area: AreaBlueprint = serde_json::from_str(text).map_err(|e| e.to_string())?;
+    let mut ids = std::collections::HashSet::new();
+    let mut slugs = std::collections::HashSet::new();
+    for room in &area.rooms {
+        if !ids.insert(room.id) {
+            return Err(format!("Duplicate room ID {}", room.id));
+        }
+        if !slugs.insert(&room.slug) {
+            return Err(format!("Duplicate room slug {}", room.slug));
         }
     }
-    let mut mob = commands.spawn((
-        Creature,
-        // Seeded mobs carry the shared `Actor` base with sensible
-        // defaults (no race/build data in blueprints yet): empty race,
-        // level 1, neutral gender.
-        Actor {
-            race: npc.race.clone(),
-            level: npc.level,
-            gender: match npc.gender.as_str() {
-                "male" => Gender::Male,
-                "female" => Gender::Female,
-                _ => Gender::Neutral,
-            },
-        },
-        GrimName(npc.name.clone()),
-        Description(npc.description.clone()),
-        Keywords(npc.keywords.clone()),
-        RoomDescription(npc.room_description.clone()),
-        InRoom { room },
-    ));
-    if let Some(shop) = &npc.shop { mob.insert(shop.clone()); }
-    if let Some(soul) = &npc.soul { mob.insert(soul.clone()); }
-    if let Some(behavior) = &npc.combat_behavior { mob.insert(behavior.clone()); }
-    if !compiled.is_empty() {
-        info!(
-            "area '{area_slug}' npc '{}': {} script trigger(s) loaded",
-            npc.name,
-            compiled.len()
-        );
-        mob.insert(ScriptTriggers(compiled));
-    }
-    mob.id()
+    Ok(())
 }
 
 #[cfg(test)]
@@ -542,7 +519,10 @@ mod tests {
 
         // Grimmok spawned with both greeting triggers compiled.
         let mut scripted = app.world_mut().query::<(&GrimName, &ScriptTriggers)>();
-        let (_, triggers) = scripted.iter(app.world()).find(|(name, _)| name.0 == "Grimmok Ironhand").expect("Grimmok scripted");
+        let (_, triggers) = scripted
+            .iter(app.world())
+            .find(|(name, _)| name.0 == "Grimmok Ironhand")
+            .expect("Grimmok scripted");
         assert_eq!(triggers.0.len(), 2);
         assert!(triggers.0.iter().any(|t| t.on == TriggerKind::Enter));
         assert!(triggers.0.iter().any(|t| t.on == TriggerKind::AttemptLeave));
@@ -633,7 +613,10 @@ mod tests {
             .map(|(_, _, nm, kw, line, ir)| (nm.0.clone(), kw.0.clone(), line.0.clone(), ir.room))
             .collect();
         assert_eq!(found.len(), 4);
-        let (name, keywords, line, room) = found.iter().find(|(name, _, _, _)| name == "brass lantern").expect("brass lantern");
+        let (name, keywords, line, room) = found
+            .iter()
+            .find(|(name, _, _, _)| name == "brass lantern")
+            .expect("brass lantern");
         assert_eq!(name, "brass lantern");
         assert!(keywords.contains(&"lantern".to_string()));
         assert_eq!(
@@ -661,17 +644,4 @@ mod tests {
         app.add_systems(Startup, seed_world);
         app.update();
     }
-}
-
-/// Validate editor input with the same Rust DTOs the live seed loader uses.
-/// This parses only; it never spawns entities or executes scripted triggers.
-pub fn validate_area_json(text: &str) -> Result<(), String> {
-    let area: AreaBlueprint = serde_json::from_str(text).map_err(|e| e.to_string())?;
-    let mut ids = std::collections::HashSet::new();
-    let mut slugs = std::collections::HashSet::new();
-    for room in &area.rooms {
-        if !ids.insert(room.id) { return Err(format!("Duplicate room ID {}", room.id)); }
-        if !slugs.insert(&room.slug) { return Err(format!("Duplicate room slug {}", room.slug)); }
-    }
-    Ok(())
 }

@@ -9,6 +9,12 @@ The pre-game phase (login / account-creation / character-select / MOTD) lives in
 lines whose session stack tops at `InGameScene`; stackless sessions are handled
 by `grim-auth`.
 
+Command registration is grouped in `src/parser/registrations.rs` and invoked in
+the original priority order. Queue draining and session answers live beneath
+`src/command/`; presence rendering lives in `src/look_output/presence.rs`, and
+per-recipient broadcasts in `src/output/broadcast.rs`. Parent module entry points
+and system scheduling stay unchanged.
+
 ## Components
 
 | Component | File | Purpose |
@@ -31,7 +37,7 @@ by `grim-auth`.
 | `broadcast_wiznet` | `Update` | `src/wiznet.rs` | Fans `WiznetAlert` plus login/logout/linkdead notices to online admins whose master + category prefs are on, with best-effort socket details. |
 | `format_output` | `Update` | `src/output.rs` | Renders domain events per-recipient into `ConnectionOutput`. |
 | `format_recall` | `Update` | `src/recall_output.rs` | Renders `RecallEvent` per-recipient (attempt + disappearance left, recall-marked arrival right). Separate system: `format_output` is at Bevy's parameter ceiling. |
-| `format_server_broadcast` | `Update` | `src/output.rs` | Renders `ServerBroadcast` (e.g. shutdown warnings) to all sessions. |
+| `format_server_broadcast` | `Update` | `src/output/broadcast.rs` | Renders `ServerBroadcast` (e.g. shutdown warnings) to all sessions. |
 | `capture_output` | `Update` | `src/output.rs` | Collects output for flushing to connections. |
 | `open_editor` | `Update` | `src/editor.rs` | Attaches `EditorSession` on `OpenEditor` and shows the numbered entry view. |
 
@@ -50,7 +56,7 @@ Parsed by `grim-scene`'s registry (`src/parser.rs`); these verbs are handled **s
 | `wiznet [on\|off\|security\|logins]` | parser → engine queue (`src/parser.rs`, `src/wiznet.rs`) | List and toggle the admin-alert categories (persisted `grim-config` settings `wiznet`, `wiznet.security`, `wiznet.logins`). Admin-only + masked. |
 | `where` | `handle_ingame` → `format_where` (`src/who.rs`) | List beings in your area by room (`In your area (<name>):`, yourself included); only `Character`/`Creature` carriers — objects excluded. |
 | `inventory` | parser → engine queue (`src/parser.rs`, `grim-object/src/commands/inventory.rs`) | List carried objects' short names (sorted), or the empty line. |
-| `equipment` | `handle_ingame` → `tr!("equipment.empty")` (`src/command.rs`) | Uses `game_state["equipment_display"]` when available; otherwise the empty-equipment response. |
+| `equipment` | `handle_ingame` → `answer_character_equipment` (`src/command/answers.rs`) | Uses `game_state["equipment_display"]` when available; otherwise the empty-equipment response. |
 | `get <target>` | parser → engine queue (`src/parser.rs`, `grim-object/src/commands/get.rs`) | Pick up matches from the ground (`grim-target` selectors: `2.coin`, `3*coin`, `all [words]`); room sees "<name> picks up <short>" per item. |
 | `drop <target>` | parser → engine queue (`src/parser.rs`, `grim-object/src/commands/get.rs`) | Drop matches from the pack (same selectors); room sees "<name> drops <short>" per item. |
 | `give <item> <who>` | parser → engine queue (`src/parser.rs`, `grim-object/src/commands/give.rs`) | Hand matches to a PC here (creatures refuse); quote-aware split (`give "brass lantern" bob`; `all`-headed items run to the last word). Mover/other/room each see a named line (`format_transfer_events`). |
@@ -78,7 +84,7 @@ Other verbs (`look`, `map`, `move`, `say`, `shutdown`, …) are parsed here then
 | `LookRoom` / `LookEntity` / `MoveEvent` / `DoorEvent` / `RecallEvent` | Message (consumed → rendered) | `src/output.rs` (`LookRoom`/`LookEntity` in `src/look_output.rs`, `RecallEvent` in `src/recall_output.rs`) |
 | `SayEvent` / `YellEvent` / `OocEvent` / `GlobalEcho` | Message (consumed → rendered) | `src/output.rs` |
 | `LoginAnnounce` / `LogoutAnnounce` / `LinkdeadAnnounce` | Message (session announces) | `src/output.rs`, `src/command.rs` |
-| `ServerBroadcast` | Message (consumed → rendered) | `src/output.rs` |
+| `ServerBroadcast` | Message (consumed → rendered) | `src/output/broadcast.rs` |
 | `WiznetAlert` | Message (consumed → broadcast to opted-in admins; from `grim-networking`) | `src/wiznet.rs` (`broadcast_wiznet`) |
 
 The shared render helpers in `src/formatter.rs` (`format_motd`, `format_selection_menu`, `parse_menu_choice`, `MenuItem`) are `pub` because the `grim-auth` pre-game flow reads them; the module is re-exported at `grim_scene::formatter`.
@@ -90,7 +96,7 @@ The shared render helpers in `src/formatter.rs` (`format_motd`, `format_selectio
 - `!` repeats the last input; blank lines re-trigger the prompt.
 - Admin-gated commands are byte-identical to "unknown command" for non-admins (no information leak) — see `dispatch_admin_gated`.
 - Scene stack (§5.3): thin slice landed — `SceneStack` + `InGameScene`, pushed at world entry, routing by top. Pre-game scenes, pop, and output policy are still deferred (ADR-0003).
-- Minimap: `emit_look_room` (`src/output.rs`) renders the looker's room through `grim_world::render_map` on the 9x7 canvas and staples it left of the room text (`formatter::staple_minimap`: 9-wide gutter + two spaces, no trailing blanks) whenever the resolved `minimap` setting (`grim-config`, per-character, default on) is on.
+- Minimap: `emit_look_room` (`src/look_output.rs`) renders the looker's room through `grim_world::render_map` on the 9x7 canvas and staples it left of the room text (`formatter::staple_minimap`: 9-wide gutter + two spaces, no trailing blanks) whenever the resolved `minimap` setting (`grim-config`, per-character, default on) is on.
 - Look exit lines: `emit_look_room` (`src/look_output.rs`, `partition_exits`) splits the room's exits into `Exits: …` (plain exits plus open doors, hidden-open included) and `Doors: …` (closed doors), space-separated on one line, each `none` when empty. Admins additionally see closed secrets appended on the same line (`Secret: …`, itself `none` when the room hides nothing); non-admins never see the heading. Direction names use Savage Soul green (`{g`); item room lines are magenta (`{m`) and NPC names bright green (`{G`), each terminated with the `{x` reset. Authored NPC descriptions keep neutral prose where the name can be identified. Screen-reader and colors-off settings still strip all styling. NPC name highlights include leading articles and adjectives (for example, “An artrell”). The ASCII map uses green room markers and a red current-location marker; room titles render `{B…{x` (blue), with admin debug ids after the reset so the colour never bleeds into them.
 
 ---
@@ -116,3 +122,21 @@ The game-specific `intermud`, `i3` and `imud` aliases are wizard-gated in `src/c
 Room minimaps reserve an eleven-column gutter; `formatter::staple_minimap` wraps room text in the remaining 69 visible columns before combining rows, preserving long descriptions and colour tokens within the standard 80-column layout.
 
 Room/minimap text wrapping uses the connection's negotiated terminal width when available, defaulting to 80 columns.
+
+## Staff testing visibility
+
+| Command | Handler | Purpose |
+|---|---|---|
+| `wizinvis [on\|off]` | `src/staff.rs::handle_staff` | Wizard-only persistent visibility toggle. |
+| `testaccount <character> on\|off` | `src/staff.rs::handle_staff` | Wizard-only, immediately persisted account-wide testing flag. |
+
+`staff::sync_testing` runs at PostStartup and before in-game input/output. Lists, attributed broadcasts, room/entity presence and offline lookups use shared perception, retaining admin supervision.
+
+`gecho` also respects hidden staff actions: ordinary players receive no echo from
+an invisible wizard or testing identity, even though its text would be anonymous.
+Self and supervising wizards retain their normal output and attribution.
+
+See [staff testing](../../docs/STAFF-TESTING.md) for permissions and shared-world limitations.
+
+`testaccount` is deprioritized in the command registry so `t` still sets a title
+and `te` / `tel` still send a tell. The full staff command remains available.

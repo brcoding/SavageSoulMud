@@ -117,9 +117,20 @@ When developing new features, start by asking:
 6b. **MUD colour resets take no closing brace.** The reset token is `{x` (brace + letter, exactly like `{R`/`{m`), and in a Rust format string it is spelled `{{x` — never `{{x}}`. A trailing `}` either fails to compile (`unmatched }`) or, worse, renders literally in player output (`{Rnorth{x}` on the look line). The same holds for every `{X` code: open brace + one letter, nothing after. When an edit touches a line containing `{x`, re-read the line and count the braces before moving on.
 7. **Update README.md** when architecture, roadmap, or conventions change — not this file.
 7a. **Every crate has a `README.md` following [`docs/README.template.md`](./docs/README.template.md).** It's the map to that crate — Components, Systems, and (GRIM-specifically) **Commands with the file each handler lives in**, plus Resources/Events. Keep it current *in the same change*: whenever you add, move, or remove a Component / System / Resource / Event / Command, update that crate's README so the pointers stay true — the Commands→handler table especially (a stale handler pointer is worse than none). Findability is the point; treat the README as part of the code, not an afterthought.
-8. **NEVER use `--no-verify` on commits.** Pre-commit hooks (lint, fmt, coverage) are mandatory. If they block, fix what they catch.
+8. **NEVER use `--no-verify` on commits.** Pre-commit hooks (lint, fmt, tests) are mandatory. If they block, fix what they catch.
+   After every PR commit and push, review CodeRabbit feedback and the CI results
+   for that exact commit. Local tests or older green runs are not completion.
+   Read failed job logs, address actionable comments, reply and resolve each
+   addressed review thread, and report remaining
+   failures explicitly; do not hand off while reviews or checks are pending.
 9. **Codify every root cause.** When the user asks why something broke, when there's confusion or frustration, or when an unstated assumption surfaces — add a rule to AGENTS.md. These signals mean something wasn't obvious. Write it down so the next agent doesn't repeat it.
-10. **100% coverage target, 90% floor.** All code should be tested. The goal is 100% line coverage. The 90% threshold (in the Makefile) exists only as a safety net for genuinely uncoverable lines (unreachable defensive branches, language limitations). Any gap below 90% is a bug — fix it. If a file can't reach 90%, ratchet down in 5% decrements, re-evaluating at each step.
+10. **Test behavior; coverage is informational.** Run relevant behavioral tests
+    and keep test failures blocking. CI and precommit run `make test`; optional
+    `make coverage` generates a report without a minimum percentage requirement.
+    The project owner explicitly removed the inherited
+    coverage floor; do not reintroduce one from an older skill or upstream rule.
+    Do not add tests solely to raise a coverage percentage. Lint, build and test
+    failures remain blocking.
 11. **Tests that own the clock skip `TimePlugin`.** `MinimalPlugins` includes the
   automatic time update, which overwrites manual `advance_by` (idle sweeps saw
   `elapsed == 0` forever). Clock-driven tests use a bare `App` plus

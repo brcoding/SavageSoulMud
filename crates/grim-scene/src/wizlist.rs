@@ -52,15 +52,30 @@ pub(crate) fn format_wizlist_list(rows: &[WhoRow]) -> String {
 /// `(offline)`. Online wins the name: a snapshot entry also in the world
 /// renders once, live. Sorted alphabetical by name.
 pub(crate) fn format_wizlist(
+    viewer: Option<Entity>,
     player_chars: &PlayerChars,
     linkdead: &Query<&Linkdead>,
     afk_chars: &HashSet<Entity>,
     res: &SessionRes,
     admins: &WizlistAdmins,
 ) -> String {
-    let mut data = collect_who_data(player_chars, linkdead, afk_chars, res);
+    let mut data = collect_who_data(player_chars, linkdead, afk_chars, res, viewer);
     data.retain(|d| d.key.is_admin);
-    data.extend(offline_admin_rows(player_chars, res, admins));
+    let observer = viewer
+        .and_then(|v| player_chars.get(v).ok())
+        .and_then(|(_, _, _, _, c, _, _)| c);
+    let filtered = WizlistAdmins(
+        admins
+            .0
+            .iter()
+            .filter(|s| {
+                crate::staff::stored_character(&res.persistence, s).visible_to(observer, false)
+            })
+            .cloned()
+            .collect(),
+    );
+    // Keep this snapshot alive while its rows borrow restrings below.
+    data.extend(offline_admin_rows(player_chars, res, &filtered));
     data.sort_by(|a, b| who_order(&a.key, &b.key));
     let rows: Vec<WhoRow> = data.into_iter().map(|d| d.row).collect();
     format_wizlist_list(&rows)

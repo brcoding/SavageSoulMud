@@ -1,5 +1,8 @@
 # Savage Soul remote server
 
+Automatic releases after merge to `main`, preservation rules, GitHub environment
+secrets and recovery instructions: [RELEASES.md](RELEASES.md).
+
 Set `GRIM_BIND_HOST=0.0.0.0` in the production game service environment; local
 launches default to `127.0.0.1`. Startup logs report the actual listener address.
 

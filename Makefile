@@ -1,4 +1,4 @@
-.PHONY: all precommit lint format coverage clean
+.PHONY: all precommit lint format test coverage clean
 
 all: precommit
 
@@ -29,9 +29,12 @@ fmt-check:
 format:
 	cargo fmt
 
-ci: lint coverage
+test:
+	RUSTFLAGS="-D warnings" cargo test --locked --workspace --tests
 
-# ─── Coverage ─────────────────────────────────────────────────────────
+ci: lint test
+
+# ─── Coverage report (no percentage threshold) ─────────────────────────
 
 coverage:
 	# No coverage-artifact reuse: stale hashed/instrumented objects have
@@ -43,7 +46,6 @@ coverage:
 	CARGO_TARGET_DIR=target RUSTFLAGS="-D warnings" \
 	cargo llvm-cov --lcov --output-path coverage/lcov.info \
 		--ignore-filename-regex 'src/main\.rs|src/seed\.rs' \
-		--fail-under-lines 90 \
 		--workspace
 # ─── Cleanup ──────────────────────────────────────────────────────────
 

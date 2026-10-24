@@ -19,6 +19,8 @@ their only users (the `quit` handler and the `goto`/`title` escapes) moved into
 | `Area` | `src/world/topology.rs` | A named region grouping rooms (yell scope). |
 | `Room` | `src/world/topology.rs` | A single location; carries its owning `area`. |
 | `Exits` | `src/world/topology.rs` | Directional links from a room to adjacent rooms. |
+| `RoomDarkness` | `src/lighting.rs` | Marks a room as unlit unless a light source or viewer ability permits sight. |
+| `LightSource` | `src/lighting.rs` | Marks an object as a source of light, independently of its placement. |
 | `Door` / `Doors` | `src/world/topology.rs` | A door on one exit side (name/keywords/open/hidden) + the per-room direction map; closed blocks `move`. `hidden` is per-side (never flipped by `open`/`close`), so a one-way secret hides one side only. |
 
 (The `Npc` marker moved to `grim_actor::Creature` — creatures are beings, so the
@@ -88,6 +90,12 @@ Non-component types this crate defines.
 
 ASCII maps and room minimaps share the Savage Soul palette: green `o` rooms, red `@` current location, white paths, and yellow up/down markers. Topology and secret-exit filtering are unchanged.
 
+Map rendering separates deterministic BFS room placement (`place_rooms`) from
+canvas drawing (`render_map`), preserving first-claim collision and exit rules.
+
 `RoomDarkness` opts a room into unlit visibility. `LightSource` marks a lit
 object independently of its later placement/ownership. Both are being-free
 markers; perception and ownership resolution remain in `grim-actor`.
+
+The visibility markers are defined in `src/lighting.rs` and reexported at the
+crate root; `lib.rs` remains a module shell.
