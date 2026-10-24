@@ -60,7 +60,8 @@ class Handler(BaseHTTPRequestHandler):
             try:
                 if ((self.server.transaction.state / 'active.json').exists() or
                         (self.server.transaction.runner / 'release-in-progress').exists() or
-                        (self.server.transaction.runner / 'editor-save-block').exists()):
+                        (self.server.transaction.runner / 'editor-save-block').exists() or
+                        (self.server.transaction.runner / 'editor-copyover-pending').exists()):
                     raise RuntimeError('An unfinished release requires recovery')
                 self.server.transaction.confirm_running()
                 ports = {f[1].split(':')[-1] for f in

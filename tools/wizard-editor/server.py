@@ -1,5 +1,6 @@
 """Local wizard content editor. Run with Waitress, never Flask's dev server."""
 import collections
+from contextlib import contextmanager
 import datetime as dt
 import hashlib
 import hmac
@@ -8,6 +9,7 @@ import os
 from pathlib import Path
 import re
 import secrets
+import socket
 import subprocess
 import tempfile
 import threading
@@ -308,11 +310,64 @@ def create_app(root, state=None, validator=None, reload_command=None, port=4080,
         block = app.config.get('RELEASE_SAVE_BLOCK')
         if block and Path(block).exists():
             abort(503, "A server release is in progress. Your draft has not been saved; try again shortly.")
+        if block and (Path(block).parent / 'editor-copyover-pending').exists():
+            abort(503, "A previous world reload requires operator recovery; your draft has not been saved.")
+
+    @contextmanager
+    def release_guard():
+        """Serialize editor writes/reloads with the Kubernetes release freeze."""
+        block = app.config.get('RELEASE_SAVE_BLOCK')
+        if not block:
+            yield
+            return
+        import fcntl
+        with Path(str(block) + '.lock').open('a') as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            check_save_block()
+            yield
+
+    def begin_editor_copyover():
+        block = app.config.get('RELEASE_SAVE_BLOCK')
+        if not block:
+            return None
+        runner = Path(block).parent
+        pending = runner / 'editor-copyover-pending'
+        if pending.exists():
+            abort(503, "A previous world reload requires operator recovery.")
+        before = int((runner / 'mud.pid').read_text())
+        with pending.open('x') as handle:
+            json.dump({'pid': before}, handle)
+            handle.flush()
+            os.fsync(handle.fileno())
+        directory = os.open(runner, os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            os.fsync(directory)
+        finally:
+            os.close(directory)
+        return pending, before
+
+    def finish_editor_copyover(pending):
+        if pending is None:
+            return
+        path, before = pending
+        end = time.monotonic() + 8
+        while time.monotonic() < end:
+            try:
+                current = int((path.parent / 'mud.pid').read_text())
+                if current != before and os.path.samefile(f'/proc/{current}/exe', root / 'bin/savsoul'):
+                    with socket.create_connection(('127.0.0.1', 4000), timeout=1) as connection:
+                        connection.settimeout(1)
+                        if connection.recv(4096):
+                            path.unlink()
+                            return
+            except (OSError, ValueError):
+                pass
+            time.sleep(.1)
+        abort(503, "World reload completion could not be verified; operator recovery is required.")
 
     def commit(rel, text, revision):
         path = allowed(rel)
-        with write_lock:
-            check_save_block()
+        with write_lock, release_guard():
             old = path.read_bytes() if path.exists() else None
             expected = digest(old) if old is not None else "new"
             if not isinstance(revision, str) or not hmac.compare_digest(expected, revision):
@@ -334,7 +389,6 @@ def create_app(root, state=None, validator=None, reload_command=None, port=4080,
                 with tempfile.NamedTemporaryFile(dir=path.parent, prefix=".editor-", delete=False) as handle:
                     temp = handle.name
                     handle.write(new); handle.flush(); os.fsync(handle.fileno())
-                check_save_block()
                 os.replace(temp, path)
                 temp = None
                 with catalog_lock:
@@ -546,7 +600,7 @@ def create_app(root, state=None, validator=None, reload_command=None, port=4080,
     def apply():
         if not reload_command:
             abort(503, "World reload is not configured.")
-        with write_lock:
+        with write_lock, release_guard():
             for file in (root / "data/areas").glob("*.json"):
                 validate(file.relative_to(root).as_posix(), file.read_text(encoding="utf-8-sig"), cross_check=False)
             for directory in ["data/help", "data/savage-soul", "data/quests", "data/socials"]:
@@ -557,9 +611,11 @@ def create_app(root, state=None, validator=None, reload_command=None, port=4080,
             if errors:
                 abort(400, "World has unresolved links: " + "; ".join(sorted(errors)[:10]))
             audit("apply-world")
+            pending = begin_editor_copyover()
             result = subprocess.run(reload_command, capture_output=True, text=True, timeout=10)
             if result.returncode:
                 abort(503, "MUD reload could not be requested. Saved content remains on disk.")
+            finish_editor_copyover(pending)
         return jsonify(ok=True, message="World reload requested. Connections are preserved; active fights and NPC positions reset.")
 
     return app

@@ -12,7 +12,7 @@ This was a live warm snapshot; final paused-writer sync remains required.
 
 Verified on the candidate:
 
-- All six containers running with nonroot identities on modern images:
+- All seven containers running with nonroot identities on modern images:
   Python services use Debian 13 and UID 1009/GID 1011; Alpine Nginx uses UID 1012.
 - Website, wizard landing page and public Mudlet map return200 over validated
   savsoul.com TLS using an IP override; DNS was not changed.

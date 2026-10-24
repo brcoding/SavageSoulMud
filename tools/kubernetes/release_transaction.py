@@ -1,5 +1,6 @@
 """Unprivileged candidate release transaction; imported from an immutable ConfigMap."""
 import fcntl
+from contextlib import contextmanager
 import json
 import os
 from pathlib import Path
@@ -52,12 +53,28 @@ class Transaction:
     def baseline(self):
         return json.loads((self.state / 'current.json').read_text())
 
+    @contextmanager
+    def editor_lock(self):
+        """Drain admitted editor writes/reloads before publishing the release freeze."""
+        with (self.runner / 'editor-save-block.lock').open('a') as lock:
+            end = time.monotonic() + 30
+            while True:
+                try:
+                    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                    break
+                except BlockingIOError:
+                    if time.monotonic() >= end:
+                        raise TimeoutError('Editor operation did not drain before release') from None
+                    time.sleep(.1)
+            yield
+
     def recover_startup(self):
         active = self.state / 'active.json'
         if active.exists():
             # A crash can occur during the temporary unfreeze used to verify services.
-            files.write_journal(self.runner / 'release-in-progress', json.loads(active.read_text()))
-            files.write_journal(self.runner / 'editor-save-block', json.loads(active.read_text()))
+            with self.editor_lock():
+                files.write_journal(self.runner / 'editor-save-block', json.loads(active.read_text()))
+                files.write_journal(self.runner / 'release-in-progress', json.loads(active.read_text()))
             stop_editor(self.root)
 
     def validate(self, stage, manifest):
@@ -133,6 +150,8 @@ class Transaction:
     def execute(self, stage, manifest):
         baseline = self.baseline()
         self.validate(stage, manifest)
+        if (self.runner / 'editor-copyover-pending').exists():
+            raise RuntimeError('An unfinished editor copyover requires operator recovery')
         active, marker = self.state / 'active.json', self.runner / 'release-in-progress'
         save_block = self.runner / 'editor-save-block'
         if (baseline.get('revision') == manifest['revision'] and
@@ -154,9 +173,12 @@ class Transaction:
         filtered = {**manifest, 'files': {n: h for n, h in manifest['files'].items() if n not in INSTANCE}}
         previous = {**baseline, 'files': {n: h for n, h in baseline.get('files', {}).items() if n not in INSTANCE}}
         files.check_destinations(set(filtered['files']) | set(previous['files']), self.root)
-        files.write_journal(active, {'revision': manifest['revision'], 'backup': backup.name})
-        files.write_journal(save_block, {'revision': manifest['revision']})
-        files.write_journal(marker, {'revision': manifest['revision']})
+        with self.editor_lock():
+            if (self.runner / 'editor-copyover-pending').exists():
+                raise RuntimeError('An unfinished editor copyover requires operator recovery')
+            files.write_journal(active, {'revision': manifest['revision'], 'backup': backup.name})
+            files.write_journal(save_block, {'revision': manifest['revision']})
+            files.write_journal(marker, {'revision': manifest['revision']})
         restored = False
         try:
             stop_editor(self.root)

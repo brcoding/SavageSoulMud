@@ -48,6 +48,12 @@ successor executable and waits for editor/browser-terminal listeners before
 committing `state/releases/current.json`. A separate durable `editor-save-block`
 prevents saves while the editor is restarted for verification; it clears only
 after successful commit or complete rollback. An identical healthy retry is a no-op.
+Editor saves and world reloads share a filesystem lock with the freeze transition.
+Admitted operations finish before the release freezes the editor. A world reload
+keeps that lock until its successor executable responds; a durable
+`state/runner/editor-copyover-pending` marker blocks further writes/releases if
+completion cannot be verified. Inspect its predecessor PID and verify successor
+identity and login readiness before an operator clears that marker.
 Three recent backup directories are retained after successful release processing.
 
 Player/account JSON and private network state are excluded from artifacts. Live

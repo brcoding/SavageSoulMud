@@ -92,6 +92,13 @@ class CandidateReleaseTests(unittest.TestCase):
         self.tx.execute(self.stage, self.new)
         self.assertFalse((self.runner / 'editor-save-block').exists())
 
+    def test_unfinished_editor_copyover_refuses_release_before_mutation(self):
+        (self.runner / 'editor-copyover-pending').write_text('{"pid":123}')
+        with self.assertRaisesRegex(RuntimeError, 'unfinished editor copyover'):
+            self.tx.execute(self.stage, self.new)
+        self.assertEqual((self.root / 'bin/savsoul').read_text(), 'old binary')
+        self.assertFalse((self.state / 'active.json').exists())
+
     def test_removed_bridge_module_requires_restart(self):
         self.write(self.root, 'tools/web-terminal/obsolete.py', 'old module')
         self.old['files']['tools/web-terminal/obsolete.py'] = files.digest(
