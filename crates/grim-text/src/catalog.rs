@@ -45,6 +45,7 @@ fn default_string(key: &str) -> String {
         "staff.test_on" => "Test account enabled for %{name}. All characters on that account are hidden; no wizard privileges were granted.\n",
         "staff.test_off" => "Test account disabled for %{name}. Normal character visibility applies.\n",
         "login.prompt" => "Character name or account email address (\"help\" for more info): ",
+        "login.version" => "{cVersion %{label}{x",
         "login.password_prompt" => "Password: ",
         "login.choose_password" => "Choose a password: ",
         "login.invalid_input" => "You must provide a valid character name (letters only) or email address.\n",

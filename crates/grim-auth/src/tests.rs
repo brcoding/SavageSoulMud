@@ -1974,6 +1974,7 @@ mod connection {
     #[test]
     fn connection_established_shows_banner() {
         let mut app = test_app();
+        app.insert_resource(crate::LoginVersion("0.2.0 (abc123)".into()));
         let room = spawn_room(&mut app);
         app.world_mut().insert_resource(StartingRoom(room));
 
@@ -2009,6 +2010,9 @@ mod connection {
                     && o.text.contains("Character name or account email")),
             "Banner output should contain login prompt"
         );
+        assert!(outputs
+            .iter()
+            .any(|o| o.connection == conn && o.text.contains("Version 0.2.0 (abc123)")));
     }
 }
 

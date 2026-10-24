@@ -65,6 +65,11 @@ Deferred frames retain their order in a bounded per-connection backlog. Exceedin
 | `trainer_ai::Bridge` | Resource | `src/trainer_ai.rs` (optional worker queues) |
 
 ## Binaries
+
+The `savsoul` binary embeds `SAVSOUL_VERSION` and `SAVSOUL_REVISION` at build
+time, shows them on login, and prints the same identity with `savsoul --version`.
+Unstamped local builds show `0.1.0-dev (local)`. CI computes production/PR versions
+from semantic history; see [release version policy](../../tools/server-host/RELEASES.md#game-version-policy).
 | Binary | File | Purpose |
 |---|---|---|
 | `savsoul` (default-run) | `src/main.rs` | The MUD server: `MinimalPlugins` (frame loop capped at 60 Hz via `ScheduleRunnerPlugin::run_loop` — bare `MinimalPlugins` spins idle at 99% CPU, issue #121) + `LogPlugin` + `GrimDefaultPlugins { telnet_port: 4000, ..Default::default() }`, seeded with `seed::seed_world`. |

@@ -57,7 +57,8 @@ Preserve data/mudlet-map-ids.json to keep Mudlet room numbers stable.
 This is a source/configuration backup, not a backup of private production state.
 Keep server credentials and player-data backups separately.
 
-The initial CI checks compilation, character rules, saved sign-in and website
-building. Production deployment is not automatic. The inherited GRIM EC2
-workflow is retained only as deploy/upstream-deploy.yml.example; it is not the
-Savage Soul server deployment configuration.
+CI checks compilation, lint, tests, semantic commit messages, website building
+and static release packaging. Merging to `main` deploys the checked version and
+attempts copyover. The login screen and `savsoul --version` show the embedded
+game version and commit ID. See [release and version policy](tools/server-host/RELEASES.md).
+The inherited GRIM EC2 workflow remains only as `deploy/upstream-deploy.yml.example`.

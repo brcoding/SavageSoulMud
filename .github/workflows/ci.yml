@@ -2,13 +2,45 @@ name: CI and production release
 on:
   pull_request:
     branches: [main]
+    types: [opened, synchronize, reopened, edited, ready_for_review]
   push:
     branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
+  version:
+    name: version
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      version: ${{ steps.identity.outputs.version }}
+      revision: ${{ steps.identity.outputs.revision }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Validate semantic commits and calculate game version
+        id: identity
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          if [ -n "$PR_NUMBER" ]; then
+            python3 tools/server-host/build_version.py --pr "$PR_NUMBER" --base "$PR_BASE"
+          else
+            python3 tools/server-host/build_version.py
+          fi
+      - name: Version history regression checks
+        run: python3 -m unittest discover -s tools/server-host -p test_build_version.py
   build:
+    needs: version
+    env:
+      SAVSOUL_VERSION: ${{ needs.version.outputs.version }}
+      SAVSOUL_REVISION: ${{ github.sha }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -28,6 +60,10 @@ jobs:
       - name: Release preservation and validation checks
         run: python3 -m unittest discover -s tools/server-host -p test_release.py
   quality:
+    needs: version
+    env:
+      SAVSOUL_VERSION: ${{ needs.version.outputs.version }}
+      SAVSOUL_REVISION: ${{ github.sha }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -44,12 +80,17 @@ jobs:
         if: ${{ !cancelled() }}
         run: make test
   package:
+    needs: version
+    env:
+      SAVSOUL_VERSION: ${{ needs.version.outputs.version }}
+      SAVSOUL_REVISION: ${{ needs.version.outputs.revision }}
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
+          ref: ${{ needs.version.outputs.revision }}
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: x86_64-unknown-linux-musl
@@ -64,6 +105,7 @@ jobs:
         run: cargo build --locked --release -p example-mud --bin savsoul --target x86_64-unknown-linux-musl
       - name: Verify static linking
         run: |
+          test "$(target/x86_64-unknown-linux-musl/release/savsoul --version)" = "$SAVSOUL_VERSION (${SAVSOUL_REVISION:0:12})"
           file target/x86_64-unknown-linux-musl/release/savsoul
           readelf -l target/x86_64-unknown-linux-musl/release/savsoul > program-headers.txt
           ! grep -q INTERP program-headers.txt
@@ -72,7 +114,7 @@ jobs:
           python3 website/build.py
           python3 tools/server-host/package_release.py \
             --binary target/x86_64-unknown-linux-musl/release/savsoul \
-            --revision "$GITHUB_SHA" --output release.tar.gz
+            --revision "$SAVSOUL_REVISION" --version "$SAVSOUL_VERSION" --output release.tar.gz
       - uses: actions/upload-artifact@v6
         with:
           name: release-${{ github.sha }}
@@ -80,7 +122,7 @@ jobs:
           retention-days: 7
           if-no-files-found: error
   deploy:
-    needs: [build, quality, package]
+    needs: [version, build, quality, package]
     if: github.repository == 'brcoding/SavageSoulMud' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 12
@@ -98,6 +140,7 @@ jobs:
         env:
           DEPLOY_KEY: ${{ secrets.SAVSOUL_DEPLOY_KEY }}
           KNOWN_HOSTS: ${{ secrets.SAVSOUL_KNOWN_HOSTS }}
+          SAVSOUL_VERSION: ${{ needs.version.outputs.version }}
         shell: bash
         run: |
           set -euo pipefail
@@ -115,4 +158,4 @@ jobs:
             -o UserKnownHostsFile="$RUNNER_TEMP/deploy-ssh/known_hosts" \
             -o ConnectTimeout=20 -o ServerAliveInterval=15 -o ServerAliveCountMax=4 \
             savsoul-deploy@173.255.210.234 "deploy $GITHUB_SHA" < release.tar.gz
-          printf 'Released `%s` to https://savsoul.com (game :4000 / TLS :4001).\n' "$GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
+          printf 'Released `%s` (`%s`) to https://savsoul.com (game :4000 / TLS :4001).\n' "$SAVSOUL_VERSION" "$GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"

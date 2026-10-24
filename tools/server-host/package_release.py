@@ -8,13 +8,19 @@ import re
 import subprocess
 import tarfile
 
+NUMBER = r'(?:0|[1-9][0-9]*)'
+PRE_ID = r'(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)'
+BUILD_ID = r'[0-9A-Za-z-]+'
+SEMVER = (rf'{NUMBER}\.{NUMBER}\.{NUMBER}(?:-{PRE_ID}(?:\.{PRE_ID})*)?'
+          rf'(?:\+{BUILD_ID}(?:\.{BUILD_ID})*)?')
+
 
 def authored(name):
     return name.startswith(('assets/', 'data/help/', 'data/areas/', 'data/socials/',
                             'data/quests/', 'data/savage-soul/'))
 
 
-def package(root, binary, output, revision):
+def package(root, binary, output, revision, version='0.1.0-dev'):
     if not re.fullmatch(r'[0-9a-f]{40}', revision):
         raise ValueError('Expected full Git revision')
     tracked = subprocess.check_output(['git', 'ls-files', '-z'], cwd=root).decode().split('\0')
@@ -30,7 +36,9 @@ def package(root, binary, output, revision):
             if path.is_symlink():
                 raise ValueError('Symlink in website build')
             files['public/' + path.relative_to(root / 'website/dist').as_posix()] = path
-    manifest = {'revision': revision, 'files': {}}
+    if not re.fullmatch(SEMVER, version):
+        raise ValueError('Expected a semantic game version')
+    manifest = {'revision': revision, 'version': version, 'files': {}}
     with tarfile.open(output, 'w:gz') as archive:
         for name, path in sorted(files.items()):
             data = path.read_bytes()
@@ -53,5 +61,6 @@ if __name__ == '__main__':
     parser.add_argument('--binary', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--revision', required=True)
+    parser.add_argument('--version', required=True)
     args = parser.parse_args()
-    package(args.root, args.binary, args.output, args.revision)
+    package(args.root, args.binary, args.output, args.revision, args.version)

@@ -18,6 +18,8 @@ environment history. This does not create public GitHub Release tags.
 
 ## Server setup
 
+Game versions follow the [game version policy](#game-version-policy) below.
+
 The fixed entry point is `/usr/local/lib/savsoul-release/release_entry.py`, run
 by the host's Python 3.4. Its root-owned companion `receive_release.py` runs using
 the existing private Python 3.12 only after dropping to the `savsoul` UID/GID.
@@ -146,3 +148,41 @@ also verify public-site rollback and archive `/var/lib/savsoul-release/SHA/`
 outside `/var/lib/savsoul-release/`; that directory independently blocks a retry.
 Preserve both directories' recovery metadata so the retry creates fresh journals;
 never reuse or erase the failed attempt's metadata.
+
+## Game version policy
+
+Use Conventional Commits for every new commit and PR title:
+
+| Message | Bump | Example from 1.2.3 |
+|---|---|---|
+| `fix: repair the gate` | patch | 1.2.4 |
+| `feat: add crafting` | minor | 1.3.0 |
+| `feat!: replace save format` or a `BREAKING CHANGE:` footer | major | 2.0.0 |
+| `docs:`, `ci:`, `chore:`, `build:`, `test:`, `perf:`, `refactor:`, `style:`, `revert:` | patch | 1.2.4 |
+
+The `version` CI job requires both a semantic PR title and semantic new commit
+messages. Git-generated merge wrappers are exempt. The PR title must express at
+least the highest bump in its commits, preserving the intent when squash merging.
+Edit the title if necessary; title edits rerun validation. Keep the semantic title
+when merging or squashing. A nonsemantic main commit blocks packaging/deployment.
+
+`tools/server-host/build_version.py` starts at **0.1.0** at the immutable baseline
+`d7dc3ffddb37b49a09ef2d49961c3b946e17c2ec` (PR #3). Earlier history is legacy.
+Each first-parent change since that baseline applies one bump. For a merge, use
+the highest intent from its title and newly introduced commits, including nested
+PR titles; already merged changes are excluded. Rebased commits each get their own bump. Other types
+receiving a patch is a project policy so every production revision is distinct.
+Do not move the baseline or rewrite main history after adopting this policy.
+
+Builds are deterministic: retries reuse the version, and queued main revisions
+calculate distinct numbers without tag races or bot version commits. PR builds
+preview the standard merge/squash bump as `0.2.0-pr.4+COMMIT`; rebase merging may
+produce multiple bumps. Unstamped local builds show `0.1.0-dev (local)`.
+These are game versions; workspace Cargo crate versions are independent.
+
+CI embeds `SAVSOUL_VERSION`/`SAVSOUL_REVISION` in the executable, verifies its
+`--version` output, and records the same version/revision in `manifest.json` and
+the deployed `current.json`. Login shows a textual, colored version line; all
+terminal clients receive it. Copyover loads the successor binary's identity.
+The scheme needs complete Git history but no additional GitHub write token or
+server privilege. Required branch checks should include `version`.
