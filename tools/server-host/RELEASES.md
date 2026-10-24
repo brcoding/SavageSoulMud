@@ -1,6 +1,6 @@
 # Production releases
 
-Merging to `main` starts **CI and production release**. Build, lint, coverage,
+Merging to `main` starts **CI and production release**. Build, lint, workspace tests,
 release preservation tests, website build and static musl packaging must all pass
 before the `production` deployment job runs. Existing failing quality checks block
 releases; they are not bypassed. PR jobs never receive production secrets.
