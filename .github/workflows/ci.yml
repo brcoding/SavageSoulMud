@@ -40,14 +40,13 @@ jobs:
     needs: version
     env:
       SAVSOUL_VERSION: ${{ needs.version.outputs.version }}
-      SAVSOUL_REVISION: ${{ needs.version.outputs.revision }}
+      SAVSOUL_REVISION: ${{ github.sha }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
-          ref: ${{ needs.version.outputs.revision }}
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
       - name: Check workspace
@@ -64,14 +63,13 @@ jobs:
     needs: version
     env:
       SAVSOUL_VERSION: ${{ needs.version.outputs.version }}
-      SAVSOUL_REVISION: ${{ needs.version.outputs.revision }}
+      SAVSOUL_REVISION: ${{ github.sha }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
-          ref: ${{ needs.version.outputs.revision }}
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy, rustfmt
