@@ -89,6 +89,11 @@ def write_atomic(path, content):
             os.fsync(out.fileno())
         os.chmod(temporary, 0o644)
         os.rename(temporary, path)
+        directory = os.open(os.path.dirname(path), os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            os.fsync(directory)
+        finally:
+            os.close(directory)
     finally:
         if os.path.exists(temporary):
             os.unlink(temporary)
@@ -114,8 +119,7 @@ def publish(revision):
             if os.path.exists(target):
                 write_atomic(saved, read_regular(target))
             names.append(relative)
-            with open(backup + '/journal.json', 'w') as stream:
-                json.dump(names, stream)
+            write_atomic(backup + '/journal.json', json.dumps(names).encode('utf8'))
             write_atomic(target, content)
 
 

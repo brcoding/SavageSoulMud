@@ -109,6 +109,10 @@ for administrator recovery and are never automatically restored over newer saves
 The parent dispatcher also rolls back a receiver that exits abruptly after a live
 change, using that attempt's phase markers rather than requiring a successful
 receiver return. If rollback fails, recovery stops before restarting services.
+Recovery journals for both game files and public pages are written to a temporary
+file, flushed and synced, then atomically replaced and their directory synced
+before the associated live mutation. An interrupted journal update retains the
+previous complete journal, so previously applied files remain recoverable.
 This requires the parent dispatcher to remain running: host power loss or killing
 the dispatcher itself requires administrator reconciliation of journals and the
 previous manifest before services or deployments resume. There is no automatic

@@ -90,6 +90,25 @@ def atomic_copy(source, target, mode=0o600):
             os.unlink(temp)
 
 
+def write_journal(path, entries):
+    """Publish complete recovery metadata before mutating its associated file."""
+    fd, temporary = tempfile.mkstemp(prefix='.journal-', dir=path.parent)
+    try:
+        with os.fdopen(fd, 'w') as stream:
+            json.dump(entries, stream)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+        directory = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            os.fsync(directory)
+        finally:
+            os.close(directory)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
+
+
 def restore(backup, root=ROOT):
     journal = json.loads((backup / 'journal.json').read_text())
     for name in reversed(journal):
@@ -129,12 +148,12 @@ def apply(stage, backup, manifest, baseline, root=ROOT):
             atomic_copy(target, backup / 'files' / name, target.stat().st_mode & 0o777)
         (backup / 'live-files-started').touch()
         journal.append(name)
-        (backup / 'journal.json').write_text(json.dumps(journal))
+        write_journal(backup / 'journal.json', journal)
         if name in deleted:
             target.unlink()
         else:
             atomic_copy(stage / name, target, 0o700 if name == 'bin/savsoul' or name.endswith('.sh') else 0o600)
-    (backup / 'journal.json').write_text(json.dumps(journal))
+    write_journal(backup / 'journal.json', journal)
     print('Preserved live edits:', ', '.join(preserved) or 'none', flush=True)
 
 

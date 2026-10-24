@@ -68,6 +68,69 @@ class ReleaseTests(unittest.TestCase):
         self.assertEqual((self.root / 'tools/obsolete.py').read_bytes(), b'old-code')
         self.assertFalse((self.root / 'data/help/new.md').exists())
 
+    def test_interrupted_journal_update_preserves_previous_recovery_entries(self):
+        """A failed second journal publication must retain the first file's undo record."""
+        for name in ['bin/savsoul', 'tools/helper.py']:
+            self.write(self.root, name, b'old')
+            self.write(self.stage, name, b'new')
+        replace = os.replace
+        publications = 0
+
+        def interrupt(source, target):
+            nonlocal publications
+            if Path(target).name == 'journal.json':
+                publications += 1
+                if publications == 2:
+                    raise OSError('interrupted journal publication')
+            return replace(source, target)
+
+        with patch.object(release.os, 'replace', side_effect=interrupt):
+            with self.assertRaisesRegex(OSError, 'interrupted journal'):
+                release.apply(self.stage, self.backup,
+                              {'files': {n: checksum(b'new') for n in ['bin/savsoul', 'tools/helper.py']}},
+                              {'files': {}}, self.root)
+        self.assertEqual(json.loads((self.backup / 'journal.json').read_text()), ['bin/savsoul'])
+        self.assertEqual((self.root / 'bin/savsoul').read_bytes(), b'new')
+        self.assertEqual((self.root / 'tools/helper.py').read_bytes(), b'old')
+        release.restore(self.backup, self.root)
+        self.assertEqual((self.root / 'bin/savsoul').read_bytes(), b'old')
+
+    def test_interrupted_public_journal_still_restores_published_pages(self):
+        """Static-site rollback retains its prior journal if the next update fails."""
+        source, public, backups = self.base / 'public', self.base / 'website', self.base / 'sites'
+        public.mkdir()
+        backups.mkdir()
+        names = ['index.html', 'news.html']
+        for name in names:
+            self.write(source, name, b'new')
+            self.write(public, name, b'old')
+        rename = os.rename
+        publications = 0
+
+        def interrupt(temporary, target):
+            nonlocal publications
+            if Path(target).name == 'journal.json':
+                publications += 1
+                if publications == 2:
+                    raise OSError('interrupted public journal')
+            return rename(temporary, target)
+
+        with patch.object(entry, 'STATE', str(self.base)), \
+                patch.object(entry, 'PUBLIC', str(public)), \
+                patch.object(entry, 'BACKUPS', str(backups)), \
+                patch.object(entry.os, 'walk', return_value=[(str(source), [], names)]), \
+                patch.object(entry, 'public_content', side_effect=lambda path: Path(path).read_bytes()), \
+                patch.object(entry.os, 'rename', side_effect=interrupt):
+            with self.assertRaisesRegex(OSError, 'interrupted public journal'):
+                entry.publish('a' * 40)
+            journal = backups / ('a' * 40) / 'journal.json'
+            self.assertEqual(json.loads(journal.read_text()), ['index.html'])
+            self.assertEqual((public / 'index.html').read_bytes(), b'new')
+            self.assertEqual((public / 'news.html').read_bytes(), b'old')
+            entry.restore_site('a' * 40)
+        for name in names:
+            self.assertEqual((public / name).read_bytes(), b'old')
+
     def test_rejects_private_and_escaping_paths(self):
         for name in ('../evil', '/bin/savsoul', 'tools/../evil', 'data/characters/rawr.json',
                      'data/intermud.json', 'data/mudlet-map-ids.json', 'tools\\evil', 'tools//evil'):
