@@ -1,0 +1,48 @@
+{
+  "apiVersion": "v1",
+  "kind": "List",
+  "items": [
+    {
+      "apiVersion": "v1", "kind": "Namespace",
+      "metadata": {"name": "savsoul", "labels": {
+        "app.kubernetes.io/part-of": "savsoul",
+        "pod-security.kubernetes.io/enforce": "restricted",
+        "pod-security.kubernetes.io/enforce-version": "latest"
+      }}
+    },
+    {
+      "apiVersion": "v1", "kind": "PersistentVolumeClaim",
+      "metadata": {"name": "savsoul-home", "namespace": "savsoul", "labels": {"app.kubernetes.io/part-of": "savsoul"}},
+      "spec": {
+        "accessModes": ["ReadWriteOnce"],
+        "storageClassName": "linode-block-storage-retain",
+        "resources": {"requests": {"storage": "20Gi"}}
+      }
+    },
+    {
+      "apiVersion": "v1", "kind": "Pod",
+      "metadata": {"name": "savsoul-seed", "namespace": "savsoul", "labels": {"app.kubernetes.io/part-of": "savsoul", "role": "maintenance"}},
+      "spec": {
+        "automountServiceAccountToken": false,
+        "activeDeadlineSeconds": 7200,
+        "restartPolicy": "Never",
+        "securityContext": {
+          "runAsNonRoot": true, "runAsUser": 1009, "runAsGroup": 1011,
+          "fsGroup": 1011, "fsGroupChangePolicy": "OnRootMismatch",
+          "seccompProfile": {"type": "RuntimeDefault"}
+        },
+        "containers": [{
+          "name": "seed",
+          "image": "docker.io/library/python:3.12-slim-trixie@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+          "command": ["python", "-c", "import time; time.sleep(7100)"],
+          "workingDir": "/home/savsoul",
+          "env": [{"name": "HOME", "value": "/home/savsoul"}, {"name": "PYTHONDONTWRITEBYTECODE", "value": "1"}],
+          "securityContext": {"allowPrivilegeEscalation": false, "readOnlyRootFilesystem": true, "capabilities": {"drop": ["ALL"]}},
+          "resources": {"requests": {"cpu": "100m", "memory": "96Mi"}, "limits": {"cpu": "500m", "memory": "256Mi"}},
+          "volumeMounts": [{"name": "home", "mountPath": "/home/savsoul"}, {"name": "tmp", "mountPath": "/tmp"}]
+        }],
+        "volumes": [{"name": "home", "persistentVolumeClaim": {"claimName": "savsoul-home"}}, {"name": "tmp", "emptyDir": {}}]
+      }
+    }
+  ]
+}

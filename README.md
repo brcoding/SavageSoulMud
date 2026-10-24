@@ -4,6 +4,10 @@ A recovered Savage Soul world running on a customized [GRIM](https://github.com/
 Rust/Bevy engine. This repository stores the engine adaptations, converted world,
 authored rules/help, wizard editor, client support and deployment tools.
 
+Kubernetes staging and cutover instructions are in
+[deploy/kubernetes/README.md](deploy/kubernetes/README.md), with a separate plan
+for migrating the remaining legacy websites and databases.
+
 ## Play
 
 - MUD: `savsoul.com:4000`
