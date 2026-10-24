@@ -5,7 +5,7 @@ use harness::Mud;
 fn soul_creation_training_equipment_and_restart_preserve_state() {
     let mut mud=Mud::with_savage_soul();
     let (s,_)=mud.connect();
-    for input in ["soul@example.com","y","secretpw","c","Savage","1",""] {let _=mud.send(s,input);}
+    for input in ["soul@example.com","y","secretpw","c","Savage","1","human",""] {let _=mud.send(s,input);}
     mud.send(s,"look").assert_contains("Royal Oak Med Room");
     mud.send(s,"score").assert_contains("600 total, 600 unspent").assert_contains("Credits: 1000");
     mud.send(s,"train body").assert_contains("body is now 6");
@@ -31,7 +31,7 @@ fn soul_creation_training_equipment_and_restart_preserve_state() {
 fn leadership_combat_and_wizard_recovery_use_persistent_conditions() {
     let mut mud=Mud::with_savage_soul();
     let (s,_)=mud.connect();
-    for input in ["combat@example.com","y","secretpw","c","Duelist","1",""] {let _=mud.send(s,input);}
+    for input in ["combat@example.com","y","secretpw","c","Duelist","1","human",""] {let _=mud.send(s,input);}
     mud.edit_character("Duelist",|c|c.roles.push(grim::Role::Admin));
     for input in ["east","east","north","north","west"]{let _=mud.send(s,input);}
     mud.send(s,"combatlog detailed").assert_contains("Saved");

@@ -12,6 +12,7 @@ fn south_gate_is_visible_and_opening_does_not_bypass_security() {
         "c",
         "Traveler",
         "1",
+        "human",
         "",
     ] {
         let _ = mud.send(s, line);

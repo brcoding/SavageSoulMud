@@ -5,7 +5,7 @@ use harness::Mud;
 fn dagger_quest_unlocks_the_south_gate_and_saves_rewards_once() {
     let mut mud = Mud::with_savage_soul();
     let (s, _) = mud.connect();
-    for line in ["quest@example.com", "y", "secretpw", "c", "Hero", "1", ""] {
+    for line in ["quest@example.com", "y", "secretpw", "c", "Hero", "1", "human", ""] {
         let _ = mud.send(s, line);
     }
     mud.send(s, "east")

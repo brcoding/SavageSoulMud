@@ -12,6 +12,7 @@ fn terminal_progress_survives_abort_and_reconnect_and_reward_is_once() {
         "c",
         "Hacker",
         "1",
+        "human",
         "",
     ] {
         let _ = mud.send(s, line);
@@ -98,6 +99,7 @@ fn failed_challenge_locks_and_cannot_be_reset_by_reconnecting_to_device() {
         "c",
         "Locked",
         "1",
+        "human",
         "",
     ] {
         let _ = mud.send(s, line);
