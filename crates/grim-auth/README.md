@@ -71,6 +71,7 @@ before placing (`refuse_banned` in `grim-scene/src/resume.rs`).
 | `LoginCredentials` / `LoginResult` | Messages (structured credentials reuse password/ban checks and report success) | `src/client_login.rs`, `src/input.rs` |
 | `AuthSystems` | SystemSet (Greet and Input order structured sign-in against normal input) | `src/client_login.rs` |
 | `AccessibilityOnboarding` | Resource (default false; one-time screen-reader question on normal login) | `src/accessibility.rs` |
+| `LoginVersion` | Optional resource (binary-supplied build identity printed before the login prompt; escaped and bounded to 128 characters) | `src/greeter.rs` |
 | `RaceRegistry` / `ClassRegistry` | Resource (read for the creation menus; `init_resource`, from `grim-world`) | `src/plugin.rs` |
 | `PersistenceConfig` | Resource (account/character JSON dir; `init_resource`, from `grim-persistence`) | `src/plugin.rs` |
 | `BanList` | Resource (read at every login gate; owned by `grim-persistence`) | `src/greeter.rs`, `src/password.rs`, `src/character_select.rs`, `src/world_entry.rs` |

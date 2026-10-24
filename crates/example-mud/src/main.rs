@@ -6,8 +6,14 @@ use bevy::prelude::*;
 use example_mud::seed;
 use grim::GrimDefaultPlugins;
 
+mod build_identity;
+
 fn main() {
     let args: Vec<String> = std::env::args().collect();
+    if args.get(1).is_some_and(|arg| arg == "--version") {
+        println!("{}", build_identity::label());
+        return;
+    }
     if args.get(1).is_some_and(|arg| arg == "--validate-area") {
         let result = args
             .get(2)
@@ -72,6 +78,7 @@ fn main() {
     example_mud::species::install(&mut app);
     app.insert_resource(grim::CharacterBuildMode::SavageSoul);
     app.insert_resource(grim::AccessibilityOnboarding(true));
+    app.insert_resource(grim::LoginVersion(build_identity::label()));
 
     // Seed the world
     app.add_systems(Startup, seed::seed_world);

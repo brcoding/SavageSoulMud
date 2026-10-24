@@ -21,7 +21,7 @@ pub use grim_actor::{
 };
 pub use grim_auth::{
     AccessibilityOnboarding, AuthPlugin, AuthSystems, CharacterBuildMode,
-    CharacterCreationDefaults, LoginCredentials, LoginResult, ReservedNamePrefixes,
+    CharacterCreationDefaults, LoginCredentials, LoginResult, LoginVersion, ReservedNamePrefixes,
     StartingCredits,
 };
 pub use grim_channel::LastWhisperFrom;

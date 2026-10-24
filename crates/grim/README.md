@@ -37,6 +37,7 @@ Player-facing verbs and where to find their handlers.
 | `GrimDefaultPlugins` | `src/plugin_groups.rs` | `GrimHeadlessPlugins` plus the telnet transport (`telnet_port`, default 4000). The full stack a MUD author gets for free. |
 
 ## Notes
+- `LoginVersion` re-exports the auth resource for a binary to supply its login build identity.
 - Facade / composition-only. It depends on the subsystem crates, re-exports their public surface, and bundles them into plugin groups — nothing here is privileged.
 - `prelude` (`src/prelude.rs`) gives downstream authors a single `use grim::prelude::*;` surface; `src/plugins/mod.rs` re-exports each plugin so `grim::plugins::WorldPlugin` etc. resolve.
 - For what a subsystem actually does, read that crate's own README (e.g. `grim-world`, `grim-scene`, `grim-persistence`).

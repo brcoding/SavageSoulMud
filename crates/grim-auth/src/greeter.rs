@@ -13,6 +13,10 @@ use grim_text::tr;
 
 use crate::throttle::{ReconnectLimits, ReconnectThrottle};
 
+/// Optional build identity supplied by the MUD binary for its login banner.
+#[derive(Resource)]
+pub struct LoginVersion(pub String);
+
 #[allow(clippy::too_many_arguments)]
 pub(crate) fn handle_connection_established(
     mut established: MessageReader<ConnectionEstablished>,
@@ -24,6 +28,7 @@ pub(crate) fn handle_connection_established(
     time: Res<Time>,
     mut disconnect: MessageWriter<DisconnectRequest>,
     mut alerts: MessageWriter<WiznetAlert>,
+    version: Option<Res<LoginVersion>>,
 ) {
     for ev in established.read() {
         // Banned IPs never get a session: refuse with the ban message and
@@ -64,7 +69,11 @@ pub(crate) fn handle_connection_established(
         // The connection banner is game branding. Character-specific accessible
         // output and its onboarding question remain at authenticated world entry.
         let banner = grim_color::ansi(include_str!("../../../assets/login-banner.txt"));
-        let text = format!("{}\n\n{}", banner, tr!("login.prompt"));
+        let identity = version.as_ref().map_or_else(String::new, |v| {
+            let label: String = v.0.chars().filter(|c| !c.is_control()).take(128).collect();
+            format!("{}\n", tr!("login.version", label = label.as_str()))
+        });
+        let text = format!("{}\n\n{}{}", banner, identity, tr!("login.prompt"));
         outputs.write(ConnectionOutput {
             echo: None,
             ..ConnectionOutput::new(ev.connection, text)

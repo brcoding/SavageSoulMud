@@ -29,6 +29,7 @@ pub mod validation;
 
 pub use accessibility::AccessibilityOnboarding;
 pub use build_mode::CharacterBuildMode;
+pub use greeter::LoginVersion;
 pub use plugin::AuthPlugin;
 pub use throttle::ReconnectLimits;
 pub use validation::ReservedNamePrefixes;
