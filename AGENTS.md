@@ -118,6 +118,10 @@ When developing new features, start by asking:
 7. **Update README.md** when architecture, roadmap, or conventions change — not this file.
 7a. **Every crate has a `README.md` following [`docs/README.template.md`](./docs/README.template.md).** It's the map to that crate — Components, Systems, and (GRIM-specifically) **Commands with the file each handler lives in**, plus Resources/Events. Keep it current *in the same change*: whenever you add, move, or remove a Component / System / Resource / Event / Command, update that crate's README so the pointers stay true — the Commands→handler table especially (a stale handler pointer is worse than none). Findability is the point; treat the README as part of the code, not an afterthought.
 8. **NEVER use `--no-verify` on commits.** Pre-commit hooks (lint, fmt, coverage) are mandatory. If they block, fix what they catch.
+   After every PR commit and push, review CodeRabbit feedback and the CI results
+   for that exact commit. Local tests or older green runs are not completion.
+   Read failed job logs, address actionable comments, and report remaining
+   failures explicitly; do not hand off while reviews or checks are pending.
 9. **Codify every root cause.** When the user asks why something broke, when there's confusion or frustration, or when an unstated assumption surfaces — add a rule to AGENTS.md. These signals mean something wasn't obvious. Write it down so the next agent doesn't repeat it.
 10. **100% coverage target, 90% floor.** All code should be tested. The goal is 100% line coverage. The 90% threshold (in the Makefile) exists only as a safety net for genuinely uncoverable lines (unreachable defensive branches, language limitations). Any gap below 90% is a bug — fix it. If a file can't reach 90%, ratchet down in 5% decrements, re-evaluating at each step.
 11. **Tests that own the clock skip `TimePlugin`.** `MinimalPlugins` includes the
