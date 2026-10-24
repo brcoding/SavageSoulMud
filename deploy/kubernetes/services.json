@@ -1,4 +1,9 @@
 {
+  "release": {
+    "cwd": "/home/savsoul/grim",
+    "command": ["/usr/local/bin/python3", "/etc/savsoul/release_server.py"],
+    "env": {}
+  },
   "grim": {
     "cwd": "/home/savsoul/grim",
     "command": [
@@ -20,7 +25,8 @@
       "tools/server-host/remote_editor.py"
     ],
     "env": {
-      "GRIM_BIND_HOST": "0.0.0.0"
+      "GRIM_BIND_HOST": "0.0.0.0",
+      "SAVSOUL_EDITOR_SAVE_BLOCK": "/home/savsoul/state/runner/editor-save-block"
     }
   },
   "intermud": {

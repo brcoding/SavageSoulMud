@@ -7,7 +7,7 @@ verified. A warm snapshot is suitable for testing, not for replacing live saves.
 The stack uses a retained 20Gi volume, one StatefulSet pod, official digest-pinned
 Python 3.12/Debian 13 and Nginx images, and a Linode NodeBalancer. The pod includes
 the game/notify runner, wizard editor, browser terminal, I3 gateway, CPU trainer,
-and TLS/static frontend. It fits a single node; replica count must remain one.
+TLS/static frontend, and private release receiver. It fits a single node; replica count must remain one.
 `OnDelete` prevents an ordinary configuration apply from disconnecting players.
 All private APIs use pod loopback. Shared process visibility allows the editor's
 existing executable-verified copyover helper to signal the game.
@@ -85,7 +85,11 @@ An active game writes new saves after cutover: rollback requires synchronizing
 those writes back before restarting the old stack. DNS reversal alone is unsafe.
 Replace the VM-specific CI release receiver with a narrowly scoped Kubernetes
 release identity before changing the production deploy workflow; never use the
-cluster-admin kubeconfig in GitHub Actions. Do not enable two release targets.
+cluster-admin kubeconfig in GitHub Actions. Only one target owns live production saves.
+During staging, CI explicitly releases to both the VM production environment and
+the isolated Kubernetes candidate. These are separate results; candidate release
+does not switch DNS, synchronize live saves or activate I3. At cutover, disable the
+VM release job and promote the Kubernetes target. See [RELEASES.md](RELEASES.md).
 
 The maintenance pod has a two-hour deadline and is removed after bootstrap;
 do not delete the PVC or its retained PV. The main stack is intentionally isolated

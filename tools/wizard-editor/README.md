@@ -167,3 +167,12 @@ The remote Waitress listener explicitly trusts proxy headers only from
 127.0.0.1, with one trusted hop and only X-Forwarded-For/X-Forwarded-Proto.
 This must be configured in Waitress itself: its default strips untrusted
 forwarded headers before WSGI middleware, causing HTTPS Origin checks to fail.
+
+The Kubernetes launcher sets `SAVSOUL_EDITOR_SAVE_BLOCK` to its shared runner
+state marker. Reads remain available during release verification, but saves and
+restores return503 until the release or rollback completes. This save guard is
+separate from the editor startup freeze so health verification can restart the
+editor without allowing writes into an unfinished release.
+Saves and world reloads acquire the same filesystem lock as the release freeze.
+Reloads retain it through verified successor startup. An unfinished reload leaves
+a durable pending marker and requires operator recovery before further writes.

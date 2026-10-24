@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch, Mock
 
 spec = importlib.util.spec_from_file_location("editor", Path(__file__).with_name("server.py"))
 editor = importlib.util.module_from_spec(spec)
@@ -105,6 +106,81 @@ class EditorTests(unittest.TestCase):
         (self.root / "assets/escape.txt").symlink_to(self.root / "data/accounts/a.json")
         self.assertEqual(self.get("file?path=assets/escape.txt").status_code, 403)
         self.assertEqual(self.client.get("/", base_url="http://evil.example").status_code, 403)
+    def test_release_blocks_saves_until_transaction_finishes(self):
+        self.login()
+        loaded = self.get('file?path=assets/motdlist.txt').json
+        block = self.root / 'editor-save-block'
+        self.app.config['RELEASE_SAVE_BLOCK'] = str(block)
+        block.touch()
+        payload = {'path': 'assets/motdlist.txt', 'revision': loaded['revision'], 'text': 'changed\n'}
+        self.assertEqual(self.post('save', payload).status_code, 503)
+        self.assertEqual((self.root / 'assets/motdlist.txt').read_text(), 'original\n')
+        block.unlink()
+        self.assertEqual(self.post('save', payload).status_code, 200)
+
+    def test_save_replacement_holds_shared_release_lock(self):
+        import fcntl
+        self.login()
+        block = self.root / 'editor-save-block'
+        self.app.config['RELEASE_SAVE_BLOCK'] = str(block)
+        loaded = self.get('file?path=assets/motdlist.txt').json
+        replace = os.replace
+        def guarded_replace(source, destination):
+            if Path(destination).name == 'motdlist.txt':
+                with Path(str(block) + '.lock').open('a') as contender:
+                    with self.assertRaises(BlockingIOError):
+                        fcntl.flock(contender, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            return replace(source, destination)
+        with patch.object(editor.os, 'replace', side_effect=guarded_replace):
+            result = self.post('save', {'path': loaded['path'], 'revision': loaded['revision'], 'text': 'updated\n'})
+        self.assertEqual(result.status_code, 200)
+
+    def test_apply_is_blocked_during_release_and_failed_reload_blocks_deployment(self):
+        self.app = editor.create_app(self.root, self.root / 'state', reload_command=['unused'])
+        self.app.testing = True
+        self.client = self.app.test_client()
+        self.csrf = self.get('session').json['csrf']
+        self.login()
+        block = self.root / 'editor-save-block'
+        self.app.config['RELEASE_SAVE_BLOCK'] = str(block)
+        block.touch()
+        with patch.object(editor.subprocess, 'run') as reload:
+            self.assertEqual(self.post('apply', {}).status_code, 503)
+            reload.assert_not_called()
+
+        block.unlink()
+        (self.root / 'mud.pid').write_text('123')
+        with patch.object(editor.subprocess, 'run', return_value=Mock(returncode=1)):
+            self.assertEqual(self.post('apply', {}).status_code, 503)
+        self.assertTrue((self.root / 'editor-copyover-pending').exists())
+        with patch.object(editor.subprocess, 'run') as reload:
+            self.assertEqual(self.post('apply', {}).status_code, 503)
+            reload.assert_not_called()
+
+    def test_apply_holds_release_lock_until_successor_is_verified(self):
+        import fcntl
+        self.app = editor.create_app(self.root, self.root / 'state', reload_command=['unused'])
+        self.app.testing = True
+        self.client = self.app.test_client()
+        self.csrf = self.get('session').json['csrf']
+        self.login()
+        block = self.root / 'editor-save-block'
+        self.app.config['RELEASE_SAVE_BLOCK'] = str(block)
+        (self.root / 'mud.pid').write_text('123')
+        def reload(*args, **kwargs):
+            self.assertTrue((self.root / 'editor-copyover-pending').exists())
+            with Path(str(block) + '.lock').open('a') as contender:
+                with self.assertRaises(BlockingIOError):
+                    fcntl.flock(contender, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            (self.root / 'mud.pid').write_text('124')
+            return Mock(returncode=0)
+        with patch.object(editor.subprocess, 'run', side_effect=reload), \
+                patch.object(editor.os.path, 'samefile', return_value=True), \
+                patch.object(editor.socket, 'create_connection') as connection:
+            connection.return_value.__enter__.return_value.recv.return_value = b'login ready'
+            self.assertEqual(self.post('apply', {}).status_code, 200)
+        self.assertFalse((self.root / 'editor-copyover-pending').exists())
+
     def test_save_conflict_backup_and_restore(self):
         self.login()
         loaded = self.get("file?path=assets/motdlist.txt").json
