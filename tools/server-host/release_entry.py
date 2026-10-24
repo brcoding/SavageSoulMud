@@ -18,6 +18,7 @@ STATE = '/home/savsoul/state/releases'
 PUBLIC = '/var/www/lpmud'
 BACKUPS = '/var/lib/savsoul-release'
 SERVICES = ['savsoul-editor', 'savsoul-web-terminal']
+LOCK = '/var/lock/savsoul-release.lock'
 
 
 def receiver(action, revision):
@@ -151,6 +152,12 @@ def healthy():
                 time.sleep(1)
 
 
+def game_recovery_needed(revision):
+    backup = STATE + '/backup-' + revision
+    return (os.path.exists(backup + '/live-files-started')
+            or os.path.exists(backup + '/copyover-requested'))
+
+
 def main():
     command = os.environ.get('SSH_ORIGINAL_COMMAND', '')
     if command == 'check':
@@ -161,7 +168,7 @@ def main():
     if not match:
         raise ValueError('Only check, validate <revision>, or deploy <revision> is allowed')
     action, revision = match.groups()
-    with open('/var/lock/savsoul-release.lock', 'w') as lock:
+    with open(LOCK, 'w') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         if action == 'validate':
             receiver(action, revision)
@@ -193,7 +200,8 @@ def main():
                 receiver('rollback', revision)
             if site_started:
                 restore_site(revision)
-            for service in ['savsoul-grim'] + SERVICES:
+            recovery = ['savsoul-grim'] if game_recovery_needed(revision) else []
+            for service in recovery + SERVICES:
                 restart(service)
             healthy()
             raise

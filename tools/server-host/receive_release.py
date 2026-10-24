@@ -127,6 +127,7 @@ def apply(stage, backup, manifest, baseline, root=ROOT):
             continue
         if target.exists():
             atomic_copy(target, backup / 'files' / name, target.stat().st_mode & 0o777)
+        (backup / 'live-files-started').touch()
         journal.append(name)
         (backup / 'journal.json').write_text(json.dumps(journal))
         if name in deleted:
@@ -145,10 +146,12 @@ def game_pid():
     return pid
 
 
-def copyover():
+def copyover(backup):
     old = game_pid()
     subprocess.run([sys.executable, str(ROOT / 'tools/mudlet/export_map.py'),
                     '--root', str(ROOT), '--output', '/var/www/lpmud/mudlet/savsoul.xml'], check=True)
+    (backup / 'copyover-requested').touch()
+    print('Requesting game copyover (SIGUSR2), PID {}.'.format(old), flush=True)
     os.kill(old, signal.SIGUSR2)
     for _ in range(90):
         time.sleep(1)
@@ -158,6 +161,7 @@ def copyover():
                 with socket.create_connection(('127.0.0.1', 4000), timeout=2) as conn:
                     conn.settimeout(2)
                     if conn.recv(4096):
+                        print('Copyover ready: successor PID {} is running the released executable.'.format(new), flush=True)
                         return
         except (OSError, ValueError):
             pass
@@ -206,7 +210,7 @@ def main():
                 atomic_copy(PUBLIC_MAP, backup / 'public-map.xml')
             else:
                 (backup / 'public-map-missing').touch()
-            copyover()
+            copyover(backup)
             public = STATE / 'public'
             if public.exists():
                 shutil.rmtree(public)

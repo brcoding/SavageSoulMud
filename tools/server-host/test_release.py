@@ -2,6 +2,7 @@ import hashlib
 import io
 import json
 import os
+import signal
 from pathlib import Path
 import tarfile
 import tempfile
@@ -152,6 +153,71 @@ class ReleaseTests(unittest.TestCase):
         self.assertEqual(release.requirements(old), release.requirements(new))
         new.write_bytes(b'telnetlib3==5.0.2\naiohttp==3.14.5\n')
         self.assertNotEqual(release.requirements(old), release.requirements(new))
+
+    def exercise_entry(self, failure=None, marker=None):
+        revision = 'a' * 40
+        backups = self.base / 'site-backups'
+        backups.mkdir()
+
+        def receive(action, _revision):
+            if action == 'deploy':
+                if marker:
+                    backup = self.base / ('backup-' + revision)
+                    backup.mkdir()
+                    (backup / marker).touch()
+                if failure:
+                    raise failure
+
+        with patch.dict('os.environ', {'SSH_ORIGINAL_COMMAND': 'deploy ' + revision}), \
+                patch.object(entry, 'STATE', str(self.base)), \
+                patch.object(entry, 'BACKUPS', str(backups)), \
+                patch.object(entry, 'LOCK', str(self.base / 'release.lock')), \
+                patch.object(entry, 'receiver', side_effect=receive), \
+                patch.object(entry.subprocess, 'check_call'), \
+                patch.object(entry, 'publish'), patch.object(entry, 'healthy'), \
+                patch.object(entry, 'restart') as restart:
+            if failure:
+                with self.assertRaisesRegex(RuntimeError, str(failure)):
+                    entry.main()
+            else:
+                entry.main()
+            return [call.args[0] for call in restart.call_args_list]
+
+    def test_successful_release_never_restarts_game_service(self):
+        self.assertEqual(self.exercise_entry(), entry.SERVICES)
+
+    def test_rejected_archive_does_not_restart_game(self):
+        self.assertEqual(self.exercise_entry(RuntimeError('invalid archive')), entry.SERVICES)
+
+    def test_failed_live_file_changes_restart_game_for_recovery(self):
+        self.assertEqual(self.exercise_entry(RuntimeError('apply failed'), 'live-files-started'),
+                         ['savsoul-grim'] + entry.SERVICES)
+
+    def test_failed_copyover_without_file_changes_still_recovers_game(self):
+        self.assertEqual(self.exercise_entry(RuntimeError('copyover failed'), 'copyover-requested'),
+                         ['savsoul-grim'] + entry.SERVICES)
+
+    def test_copyover_signals_old_pid_and_waits_for_new_executable(self):
+        self.backup.mkdir()
+        with patch.object(release, 'game_pid', side_effect=[101, 202]), \
+                patch.object(release.subprocess, 'run') as export, \
+                patch.object(release.os, 'kill') as kill, \
+                patch.object(release.os.path, 'samefile', return_value=True), \
+                patch.object(release.time, 'sleep'), \
+                patch.object(release.socket, 'create_connection') as connect:
+            connect.return_value.__enter__.return_value.recv.return_value = b'login banner'
+            release.copyover(self.backup)
+        kill.assert_called_once_with(101, signal.SIGUSR2)
+        export.assert_called_once()
+        self.assertTrue((self.backup / 'copyover-requested').exists())
+
+    def test_copyover_timeout_is_a_failure(self):
+        self.backup.mkdir()
+        with patch.object(release, 'game_pid', return_value=101), \
+                patch.object(release.subprocess, 'run'), patch.object(release.os, 'kill'), \
+                patch.object(release.time, 'sleep'):
+            with self.assertRaisesRegex(RuntimeError, 'Successor game'):
+                release.copyover(self.backup)
 
 
 if __name__ == '__main__':

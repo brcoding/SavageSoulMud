@@ -5,6 +5,11 @@ release preservation tests, website build and static musl packaging must all pas
 before the `production` deployment job runs. Existing failing quality checks block
 releases; they are not bypassed. PR jobs never receive production secrets.
 
+After checks pass on merge, the release **attempts copyover first** by sending
+`SIGUSR2` to the verified game PID. Successful releases do not restart the game
+service, so supported live player connections can survive the release. The job
+log records the request and the successor PID.
+
 The deployment environment permits only `main`. Releases are serialized without
 canceling an active deployment; the job rejects a revision superseded by a newer
 `main`. Actions also provides a manual workflow run on `main` for a revision that
@@ -43,8 +48,10 @@ The artifact includes the static `bin/savsoul`, tracked `tools/`, authored
 assets/data and generated static website. Runtime accounts, characters, bans,
 network configurations, mapper IDs, signing keys, TLS keys, model weights and
 external gateway/runtime installations are excluded. Production Python requirement
-files must already match the release; dependency changes stop at preflight and
-require separate wheel provisioning for this old host.
+files must already match the release; dependency mismatches and malformed archives
+are rejected during receiver validation in `deploy`, before live files change.
+Such rejection resumes supporting services without restarting the game. Dependency
+changes require separate wheel provisioning for this old host.
 
 Authored assets, help, rooms, rules and quests update only if their live hash still
 matches the previous authored baseline (or already matches the new release).
@@ -65,8 +72,9 @@ certificate validation files. Final checks cover game, editor and web bridge por
 
 ## Failure and recovery
 
-Failure restores changed code/assets and the generated site, then restarts the
-game/editor/bridge through Upstart and checks listeners again. That fallback can
+Failure restores changed code/assets and the generated site, then resumes the
+editor/bridge through Upstart and checks listeners again. The game restarts only
+if live file changes began or copyover was requested. That recovery fallback can
 disconnect players. It restores only files changed by that deployment, keeping
 player progress saved during the attempt. Full private data snapshots are retained
 for administrator recovery and are never automatically restored over newer saves.
