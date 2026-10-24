@@ -88,6 +88,9 @@ Non-component types this crate defines.
 
 ASCII maps and room minimaps share the Savage Soul palette: green `o` rooms, red `@` current location, white paths, and yellow up/down markers. Topology and secret-exit filtering are unchanged.
 
+Map rendering separates deterministic BFS room placement (`place_rooms`) from
+canvas drawing (`render_map`), preserving first-claim collision and exit rules.
+
 `RoomDarkness` opts a room into unlit visibility. `LightSource` marks a lit
 object independently of its later placement/ownership. Both are being-free
 markers; perception and ownership resolution remain in `grim-actor`.

@@ -100,18 +100,17 @@ fn put(canvas: &mut [Vec<char>], x: i32, y: i32, glyph: char) {
     }
 }
 
-/// Render the area around `center` as one [`String`] per canvas row.
-/// `exits` is the live topology (room → its direction links); rooms absent
-/// from the snapshot are dead ends. A room with no snapshot entry still
-/// renders as a lone `@`. Glyphs carry transport-independent `{`-family colour
-/// markup (`@` `{R`, `o` `{g`, links `{w`, up `,` `{Y`, down `'` `{y`), each
-/// reset with `{x` so colour never bleeds into neighbouring text. The `@`
-/// glyph is escaped (`@@`) — a bare `@` is a markup introducer.
-pub fn render_map(
+struct MapLayout {
+    placed: HashMap<Entity, (i32, i32)>,
+    cells: HashMap<(i32, i32), Entity>,
+}
+
+/// Claim room positions in fixed direction order before drawing any connectors.
+fn place_rooms(
     center: Entity,
     exits: &HashMap<Entity, HashMap<Cardinal, Entity>>,
     cfg: &MapConfig,
-) -> Vec<String> {
+) -> MapLayout {
     // ── Layout: BFS claiming grid cells ──
     // `seen` marks every discovered room (so a later path can never move it);
     // `placed`/`cells` hold only rooms that won a cell. A room whose cell is
@@ -154,6 +153,22 @@ pub fn render_map(
             queue.push_back((*next, nx, ny));
         }
     }
+    MapLayout { placed, cells }
+}
+
+/// Render the area around `center` as one [`String`] per canvas row.
+/// `exits` is the live topology (room → its direction links); rooms absent
+/// from the snapshot are dead ends. A room with no snapshot entry still
+/// renders as a lone `@`. Glyphs carry transport-independent `{`-family colour
+/// markup (`@` `{R`, `o` `{g`, links `{w`, up `,` `{Y`, down `'` `{y`), each
+/// reset with `{x` so colour never bleeds into neighbouring text. The `@`
+/// glyph is escaped (`@@`) — a bare `@` is a markup introducer.
+pub fn render_map(
+    center: Entity,
+    exits: &HashMap<Entity, HashMap<Cardinal, Entity>>,
+    cfg: &MapConfig,
+) -> Vec<String> {
+    let MapLayout { placed, cells } = place_rooms(center, exits, cfg);
 
     // ── Draw ──
     let cx = cfg.width as i32 / 2;
@@ -171,21 +186,34 @@ pub fn render_map(
         // Only draw links toward their actual target. A conflicting loop can
         // place that target elsewhere, or put an unrelated room in this cell.
         // Incoming one-way links must not suggest a usable exit from `center`.
-        let visible: HashMap<_, _> = links.iter().filter(|(dir, target)| {
-            if matches!(dir, Cardinal::Up | Cardinal::Down) { return true; }
-            let (dx, dy) = delta(**dir);
-            let expected = (gx + dx, gy + dy);
-            if placed.get(*target).is_some_and(|position| *position != expected) {
-                return false;
-            }
-            if cells.get(&expected).is_some_and(|occupant| occupant != *target) {
-                return false;
-            }
-            if expected == (0, 0) && *room != center {
-                return exits.get(&center).and_then(|out| out.get(&dir.opposite())) == Some(room);
-            }
-            true
-        }).map(|(dir, target)| (*dir, *target)).collect();
+        let visible: HashMap<_, _> = links
+            .iter()
+            .filter(|(dir, target)| {
+                if matches!(dir, Cardinal::Up | Cardinal::Down) {
+                    return true;
+                }
+                let (dx, dy) = delta(**dir);
+                let expected = (gx + dx, gy + dy);
+                if placed
+                    .get(*target)
+                    .is_some_and(|position| *position != expected)
+                {
+                    return false;
+                }
+                if cells
+                    .get(&expected)
+                    .is_some_and(|occupant| occupant != *target)
+                {
+                    return false;
+                }
+                if expected == (0, 0) && *room != center {
+                    return exits.get(&center).and_then(|out| out.get(&dir.opposite()))
+                        == Some(room);
+                }
+                true
+            })
+            .map(|(dir, target)| (*dir, *target))
+            .collect();
         let links = &visible;
         let (x, y) = (cx + gx * 3, cy + gy * 2);
         if links.contains_key(&Cardinal::North) {
@@ -329,9 +357,15 @@ mod tests {
             link(&mut exits, e(1), direction, e(2));
             link(&mut exits, e(2), direction.opposite(), e(1));
             let rows = render_map(e(1), &exits, &MapConfig::MAP);
-            assert_eq!(rows[(10 + 2 * dy) as usize], format!("{}{RM}", " ".repeat((40 + 3 * dx) as usize)));
+            assert_eq!(
+                rows[(10 + 2 * dy) as usize],
+                format!("{}{RM}", " ".repeat((40 + 3 * dx) as usize))
+            );
             let connector = format!("{{w{glyph}{{x");
-            assert_eq!(rows[(10 + dy) as usize].matches(connector.as_str()).count(), 2);
+            assert_eq!(
+                rows[(10 + dy) as usize].matches(connector.as_str()).count(),
+                2
+            );
             assert_eq!(rows, render_map(e(1), &exits, &MapConfig::MAP));
         }
     }
