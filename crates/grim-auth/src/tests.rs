@@ -174,6 +174,7 @@ mod reconnect {
         app.world_mut().spawn(Client::new(conn));
 
         let account = Account {
+            testing: false,
             id: GrimId::new(),
             identifier: "test@example.com".into(),
             password_hash: hash_password("password"),
@@ -325,6 +326,7 @@ mod reconnect {
 
         let char_uuid = GrimId::new();
         let account = Account {
+            testing: false,
             id: GrimId::new(),
             identifier: "test@example.com".into(),
             password_hash: hash_password("password"),
@@ -461,6 +463,7 @@ mod reconnect {
 
         let account_uuid = GrimId::new();
         let account = Account {
+            testing: false,
             id: account_uuid,
             identifier: "test@example.com".into(),
             password_hash: hash_password("password"),
@@ -582,6 +585,7 @@ mod reconnect {
         let real_uuid = GrimId::new();
         let stale_uuid = GrimId::new();
         let account = Account {
+            testing: false,
             id: account_uuid,
             identifier: "test@example.com".into(),
             password_hash: hash_password("password"),
@@ -694,6 +698,7 @@ mod reconnect {
         let account_id = GrimId::new();
         let char_id = GrimId::new();
         app.world_mut().spawn(Account {
+            testing: false,
             id: account_id,
             identifier: "ld@example.com".into(),
             password_hash: hash_password("password"),
@@ -894,6 +899,7 @@ mod login_flow {
         app.world_mut().spawn(Client::new(conn));
 
         let account = Account {
+            testing: false,
             id: GrimId::new(),
             identifier: "test@example.com".into(),
             password_hash: hash_password("password"),
@@ -969,6 +975,7 @@ mod login_flow {
         app.world_mut().spawn(Client::new(conn));
 
         let account = Account {
+            testing: false,
             id: GrimId::new(),
             identifier: "test@example.com".into(),
             password_hash: hash_password("password"),
@@ -1033,6 +1040,7 @@ mod login_flow {
         app.world_mut().spawn(Client::new(conn));
 
         let account = Account {
+            testing: false,
             id: GrimId::new(),
             identifier: "test@example.com".into(),
             password_hash: hash_password("password"),
@@ -1385,6 +1393,7 @@ mod login_flow {
             .id();
         app.world_mut().spawn(Client::new(conn));
         let account = Account {
+            testing: false,
             id: GrimId::new(),
             identifier: "test@example.com".into(),
             password_hash: hash_password("password"),
@@ -1455,6 +1464,7 @@ mod login_flow {
     fn new_account_prompt_used_email_returns_to_login() {
         let (mut app, conn) = app_at_new_account_prompt();
         let account = Account {
+            testing: false,
             id: GrimId::new(),
             identifier: "taken@example.com".into(),
             password_hash: hash_password("password"),
@@ -1645,6 +1655,7 @@ mod character_select {
         let account_id = GrimId::new();
         let char_ids = vec![GrimId::new(), GrimId::new(), GrimId::new()];
         let account = Account {
+            testing: false,
             id: account_id,
             identifier: "test@example.com".into(),
             password_hash: hash_password("password"),
@@ -1740,6 +1751,7 @@ mod character_select {
         let account_id = GrimId::new();
         let char_uuid = GrimId::new();
         let account = Account {
+            testing: false,
             id: account_id,
             identifier: "test@example.com".into(),
             password_hash: hash_password("password"),
@@ -1820,6 +1832,7 @@ mod character_select {
         let account_a_id = GrimId::new();
         let char_a = GrimId::new();
         app.world_mut().spawn(Account {
+            testing: false,
             id: account_a_id,
             identifier: "a@example.com".into(),
             password_hash: hash_password("password"),
@@ -1901,6 +1914,7 @@ mod character_select {
         let account_entity = app
             .world_mut()
             .spawn(Account {
+                testing: false,
                 id: GrimId::new(),
                 identifier: "r@example.com".into(),
                 password_hash: hash_password("password"),
@@ -2015,6 +2029,7 @@ mod disk_lifecycle {
         let account_id = GrimId::new();
         let char_id = GrimId::new();
         app.world_mut().spawn(Account {
+            testing: false,
             id: account_id,
             identifier: "disk@example.com".into(),
             password_hash: hash_password("password"),
@@ -2091,6 +2106,7 @@ mod disk_lifecycle {
         let account_id = GrimId::new();
         let char_id = GrimId::new();
         app.world_mut().spawn(Account {
+            testing: false,
             id: account_id,
             identifier: "menu@example.com".into(),
             password_hash: hash_password("password"),
@@ -2180,6 +2196,7 @@ mod disk_lifecycle {
         let account_id = GrimId::new();
         let char_id = GrimId::new();
         app.world_mut().spawn(Account {
+            testing: false,
             id: account_id,
             identifier: "take@example.com".into(),
             password_hash: hash_password("password"),
@@ -2293,6 +2310,7 @@ mod character_creation {
         app.world_mut().insert_resource(StartingRoom(room));
 
         let account = Account {
+            testing: false,
             id: GrimId::new(),
             identifier: "maker@example.com".into(),
             password_hash: hash_password("password"),
@@ -2539,6 +2557,7 @@ mod legacy_backfill {
         let account_id = GrimId::new();
         let char_id = GrimId::new();
         app.world_mut().spawn(Account {
+            testing: false,
             id: account_id,
             identifier: "legacy@example.com".into(),
             password_hash: hash_password("password"),
@@ -2652,6 +2671,7 @@ mod legacy_backfill {
         let account_id = GrimId::new();
         let char_id = GrimId::new();
         app.world_mut().spawn(Account {
+            testing: false,
             id: account_id,
             identifier: "legacy@example.com".into(),
             password_hash: hash_password("password"),
@@ -2708,6 +2728,7 @@ mod legacy_backfill {
         let account_id = GrimId::new();
         let char_id = GrimId::new();
         app.world_mut().spawn(Account {
+            testing: false,
             id: account_id,
             identifier: "legacy@example.com".into(),
             password_hash: hash_password("password"),
@@ -3042,6 +3063,7 @@ mod bans {
         let conn = spawn_conn(&mut app, 1);
         app.world_mut().spawn(Client::new(conn));
         app.world_mut().spawn(Account {
+            testing: false,
             id: GrimId::new(),
             identifier: "doomed@example.com".into(),
             password_hash: hash_password("password"),
@@ -3096,6 +3118,7 @@ mod bans {
         let acct_e = app
             .world_mut()
             .spawn(Account {
+                testing: false,
                 id: account_id,
                 identifier: "player@example.com".into(),
                 password_hash: hash_password("password"),
@@ -3187,6 +3210,7 @@ mod bans {
         app.world_mut().spawn(Client::new(conn));
         let account_id = GrimId::new();
         app.world_mut().spawn(Account {
+            testing: false,
             id: account_id,
             identifier: "player@example.com".into(),
             password_hash: hash_password("password"),
@@ -3313,7 +3337,7 @@ mod structured_login {
         let mut app=test_app();let room=spawn_room(&mut app);app.world_mut().insert_resource(StartingRoom(room));
         let conn=spawn_conn(&mut app,1);app.world_mut().spawn(Client::new(conn));
         let account_id=GrimId::new();let char_id=GrimId::new();
-        app.world_mut().spawn(Account{id:account_id,identifier:"gmcp@example.com".into(),password_hash:hash_password("sensitivepw"),characters:vec![char_id],created_at:Utc::now()});
+        app.world_mut().spawn(Account{testing:false,id:account_id,identifier:"gmcp@example.com".into(),password_hash:hash_password("sensitivepw"),characters:vec![char_id],created_at:Utc::now()});
         let stored=StoredCharacter{credits:0,id:char_id,account_id,name:"Gmcptest".into(),created_at:Utc::now(),last_room:None,roles:vec![],gender:Gender::Neutral,race:"human".into(),class:"warrior".into(),level:1,title:None,restrings:Default::default(),config:Default::default(),game_state:Default::default(),inventory:vec![]};
         let dir=app.world().resource::<PersistenceConfig>().dir.clone();write_disk_char(&dir,&stored);
         app.update();

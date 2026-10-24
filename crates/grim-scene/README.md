@@ -116,3 +116,14 @@ The game-specific `intermud`, `i3` and `imud` aliases are wizard-gated in `src/c
 Room minimaps reserve an eleven-column gutter; `formatter::staple_minimap` wraps room text in the remaining 69 visible columns before combining rows, preserving long descriptions and colour tokens within the standard 80-column layout.
 
 Room/minimap text wrapping uses the connection's negotiated terminal width when available, defaulting to 80 columns.
+
+## Staff testing visibility
+
+| Command | Handler | Purpose |
+|---|---|---|
+| `wizinvis [on\|off]` | `src/staff.rs::handle_staff` | Wizard-only persistent visibility toggle. |
+| `testaccount <character> on\|off` | `src/staff.rs::handle_staff` | Wizard-only, immediately persisted account-wide testing flag. |
+
+`staff::sync_testing` runs at PostStartup and before in-game input/output. Lists, attributed broadcasts, room/entity presence and offline lookups use shared perception, retaining admin supervision.
+
+See [staff testing](../../docs/STAFF-TESTING.md) for permissions and shared-world limitations.

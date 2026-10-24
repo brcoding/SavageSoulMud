@@ -271,6 +271,15 @@ fn build_registry() -> CommandRegistry<Command> {
     // `map` â€” bare only (`map <anything>` is unknown, like `sockets`). The `m`
     // prefix is uncontested, so this steals no abbreviation.
     r.register("map", |rest| rest.trim().is_empty().then_some(Command::Map));
+    r.register("wizinvis", |rest| match rest.trim().to_ascii_lowercase().as_str() {
+        ""=>Some(Command::WizInvis{enabled:None}),"on"=>Some(Command::WizInvis{enabled:Some(true)}),"off"=>Some(Command::WizInvis{enabled:Some(false)}),_=>None,
+    });
+    r.register("testaccount", |rest| {
+        let parts:Vec<_>=rest.split_whitespace().collect();
+        if parts.len()!=2 {return None;}
+        let enabled=match parts[1].to_ascii_lowercase().as_str(){"on"=>true,"off"=>false,_=>return None};
+        Some(Command::TestAccount{target:parts[0].into(),enabled})
+    });
     r.register("who", |_| Some(Command::Who));
     r.register("wizlist", |_| Some(Command::Wizlist));
     r.register("where", |_| Some(Command::Where));

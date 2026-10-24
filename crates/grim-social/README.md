@@ -80,3 +80,9 @@ keys `social.<name>.<case>.<audience>` hold the defaults.
 
 ---
 *Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
+
+## Staff testing visibility
+
+Social target/audience resolution excludes imperceptible participants before resolving names or rendering messages.
+
+See [staff testing](../../docs/STAFF-TESTING.md) for permissions and shared-world limitations.

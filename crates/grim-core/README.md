@@ -67,3 +67,9 @@ This crate owns no `Resource`s — `StartingRoom` moved to `grim-world` in Place
 `components::ItemCondition` is optional per-instance quality data with relative labels. `ItemDecay` carries absolute start/expiry seconds; game plugins own decay policy and scheduling. Neither type persists runtime entity IDs.
 
 CarriedBy is the single shared placement type in components.rs, reexported by grim-object. This transitional ownership lets actor look inspect its own pack without an actor-to-object dependency.
+
+## Staff testing visibility
+
+`Account.testing` defaults false for existing saves and is staff-managed. `WizInvis` and `TestAccount` are session-admin command intents.
+
+See [staff testing](../../docs/STAFF-TESTING.md) for permissions and shared-world limitations.

@@ -71,7 +71,7 @@ impl Plugin for AuthPlugin {
                 handle_pregame_input.in_set(crate::AuthSystems::Input)
                     .after(handle_connection_established)
                     .after(SceneSystems::TouchInput)
-                    .before(SceneSystems::InGameInput),
+                    .before(SceneSystems::Visibility),
             ),
         );
     }

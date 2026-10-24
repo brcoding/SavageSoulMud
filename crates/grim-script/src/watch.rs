@@ -32,7 +32,7 @@ pub(crate) fn on_attempt_walk(
     mut trigger: On<AttemptWalk>,
     creatures: Query<(Entity, &ScriptTriggers, &InRoom), With<Creature>>,
     mob_names: Query<&GrimName>,
-    admins: Query<(Entity, &Character, &Player)>,
+    admins: Query<(Entity, &Character, Option<&Player>)>,
     registry: Option<Res<ChannelRegistry>>,
     mut speech: MessageWriter<ChannelMessage>,
     mut info: MessageWriter<InfoMessage>,
@@ -58,7 +58,7 @@ pub(crate) fn on_attempt_leave(
     mut trigger: On<AttemptLeave>,
     creatures: Query<(Entity, &ScriptTriggers, &InRoom), With<Creature>>,
     mob_names: Query<&GrimName>,
-    admins: Query<(Entity, &Character, &Player)>,
+    admins: Query<(Entity, &Character, Option<&Player>)>,
     registry: Option<Res<ChannelRegistry>>,
     mut speech: MessageWriter<ChannelMessage>,
     mut info: MessageWriter<InfoMessage>,
@@ -84,7 +84,7 @@ pub(crate) fn on_attempt_enter(
     mut trigger: On<AttemptEnter>,
     creatures: Query<(Entity, &ScriptTriggers, &InRoom), With<Creature>>,
     mob_names: Query<&GrimName>,
-    admins: Query<(Entity, &Character, &Player)>,
+    admins: Query<(Entity, &Character, Option<&Player>)>,
     registry: Option<Res<ChannelRegistry>>,
     mut speech: MessageWriter<ChannelMessage>,
     mut info: MessageWriter<InfoMessage>,
@@ -109,7 +109,7 @@ pub(crate) fn on_leave(
     trigger: On<Leave>,
     creatures: Query<(Entity, &ScriptTriggers, &InRoom), With<Creature>>,
     mob_names: Query<&GrimName>,
-    admins: Query<(Entity, &Character, &Player)>,
+    admins: Query<(Entity, &Character, Option<&Player>)>,
     registry: Option<Res<ChannelRegistry>>,
     mut speech: MessageWriter<ChannelMessage>,
     mut info: MessageWriter<InfoMessage>,
@@ -132,7 +132,7 @@ pub(crate) fn on_enter(
     trigger: On<Enter>,
     creatures: Query<(Entity, &ScriptTriggers, &InRoom), With<Creature>>,
     mob_names: Query<&GrimName>,
-    admins: Query<(Entity, &Character, &Player)>,
+    admins: Query<(Entity, &Character, Option<&Player>)>,
     registry: Option<Res<ChannelRegistry>>,
     mut speech: MessageWriter<ChannelMessage>,
     mut info: MessageWriter<InfoMessage>,
@@ -162,7 +162,7 @@ fn fire(
     room: Entity,
     creatures: &Query<(Entity, &ScriptTriggers, &InRoom), With<Creature>>,
     mob_names: &Query<&GrimName>,
-    admins: &Query<(Entity, &Character, &Player)>,
+    admins: &Query<(Entity, &Character, Option<&Player>)>,
     registry: Option<&ChannelRegistry>,
     speech: &mut MessageWriter<ChannelMessage>,
     info: &mut MessageWriter<InfoMessage>,
@@ -197,6 +197,8 @@ fn fire(
                         Some(say) => {
                             for text in outcome.said {
                                 speech.write(ChannelMessage {
+                                    origin: Some(mover),
+                                    hidden_origin: admins.get(mover).is_ok_and(|(_,c,_)|c.is_hidden()),
                                     channel: say.clone(),
                                     actor: mob,
                                     text: text.clone(),
@@ -238,7 +240,7 @@ fn report(
     mob_name: &str,
     on: TriggerKind,
     error: &str,
-    admins: &Query<(Entity, &Character, &Player)>,
+    admins: &Query<(Entity, &Character, Option<&Player>)>,
     info: &mut MessageWriter<InfoMessage>,
 ) {
     bevy::log::error!(
@@ -251,8 +253,8 @@ fn report(
         trigger = on.as_str(),
         error = error
     );
-    for (admin, character, _) in admins.iter() {
-        if character.is_admin() {
+    for (admin, character, player) in admins.iter() {
+        if character.is_admin() && player.is_some() {
             info.write(InfoMessage {
                 target: admin,
                 text: text.clone(),

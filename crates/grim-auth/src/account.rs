@@ -35,6 +35,7 @@ pub(crate) fn create_account(
     match validate_password(text.trim()) {
         Ok(()) => {
             let account = Account {
+                testing: false,
                 id: GrimId::new(),
                 identifier: identifier.to_string(),
                 password_hash: hash_password(text.trim()),

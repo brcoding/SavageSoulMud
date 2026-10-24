@@ -189,6 +189,7 @@ mod reconnect {
         app.world_mut().insert_resource(StartingRoom(room));
 
         let account = Account {
+            testing: false,
             id: GrimId::new(),
             identifier: "resume@example.com".into(),
             password_hash: String::new(),
@@ -249,6 +250,7 @@ mod reconnect {
             app.world_mut().insert_resource(StartingRoom(room));
 
             let account = Account {
+                testing: false,
                 id: GrimId::new(),
                 identifier: "banned-resume@example.com".into(),
                 password_hash: String::new(),
@@ -324,6 +326,7 @@ mod reconnect {
             app.world_mut().insert_resource(StartingRoom(room));
 
             let account = Account {
+                testing: false,
                 id: GrimId::new(),
                 identifier: "doomed-acct@example.com".into(),
                 password_hash: String::new(),
@@ -386,6 +389,7 @@ mod reconnect {
             app.world_mut().insert_resource(StartingRoom(room));
 
             let account = Account {
+                testing: false,
                 id: GrimId::new(),
                 identifier: "clean-resume@example.com".into(),
                 password_hash: String::new(),
@@ -502,6 +506,10 @@ mod output_format {
             .id();
 
         app.world_mut().write_message(ChannelMessage {
+
+            origin: None,
+
+            hidden_origin: false,
             channel: Channel {
                 name: "say".to_string(),
                 scope: grim_core::channel::Scope::Room,
@@ -2324,6 +2332,7 @@ mod ingame_commands {
         let account = app
             .world_mut()
             .spawn(Account {
+                testing: false,
                 id: GrimId::new(),
                 identifier: "spy@xf00.com".into(),
                 password_hash: String::new(),

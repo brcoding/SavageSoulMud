@@ -43,6 +43,7 @@ fn answer_wizlist(
         ..ConnectionOutput::new(
             conn,
             format_wizlist(
+                snapshot.iter().find(|s|s.connection==conn).and_then(|s|s.character),
                 player_chars,
                 linkdead,
                 &afk_chars(snapshot),
@@ -70,7 +71,7 @@ fn character_is_admin(
 /// Registry names masked as unknown for non-admins (see `dispatch_admin_gated`
 /// and the session-local `sockets` gate). The `commands` grid hides these
 /// from non-admins so the list only shows what the actor can use.
-const ADMIN_GATED_NAMES: &[&str] = &["shutdown", "goto", "gecho", "ban", "sockets", "wiznet", "intermud", "i3", "imud", "zebedee", "i2", "grapevine", "gv"];
+const ADMIN_GATED_NAMES: &[&str] = &["wizinvis", "testaccount", "shutdown", "goto", "gecho", "ban", "sockets", "wiznet", "intermud", "i3", "imud", "zebedee", "i2", "grapevine", "gv"];
 
 /// Answer `commands`: the registry grid minus the `socials` section (listed
 /// by its own lister) and minus admin verbs for non-admins. What remains is
@@ -116,7 +117,7 @@ fn answer_who(
         echo: None,
         ..ConnectionOutput::new(
             conn,
-            format_who(player_chars, linkdead, &afk_chars(snapshot), res),
+            format_who(player_chars, linkdead, &afk_chars(snapshot), res, snapshot.iter().find(|s|s.connection==conn).and_then(|s|s.character)),
         )
     });
 }
@@ -202,7 +203,7 @@ pub(crate) fn handle_ingame(
                     echo: None,
                     ..ConnectionOutput::new(
                         conn,
-                        finger::format(target, player_chars, descriptions, persistence),
+                        finger::format(target, player_chars, descriptions, persistence, char_entity),
                     )
                 });
             }
@@ -244,10 +245,12 @@ pub(crate) fn handle_ingame(
                 }
             }
             Command::SavageSoul { ref verb, .. } if ["intermud", "i3", "imud", "zebedee", "i2", "grapevine", "gv"].contains(&verb.as_str()) => {
-                let is_admin = character_is_admin(characters, char_entity);
+                let is_admin = character_is_admin(characters, char_entity) && characters.get(char_entity).is_ok_and(|(_,c,_,_)|!c.is_hidden());
                 dispatch_admin_gated(cmd, is_admin, conn, &mut client.input_queue, outputs);
             }
-            Command::Shutdown { .. }
+            Command::WizInvis {..}
+            | Command::TestAccount {..}
+            | Command::Shutdown { .. }
             | Command::Reboot { .. }
             | Command::Copyover { .. }
             | Command::Goto { .. }
@@ -368,7 +371,8 @@ pub(crate) fn process_command_queue(
                 }
                 commands.entity(entity).despawn();
                 // The entity is gone after this: the room rides on the message.
-                if let Some(room) = char_room {
+                let hidden=client.character.and_then(|e|characters.get(e).ok()).is_some_and(|(_,_,c)|c.is_hidden());
+                if let Some(room) = char_room.filter(|_|!hidden) {
                     announce_logout.write(LogoutAnnounce {
                         name: char_name.clone(),
                         room,

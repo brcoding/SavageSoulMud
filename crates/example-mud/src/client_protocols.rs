@@ -30,7 +30,7 @@ pub(crate) fn register(app:&mut App) {
     let ids=std::fs::read(ids_path).ok().and_then(|v|serde_json::from_slice::<MapperIds>(&v).ok()).unwrap_or_default();
     app.insert_resource(ids);
     let settings=std::fs::read(path).ok().and_then(|data|serde_json::from_slice::<Settings>(&data).ok()).unwrap_or_default();
-    app.insert_resource(settings).init_resource::<State>().add_message::<TelnetInput>().add_message::<TelnetOutput>().add_systems(Update,tick);
+    app.insert_resource(settings).init_resource::<State>().add_message::<TelnetInput>().add_message::<TelnetOutput>().add_systems(Update,tick.after(grim::SceneSystems::Staff));
 }
 fn protocol(world:&mut World,connection:Entity,option:u8,payload:Vec<u8>) { world.write_message(TelnetOutput {connection,option,payload}); }
 fn gmcp(world:&mut World,connection:Entity,name:&str,value:&Value) { protocol(world,connection,GMCP,format!("{name} {value}").into_bytes()); }
@@ -88,7 +88,7 @@ fn msdp_commands(payload:&[u8])->Vec<(String,Vec<String>)> {
     commands
 }
 fn mssp(world:&mut World,connection:Entity) {
-    let settings=world.resource::<Settings>().clone();let players=world.query::<&Player>().iter(world).count();
+    let settings=world.resource::<Settings>().clone();let players=world.query::<(&Player,Option<&Character>)>().iter(world).filter(|(_,c)|c.is_none_or(|c|!c.is_hidden())).count();
     let mut fields=vec![("NAME",settings.name.clone()),("PLAYERS",players.to_string()),("UPTIME",settings.boot_at.to_string()),("PORT","4000".into()),("CODEBASE","Grim".into()),("FAMILY","Custom".into()),("GAMESYSTEM","Savage Soul".into()),("STATUS","Development".into()),("LANGUAGE","English".into()),("CHARSET","UTF-8".into()),("GMCP","1".into()),("MSDP","1".into()),("MSSP","1".into()),("MXP","1".into()),("MSP","1".into()),("MTTS","1".into()),("ANSI","1".into()),("INTERMUD","I3,Zebedee".into())];
     if !settings.website.is_empty(){fields.push(("WEBSITE",settings.website.clone()));}
     if settings.tls_port!=0 {fields.push(("TLS",settings.tls_port.to_string()));}
@@ -225,10 +225,23 @@ pub(crate) fn command(world:&mut World,actor:Entity,arg:&str)->Result<(),String>
 mod tests {
     use super::*;
     #[test]
+    fn public_player_count_excludes_hidden_staff() {
+        let mut world=World::new();world.init_resource::<Settings>();world.init_resource::<Messages<TelnetOutput>>();
+        for (name,roles) in [("Visible",vec![]),("Hidden",vec![grim::Role::Tester])] {
+            let mut stored:StoredCharacter=serde_json::from_value(json!({"id":grim::GrimId::new(),"account_id":grim::GrimId::new(),"name":name,"created_at":"2026-10-23T00:00:00Z"})).unwrap();
+            stored.roles=roles;
+            world.spawn(stored.into_components()).insert(Player{connection:Entity::PLACEHOLDER});
+        }
+        mssp(&mut world,Entity::PLACEHOLDER);
+        let messages=world.resource::<Messages<TelnetOutput>>();let mut cursor=messages.get_cursor();
+        let payload=&cursor.read(messages).next().unwrap().payload;
+        assert!(payload.windows(b"\x01PLAYERS\x021\x01".len()).any(|part|part==b"\x01PLAYERS\x021\x01"));
+    }
+    #[test]
     fn deferred_reports_are_processed_in_order_on_the_next_tick() {
         let mut app=App::new();
         app.init_resource::<Time>().init_resource::<State>().init_resource::<Settings>().init_resource::<MapperIds>();
-        app.add_message::<TelnetInput>().add_message::<TelnetOutput>().add_systems(Update,tick);
+        app.add_message::<TelnetInput>().add_message::<TelnetOutput>().add_systems(Update,tick.after(grim::SceneSystems::Staff));
         let connection=app.world_mut().spawn((Connection{id:1,addr:"127.0.0.1:1234".parse().unwrap(),echo_hidden:false},TelnetCapabilities{gmcp:true,msdp:true,..Default::default()})).id();
         for _ in 0..3 {app.world_mut().write_message(TelnetInput{connection,option:GMCP,payload:b"Core.Ping".to_vec()});}
         for variable in REPORTABLE {app.world_mut().write_message(TelnetInput{connection,option:MSDP,payload:msdp_pair("REPORT",&json!(variable))});}
@@ -246,7 +259,7 @@ mod tests {
     fn backlog_overflow_requests_an_explicit_disconnect() {
         let mut app=App::new();
         app.init_resource::<Time>().init_resource::<State>().init_resource::<Settings>().init_resource::<MapperIds>();
-        app.add_message::<TelnetInput>().add_message::<TelnetOutput>().add_message::<grim::ConnectionOutput>().add_message::<grim::DisconnectRequest>().add_systems(Update,tick);
+        app.add_message::<TelnetInput>().add_message::<TelnetOutput>().add_message::<grim::ConnectionOutput>().add_message::<grim::DisconnectRequest>().add_systems(Update,tick.after(grim::SceneSystems::Staff));
         let connection=app.world_mut().spawn((Connection{id:1,addr:"127.0.0.1:1234".parse().unwrap(),echo_hidden:false},TelnetCapabilities{gmcp:true,..Default::default()})).id();
         for _ in 0..=INPUT_BACKLOG {app.world_mut().write_message(TelnetInput{connection,option:GMCP,payload:b"Core.Ping".to_vec()});}
         app.update();
@@ -271,7 +284,7 @@ mod tests {
     fn protocol_bursts_obey_each_connections_tick_budget() {
         let mut app=App::new();
         app.init_resource::<Time>().init_resource::<State>().init_resource::<Settings>().init_resource::<MapperIds>();
-        app.add_message::<TelnetInput>().add_message::<TelnetOutput>().add_systems(Update,tick);
+        app.add_message::<TelnetInput>().add_message::<TelnetOutput>().add_systems(Update,tick.after(grim::SceneSystems::Staff));
         let mut connections=Vec::new();
         for id in 1..=2 {
             let connection=app.world_mut().spawn((Connection{id,addr:"127.0.0.1:1234".parse().unwrap(),echo_hidden:false},TelnetCapabilities{gmcp:true,..Default::default()})).id();

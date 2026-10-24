@@ -565,6 +565,7 @@ mod tests {
         let admin_conn = spawn_conn(&mut app, 1, "127.0.0.1:4001");
         let admin = spawn_admin(&mut app, "Root", admin_conn);
         let acct = Account {
+            testing: false,
             id: GrimId::new(),
             identifier: "doomed@example.com".into(),
             password_hash: "hash".into(),

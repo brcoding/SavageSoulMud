@@ -30,11 +30,12 @@ pub(crate) fn find_being(
     room: Entity,
     actor: Entity,
     beings: &Beings,
+    visibility: &grim_actor::visibility::Visibility,
 ) -> Option<(Entity, String, bool)> {
     let here = beings_in(room, beings, Some(actor));
     let found = query(
         spec,
-        here.into_iter().filter_map(|e| {
+        here.into_iter().filter(|e|visibility.sees_actor(actor,*e)&&visibility.sees_actor(*e,actor)).filter_map(|e| {
             let (_, _, nm, kw, ..) = beings.get(e).ok()?;
             Some((e, nm.0.as_str(), kw.map(|k| k.0.as_slice()).unwrap_or(&[])))
         }),
@@ -53,6 +54,7 @@ pub(crate) fn handle_give(
     inroom: Query<&InRoom>,
     carried: Carried,
     beings: Beings,
+    visibility: grim_actor::visibility::Visibility,
     names: Query<&GrimName>,
     mut transfers: MessageWriter<TransferEvent>,
     mut info: MessageWriter<InfoMessage>,
@@ -106,7 +108,7 @@ pub(crate) fn handle_give(
             });
             continue;
         };
-        match find_being(&being_spec, actor_room.room, actor, &beings) {
+        match find_being(&being_spec, actor_room.room, actor, &beings, &visibility) {
             Some((recipient, recipient_name, false)) => {
                 for entity in held {
                     let Ok((_, name, _, _, _, _, _)) = carried.get(entity) else {

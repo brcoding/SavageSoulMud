@@ -36,6 +36,14 @@ pub fn render(template: &str, args: &[(&str, &str)]) -> String {
 #[allow(clippy::too_many_lines)] // reason: flat key-default table, one line per key
 fn default_string(key: &str) -> String {
     match key {
+        "staff.test_always_hidden" => "Test accounts are always invisible. A wizard must use testaccount <character> off to return the account to normal.\n",
+        "staff.invis_on" => "Wizard invisibility on. Ordinary players cannot see you or your actions.\n",
+        "staff.invis_off" => "Wizard invisibility off. You are visible again.\n",
+        "staff.save_failed" => "Could not save the account change. Nothing changed.\n",
+        "staff.account_missing" => "That account is unavailable.\n",
+        "staff.character_missing" => "No such character is loaded.\n",
+        "staff.test_on" => "Test account enabled for %{name}. All characters on that account are hidden; no wizard privileges were granted.\n",
+        "staff.test_off" => "Test account disabled for %{name}. Normal character visibility applies.\n",
         "login.prompt" => "Character name or account email address (\"help\" for more info): ",
         "login.password_prompt" => "Password: ",
         "login.choose_password" => "Choose a password: ",

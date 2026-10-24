@@ -38,6 +38,7 @@ pub(crate) type PlayerChars<'w, 's> = Query<
 /// `wizlist`.
 #[derive(bevy::ecs::system::SystemParam)]
 pub(crate) struct SessionRes<'w> {
+    pub(crate) persistence: Res<'w, grim_persistence::PersistenceConfig>,
     pub(crate) registry: Res<'w, grim_command::CommandRegistry<Command>>,
     pub(crate) races: Res<'w, RaceRegistry>,
     pub(crate) classes: Res<'w, ClassRegistry>,

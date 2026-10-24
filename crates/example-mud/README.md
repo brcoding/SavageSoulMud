@@ -263,3 +263,9 @@ private backup goes outside the character scan directory into rebuild-backups.
 Injuries, mana already spent, quests, roles, location and preferences survive.
 
 `--validate-creator <path>` validates creator settings for the wizard editor.
+
+## Staff testing visibility
+
+Wizard commands `wizinvis [on\|off]` and `testaccount <character> on\|off` use `grim-scene/src/staff.rs`. Custom medical/Morlock announcements retain hidden origin; public Intermud/Grapevine/Zebedee presence excludes hidden staff.
+
+See [staff testing](../../docs/STAFF-TESTING.md) for permissions and shared-world limitations.

@@ -17,6 +17,7 @@ pub(crate) fn handle_reply(
     // excluded.
     players: Query<(), LivePc>,
     names: Query<&Name>,
+    visibility: grim_actor::visibility::Visibility,
     mut info: MessageWriter<InfoMessage>,
     mut commands: Commands,
 ) {
@@ -35,7 +36,7 @@ pub(crate) fn handle_reply(
         };
         // Linkdead is fine (they'll see it on return); only a target that has
         // fully left the world (no longer a player entity) can't be replied to.
-        if players.get(target).is_err() {
+        if players.get(target).is_err() || !visibility.sees_actor(actor,target) || !visibility.sees_actor(target,actor) {
             info.write(InfoMessage {
                 target: actor,
                 text: "They are no longer here to reply to.\n".into(),

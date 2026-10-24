@@ -211,7 +211,7 @@ struct Bridge {
     last_seen: HashMap<usize, Instant>,
 }
 pub(crate) fn register(app: &mut App) {
-    app.add_systems(Startup, start).add_systems(Update, tick);
+    app.add_systems(Startup, start).add_systems(Update, tick.after(grim::SceneSystems::Staff));
 }
 fn start(world: &mut World) {
     let Ok(bytes) = std::fs::read("data/zebedee.json") else {
@@ -591,7 +591,7 @@ fn online_wizards(world: &mut World) -> Vec<(Entity, String)> {
     world
         .query::<(Entity, &GrimName, &Character, &Player)>()
         .iter(world)
-        .filter(|(_, _, c, _)| c.is_admin())
+        .filter(|(_, _, c, _)| c.is_admin() && !c.is_hidden())
         .map(|(e, n, _, _)| (e, n.0.clone()))
         .collect()
 }

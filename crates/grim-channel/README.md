@@ -85,3 +85,9 @@ app.world_mut().resource_mut::<ChannelRegistry>().add_channel(Channel {
 
 ---
 *Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
+
+## Staff testing visibility
+
+Tell/reply resolve only mutually visible participants before updating reply history. `ChannelMessage.origin` / `hidden_origin` retain causal privacy for script-triggered NPC speech; ordinary channel messages leave them empty/false.
+
+See [staff testing](../../docs/STAFF-TESTING.md) for permissions and shared-world limitations.

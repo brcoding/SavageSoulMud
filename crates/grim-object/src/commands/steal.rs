@@ -29,6 +29,7 @@ pub(crate) fn handle_steal(
     inroom: Query<&InRoom>,
     carried: Carried,
     beings: Beings,
+    visibility: grim_actor::visibility::Visibility,
     names: Query<&GrimName>,
     mut transfers: MessageWriter<TransferEvent>,
     mut info: MessageWriter<InfoMessage>,
@@ -60,7 +61,7 @@ pub(crate) fn handle_steal(
             continue;
         };
         let Some((victim, victim_name, _)) =
-            find_being(&being_spec, actor_room.room, actor, &beings)
+            find_being(&being_spec, actor_room.room, actor, &beings, &visibility)
         else {
             info.write(InfoMessage {
                 target: actor,

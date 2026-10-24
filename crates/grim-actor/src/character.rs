@@ -29,6 +29,7 @@ use grim_world::RoomLocation;
 #[serde(rename_all = "lowercase")]
 pub enum Role {
     Admin,
+    Tester,
 }
 
 /// A player character â€” the PC-only being. Belongs to an account, can be
@@ -68,6 +69,20 @@ pub struct Character {
 }
 
 impl Character {
+    pub fn is_tester(&self) -> bool {
+        self.roles.contains(&Role::Tester)
+    }
+
+    pub fn is_hidden(&self) -> bool {
+        self.is_tester()
+            || (self.is_admin()
+                && self.game_state.get("wizinvis").and_then(|v| v.as_bool()) == Some(true))
+    }
+
+    /// Self and administrators can supervise hidden actors; ordinary users cannot.
+    pub fn visible_to(&self, viewer: Option<&Character>, same: bool) -> bool {
+        !self.is_hidden() || same || viewer.is_some_and(Character::is_admin)
+    }
     /// Whether this character holds the admin role.
     pub fn is_admin(&self) -> bool {
         self.roles.contains(&Role::Admin)

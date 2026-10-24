@@ -52,6 +52,8 @@ pub fn handle_channel(
 
         // Emit the channel message
         channel_message.write(ChannelMessage {
+            origin: None,
+            hidden_origin: false,
             channel,
             actor: cmd.client,
             text: text.clone(),

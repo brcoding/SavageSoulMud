@@ -106,7 +106,7 @@ struct Bridge {
     cooldown: HashMap<Entity, Instant>,
 }
 pub(crate) fn register(app: &mut App) {
-    app.add_systems(Startup, start).add_systems(Update, tick);
+    app.add_systems(Startup, start).add_systems(Update, tick.after(grim::SceneSystems::Staff));
 }
 fn start(world: &mut World) {
     if world.contains_resource::<DisableGrapevine>() {
@@ -798,7 +798,7 @@ fn update_presence(world: &mut World, b: &mut Bridge) {
     let actors: HashMap<_, _> = world
         .query::<(Entity, &GrimName, &Character, &Player)>()
         .iter(world)
-        .filter(|(_, _, c, _)| c.is_admin())
+        .filter(|(_, _, c, _)| c.is_admin() && !c.is_hidden())
         .take(128)
         .map(|(e, n, _, _)| (e, bounded(&n.0, 100)))
         .collect();

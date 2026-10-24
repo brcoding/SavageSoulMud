@@ -55,7 +55,7 @@ pub fn emit_channel(
 
     // Send to each audience member (excluding the actor), checking listen eligibility
     for entity in audience {
-        if entity == ev.actor {
+        if entity == ev.actor || !room_occupants.sees(entity,ev.actor) || (ev.hidden_origin && ev.origin!=Some(entity) && !characters.get(entity).is_ok_and(Character::is_admin)) {
             continue;
         }
 

@@ -15,7 +15,7 @@ use grim_networking::ConnectionOutput;
 use grim_object::{CarriedBy, Object};
 use grim_text::tr;
 
-use crate::output::{broadcast_to_room, find_conn, Occupants};
+use crate::output::{broadcast_from, find_conn, Occupants};
 
 /// Object pickup/drop: per-recipient render of an [`ItemEvent`]. The actor
 /// sees the first-party line ("You pick up …"); everyone else in the room
@@ -40,7 +40,7 @@ pub(crate) fn format_item_events(
             name = ev.actor_name.as_str(),
             short = ev.short.as_str()
         );
-        broadcast_to_room(ev.room, &[ev.actor], &third, &room_occupants, &mut outputs);
+        broadcast_from(ev.room, &[ev.actor], ev.actor, &third, &room_occupants, &mut outputs);
     }
 }
 
@@ -94,9 +94,9 @@ pub(crate) fn format_transfer_events(
             short = ev.short.as_str(),
             other = ev.other_name.as_str()
         );
-        broadcast_to_room(
+        broadcast_from(
             ev.room,
-            &[ev.mover, ev.other],
+            &[ev.mover, ev.other], if room_occupants.hidden(ev.other){ev.other}else{ev.mover},
             &third,
             &room_occupants,
             &mut outputs,
@@ -119,6 +119,7 @@ pub(crate) fn format_look_pack(
     mut outputs: MessageWriter<ConnectionOutput>,
 ) {
     for ev in looks.read() {
+        if !room_occupants.sees(ev.target,ev.subject) {continue;}
         if characters.get(ev.subject).is_err() && creatures.get(ev.subject).is_err() {
             continue;
         }

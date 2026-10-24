@@ -16,11 +16,11 @@
 #![allow(dead_code)]
 
 use bevy::prelude::*;
-use grim::GrimHeadlessPlugins;
 use grim::components::Name as GrimName;
 use grim::plugins::PersistenceConfig;
+use grim::GrimHeadlessPlugins;
 use grim::{
-    Actor, Character, CompiledTrigger, ScriptTriggers, StoredCharacter, TriggerKind, compile,
+    compile, Actor, Character, CompiledTrigger, ScriptTriggers, StoredCharacter, TriggerKind,
 };
 use grim::{
     Connection, ConnectionClosed, ConnectionEstablished, ConnectionInput, ConnectionOutput,
@@ -151,9 +151,7 @@ impl Mud {
         app.add_plugins(GrimHeadlessPlugins);
         // Area blueprints load from the filesystem; point at the repo's
         // committed data/areas so the harness world matches what ships.
-        app.insert_resource(example_mud::seed::AreaBlueprintDir(
-            areas_dir.clone(),
-        ));
+        app.insert_resource(example_mud::seed::AreaBlueprintDir(areas_dir.clone()));
         app.add_systems(Startup, example_mud::seed::seed_world);
         app.add_plugins(example_mud::shop::ShopPlugin);
         app.insert_resource(example_mud::help::HelpDir(
@@ -258,6 +256,41 @@ impl Mud {
         (Session { conn }, self.collect_new(conn))
     }
 
+    /// Resume a saved character through the copyover recovery path.
+    pub fn resume(&mut self, name: &str) -> Session {
+        let id = self.next_conn;
+        self.next_conn += 1;
+        let addr: SocketAddr = format!("127.0.0.1:{}", 40000 + id).parse().unwrap();
+        let conn = self
+            .app
+            .world_mut()
+            .spawn(Connection {
+                id,
+                addr,
+                echo_hidden: false,
+            })
+            .id();
+        self.app.world_mut().write_message(grim::ConnectionResumed {
+            connection: conn,
+            character: name.into(),
+            addr,
+        });
+        self.pump();
+        Session { conn }
+    }
+
+    pub fn edit_saved_character(&mut self, name: &str, edit: impl FnOnce(&mut StoredCharacter)) {
+        let mut stored = self.saved_character(name);
+        edit(&mut stored);
+        std::fs::write(
+            self.data_dir
+                .join("characters")
+                .join(format!("{name}.json")),
+            serde_json::to_vec_pretty(&stored).unwrap(),
+        )
+        .unwrap();
+    }
+
     /// Send a line of input as this session and return the resulting output.
     pub fn send(&mut self, session: Session, line: &str) -> Output {
         self.app.world_mut().write_message(ConnectionInput {
@@ -317,9 +350,7 @@ impl Mud {
         });
         app.init_resource::<Time>();
         app.add_plugins(GrimHeadlessPlugins);
-        app.insert_resource(example_mud::seed::AreaBlueprintDir(
-            self.areas_dir.clone(),
-        ));
+        app.insert_resource(example_mud::seed::AreaBlueprintDir(self.areas_dir.clone()));
         app.add_systems(Startup, example_mud::seed::seed_world);
         app.add_plugins(example_mud::shop::ShopPlugin);
         app.insert_resource(example_mud::help::HelpDir(

@@ -155,6 +155,9 @@ pub enum ClientState {
 /// An account — persists across sessions. Saved to `data/accounts/<id>.json`.
 #[derive(Component, Serialize, Deserialize, Clone, Debug)]
 pub struct Account {
+    /// Staff-managed test identity. Never grants administrator privileges.
+    #[serde(default)]
+    pub testing: bool,
     pub id: GrimId,
     /// The user-facing identifier (username or email, normalized lowercase).
     pub identifier: String,

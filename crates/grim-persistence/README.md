@@ -44,3 +44,9 @@ Player-facing verbs and where to find their handlers.
 
 ---
 *Format: [`docs/README.template.md`](../../docs/README.template.md). Improve over time.*
+
+## Staff testing visibility
+
+Account JSON preserves the serde-default `testing` flag; character snapshots preserve the mirrored Tester marker and wizard invisibility state. The scene reconciles the marker from the authoritative account on entry.
+
+See [staff testing](../../docs/STAFF-TESTING.md) for permissions and shared-world limitations.

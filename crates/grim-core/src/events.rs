@@ -13,6 +13,8 @@ pub struct EngineCommand {
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Command {
+    WizInvis { enabled: Option<bool> },
+    TestAccount { target: String, enabled: bool },
     /// Editable game help topic.
     Help { topic: String },
     /// Game-specific Savage Soul character, equipment, and combat commands.

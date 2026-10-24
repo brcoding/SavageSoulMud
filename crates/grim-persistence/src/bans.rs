@@ -209,6 +209,7 @@ mod tests {
 
     fn account(identifier: &str) -> Account {
         Account {
+            testing: false,
             id: GrimId::new(),
             identifier: identifier.into(),
             password_hash: "hash".into(),

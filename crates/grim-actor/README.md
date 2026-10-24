@@ -130,3 +130,9 @@ ASCII maps and room minimaps share the Savage Soul palette: green `o` rooms, red
 room-visibility check for room/entity looks and maps. A placed light or a light
 carried by anyone in the room illuminates it. Games reconstruct transient
 vision/light markers from their persisted authoring data.
+
+## Staff testing visibility
+
+`Role::Tester` marks a test identity without granting admin. `Character::is_hidden` / `visible_to` and `Visibility::sees_actor` define shared staff perception; self/admin can see hidden actors. Target selection filters before ranking.
+
+See [staff testing](../../docs/STAFF-TESTING.md) for permissions and shared-world limitations.

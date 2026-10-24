@@ -19,12 +19,15 @@ pub(crate) fn format(
     player_chars: &PlayerChars,
     descriptions: &Query<&Description>,
     persistence: &PersistenceConfig,
+    viewer: Entity,
 ) -> String {
+    let observer=player_chars.get(viewer).ok().and_then(|(_,_,_,_,c,_,_)|c);
     if let Some((e, n, _, actor, character, _, _)) =
         player_chars.iter().find(|(_, n, _, _, character, _, _)| {
             character.is_some() && n.0.eq_ignore_ascii_case(target)
         })
     {
+        if character.is_some_and(|c|!c.visible_to(observer,e==viewer)) {return tr!("finger.not_found");}
         let desc = descriptions.get(e).map(|d| d.0.clone()).unwrap_or_default();
         let actor = actor.as_ref();
         return render_sheet(
@@ -37,6 +40,7 @@ pub(crate) fn format(
         );
     }
     if let Some(stored) = load_character_by_name(persistence, target) {
+        if !crate::staff::stored_character(persistence,&stored).visible_to(observer,false) {return tr!("finger.not_found");}
         return render_sheet(
             &stored.name,
             stored.level,

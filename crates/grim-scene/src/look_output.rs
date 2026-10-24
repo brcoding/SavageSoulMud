@@ -219,6 +219,7 @@ fn collect_presence(
         let Ok((_, _, player, occ_name, room_line, is_object)) = room_occupants.get(e) else {
             continue;
         };
+        if !room_occupants.sees(target,e) {continue;}
         if let Ok(character)=characters.get(e) {
             if character.game_state.get("posture_room").and_then(|v|v.as_str())==Some(room_id) {
                 if let Some(posture)=character.game_state.get("posture_display").and_then(|v|v.as_str()) {
@@ -296,6 +297,9 @@ pub(crate) fn emit_look_entity(
     if ev.subject!=ev.target && room_occupants.get(ev.subject).is_ok() && room_occupants.get(ev.target).is_ok_and(|(_,r,..)|!visibility.can_see(ev.target,r.room)) {
         outputs.write(ConnectionOutput::new(find_conn(ev.target,room_occupants),"It is too dark to see that.\n"));
         return;
+    }
+    if !visibility.sees_actor(ev.target,ev.subject) {
+        outputs.write(ConnectionOutput::new(find_conn(ev.target,room_occupants),"You don't see that here.\n"));return;
     }
     let Ok(subj_name) = names.get(ev.subject) else {
         return;

@@ -11,6 +11,8 @@ use crate::Channel;
 /// A message sent on a channel.
 #[derive(Message, Debug)]
 pub struct ChannelMessage {
+    pub origin: Option<Entity>,
+    pub hidden_origin: bool,
     /// The channel the message was sent on.
     pub channel: Channel,
     /// The actor who sent the message.
@@ -33,6 +35,8 @@ mod tests {
     fn channel_message_implements_debug() {
         let channel = Channel::new("test");
         let msg = ChannelMessage {
+            origin: None,
+            hidden_origin: false,
             channel,
             actor: Entity::from_raw_u32(1).unwrap(),
             text: "hello".to_string(),

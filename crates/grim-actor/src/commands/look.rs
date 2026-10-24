@@ -12,9 +12,11 @@ use crate::occupants::in_room;
 use crate::placement::InRoom;
 
 /// `look` / `look <target>`: show the actor's room or a named entity in it.
+#[allow(clippy::too_many_arguments)] // Bevy injects the independent query/message parameters.
 pub(crate) fn handle_look(
     mut engine: MessageReader<EngineCommand>,
     inroom: Query<&InRoom>,
+    visibility: crate::visibility::Visibility,
     named: Query<(Entity, &InRoom, &Name, Option<&Keywords>)>,
     carried: Query<(Entity, &CarriedBy, &Name, Option<&Keywords>)>,
     mut look_room: MessageWriter<LookRoom>,
@@ -37,7 +39,7 @@ pub(crate) fn handle_look(
                 });
             }
             Some(name) => {
-                let subject = find_subject(name, actor, actor_room.room, &named).or_else(|| {
+                let subject = find_subject(name, actor, actor_room.room, &named, &visibility).or_else(|| {
                     let spec=parse_target(name,ParseOptions::BEING)?;
                     query(&spec,carried.iter().filter(|(_,held,_,_)|held.carrier==actor)
                         .map(|(e,_,n,k)|(e,n.0.as_str(),k.map(|k|k.0.as_slice()).unwrap_or(&[]))))
@@ -74,6 +76,7 @@ fn find_subject(
     actor: Entity,
     room: Entity,
     named: &Query<(Entity, &InRoom, &Name, Option<&Keywords>)>,
+    visibility: &crate::visibility::Visibility,
 ) -> Option<Entity> {
     if raw.trim().eq_ignore_ascii_case("self") {
         return Some(actor);
@@ -82,7 +85,7 @@ fn find_subject(
     let here = in_room(room, named.iter().map(|(e, ir, _, _)| (e, ir.room)), None);
     query(
         &spec,
-        here.into_iter().filter_map(|e| {
+        here.into_iter().filter(|e|visibility.sees_actor(actor,*e)).filter_map(|e| {
             let (_, _, name, keywords) = named.get(e).ok()?;
             Some((
                 e,

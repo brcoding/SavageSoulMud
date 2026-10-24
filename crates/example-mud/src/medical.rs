@@ -8,7 +8,7 @@ use crate::savage_rules::SoulData;
 #[derive(Resource,Default)]
 struct Prototypes(HashMap<String,crate::seed::NpcBlueprint>);
 #[derive(Component)]
-pub(crate) struct Contained {until:f64}
+pub(crate) struct Contained {until:f64, hidden:bool, origin:Entity}
 pub(crate) fn register(app:&mut App){app.init_resource::<Prototypes>();app.add_observer(hold_posture);}
 fn hold_posture(mut walk:On<grim::AttemptWalk>,characters:Query<&Character>,rooms:Query<&Room>,mut info:MessageWriter<grim::events::InfoMessage>) {
     let seated=characters.get(walk.actor).ok().zip(rooms.get(walk.room).ok()).is_some_and(|(c,r)|c.game_state.contains_key("posture_display")&&c.game_state.get("posture_room").and_then(|v|v.as_str())==Some(r.id.to_string().as_str()));
@@ -39,9 +39,9 @@ fn save(world:&mut World,actor:Entity,mut character:Character,soul:SoulData,remo
     crate::shop::persist(world,&saved).map_err(|e|format!("Could not save table treatment: {e}. Nothing has changed."))?;
     world.entity_mut(actor).insert((character,soul));if let Some(item)=remove{world.despawn(item);}Ok(())
 }
-fn announce(world:&mut World,room:Entity,text:String) {
+fn announce(world:&mut World,room:Entity,text:String,hidden:bool,origin:Entity) {
     let viewers:Vec<_>=world.query_filtered::<(Entity,&InRoom),With<Player>>().iter(world).filter(|(_,r)|r.room==room).map(|(e,_)|e).collect();
-    for target in viewers{world.write_message(grim::events::InfoMessage{target,text:text.clone()});}
+    for target in viewers{if hidden&&target!=origin&&!world.get::<Character>(target).is_some_and(Character::is_admin){continue;}world.write_message(grim::events::InfoMessage{target,text:text.clone()});}
 }
 pub(crate) fn place(world:&mut World,actor:Entity,arg:&str)->Result<(),String> {
     let lower=arg.to_ascii_lowercase();let at=lower.rfind(" on ").ok_or("Use put corpse on table.")?;
@@ -68,9 +68,10 @@ pub(crate) fn place(world:&mut World,actor:Entity,arg:&str)->Result<(),String> {
     };
     let mut restored=world.get::<SoulData>(creature).cloned().unwrap_or_default();restored.reset_conditions();restored.total_xp=0;
     let until=world.resource::<Time>().elapsed_secs_f64()+3.;
+    let hidden=world.get::<Character>(actor).is_some_and(Character::is_hidden);
     world.entity_mut(creature).remove::<(grim::ScriptTriggers,crate::shop::Merchant,crate::savage_soul::NpcCombatBehavior,crate::population::Member,crate::population::Candidate)>()
-        .insert((restored,Contained{until},RoomDescription(format!("{reference} is alive on the medical table, held in a containment field."))));
-    announce(world,room,format!("The table regenerates {reference}. A containment field surrounds the creature as a scanner sweeps over it."));Ok(())
+        .insert((restored,Contained{until,hidden,origin:actor},RoomDescription(format!("{reference} is alive on the medical table, held in a containment field."))));
+    announce(world,room,format!("The table regenerates {reference}. A containment field surrounds the creature as a scanner sweeps over it."),hidden,actor);Ok(())
 }
 pub(crate) fn rest(world:&mut World,actor:Entity,verb:&str,arg:&str)->Result<(),String> {
     let lower=arg.trim().to_ascii_lowercase();let surface=lower.strip_prefix("down ").unwrap_or(&lower);let surface=surface.strip_prefix("on ").unwrap_or(surface);
@@ -110,10 +111,10 @@ pub(crate) fn tick(world:&mut World) {
         if let Err(error)=save(world,actor,character,soul,None){warn!("Posture cleanup: {error}");}
     }
     let now=world.resource::<Time>().elapsed_secs_f64();
-    let done:Vec<_>=world.query::<(Entity,&Contained,&InRoom,&GrimName)>().iter(world).filter(|(_,c,_,_)|now>=c.until).map(|(e,_,r,n)|(e,r.room,n.0.clone())).collect();
-    for (entity,room,name) in done {
+    let done:Vec<_>=world.query::<(Entity,&Contained,&InRoom,&GrimName)>().iter(world).filter(|(_,c,_,_)|now>=c.until).map(|(e,c,r,n)|(e,r.room,n.0.clone(),c.hidden,c.origin)).collect();
+    for (entity,room,name,hidden,origin) in done {
         let label=if name.chars().next().is_some_and(char::is_lowercase)&&!["the ","a ","an "].iter().any(|a|name.starts_with(a)){format!("the {name}")}else{name};
-        announce(world,room,format!("The table announces, \"Threat detected.\" A flash of light vaporizes {label}."));world.despawn(entity);
+        announce(world,room,format!("The table announces, \"Threat detected.\" A flash of light vaporizes {label}."),hidden,origin);world.despawn(entity);
     }
 }
 
@@ -140,6 +141,24 @@ mod tests {
         assert!(w.get::<SoulData>(actor).unwrap().prone);
         stand(&mut w,actor,"").unwrap();
         assert!(!w.get::<SoulData>(actor).unwrap().prone);assert!(!w.get::<Character>(actor).unwrap().game_state.contains_key("posture"));
+        // Both immediate and delayed reactions stay visible to the hidden
+        // tester and supervising wizard, without leaking to an ordinary viewer.
+        let mut ordinary=w.get::<Character>(actor).unwrap().clone();ordinary.roles.clear();
+        let viewer=w.spawn((ordinary.clone(),Player{connection},InRoom{room})).id();
+        ordinary.roles.push(grim::Role::Admin);
+        let wizard=w.spawn((ordinary,Player{connection},InRoom{room})).id();
+        w.get_mut::<Character>(actor).unwrap().roles.push(grim::Role::Tester);
+        w.resource_mut::<Messages<grim::events::InfoMessage>>().clear();
+        w.spawn((Object,GrimName("corpse of the rat".into()),Keywords(vec!["corpse".into()]),grim::CarriedBy{carrier:actor}));
+        place(&mut w,actor,"corpse on table").unwrap();
+        w.resource_mut::<Time>().advance_by(std::time::Duration::from_secs(3));tick(&mut w);
+        let messages=w.resource::<Messages<grim::events::InfoMessage>>();let mut cursor=messages.get_cursor();
+        let output:Vec<_>=cursor.read(messages).collect();
+        assert!(!output.iter().any(|m|m.target==viewer));
+        for target in [actor,wizard] {
+            assert!(output.iter().any(|m|m.target==target&&m.text.contains("regenerates")));
+            assert!(output.iter().any(|m|m.target==target&&m.text.contains("Threat detected")));
+        }
         let saved:StoredCharacter=serde_json::from_slice(&std::fs::read(dir.join("characters/Patient.json")).unwrap()).unwrap();assert!(saved.inventory.is_empty());assert_eq!(saved.credits,1000);assert_eq!(saved.game_state["savage_soul"]["total_xp"],600);std::fs::remove_dir_all(dir).unwrap();
     }
 }

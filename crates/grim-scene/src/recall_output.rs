@@ -13,7 +13,7 @@ use grim_core::events::RecallEvent;
 use grim_networking::ConnectionOutput;
 use grim_text::tr;
 
-use crate::output::{broadcast_to_room, Occupants};
+use crate::output::{broadcast_from, Occupants};
 
 /// Render one recall: attempt + disappearance to the room left, a
 /// recall-marked arrival to the room entered, skipping the recaller.
@@ -27,11 +27,11 @@ fn emit_recall(
         return;
     };
     let attempt = tr!("recall.leave.attempt", name = actor_name.0.as_str());
-    broadcast_to_room(ev.from, &[ev.actor], &attempt, room_occupants, outputs);
+    broadcast_from(ev.from, &[ev.actor], ev.actor, &attempt, room_occupants, outputs);
     let vanish = tr!("recall.leave.vanish", name = actor_name.0.as_str());
-    broadcast_to_room(ev.from, &[ev.actor], &vanish, room_occupants, outputs);
+    broadcast_from(ev.from, &[ev.actor], ev.actor, &vanish, room_occupants, outputs);
     let arrive = tr!("recall.arrive", name = actor_name.0.as_str());
-    broadcast_to_room(ev.to, &[ev.actor], &arrive, room_occupants, outputs);
+    broadcast_from(ev.to, &[ev.actor], ev.actor, &arrive, room_occupants, outputs);
 }
 
 /// Broadcast every pending [`RecallEvent`] to its two rooms.

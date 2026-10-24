@@ -277,7 +277,7 @@ fn activity_command(bridge: &Bridge, arg: &str) -> Option<String> {
 pub struct IntermudPlugin;
 impl Plugin for IntermudPlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(Startup, start).add_systems(Update, tick);
+        app.add_systems(Startup, start).add_systems(Update, tick.after(grim::SceneSystems::Staff));
     }
 }
 fn start(world: &mut World) {
@@ -760,7 +760,7 @@ fn tick(world: &mut World, mut cursor: Local<MessageCursor<EngineCommand>>) {
         }
     }
     pump_subscriptions(&mut bridge);
-    let users:Vec<_>=world.query::<(&GrimName,&Character,&Player)>().iter(world).filter(|(_,c,_)|c.is_admin()).map(|(n,c,_)|json!({"name":n.0,"title":c.title.clone().unwrap_or_default(),"status":"online"})).collect();
+    let users:Vec<_>=world.query::<(&GrimName,&Character,&Player)>().iter(world).filter(|(_,c,_)|c.is_admin()&&!c.is_hidden()).map(|(n,c,_)|json!({"name":n.0,"title":c.title.clone().unwrap_or_default(),"status":"online"})).collect();
     let presence = json!({"users":users});
     if bridge.connected
         && (presence != bridge.presence || bridge.last_presence.elapsed() > Duration::from_secs(20))
