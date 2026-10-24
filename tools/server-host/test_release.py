@@ -21,6 +21,15 @@ def checksum(content):
 
 
 class ReleaseTests(unittest.TestCase):
+    def test_stopped_service_starts_without_noisy_restart(self):
+        with patch.object(entry.subprocess, 'Popen') as status, \
+                patch.object(entry.subprocess, 'call') as restart, \
+                patch.object(entry.subprocess, 'check_call') as start:
+            status.return_value.communicate.return_value = (b'savsoul-editor stop/waiting', None)
+            entry.restart('savsoul-editor')
+        restart.assert_not_called()
+        start.assert_called_once_with(['/sbin/start', 'savsoul-editor'])
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
@@ -34,6 +43,31 @@ class ReleaseTests(unittest.TestCase):
         path = root / name
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(data)
+
+    def test_unwritable_destination_fails_before_any_live_changes(self):
+        self.write(self.root, 'bin/savsoul', b'old')
+        self.write(self.stage, 'bin/savsoul', b'new')
+        self.write(self.stage, 'tools/web-terminal/server.py', b'new-tool')
+        bad = self.root / 'tools/web-terminal'
+        bad.mkdir(parents=True)
+        with patch.object(release.os, 'access', side_effect=lambda p, mode: p != bad):
+            with self.assertRaisesRegex(PermissionError, 'web-terminal'):
+                release.apply(self.stage, self.backup,
+                              {'files': {'bin/savsoul': checksum(b'new'),
+                                         'tools/web-terminal/server.py': checksum(b'new-tool')}},
+                              {'files': {}}, self.root)
+        self.assertEqual((self.root / 'bin/savsoul').read_bytes(), b'old')
+        self.assertFalse(self.backup.exists())
+
+    def test_rollback_skips_unchanged_journaled_target(self):
+        self.write(self.root, 'tools/server.py', b'old')
+        self.write(self.backup, 'files/tools/server.py', b'old')
+        (self.backup / 'files/tools/server.py').chmod(0o600)
+        (self.root / 'tools/server.py').chmod(0o600)
+        self.write(self.backup, 'journal.json', b'["tools/server.py"]')
+        with patch.object(release, 'atomic_copy') as copy:
+            release.restore(self.backup, self.root)
+        copy.assert_not_called()
 
     def test_live_authored_edits_and_accounts_are_preserved(self):
         files = {'bin/savsoul': b'new-binary', 'data/areas/town.json': b'new-room',

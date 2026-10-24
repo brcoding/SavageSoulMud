@@ -139,8 +139,12 @@ def restore_site(revision):
 
 
 def restart(service):
-    if subprocess.call(['/sbin/restart', service]) != 0:
-        subprocess.check_call(['/sbin/start', service])
+    status = subprocess.Popen(['/sbin/status', service], stdout=subprocess.PIPE,
+                              stderr=subprocess.STDOUT).communicate()[0]
+    if b'start/running' in status:
+        if subprocess.call(['/sbin/restart', service]) == 0:
+            return
+    subprocess.check_call(['/sbin/start', service])
 
 
 def healthy():

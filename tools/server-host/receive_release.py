@@ -90,6 +90,18 @@ def atomic_copy(source, target, mode=0o600):
             os.unlink(temp)
 
 
+def check_destinations(names, root=ROOT):
+    """Check replacement permissions as the game UID before touching live files."""
+    for name in sorted(names):
+        if name.startswith('public/'):
+            continue
+        parent = safe_target(root, name).parent
+        while not parent.exists():
+            parent = parent.parent
+        if not parent.is_dir() or not os.access(parent, os.W_OK | os.X_OK):
+            raise PermissionError('Release destination directory is not writable: ' + str(parent))
+
+
 def write_journal(path, entries):
     """Publish complete recovery metadata before mutating its associated file."""
     fd, temporary = tempfile.mkstemp(prefix='.journal-', dir=path.parent)
@@ -115,7 +127,8 @@ def restore(backup, root=ROOT):
         target = safe_target(root, name)
         old = backup / 'files' / name
         if old.exists():
-            atomic_copy(old, target, old.stat().st_mode & 0o777)
+            if digest(old) != digest(target) or old.stat().st_mode & 0o777 != target.stat().st_mode & 0o777:
+                atomic_copy(old, target, old.stat().st_mode & 0o777)
         elif target.exists():
             target.unlink()
     if (backup / 'public-map.xml').exists():
@@ -125,6 +138,7 @@ def restore(backup, root=ROOT):
 
 
 def apply(stage, backup, manifest, baseline, root=ROOT):
+    check_destinations(set(manifest['files']) | set(baseline.get('files', {})), root)
     journal, preserved = [], []
     backup.mkdir(mode=0o700, parents=True)
     (backup / 'previous.json').write_text(json.dumps(baseline))
@@ -195,6 +209,8 @@ def main():
         if backup.exists():
             raise ValueError('Revision already attempted; use a new commit for retry')
         game_pid()
+        baseline = json.loads((STATE / 'current.json').read_text())
+        check_destinations(baseline.get('files', {}))
         print('Deployment revision and game identity verified.', flush=True)
         return
     if action == 'rollback':
