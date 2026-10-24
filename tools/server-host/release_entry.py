@@ -139,12 +139,18 @@ def restore_site(revision):
 
 
 def restart(service):
-    status = subprocess.Popen(['/sbin/status', service], stdout=subprocess.PIPE,
-                              stderr=subprocess.STDOUT).communicate()[0]
+    child = subprocess.Popen(['/sbin/status', service], stdout=subprocess.PIPE,
+                             stderr=subprocess.STDOUT)
+    try:
+        status = child.communicate(timeout=30)[0]
+    except subprocess.TimeoutExpired:
+        child.kill()
+        child.communicate()
+        raise
     if b'start/running' in status:
-        if subprocess.call(['/sbin/restart', service]) == 0:
+        if subprocess.call(['/sbin/restart', service], timeout=30) == 0:
             return
-    subprocess.check_call(['/sbin/start', service])
+    subprocess.check_call(['/sbin/start', service], timeout=30)
 
 
 def healthy():
@@ -186,9 +192,9 @@ def main():
         receiver('preflight', revision)
         if os.path.exists(BACKUPS + '/' + revision):
             raise ValueError('Public backup for this revision already exists')
-        subprocess.check_call(['/sbin/stop', 'savsoul-editor'])
         applied, site_started = False, False
         try:
+            subprocess.check_call(['/sbin/stop', 'savsoul-editor'], timeout=30)
             receiver('deploy', revision)
             applied = True
             for service in SERVICES:

@@ -28,7 +28,18 @@ class ReleaseTests(unittest.TestCase):
             status.return_value.communicate.return_value = (b'savsoul-editor stop/waiting', None)
             entry.restart('savsoul-editor')
         restart.assert_not_called()
-        start.assert_called_once_with(['/sbin/start', 'savsoul-editor'])
+        start.assert_called_once_with(['/sbin/start', 'savsoul-editor'], timeout=30)
+
+    def test_service_status_timeout_kills_and_reaps_child(self):
+        timeout = subprocess.TimeoutExpired(['/sbin/status', 'savsoul-editor'], 30)
+        with patch.object(entry.subprocess, 'Popen') as status:
+            child = status.return_value
+            child.communicate.side_effect = [timeout, (b'', None)]
+            with self.assertRaises(subprocess.TimeoutExpired):
+                entry.restart('savsoul-editor')
+        child.kill.assert_called_once_with()
+        self.assertEqual(child.communicate.call_args_list[0].kwargs, {'timeout': 30})
+        self.assertEqual(child.communicate.call_args_list[1].kwargs, {})
 
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()

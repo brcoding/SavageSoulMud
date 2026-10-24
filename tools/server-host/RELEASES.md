@@ -141,5 +141,8 @@ A service restart after an exception is recovery, not a successful release.
 Check `current.json` and the running executable. Preserve failed journals and
 backups. Normally retry with a new merged revision. If an operator must retry the
 same revision, first complete its rollback and verify recovery, then archive the
-entire failed backup outside the `backup-*` namespace so the retry creates a fresh
-journal; never reuse or erase the failed attempt's recovery metadata.
+entire failed game backup outside the `backup-*` namespace. If publication began,
+also verify public-site rollback and archive `/var/lib/savsoul-release/SHA/`
+outside `/var/lib/savsoul-release/`; that directory independently blocks a retry.
+Preserve both directories' recovery metadata so the retry creates fresh journals;
+never reuse or erase the failed attempt's metadata.
