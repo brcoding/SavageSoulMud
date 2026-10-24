@@ -4,10 +4,11 @@ import ssl
 
 TARGET = '69.164.205.149'
 ACTIVE = 0
+IDLE_TIMEOUT = 300
 
 
 async def pipe(reader, writer):
-    while chunk := await reader.read(65536):
+    while chunk := await asyncio.wait_for(reader.read(65536), IDLE_TIMEOUT):
         writer.write(chunk)
         await writer.drain()
 

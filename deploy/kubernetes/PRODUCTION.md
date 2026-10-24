@@ -35,6 +35,11 @@ The old VM runs the bounded `retired_relay.py` under the savsoul account:
   to 443, restoring the websocket path stripped by the old Apache proxy.
 
 It creates no local world, account state or I3 identity. During forwarding,
+the source now closes a connection when either direction is idle for five
+minutes, releasing its slot without a total connection-duration limit. The
+initial running relay predates that timeout; deploy it when cached clients have
+disconnected, or remove the relay once propagation is complete. Do not restart
+active cached sessions merely to apply this temporary relay update.
 Kubernetes sees the old VM's address for those cached clients. After DNS caches
 converge and old endpoint use is no longer needed, stop/disable the relay and
 remove its job. Keep the old game jobs disabled. Other sites/databases on the
