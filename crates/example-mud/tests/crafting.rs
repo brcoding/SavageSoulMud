@@ -5,7 +5,8 @@ use harness::Mud;
 fn recovered_cooking_consumes_exact_supplies_and_saves_food() {
     let mut mud=Mud::with_savage_soul();
     let(s,_)=mud.connect();
-    for line in ["crafter@example.com","y","secretpw","c","Crafter","1",""] {let _=mud.send(s,line);}
+    for line in ["crafter@example.com","y","secretpw","c","Crafter","1","human",""] {let _=mud.send(s,line);}
+    mud.send(s,"look").assert_contains("Royal Oak Med Room");
     mud.edit_character("Crafter",|c|c.roles.push(grim::Role::Admin));
     for line in ["east","east","north","north","west"] {let _=mud.send(s,line);}
     mud.send(s,"buy pocket knife").assert_contains("You buy");
@@ -30,7 +31,8 @@ fn recovered_cooking_consumes_exact_supplies_and_saves_food() {
 #[test]
 fn metalshop_batches_and_reductions_use_exact_instances() {
     let mut mud=Mud::with_savage_soul();let(s,_)=mud.connect();
-    for line in ["smith@example.com","y","secretpw","c","Smith","1",""] {let _=mud.send(s,line);}
+    for line in ["smith@example.com","y","secretpw","c","Smith","1","human",""] {let _=mud.send(s,line);}
+    mud.send(s,"look").assert_contains("Royal Oak Med Room");
     mud.edit_character("Smith",|c|c.roles.push(grim::Role::Admin));
     mud.send(s,"goto southfield:southfieldmetalshop").assert_contains("Metalshop");
     mud.send(s,"buy sheet of steel").assert_contains("You buy");
@@ -52,7 +54,8 @@ fn metalshop_batches_and_reductions_use_exact_instances() {
 #[test]
 fn recovered_morlock_lenses_open_panel_and_save_reward() {
     let mut mud=Mud::with_savage_soul();let(s,_)=mud.connect();
-    for line in ["lens@example.com","y","secretpw","c","Lens","1",""] {let _=mud.send(s,line);}
+    for line in ["lens@example.com","y","secretpw","c","Lens","1","human",""] {let _=mud.send(s,line);}
+    mud.send(s,"look").assert_contains("Royal Oak Med Room");
     mud.edit_character("Lens",|c|c.roles.push(grim::Role::Admin));
     let _=mud.send(s,"goto savsoul:morlockcavemachine01");
     let _=mud.send(s,"defend none");
