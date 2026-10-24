@@ -1,11 +1,12 @@
-# Automatic candidate releases
+# Automatic production releases
 
-After this workflow is merged, each successful main build releases the same
-checked artifact to the existing VM and `savsoul/savsoul-0`. GitHub shows separate
-`deploy` and `deploy-kubernetes` results. The latter uses the main-only
-`kubernetes-candidate` environment. Queued releases check that their revision is
-still main before deploying; production and candidate have independent queues.
-DNS and external network activation remain a coordinated operator cutover.
+Each successful main build releases the checked artifact to
+`savsoul/savsoul-0`, the production stack behind savsoul.com. The VM deploy job
+has been removed. The main-only credential environment and concurrency group
+retain their older `kubernetes-candidate` names so credentials are not copied
+and releases remain serialized across the promotion. Queued releases check that
+their revision is still main before deploying. DNS and external network
+activation are operator-managed; normal releases preserve them.
 
 ## Deployment identity
 
