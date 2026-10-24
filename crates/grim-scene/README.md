@@ -127,3 +127,6 @@ Room/minimap text wrapping uses the connection's negotiated terminal width when 
 `staff::sync_testing` runs at PostStartup and before in-game input/output. Lists, attributed broadcasts, room/entity presence and offline lookups use shared perception, retaining admin supervision.
 
 See [staff testing](../../docs/STAFF-TESTING.md) for permissions and shared-world limitations.
+
+`testaccount` is deprioritized in the command registry so `t` still sets a title
+and `te` / `tel` still send a tell. The full staff command remains available.

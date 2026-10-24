@@ -53,7 +53,7 @@ fn privy_door_blocks_until_opened() {
     // Closed: the walk is refused and Alice stays in the tavern.
     mud.send(alice, "east").assert_contains("is closed");
     mud.send(alice, "look")
-        .assert_contains("Exits: {Rnorth{x {rsouth{x {Yup{x  Doors: {Meast{x");
+        .assert_contains("Exits: {gnorth{x {gsouth{x {gup{x  Doors: {geast{x");
 
     // Bob waits in the tavern: he witnesses Alice's open.
     let opened = mud.send(alice, "open east");
@@ -63,7 +63,7 @@ fn privy_door_blocks_until_opened() {
 
     // An opened door rejoins the Exits line and leaves the Doors line.
     mud.send(alice, "look")
-        .assert_contains("Exits: {Rnorth{x {Meast{x {rsouth{x {Yup{x  Doors: none");
+        .assert_contains("Exits: {gnorth{x {geast{x {gsouth{x {gup{x  Doors: none");
 
     // Now the walk lands in the privy; closing from inside announces west.
     mud.send(alice, "east").assert_contains("The Privy");
@@ -83,7 +83,7 @@ fn secret_cellar_door_hides_until_guessed() {
     mud.send(alice, "down")
         .assert_contains("You can't go that way.");
     mud.send(alice, "look")
-        .assert_contains("Exits: {Rnorth{x {rsouth{x {Yup{x  Doors: {Meast{x")
+        .assert_contains("Exits: {gnorth{x {gsouth{x {gup{x  Doors: {geast{x")
         .assert_excludes("down");
 
     // Guessing `open down` operates the hidden door normally, and the opened
@@ -91,13 +91,13 @@ fn secret_cellar_door_hides_until_guessed() {
     mud.send(alice, "open down")
         .assert_contains("You open the cellar door to the down.");
     mud.send(alice, "look")
-        .assert_contains("{ydown{x  Doors: {Meast");
+        .assert_contains("{gdown{x  Doors: {geast");
 
     // The walk lands in the cellar; the guessed-open mirrored both sides, so
     // the visible up door lists under Exits.
     mud.send(alice, "down").assert_contains("Dusty Cellar");
     mud.send(alice, "look")
-        .assert_contains("Exits: {Yup{x  Doors: none");
+        .assert_contains("Exits: {gup{x  Doors: none");
     // And the loft above is a plain exit walk away.
     mud.send(alice, "up").assert_contains("The Rusted Anvil");
     mud.send(alice, "up").assert_contains("Tavern Loft");
@@ -514,7 +514,7 @@ fn objects_can_be_picked_up_listed_and_dropped() {
     let room = mud.send(alice, "look");
     let body = room.text();
     let grimmok = body
-        .find("Grimmok Ironhand stands here, hammering metal.")
+        .find("{GGrimmok Ironhand{x stands here, hammering metal.")
         .expect("creature line");
     let lantern = body
         .find("A brass lantern rests here, its glass dusty but intact.")
@@ -943,7 +943,7 @@ fn look_staples_minimap_left_of_room_text() {
     // Past the 7-row canvas the gutter runs blank (11 spaces).
     let exits = lines
         .iter()
-        .find(|l| l.contains("Exits: {Rnorth"))
+        .find(|l| l.contains("Exits: {gnorth"))
         .expect("exits line");
     assert!(exits.starts_with("           "), "blank gutter:\n{exits}");
 }

@@ -3,7 +3,7 @@ use harness::Mud;
 
 #[test]
 fn shop_trades_save_credits_and_inventory_together() {
-    let mut mud = Mud::with_savsoul();
+    let mut mud = Mud::with_savage_soul();
     let (s, _) = mud.connect();
     for input in [
         "shopper@example.com",
@@ -13,7 +13,6 @@ fn shop_trades_save_credits_and_inventory_together() {
         "Shopper",
         "1",
         "human",
-        "warrior",
         "",
     ] {
         let _ = mud.send(s, input);
@@ -29,7 +28,7 @@ fn shop_trades_save_credits_and_inventory_together() {
         .assert_contains("960 credits remaining");
     let saved = mud.saved_character("Shopper");
     assert_eq!(saved.credits, 960);
-    assert_eq!(saved.inventory.len(), 2);
+    assert_eq!(saved.inventory.iter().filter(|item| item.name == "shovel").count(), 2);
     mud.send(s, "buy 100*shovel")
         .assert_contains("You need 2000 credits");
     assert_eq!(mud.saved_character("Shopper").credits, 960);

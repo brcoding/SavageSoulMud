@@ -280,6 +280,8 @@ fn build_registry() -> CommandRegistry<Command> {
         let enabled=match parts[1].to_ascii_lowercase().as_str(){"on"=>true,"off"=>false,_=>return None};
         Some(Command::TestAccount{target:parts[0].into(),enabled})
     });
+    // Preserve the established title/tell abbreviations for ordinary players.
+    r.deprioritize("testaccount");
     r.register("who", |_| Some(Command::Who));
     r.register("wizlist", |_| Some(Command::Wizlist));
     r.register("where", |_| Some(Command::Where));
@@ -608,6 +610,26 @@ mod tests {
         assert_eq!(parse("tell"), None);
         assert_eq!(parse("tell Wrack"), None);
         assert_eq!(parse("tell Wrack   "), None);
+    }
+
+    #[test]
+    fn staff_command_preserves_title_and_tell_abbreviations() {
+        assert_eq!(
+            parse("t the Bold"),
+            Some(Command::Title { text: "the Bold".into() })
+        );
+        for verb in ["te", "tel", "tell"] {
+            assert_eq!(
+                parse(&format!("{verb} Bob hello")),
+                Some(Command::Tell { target: "Bob".into(), text: "hello".into() })
+            );
+        }
+        for (word, enabled) in [("on", true), ("off", false)] {
+            assert_eq!(
+                parse(&format!("testaccount Bob {word}")),
+                Some(Command::TestAccount { target: "Bob".into(), enabled })
+            );
+        }
     }
 
     // â”€â”€ Title â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
