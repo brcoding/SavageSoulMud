@@ -120,10 +120,16 @@ When developing new features, start by asking:
 8. **NEVER use `--no-verify` on commits.** Pre-commit hooks (lint, fmt, coverage) are mandatory. If they block, fix what they catch.
    After every PR commit and push, review CodeRabbit feedback and the CI results
    for that exact commit. Local tests or older green runs are not completion.
-   Read failed job logs, address actionable comments, and report remaining
+   Read failed job logs, address actionable comments, reply and resolve each
+   addressed review thread, and report remaining
    failures explicitly; do not hand off while reviews or checks are pending.
 9. **Codify every root cause.** When the user asks why something broke, when there's confusion or frustration, or when an unstated assumption surfaces — add a rule to AGENTS.md. These signals mean something wasn't obvious. Write it down so the next agent doesn't repeat it.
-10. **100% coverage target, 90% floor.** All code should be tested. The goal is 100% line coverage. The 90% threshold (in the Makefile) exists only as a safety net for genuinely uncoverable lines (unreachable defensive branches, language limitations). Any gap below 90% is a bug — fix it. If a file can't reach 90%, ratchet down in 5% decrements, re-evaluating at each step.
+10. **Test behavior; coverage is informational.** Run relevant behavioral tests
+    and keep test failures blocking. Generate coverage reports without a minimum
+    percentage requirement. The project owner explicitly removed the inherited
+    coverage floor; do not reintroduce one from an older skill or upstream rule.
+    Do not add tests solely to raise a coverage percentage. Lint, build and test
+    failures remain blocking.
 11. **Tests that own the clock skip `TimePlugin`.** `MinimalPlugins` includes the
   automatic time update, which overwrites manual `advance_by` (idle sweeps saw
   `elapsed == 0` forever). Clock-driven tests use a bare `App` plus
