@@ -3,6 +3,8 @@ import io
 import json
 import os
 import signal
+import subprocess
+import sys
 from pathlib import Path
 import tarfile
 import tempfile
@@ -199,6 +201,62 @@ class ReleaseTests(unittest.TestCase):
     def test_failed_copyover_without_file_changes_still_recovers_game(self):
         self.assertEqual(self.exercise_entry(RuntimeError('copyover failed'), 'copyover-requested'),
                          ['savsoul-grim'] + entry.SERVICES)
+
+    def test_killed_receiver_restores_files_before_restarting_services(self):
+        """SIGKILL after a real replacement must not expose an uncommitted binary."""
+        revision = 'a' * 40
+        backup = self.base / ('backup-' + revision)
+        sites = self.base / 'site-backups'
+        sites.mkdir()
+        self.write(self.root, 'bin/savsoul', b'old-binary')
+        self.write(self.stage, 'bin/savsoul', b'new-binary')
+        baseline = {'revision': 'b' * 40, 'files': {'bin/savsoul': checksum(b'old-binary')}}
+        current = self.base / 'current.json'
+        current.write_text(json.dumps(baseline))
+        actions = []
+        child = '''import json, os, signal, sys
+from pathlib import Path
+import receive_release as r
+stage, backup, root, baseline = map(Path, sys.argv[1:])
+copy = r.atomic_copy
+def interrupt(source, target, mode=0o600):
+    copy(source, target, mode)
+    if target == root / 'bin/savsoul':
+        os.kill(os.getpid(), signal.SIGKILL)
+r.atomic_copy = interrupt
+r.apply(stage, backup, {'files': {'bin/savsoul': r.digest(stage / 'bin/savsoul')}},
+        json.loads(baseline.read_text()), root)
+'''
+
+        def receive(action, _revision):
+            actions.append(action)
+            if action == 'deploy':
+                subprocess.run([sys.executable, '-c', child, str(self.stage),
+                                str(backup), str(self.root), str(current)],
+                               cwd=Path(__file__).resolve().parent, check=True)
+            elif action == 'rollback':
+                self.assertEqual((self.root / 'bin/savsoul').read_bytes(), b'new-binary')
+                release.restore(backup, self.root)
+                release.atomic_copy(backup / 'previous.json', current)
+
+        def restart(service):
+            actions.append(service)
+            self.assertEqual((self.root / 'bin/savsoul').read_bytes(), b'old-binary')
+            self.assertEqual(json.loads(current.read_text()), baseline)
+
+        with patch.object(entry.sys, 'argv', ['release_entry.py', 'deploy ' + revision]), \
+                patch.object(entry, 'STATE', str(self.base)), \
+                patch.object(entry, 'BACKUPS', str(sites)), \
+                patch.object(entry, 'LOCK', str(self.base / 'release.lock')), \
+                patch.object(entry, 'receiver', side_effect=receive), \
+                patch.object(entry.subprocess, 'check_call'), \
+                patch.object(entry, 'healthy'), patch.object(entry, 'publish') as publish, \
+                patch.object(entry, 'restart', side_effect=restart):
+            with self.assertRaises(subprocess.CalledProcessError) as failure:
+                entry.main()
+        self.assertEqual(failure.exception.returncode, -signal.SIGKILL)
+        self.assertEqual(actions, ['preflight', 'deploy', 'rollback', 'savsoul-grim'] + entry.SERVICES)
+        publish.assert_not_called()
 
     def test_copyover_signals_old_pid_and_waits_for_new_executable(self):
         self.backup.mkdir()

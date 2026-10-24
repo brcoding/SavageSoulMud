@@ -196,9 +196,10 @@ def main():
                 shutil.rmtree(BACKUPS + '/' + old)
             print('Released ' + revision)
         except BaseException:
-            # Failed receiver calls restore their own transaction. In particular,
-            # never replay a pre-existing revision's rollback journal on failure.
-            if applied:
+            # A killed receiver cannot restore itself. Preflight rejected any
+            # existing attempt, so these markers belong to this invocation.
+            # Rollback is idempotent if the receiver already restored its files.
+            if applied or game_recovery_needed(revision):
                 receiver('rollback', revision)
             if site_started:
                 restore_site(revision)

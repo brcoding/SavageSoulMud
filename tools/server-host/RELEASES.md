@@ -37,6 +37,14 @@ Shell commands, SFTP/SCP, arbitrary test scripts and reading private game files
 through SSH are unavailable. CI runs unit/integration tests on GitHub runners;
 server-side testing is limited to the release `check` and `validate` commands.
 
+Production currently uses OpenSSH 6.6.1, which predates Unix-domain socket
+forwarding. It rejects `AllowStreamLocalForwarding` as an unknown directive.
+When upgrading SSH to 6.7 or newer, enable `AllowStreamLocalForwarding no`
+in the account's Match block before reloading, validate with `sshd -t`, and
+check the effective account policy with `sshd -T -C
+user=savsoul-deploy,host=localhost,addr=127.0.0.1`. See the
+[OpenSSH 6.7 release notes](https://www.openssh.org/txt/release-6.7).
+
 Its only sudo permission is the root-owned `/usr/local/sbin/savsoul-deploy`
 wrapper. That invokes the fixed dispatcher, which independently validates one
 `check`, `validate FULL_GIT_SHA`, or `deploy FULL_GIT_SHA` command. The account
@@ -97,6 +105,14 @@ if live file changes began or copyover was requested. That recovery fallback can
 disconnect players. It restores only files changed by that deployment, keeping
 player progress saved during the attempt. Full private data snapshots are retained
 for administrator recovery and are never automatically restored over newer saves.
+
+The parent dispatcher also rolls back a receiver that exits abruptly after a live
+change, using that attempt's phase markers rather than requiring a successful
+receiver return. If rollback fails, recovery stops before restarting services.
+This requires the parent dispatcher to remain running: host power loss or killing
+the dispatcher itself requires administrator reconciliation of journals and the
+previous manifest before services or deployments resume. There is no automatic
+power-loss recovery guarantee.
 
 Backups: `/home/savsoul/state/releases/backup-SHA/` and root-owned
 `/var/lib/savsoul-release/SHA/`. Keep the last three completed attempts; artifact
