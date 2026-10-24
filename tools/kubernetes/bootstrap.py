@@ -36,6 +36,8 @@ def main():
     for path in requirements:
         args.extend(['-r', str(HOME / 'grim' / path)])
     subprocess.run(args, check=True, timeout=600)
+    subprocess.run([str(environment / 'bin/python'),
+                    str(Path(__file__).with_name('prepare_gateway.py'))], check=True)
     # Existing editor copyover commands refer to this stable Python path.
     pointer = HOME / 'runtime/python/bin'
     pointer.mkdir(parents=True, mode=0o700, exist_ok=True)

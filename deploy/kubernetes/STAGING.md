@@ -31,6 +31,14 @@ Verified on the candidate:
   character records were removed. Pre-authentication sockets are intentionally
   closed by the existing copyover flow. No production connection was touched.
 - Fresh-volume importer tests reject traversal/link archives and occupied roots.
+- Offline I3 configuration loads with the preserved private credentials and
+  router password. Inherited state/log paths have been rebased from the previous
+  local username to the retained private home, with the original YAML backed up.
+
+The initial TCP readiness and NodeBalancer probes opened game sessions and
+triggered wiznet reconnect-flood warnings. Readiness now inspects the verified
+process and listening socket without connecting. Nginx terminates private
+NodeBalancer health traffic itself instead of forwarding it into the game.
 
 Not yet cut over: final live-state synchronization, authenticated wizard editing
 with a user's login, actual game login using existing player credentials, new

@@ -34,7 +34,12 @@ def containers():
     game = container('grim', [mount('grim'), mount('state/runner'), marker,
                              mount('public', target='/var/www/lpmud')] + runtime, '128Mi', '64Mi')
     game['ports'] = [{'name': 'telnet', 'containerPort': 4000}]
-    game['readinessProbe'] = {'tcpSocket': {'port': 4000}, 'periodSeconds': 5}
+    game['readinessProbe'] = {'exec': {'command': ['python', '-c',
+        "from pathlib import Path; p=Path('/home/savsoul/state/runner/mud.pid').read_text().strip(); "
+        "assert Path('/proc/'+p+'/exe').resolve()==Path('/home/savsoul/grim/bin/savsoul'); "
+        "assert any(len(f)>3 and f[1].endswith(':0FA0') and f[3]=='0A' "
+        "for f in (line.split() for line in Path('/proc/net/tcp').read_text().splitlines()[1:]))"]},
+        'periodSeconds': 5}
     editor = container('editor', [mount('grim'), mount('state/editor'),
                                  mount('state/runner'), marker,
                                  mount('public', target='/var/www/lpmud')] + runtime,

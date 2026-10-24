@@ -26,6 +26,10 @@ Run `bootstrap.py` in the seed pod after successful import. It rebuilds pinned
 Python dependencies and disables all three external game adapters. The I3
 launcher does not start the gateway until a separate cutover activation marker
 exists. Candidate NetworkPolicy additionally denies external egress except DNS.
+Copy the public `tools/kubernetes` directory into `/tmp/kubernetes` in the seed
+pod and run `/tmp/kubernetes/bootstrap.py`, so its gateway preparation helper is
+available beside it. The helper rebases inherited I3 state/log paths to the
+retained private home, preserving the original config and router password.
 
 Run `python tools/kubernetes/render.py` to regenerate `stack.json` after changing
 the deployment inputs. Remove the completed seed pod before starting the
@@ -37,6 +41,8 @@ only the managed website and the current certificate/key files.
 
 The NodeBalancer uses PROXY v1 for TCP80/443/4000/4001/4080/4081; Nginx restores
 the client address and forwards the game through trusted loopback ingress4003.
+NodeBalancer health traffic is terminated by Nginx without opening a game session;
+game readiness checks its process/listener without connecting as a player.
 UDP4002 is not exposed in this candidate: Linode requires Premium NodeBalancers
 and account-specific beta access for UDP. The owner elected to proceed with I3
 and leave Zebedee disabled; it does not block the main-stack cutover. Any future UDP frontend
