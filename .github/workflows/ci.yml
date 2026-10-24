@@ -130,52 +130,15 @@ jobs:
           path: release.tar.gz
           retention-days: 7
           if-no-files-found: error
-  deploy:
-    needs: [version, build, quality, package]
-    if: github.repository == 'brcoding/SavageSoulMud' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
-    timeout-minutes: 12
-    environment:
-      name: production
-      url: https://savsoul.com
-    concurrency:
-      group: savsoul-production
-      cancel-in-progress: false
-    steps:
-      - uses: actions/download-artifact@v7
-        with:
-          name: release-${{ github.sha }}
-      - name: Deploy the checked revision over restricted SSH
-        env:
-          DEPLOY_KEY: ${{ secrets.SAVSOUL_DEPLOY_KEY }}
-          KNOWN_HOSTS: ${{ secrets.SAVSOUL_KNOWN_HOSTS }}
-          SAVSOUL_VERSION: ${{ needs.version.outputs.version }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          test "$(git ls-remote https://github.com/brcoding/SavageSoulMud.git refs/heads/main | cut -f1)" = "$GITHUB_SHA" || {
-            echo 'A newer main revision exists; refusing an out-of-order release.' >&2; exit 1;
-          }
-          umask 077
-          install -d -m 700 "$RUNNER_TEMP/deploy-ssh"
-          trap 'rm -f "$RUNNER_TEMP/deploy-ssh/key" "$RUNNER_TEMP/deploy-ssh/known_hosts"' EXIT
-          printf '%s\n' "$DEPLOY_KEY" > "$RUNNER_TEMP/deploy-ssh/key"
-          printf '%s\n' "$KNOWN_HOSTS" > "$RUNNER_TEMP/deploy-ssh/known_hosts"
-          unset DEPLOY_KEY KNOWN_HOSTS
-          ssh -T -i "$RUNNER_TEMP/deploy-ssh/key" \
-            -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes \
-            -o UserKnownHostsFile="$RUNNER_TEMP/deploy-ssh/known_hosts" \
-            -o ConnectTimeout=20 -o ServerAliveInterval=15 -o ServerAliveCountMax=4 \
-            savsoul-deploy@173.255.210.234 "deploy $GITHUB_SHA" < release.tar.gz
-          printf 'Released `%s` (`%s`) to https://savsoul.com (game :4000 / TLS :4001).\n' "$SAVSOUL_VERSION" "$GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
   deploy-kubernetes:
+    name: Deploy Kubernetes production
     needs: [version, build, quality, package]
     if: github.repository == 'brcoding/SavageSoulMud' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 12
     environment:
       name: kubernetes-candidate
-      url: http://69.164.205.149
+      url: https://savsoul.com
     concurrency:
       group: savsoul-kubernetes-candidate
       cancel-in-progress: false

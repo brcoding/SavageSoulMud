@@ -1,5 +1,8 @@
 # Staging record — 2026-10-24
 
+This is the historical staging record. The stack was subsequently promoted;
+see [PRODUCTION.md](PRODUCTION.md) for the current deployment and DNS state.
+
 The candidate is on LKE in namespace `savsoul`, StatefulSet `savsoul`, retained
 PVC `savsoul-home` (20Gi). Its current standard NodeBalancer IP is
 `69.164.205.149`. Production DNS and the Ubuntu VM remain unchanged.

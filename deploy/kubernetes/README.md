@@ -1,8 +1,10 @@
 # Savage Soul on Kubernetes
 
-This deployment stages the main stack before DNS cutover. The existing VM remains
-authoritative until all writers are paused and a final synchronized snapshot is
-verified. A warm snapshot is suitable for testing, not for replacing live saves.
+This deployment hosts the main production stack at 69.164.205.149 behind
+savsoul.com. The old VM's game, editor, gateway and related writers are stopped
+and disabled at boot. Temporary forwarding lets cached-DNS clients reach the
+same Kubernetes world. Unrelated old websites remain on the VM.
+See [PRODUCTION.md](PRODUCTION.md) for cutover evidence and rollback rules.
 
 The stack uses a retained 20Gi volume, one StatefulSet pod, official digest-pinned
 Python 3.12/Debian 13 and Nginx images, and a Linode NodeBalancer. The pod includes
@@ -86,10 +88,11 @@ those writes back before restarting the old stack. DNS reversal alone is unsafe.
 Replace the VM-specific CI release receiver with a narrowly scoped Kubernetes
 release identity before changing the production deploy workflow; never use the
 cluster-admin kubeconfig in GitHub Actions. Only one target owns live production saves.
-During staging, CI explicitly releases to both the VM production environment and
-the isolated Kubernetes candidate. These are separate results; candidate release
-does not switch DNS, synchronize live saves or activate I3. At cutover, disable the
-VM release job and promote the Kubernetes target. See [RELEASES.md](RELEASES.md).
+CI now releases only to Kubernetes; its proven scoped credential environment and
+concurrency identity are retained. The additive `production-i3-egress.json`
+policy permits the configured router TCP 8080 without removing other isolation.
+Apply it alongside stack.json when restoring production infrastructure.
+See [RELEASES.md](RELEASES.md).
 
 The maintenance pod has a two-hour deadline and is removed after bootstrap;
 do not delete the PVC or its retained PV. The main stack is intentionally isolated
