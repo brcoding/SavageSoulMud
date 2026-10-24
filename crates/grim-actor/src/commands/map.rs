@@ -32,7 +32,14 @@ pub(crate) fn handle_map(
         let Ok(actor_room) = inroom.get(actor) else {
             continue;
         };
-        if !visibility.can_see(actor,actor_room.room) {info.write(InfoMessage{target:actor,text:"It is too dark to read the surroundings. Bring a light or use night vision.".into()});continue;}
+        if !visibility.can_see(actor, actor_room.room) {
+            info.write(InfoMessage {
+                target: actor,
+                text: "It is too dark to read the surroundings. Bring a light or use night vision."
+                    .into(),
+            });
+            continue;
+        }
         let mut snapshot = HashMap::new();
         for (room, links) in exits.iter() {
             let mut visible = links.exits.clone();
@@ -41,12 +48,33 @@ pub(crate) fn handle_map(
             }
             snapshot.insert(room, visible);
         }
-        if characters.get(actor).is_ok_and(|c| c.config.get("screenreader").is_some_and(|v| v == "on")) {
-            let mut directions: Vec<_> = snapshot.get(&actor_room.room).into_iter().flat_map(|links| links.keys()).copied().collect();
+        if characters
+            .get(actor)
+            .is_ok_and(|c| c.config.get("screenreader").is_some_and(|v| v == "on"))
+        {
+            let mut directions: Vec<_> = snapshot
+                .get(&actor_room.room)
+                .into_iter()
+                .flat_map(|links| links.keys())
+                .copied()
+                .collect();
             directions.sort();
-            let names = directions.iter().map(ToString::to_string).collect::<Vec<_>>();
+            let names = directions
+                .iter()
+                .map(ToString::to_string)
+                .collect::<Vec<_>>();
             // tr-bypass: accessible structural listing of dynamic exit names.
-            info.write(InfoMessage { target: actor, text: format!("Exits: {}. Use look for room descriptions and doors.\n", if names.is_empty() { "none".to_string() } else { names.join(", ") }) });
+            info.write(InfoMessage {
+                target: actor,
+                text: format!(
+                    "Exits: {}. Use look for room descriptions and doors.\n",
+                    if names.is_empty() {
+                        "none".to_string()
+                    } else {
+                        names.join(", ")
+                    }
+                ),
+            });
             continue;
         }
         let rows = render_map(actor_room.room, &snapshot, &MapConfig::MAP);

@@ -18,8 +18,10 @@ use crate::limits::TelnetLimits;
 use crate::protocols::{TelnetInput, TelnetOutput};
 use crate::server::start_telnet_server;
 
-#[derive(SystemSet,Debug,Clone,PartialEq,Eq,Hash)]
-pub enum TelnetSystems {Send}
+#[derive(SystemSet, Debug, Clone, PartialEq, Eq, Hash)]
+pub enum TelnetSystems {
+    Send,
+}
 
 pub struct TelnetPlugin {
     pub port: u16,

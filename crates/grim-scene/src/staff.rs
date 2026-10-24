@@ -62,9 +62,7 @@ fn change_account(
         .iter()
         .find(|(name, _)| name.0.eq_ignore_ascii_case(target))
         .map(|(_, c)| c.account_id)
-        .or_else(|| {
-            grim_persistence::load_character_by_name(config, target).map(|c| c.account_id)
-        });
+        .or_else(|| grim_persistence::load_character_by_name(config, target).map(|c| c.account_id));
     if let Some(id) = id {
         if let Some(mut account) = accounts.iter_mut().find(|a| a.id == id) {
             let previous = account.testing;

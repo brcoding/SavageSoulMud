@@ -30,7 +30,7 @@ fn south_gate_is_visible_and_opening_does_not_bypass_security() {
         mud.saved_character("Traveler").last_room.unwrap().room,
         "romainstwallgate"
     );
-    let _=mud.send(s,"drop soulboy");
+    let _ = mud.send(s, "drop soulboy");
     mud.edit_character("Traveler", |c| {
         c.game_state.insert(
             "quests".into(),

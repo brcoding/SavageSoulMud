@@ -4,6 +4,11 @@
 **Role:** horizontal (infrastructure) — transport
 **Depends on:** `grim-networking`, `grim-color`, `grim-core`, `grim-actor`, `bevy`, `tokio`, `serde_json`, `signal-hook`, `sendfd`, `sd-notify`, `rustix`
 
+Connection setup, socket reading and bounded line assembly live in
+`src/bridge/connection.rs`; proxy listener parsing lives in `src/server/proxy.rs`.
+Protocol negotiation and prompt token substitution have dedicated helpers so
+their existing framing, limits and escaping remain independently readable.
+
 ## Components
 Reuses `grim_networking::Connection`. `TelnetCapabilities` (`src/protocols.rs`)
 stores negotiated options, terminal dimensions/types, whitelisted environment

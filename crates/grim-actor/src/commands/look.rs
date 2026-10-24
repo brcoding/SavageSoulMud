@@ -39,12 +39,21 @@ pub(crate) fn handle_look(
                 });
             }
             Some(name) => {
-                let subject = find_subject(name, actor, actor_room.room, &named, &visibility).or_else(|| {
-                    let spec=parse_target(name,ParseOptions::BEING)?;
-                    query(&spec,carried.iter().filter(|(_,held,_,_)|held.carrier==actor)
-                        .map(|(e,_,n,k)|(e,n.0.as_str(),k.map(|k|k.0.as_slice()).unwrap_or(&[]))))
-                        .into_iter().next()
-                });
+                let subject = find_subject(name, actor, actor_room.room, &named, &visibility)
+                    .or_else(|| {
+                        let spec = parse_target(name, ParseOptions::BEING)?;
+                        query(
+                            &spec,
+                            carried
+                                .iter()
+                                .filter(|(_, held, _, _)| held.carrier == actor)
+                                .map(|(e, _, n, k)| {
+                                    (e, n.0.as_str(), k.map(|k| k.0.as_slice()).unwrap_or(&[]))
+                                }),
+                        )
+                        .into_iter()
+                        .next()
+                    });
                 match subject {
                     Some(subject) => {
                         look_entity.write(LookEntity {
@@ -85,14 +94,16 @@ fn find_subject(
     let here = in_room(room, named.iter().map(|(e, ir, _, _)| (e, ir.room)), None);
     query(
         &spec,
-        here.into_iter().filter(|e|visibility.sees_actor(actor,*e)).filter_map(|e| {
-            let (_, _, name, keywords) = named.get(e).ok()?;
-            Some((
-                e,
-                name.0.as_str(),
-                keywords.map(|k| k.0.as_slice()).unwrap_or(&[]),
-            ))
-        }),
+        here.into_iter()
+            .filter(|e| visibility.sees_actor(actor, *e))
+            .filter_map(|e| {
+                let (_, _, name, keywords) = named.get(e).ok()?;
+                Some((
+                    e,
+                    name.0.as_str(),
+                    keywords.map(|k| k.0.as_slice()).unwrap_or(&[]),
+                ))
+            }),
     )
     .into_iter()
     .next()

@@ -147,7 +147,9 @@ impl Plugin for ScenePlugin {
                     format_transfer_events.in_set(SceneSystems::Output),
                     // The pack block belongs below the description `format_output`
                     // just wrote for the same `LookEntity`.
-                    format_look_pack.after(format_output).in_set(SceneSystems::Output),
+                    format_look_pack
+                        .after(format_output)
+                        .in_set(SceneSystems::Output),
                     format_server_broadcast.in_set(SceneSystems::Output),
                     format_recall.in_set(SceneSystems::Output),
                     capture_output,

@@ -237,8 +237,12 @@ pub(crate) fn collect_who_data<'a>(
         .iter()
         .filter_map(|(e, n, _, actor, character, _, connected)| {
             let ch = character?;
-            let observer=viewer.and_then(|v|player_chars.get(v).ok()).and_then(|(_,_,_,_,c,_,_)|c);
-            if !ch.visible_to(observer,viewer==Some(e)) {return None;}
+            let observer = viewer
+                .and_then(|v| player_chars.get(v).ok())
+                .and_then(|(_, _, _, _, c, _, _)| c);
+            if !ch.visible_to(observer, viewer == Some(e)) {
+                return None;
+            }
             // Race/level/gender live on the shared `Actor` base now.
             let actor = actor?;
             let is_admin = ch.is_admin();
@@ -304,8 +308,13 @@ pub(crate) fn format_where(
     let mut entries: Vec<(String, String)> = Vec::new();
     if let (Some(area), Some(name)) = (area, area_name) {
         for (e, n, ir, _, character, creature, _) in player_chars.iter() {
-            let observer=player_chars.get(char_entity).ok().and_then(|(_,_,_,_,c,_,_)|c);
-            if character.is_some_and(|c|!c.visible_to(observer,e==char_entity)) {continue;}
+            let observer = player_chars
+                .get(char_entity)
+                .ok()
+                .and_then(|(_, _, _, _, c, _, _)| c);
+            if character.is_some_and(|c| !c.visible_to(observer, e == char_entity)) {
+                continue;
+            }
             if character.is_none() && creature.is_none() {
                 continue;
             }

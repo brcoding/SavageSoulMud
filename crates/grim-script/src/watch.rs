@@ -198,7 +198,9 @@ fn fire(
                             for text in outcome.said {
                                 speech.write(ChannelMessage {
                                     origin: Some(mover),
-                                    hidden_origin: admins.get(mover).is_ok_and(|(_,c,_)|c.is_hidden()),
+                                    hidden_origin: admins
+                                        .get(mover)
+                                        .is_ok_and(|(_, c, _)| c.is_hidden()),
                                     channel: say.clone(),
                                     actor: mob,
                                     text: text.clone(),

@@ -71,7 +71,10 @@ pub(crate) fn handle_social(
             continue;
         };
         let actor_gender = gender_of(&beings, actor);
-        let here:Vec<_> = roommates(&occupants, actor_room).into_iter().filter(|(e,_)|visibility.sees_actor(actor,*e)&&visibility.sees_actor(*e,actor)).collect();
+        let here: Vec<_> = roommates(&occupants, actor_room)
+            .into_iter()
+            .filter(|(e, _)| visibility.sees_actor(actor, *e) && visibility.sees_actor(*e, actor))
+            .collect();
         let word = target.as_deref().and_then(|t| t.split_whitespace().next());
         let Some(word) = word else {
             emit_solo(&mut info, def, actor, &actor_name, actor_gender, &here);

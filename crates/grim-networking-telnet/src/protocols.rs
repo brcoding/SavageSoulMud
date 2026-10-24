@@ -118,60 +118,7 @@ impl ProtocolState {
         let mut reply = Vec::new();
         let mut input = None;
         match frame {
-            Frame::Negotiate(verb, option) => {
-                // Password masking is authoritative on the server. Never
-                // countermand it in response to an unsolicited ECHO request.
-                if option == 1 {
-                    return (reply, input);
-                }
-                let local = matches!(verb, DO | DONT);
-                let supported = if local {
-                    LOCAL.contains(&option)
-                } else {
-                    REMOTE.contains(&option)
-                };
-                let states = if local {
-                    &mut self.local
-                } else {
-                    &mut self.remote
-                };
-                let old = states[option as usize];
-                let positive = matches!(verb, DO | WILL);
-                if positive && supported {
-                    states[option as usize] = 2;
-                    if old == 0 || old == 3 {
-                        reply.extend([IAC, if local { WILL } else { DO }, option]);
-                    }
-                    if old != 2 {
-                        self.update_capability(option, true);
-                        match option {
-                            TTYPE => {
-                                self.terminal_requests = 1;
-                                reply.extend(iac::subnegotiation(TTYPE, &[1]));
-                            }
-                            NEW_ENVIRON => {
-                                let mut data = vec![1];
-                                for key in ENV_KEYS {
-                                    data.push(0);
-                                    data.extend(key.as_bytes());
-                                }
-                                reply.extend(iac::subnegotiation(NEW_ENVIRON, &data));
-                            }
-                            CHARSET => reply.extend(iac::subnegotiation(CHARSET, b"\x01;UTF-8")),
-                            GMCP | MSDP | MSSP | MXP | MSP | ATCP => {
-                                input = Some((option, Vec::new()))
-                            }
-                            _ => {}
-                        }
-                    }
-                } else {
-                    states[option as usize] = if positive { 3 } else { 0 };
-                    if (positive && old != 3) || (!positive && old == 2) {
-                        reply.extend([IAC, if local { WONT } else { DONT }, option]);
-                    }
-                    self.update_capability(option, false);
-                }
-            }
+            Frame::Negotiate(verb, option) => return self.negotiate(verb, option),
             Frame::Sub(option, payload) => {
                 if self.local[option as usize] != 2 && self.remote[option as usize] != 2 {
                     return (reply, input);
@@ -230,6 +177,62 @@ impl ProtocolState {
                 }
             }
             _ => {}
+        }
+        (reply, input)
+    }
+    fn negotiate(&mut self, verb: u8, option: u8) -> (Vec<u8>, Option<(u8, Vec<u8>)>) {
+        let mut reply = Vec::new();
+        let mut input = None;
+
+        // Password masking is authoritative on the server. Never
+        // countermand it in response to an unsolicited ECHO request.
+        if option == 1 {
+            return (reply, input);
+        }
+        let local = matches!(verb, DO | DONT);
+        let supported = if local {
+            LOCAL.contains(&option)
+        } else {
+            REMOTE.contains(&option)
+        };
+        let states = if local {
+            &mut self.local
+        } else {
+            &mut self.remote
+        };
+        let old = states[option as usize];
+        let positive = matches!(verb, DO | WILL);
+        if positive && supported {
+            states[option as usize] = 2;
+            if old == 0 || old == 3 {
+                reply.extend([IAC, if local { WILL } else { DO }, option]);
+            }
+            if old != 2 {
+                self.update_capability(option, true);
+                match option {
+                    TTYPE => {
+                        self.terminal_requests = 1;
+                        reply.extend(iac::subnegotiation(TTYPE, &[1]));
+                    }
+                    NEW_ENVIRON => {
+                        let mut data = vec![1];
+                        for key in ENV_KEYS {
+                            data.push(0);
+                            data.extend(key.as_bytes());
+                        }
+                        reply.extend(iac::subnegotiation(NEW_ENVIRON, &data));
+                    }
+                    CHARSET => reply.extend(iac::subnegotiation(CHARSET, b"\x01;UTF-8")),
+                    GMCP | MSDP | MSSP | MXP | MSP | ATCP => input = Some((option, Vec::new())),
+                    _ => {}
+                }
+            }
+        } else {
+            states[option as usize] = if positive { 3 } else { 0 };
+            if (positive && old != 3) || (!positive && old == 2) {
+                reply.extend([IAC, if local { WONT } else { DONT }, option]);
+            }
+            self.update_capability(option, false);
         }
         (reply, input)
     }
@@ -383,9 +386,16 @@ mod tests {
         for resumed in [false, true] {
             let mut state = ProtocolState::default();
             let handshake = state.handshake(resumed);
-            assert!(!handshake.chunks_exact(3).any(|frame| frame[2] == 3));
+            assert!(!handshake
+                .as_chunks::<3>()
+                .0
+                .iter()
+                .any(|frame| frame[2] == 3));
             assert_eq!(state.accept(Frame::Negotiate(DO, 3)).0, vec![IAC, WONT, 3]);
-            assert_eq!(state.accept(Frame::Negotiate(WILL, 3)).0, vec![IAC, DONT, 3]);
+            assert_eq!(
+                state.accept(Frame::Negotiate(WILL, 3)).0,
+                vec![IAC, DONT, 3]
+            );
         }
     }
     #[test]

@@ -36,10 +36,10 @@ mod wiznet;
 // flow reads. Auth → scene is allowed; scene never depends on auth.
 pub mod formatter;
 
-#[cfg(test)]
-mod tests;
-
 pub use idle::IdleConfig;
 pub use plugin::{ScenePlugin, SceneSystems};
 pub use scene_stack::{push_ingame_scene, top_is_ingame, InGameScene, SceneStack};
 pub use session::{ConnectedAt, JustEnteredWorld};
+
+#[cfg(test)]
+mod tests;

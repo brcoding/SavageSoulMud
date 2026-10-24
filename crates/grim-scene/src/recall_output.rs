@@ -27,11 +27,32 @@ fn emit_recall(
         return;
     };
     let attempt = tr!("recall.leave.attempt", name = actor_name.0.as_str());
-    broadcast_from(ev.from, &[ev.actor], ev.actor, &attempt, room_occupants, outputs);
+    broadcast_from(
+        ev.from,
+        &[ev.actor],
+        ev.actor,
+        &attempt,
+        room_occupants,
+        outputs,
+    );
     let vanish = tr!("recall.leave.vanish", name = actor_name.0.as_str());
-    broadcast_from(ev.from, &[ev.actor], ev.actor, &vanish, room_occupants, outputs);
+    broadcast_from(
+        ev.from,
+        &[ev.actor],
+        ev.actor,
+        &vanish,
+        room_occupants,
+        outputs,
+    );
     let arrive = tr!("recall.arrive", name = actor_name.0.as_str());
-    broadcast_from(ev.to, &[ev.actor], ev.actor, &arrive, room_occupants, outputs);
+    broadcast_from(
+        ev.to,
+        &[ev.actor],
+        ev.actor,
+        &arrive,
+        room_occupants,
+        outputs,
+    );
 }
 
 /// Broadcast every pending [`RecallEvent`] to its two rooms.

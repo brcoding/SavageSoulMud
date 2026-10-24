@@ -1997,9 +1997,9 @@ mod connection {
         let outputs: Vec<&ConnectionOutput> = cursor.read(msgs).collect();
         // Check that the banner (ASCII art) is in the output along with the login prompt
         assert!(
-            outputs
-                .iter()
-                .any(|o| o.connection == conn && o.text.contains("tRBR.") && o.text.contains("Scorched Earth")),
+            outputs.iter().any(|o| o.connection == conn
+                && o.text.contains("tRBR.")
+                && o.text.contains("Scorched Earth")),
             "Banner should contain ASCII art"
         );
         assert!(
@@ -2342,21 +2342,40 @@ mod character_creation {
         let (mut app, conn) = app_at_create_character(&dir);
         app.insert_resource(crate::CharacterBuildMode::SavageSoul);
         app.insert_resource(RaceRegistry(vec![grim_world::RaceDef {
-            slug: "human-sheltie".into(), name: "Human-Sheltie".into(),
-            abbrev: "Sheltie".into(), description: "Shelter descendant".into(),
+            slug: "human-sheltie".into(),
+            name: "Human-Sheltie".into(),
+            abbrev: "Sheltie".into(),
+            description: "Shelter descendant".into(),
         }]));
-        let initial=serde_json::json!({"marker":"saved at creation","mana":0});
-        app.insert_resource(crate::CharacterCreationDefaults(std::collections::HashMap::from([("human-sheltie".into(),std::collections::HashMap::from([("savage_soul".into(),initial.clone())]))])));
+        let initial = serde_json::json!({"marker":"saved at creation","mana":0});
+        app.insert_resource(crate::CharacterCreationDefaults(
+            std::collections::HashMap::from([(
+                "human-sheltie".into(),
+                std::collections::HashMap::from([("savage_soul".into(), initial.clone())]),
+            )]),
+        ));
         send(&mut app, conn, "Aria");
         send(&mut app, conn, "2");
-        assert!(matches!(state_of(&mut app, conn), ClientState::SelectRace { .. }));
+        assert!(matches!(
+            state_of(&mut app, conn),
+            ClientState::SelectRace { .. }
+        ));
         send(&mut app, conn, "dragon");
-        assert!(matches!(state_of(&mut app, conn), ClientState::SelectRace { .. }));
-        assert!(load_character_by_name(app.world().resource::<PersistenceConfig>(), "Aria").is_none());
+        assert!(matches!(
+            state_of(&mut app, conn),
+            ClientState::SelectRace { .. }
+        ));
+        assert!(
+            load_character_by_name(app.world().resource::<PersistenceConfig>(), "Aria").is_none()
+        );
         send(&mut app, conn, "1");
-        assert!(!matches!(state_of(&mut app, conn), ClientState::SelectClass { .. }));
-        let stored = load_character_by_name(app.world().resource::<PersistenceConfig>(), "Aria").unwrap();
-        assert_eq!(stored.game_state.get("savage_soul"),Some(&initial));
+        assert!(!matches!(
+            state_of(&mut app, conn),
+            ClientState::SelectClass { .. }
+        ));
+        let stored =
+            load_character_by_name(app.world().resource::<PersistenceConfig>(), "Aria").unwrap();
+        assert_eq!(stored.game_state.get("savage_soul"), Some(&initial));
         assert_eq!(stored.race, "human-sheltie");
         assert_eq!(stored.class, "savage-soul");
         assert_eq!(stored.gender, Gender::Female);
@@ -3333,50 +3352,135 @@ mod bans {
 
 mod structured_login {
     use super::*;
-    fn fixture()->(App,Entity) {
-        let mut app=test_app();let room=spawn_room(&mut app);app.world_mut().insert_resource(StartingRoom(room));
-        let conn=spawn_conn(&mut app,1);app.world_mut().spawn(Client::new(conn));
-        let account_id=GrimId::new();let char_id=GrimId::new();
-        app.world_mut().spawn(Account{testing:false,id:account_id,identifier:"gmcp@example.com".into(),password_hash:hash_password("sensitivepw"),characters:vec![char_id],created_at:Utc::now()});
-        let stored=StoredCharacter{credits:0,id:char_id,account_id,name:"Gmcptest".into(),created_at:Utc::now(),last_room:None,roles:vec![],gender:Gender::Neutral,race:"human".into(),class:"warrior".into(),level:1,title:None,restrings:Default::default(),config:Default::default(),game_state:Default::default(),inventory:vec![]};
-        let dir=app.world().resource::<PersistenceConfig>().dir.clone();write_disk_char(&dir,&stored);
+    fn fixture() -> (App, Entity) {
+        let mut app = test_app();
+        let room = spawn_room(&mut app);
+        app.world_mut().insert_resource(StartingRoom(room));
+        let conn = spawn_conn(&mut app, 1);
+        app.world_mut().spawn(Client::new(conn));
+        let account_id = GrimId::new();
+        let char_id = GrimId::new();
+        app.world_mut().spawn(Account {
+            testing: false,
+            id: account_id,
+            identifier: "gmcp@example.com".into(),
+            password_hash: hash_password("sensitivepw"),
+            characters: vec![char_id],
+            created_at: Utc::now(),
+        });
+        let stored = StoredCharacter {
+            credits: 0,
+            id: char_id,
+            account_id,
+            name: "Gmcptest".into(),
+            created_at: Utc::now(),
+            last_room: None,
+            roles: vec![],
+            gender: Gender::Neutral,
+            race: "human".into(),
+            class: "warrior".into(),
+            level: 1,
+            title: None,
+            restrings: Default::default(),
+            config: Default::default(),
+            game_state: Default::default(),
+            inventory: vec![],
+        };
+        let dir = app.world().resource::<PersistenceConfig>().dir.clone();
+        write_disk_char(&dir, &stored);
         app.update();
-        (app,conn)
+        (app, conn)
     }
-    fn attempt(app:&mut App,conn:Entity,account:&str,password:&str) {
-        app.world_mut().write_message(crate::LoginCredentials{connection:conn,account:account.into(),password:password.into()});app.update();
+    fn attempt(app: &mut App, conn: Entity, account: &str, password: &str) {
+        app.world_mut().write_message(crate::LoginCredentials {
+            connection: conn,
+            account: account.into(),
+            password: password.into(),
+        });
+        app.update();
     }
-    fn outcome(app:&App)->Vec<bool> {let events=app.world().resource::<Messages<crate::LoginResult>>();events.get_cursor().read(events).map(|r|r.success).collect()}
+    fn outcome(app: &App) -> Vec<bool> {
+        let events = app.world().resource::<Messages<crate::LoginResult>>();
+        events
+            .get_cursor()
+            .read(events)
+            .map(|r| r.success)
+            .collect()
+    }
     #[test]
     fn structured_password_login_supports_name_email_and_owned_qualified_character() {
-        for (id,state) in [("Gmcptest",ClientState::MotdPrompt),("gmcp@example.com",ClientState::CharacterSelect),("gmcp@example.com:Gmcptest",ClientState::MotdPrompt)] {
-            let (mut app,conn)=fixture();attempt(&mut app,conn,id,"sensitivepw");assert_eq!(client_state_of(&mut app,conn),state);assert_eq!(outcome(&app),vec![true]);
-            assert!(!conn_text(&mut app,conn).contains("sensitivepw"));
+        for (id, state) in [
+            ("Gmcptest", ClientState::MotdPrompt),
+            ("gmcp@example.com", ClientState::CharacterSelect),
+            ("gmcp@example.com:Gmcptest", ClientState::MotdPrompt),
+        ] {
+            let (mut app, conn) = fixture();
+            attempt(&mut app, conn, id, "sensitivepw");
+            assert_eq!(client_state_of(&mut app, conn), state);
+            assert_eq!(outcome(&app), vec![true]);
+            assert!(!conn_text(&mut app, conn).contains("sensitivepw"));
         }
     }
     #[test]
     fn structured_failures_never_create_accounts_or_bypass_terminal_state() {
-        for (id,pw) in [("Gmcptest","wrong"),("new@example.com","anything"),("gmcp@example.com:Other","sensitivepw"),("Gmcptest","sensitivepw\nlook")] {
-            let (mut app,conn)=fixture();
-            app.world_mut().write_message(crate::LoginCredentials{connection:conn,account:id.into(),password:pw.into()});
-            app.world_mut().write_message(crate::LoginCredentials{connection:conn,account:"Gmcptest".into(),password:"sensitivepw".into()});app.update();
-            assert_eq!(client_state_of(&mut app,conn),ClientState::Disconnecting);assert!(outcome(&app).iter().all(|v|!*v));
-            assert!(!conn_text(&mut app,conn).contains("sensitivepw"));assert!(disconnects(&app).contains(&conn));
+        for (id, pw) in [
+            ("Gmcptest", "wrong"),
+            ("new@example.com", "anything"),
+            ("gmcp@example.com:Other", "sensitivepw"),
+            ("Gmcptest", "sensitivepw\nlook"),
+        ] {
+            let (mut app, conn) = fixture();
+            app.world_mut().write_message(crate::LoginCredentials {
+                connection: conn,
+                account: id.into(),
+                password: pw.into(),
+            });
+            app.world_mut().write_message(crate::LoginCredentials {
+                connection: conn,
+                account: "Gmcptest".into(),
+                password: "sensitivepw".into(),
+            });
+            app.update();
+            assert_eq!(client_state_of(&mut app, conn), ClientState::Disconnecting);
+            assert!(outcome(&app).iter().all(|v| !*v));
+            assert!(!conn_text(&mut app, conn).contains("sensitivepw"));
+            assert!(disconnects(&app).contains(&conn));
         }
     }
     #[test]
     fn structured_autofill_does_not_reinterpret_queued_manual_login_as_gameplay() {
-        let (mut app,conn)=fixture();
-        app.world_mut().write_message(crate::LoginCredentials{connection:conn,account:"Gmcptest".into(),password:"sensitivepw".into()});
-        app.world_mut().write_message(ConnectionInput{connection:conn,text:"help".into()});app.update();
-        assert_eq!(client_state_of(&mut app,conn),ClientState::LoginPrompt);
-        assert!(!conn_text(&mut app,conn).contains("sensitivepw"));assert!(disconnects(&app).is_empty());
+        let (mut app, conn) = fixture();
+        app.world_mut().write_message(crate::LoginCredentials {
+            connection: conn,
+            account: "Gmcptest".into(),
+            password: "sensitivepw".into(),
+        });
+        app.world_mut().write_message(ConnectionInput {
+            connection: conn,
+            text: "help".into(),
+        });
+        app.update();
+        assert_eq!(client_state_of(&mut app, conn), ClientState::LoginPrompt);
+        assert!(!conn_text(&mut app, conn).contains("sensitivepw"));
+        assert!(disconnects(&app).is_empty());
     }
     #[test]
     fn structured_login_preserves_character_bans_and_does_not_reset_menu() {
-        let (mut app,conn)=fixture();app.world_mut().resource_mut::<BanList>().add(grim_core::events::BanKind::Character,"gmcptest","Root");
-        attempt(&mut app,conn,"Gmcptest","sensitivepw");assert_eq!(client_state_of(&mut app,conn),ClientState::Disconnecting);assert_eq!(outcome(&app),vec![false]);
-        let (mut app,conn)=fixture();attempt(&mut app,conn,"gmcp@example.com","sensitivepw");
-        attempt(&mut app,conn,"Gmcptest","sensitivepw");assert_eq!(client_state_of(&mut app,conn),ClientState::CharacterSelect);
+        let (mut app, conn) = fixture();
+        app.world_mut().resource_mut::<BanList>().add(
+            grim_core::events::BanKind::Character,
+            "gmcptest",
+            "Root",
+        );
+        attempt(&mut app, conn, "Gmcptest", "sensitivepw");
+        assert_eq!(client_state_of(&mut app, conn), ClientState::Disconnecting);
+        assert_eq!(outcome(&app), vec![false]);
+        let (mut app, conn) = fixture();
+        attempt(&mut app, conn, "gmcp@example.com", "sensitivepw");
+        attempt(&mut app, conn, "Gmcptest", "sensitivepw");
+        assert_eq!(
+            client_state_of(&mut app, conn),
+            ClientState::CharacterSelect
+        );
     }
 }

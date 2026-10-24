@@ -37,7 +37,9 @@ pub(crate) fn handle_tell(
             // lowest entity id — deterministic under duplicate names.
             players
                 .iter()
-                .filter(|(e,_)|visibility.sees_actor(actor,*e)&&visibility.sees_actor(*e,actor))
+                .filter(|(e, _)| {
+                    visibility.sees_actor(actor, *e) && visibility.sees_actor(*e, actor)
+                })
                 .filter_map(|(e, n)| {
                     rank_match(&n.0, &[], std::slice::from_ref(&want))
                         .map(|rank| (rank, e.to_bits(), e))

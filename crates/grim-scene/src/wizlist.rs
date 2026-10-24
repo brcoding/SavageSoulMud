@@ -61,8 +61,19 @@ pub(crate) fn format_wizlist(
 ) -> String {
     let mut data = collect_who_data(player_chars, linkdead, afk_chars, res, viewer);
     data.retain(|d| d.key.is_admin);
-    let observer=viewer.and_then(|v|player_chars.get(v).ok()).and_then(|(_,_,_,_,c,_,_)|c);
-    let filtered=WizlistAdmins(admins.0.iter().filter(|s|crate::staff::stored_character(&res.persistence,s).visible_to(observer,false)).cloned().collect());
+    let observer = viewer
+        .and_then(|v| player_chars.get(v).ok())
+        .and_then(|(_, _, _, _, c, _, _)| c);
+    let filtered = WizlistAdmins(
+        admins
+            .0
+            .iter()
+            .filter(|s| {
+                crate::staff::stored_character(&res.persistence, s).visible_to(observer, false)
+            })
+            .cloned()
+            .collect(),
+    );
     // Keep this snapshot alive while its rows borrow restrings below.
     data.extend(offline_admin_rows(player_chars, res, &filtered));
     data.sort_by(|a, b| who_order(&a.key, &b.key));

@@ -28,7 +28,14 @@ fn shop_trades_save_credits_and_inventory_together() {
         .assert_contains("960 credits remaining");
     let saved = mud.saved_character("Shopper");
     assert_eq!(saved.credits, 960);
-    assert_eq!(saved.inventory.iter().filter(|item| item.name == "shovel").count(), 2);
+    assert_eq!(
+        saved
+            .inventory
+            .iter()
+            .filter(|item| item.name == "shovel")
+            .count(),
+        2
+    );
     mud.send(s, "buy 100*shovel")
         .assert_contains("You need 2000 credits");
     assert_eq!(mud.saved_character("Shopper").credits, 960);

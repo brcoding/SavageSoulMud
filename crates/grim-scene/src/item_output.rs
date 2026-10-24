@@ -40,7 +40,14 @@ pub(crate) fn format_item_events(
             name = ev.actor_name.as_str(),
             short = ev.short.as_str()
         );
-        broadcast_from(ev.room, &[ev.actor], ev.actor, &third, &room_occupants, &mut outputs);
+        broadcast_from(
+            ev.room,
+            &[ev.actor],
+            ev.actor,
+            &third,
+            &room_occupants,
+            &mut outputs,
+        );
     }
 }
 
@@ -96,7 +103,12 @@ pub(crate) fn format_transfer_events(
         );
         broadcast_from(
             ev.room,
-            &[ev.mover, ev.other], if room_occupants.hidden(ev.other){ev.other}else{ev.mover},
+            &[ev.mover, ev.other],
+            if room_occupants.hidden(ev.other) {
+                ev.other
+            } else {
+                ev.mover
+            },
             &third,
             &room_occupants,
             &mut outputs,
@@ -119,7 +131,9 @@ pub(crate) fn format_look_pack(
     mut outputs: MessageWriter<ConnectionOutput>,
 ) {
     for ev in looks.read() {
-        if !room_occupants.sees(ev.target,ev.subject) {continue;}
+        if !room_occupants.sees(ev.target, ev.subject) {
+            continue;
+        }
         if characters.get(ev.subject).is_err() && creatures.get(ev.subject).is_err() {
             continue;
         }

@@ -506,7 +506,6 @@ mod output_format {
             .id();
 
         app.world_mut().write_message(ChannelMessage {
-
             origin: None,
 
             hidden_origin: false,

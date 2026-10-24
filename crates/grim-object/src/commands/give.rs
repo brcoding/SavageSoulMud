@@ -35,10 +35,12 @@ pub(crate) fn find_being(
     let here = beings_in(room, beings, Some(actor));
     let found = query(
         spec,
-        here.into_iter().filter(|e|visibility.sees_actor(actor,*e)&&visibility.sees_actor(*e,actor)).filter_map(|e| {
-            let (_, _, nm, kw, ..) = beings.get(e).ok()?;
-            Some((e, nm.0.as_str(), kw.map(|k| k.0.as_slice()).unwrap_or(&[])))
-        }),
+        here.into_iter()
+            .filter(|e| visibility.sees_actor(actor, *e) && visibility.sees_actor(*e, actor))
+            .filter_map(|e| {
+                let (_, _, nm, kw, ..) = beings.get(e).ok()?;
+                Some((e, nm.0.as_str(), kw.map(|k| k.0.as_slice()).unwrap_or(&[])))
+            }),
     );
     let entity = found.into_iter().next()?;
     let (_, _, name, _, _, is_creature, _, _) = beings.get(entity).ok()?;

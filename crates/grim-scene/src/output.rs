@@ -19,6 +19,9 @@ use crate::channel_output::emit_channel;
 use crate::formatter;
 use crate::look_output::{emit_look_entity, emit_look_room, RoomLinks};
 use crate::params::OutputReads;
+mod broadcast;
+use broadcast::broadcast_room;
+pub(crate) use broadcast::{broadcast_from, format_server_broadcast};
 
 /// Room-occupant query shape, shared by every broadcast helper below.
 type Members<'w, 's> = Query<
@@ -79,7 +82,11 @@ pub(crate) fn format_output(
     room_occupants: Occupants,
     room_exits: RoomLinks,
     names: Query<&GrimName>,
-    descriptions: Query<(Option<&Description>, Option<&grim_core::components::ItemCondition>, Option<&Object>)>,
+    descriptions: Query<(
+        Option<&Description>,
+        Option<&grim_core::components::ItemCondition>,
+        Option<&Object>,
+    )>,
     characters: Query<&Character>,
     mut outputs: MessageWriter<ConnectionOutput>,
 ) {
@@ -90,7 +97,9 @@ pub(crate) fn format_output(
     for ev in reads.login.read() {
         if let Ok((_, ir, _, _, _, _)) = room_occupants.get(ev.subject) {
             broadcast_from(
-                ir.room, &[], ev.subject,
+                ir.room,
+                &[],
+                ev.subject,
                 &format!("{} has connected.\n", ev.name),
                 &room_occupants,
                 &mut outputs,
@@ -110,7 +119,14 @@ pub(crate) fn format_output(
     for ev in reads.linkdead.read() {
         if let Ok((_, ir, _, _, _, _)) = room_occupants.get(ev.subject) {
             let formatted = formatter::format_linkdead(&ev.name, ev.reconnecting);
-            broadcast_from(ir.room,&[],ev.subject,&formatted,&room_occupants,&mut outputs);
+            broadcast_from(
+                ir.room,
+                &[],
+                ev.subject,
+                &formatted,
+                &room_occupants,
+                &mut outputs,
+            );
         }
     }
     // Causal order, not arrival order: attempt-phase speech (channel) and
@@ -148,7 +164,14 @@ pub(crate) fn format_output(
         );
     }
     for ev in look_entity_events.read() {
-        emit_look_entity(ev, &room_occupants, &names, &descriptions, &reads.visibility, &mut outputs);
+        emit_look_entity(
+            ev,
+            &room_occupants,
+            &names,
+            &descriptions,
+            &reads.visibility,
+            &mut outputs,
+        );
     }
     for ev in move_events.read() {
         emit_move(ev, &names, &room_occupants, &mut outputs);
@@ -183,9 +206,23 @@ fn emit_move(
     };
     let dir_str = ev.direction.to_string();
     let leave_msg = formatter::format_move(&actor_name.0, &dir_str, true);
-    broadcast_from(ev.from, &[ev.actor], ev.actor, &leave_msg, room_occupants, outputs);
+    broadcast_from(
+        ev.from,
+        &[ev.actor],
+        ev.actor,
+        &leave_msg,
+        room_occupants,
+        outputs,
+    );
     let arrive_msg = formatter::format_move(&actor_name.0, &dir_str, false);
-    broadcast_from(ev.to, &[ev.actor], ev.actor, &arrive_msg, room_occupants, outputs);
+    broadcast_from(
+        ev.to,
+        &[ev.actor],
+        ev.actor,
+        &arrive_msg,
+        room_occupants,
+        outputs,
+    );
 }
 
 /// Per-recipient door rendering: the actor gets the first-party line, the
@@ -227,7 +264,14 @@ fn emit_door(
         name = ev.name.as_str(),
         heading = dir.as_str()
     );
-    broadcast_from(ev.from, &[ev.actor], ev.actor, &witness, room_occupants, outputs);
+    broadcast_from(
+        ev.from,
+        &[ev.actor],
+        ev.actor,
+        &witness,
+        room_occupants,
+        outputs,
+    );
     // Far room: "The privy door opens to the west." — recipient-relative
     // direction, sentence-cased after any leading colour markup.
     let far_key = if ev.opened {
@@ -273,7 +317,9 @@ fn emit_gecho(
         let Some(p) = player else {
             continue;
         };
-        if !room_occupants.sees(entity,ev.actor) {continue;}
+        if !room_occupants.sees(entity, ev.actor) {
+            continue;
+        }
         let conn = p.connection;
         let is_other_admin = entity != ev.actor
             && characters
@@ -307,71 +353,6 @@ pub(crate) fn capture_output(
     for ev in output.read() {
         if let Ok(mut history) = histories.get_mut(ev.connection) {
             history.push(&ev.text);
-        }
-    }
-}
-/// An actor's actions are visible only to recipients who can perceive them.
-pub(crate) fn broadcast_from(room:Entity,exclude:&[Entity],source:Entity,text:&str,occupants:&Occupants,outputs:&mut MessageWriter<ConnectionOutput>) {
-    for (entity,ir,player,..) in occupants.iter() {
-        if ir.room!=room || exclude.contains(&entity) || !occupants.sees(entity,source) {continue;}
-        if let Some(player)=player {
-            outputs.write(ConnectionOutput{prepend_newline:true,..ConnectionOutput::new(player.connection,text)});
-        }
-    }
-}
-
-/// Out-of-band server messages (shutdown warnings) to every connected player.
-/// A separate system from `format_output` because that one is already at Bevy's
-/// system-parameter ceiling.
-pub(crate) fn format_server_broadcast(
-    mut broadcasts: MessageReader<ServerBroadcast>,
-    occupants: Occupants,
-    mut outputs: MessageWriter<ConnectionOutput>,
-) {
-    for ev in broadcasts.read() {
-        broadcast_global(&ev.text, &occupants, &mut outputs);
-    }
-}
-
-/// Send text to every connected player standing in `room`. Objects share the
-/// query but never speak, so they are excluded from the audience (ground
-/// objects have no `Player` either, but the explicit cut keeps the render
-/// contract obvious).
-fn broadcast_room(
-    text: &str,
-    room: Entity,
-    occupants: &Occupants,
-    outputs: &mut MessageWriter<ConnectionOutput>,
-) {
-    for entity in in_room(
-        room,
-        occupants
-            .iter()
-            .filter(|(_, _, _, _, _, o)| o.is_none())
-            .map(|(e, ir, ..)| (e, ir.room)),
-        None,
-    ) {
-        if let Ok((_, _, Some(p), ..)) = occupants.get(entity) {
-            outputs.write(ConnectionOutput {
-                prepend_newline: true,
-                ..ConnectionOutput::new(p.connection, text.to_string())
-            });
-        }
-    }
-}
-
-/// Send text to every connected player.
-fn broadcast_global(
-    text: &str,
-    occupants: &Occupants,
-    outputs: &mut MessageWriter<ConnectionOutput>,
-) {
-    for (_, _, player, _, _, _) in occupants.iter() {
-        if let Some(p) = player {
-            outputs.write(ConnectionOutput {
-                prepend_newline: true,
-                ..ConnectionOutput::new(p.connection, text.to_string())
-            });
         }
     }
 }

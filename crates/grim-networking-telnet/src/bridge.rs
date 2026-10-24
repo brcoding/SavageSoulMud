@@ -20,6 +20,9 @@ use crate::guard::{frame_input, rate_tripped, GuardTrip};
 use crate::limits::TelnetLimits;
 use crate::protocols::{ProtocolState, TelnetCapabilities, TelnetOutput, EOR, RAW_MARKUP};
 use crate::{iac, render};
+mod connection;
+pub(crate) use connection::register_connection;
+
 // ─── Internal bridge types ─────────────────────────────────────────
 
 pub(crate) struct Conn {
@@ -114,158 +117,6 @@ pub(crate) struct NetworkBridge {
 pub(crate) struct TelnetPort(pub u16);
 
 // ─── Connection registration ───────────────────────────────────────
-
-/// Split `socket` into read/write tasks and register it under `conn_id`. Fresh
-/// accepts negotiate optional client protocols immediately; adopted copyover
-/// sockets reset and renegotiate them without touching password echo.
-///
-/// The read task enforces `limits` at framing, before any byte reaches Bevy:
-/// lines past `max_line_len` are truncated (remainder discarded to the
-/// newline, so a long line never splits into two commands); a line past
-/// `max_buffer` without a newline, or more than `max_lines` inside
-/// `rate_window_secs`, drops the connection with a [`GuardTrip`] reason.
-pub(crate) fn register_connection(
-    conn_id: usize,
-    socket: TcpStream,
-    to_bevy_tx: &std_mpsc::Sender<NetworkEvent>,
-    conns: &Arc<Mutex<HashMap<usize, Conn>>>,
-    handshake: bool,
-    limits: TelnetLimits,
-) {
-    let raw_fd = socket.as_raw_fd();
-    let (read_half, mut write_half) = tokio::io::split(socket);
-    let (write_tx, mut write_rx) = tokio::sync::mpsc::channel::<Vec<u8>>(32);
-
-    let mut protocol = ProtocolState::default();
-    let negotiation = protocol.handshake(!handshake);
-    let protocol_write_tx = write_tx.clone();
-    let read_handle = tokio::spawn({
-        let to_bevy_tx = to_bevy_tx.clone();
-        let conns = conns.clone();
-        async move {
-            let line_cap = limits.max_line_len.max(1);
-            let buf_cap = limits.buffer_cap();
-            let window = std::time::Duration::from_secs(limits.rate_window_secs.max(1));
-            let mut line_times = VecDeque::new();
-            let mut protocol_times = VecDeque::new();
-            let mut reason = None;
-            let mut reader = read_half;
-            let mut decoder = iac::Decoder::default();
-            let mut line = Vec::new();
-            let mut line_bytes = 0usize;
-            let mut truncated = false;
-            let mut bytes = [0u8; 4096];
-            'socket: loop {
-                let n = match reader.read(&mut bytes).await {
-                    Ok(0) | Err(_) => break,
-                    Ok(n) => n,
-                };
-                let frames = match decoder.feed(&bytes[..n]) {
-                    Ok(frames) => frames,
-                    Err(_) => {
-                        reason = Some(GuardTrip::BufferExceeded {
-                            bytes: iac::MAX_SUBNEGOTIATION,
-                        });
-                        break;
-                    }
-                };
-                for frame in frames {
-                    if let iac::Frame::Data(byte) = frame {
-                        line_bytes = line_bytes.saturating_add(1);
-                        if byte == b'\n' {
-                            if !truncated {
-                                let text = frame_input(&line);
-                                let _ = to_bevy_tx.send(NetworkEvent::Input { conn_id, text });
-                                if rate_tripped(&mut line_times, window, limits.max_lines) {
-                                    reason = Some(GuardTrip::RateExceeded {
-                                        lines: limits.max_lines,
-                                        window_secs: limits.rate_window_secs,
-                                    });
-                                    break 'socket;
-                                }
-                            }
-                            line.clear();
-                            line_bytes = 0;
-                            truncated = false;
-                        } else {
-                            if line_bytes > buf_cap {
-                                reason = Some(GuardTrip::BufferExceeded { bytes: buf_cap });
-                                break 'socket;
-                            }
-                            if !truncated {
-                                line.push(byte);
-                                if line.len() == line_cap {
-                                    let text = frame_input(&line);
-                                    let _ = to_bevy_tx.send(NetworkEvent::Input { conn_id, text });
-                                    if rate_tripped(&mut line_times, window, limits.max_lines) {
-                                        reason = Some(GuardTrip::RateExceeded {
-                                            lines: limits.max_lines,
-                                            window_secs: limits.rate_window_secs,
-                                        });
-                                        break 'socket;
-                                    }
-                                    truncated = true;
-                                    line.clear();
-                                }
-                            }
-                        }
-                    } else {
-                        // Bound out-of-band traffic separately; normal client
-                        // negotiation must not consume the player's line quota.
-                        if rate_tripped(&mut protocol_times, std::time::Duration::from_secs(1), 128)
-                        {
-                            reason = Some(GuardTrip::RateExceeded {
-                                lines: 128,
-                                window_secs: 1,
-                            });
-                            break 'socket;
-                        }
-                        let before = protocol.capabilities.clone();
-                        let (reply, input) = protocol.accept(frame);
-                        if !reply.is_empty() && protocol_write_tx.try_send(reply).is_err() {
-                            break 'socket;
-                        }
-                        if input.is_some() || before != protocol.capabilities {
-                            let _ = to_bevy_tx.send(NetworkEvent::Protocol {
-                                conn_id,
-                                capabilities: protocol.capabilities.clone(),
-                                input,
-                            });
-                        }
-                    }
-                }
-            }
-            if reason.is_none() && !truncated && !line.is_empty() {
-                let text = frame_input(&line);
-                let _ = to_bevy_tx.send(NetworkEvent::Input { conn_id, text });
-            }
-            let _ = to_bevy_tx.send(NetworkEvent::Disconnected { conn_id, reason });
-            conns.lock().unwrap().remove(&conn_id);
-        }
-    });
-    let write_handle = tokio::spawn(async move {
-        // Negotiate immediately, even while the client hasn't sent a newline.
-        // Adopted sockets reset optional protocols but leave ECHO untouched.
-        if write_half.write_all(&negotiation).await.is_err() {
-            return;
-        }
-        while let Some(data) = write_rx.recv().await {
-            if write_half.write_all(&data).await.is_err() {
-                break;
-            }
-        }
-    });
-
-    conns.lock().unwrap().insert(
-        conn_id,
-        Conn {
-            write_tx,
-            read_handle,
-            write_handle,
-            raw_fd,
-        },
-    );
-}
 
 // ─── Update: route Bevy events -> network ──────────────────────────
 

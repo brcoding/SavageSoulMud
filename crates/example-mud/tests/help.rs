@@ -5,7 +5,16 @@ use harness::Mud;
 fn player_can_browse_read_and_search_help() {
     let mut mud = Mud::with_savage_soul();
     let (session, _) = mud.connect();
-    for line in ["help@example.com", "y", "secretpw", "c", "Reader", "1", "human", ""] {
+    for line in [
+        "help@example.com",
+        "y",
+        "secretpw",
+        "c",
+        "Reader",
+        "1",
+        "human",
+        "",
+    ] {
         let _ = mud.send(session, line);
     }
     mud.send(session, "help")

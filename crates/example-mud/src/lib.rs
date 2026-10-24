@@ -4,12 +4,12 @@
 //! (`tests/`) boots the *same* world the binary ships, rather than a
 //! divergent copy.
 
-pub mod seed;
-pub mod shop;
+mod consumables;
 pub mod savage_rules;
 pub mod savage_soul;
-mod consumables;
+pub mod seed;
 mod seed_doors;
+pub mod shop;
 
 pub mod help;
 
@@ -21,20 +21,20 @@ mod royal_oak;
 mod trainer;
 mod trainer_ai;
 
-mod preferences;
 mod conditions;
-pub mod population;
-mod medical;
 mod hack;
+mod medical;
+pub mod population;
+mod preferences;
 
 mod crafting;
 
 mod morlock;
 
-pub mod intermud;
-mod zebedee;
 mod client_protocols;
 mod combat_prose;
+pub mod intermud;
+mod zebedee;
 
 mod grapevine;
 

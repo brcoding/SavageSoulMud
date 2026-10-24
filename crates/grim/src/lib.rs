@@ -16,10 +16,14 @@ pub use grim_core::*;
 // stay stable downstream.
 pub mod prelude;
 pub use grim_actor::{
-    Actor, AttemptWalk, Character, Creature, DarkVision, InRoom, Linkdead, OutputHistory, Player, Role, StoredCharacter,
-    StoredObject,
+    Actor, AttemptWalk, Character, Creature, DarkVision, InRoom, Linkdead, OutputHistory, Player,
+    Role, StoredCharacter, StoredObject,
 };
-pub use grim_auth::{AuthSystems, LoginCredentials, LoginResult, AccessibilityOnboarding, AuthPlugin, CharacterBuildMode, CharacterCreationDefaults, StartingCredits, ReservedNamePrefixes};
+pub use grim_auth::{
+    AccessibilityOnboarding, AuthPlugin, AuthSystems, CharacterBuildMode,
+    CharacterCreationDefaults, LoginCredentials, LoginResult, ReservedNamePrefixes,
+    StartingCredits,
+};
 pub use grim_channel::LastWhisperFrom;
 pub use grim_config::{ConfigDef, ConfigRegistry, Scope as ConfigScope};
 pub use grim_object::{CarriedBy, Object, ObjectPlugin};
@@ -29,13 +33,13 @@ pub use grim_script::{
 };
 pub use grim_social::{SocialDef, SocialDir, SocialPerformed, SocialRegistry};
 pub use grim_world::{
-    render_map, Area, ClassDef, ClassRegistry, Door, Doors, Exits, MapConfig, RaceDef,
-    RaceRegistry, Room, RoomDarkness, LightSource, RoomLocation, StartingRoom,
+    render_map, Area, ClassDef, ClassRegistry, Door, Doors, Exits, LightSource, MapConfig, RaceDef,
+    RaceRegistry, Room, RoomDarkness, RoomLocation, StartingRoom,
 };
 
 // Transport-agnostic networking primitives (Connection + wire events).
 pub use grim_networking::{self as networking, *};
-pub use grim_networking_telnet::{TelnetSystems, TelnetCapabilities, TelnetInput, TelnetOutput};
+pub use grim_networking_telnet::{TelnetCapabilities, TelnetInput, TelnetOutput, TelnetSystems};
 
 // The text catalog. `tr` is re-exported at the crate root so `grim::tr` (the
 // function) and `grim::tr!` (the macro, via #[macro_export]) both resolve.

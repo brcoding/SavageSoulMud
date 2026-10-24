@@ -131,7 +131,9 @@ fn wrap_room_column(text: &str, width: usize) -> Vec<String> {
                 rows.push(chunk);
             }
             if !word.is_empty() {
-                if !line.is_empty() { line.push(' '); }
+                if !line.is_empty() {
+                    line.push(' ');
+                }
                 line.push_str(word);
             }
         }
@@ -309,14 +311,23 @@ pub fn format_motd() -> String {
 /// MOTD for immediate reconnects, which do not pause for Enter.
 pub fn format_motd_message() -> String {
     let text = format_motd();
-    text.trim_end().strip_suffix("(Press Enter to Continue)")
-        .unwrap_or(text.trim_end()).trim_end().to_string()
+    text.trim_end()
+        .strip_suffix("(Press Enter to Continue)")
+        .unwrap_or(text.trim_end())
+        .trim_end()
+        .to_string()
 }
 
 fn random_motd(list: &str) -> Option<String> {
-    let entries: Vec<_> = list.trim_start_matches('\u{feff}').lines()
-        .map(str::trim).filter(|line| !line.is_empty()).collect();
-    if entries.is_empty() { return None; }
+    let entries: Vec<_> = list
+        .trim_start_matches('\u{feff}')
+        .lines()
+        .map(str::trim)
+        .filter(|line| !line.is_empty())
+        .collect();
+    if entries.is_empty() {
+        return None;
+    }
     let entry = entries[rand::random_range(0..entries.len())];
     Some(format!("{entry}\n\n(Press Enter to Continue)\n"))
 }
@@ -498,14 +509,28 @@ mod tests {
 
     #[test]
     fn long_descriptions_stay_beside_every_minimap_row() {
-        let map = vec!["#--#--#".into(), "|  |  |".into(), "#--@@--#".into(), "|  |  |".into()];
+        let map = vec![
+            "#--#--#".into(),
+            "|  |  |".into(),
+            "#--@@--#".into(),
+            "|  |  |".into(),
+        ];
         let description = "A large wall fashioned of overturned cars, road signs, garbage, and twisted metal parts to the south forms a gate. To the north a few buildings can be seen down a broken asphalt road.";
-        let output = staple_minimap(&map, &format!("Royal Oak Wall Gate\n{description}\n\nExits: north west"));
+        let output = staple_minimap(
+            &map,
+            &format!("Royal Oak Wall Gate\n{description}\n\nExits: north west"),
+        );
         for (i, row) in output.lines().enumerate() {
             assert!(visible_width(row) <= 80, "{row}");
-            if let Some(map_row) = map.get(i) { assert!(row.starts_with(map_row)); }
+            if let Some(map_row) = map.get(i) {
+                assert!(row.starts_with(map_row));
+            }
         }
-        let column = output.lines().map(|row|row.get(11..).unwrap_or("")).collect::<Vec<_>>().join(" ");
+        let column = output
+            .lines()
+            .map(|row| row.get(11..).unwrap_or(""))
+            .collect::<Vec<_>>()
+            .join(" ");
         assert!(column.contains("metal parts to the south forms a gate."));
         assert!(column.contains("Exits: north west"));
     }
@@ -516,7 +541,10 @@ mod tests {
         let rows = wrap_room_column(&word, 69);
         assert!(rows.iter().all(|row| visible_width(row) <= 69));
         assert_eq!(rows.concat(), word);
-        assert_eq!(wrap_room_column("Title\n\nShort.", 69), vec!["Title", "", "Short."]);
+        assert_eq!(
+            wrap_room_column("Title\n\nShort.", 69),
+            vec!["Title", "", "Short."]
+        );
     }
 
     #[test]
@@ -747,8 +775,10 @@ mod tests {
     #[test]
     fn motd_list_uses_one_nonblank_line() {
         assert!(random_motd("\u{feff} \r\n \n").is_none());
-        assert_eq!(random_motd("\u{feff}Only entry\r\n\r\n"),
-            Some("Only entry\n\n(Press Enter to Continue)\n".to_string()));
+        assert_eq!(
+            random_motd("\u{feff}Only entry\r\n\r\n"),
+            Some("Only entry\n\n(Press Enter to Continue)\n".to_string())
+        );
         for _ in 0..16 {
             let message = random_motd("First\r\n\nSecond\n").unwrap();
             assert!(message.starts_with("First\n") || message.starts_with("Second\n"));

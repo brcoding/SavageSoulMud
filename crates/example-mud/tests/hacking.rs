@@ -73,13 +73,11 @@ fn terminal_progress_survives_abort_and_reconnect_and_reward_is_once() {
         Some(xp + 2000)
     );
     assert_eq!(saved.game_state["quest_points"], 10);
-    assert!(
-        saved.game_state["quests"]
-            .as_array()
-            .unwrap()
-            .iter()
-            .any(|v| v == "Escape from Royal Oak")
-    );
+    assert!(saved.game_state["quests"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|v| v == "Escape from Royal Oak"));
     let _ = mud.send(s, "east");
     let _ = mud.send(s, "drop soulboy");
     mud.send(s, "south")

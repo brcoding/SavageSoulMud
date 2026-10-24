@@ -56,7 +56,8 @@ impl Plugin for AuthPlugin {
         // here so AuthPlugin stands alone (a no-op when ScenePlugin, which
         // owns the message, is also present).
         app.add_message::<DisconnectRequest>();
-        app.add_message::<crate::LoginCredentials>().add_message::<crate::LoginResult>();
+        app.add_message::<crate::LoginCredentials>()
+            .add_message::<crate::LoginResult>();
         app.add_message::<grim_networking::WiznetAlert>();
         app.add_systems(Startup, validate_registries);
         app.add_systems(
@@ -68,7 +69,8 @@ impl Plugin for AuthPlugin {
                 // so a line that advances a session into the world is not also
                 // re-dispatched as an in-game command that same tick (see
                 // input.rs module doc + JustEnteredWorld).
-                handle_pregame_input.in_set(crate::AuthSystems::Input)
+                handle_pregame_input
+                    .in_set(crate::AuthSystems::Input)
                     .after(handle_connection_established)
                     .after(SceneSystems::TouchInput)
                     .before(SceneSystems::Visibility),

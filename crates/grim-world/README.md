@@ -94,3 +94,6 @@ canvas drawing (`render_map`), preserving first-claim collision and exit rules.
 `RoomDarkness` opts a room into unlit visibility. `LightSource` marks a lit
 object independently of its later placement/ownership. Both are being-free
 markers; perception and ownership resolution remain in `grim-actor`.
+
+The visibility markers are defined in `src/lighting.rs` and reexported at the
+crate root; `lib.rs` remains a module shell.
