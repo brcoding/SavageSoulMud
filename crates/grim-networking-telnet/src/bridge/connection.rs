@@ -2,6 +2,9 @@
 
 use super::*;
 
+#[cfg(test)]
+mod tests;
+
 /// Split `socket` into read/write tasks and register it under `conn_id`. Fresh
 /// accepts negotiate optional client protocols immediately; adopted copyover
 /// sockets reset and renegotiate them without touching password echo.
@@ -20,8 +23,8 @@ pub(crate) fn register_connection(
     limits: TelnetLimits,
 ) {
     let raw_fd = socket.as_raw_fd();
-    let (read_half, mut write_half) = tokio::io::split(socket);
-    let (write_tx, mut write_rx) = tokio::sync::mpsc::channel::<Vec<u8>>(32);
+    let (read_half, write_half) = tokio::io::split(socket);
+    let (write_tx, write_rx) = tokio::sync::mpsc::channel::<Vec<u8>>(32);
 
     let mut protocol = ProtocolState::default();
     let negotiation = protocol.handshake(!handshake);
@@ -35,18 +38,12 @@ pub(crate) fn register_connection(
         protocol,
         limits,
     ));
-    let write_handle = tokio::spawn(async move {
-        // Negotiate immediately, even while the client hasn't sent a newline.
-        // Adopted sockets reset optional protocols but leave ECHO untouched.
-        if write_half.write_all(&negotiation).await.is_err() {
-            return;
-        }
-        while let Some(data) = write_rx.recv().await {
-            if write_half.write_all(&data).await.is_err() {
-                break;
-            }
-        }
-    });
+    let write_handle = tokio::spawn(write_connection(
+        write_half,
+        write_rx,
+        negotiation,
+        std::time::Duration::from_secs(60),
+    ));
 
     conns.lock().unwrap().insert(
         conn_id,
@@ -57,6 +54,29 @@ pub(crate) fn register_connection(
             raw_fd,
         },
     );
+}
+
+/// Keep silent sessions alive through proxies without producing player activity.
+async fn write_connection(
+    mut writer: tokio::io::WriteHalf<TcpStream>,
+    mut pending: tokio::sync::mpsc::Receiver<Vec<u8>>,
+    negotiation: Vec<u8>,
+    idle: std::time::Duration,
+) {
+    // Fresh/adopted sockets negotiate immediately; ECHO remains unchanged.
+    if writer.write_all(&negotiation).await.is_err() {
+        return;
+    }
+    loop {
+        let data = match tokio::time::timeout(idle, pending.recv()).await {
+            Ok(Some(data)) => data,
+            Ok(None) => break,
+            Err(_) => iac::NO_OP.to_vec(),
+        };
+        if writer.write_all(&data).await.is_err() {
+            break;
+        }
+    }
 }
 
 /// Own input framing separately from protocol negotiation and socket lifetime.

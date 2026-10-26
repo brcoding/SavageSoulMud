@@ -8,6 +8,11 @@ Connection setup, socket reading and bounded line assembly live in
 `src/bridge/connection.rs`; proxy listener parsing lives in `src/server/proxy.rs`.
 Protocol negotiation and prompt token substitution have dedicated helpers so
 their existing framing, limits and escaping remain independently readable.
+The single socket writer sends an invisible Telnet IAC NOP after 60 seconds
+without outbound data, protecting quiet connections from intermediary idle
+timeouts. Normal output resets this timer. Keepalives are never player input:
+they do not clear AFK or extend the login inactivity limit. Fresh connections
+and connections resumed through copyover use the same writer.
 
 ## Components
 Reuses `grim_networking::Connection`. `TelnetCapabilities` (`src/protocols.rs`)
