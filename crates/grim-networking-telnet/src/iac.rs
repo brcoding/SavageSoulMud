@@ -1,5 +1,6 @@
 //! Bounded streaming Telnet decoder. Reads have no relation to line endings.
 pub(crate) const IAC: u8 = 255;
+pub(crate) const NO_OP: [u8; 2] = [IAC, 241];
 pub(crate) const WILL: u8 = 251;
 pub(crate) const WONT: u8 = 252;
 pub(crate) const DO: u8 = 253;

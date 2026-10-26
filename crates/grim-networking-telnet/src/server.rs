@@ -306,18 +306,19 @@ async fn run_accept_loop(
             }
             Some(cmd) = to_tokio_rx.recv() => {
                 match cmd {
-                    NetworkCommand::Send { conn_id, text } => {
+                    NetworkCommand::Send { conn_id, text } if !text.is_empty() => {
                         let guard = state.conns.lock().unwrap();
                         if let Some(tx) = guard.get(&conn_id) {
                             let _ = tx.write_tx.try_send(text.into_bytes());
                         }
                     }
-                    NetworkCommand::SendRaw { conn_id, data } => {
+                    NetworkCommand::SendRaw { conn_id, data } if !data.is_empty() => {
                         let guard = state.conns.lock().unwrap();
                         if let Some(tx) = guard.get(&conn_id) {
                             let _ = tx.write_tx.try_send(data);
                         }
                     }
+                    NetworkCommand::Send { .. } | NetworkCommand::SendRaw { .. } => {}
                     NetworkCommand::Disconnect { conn_id } => {
                         if let Some(conn) = state.conns.lock().unwrap().remove(&conn_id) {
                             // Stop input immediately, but drain queued output before
